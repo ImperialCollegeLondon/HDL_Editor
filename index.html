@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>Hello World!</title>
+    <link rel="stylesheet" type="text/css" href="css/joint.min.css" />
+  </head>
+
+  <body>
+    <script type="text/javascript" src="js/button_click.js"></script>
+
+    <h1>Hello World!</h1>
+    We are using node <script>document.write(process.versions.node)</script>,
+    Chrome <script>document.write(process.versions.chrome)</script>,
+    and Electron <script>document.write(process.versions.electron)</script>.
+
+    <div id='elmish-app' class='elmish-app'>
+      <button type='button' name='button' id='elmish-button'>N/A</button>
+    </div>
+
+    <!-- content -->
+    <div id="myholder"></div>
+
+    <!-- rename symbols to be able to use Node.js and Electron APIs -->
+    <script>
+      window.nodeRequire = require;
+      delete window.require;
+      delete window.exports;
+      window.nodeModule = module;
+      delete window.module;
+    </script>
+
+    <!-- JointJS and its dependencies -->
+    <script type="text/javascript" src="js/jquery-3.3.1.min.js"></script>
+    <script type="text/javascript" src="js/lodash.js"></script>
+    <script type="text/javascript" src="js/backbone.js"></script>
+    <script type="text/javascript" src="js/joint.min.js"></script>
+
+    <!-- shapes defined in the following js file -->
+    <script type="text/javascript" src="js/jointjs-add-shape.js"></script>
+
+    <script type="text/javascript">
+      var drawRectangle = nodeRequire("./js/jointjs-add-shape.js");
+
+      var graph = new joint.dia.Graph;
+
+      var paper = new joint.dia.Paper({
+          el: document.getElementById('myholder'),
+          model: graph,
+          width: 600,
+          height: 600,
+          gridSize: 1
+      });
+
+      var rect = new joint.shapes.standard.Rectangle();
+      rect.position(100, 30);
+      rect.resize(100, 40);
+      rect.attr({
+          body: {
+              fill: 'blue'
+          },
+          label: {
+              text: 'Hello',
+              fill: 'white'
+          }
+      });
+
+      rect.addTo(graph);
+
+      var rect2 = rect.clone();
+      rect2.translate(300, 0);
+      rect2.attr('label/text', 'World!');
+      rect2.addTo(graph);
+
+      var link = new joint.shapes.standard.Link();
+      link.source(rect);
+      link.target(rect2);
+      link.addTo(graph);
+
+    </script>
+  </body>
+</html>

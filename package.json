@@ -1,0 +1,18 @@
+{
+  "name": "hdl_editor",
+  "version": "0.1.0",
+  "description": "graphical editor for Verilog-based hardware design",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron .",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "HDL"
+  ],
+  "author": "Lei Wang (Wilson)",
+  "license": "MIT",
+  "devDependencies": {
+    "electron": "^4.1.3"
+  }
+}
