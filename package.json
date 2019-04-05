@@ -6,6 +6,8 @@
   "scripts": {
     "start": "electron .",
     "test": "mocha",
+    "start:yarn": "cd src/Main && dotnet fable webpack --port free -- -w --config ../../webpack.config.js",
+    "build": "cd src/Main && dotnet fable webpack --port free -- -p --config ../../webpack.config.js",
     "test:all": "electron-mocha \"./electron_unit_test/**/*test_*.js\"",
     "test:one": "electron-mocha electron_unit_test/test_launch.js"
   },
