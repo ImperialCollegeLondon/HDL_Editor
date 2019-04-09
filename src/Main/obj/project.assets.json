@@ -2,7 +2,58 @@
   "version": 3,
   "targets": {
     ".NETCoreApp,Version=v2.1": {
-      "FSharp.Core/4.5.2": {
+      "Fable.Core/3.0.0-beta-005": {
+        "type": "package",
+        "dependencies": {
+          "FSharp.Core": "4.5.2"
+        },
+        "compile": {
+          "lib/netstandard2.0/Fable.Core.dll": {}
+        },
+        "runtime": {
+          "lib/netstandard2.0/Fable.Core.dll": {}
+        }
+      },
+      "Fable.Import.Browser/1.3.0": {
+        "type": "package",
+        "dependencies": {
+          "Fable.Core": "1.3.17"
+        },
+        "compile": {
+          "lib/netstandard1.6/Fable.Import.Browser.dll": {}
+        },
+        "runtime": {
+          "lib/netstandard1.6/Fable.Import.Browser.dll": {}
+        }
+      },
+      "Fable.Import.Electron/0.1.1": {
+        "type": "package",
+        "dependencies": {
+          "FSharp.Core": "4.2.3",
+          "Fable.Core": "1.1.15",
+          "Fable.Import.Browser": "0.1.0",
+          "Fable.Import.Node": "0.1.3"
+        },
+        "compile": {
+          "lib/netstandard1.6/Fable.Import.Electron.dll": {}
+        },
+        "runtime": {
+          "lib/netstandard1.6/Fable.Import.Electron.dll": {}
+        }
+      },
+      "Fable.Import.Node/0.4.3": {
+        "type": "package",
+        "dependencies": {
+          "Fable.Core": "1.3.8"
+        },
+        "compile": {
+          "lib/netstandard2.0/Fable.Import.Node.dll": {}
+        },
+        "runtime": {
+          "lib/netstandard2.0/Fable.Import.Node.dll": {}
+        }
+      },
+      "FSharp.Core/4.6.2": {
         "type": "package",
         "compile": {
           "lib/netstandard1.6/FSharp.Core.dll": {}
@@ -264,17 +315,72 @@
     }
   },
   "libraries": {
-    "FSharp.Core/4.5.2": {
-      "sha512": "Pe3EDp9oBjQ3c3fvZAJsw7XFLHECS3zn3P7MSqsJy3sFYR6jvTgxxnCFeePR1JHiWyZ3bm+RZAjchqVYk61adA==",
+    "Fable.Core/3.0.0-beta-005": {
+      "sha512": "0ChYQGrU1V6dl6vKF70GjS4AFTzM5QBx71NZj5f4Lgr/b/taQjEuedB52gqC6VsJmgJt3poeLsR7097yWPOfZg==",
       "type": "package",
-      "path": "fsharp.core/4.5.2",
+      "path": "fable.core/3.0.0-beta-005",
       "files": [
+        ".nupkg.metadata",
         ".signature.p7s",
-        "fsharp.core.4.5.2.nupkg.sha512",
+        "fable.core.3.0.0-beta-005.nupkg.sha512",
+        "fable.core.nuspec",
+        "lib/netstandard2.0/Fable.Core.dll",
+        "lib/netstandard2.0/Fable.Core.xml",
+        "paket-installmodel.cache"
+      ]
+    },
+    "Fable.Import.Browser/1.3.0": {
+      "sha512": "XKkMKzMd6/2ULCAYTEWXflimSnbbE+rmtPvNCG/uHc4EQUcAGwpJWkgBfj2hXTTenDJC6hb96uBVfWTQtJPAJQ==",
+      "type": "package",
+      "path": "fable.import.browser/1.3.0",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "fable.import.browser.1.3.0.nupkg.sha512",
+        "fable.import.browser.nuspec",
+        "lib/netstandard1.6/Fable.Import.Browser.dll",
+        "lib/netstandard1.6/Fable.Import.Browser.xml",
+        "paket-installmodel.cache"
+      ]
+    },
+    "Fable.Import.Electron/0.1.1": {
+      "sha512": "9TlbH95oiLQHKKn/mBYR5v0RyNfx3GkIeMrGOS6SnjUzkM5BpN6czzRP8Lo8NEHoH2bLVutzLOfhzHNTGkx7EA==",
+      "type": "package",
+      "path": "fable.import.electron/0.1.1",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "fable.import.electron.0.1.1.nupkg.sha512",
+        "fable.import.electron.nuspec",
+        "lib/netstandard1.6/Fable.Import.Electron.dll",
+        "paket-installmodel.cache"
+      ]
+    },
+    "Fable.Import.Node/0.4.3": {
+      "sha512": "5Pwvku4jr/cuPx9ercR/QhWWjcQ1kk6pBRhMcecPx4npTNJvHPtmW8JXR8Et8Z3ckN9+dODtKtI4mZ/W5AiiEQ==",
+      "type": "package",
+      "path": "fable.import.node/0.4.3",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "fable.import.node.0.4.3.nupkg.sha512",
+        "fable.import.node.nuspec",
+        "lib/netstandard2.0/Fable.Import.Node.dll",
+        "lib/netstandard2.0/Fable.Import.Node.xml",
+        "paket-installmodel.cache"
+      ]
+    },
+    "FSharp.Core/4.6.2": {
+      "sha512": "/waJ3a7u7MjFOGnXOfokbG1N1FH7VCmP3Fw1tJ8Q75kIj60LYBL3eYzab9hDimL5E21uhQ/1wf04M3dRAYemlw==",
+      "type": "package",
+      "path": "fsharp.core/4.6.2",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "fsharp.core.4.6.2.nupkg.sha512",
         "fsharp.core.nuspec",
         "lib/net45/FSharp.Core.dll",
         "lib/net45/FSharp.Core.optdata",
-        "lib/net45/FSharp.Core.resources.dll",
         "lib/net45/FSharp.Core.sigdata",
         "lib/net45/FSharp.Core.xml",
         "lib/net45/cs/FSharp.Core.resources.dll",
@@ -308,14 +414,16 @@
         "lib/netstandard1.6/ru/FSharp.Core.resources.dll",
         "lib/netstandard1.6/tr/FSharp.Core.resources.dll",
         "lib/netstandard1.6/zh-Hans/FSharp.Core.resources.dll",
-        "lib/netstandard1.6/zh-Hant/FSharp.Core.resources.dll"
+        "lib/netstandard1.6/zh-Hant/FSharp.Core.resources.dll",
+        "paket-installmodel.cache"
       ]
     },
     "Microsoft.NETCore.App/2.1.0": {
-      "sha512": "AvT774nTFgU8cYcGO9j1EMwuayKslxqYTurg32HGpWa2hEYNuW2+XgYVVNcZe6Ndbr84QX6fwaOZfd5n+1m2OA==",
+      "sha512": "JNHhG+j5eIhG26+H721IDmwswGUznTwwSuJMFe/08h0X2YarHvA15sVAvUkA/2Sp3W0ENNm48t+J7KTPRqEpfA==",
       "type": "package",
       "path": "microsoft.netcore.app/2.1.0",
       "files": [
+        ".nupkg.metadata",
         ".signature.p7s",
         "LICENSE.TXT",
         "Microsoft.NETCore.App.versions.txt",
@@ -577,10 +685,11 @@
       ]
     },
     "Microsoft.NETCore.DotNetAppHost/2.1.0": {
-      "sha512": "f/47I60Wg3SrveTvnecCQhCZCAMYlUujWF15EQ/AZTqF/54qeEJjbCIAxKcZI8ToUYzSg6JdfrHggsgjCyCE9Q==",
+      "sha512": "vMn8V3GOp/SPOG2oE8WxswzAWZ/GZmc8EPiB3vc2EZ6us14ehXhsvUFXndYopGNSjCa9OdqC6L6xStF1KyUZnw==",
       "type": "package",
       "path": "microsoft.netcore.dotnetapphost/2.1.0",
       "files": [
+        ".nupkg.metadata",
         ".signature.p7s",
         "LICENSE.TXT",
         "THIRD-PARTY-NOTICES.TXT",
@@ -590,10 +699,11 @@
       ]
     },
     "Microsoft.NETCore.DotNetHostPolicy/2.1.0": {
-      "sha512": "p50yZYKzhH64lmArJgoKjtvsNehECa+/sAuOQzZh5uDNBTbRKxjN8IXP1e517xdVsgrFcSNxSEVDKZIOWVjGcQ==",
+      "sha512": "vBUwNihtLUVS2HhO6WocYfAktRmfFihm6JB8/sJ53caVW+AelvbnYpfiGzaZDpkWjN6vA3xzOKPu9Vu8Zz3p8Q==",
       "type": "package",
       "path": "microsoft.netcore.dotnethostpolicy/2.1.0",
       "files": [
+        ".nupkg.metadata",
         ".signature.p7s",
         "LICENSE.TXT",
         "THIRD-PARTY-NOTICES.TXT",
@@ -603,10 +713,11 @@
       ]
     },
     "Microsoft.NETCore.DotNetHostResolver/2.1.0": {
-      "sha512": "fS9D8a+y55n6mHMbNqgHXaPGkjmpVH9h97OyrBxsCuo3Z8aQaFMJ5xIfmzji2ntUd/3truhMbSgSfIelHOkQpg==",
+      "sha512": "o0PRql5qOHFEY3d1WvzE+T7cMFKtOsWLMg8L1oTeGNnI4u5AzOj8o6AdZT3y2GxFA1DAx7AQ9qZjpCO2/bgZRw==",
       "type": "package",
       "path": "microsoft.netcore.dotnethostresolver/2.1.0",
       "files": [
+        ".nupkg.metadata",
         ".signature.p7s",
         "LICENSE.TXT",
         "THIRD-PARTY-NOTICES.TXT",
@@ -616,10 +727,11 @@
       ]
     },
     "Microsoft.NETCore.Platforms/2.1.0": {
-      "sha512": "wGzONNRwbrOMD42qqRTJHy48GoeKr0U5UjTvof+hBQ760J0ny3xJU28/VBgUZO2gpdhyoF6sD1CXEa0vEgiJMw==",
+      "sha512": "dSomZmvY1R//iZbIAX4b7F50rQ/dyAQM2+D5/fWXoWTRqK6nmfy6wHN0p01cAicn/lXDdaX5g8n+qMOtoCQe0A==",
       "type": "package",
       "path": "microsoft.netcore.platforms/2.1.0",
       "files": [
+        ".nupkg.metadata",
         ".signature.p7s",
         "LICENSE.TXT",
         "THIRD-PARTY-NOTICES.TXT",
@@ -632,16 +744,18 @@
       ]
     },
     "Microsoft.NETCore.Targets/2.1.0": {
-      "sha512": "WkdcfErVOzSknGZFNb/0sHZDQdfXhDg9a8+VIUxknPXhFv9NNklmKRth4GJu08T718J9+ns/osTR6hptSwoFuw==",
+      "sha512": "MUYw+juOopTe7xosGSkKYF7b1lM9aP+hFcLGw1iXgdbhZ4uNXWIiqrEMvtM2BgQWper4h5xAGOGAtSFqCI1nnw==",
       "type": "package",
       "path": "microsoft.netcore.targets/2.1.0",
       "files": [
+        ".nupkg.metadata",
         ".signature.p7s",
         "LICENSE.TXT",
         "THIRD-PARTY-NOTICES.TXT",
         "lib/netstandard1.0/_._",
         "microsoft.netcore.targets.2.1.0.nupkg.sha512",
         "microsoft.netcore.targets.nuspec",
+        "paket-installmodel.cache",
         "runtime.json",
         "useSharedDesignerContext.txt",
         "version.txt"
@@ -652,6 +766,7 @@
       "type": "package",
       "path": "netstandard.library/2.0.3",
       "files": [
+        ".nupkg.metadata",
         "LICENSE.TXT",
         "THIRD-PARTY-NOTICES.TXT",
         "build/netstandard2.0/NETStandard.Library.targets",
@@ -771,13 +886,18 @@
         "build/netstandard2.0/ref/netstandard.xml",
         "lib/netstandard1.0/_._",
         "netstandard.library.2.0.3.nupkg.sha512",
-        "netstandard.library.nuspec"
+        "netstandard.library.nuspec",
+        "paket-installmodel.cache"
       ]
     }
   },
   "projectFileDependencyGroups": {
     ".NETCoreApp,Version=v2.1": [
-      "FSharp.Core >= 4.5.2",
+      "FSharp.Core >= 4.6.2",
+      "Fable.Core >= 3.0.0-beta-005",
+      "Fable.Import.Browser >= 1.3.0",
+      "Fable.Import.Electron >= 0.1.1",
+      "Fable.Import.Node >= 0.4.3",
       "Microsoft.NETCore.App >= 2.1.0"
     ]
   },
@@ -819,7 +939,23 @@
         "dependencies": {
           "FSharp.Core": {
             "target": "Package",
-            "version": "[4.5.2, )"
+            "version": "[4.6.2, )"
+          },
+          "Fable.Core": {
+            "target": "Package",
+            "version": "[3.0.0-beta-005, )"
+          },
+          "Fable.Import.Browser": {
+            "target": "Package",
+            "version": "[1.3.0, )"
+          },
+          "Fable.Import.Electron": {
+            "target": "Package",
+            "version": "[0.1.1, )"
+          },
+          "Fable.Import.Node": {
+            "target": "Package",
+            "version": "[0.4.3, )"
           },
           "Microsoft.NETCore.App": {
             "target": "Package",
