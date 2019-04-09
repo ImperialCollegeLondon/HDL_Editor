@@ -10,6 +10,7 @@
     "start": "cd src/Main && dotnet fable webpack --port free -- -w --config ../../webpack.config.js",
     "build": "cd src/Main && dotnet fable webpack --port free -- -p --config ../../webpack.config.js",
     "build:webpack": "webpack",
+    "watch": "webpack --watch",
     "launch": "electron .",
     "release": "electron-packager . --out release --overwrite"
   },
@@ -36,6 +37,7 @@
     "file-loader": "^3.0.1",
     "html-webpack-plugin": "^3.2.0",
     "mocha": "^6.0.2",
+    "source-map-loader": "^0.2.4",
     "spectron": "^5.0.0",
     "style-loader": "^0.23.1",
     "webpack": "^4.29.6",
@@ -44,6 +46,8 @@
   "dependencies": {
     "@types/mocha": "^5.2.6",
     "babel-runtime": "^6.26.0",
-    "electron-mocha": "^7.0.0"
+    "core-js": "^3.0.1",
+    "electron-mocha": "^7.0.0",
+    "fable-core": "^0.7.30"
   }
 }
