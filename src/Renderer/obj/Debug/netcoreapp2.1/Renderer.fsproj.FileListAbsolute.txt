@@ -1,9 +1,0 @@
-C:\Users\Wilson_Wang\Desktop\Parallel_HDL_Dev\src\Renderer\bin\Debug\netcoreapp2.1\Renderer.deps.json
-C:\Users\Wilson_Wang\Desktop\Parallel_HDL_Dev\src\Renderer\bin\Debug\netcoreapp2.1\Renderer.runtimeconfig.json
-C:\Users\Wilson_Wang\Desktop\Parallel_HDL_Dev\src\Renderer\bin\Debug\netcoreapp2.1\Renderer.runtimeconfig.dev.json
-C:\Users\Wilson_Wang\Desktop\Parallel_HDL_Dev\src\Renderer\bin\Debug\netcoreapp2.1\Renderer.dll
-C:\Users\Wilson_Wang\Desktop\Parallel_HDL_Dev\src\Renderer\bin\Debug\netcoreapp2.1\Renderer.pdb
-C:\Users\Wilson_Wang\Desktop\Parallel_HDL_Dev\src\Renderer\obj\Debug\netcoreapp2.1\Renderer.dll
-C:\Users\Wilson_Wang\Desktop\Parallel_HDL_Dev\src\Renderer\obj\Debug\netcoreapp2.1\Renderer.pdb
-C:\Users\Wilson_Wang\Desktop\Parallel_HDL_Dev\src\Renderer\obj\Debug\netcoreapp2.1\Renderer.fsproj.CoreCompileInputs.cache
-C:\Users\Wilson_Wang\Desktop\Parallel_HDL_Dev\src\Renderer\obj\Debug\netcoreapp2.1\Renderer.fsprojAssemblyReference.cache

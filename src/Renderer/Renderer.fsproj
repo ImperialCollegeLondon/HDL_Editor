@@ -1,17 +1,12 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
-    <OutputType>Exe</OutputType>
-    <TargetFramework>netcoreapp2.1</TargetFramework>
+    <TargetFramework>netstandard2.0</TargetFramework>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="Program.fs" />
-  </ItemGroup>
-  <ItemGroup>
-    <PackageReference Include="Fable.Core" Version="2.0.3" />
-    <PackageReference Include="Fable.Import.Browser" Version="1.3.0" />
-    <PackageReference Include="Fable.Import.Electron" Version="0.1.1" />
-    <PackageReference Include="Fable.PowerPack" Version="3.0.0" />
+    <Compile Include="Html.fs" />
+    <Compile Include="Mime.fs" />
+    <Compile Include="Renderer.fs" />
   </ItemGroup>
   <Import Project="..\..\.paket\Paket.Restore.targets" />
 </Project>

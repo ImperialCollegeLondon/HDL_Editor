@@ -1,57 +1,68 @@
-const path = require('path');
-const HtmlWebpackPlugin = require('html-webpack-plugin');
-const CleanWebpackPlugin = require('clean-webpack-plugin');
+var path = require("path");
+var webpack = require("webpack");
+var fableUtils = require("fable-utils");
 
 function resolve(filePath) {
-  return path.join(__dirname, filePath);
+  return path.join(__dirname, filePath)
 }
 
 var babelOptions = fableUtils.resolveBabelOptions({
-  presets: [['es2015', { 'modules': false }]],
-  plugins: ['transform-runtime']
+  presets: [["es2015", { "modules": false }]],
+  plugins: ["transform-runtime"]
 });
 
-var isProduction = process.argv.indexOf('-p') >=0;
+var isProduction = process.argv.indexOf("-p") >= 0;
 console.log("Bundling for " + (isProduction ? "production" : "development") + "...");
 
-module.exports = {
-  mode: 'development',
-  entry: {
-    app: './src/index.js',
-    print: './src/print.js'
+var basicConfig = {
+  devtool: "source-map",
+  resolve: {
+    modules: [resolve("./node_modules/")]
   },
-  devtool: 'inline-source-map',
-  plugins: [
-    new CleanWebpackPlugin(),
-    new HtmlWebpackPlugin({
-      title: 'Output Management'
-    })
-  ],
-  output: {
-    filename: '[name].bundle.js',
-    path: path.resolve(__dirname, 'dist')
+  node: {
+    __dirname: false,
+    __filename: false
   },
   module: {
     rules: [
       {
-        test: /\.css$/,
-        use: [
-          'style-loader',
-          'css-loader'
-        ]
+        test: /\.fs(x|proj)?$/,
+        use: {
+          loader: "fable-loader",
+          options: {
+            babel: babelOptions,
+            define: isProduction ? [] : ["DEBUG"]
+          }
+        }
       },
       {
-        test: /\.(png|svg|jpg|gif)$/,
-        use: [
-          'file-loader'
-        ]
-      },
-      {
-        test: /\.(woff|woff2|eot|ttf|otf)$/,
-        use: [
-          'file-loader'
-        ]
+        test: /\.js$/,
+        exclude: /node_modules/,
+        use: {
+          loader: 'babel-loader',
+          options: babelOptions
+        },
       }
     ]
   }
 };
+
+var mainConfig = Object.assign({
+  target: "electron-main",
+  entry: resolve("src/Main/Main.fsproj"),
+  output: {
+    path: resolve("app"),
+    filename: "main.js"
+  }
+}, basicConfig);
+
+var rendererConfig = Object.assign({
+  target: "electron-renderer",
+  entry: resolve("src/Renderer/Renderer.fsproj"),
+  output: {
+    path: resolve("app"),
+    filename: "renderer.js"
+  }
+}, basicConfig);
+
+module.exports = [mainConfig, rendererConfig]
