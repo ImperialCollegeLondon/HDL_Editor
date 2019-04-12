@@ -10,6 +10,9 @@
 # dependency management for NuGet packages using Paket
 paket-files/
 
+# exclude the fable folder
+.fable/
+
 # Visual Studio cache files
 # files ending in .cache can be ignored
 *.[Cc]ache

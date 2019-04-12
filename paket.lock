@@ -37,16 +37,16 @@ NUGET
       System.Runtime.Loader (>= 4.0) - restriction: && (< net461) (>= netstandard2.0)
       System.Security.Cryptography.Algorithms (>= 4.3) - restriction: && (< net461) (>= netstandard2.0)
     FSharp.Core (4.6.2) - restriction: >= netstandard1.6
-    Microsoft.NETCore.App (2.2.3) - restriction: >= netcoreapp2.0
-      Microsoft.NETCore.DotNetHostPolicy (>= 2.2.3) - restriction: >= netcoreapp2.2
+    Microsoft.NETCore.App (2.2.4) - restriction: >= netcoreapp2.0
+      Microsoft.NETCore.DotNetHostPolicy (>= 2.2.4) - restriction: >= netcoreapp2.2
       Microsoft.NETCore.Platforms (>= 2.2) - restriction: >= netcoreapp2.2
       Microsoft.NETCore.Targets (>= 2.0) - restriction: >= netcoreapp2.2
       NETStandard.Library (>= 2.0.3) - restriction: >= netcoreapp2.2
-    Microsoft.NETCore.DotNetAppHost (2.2.3) - restriction: >= netcoreapp2.2
-    Microsoft.NETCore.DotNetHostPolicy (2.2.3) - restriction: >= netcoreapp2.2
-      Microsoft.NETCore.DotNetHostResolver (>= 2.2.3)
-    Microsoft.NETCore.DotNetHostResolver (2.2.3) - restriction: >= netcoreapp2.2
-      Microsoft.NETCore.DotNetAppHost (>= 2.2.3)
+    Microsoft.NETCore.DotNetAppHost (2.2.4) - restriction: >= netcoreapp2.2
+    Microsoft.NETCore.DotNetHostPolicy (2.2.4) - restriction: >= netcoreapp2.2
+      Microsoft.NETCore.DotNetHostResolver (>= 2.2.4)
+    Microsoft.NETCore.DotNetHostResolver (2.2.4) - restriction: >= netcoreapp2.2
+      Microsoft.NETCore.DotNetAppHost (>= 2.2.4)
     Microsoft.NETCore.Platforms (2.2) - restriction: >= netcoreapp2.0
     Microsoft.NETCore.Targets (2.1) - restriction: >= netcoreapp2.0
     NETStandard.Library (2.0.3) - restriction: >= netcoreapp2.2

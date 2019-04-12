@@ -36,12 +36,32 @@
 /******/ 	// define getter function for harmony exports
 /******/ 	__webpack_require__.d = function(exports, name, getter) {
 /******/ 		if(!__webpack_require__.o(exports, name)) {
-/******/ 			Object.defineProperty(exports, name, {
-/******/ 				configurable: false,
-/******/ 				enumerable: true,
-/******/ 				get: getter
-/******/ 			});
+/******/ 			Object.defineProperty(exports, name, { enumerable: true, get: getter });
 /******/ 		}
+/******/ 	};
+/******/
+/******/ 	// define __esModule on exports
+/******/ 	__webpack_require__.r = function(exports) {
+/******/ 		if(typeof Symbol !== 'undefined' && Symbol.toStringTag) {
+/******/ 			Object.defineProperty(exports, Symbol.toStringTag, { value: 'Module' });
+/******/ 		}
+/******/ 		Object.defineProperty(exports, '__esModule', { value: true });
+/******/ 	};
+/******/
+/******/ 	// create a fake namespace object
+/******/ 	// mode & 1: value is a module id, require it
+/******/ 	// mode & 2: merge all properties of value into the ns
+/******/ 	// mode & 4: return value when already ns object
+/******/ 	// mode & 8|1: behave like require
+/******/ 	__webpack_require__.t = function(value, mode) {
+/******/ 		if(mode & 1) value = __webpack_require__(value);
+/******/ 		if(mode & 8) return value;
+/******/ 		if((mode & 4) && typeof value === 'object' && value && value.__esModule) return value;
+/******/ 		var ns = Object.create(null);
+/******/ 		__webpack_require__.r(ns);
+/******/ 		Object.defineProperty(ns, 'default', { enumerable: true, value: value });
+/******/ 		if(mode & 2 && typeof value != 'string') for(var key in value) __webpack_require__.d(ns, key, function(key) { return value[key]; }.bind(null, key));
+/******/ 		return ns;
 /******/ 	};
 /******/
 /******/ 	// getDefaultExport function for compatibility with non-harmony modules
@@ -59,91 +79,142 @@
 /******/ 	// __webpack_public_path__
 /******/ 	__webpack_require__.p = "";
 /******/
+/******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 77);
+/******/ 	return __webpack_require__(__webpack_require__.s = "./src/Renderer/Renderer.fsproj");
 /******/ })
 /************************************************************************/
-/******/ ([
-/* 0 */
-/***/ (function(module, exports) {
+/******/ ({
 
-var core = module.exports = { version: '2.6.5' };
-if (typeof __e == 'number') __e = core; // eslint-disable-line no-undef
-
-
-/***/ }),
-/* 1 */
+/***/ "./.fable/fable-library.2.2.3/Array.js":
+/*!*********************************************!*\
+  !*** ./.fable/fable-library.2.2.3/Array.js ***!
+  \*********************************************/
+/*! exports provided: append, filter, fill, getSubArray, last, tryLast, mapIndexed, map, mapIndexed2, map2, mapIndexed3, map3, mapFold, mapFoldBack, indexed, truncate, concat, collect, countBy, distinctBy, distinct, where, contains, except, groupBy, empty, singleton, initialize, pairwise, replicate, copy, reverse, scan, scanBack, skip, skipWhile, take, takeWhile, addRangeInPlace, removeInPlace, removeAllInPlace, copyTo, partition, find, tryFind, findIndex, tryFindIndex, pick, tryPick, findBack, tryFindBack, findLastIndex, findIndexBack, tryFindIndexBack, choose, foldIndexed, fold, iterate, iterateIndexed, iterate2, iterateIndexed2, isEmpty, forAll, permute, setSlice, sortInPlaceBy, sortInPlace, sort, sortBy, sortDescending, sortByDescending, sortWith, unfold, unzip, unzip3, zip, zip3, chunkBySize, splitAt, compareWith, equalsWith, exactlyOne, head, tryHead, tail, item, tryItem, foldBackIndexed, foldBack, foldIndexed2, fold2, foldBackIndexed2, foldBack2, reduce, reduceBack, forAll2, existsOffset, exists, existsOffset2, exists2, sum, sumBy, maxBy, max, minBy, min, average, averageBy, ofSeq, ofList, toList, windowed */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* unused harmony export NonDeclaredType */
-/* unused harmony export Any */
-/* unused harmony export Unit */
-/* unused harmony export Option */
-/* unused harmony export Array */
-/* unused harmony export Tuple */
-/* unused harmony export Function */
-/* unused harmony export GenericParam */
-/* unused harmony export Interface */
-/* unused harmony export makeGeneric */
-/* unused harmony export isGeneric */
-/* unused harmony export getDefinition */
-/* unused harmony export extendInfo */
-/* unused harmony export hasInterface */
-/* unused harmony export getPropertyNames */
-/* unused harmony export isArray */
-/* harmony export (immutable) */ __webpack_exports__["g"] = toString;
-/* unused harmony export hash */
-/* harmony export (immutable) */ __webpack_exports__["e"] = equals;
-/* unused harmony export comparePrimitives */
-/* harmony export (immutable) */ __webpack_exports__["a"] = compare;
-/* harmony export (immutable) */ __webpack_exports__["f"] = equalsRecords;
-/* harmony export (immutable) */ __webpack_exports__["b"] = compareRecords;
-/* unused harmony export equalsUnions */
-/* unused harmony export compareUnions */
-/* harmony export (immutable) */ __webpack_exports__["d"] = createDisposable;
-/* harmony export (immutable) */ __webpack_exports__["c"] = createAtom;
-/* unused harmony export createObj */
-/* unused harmony export toPlainJsObj */
-/* unused harmony export round */
-/* unused harmony export randomNext */
-/* unused harmony export defaultArg */
-/* unused harmony export defaultArgWith */
-/* unused harmony export applyOperator */
-/* unused harmony export parseNumber */
-/* unused harmony export tryParse */
-/* unused harmony export parse */
-/* unused harmony export unescapeDataString */
-/* unused harmony export escapeDataString */
-/* unused harmony export escapeUriString */
-/* unused harmony export clear */
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_babel_runtime_core_js_object_get_own_property_descriptor__ = __webpack_require__(96);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_babel_runtime_core_js_object_get_own_property_descriptor___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_babel_runtime_core_js_object_get_own_property_descriptor__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_babel_runtime_core_js_map__ = __webpack_require__(48);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_babel_runtime_core_js_map___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_babel_runtime_core_js_map__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_babel_runtime_helpers_defineProperty__ = __webpack_require__(71);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_babel_runtime_helpers_defineProperty___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_babel_runtime_helpers_defineProperty__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_babel_runtime_core_js_get_iterator__ = __webpack_require__(11);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_babel_runtime_core_js_get_iterator___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_babel_runtime_core_js_get_iterator__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_babel_runtime_core_js_array_from__ = __webpack_require__(18);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_babel_runtime_core_js_array_from___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4_babel_runtime_core_js_array_from__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_babel_runtime_core_js_json_stringify__ = __webpack_require__(114);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_babel_runtime_core_js_json_stringify___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_5_babel_runtime_core_js_json_stringify__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6_babel_runtime_core_js_symbol_iterator__ = __webpack_require__(25);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6_babel_runtime_core_js_symbol_iterator___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_6_babel_runtime_core_js_symbol_iterator__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7_babel_runtime_core_js_object_assign__ = __webpack_require__(117);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7_babel_runtime_core_js_object_assign___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_7_babel_runtime_core_js_object_assign__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8_babel_runtime_core_js_object_get_own_property_names__ = __webpack_require__(121);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8_babel_runtime_core_js_object_get_own_property_names___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_8_babel_runtime_core_js_object_get_own_property_names__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9_babel_runtime_core_js_object_get_prototype_of__ = __webpack_require__(124);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9_babel_runtime_core_js_object_get_prototype_of___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_9_babel_runtime_core_js_object_get_prototype_of__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10_babel_runtime_helpers_typeof__ = __webpack_require__(127);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10_babel_runtime_helpers_typeof___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_10_babel_runtime_helpers_typeof__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11_babel_runtime_helpers_classCallCheck__ = __webpack_require__(7);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11_babel_runtime_helpers_classCallCheck___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_11_babel_runtime_helpers_classCallCheck__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12_babel_runtime_helpers_createClass__ = __webpack_require__(8);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12_babel_runtime_helpers_createClass___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_12_babel_runtime_helpers_createClass__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__Symbol__ = __webpack_require__(9);
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "append", function() { return append; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "filter", function() { return filter; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "fill", function() { return fill; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getSubArray", function() { return getSubArray; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "last", function() { return last; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "tryLast", function() { return tryLast; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "mapIndexed", function() { return mapIndexed; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "map", function() { return map; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "mapIndexed2", function() { return mapIndexed2; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "map2", function() { return map2; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "mapIndexed3", function() { return mapIndexed3; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "map3", function() { return map3; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "mapFold", function() { return mapFold; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "mapFoldBack", function() { return mapFoldBack; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "indexed", function() { return indexed; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "truncate", function() { return truncate; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "concat", function() { return concat; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "collect", function() { return collect; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "countBy", function() { return countBy; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "distinctBy", function() { return distinctBy; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "distinct", function() { return distinct; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "where", function() { return where; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "contains", function() { return contains; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "except", function() { return except; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "groupBy", function() { return groupBy; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "empty", function() { return empty; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "singleton", function() { return singleton; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "initialize", function() { return initialize; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "pairwise", function() { return pairwise; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "replicate", function() { return replicate; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "copy", function() { return copy; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "reverse", function() { return reverse; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "scan", function() { return scan; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "scanBack", function() { return scanBack; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "skip", function() { return skip; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "skipWhile", function() { return skipWhile; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "take", function() { return take; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "takeWhile", function() { return takeWhile; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "addRangeInPlace", function() { return addRangeInPlace; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "removeInPlace", function() { return removeInPlace; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "removeAllInPlace", function() { return removeAllInPlace; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "copyTo", function() { return copyTo; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "partition", function() { return partition; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "find", function() { return find; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "tryFind", function() { return tryFind; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "findIndex", function() { return findIndex; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "tryFindIndex", function() { return tryFindIndex; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "pick", function() { return pick; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "tryPick", function() { return tryPick; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "findBack", function() { return findBack; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "tryFindBack", function() { return tryFindBack; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "findLastIndex", function() { return findLastIndex; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "findIndexBack", function() { return findIndexBack; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "tryFindIndexBack", function() { return tryFindIndexBack; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "choose", function() { return choose; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "foldIndexed", function() { return foldIndexed; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "fold", function() { return fold; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "iterate", function() { return iterate; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "iterateIndexed", function() { return iterateIndexed; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "iterate2", function() { return iterate2; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "iterateIndexed2", function() { return iterateIndexed2; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "isEmpty", function() { return isEmpty; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "forAll", function() { return forAll; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "permute", function() { return permute; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "setSlice", function() { return setSlice; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "sortInPlaceBy", function() { return sortInPlaceBy; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "sortInPlace", function() { return sortInPlace; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "sort", function() { return sort; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "sortBy", function() { return sortBy; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "sortDescending", function() { return sortDescending; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "sortByDescending", function() { return sortByDescending; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "sortWith", function() { return sortWith; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "unfold", function() { return unfold; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "unzip", function() { return unzip; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "unzip3", function() { return unzip3; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "zip", function() { return zip; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "zip3", function() { return zip3; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "chunkBySize", function() { return chunkBySize; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "splitAt", function() { return splitAt; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "compareWith", function() { return compareWith; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "equalsWith", function() { return equalsWith; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "exactlyOne", function() { return exactlyOne; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "head", function() { return head; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "tryHead", function() { return tryHead; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "tail", function() { return tail; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "item", function() { return item; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "tryItem", function() { return tryItem; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "foldBackIndexed", function() { return foldBackIndexed; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "foldBack", function() { return foldBack; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "foldIndexed2", function() { return foldIndexed2; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "fold2", function() { return fold2; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "foldBackIndexed2", function() { return foldBackIndexed2; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "foldBack2", function() { return foldBack2; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "reduce", function() { return reduce; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "reduceBack", function() { return reduceBack; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "forAll2", function() { return forAll2; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "existsOffset", function() { return existsOffset; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "exists", function() { return exists; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "existsOffset2", function() { return existsOffset2; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "exists2", function() { return exists2; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "sum", function() { return sum; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "sumBy", function() { return sumBy; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "maxBy", function() { return maxBy; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "max", function() { return max; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "minBy", function() { return minBy; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "min", function() { return min; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "average", function() { return average; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "averageBy", function() { return averageBy; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ofSeq", function() { return ofSeq; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ofList", function() { return ofList; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "toList", function() { return toList; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "windowed", function() { return windowed; });
+/* harmony import */ var _babel_runtime_helpers_toConsumableArray__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/helpers/toConsumableArray */ "./node_modules/@babel/runtime/helpers/toConsumableArray.js");
+/* harmony import */ var _babel_runtime_helpers_toConsumableArray__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_helpers_toConsumableArray__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _Option_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./Option.js */ "./.fable/fable-library.2.2.3/Option.js");
+/* harmony import */ var _Util_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./Util.js */ "./.fable/fable-library.2.2.3/Util.js");
+/* harmony import */ var _Map_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./Map.js */ "./.fable/fable-library.2.2.3/Map.js");
+/* harmony import */ var _Seq_js__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./Seq.js */ "./.fable/fable-library.2.2.3/Seq.js");
+/* harmony import */ var _Set_js__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./Set.js */ "./.fable/fable-library.2.2.3/Set.js");
+/* harmony import */ var _Types_js__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./Types.js */ "./.fable/fable-library.2.2.3/Types.js");
 
 
 
@@ -152,3510 +223,3746 @@ if (typeof __e == 'number') __e = core; // eslint-disable-line no-undef
 
 
 
+function indexNotFound() {
+  throw new Error("An index satisfying the predicate was not found in the collection.");
+}
 
+function append(array1, array2, cons) {
+  if (ArrayBuffer.isView(array1)) {
+    var len1 = array1.length | 0;
+    var len2 = array2.length | 0;
+    var newArray = new cons(len1 + len2);
 
-
-
-
-
-var NonDeclaredType = function () {
-    function NonDeclaredType(kind, definition, generics) {
-        __WEBPACK_IMPORTED_MODULE_11_babel_runtime_helpers_classCallCheck___default()(this, NonDeclaredType);
-
-        this.kind = kind;
-        this.definition = definition;
-        this.generics = generics;
+    for (var i = 0; i <= len1 - 1; i++) {
+      newArray[i] = array1[i];
     }
 
-    __WEBPACK_IMPORTED_MODULE_12_babel_runtime_helpers_createClass___default()(NonDeclaredType, [{
-        key: "Equals",
-        value: function Equals(other) {
-            if (this.kind === other.kind && this.definition === other.definition) {
-                return __WEBPACK_IMPORTED_MODULE_10_babel_runtime_helpers_typeof___default()(this.generics) === "object" ? equalsRecords(this.generics, other.generics) : this.generics === other.generics;
-            }
-            return false;
-        }
-    }]);
+    for (var i$$1 = 0; i$$1 <= len2 - 1; i$$1++) {
+      newArray[i$$1 + len1] = array2[i$$1];
+    }
 
-    return NonDeclaredType;
-}();
-var Any = new NonDeclaredType("Any");
-var Unit = new NonDeclaredType("Unit");
-function Option(t) {
-    return new NonDeclaredType("Option", null, [t]);
-}
-function FableArray(t) {
-    var isTypedArray = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : false;
-
-    var def = null;
-    var genArg = null;
-    if (isTypedArray) {
-        def = t;
-    } else {
-        genArg = t;
-    }
-    return new NonDeclaredType("Array", def, [genArg]);
-}
-
-function Tuple(types) {
-    return new NonDeclaredType("Tuple", null, types);
-}
-function FableFunction(types) {
-    return new NonDeclaredType("Function", null, types);
-}
-
-function GenericParam(definition) {
-    return new NonDeclaredType("GenericParam", definition);
-}
-function Interface(definition) {
-    return new NonDeclaredType("Interface", definition);
-}
-function makeGeneric(typeDef, genArgs) {
-    return new NonDeclaredType("GenericType", typeDef, genArgs);
-}
-function isGeneric(typ) {
-    return typ instanceof NonDeclaredType && typ.kind === "GenericType";
-}
-/**
- * Returns the parent if this is a declared generic type or the argument otherwise.
- * Attention: Unlike .NET this doesn't throw an exception if type is not generic.
- */
-function getDefinition(typ) {
-    return isGeneric(typ) ? typ.definition : typ;
-}
-function extendInfo(cons, info) {
-    var parent = __WEBPACK_IMPORTED_MODULE_9_babel_runtime_core_js_object_get_prototype_of___default()(cons.prototype);
-    if (typeof parent[__WEBPACK_IMPORTED_MODULE_13__Symbol__["a" /* default */].reflection] === "function") {
-        var newInfo = {};
-        var parentInfo = parent[__WEBPACK_IMPORTED_MODULE_13__Symbol__["a" /* default */].reflection]();
-        __WEBPACK_IMPORTED_MODULE_8_babel_runtime_core_js_object_get_own_property_names___default()(info).forEach(function (k) {
-            var i = info[k];
-            if ((typeof i === "undefined" ? "undefined" : __WEBPACK_IMPORTED_MODULE_10_babel_runtime_helpers_typeof___default()(i)) === "object") {
-                newInfo[k] = Array.isArray(i) ? (parentInfo[k] || []).concat(i) : __WEBPACK_IMPORTED_MODULE_7_babel_runtime_core_js_object_assign___default()(parentInfo[k] || {}, i);
-            } else {
-                newInfo[k] = i;
-            }
-        });
-        return newInfo;
-    }
-    return info;
-}
-function hasInterface(obj, interfaceName) {
-    if (interfaceName === "System.Collections.Generic.IEnumerable") {
-        return typeof obj[__WEBPACK_IMPORTED_MODULE_6_babel_runtime_core_js_symbol_iterator___default.a] === "function";
-    } else if (typeof obj[__WEBPACK_IMPORTED_MODULE_13__Symbol__["a" /* default */].reflection] === "function") {
-        var interfaces = obj[__WEBPACK_IMPORTED_MODULE_13__Symbol__["a" /* default */].reflection]().interfaces;
-        return Array.isArray(interfaces) && interfaces.indexOf(interfaceName) > -1;
-    }
-    return false;
-}
-/**
- * Returns:
- * - Records: array with names of fields
- * - Classes: array with names of getters
- * - Nulls and unions: empty array
- * - JS Objects: The result of calling Object.getOwnPropertyNames
- */
-function getPropertyNames(obj) {
-    if (obj == null) {
-        return [];
-    }
-    var propertyMap = typeof obj[__WEBPACK_IMPORTED_MODULE_13__Symbol__["a" /* default */].reflection] === "function" ? obj[__WEBPACK_IMPORTED_MODULE_13__Symbol__["a" /* default */].reflection]().properties || [] : obj;
-    return __WEBPACK_IMPORTED_MODULE_8_babel_runtime_core_js_object_get_own_property_names___default()(propertyMap);
-}
-function isArray(obj) {
-    return Array.isArray(obj) || ArrayBuffer.isView(obj);
-}
-function toString(obj) {
-    var quoteStrings = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : false;
-
-    function isObject(x) {
-        return x !== null && (typeof x === "undefined" ? "undefined" : __WEBPACK_IMPORTED_MODULE_10_babel_runtime_helpers_typeof___default()(x)) === "object" && !(x instanceof Number) && !(x instanceof String) && !(x instanceof Boolean);
-    }
-    if (obj == null || typeof obj === "number") {
-        return String(obj);
-    }
-    if (typeof obj === "string") {
-        return quoteStrings ? __WEBPACK_IMPORTED_MODULE_5_babel_runtime_core_js_json_stringify___default()(obj) : obj;
-    }
-    if (typeof obj.ToString === "function") {
-        return obj.ToString();
-    }
-    if (hasInterface(obj, "FSharpUnion")) {
-        var info = obj[__WEBPACK_IMPORTED_MODULE_13__Symbol__["a" /* default */].reflection]();
-        var uci = info.cases[obj.tag];
-        switch (uci.length) {
-            case 1:
-                return uci[0];
-            case 2:
-                // For simplicity let's always use parens, in .NET they're ommitted in some cases
-                return uci[0] + " (" + toString(obj.data, true) + ")";
-            default:
-                return uci[0] + " (" + obj.data.map(function (x) {
-                    return toString(x, true);
-                }).join(",") + ")";
-        }
-    }
-    try {
-        return __WEBPACK_IMPORTED_MODULE_5_babel_runtime_core_js_json_stringify___default()(obj, function (k, v) {
-            return v && v[__WEBPACK_IMPORTED_MODULE_6_babel_runtime_core_js_symbol_iterator___default.a] && !Array.isArray(v) && isObject(v) ? __WEBPACK_IMPORTED_MODULE_4_babel_runtime_core_js_array_from___default()(v) : v && typeof v.ToString === "function" ? toString(v) : v;
-        });
-    } catch (err) {
-        // Fallback for objects with circular references
-        return "{" + __WEBPACK_IMPORTED_MODULE_8_babel_runtime_core_js_object_get_own_property_names___default()(obj).map(function (k) {
-            return k + ": " + String(obj[k]);
-        }).join(", ") + "}";
-    }
-}
-function hash(x) {
-    if (x != null && typeof x.GetHashCode === "function") {
-        return x.GetHashCode();
-    } else {
-        var s = __WEBPACK_IMPORTED_MODULE_5_babel_runtime_core_js_json_stringify___default()(x);
-        var h = 5381;
-        var i = 0;
-        var len = s.length;
-        while (i < len) {
-            h = h * 33 ^ s.charCodeAt(i++);
-        }
-        return h;
-    }
-}
-function equals(x, y) {
-    // Optimization if they are referencially equal
-    if (x === y) {
-        return true;
-    } else if (x == null) {
-        return y == null;
-    } else if (y == null) {
-        return false;
-    } else if (__WEBPACK_IMPORTED_MODULE_9_babel_runtime_core_js_object_get_prototype_of___default()(x) !== __WEBPACK_IMPORTED_MODULE_9_babel_runtime_core_js_object_get_prototype_of___default()(y)) {
-        return false;
-        // Equals override or IEquatable implementation
-    } else if (typeof x.Equals === "function") {
-        return x.Equals(y);
-    } else if (Array.isArray(x)) {
-        if (x.length !== y.length) {
-            return false;
-        }
-        for (var i = 0; i < x.length; i++) {
-            if (!equals(x[i], y[i])) {
-                return false;
-            }
-        }
-        return true;
-    } else if (ArrayBuffer.isView(x)) {
-        if (x.byteLength !== y.byteLength) {
-            return false;
-        }
-        var dv1 = new DataView(x.buffer);
-        var dv2 = new DataView(y.buffer);
-        for (var _i = 0; _i < x.byteLength; _i++) {
-            if (dv1.getUint8(_i) !== dv2.getUint8(_i)) {
-                return false;
-            }
-        }
-        return true;
-    } else if (x instanceof Date) {
-        return x.getTime() === y.getTime();
-    } else {
-        return false;
-    }
-}
-function comparePrimitives(x, y) {
-    return x === y ? 0 : x < y ? -1 : 1;
-}
-function compare(x, y) {
-    // Optimization if they are referencially equal
-    if (x === y) {
-        return 0;
-    } else if (x == null) {
-        return y == null ? 0 : -1;
-    } else if (y == null) {
-        return 1; // everything is bigger than null
-    } else if (__WEBPACK_IMPORTED_MODULE_9_babel_runtime_core_js_object_get_prototype_of___default()(x) !== __WEBPACK_IMPORTED_MODULE_9_babel_runtime_core_js_object_get_prototype_of___default()(y)) {
-        return -1;
-        // Some types (see Long.ts) may just implement the function and not the interface
-        // else if (hasInterface(x, "System.IComparable"))
-    } else if (typeof x.CompareTo === "function") {
-        return x.CompareTo(y);
-    } else if (Array.isArray(x)) {
-        if (x.length !== y.length) {
-            return x.length < y.length ? -1 : 1;
-        }
-        for (var i = 0, j = 0; i < x.length; i++) {
-            j = compare(x[i], y[i]);
-            if (j !== 0) {
-                return j;
-            }
-        }
-        return 0;
-    } else if (ArrayBuffer.isView(x)) {
-        if (x.byteLength !== y.byteLength) {
-            return x.byteLength < y.byteLength ? -1 : 1;
-        }
-        var dv1 = new DataView(x.buffer);
-        var dv2 = new DataView(y.buffer);
-        for (var _i2 = 0, b1 = 0, b2 = 0; _i2 < x.byteLength; _i2++) {
-            b1 = dv1.getUint8(_i2), b2 = dv2.getUint8(_i2);
-            if (b1 < b2) {
-                return -1;
-            }
-            if (b1 > b2) {
-                return 1;
-            }
-        }
-        return 0;
-    } else if (x instanceof Date) {
-        var xtime = x.getTime();
-        var ytime = y.getTime();
-        return xtime === ytime ? 0 : xtime < ytime ? -1 : 1;
-    } else if ((typeof x === "undefined" ? "undefined" : __WEBPACK_IMPORTED_MODULE_10_babel_runtime_helpers_typeof___default()(x)) === "object") {
-        var xhash = hash(x);
-        var yhash = hash(y);
-        if (xhash === yhash) {
-            return equals(x, y) ? 0 : -1;
-        } else {
-            return xhash < yhash ? -1 : 1;
-        }
-    } else {
-        return x < y ? -1 : 1;
-    }
-}
-function equalsRecords(x, y) {
-    // Optimization if they are referencially equal
-    if (x === y) {
-        return true;
-    } else {
-        var keys = getPropertyNames(x);
-        var _iteratorNormalCompletion = true;
-        var _didIteratorError = false;
-        var _iteratorError = undefined;
-
-        try {
-            for (var _iterator = __WEBPACK_IMPORTED_MODULE_3_babel_runtime_core_js_get_iterator___default()(keys), _step; !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {
-                var key = _step.value;
-
-                if (!equals(x[key], y[key])) {
-                    return false;
-                }
-            }
-        } catch (err) {
-            _didIteratorError = true;
-            _iteratorError = err;
-        } finally {
-            try {
-                if (!_iteratorNormalCompletion && _iterator.return) {
-                    _iterator.return();
-                }
-            } finally {
-                if (_didIteratorError) {
-                    throw _iteratorError;
-                }
-            }
-        }
-
-        return true;
-    }
-}
-function compareRecords(x, y) {
-    // Optimization if they are referencially equal
-    if (x === y) {
-        return 0;
-    } else {
-        var keys = getPropertyNames(x);
-        var _iteratorNormalCompletion2 = true;
-        var _didIteratorError2 = false;
-        var _iteratorError2 = undefined;
-
-        try {
-            for (var _iterator2 = __WEBPACK_IMPORTED_MODULE_3_babel_runtime_core_js_get_iterator___default()(keys), _step2; !(_iteratorNormalCompletion2 = (_step2 = _iterator2.next()).done); _iteratorNormalCompletion2 = true) {
-                var key = _step2.value;
-
-                var res = compare(x[key], y[key]);
-                if (res !== 0) {
-                    return res;
-                }
-            }
-        } catch (err) {
-            _didIteratorError2 = true;
-            _iteratorError2 = err;
-        } finally {
-            try {
-                if (!_iteratorNormalCompletion2 && _iterator2.return) {
-                    _iterator2.return();
-                }
-            } finally {
-                if (_didIteratorError2) {
-                    throw _iteratorError2;
-                }
-            }
-        }
-
-        return 0;
-    }
-}
-function equalsUnions(x, y) {
-    return x === y || x.tag === y.tag && equals(x.data, y.data);
-}
-function compareUnions(x, y) {
-    if (x === y) {
-        return 0;
-    } else {
-        var res = x.tag < y.tag ? -1 : x.tag > y.tag ? 1 : 0;
-        return res !== 0 ? res : compare(x.data, y.data);
-    }
-}
-function createDisposable(f) {
-    return __WEBPACK_IMPORTED_MODULE_2_babel_runtime_helpers_defineProperty___default()({
-        Dispose: f
-    }, __WEBPACK_IMPORTED_MODULE_13__Symbol__["a" /* default */].reflection, function () {
-        return { interfaces: ["System.IDisposable"] };
-    });
-}
-// tslint forbids non-arrow functions, but it's
-// necessary here to use the arguments object
-/* tslint:disable */
-function createAtom(value) {
-    var atom = value;
-    return function () {
-        return arguments.length === 0 ? atom : (atom = arguments[0], void 0);
-    };
-}
-/* tslint:enable */
-var CaseRules = {
-    None: 0,
-    LowerFirst: 1
-};
-function isList(o) {
-    if (o != null) {
-        if (typeof o[__WEBPACK_IMPORTED_MODULE_13__Symbol__["a" /* default */].reflection] === "function") {
-            return o[__WEBPACK_IMPORTED_MODULE_13__Symbol__["a" /* default */].reflection]().type === "Microsoft.FSharp.Collections.FSharpList";
-        }
-    }
-    return false;
-}
-function createObj(fields) {
-    var caseRule = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : CaseRules.None;
-    var casesCache = arguments[2];
-
-    var iter = __WEBPACK_IMPORTED_MODULE_3_babel_runtime_core_js_get_iterator___default()(fields);
-    var cur = iter.next();
-    var o = {};
-    while (!cur.done) {
-        var value = cur.value;
-        if (Array.isArray(value)) {
-            o[value[0]] = value[1];
-        } else {
-            casesCache = casesCache || new __WEBPACK_IMPORTED_MODULE_1_babel_runtime_core_js_map___default.a();
-            var proto = __WEBPACK_IMPORTED_MODULE_9_babel_runtime_core_js_object_get_prototype_of___default()(value);
-            var cases = casesCache.get(proto);
-            if (cases == null) {
-                if (typeof proto[__WEBPACK_IMPORTED_MODULE_13__Symbol__["a" /* default */].reflection] === "function") {
-                    cases = proto[__WEBPACK_IMPORTED_MODULE_13__Symbol__["a" /* default */].reflection]().cases;
-                    casesCache.set(proto, cases);
-                }
-            }
-            var caseInfo = cases != null ? cases[value.tag] : null;
-            if (Array.isArray(caseInfo)) {
-                var key = caseInfo[0];
-                if (caseRule === CaseRules.LowerFirst) {
-                    key = key[0].toLowerCase() + key.substr(1);
-                }
-                o[key] = caseInfo.length === 1 ? true : isList(value.data) ? createObj(value.data, caseRule, casesCache) : value.data;
-            } else {
-                throw new Error("Cannot infer key and value of " + value);
-            }
-        }
-        cur = iter.next();
-    }
-    return o;
-}
-function toPlainJsObj(source) {
-    if (source != null && source.constructor !== Object) {
-        var target = {};
-        var props = __WEBPACK_IMPORTED_MODULE_8_babel_runtime_core_js_object_get_own_property_names___default()(source);
-        var _iteratorNormalCompletion3 = true;
-        var _didIteratorError3 = false;
-        var _iteratorError3 = undefined;
-
-        try {
-            for (var _iterator3 = __WEBPACK_IMPORTED_MODULE_3_babel_runtime_core_js_get_iterator___default()(props), _step3; !(_iteratorNormalCompletion3 = (_step3 = _iterator3.next()).done); _iteratorNormalCompletion3 = true) {
-                var _p = _step3.value;
-
-                target[_p] = source[_p];
-            }
-            // Copy also properties from prototype, see #192
-        } catch (err) {
-            _didIteratorError3 = true;
-            _iteratorError3 = err;
-        } finally {
-            try {
-                if (!_iteratorNormalCompletion3 && _iterator3.return) {
-                    _iterator3.return();
-                }
-            } finally {
-                if (_didIteratorError3) {
-                    throw _iteratorError3;
-                }
-            }
-        }
-
-        var proto = __WEBPACK_IMPORTED_MODULE_9_babel_runtime_core_js_object_get_prototype_of___default()(source);
-        if (proto != null) {
-            props = __WEBPACK_IMPORTED_MODULE_8_babel_runtime_core_js_object_get_own_property_names___default()(proto);
-            var _iteratorNormalCompletion4 = true;
-            var _didIteratorError4 = false;
-            var _iteratorError4 = undefined;
-
-            try {
-                for (var _iterator4 = __WEBPACK_IMPORTED_MODULE_3_babel_runtime_core_js_get_iterator___default()(props), _step4; !(_iteratorNormalCompletion4 = (_step4 = _iterator4.next()).done); _iteratorNormalCompletion4 = true) {
-                    var p = _step4.value;
-
-                    var prop = __WEBPACK_IMPORTED_MODULE_0_babel_runtime_core_js_object_get_own_property_descriptor___default()(proto, p);
-                    if (prop.value) {
-                        target[p] = prop.value;
-                    } else if (prop.get) {
-                        target[p] = prop.get.apply(source);
-                    }
-                }
-            } catch (err) {
-                _didIteratorError4 = true;
-                _iteratorError4 = err;
-            } finally {
-                try {
-                    if (!_iteratorNormalCompletion4 && _iterator4.return) {
-                        _iterator4.return();
-                    }
-                } finally {
-                    if (_didIteratorError4) {
-                        throw _iteratorError4;
-                    }
-                }
-            }
-        }
-        return target;
-    } else {
-        return source;
-    }
-}
-function round(value) {
-    var digits = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 0;
-
-    var m = Math.pow(10, digits);
-    var n = +(digits ? value * m : value).toFixed(8);
-    var i = Math.floor(n);
-    var f = n - i;
-    var e = 1e-8;
-    var r = f > 0.5 - e && f < 0.5 + e ? i % 2 === 0 ? i : i + 1 : Math.round(n);
-    return digits ? r / m : r;
-}
-function randomNext(min, max) {
-    return Math.floor(Math.random() * (max - min)) + min;
-}
-function defaultArg(arg, defaultValue, f) {
-    return arg == null ? defaultValue : f != null ? f(arg) : arg;
-}
-function defaultArgWith(arg, defThunk) {
-    return arg == null ? defThunk() : arg;
-}
-function applyOperator(x, y, operator) {
-    function getMethod(obj) {
-        if ((typeof obj === "undefined" ? "undefined" : __WEBPACK_IMPORTED_MODULE_10_babel_runtime_helpers_typeof___default()(obj)) === "object") {
-            var cons = __WEBPACK_IMPORTED_MODULE_9_babel_runtime_core_js_object_get_prototype_of___default()(obj).constructor;
-            if (typeof cons[operator] === "function") {
-                return cons[operator];
-            }
-        }
-        return null;
-    }
-    var meth = getMethod(x);
-    if (meth != null) {
-        return meth(x, y);
-    }
-    meth = getMethod(y);
-    if (meth != null) {
-        return meth(x, y);
-    }
-    switch (operator) {
-        case "op_Addition":
-            return x + y;
-        case "op_Subtraction":
-            return x - y;
-        case "op_Multiply":
-            return x * y;
-        case "op_Division":
-            return x / y;
-        case "op_Modulus":
-            return x % y;
-        case "op_LeftShift":
-            return x << y;
-        case "op_RightShift":
-            return x >> y;
-        case "op_BitwiseAnd":
-            return x & y;
-        case "op_BitwiseOr":
-            return x | y;
-        case "op_ExclusiveOr":
-            return x ^ y;
-        case "op_LogicalNot":
-            return x + y;
-        case "op_UnaryNegation":
-            return !x;
-        case "op_BooleanAnd":
-            return x && y;
-        case "op_BooleanOr":
-            return x || y;
-        default:
-            return null;
-    }
-}
-function parseNumber(v) {
-    return +v;
-}
-function tryParse(v, initial, parser, fn) {
-    if (v != null) {
-        var a = parser.exec(v);
-        if (a !== null) {
-            return [true, fn(a[1])];
-        }
-    }
-    return [false, initial];
-}
-function parse(v, initial, parser, fn) {
-    var a = tryParse(v, initial, parser, fn);
-    if (a[0]) {
-        return a[1];
-    } else {
-        // TODO FormatException ?
-        throw new Error("Input string was not in a correct format.");
-    }
-}
-function unescapeDataString(s) {
-    // https://stackoverflow.com/a/4458580/524236
-    return decodeURIComponent(s.replace(/\+/g, "%20"));
-}
-function escapeDataString(s) {
-    return encodeURIComponent(s).replace(/!/g, "%21").replace(/'/g, "%27").replace(/\(/g, "%28").replace(/\)/g, "%29").replace(/\*/g, "%2A");
-}
-function escapeUriString(s) {
-    return encodeURI(s);
-}
-// ICollection.Clear method can be called on IDictionary
-// too so we need to make a runtime check (see #1120)
-function clear(col) {
-    if (Array.isArray(col)) {
-        col.splice(0);
-    } else {
-        col.clear();
-    }
-}
-
-/***/ }),
-/* 2 */
-/***/ (function(module, exports, __webpack_require__) {
-
-var store = __webpack_require__(43)('wks');
-var uid = __webpack_require__(30);
-var Symbol = __webpack_require__(5).Symbol;
-var USE_SYMBOL = typeof Symbol == 'function';
-
-var $exports = module.exports = function (name) {
-  return store[name] || (store[name] =
-    USE_SYMBOL && Symbol[name] || (USE_SYMBOL ? Symbol : uid)('Symbol.' + name));
-};
-
-$exports.store = store;
-
-
-/***/ }),
-/* 3 */
-/***/ (function(module, exports, __webpack_require__) {
-
-var global = __webpack_require__(5);
-var core = __webpack_require__(0);
-var ctx = __webpack_require__(19);
-var hide = __webpack_require__(12);
-var has = __webpack_require__(16);
-var PROTOTYPE = 'prototype';
-
-var $export = function (type, name, source) {
-  var IS_FORCED = type & $export.F;
-  var IS_GLOBAL = type & $export.G;
-  var IS_STATIC = type & $export.S;
-  var IS_PROTO = type & $export.P;
-  var IS_BIND = type & $export.B;
-  var IS_WRAP = type & $export.W;
-  var exports = IS_GLOBAL ? core : core[name] || (core[name] = {});
-  var expProto = exports[PROTOTYPE];
-  var target = IS_GLOBAL ? global : IS_STATIC ? global[name] : (global[name] || {})[PROTOTYPE];
-  var key, own, out;
-  if (IS_GLOBAL) source = name;
-  for (key in source) {
-    // contains in native
-    own = !IS_FORCED && target && target[key] !== undefined;
-    if (own && has(exports, key)) continue;
-    // export native or passed
-    out = own ? target[key] : source[key];
-    // prevent global pollution for namespaces
-    exports[key] = IS_GLOBAL && typeof target[key] != 'function' ? source[key]
-    // bind timers to global for call from export context
-    : IS_BIND && own ? ctx(out, global)
-    // wrap global constructors for prevent change them in library
-    : IS_WRAP && target[key] == out ? (function (C) {
-      var F = function (a, b, c) {
-        if (this instanceof C) {
-          switch (arguments.length) {
-            case 0: return new C();
-            case 1: return new C(a);
-            case 2: return new C(a, b);
-          } return new C(a, b, c);
-        } return C.apply(this, arguments);
-      };
-      F[PROTOTYPE] = C[PROTOTYPE];
-      return F;
-    // make static versions for prototype methods
-    })(out) : IS_PROTO && typeof out == 'function' ? ctx(Function.call, out) : out;
-    // export proto methods to core.%CONSTRUCTOR%.methods.%NAME%
-    if (IS_PROTO) {
-      (exports.virtual || (exports.virtual = {}))[key] = out;
-      // export proto methods to core.%CONSTRUCTOR%.prototype.%NAME%
-      if (type & $export.R && expProto && !expProto[key]) hide(expProto, key, out);
-    }
+    return newArray;
+  } else {
+    return array1.concat(array2);
   }
-};
-// type bitmap
-$export.F = 1;   // forced
-$export.G = 2;   // global
-$export.S = 4;   // static
-$export.P = 8;   // proto
-$export.B = 16;  // bind
-$export.W = 32;  // wrap
-$export.U = 64;  // safe
-$export.R = 128; // real proto method for `library`
-module.exports = $export;
-
-
-/***/ }),
-/* 4 */
-/***/ (function(module, exports, __webpack_require__) {
-
-var anObject = __webpack_require__(14);
-var IE8_DOM_DEFINE = __webpack_require__(56);
-var toPrimitive = __webpack_require__(38);
-var dP = Object.defineProperty;
-
-exports.f = __webpack_require__(6) ? Object.defineProperty : function defineProperty(O, P, Attributes) {
-  anObject(O);
-  P = toPrimitive(P, true);
-  anObject(Attributes);
-  if (IE8_DOM_DEFINE) try {
-    return dP(O, P, Attributes);
-  } catch (e) { /* empty */ }
-  if ('get' in Attributes || 'set' in Attributes) throw TypeError('Accessors not supported!');
-  if ('value' in Attributes) O[P] = Attributes.value;
-  return O;
-};
-
-
-/***/ }),
-/* 5 */
-/***/ (function(module, exports) {
-
-// https://github.com/zloirock/core-js/issues/86#issuecomment-115759028
-var global = module.exports = typeof window != 'undefined' && window.Math == Math
-  ? window : typeof self != 'undefined' && self.Math == Math ? self
-  // eslint-disable-next-line no-new-func
-  : Function('return this')();
-if (typeof __g == 'number') __g = global; // eslint-disable-line no-undef
-
-
-/***/ }),
-/* 6 */
-/***/ (function(module, exports, __webpack_require__) {
-
-// Thank's IE8 for his funny defineProperty
-module.exports = !__webpack_require__(15)(function () {
-  return Object.defineProperty({}, 'a', { get: function () { return 7; } }).a != 7;
-});
-
-
-/***/ }),
-/* 7 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-exports.__esModule = true;
-
-exports.default = function (instance, Constructor) {
-  if (!(instance instanceof Constructor)) {
-    throw new TypeError("Cannot call a class as a function");
-  }
-};
-
-/***/ }),
-/* 8 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-exports.__esModule = true;
-
-var _defineProperty = __webpack_require__(64);
-
-var _defineProperty2 = _interopRequireDefault(_defineProperty);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-exports.default = function () {
-  function defineProperties(target, props) {
-    for (var i = 0; i < props.length; i++) {
-      var descriptor = props[i];
-      descriptor.enumerable = descriptor.enumerable || false;
-      descriptor.configurable = true;
-      if ("value" in descriptor) descriptor.writable = true;
-      (0, _defineProperty2.default)(target, descriptor.key, descriptor);
-    }
-  }
-
-  return function (Constructor, protoProps, staticProps) {
-    if (protoProps) defineProperties(Constructor.prototype, protoProps);
-    if (staticProps) defineProperties(Constructor, staticProps);
-    return Constructor;
-  };
-}();
-
-/***/ }),
-/* 9 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony export (immutable) */ __webpack_exports__["b"] = setType;
-/* unused harmony export getType */
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_babel_runtime_core_js_symbol__ = __webpack_require__(74);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_babel_runtime_core_js_symbol___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_babel_runtime_core_js_symbol__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_babel_runtime_core_js_map__ = __webpack_require__(48);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_babel_runtime_core_js_map___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_babel_runtime_core_js_map__);
-
-
-var types = new __WEBPACK_IMPORTED_MODULE_1_babel_runtime_core_js_map___default.a();
-function setType(fullName, cons) {
-    types.set(fullName, cons);
 }
-function getType(fullName) {
-    return types.get(fullName);
-}
-/* harmony default export */ __webpack_exports__["a"] = ({
-    reflection: __WEBPACK_IMPORTED_MODULE_0_babel_runtime_core_js_symbol___default()("reflection")
-});
-
-/***/ }),
-/* 10 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* unused harmony export Enumerator */
-/* unused harmony export getEnumerator */
-/* unused harmony export toIterator */
-/* harmony export (immutable) */ __webpack_exports__["g"] = toList;
-/* unused harmony export ofList */
-/* unused harmony export ofArray */
-/* unused harmony export append */
-/* unused harmony export average */
-/* unused harmony export averageBy */
-/* unused harmony export concat */
-/* unused harmony export collect */
-/* unused harmony export choose */
-/* harmony export (immutable) */ __webpack_exports__["a"] = compareWith;
-/* unused harmony export delay */
-/* unused harmony export empty */
-/* unused harmony export enumerateWhile */
-/* unused harmony export enumerateThenFinally */
-/* unused harmony export enumerateUsing */
-/* unused harmony export exactlyOne */
-/* unused harmony export except */
-/* unused harmony export exists */
-/* unused harmony export exists2 */
-/* unused harmony export filter */
-/* unused harmony export where */
-/* harmony export (immutable) */ __webpack_exports__["b"] = fold;
-/* harmony export (immutable) */ __webpack_exports__["c"] = foldBack;
-/* unused harmony export fold2 */
-/* unused harmony export foldBack2 */
-/* unused harmony export forAll */
-/* unused harmony export forAll2 */
-/* unused harmony export tryHead */
-/* unused harmony export head */
-/* unused harmony export initialize */
-/* unused harmony export initializeInfinite */
-/* unused harmony export tryItem */
-/* unused harmony export item */
-/* harmony export (immutable) */ __webpack_exports__["d"] = iterate;
-/* unused harmony export iterate2 */
-/* unused harmony export iterateIndexed */
-/* unused harmony export iterateIndexed2 */
-/* unused harmony export isEmpty */
-/* unused harmony export tryLast */
-/* unused harmony export last */
-/* unused harmony export count */
-/* harmony export (immutable) */ __webpack_exports__["e"] = map;
-/* unused harmony export mapIndexed */
-/* unused harmony export indexed */
-/* unused harmony export map2 */
-/* unused harmony export mapIndexed2 */
-/* unused harmony export map3 */
-/* unused harmony export chunkBySize */
-/* unused harmony export mapFold */
-/* unused harmony export mapFoldBack */
-/* unused harmony export max */
-/* unused harmony export maxBy */
-/* unused harmony export min */
-/* unused harmony export minBy */
-/* unused harmony export pairwise */
-/* unused harmony export permute */
-/* unused harmony export rangeStep */
-/* unused harmony export rangeChar */
-/* unused harmony export range */
-/* unused harmony export readOnly */
-/* unused harmony export reduce */
-/* unused harmony export reduceBack */
-/* unused harmony export replicate */
-/* unused harmony export reverse */
-/* unused harmony export scan */
-/* unused harmony export scanBack */
-/* unused harmony export singleton */
-/* unused harmony export skip */
-/* unused harmony export skipWhile */
-/* unused harmony export sortWith */
-/* unused harmony export sum */
-/* unused harmony export sumBy */
-/* unused harmony export tail */
-/* unused harmony export take */
-/* unused harmony export truncate */
-/* unused harmony export takeWhile */
-/* unused harmony export tryFind */
-/* unused harmony export find */
-/* unused harmony export tryFindBack */
-/* unused harmony export findBack */
-/* unused harmony export tryFindIndex */
-/* unused harmony export findIndex */
-/* unused harmony export tryFindIndexBack */
-/* unused harmony export findIndexBack */
-/* harmony export (immutable) */ __webpack_exports__["h"] = tryPick;
-/* harmony export (immutable) */ __webpack_exports__["f"] = pick;
-/* unused harmony export unfold */
-/* unused harmony export zip */
-/* unused harmony export zip3 */
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_babel_runtime_helpers_slicedToArray__ = __webpack_require__(135);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_babel_runtime_helpers_slicedToArray___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_babel_runtime_helpers_slicedToArray__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_babel_runtime_core_js_array_from__ = __webpack_require__(18);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_babel_runtime_core_js_array_from___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_babel_runtime_core_js_array_from__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_babel_runtime_helpers_defineProperty__ = __webpack_require__(71);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_babel_runtime_helpers_defineProperty___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_babel_runtime_helpers_defineProperty__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_babel_runtime_core_js_symbol_iterator__ = __webpack_require__(25);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_babel_runtime_core_js_symbol_iterator___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_babel_runtime_core_js_symbol_iterator__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_babel_runtime_core_js_get_iterator__ = __webpack_require__(11);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_babel_runtime_core_js_get_iterator___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4_babel_runtime_core_js_get_iterator__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_babel_runtime_helpers_classCallCheck__ = __webpack_require__(7);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_babel_runtime_helpers_classCallCheck___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_5_babel_runtime_helpers_classCallCheck__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6_babel_runtime_helpers_createClass__ = __webpack_require__(8);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6_babel_runtime_helpers_createClass___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_6_babel_runtime_helpers_createClass__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__Array__ = __webpack_require__(54);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__ListClass__ = __webpack_require__(26);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__Util__ = __webpack_require__(1);
-
-
-
-
-
-
-
-
-
-
-
-
-var Enumerator = function () {
-    function Enumerator(iter) {
-        __WEBPACK_IMPORTED_MODULE_5_babel_runtime_helpers_classCallCheck___default()(this, Enumerator);
-
-        this.iter = iter;
-    }
-
-    __WEBPACK_IMPORTED_MODULE_6_babel_runtime_helpers_createClass___default()(Enumerator, [{
-        key: "MoveNext",
-        value: function MoveNext() {
-            var cur = this.iter.next();
-            this.current = cur.value;
-            return !cur.done;
-        }
-    }, {
-        key: "Reset",
-        value: function Reset() {
-            throw new Error("JS iterators cannot be reset");
-        }
-    }, {
-        key: "Dispose",
-        value: function Dispose() {
-            return;
-        }
-    }, {
-        key: "Current",
-        get: function get() {
-            return this.current;
-        }
-    }]);
-
-    return Enumerator;
-}();
-function getEnumerator(o) {
-    return typeof o.GetEnumerator === "function" ? o.GetEnumerator() : new Enumerator(__WEBPACK_IMPORTED_MODULE_4_babel_runtime_core_js_get_iterator___default()(o));
-}
-function toIterator(en) {
-    return {
-        next: function next() {
-            return en.MoveNext() ? { done: false, value: en.Current } : { done: true, value: null };
-        }
-    };
-}
-function __failIfNone(res) {
-    if (res == null) {
-        throw new Error("Seq did not contain any matching element");
-    }
-    return res;
-}
-function toList(xs) {
-    return foldBack(function (x, acc) {
-        return new __WEBPACK_IMPORTED_MODULE_8__ListClass__["a" /* default */](x, acc);
-    }, xs, new __WEBPACK_IMPORTED_MODULE_8__ListClass__["a" /* default */]());
-}
-function ofList(xs) {
-    return delay(function () {
-        return unfold(function (x) {
-            return x.tail != null ? [x.head, x.tail] : null;
-        }, xs);
-    });
-}
-function ofArray(xs) {
-    return delay(function () {
-        return unfold(function (i) {
-            return i < xs.length ? [xs[i], i + 1] : null;
-        }, 0);
-    });
-}
-function append(xs, ys) {
-    return delay(function () {
-        var firstDone = false;
-        var i = __WEBPACK_IMPORTED_MODULE_4_babel_runtime_core_js_get_iterator___default()(xs);
-        var iters = [i, null];
-        return unfold(function () {
-            var cur = void 0;
-            if (!firstDone) {
-                cur = iters[0].next();
-                if (!cur.done) {
-                    return [cur.value, iters];
-                } else {
-                    firstDone = true;
-                    iters = [null, __WEBPACK_IMPORTED_MODULE_4_babel_runtime_core_js_get_iterator___default()(ys)];
-                }
-            }
-            cur = iters[1].next();
-            return !cur.done ? [cur.value, iters] : null;
-        }, iters);
-    });
-}
-function average(xs) {
-    var count = 1;
-    var sum = reduce(function (acc, x) {
-        count++;
-        return acc + x;
-    }, xs);
-    return sum / count;
-}
-function averageBy(f, xs) {
-    var count = 1;
-    var sum = reduce(function (acc, x) {
-        count++;
-        return (count === 2 ? f(acc) : acc) + f(x);
-    }, xs);
-    return sum / count;
-}
-function concat(xs) {
-    return delay(function () {
-        var iter = __WEBPACK_IMPORTED_MODULE_4_babel_runtime_core_js_get_iterator___default()(xs);
-        var output = { value: null };
-        return unfold(function (innerIter) {
-            var hasFinished = false;
-            while (!hasFinished) {
-                if (innerIter == null) {
-                    var cur = iter.next();
-                    if (!cur.done) {
-                        innerIter = __WEBPACK_IMPORTED_MODULE_4_babel_runtime_core_js_get_iterator___default()(cur.value);
-                    } else {
-                        hasFinished = true;
-                    }
-                } else {
-                    var _cur = innerIter.next();
-                    if (!_cur.done) {
-                        output = { value: _cur.value };
-                        hasFinished = true;
-                    } else {
-                        innerIter = null;
-                    }
-                }
-            }
-            return innerIter != null && output != null ? [output.value, innerIter] : null;
-        }, null);
-    });
-}
-function collect(f, xs) {
-    return concat(map(f, xs));
-}
-function choose(f, xs) {
-    return delay(function () {
-        return unfold(function (iter) {
-            var cur = iter.next();
-            while (!cur.done) {
-                var y = f(cur.value);
-                if (y != null) {
-                    return [y, iter];
-                }
-                cur = iter.next();
-            }
-            return null;
-        }, __WEBPACK_IMPORTED_MODULE_4_babel_runtime_core_js_get_iterator___default()(xs));
-    });
-}
-function compareWith(f, xs, ys) {
-    var nonZero = tryFind(function (i) {
-        return i !== 0;
-    }, map2(function (x, y) {
-        return f(x, y);
-    }, xs, ys));
-    return nonZero != null ? nonZero : count(xs) - count(ys);
-}
-function delay(f) {
-    return __WEBPACK_IMPORTED_MODULE_2_babel_runtime_helpers_defineProperty___default()({}, __WEBPACK_IMPORTED_MODULE_3_babel_runtime_core_js_symbol_iterator___default.a, function () {
-        return __WEBPACK_IMPORTED_MODULE_4_babel_runtime_core_js_get_iterator___default()(f());
-    });
-}
-function empty() {
-    return unfold(function () {
-        return void 0;
-    });
-}
-function enumerateWhile(cond, xs) {
-    return concat(unfold(function () {
-        return cond() ? [xs, true] : null;
-    }));
-}
-function enumerateThenFinally(xs, finalFn) {
-    return delay(function () {
-        var iter = void 0;
-        try {
-            iter = __WEBPACK_IMPORTED_MODULE_4_babel_runtime_core_js_get_iterator___default()(xs);
-        } catch (err) {
-            return void 0;
-        } finally {
-            finalFn();
-        }
-        return unfold(function (it) {
-            try {
-                var cur = it.next();
-                return !cur.done ? [cur.value, it] : null;
-            } catch (err) {
-                return void 0;
-            } finally {
-                finalFn();
-            }
-        }, iter);
-    });
-}
-function enumerateUsing(disp, work) {
-    var isDisposed = false;
-    var disposeOnce = function disposeOnce() {
-        if (!isDisposed) {
-            isDisposed = true;
-            disp.Dispose();
-        }
-    };
-    try {
-        return enumerateThenFinally(work(disp), disposeOnce);
-    } catch (err) {
-        return void 0;
-    } finally {
-        disposeOnce();
-    }
-}
-function exactlyOne(xs) {
-    var iter = __WEBPACK_IMPORTED_MODULE_4_babel_runtime_core_js_get_iterator___default()(xs);
-    var fst = iter.next();
-    if (fst.done) {
-        throw new Error("Seq was empty");
-    }
-    var snd = iter.next();
-    if (!snd.done) {
-        throw new Error("Seq had multiple items");
-    }
-    return fst.value;
-}
-function except(itemsToExclude, source) {
-    var exclusionItems = __WEBPACK_IMPORTED_MODULE_1_babel_runtime_core_js_array_from___default()(itemsToExclude);
-    var testIsNotInExclusionItems = function testIsNotInExclusionItems(element) {
-        return !exclusionItems.some(function (excludedItem) {
-            return Object(__WEBPACK_IMPORTED_MODULE_9__Util__["e" /* equals */])(excludedItem, element);
-        });
-    };
-    return filter(testIsNotInExclusionItems, source);
-}
-function exists(f, xs) {
-    var cur = void 0;
-    for (var iter = __WEBPACK_IMPORTED_MODULE_4_babel_runtime_core_js_get_iterator___default()(xs);;) {
-        cur = iter.next();
-        if (cur.done) {
-            break;
-        }
-        if (f(cur.value)) {
-            return true;
-        }
-    }
-    return false;
-}
-function exists2(f, xs, ys) {
-    var cur1 = void 0;
-    var cur2 = void 0;
-    for (var iter1 = __WEBPACK_IMPORTED_MODULE_4_babel_runtime_core_js_get_iterator___default()(xs), iter2 = __WEBPACK_IMPORTED_MODULE_4_babel_runtime_core_js_get_iterator___default()(ys);;) {
-        cur1 = iter1.next();
-        cur2 = iter2.next();
-        if (cur1.done || cur2.done) {
-            break;
-        }
-        if (f(cur1.value, cur2.value)) {
-            return true;
-        }
-    }
-    return false;
-}
-function filter(f, xs) {
-    return delay(function () {
-        return unfold(function (iter) {
-            var cur = iter.next();
-            while (!cur.done) {
-                if (f(cur.value)) {
-                    return [cur.value, iter];
-                }
-                cur = iter.next();
-            }
-            return null;
-        }, __WEBPACK_IMPORTED_MODULE_4_babel_runtime_core_js_get_iterator___default()(xs));
-    });
-}
-function where(f, xs) {
-    return filter(f, xs);
-}
-function fold(f, acc, xs) {
-    if (Array.isArray(xs) || ArrayBuffer.isView(xs)) {
-        return xs.reduce(f, acc);
-    } else {
-        var cur = void 0;
-        for (var i = 0, iter = __WEBPACK_IMPORTED_MODULE_4_babel_runtime_core_js_get_iterator___default()(xs);; i++) {
-            cur = iter.next();
-            if (cur.done) {
-                break;
-            }
-            acc = f(acc, cur.value, i);
-        }
-        return acc;
-    }
-}
-function foldBack(f, xs, acc) {
-    var arr = Array.isArray(xs) || ArrayBuffer.isView(xs) ? xs : __WEBPACK_IMPORTED_MODULE_1_babel_runtime_core_js_array_from___default()(xs);
-    for (var i = arr.length - 1; i >= 0; i--) {
-        acc = f(arr[i], acc, i);
-    }
-    return acc;
-}
-function fold2(f, acc, xs, ys) {
-    var iter1 = __WEBPACK_IMPORTED_MODULE_4_babel_runtime_core_js_get_iterator___default()(xs);
-    var iter2 = __WEBPACK_IMPORTED_MODULE_4_babel_runtime_core_js_get_iterator___default()(ys);
-    var cur1 = void 0;
-    var cur2 = void 0;
-    for (var i = 0;; i++) {
-        cur1 = iter1.next();
-        cur2 = iter2.next();
-        if (cur1.done || cur2.done) {
-            break;
-        }
-        acc = f(acc, cur1.value, cur2.value, i);
-    }
-    return acc;
-}
-function foldBack2(f, xs, ys, acc) {
-    var ar1 = Array.isArray(xs) || ArrayBuffer.isView(xs) ? xs : __WEBPACK_IMPORTED_MODULE_1_babel_runtime_core_js_array_from___default()(xs);
-    var ar2 = Array.isArray(ys) || ArrayBuffer.isView(ys) ? ys : __WEBPACK_IMPORTED_MODULE_1_babel_runtime_core_js_array_from___default()(ys);
-    for (var i = ar1.length - 1; i >= 0; i--) {
-        acc = f(ar1[i], ar2[i], acc, i);
-    }
-    return acc;
-}
-function forAll(f, xs) {
-    return fold(function (acc, x) {
-        return acc && f(x);
-    }, true, xs);
-}
-function forAll2(f, xs, ys) {
-    return fold2(function (acc, x, y) {
-        return acc && f(x, y);
-    }, true, xs, ys);
-}
-function tryHead(xs) {
-    var iter = __WEBPACK_IMPORTED_MODULE_4_babel_runtime_core_js_get_iterator___default()(xs);
-    var cur = iter.next();
-    return cur.done ? null : cur.value;
-}
-function head(xs) {
-    return __failIfNone(tryHead(xs));
-}
-function initialize(n, f) {
-    return delay(function () {
-        return unfold(function (i) {
-            return i < n ? [f(i), i + 1] : null;
-        }, 0);
-    });
-}
-function initializeInfinite(f) {
-    return delay(function () {
-        return unfold(function (i) {
-            return [f(i), i + 1];
-        }, 0);
-    });
-}
-function tryItem(i, xs) {
-    if (i < 0) {
-        return null;
-    }
-    if (Array.isArray(xs) || ArrayBuffer.isView(xs)) {
-        return i < xs.length ? xs[i] : null;
-    }
-    for (var j = 0, iter = __WEBPACK_IMPORTED_MODULE_4_babel_runtime_core_js_get_iterator___default()(xs);; j++) {
-        var cur = iter.next();
-        if (cur.done) {
-            return null;
-        }
-        if (j === i) {
-            return cur.value;
-        }
-    }
-}
-function item(i, xs) {
-    return __failIfNone(tryItem(i, xs));
-}
-function iterate(f, xs) {
-    fold(function (_, x) {
-        return f(x);
-    }, null, xs);
-}
-function iterate2(f, xs, ys) {
-    fold2(function (_, x, y) {
-        return f(x, y);
-    }, null, xs, ys);
-}
-function iterateIndexed(f, xs) {
-    fold(function (_, x, i) {
-        return f(i, x);
-    }, null, xs);
-}
-function iterateIndexed2(f, xs, ys) {
-    fold2(function (_, x, y, i) {
-        return f(i, x, y);
-    }, null, xs, ys);
-}
-function isEmpty(xs) {
-    var i = __WEBPACK_IMPORTED_MODULE_4_babel_runtime_core_js_get_iterator___default()(xs);
-    return i.next().done;
-}
-function tryLast(xs) {
-    try {
-        return reduce(function (_, x) {
-            return x;
-        }, xs);
-    } catch (err) {
-        return null;
-    }
-}
-function last(xs) {
-    return __failIfNone(tryLast(xs));
-}
-// A export function 'length' method causes problems in JavaScript -- https://github.com/Microsoft/TypeScript/issues/442
-function count(xs) {
-    return Array.isArray(xs) || ArrayBuffer.isView(xs) ? xs.length : fold(function (acc, x) {
-        return acc + 1;
-    }, 0, xs);
-}
-function map(f, xs) {
-    return delay(function () {
-        return unfold(function (iter) {
-            var cur = iter.next();
-            return !cur.done ? [f(cur.value), iter] : null;
-        }, __WEBPACK_IMPORTED_MODULE_4_babel_runtime_core_js_get_iterator___default()(xs));
-    });
-}
-function mapIndexed(f, xs) {
-    return delay(function () {
-        var i = 0;
-        return unfold(function (iter) {
-            var cur = iter.next();
-            return !cur.done ? [f(i++, cur.value), iter] : null;
-        }, __WEBPACK_IMPORTED_MODULE_4_babel_runtime_core_js_get_iterator___default()(xs));
-    });
-}
-function indexed(xs) {
-    return mapIndexed(function (i, x) {
-        return [i, x];
-    }, xs);
-}
-function map2(f, xs, ys) {
-    return delay(function () {
-        var iter1 = __WEBPACK_IMPORTED_MODULE_4_babel_runtime_core_js_get_iterator___default()(xs);
-        var iter2 = __WEBPACK_IMPORTED_MODULE_4_babel_runtime_core_js_get_iterator___default()(ys);
-        return unfold(function () {
-            var cur1 = iter1.next();
-            var cur2 = iter2.next();
-            return !cur1.done && !cur2.done ? [f(cur1.value, cur2.value), null] : null;
-        });
-    });
-}
-function mapIndexed2(f, xs, ys) {
-    return delay(function () {
-        var i = 0;
-        var iter1 = __WEBPACK_IMPORTED_MODULE_4_babel_runtime_core_js_get_iterator___default()(xs);
-        var iter2 = __WEBPACK_IMPORTED_MODULE_4_babel_runtime_core_js_get_iterator___default()(ys);
-        return unfold(function () {
-            var cur1 = iter1.next();
-            var cur2 = iter2.next();
-            return !cur1.done && !cur2.done ? [f(i++, cur1.value, cur2.value), null] : null;
-        });
-    });
-}
-function map3(f, xs, ys, zs) {
-    return delay(function () {
-        var iter1 = __WEBPACK_IMPORTED_MODULE_4_babel_runtime_core_js_get_iterator___default()(xs);
-        var iter2 = __WEBPACK_IMPORTED_MODULE_4_babel_runtime_core_js_get_iterator___default()(ys);
-        var iter3 = __WEBPACK_IMPORTED_MODULE_4_babel_runtime_core_js_get_iterator___default()(zs);
-        return unfold(function () {
-            var cur1 = iter1.next();
-            var cur2 = iter2.next();
-            var cur3 = iter3.next();
-            return !cur1.done && !cur2.done && !cur3.done ? [f(cur1.value, cur2.value, cur3.value), null] : null;
-        });
-    });
-}
-function chunkBySize(size, xs) {
-    var result = Object(__WEBPACK_IMPORTED_MODULE_7__Array__["a" /* chunkBySize */])(size, __WEBPACK_IMPORTED_MODULE_1_babel_runtime_core_js_array_from___default()(xs));
-    return ofArray(result.map(ofArray));
-}
-function mapFold(f, acc, xs, transform) {
-    var result = [];
-    var r = void 0;
-    var cur = void 0;
-    for (var i = 0, iter = __WEBPACK_IMPORTED_MODULE_4_babel_runtime_core_js_get_iterator___default()(xs);; i++) {
-        cur = iter.next();
-        if (cur.done) {
-            break;
-        }
-
-        var _f = f(acc, cur.value);
-
-        var _f2 = __WEBPACK_IMPORTED_MODULE_0_babel_runtime_helpers_slicedToArray___default()(_f, 2);
-
-        r = _f2[0];
-        acc = _f2[1];
-
-        result.push(r);
-    }
-    return transform !== void 0 ? [transform(result), acc] : [result, acc];
-}
-function mapFoldBack(f, xs, acc, transform) {
-    var arr = Array.isArray(xs) || ArrayBuffer.isView(xs) ? xs : __WEBPACK_IMPORTED_MODULE_1_babel_runtime_core_js_array_from___default()(xs);
-    var result = [];
-    var r = void 0;
-    for (var i = arr.length - 1; i >= 0; i--) {
-        var _f3 = f(arr[i], acc);
-
-        var _f4 = __WEBPACK_IMPORTED_MODULE_0_babel_runtime_helpers_slicedToArray___default()(_f3, 2);
-
-        r = _f4[0];
-        acc = _f4[1];
-
-        result.push(r);
-    }
-    return transform !== void 0 ? [transform(result), acc] : [result, acc];
-}
-function max(xs) {
-    return reduce(function (acc, x) {
-        return Object(__WEBPACK_IMPORTED_MODULE_9__Util__["a" /* compare */])(acc, x) === 1 ? acc : x;
-    }, xs);
-}
-function maxBy(f, xs) {
-    return reduce(function (acc, x) {
-        return Object(__WEBPACK_IMPORTED_MODULE_9__Util__["a" /* compare */])(f(acc), f(x)) === 1 ? acc : x;
-    }, xs);
-}
-function min(xs) {
-    return reduce(function (acc, x) {
-        return Object(__WEBPACK_IMPORTED_MODULE_9__Util__["a" /* compare */])(acc, x) === -1 ? acc : x;
-    }, xs);
-}
-function minBy(f, xs) {
-    return reduce(function (acc, x) {
-        return Object(__WEBPACK_IMPORTED_MODULE_9__Util__["a" /* compare */])(f(acc), f(x)) === -1 ? acc : x;
-    }, xs);
-}
-function pairwise(xs) {
-    return skip(2, scan(function (last, next) {
-        return [last[1], next];
-    }, [0, 0], xs));
-}
-function permute(f, xs) {
-    return ofArray(Object(__WEBPACK_IMPORTED_MODULE_7__Array__["c" /* permute */])(f, __WEBPACK_IMPORTED_MODULE_1_babel_runtime_core_js_array_from___default()(xs)));
-}
-function rangeStep(first, step, last) {
-    if (step === 0) {
-        throw new Error("Step cannot be 0");
-    }
-    return delay(function () {
-        return unfold(function (x) {
-            return step > 0 && x <= last || step < 0 && x >= last ? [x, x + step] : null;
-        }, first);
-    });
-}
-function rangeChar(first, last) {
-    return delay(function () {
-        return unfold(function (x) {
-            return x <= last ? [x, String.fromCharCode(x.charCodeAt(0) + 1)] : null;
-        }, first);
-    });
-}
-function range(first, last) {
-    return rangeStep(first, 1, last);
-}
-function readOnly(xs) {
-    return map(function (x) {
-        return x;
-    }, xs);
-}
-function reduce(f, xs) {
-    if (Array.isArray(xs) || ArrayBuffer.isView(xs)) {
-        return xs.reduce(f);
-    }
-    var iter = __WEBPACK_IMPORTED_MODULE_4_babel_runtime_core_js_get_iterator___default()(xs);
-    var cur = iter.next();
-    if (cur.done) {
-        throw new Error("Seq was empty");
-    }
-    var acc = cur.value;
-    while (true) {
-        cur = iter.next();
-        if (cur.done) {
-            break;
-        }
-        acc = f(acc, cur.value);
-    }
-    return acc;
-}
-function reduceBack(f, xs) {
-    var ar = Array.isArray(xs) || ArrayBuffer.isView(xs) ? xs : __WEBPACK_IMPORTED_MODULE_1_babel_runtime_core_js_array_from___default()(xs);
-    if (ar.length === 0) {
-        throw new Error("Seq was empty");
-    }
-    var acc = ar[ar.length - 1];
-    for (var i = ar.length - 2; i >= 0; i--) {
-        acc = f(ar[i], acc, i);
-    }
-    return acc;
-}
-function replicate(n, x) {
-    return initialize(n, function () {
-        return x;
-    });
-}
-function reverse(xs) {
-    var ar = Array.isArray(xs) || ArrayBuffer.isView(xs) ? xs.slice(0) : __WEBPACK_IMPORTED_MODULE_1_babel_runtime_core_js_array_from___default()(xs);
-    return ofArray(ar.reverse());
-}
-function scan(f, seed, xs) {
-    return delay(function () {
-        var iter = __WEBPACK_IMPORTED_MODULE_4_babel_runtime_core_js_get_iterator___default()(xs);
-        return unfold(function (acc) {
-            if (acc == null) {
-                return [seed, seed];
-            }
-            var cur = iter.next();
-            if (!cur.done) {
-                acc = f(acc, cur.value);
-                return [acc, acc];
-            }
-            return void 0;
-        }, null);
-    });
-}
-function scanBack(f, xs, seed) {
-    return reverse(scan(function (acc, x) {
-        return f(x, acc);
-    }, seed, reverse(xs)));
-}
-function singleton(y) {
-    return unfold(function (x) {
-        return x != null ? [x, null] : null;
-    }, y);
-}
-function skip(n, xs) {
-    return __WEBPACK_IMPORTED_MODULE_2_babel_runtime_helpers_defineProperty___default()({}, __WEBPACK_IMPORTED_MODULE_3_babel_runtime_core_js_symbol_iterator___default.a, function () {
-        var iter = __WEBPACK_IMPORTED_MODULE_4_babel_runtime_core_js_get_iterator___default()(xs);
-        for (var i = 1; i <= n; i++) {
-            if (iter.next().done) {
-                throw new Error("Seq has not enough elements");
-            }
-        }
-        return iter;
-    });
-}
-function skipWhile(f, xs) {
-    return delay(function () {
-        var hasPassed = false;
-        return filter(function (x) {
-            return hasPassed || (hasPassed = !f(x));
-        }, xs);
-    });
-}
-function sortWith(f, xs) {
-    var ys = __WEBPACK_IMPORTED_MODULE_1_babel_runtime_core_js_array_from___default()(xs);
-    return ofArray(ys.sort(f));
-}
-function sum(xs) {
-    return fold(function (acc, x) {
-        return acc + x;
-    }, 0, xs);
-}
-function sumBy(f, xs) {
-    return fold(function (acc, x) {
-        return acc + f(x);
-    }, 0, xs);
-}
-function tail(xs) {
-    var iter = __WEBPACK_IMPORTED_MODULE_4_babel_runtime_core_js_get_iterator___default()(xs);
-    var cur = iter.next();
-    if (cur.done) {
-        throw new Error("Seq was empty");
-    }
-    return __WEBPACK_IMPORTED_MODULE_2_babel_runtime_helpers_defineProperty___default()({}, __WEBPACK_IMPORTED_MODULE_3_babel_runtime_core_js_symbol_iterator___default.a, function () {
-        return iter;
-    });
-}
-function take(n, xs) {
-    var truncate = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : false;
-
-    return delay(function () {
-        var iter = __WEBPACK_IMPORTED_MODULE_4_babel_runtime_core_js_get_iterator___default()(xs);
-        return unfold(function (i) {
-            if (i < n) {
-                var cur = iter.next();
-                if (!cur.done) {
-                    return [cur.value, i + 1];
-                }
-                if (!truncate) {
-                    throw new Error("Seq has not enough elements");
-                }
-            }
-            return void 0;
-        }, 0);
-    });
-}
-function truncate(n, xs) {
-    return take(n, xs, true);
-}
-function takeWhile(f, xs) {
-    return delay(function () {
-        var iter = __WEBPACK_IMPORTED_MODULE_4_babel_runtime_core_js_get_iterator___default()(xs);
-        return unfold(function (i) {
-            var cur = iter.next();
-            if (!cur.done && f(cur.value)) {
-                return [cur.value, null];
-            }
-            return void 0;
-        }, 0);
-    });
-}
-function tryFind(f, xs, defaultValue) {
-    for (var i = 0, iter = __WEBPACK_IMPORTED_MODULE_4_babel_runtime_core_js_get_iterator___default()(xs);; i++) {
-        var cur = iter.next();
-        if (cur.done) {
-            return defaultValue === void 0 ? null : defaultValue;
-        }
-        if (f(cur.value, i)) {
-            return cur.value;
-        }
-    }
-}
-function find(f, xs) {
-    return __failIfNone(tryFind(f, xs));
-}
-function tryFindBack(f, xs, defaultValue) {
-    var match = null;
-    for (var i = 0, iter = __WEBPACK_IMPORTED_MODULE_4_babel_runtime_core_js_get_iterator___default()(xs);; i++) {
-        var cur = iter.next();
-        if (cur.done) {
-            return match === null ? defaultValue === void 0 ? null : defaultValue : match;
-        }
-        if (f(cur.value, i)) {
-            match = cur.value;
-        }
-    }
-}
-function findBack(f, xs) {
-    return __failIfNone(tryFindBack(f, xs));
-}
-function tryFindIndex(f, xs) {
-    for (var i = 0, iter = __WEBPACK_IMPORTED_MODULE_4_babel_runtime_core_js_get_iterator___default()(xs);; i++) {
-        var cur = iter.next();
-        if (cur.done) {
-            return null;
-        }
-        if (f(cur.value, i)) {
-            return i;
-        }
-    }
-}
-function findIndex(f, xs) {
-    return __failIfNone(tryFindIndex(f, xs));
-}
-function tryFindIndexBack(f, xs) {
-    var match = -1;
-    for (var i = 0, iter = __WEBPACK_IMPORTED_MODULE_4_babel_runtime_core_js_get_iterator___default()(xs);; i++) {
-        var cur = iter.next();
-        if (cur.done) {
-            return match === -1 ? null : match;
-        }
-        if (f(cur.value, i)) {
-            match = i;
-        }
-    }
-}
-function findIndexBack(f, xs) {
-    return __failIfNone(tryFindIndexBack(f, xs));
-}
-function tryPick(f, xs) {
-    for (var i = 0, iter = __WEBPACK_IMPORTED_MODULE_4_babel_runtime_core_js_get_iterator___default()(xs);; i++) {
-        var cur = iter.next();
-        if (cur.done) {
-            break;
-        }
-        var y = f(cur.value, i);
-        if (y != null) {
-            return y;
-        }
-    }
-    return void 0;
-}
-function pick(f, xs) {
-    return __failIfNone(tryPick(f, xs));
-}
-function unfold(f, acc) {
-    return __WEBPACK_IMPORTED_MODULE_2_babel_runtime_helpers_defineProperty___default()({}, __WEBPACK_IMPORTED_MODULE_3_babel_runtime_core_js_symbol_iterator___default.a, function () {
-        return {
-            next: function next() {
-                var res = f(acc);
-                if (res != null) {
-                    acc = res[1];
-                    return { done: false, value: res[0] };
-                }
-                return { done: true };
-            }
-        };
-    });
-}
-function zip(xs, ys) {
-    return map2(function (x, y) {
-        return [x, y];
-    }, xs, ys);
-}
-function zip3(xs, ys, zs) {
-    return map3(function (x, y, z) {
-        return [x, y, z];
-    }, xs, ys, zs);
-}
-
-/***/ }),
-/* 11 */
-/***/ (function(module, exports, __webpack_require__) {
-
-module.exports = { "default": __webpack_require__(89), __esModule: true };
-
-/***/ }),
-/* 12 */
-/***/ (function(module, exports, __webpack_require__) {
-
-var dP = __webpack_require__(4);
-var createDesc = __webpack_require__(23);
-module.exports = __webpack_require__(6) ? function (object, key, value) {
-  return dP.f(object, key, createDesc(1, value));
-} : function (object, key, value) {
-  object[key] = value;
-  return object;
-};
-
-
-/***/ }),
-/* 13 */
-/***/ (function(module, exports) {
-
-module.exports = function (it) {
-  return typeof it === 'object' ? it !== null : typeof it === 'function';
-};
-
-
-/***/ }),
-/* 14 */
-/***/ (function(module, exports, __webpack_require__) {
-
-var isObject = __webpack_require__(13);
-module.exports = function (it) {
-  if (!isObject(it)) throw TypeError(it + ' is not an object!');
-  return it;
-};
-
-
-/***/ }),
-/* 15 */
-/***/ (function(module, exports) {
-
-module.exports = function (exec) {
-  try {
-    return !!exec();
-  } catch (e) {
-    return true;
-  }
-};
-
-
-/***/ }),
-/* 16 */
-/***/ (function(module, exports) {
-
-var hasOwnProperty = {}.hasOwnProperty;
-module.exports = function (it, key) {
-  return hasOwnProperty.call(it, key);
-};
-
-
-/***/ }),
-/* 17 */
-/***/ (function(module, exports, __webpack_require__) {
-
-// to indexed object, toObject with fallback for non-array-like ES3 strings
-var IObject = __webpack_require__(40);
-var defined = __webpack_require__(36);
-module.exports = function (it) {
-  return IObject(defined(it));
-};
-
-
-/***/ }),
-/* 18 */
-/***/ (function(module, exports, __webpack_require__) {
-
-module.exports = { "default": __webpack_require__(79), __esModule: true };
-
-/***/ }),
-/* 19 */
-/***/ (function(module, exports, __webpack_require__) {
-
-// optional / simple context binding
-var aFunction = __webpack_require__(55);
-module.exports = function (fn, that, length) {
-  aFunction(fn);
-  if (that === undefined) return fn;
-  switch (length) {
-    case 1: return function (a) {
-      return fn.call(that, a);
-    };
-    case 2: return function (a, b) {
-      return fn.call(that, a, b);
-    };
-    case 3: return function (a, b, c) {
-      return fn.call(that, a, b, c);
-    };
-  }
-  return function (/* ...args */) {
-    return fn.apply(that, arguments);
-  };
-};
-
-
-/***/ }),
-/* 20 */
-/***/ (function(module, exports) {
-
-module.exports = {};
-
-
-/***/ }),
-/* 21 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* unused harmony export minValue */
-/* unused harmony export maxValue */
-/* unused harmony export parse */
-/* unused harmony export tryParse */
-/* unused harmony export create */
-/* unused harmony export now */
-/* unused harmony export utcNow */
-/* unused harmony export today */
-/* unused harmony export isLeapYear */
-/* unused harmony export daysInMonth */
-/* unused harmony export toUniversalTime */
-/* unused harmony export toLocalTime */
-/* unused harmony export timeOfDay */
-/* unused harmony export date */
-/* unused harmony export kind */
-/* harmony export (immutable) */ __webpack_exports__["a"] = day;
-/* harmony export (immutable) */ __webpack_exports__["b"] = hour;
-/* unused harmony export millisecond */
-/* harmony export (immutable) */ __webpack_exports__["c"] = minute;
-/* harmony export (immutable) */ __webpack_exports__["d"] = month;
-/* harmony export (immutable) */ __webpack_exports__["e"] = second;
-/* harmony export (immutable) */ __webpack_exports__["f"] = year;
-/* unused harmony export dayOfWeek */
-/* unused harmony export ticks */
-/* unused harmony export ofTicks */
-/* unused harmony export toBinary */
-/* unused harmony export dayOfYear */
-/* unused harmony export add */
-/* unused harmony export addDays */
-/* unused harmony export addHours */
-/* unused harmony export addMinutes */
-/* unused harmony export addSeconds */
-/* unused harmony export addMilliseconds */
-/* unused harmony export addTicks */
-/* unused harmony export addYears */
-/* unused harmony export addMonths */
-/* unused harmony export subtract */
-/* unused harmony export toLongDateString */
-/* unused harmony export toShortDateString */
-/* unused harmony export toLongTimeString */
-/* unused harmony export toShortTimeString */
-/* unused harmony export equals */
-/* unused harmony export compare */
-/* unused harmony export compareTo */
-/* unused harmony export op_Addition */
-/* unused harmony export op_Subtraction */
-/* unused harmony export isDaylightSavingTime */
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__Long__ = __webpack_require__(75);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__TimeSpan__ = __webpack_require__(144);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__Util__ = __webpack_require__(1);
-
-
-
-function minValue() {
-    return parse(-8640000000000000, 1);
-}
-function maxValue() {
-    return parse(8640000000000000, 1);
-}
-/* tslint:disable */
-function parse(v, kind) {
-    if (kind == null) {
-        kind = typeof v === "string" && v.slice(-1) === "Z" ? 1 /* UTC */ : 2 /* Local */;
-    }
-    var date = v == null ? new Date() : new Date(v);
-    if (isNaN(date.getTime())) {
-        // Check if this is a time-only string, which JS Date parsing cannot handle (see #1045)
-        if (typeof v === "string" && /^(?:[01]?\d|2[0-3]):(?:[0-5]?\d)(?::[0-5]?\d(?:\.\d+)?)?(?:\s*[AaPp][Mm])?$/.test(v)) {
-            var d = new Date();
-            date = new Date(d.getFullYear() + "/" + (d.getMonth() + 1) + "/" + d.getDate() + " " + v);
-        } else {
-            throw new Error("The string is not a valid Date.");
-        }
-    }
-    if (kind === 2 /* Local */) {
-            date.kind = kind;
-        }
-    return date;
-}
-/* tslint:enable */
-function tryParse(v) {
-    try {
-        return [true, parse(v)];
-    } catch (_err) {
-        return [false, minValue()];
-    }
-}
-function create(year, month, day) /* Local */{
-    var h = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : 0;
-    var m = arguments.length > 4 && arguments[4] !== undefined ? arguments[4] : 0;
-    var s = arguments.length > 5 && arguments[5] !== undefined ? arguments[5] : 0;
-    var ms = arguments.length > 6 && arguments[6] !== undefined ? arguments[6] : 0;
-    var kind = arguments.length > 7 && arguments[7] !== undefined ? arguments[7] : 2;
-
-    var date = void 0;
-    if (kind === 2 /* Local */) {
-            date = new Date(year, month - 1, day, h, m, s, ms);
-            date.kind = kind;
-        } else {
-        date = new Date(Date.UTC(year, month - 1, day, h, m, s, ms));
-    }
-    if (isNaN(date.getTime())) {
-        throw new Error("The parameters describe an unrepresentable Date.");
-    }
-    return date;
-}
-function now() {
-    return parse();
-}
-function utcNow() {
-    return parse(null, 1);
-}
-function today() {
-    return date(now());
-}
-function isLeapYear(year) {
-    return year % 4 === 0 && year % 100 !== 0 || year % 400 === 0;
-}
-function daysInMonth(year, month) {
-    return month === 2 ? isLeapYear(year) ? 29 : 28 : month >= 8 ? month % 2 === 0 ? 31 : 30 : month % 2 === 0 ? 30 : 31;
-}
-function toUniversalTime(d) {
-    return d.kind === 2 /* Local */ ? new Date(d.getTime()) : d;
-}
-function toLocalTime(d) {
-    if (d.kind === 2 /* Local */) {
-            return d;
-        } else {
-        var d2 = new Date(d.getTime());
-        d2.kind = 2 /* Local */;
-        return d2;
-    }
-}
-function timeOfDay(d) {
-    return Object(__WEBPACK_IMPORTED_MODULE_1__TimeSpan__["a" /* create */])(0, hour(d), minute(d), second(d), millisecond(d));
-}
-function date(d) {
-    return create(year(d), month(d), day(d), 0, 0, 0, 0, d.kind || 1 /* UTC */);
-}
-function kind(d) {
-    return d.kind || 1 /* UTC */;
-}
-function day(d) {
-    return d.kind === 2 /* Local */ ? d.getDate() : d.getUTCDate();
-}
-function hour(d) {
-    return d.kind === 2 /* Local */ ? d.getHours() : d.getUTCHours();
-}
-function millisecond(d) {
-    return d.kind === 2 /* Local */ ? d.getMilliseconds() : d.getUTCMilliseconds();
-}
-function minute(d) {
-    return d.kind === 2 /* Local */ ? d.getMinutes() : d.getUTCMinutes();
-}
-function month(d) {
-    return (d.kind === 2 /* Local */ ? d.getMonth() : d.getUTCMonth()) + 1;
-}
-function second(d) {
-    return d.kind === 2 /* Local */ ? d.getSeconds() : d.getUTCSeconds();
-}
-function year(d) {
-    return d.kind === 2 /* Local */ ? d.getFullYear() : d.getUTCFullYear();
-}
-function dayOfWeek(d) {
-    return d.kind === 2 /* Local */ ? d.getDay() : d.getUTCDay();
-}
-function ticks(d) {
-    return __WEBPACK_IMPORTED_MODULE_0__Long__["a" /* fromNumber */](d.getTime()).add(62135596800000) // UnixEpochMilliseconds
-    .sub(d.kind === 2 /* Local */ ? d.getTimezoneOffset() * 60 * 1000 : 0).mul(10000);
-}
-function ofTicks(ticks) {
-    return parse(ticks.div(10000).sub(62135596800000).toNumber(), 1 /* UTC */);
-}
-function toBinary(d) {
-    return ticks(d);
-}
-function dayOfYear(d) {
-    var _year = year(d);
-    var _month = month(d);
-    var _day = day(d);
-    for (var i = 1; i < _month; i++) {
-        _day += daysInMonth(_year, i);
-    }
-    return _day;
-}
-function add(d, ts) {
-    return parse(d.getTime() + ts, d.kind || 1 /* UTC */);
-}
-function addDays(d, v) {
-    return parse(d.getTime() + v * 86400000, d.kind || 1 /* UTC */);
-}
-function addHours(d, v) {
-    return parse(d.getTime() + v * 3600000, d.kind || 1 /* UTC */);
-}
-function addMinutes(d, v) {
-    return parse(d.getTime() + v * 60000, d.kind || 1 /* UTC */);
-}
-function addSeconds(d, v) {
-    return parse(d.getTime() + v * 1000, d.kind || 1 /* UTC */);
-}
-function addMilliseconds(d, v) {
-    return parse(d.getTime() + v, d.kind || 1 /* UTC */);
-}
-function addTicks(d, t) {
-    return parse(__WEBPACK_IMPORTED_MODULE_0__Long__["a" /* fromNumber */](d.getTime()).add(t.div(10000)).toNumber(), d.kind || 1 /* UTC */);
-}
-function addYears(d, v) {
-    var newMonth = month(d);
-    var newYear = year(d) + v;
-    var _daysInMonth = daysInMonth(newYear, newMonth);
-    var newDay = Math.min(_daysInMonth, day(d));
-    return create(newYear, newMonth, newDay, hour(d), minute(d), second(d), millisecond(d), d.kind || 1 /* UTC */);
-}
-function addMonths(d, v) {
-    var newMonth = month(d) + v;
-    var newMonth_ = 0;
-    var yearOffset = 0;
-    if (newMonth > 12) {
-        newMonth_ = newMonth % 12;
-        yearOffset = Math.floor(newMonth / 12);
-        newMonth = newMonth_;
-    } else if (newMonth < 1) {
-        newMonth_ = 12 + newMonth % 12;
-        yearOffset = Math.floor(newMonth / 12) + (newMonth_ === 12 ? -1 : 0);
-        newMonth = newMonth_;
-    }
-    var newYear = year(d) + yearOffset;
-    var _daysInMonth = daysInMonth(newYear, newMonth);
-    var newDay = Math.min(_daysInMonth, day(d));
-    return create(newYear, newMonth, newDay, hour(d), minute(d), second(d), millisecond(d), d.kind || 1 /* UTC */);
-}
-function subtract(d, that) {
-    return typeof that === "number" ? parse(d.getTime() - that, d.kind || 1 /* UTC */) : d.getTime() - that.getTime();
-}
-function toLongDateString(d) {
-    return d.toDateString();
-}
-function toShortDateString(d) {
-    return d.toLocaleDateString();
-}
-function toLongTimeString(d) {
-    return d.toLocaleTimeString();
-}
-function toShortTimeString(d) {
-    return d.toLocaleTimeString().replace(/:\d\d(?!:)/, "");
-}
-function equals(d1, d2) {
-    return d1.getTime() === d2.getTime();
-}
-function compare(x, y) {
-    return Object(__WEBPACK_IMPORTED_MODULE_2__Util__["a" /* compare */])(x, y);
-}
-function compareTo(x, y) {
-    return Object(__WEBPACK_IMPORTED_MODULE_2__Util__["a" /* compare */])(x, y);
-}
-function op_Addition(x, y) {
-    return add(x, y);
-}
-function op_Subtraction(x, y) {
-    return subtract(x, y);
-}
-function isDaylightSavingTime(x) {
-    var jan = new Date(x.getFullYear(), 0, 1);
-    var jul = new Date(x.getFullYear(), 6, 1);
-    return isDST(jan.getTimezoneOffset(), jul.getTimezoneOffset(), x.getTimezoneOffset());
-}
-function isDST(janOffset, julOffset, tOffset) {
-    return Math.min(janOffset, julOffset) === tOffset;
-}
-
-/***/ }),
-/* 22 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-var $at = __webpack_require__(80)(true);
-
-// 21.1.3.27 String.prototype[@@iterator]()
-__webpack_require__(37)(String, 'String', function (iterated) {
-  this._t = String(iterated); // target
-  this._i = 0;                // next index
-// 21.1.5.2.1 %StringIteratorPrototype%.next()
-}, function () {
-  var O = this._t;
-  var index = this._i;
-  var point;
-  if (index >= O.length) return { value: undefined, done: true };
-  point = $at(O, index);
-  this._i += point.length;
-  return { value: point, done: false };
-});
-
-
-/***/ }),
-/* 23 */
-/***/ (function(module, exports) {
-
-module.exports = function (bitmap, value) {
-  return {
-    enumerable: !(bitmap & 1),
-    configurable: !(bitmap & 2),
-    writable: !(bitmap & 4),
-    value: value
-  };
-};
-
-
-/***/ }),
-/* 24 */
-/***/ (function(module, exports, __webpack_require__) {
-
-// 7.1.13 ToObject(argument)
-var defined = __webpack_require__(36);
-module.exports = function (it) {
-  return Object(defined(it));
-};
-
-
-/***/ }),
-/* 25 */
-/***/ (function(module, exports, __webpack_require__) {
-
-module.exports = { "default": __webpack_require__(116), __esModule: true };
-
-/***/ }),
-/* 26 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony export (immutable) */ __webpack_exports__["b"] = ofArray;
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_babel_runtime_core_js_symbol_iterator__ = __webpack_require__(25);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_babel_runtime_core_js_symbol_iterator___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_babel_runtime_core_js_symbol_iterator__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_babel_runtime_core_js_get_iterator__ = __webpack_require__(11);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_babel_runtime_core_js_get_iterator___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_babel_runtime_core_js_get_iterator__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_babel_runtime_core_js_array_from__ = __webpack_require__(18);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_babel_runtime_core_js_array_from___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_babel_runtime_core_js_array_from__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_babel_runtime_helpers_classCallCheck__ = __webpack_require__(7);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_babel_runtime_helpers_classCallCheck___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_babel_runtime_helpers_classCallCheck__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_babel_runtime_helpers_createClass__ = __webpack_require__(8);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_babel_runtime_helpers_createClass___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4_babel_runtime_helpers_createClass__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__Symbol__ = __webpack_require__(9);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__Util__ = __webpack_require__(1);
-
-
-
-
-
-
-
-
-
-// This module is split from List.ts to prevent cyclic dependencies
-function ofArray(args, base) {
-    var acc = base || new List();
-    for (var i = args.length - 1; i >= 0; i--) {
-        acc = new List(args[i], acc);
-    }
-    return acc;
-}
-
-var List = function () {
-    function List(head, tail) {
-        __WEBPACK_IMPORTED_MODULE_3_babel_runtime_helpers_classCallCheck___default()(this, List);
-
-        this.head = head;
-        this.tail = tail;
-    }
-
-    __WEBPACK_IMPORTED_MODULE_4_babel_runtime_helpers_createClass___default()(List, [{
-        key: "ToString",
-        value: function ToString() {
-            return "[" + __WEBPACK_IMPORTED_MODULE_2_babel_runtime_core_js_array_from___default()(this).map(function (x) {
-                return Object(__WEBPACK_IMPORTED_MODULE_6__Util__["g" /* toString */])(x);
-            }).join("; ") + "]";
-        }
-    }, {
-        key: "Equals",
-        value: function Equals(x) {
-            // Optimization if they are referencially equal
-            if (this === x) {
-                return true;
-            } else {
-                var iter1 = __WEBPACK_IMPORTED_MODULE_1_babel_runtime_core_js_get_iterator___default()(this);
-                var iter2 = __WEBPACK_IMPORTED_MODULE_1_babel_runtime_core_js_get_iterator___default()(x);
-                while (true) {
-                    var cur1 = iter1.next();
-                    var cur2 = iter2.next();
-                    if (cur1.done) {
-                        return cur2.done ? true : false;
-                    } else if (cur2.done) {
-                        return false;
-                    } else if (!Object(__WEBPACK_IMPORTED_MODULE_6__Util__["e" /* equals */])(cur1.value, cur2.value)) {
-                        return false;
-                    }
-                }
-            }
-        }
-    }, {
-        key: "CompareTo",
-        value: function CompareTo(x) {
-            // Optimization if they are referencially equal
-            if (this === x) {
-                return 0;
-            } else {
-                var acc = 0;
-                var iter1 = __WEBPACK_IMPORTED_MODULE_1_babel_runtime_core_js_get_iterator___default()(this);
-                var iter2 = __WEBPACK_IMPORTED_MODULE_1_babel_runtime_core_js_get_iterator___default()(x);
-                while (true) {
-                    var cur1 = iter1.next();
-                    var cur2 = iter2.next();
-                    if (cur1.done) {
-                        return cur2.done ? acc : -1;
-                    } else if (cur2.done) {
-                        return 1;
-                    } else {
-                        acc = Object(__WEBPACK_IMPORTED_MODULE_6__Util__["a" /* compare */])(cur1.value, cur2.value);
-                        if (acc !== 0) {
-                            return acc;
-                        }
-                    }
-                }
-            }
-        }
-    }, {
-        key: __WEBPACK_IMPORTED_MODULE_0_babel_runtime_core_js_symbol_iterator___default.a,
-        value: function value() {
-            var cur = this;
-            return {
-                next: function next() {
-                    var tmp = cur;
-                    cur = cur.tail;
-                    return { done: tmp.tail == null, value: tmp.head };
-                }
-            };
-        }
-        //   append(ys: List<T>): List<T> {
-        //     return append(this, ys);
-        //   }
-        //   choose<U>(f: (x: T) => U, xs: List<T>): List<U> {
-        //     return choose(f, this);
-        //   }
-        //   collect<U>(f: (x: T) => List<U>): List<U> {
-        //     return collect(f, this);
-        //   }
-        //   filter(f: (x: T) => boolean): List<T> {
-        //     return filter(f, this);
-        //   }
-        //   where(f: (x: T) => boolean): List<T> {
-        //     return filter(f, this);
-        //   }
-        //   map<U>(f: (x: T) => U): List<U> {
-        //     return map(f, this);
-        //   }
-        //   mapIndexed<U>(f: (i: number, x: T) => U): List<U> {
-        //     return mapIndexed(f, this);
-        //   }
-        //   partition(f: (x: T) => boolean): [List<T>, List<T>] {
-        //     return partition(f, this) as [List<T>, List<T>];
-        //   }
-        //   reverse(): List<T> {
-        //     return reverse(this);
-        //   }
-        //   slice(lower: number, upper: number): List<T> {
-        //     return slice(lower, upper, this);
-        //   }
-
-    }, {
-        key: __WEBPACK_IMPORTED_MODULE_5__Symbol__["a" /* default */].reflection,
-        value: function value() {
-            return {
-                type: "Microsoft.FSharp.Collections.FSharpList",
-                interfaces: ["System.IEquatable", "System.IComparable"]
-            };
-        }
-    }, {
-        key: "length",
-        get: function get() {
-            var cur = this;
-            var acc = 0;
-            while (cur.tail != null) {
-                cur = cur.tail;
-                acc++;
-            }
-            return acc;
-        }
-    }]);
-
-    return List;
-}();
-
-/* harmony default export */ __webpack_exports__["a"] = (List);
-
-/***/ }),
-/* 27 */
-/***/ (function(module, exports) {
-
-module.exports = true;
-
-
-/***/ }),
-/* 28 */
-/***/ (function(module, exports, __webpack_require__) {
-
-// 19.1.2.14 / 15.2.3.14 Object.keys(O)
-var $keys = __webpack_require__(59);
-var enumBugKeys = __webpack_require__(44);
-
-module.exports = Object.keys || function keys(O) {
-  return $keys(O, enumBugKeys);
-};
-
-
-/***/ }),
-/* 29 */
-/***/ (function(module, exports, __webpack_require__) {
-
-// 7.1.15 ToLength
-var toInteger = __webpack_require__(35);
-var min = Math.min;
-module.exports = function (it) {
-  return it > 0 ? min(toInteger(it), 0x1fffffffffffff) : 0; // pow(2, 53) - 1 == 9007199254740991
-};
-
-
-/***/ }),
-/* 30 */
-/***/ (function(module, exports) {
-
-var id = 0;
-var px = Math.random();
-module.exports = function (key) {
-  return 'Symbol('.concat(key === undefined ? '' : key, ')_', (++id + px).toString(36));
-};
-
-
-/***/ }),
-/* 31 */
-/***/ (function(module, exports, __webpack_require__) {
-
-var def = __webpack_require__(4).f;
-var has = __webpack_require__(16);
-var TAG = __webpack_require__(2)('toStringTag');
-
-module.exports = function (it, tag, stat) {
-  if (it && !has(it = stat ? it : it.prototype, TAG)) def(it, TAG, { configurable: true, value: tag });
-};
-
-
-/***/ }),
-/* 32 */
-/***/ (function(module, exports, __webpack_require__) {
-
-__webpack_require__(90);
-var global = __webpack_require__(5);
-var hide = __webpack_require__(12);
-var Iterators = __webpack_require__(20);
-var TO_STRING_TAG = __webpack_require__(2)('toStringTag');
-
-var DOMIterables = ('CSSRuleList,CSSStyleDeclaration,CSSValueList,ClientRectList,DOMRectList,DOMStringList,' +
-  'DOMTokenList,DataTransferItemList,FileList,HTMLAllCollection,HTMLCollection,HTMLFormElement,HTMLSelectElement,' +
-  'MediaList,MimeTypeArray,NamedNodeMap,NodeList,PaintRequestList,Plugin,PluginArray,SVGLengthList,SVGNumberList,' +
-  'SVGPathSegList,SVGPointList,SVGStringList,SVGTransformList,SourceBufferList,StyleSheetList,TextTrackCueList,' +
-  'TextTrackList,TouchList').split(',');
-
-for (var i = 0; i < DOMIterables.length; i++) {
-  var NAME = DOMIterables[i];
-  var Collection = global[NAME];
-  var proto = Collection && Collection.prototype;
-  if (proto && !proto[TO_STRING_TAG]) hide(proto, TO_STRING_TAG, NAME);
-  Iterators[NAME] = Iterators.Array;
-}
-
-
-/***/ }),
-/* 33 */
-/***/ (function(module, exports) {
-
-exports.f = {}.propertyIsEnumerable;
-
-
-/***/ }),
-/* 34 */
-/***/ (function(module, exports, __webpack_require__) {
-
-var ctx = __webpack_require__(19);
-var call = __webpack_require__(61);
-var isArrayIter = __webpack_require__(62);
-var anObject = __webpack_require__(14);
-var toLength = __webpack_require__(29);
-var getIterFn = __webpack_require__(45);
-var BREAK = {};
-var RETURN = {};
-var exports = module.exports = function (iterable, entries, fn, that, ITERATOR) {
-  var iterFn = ITERATOR ? function () { return iterable; } : getIterFn(iterable);
-  var f = ctx(fn, that, entries ? 2 : 1);
-  var index = 0;
-  var length, step, iterator, result;
-  if (typeof iterFn != 'function') throw TypeError(iterable + ' is not iterable!');
-  // fast case for arrays with default iterator
-  if (isArrayIter(iterFn)) for (length = toLength(iterable.length); length > index; index++) {
-    result = entries ? f(anObject(step = iterable[index])[0], step[1]) : f(iterable[index]);
-    if (result === BREAK || result === RETURN) return result;
-  } else for (iterator = iterFn.call(iterable); !(step = iterator.next()).done;) {
-    result = call(iterator, f, step.value, entries);
-    if (result === BREAK || result === RETURN) return result;
-  }
-};
-exports.BREAK = BREAK;
-exports.RETURN = RETURN;
-
-
-/***/ }),
-/* 35 */
-/***/ (function(module, exports) {
-
-// 7.1.4 ToInteger
-var ceil = Math.ceil;
-var floor = Math.floor;
-module.exports = function (it) {
-  return isNaN(it = +it) ? 0 : (it > 0 ? floor : ceil)(it);
-};
-
-
-/***/ }),
-/* 36 */
-/***/ (function(module, exports) {
-
-// 7.2.1 RequireObjectCoercible(argument)
-module.exports = function (it) {
-  if (it == undefined) throw TypeError("Can't call method on  " + it);
-  return it;
-};
-
-
-/***/ }),
-/* 37 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-var LIBRARY = __webpack_require__(27);
-var $export = __webpack_require__(3);
-var redefine = __webpack_require__(58);
-var hide = __webpack_require__(12);
-var Iterators = __webpack_require__(20);
-var $iterCreate = __webpack_require__(81);
-var setToStringTag = __webpack_require__(31);
-var getPrototypeOf = __webpack_require__(60);
-var ITERATOR = __webpack_require__(2)('iterator');
-var BUGGY = !([].keys && 'next' in [].keys()); // Safari has buggy iterators w/o `next`
-var FF_ITERATOR = '@@iterator';
-var KEYS = 'keys';
-var VALUES = 'values';
-
-var returnThis = function () { return this; };
-
-module.exports = function (Base, NAME, Constructor, next, DEFAULT, IS_SET, FORCED) {
-  $iterCreate(Constructor, NAME, next);
-  var getMethod = function (kind) {
-    if (!BUGGY && kind in proto) return proto[kind];
-    switch (kind) {
-      case KEYS: return function keys() { return new Constructor(this, kind); };
-      case VALUES: return function values() { return new Constructor(this, kind); };
-    } return function entries() { return new Constructor(this, kind); };
-  };
-  var TAG = NAME + ' Iterator';
-  var DEF_VALUES = DEFAULT == VALUES;
-  var VALUES_BUG = false;
-  var proto = Base.prototype;
-  var $native = proto[ITERATOR] || proto[FF_ITERATOR] || DEFAULT && proto[DEFAULT];
-  var $default = $native || getMethod(DEFAULT);
-  var $entries = DEFAULT ? !DEF_VALUES ? $default : getMethod('entries') : undefined;
-  var $anyNative = NAME == 'Array' ? proto.entries || $native : $native;
-  var methods, key, IteratorPrototype;
-  // Fix native
-  if ($anyNative) {
-    IteratorPrototype = getPrototypeOf($anyNative.call(new Base()));
-    if (IteratorPrototype !== Object.prototype && IteratorPrototype.next) {
-      // Set @@toStringTag to native iterators
-      setToStringTag(IteratorPrototype, TAG, true);
-      // fix for some old engines
-      if (!LIBRARY && typeof IteratorPrototype[ITERATOR] != 'function') hide(IteratorPrototype, ITERATOR, returnThis);
-    }
-  }
-  // fix Array#{values, @@iterator}.name in V8 / FF
-  if (DEF_VALUES && $native && $native.name !== VALUES) {
-    VALUES_BUG = true;
-    $default = function values() { return $native.call(this); };
-  }
-  // Define iterator
-  if ((!LIBRARY || FORCED) && (BUGGY || VALUES_BUG || !proto[ITERATOR])) {
-    hide(proto, ITERATOR, $default);
-  }
-  // Plug for library
-  Iterators[NAME] = $default;
-  Iterators[TAG] = returnThis;
-  if (DEFAULT) {
-    methods = {
-      values: DEF_VALUES ? $default : getMethod(VALUES),
-      keys: IS_SET ? $default : getMethod(KEYS),
-      entries: $entries
-    };
-    if (FORCED) for (key in methods) {
-      if (!(key in proto)) redefine(proto, key, methods[key]);
-    } else $export($export.P + $export.F * (BUGGY || VALUES_BUG), NAME, methods);
-  }
-  return methods;
-};
-
-
-/***/ }),
-/* 38 */
-/***/ (function(module, exports, __webpack_require__) {
-
-// 7.1.1 ToPrimitive(input [, PreferredType])
-var isObject = __webpack_require__(13);
-// instead of the ES6 spec version, we didn't implement @@toPrimitive case
-// and the second argument - flag - preferred type is a string
-module.exports = function (it, S) {
-  if (!isObject(it)) return it;
-  var fn, val;
-  if (S && typeof (fn = it.toString) == 'function' && !isObject(val = fn.call(it))) return val;
-  if (typeof (fn = it.valueOf) == 'function' && !isObject(val = fn.call(it))) return val;
-  if (!S && typeof (fn = it.toString) == 'function' && !isObject(val = fn.call(it))) return val;
-  throw TypeError("Can't convert object to primitive value");
-};
-
-
-/***/ }),
-/* 39 */
-/***/ (function(module, exports, __webpack_require__) {
-
-// 19.1.2.2 / 15.2.3.5 Object.create(O [, Properties])
-var anObject = __webpack_require__(14);
-var dPs = __webpack_require__(82);
-var enumBugKeys = __webpack_require__(44);
-var IE_PROTO = __webpack_require__(42)('IE_PROTO');
-var Empty = function () { /* empty */ };
-var PROTOTYPE = 'prototype';
-
-// Create object with fake `null` prototype: use iframe Object with cleared prototype
-var createDict = function () {
-  // Thrash, waste and sodomy: IE GC bug
-  var iframe = __webpack_require__(57)('iframe');
-  var i = enumBugKeys.length;
-  var lt = '<';
-  var gt = '>';
-  var iframeDocument;
-  iframe.style.display = 'none';
-  __webpack_require__(85).appendChild(iframe);
-  iframe.src = 'javascript:'; // eslint-disable-line no-script-url
-  // createDict = iframe.contentWindow.Object;
-  // html.removeChild(iframe);
-  iframeDocument = iframe.contentWindow.document;
-  iframeDocument.open();
-  iframeDocument.write(lt + 'script' + gt + 'document.F=Object' + lt + '/script' + gt);
-  iframeDocument.close();
-  createDict = iframeDocument.F;
-  while (i--) delete createDict[PROTOTYPE][enumBugKeys[i]];
-  return createDict();
-};
-
-module.exports = Object.create || function create(O, Properties) {
-  var result;
-  if (O !== null) {
-    Empty[PROTOTYPE] = anObject(O);
-    result = new Empty();
-    Empty[PROTOTYPE] = null;
-    // add "__proto__" for Object.getPrototypeOf polyfill
-    result[IE_PROTO] = O;
-  } else result = createDict();
-  return Properties === undefined ? result : dPs(result, Properties);
-};
-
-
-/***/ }),
-/* 40 */
-/***/ (function(module, exports, __webpack_require__) {
-
-// fallback for non-array-like ES3 and non-enumerable old V8 strings
-var cof = __webpack_require__(41);
-// eslint-disable-next-line no-prototype-builtins
-module.exports = Object('z').propertyIsEnumerable(0) ? Object : function (it) {
-  return cof(it) == 'String' ? it.split('') : Object(it);
-};
-
-
-/***/ }),
-/* 41 */
-/***/ (function(module, exports) {
-
-var toString = {}.toString;
-
-module.exports = function (it) {
-  return toString.call(it).slice(8, -1);
-};
-
-
-/***/ }),
-/* 42 */
-/***/ (function(module, exports, __webpack_require__) {
-
-var shared = __webpack_require__(43)('keys');
-var uid = __webpack_require__(30);
-module.exports = function (key) {
-  return shared[key] || (shared[key] = uid(key));
-};
-
-
-/***/ }),
-/* 43 */
-/***/ (function(module, exports, __webpack_require__) {
-
-var core = __webpack_require__(0);
-var global = __webpack_require__(5);
-var SHARED = '__core-js_shared__';
-var store = global[SHARED] || (global[SHARED] = {});
-
-(module.exports = function (key, value) {
-  return store[key] || (store[key] = value !== undefined ? value : {});
-})('versions', []).push({
-  version: core.version,
-  mode: __webpack_require__(27) ? 'pure' : 'global',
-  copyright: '© 2019 Denis Pushkarev (zloirock.ru)'
-});
-
-
-/***/ }),
-/* 44 */
-/***/ (function(module, exports) {
-
-// IE 8- don't enum bug keys
-module.exports = (
-  'constructor,hasOwnProperty,isPrototypeOf,propertyIsEnumerable,toLocaleString,toString,valueOf'
-).split(',');
-
-
-/***/ }),
-/* 45 */
-/***/ (function(module, exports, __webpack_require__) {
-
-var classof = __webpack_require__(46);
-var ITERATOR = __webpack_require__(2)('iterator');
-var Iterators = __webpack_require__(20);
-module.exports = __webpack_require__(0).getIteratorMethod = function (it) {
-  if (it != undefined) return it[ITERATOR]
-    || it['@@iterator']
-    || Iterators[classof(it)];
-};
-
-
-/***/ }),
-/* 46 */
-/***/ (function(module, exports, __webpack_require__) {
-
-// getting tag from 19.1.3.6 Object.prototype.toString()
-var cof = __webpack_require__(41);
-var TAG = __webpack_require__(2)('toStringTag');
-// ES3 wrong here
-var ARG = cof(function () { return arguments; }()) == 'Arguments';
-
-// fallback for IE11 Script Access Denied error
-var tryGet = function (it, key) {
-  try {
-    return it[key];
-  } catch (e) { /* empty */ }
-};
-
-module.exports = function (it) {
-  var O, T, B;
-  return it === undefined ? 'Undefined' : it === null ? 'Null'
-    // @@toStringTag case
-    : typeof (T = tryGet(O = Object(it), TAG)) == 'string' ? T
-    // builtinTag case
-    : ARG ? cof(O)
-    // ES3 arguments fallback
-    : (B = cof(O)) == 'Object' && typeof O.callee == 'function' ? 'Arguments' : B;
-};
-
-
-/***/ }),
-/* 47 */
-/***/ (function(module, exports, __webpack_require__) {
-
-// most Object methods by ES6 should accept primitives
-var $export = __webpack_require__(3);
-var core = __webpack_require__(0);
-var fails = __webpack_require__(15);
-module.exports = function (KEY, exec) {
-  var fn = (core.Object || {})[KEY] || Object[KEY];
-  var exp = {};
-  exp[KEY] = exec(fn);
-  $export($export.S + $export.F * fails(function () { fn(1); }), 'Object', exp);
-};
-
-
-/***/ }),
-/* 48 */
-/***/ (function(module, exports, __webpack_require__) {
-
-module.exports = { "default": __webpack_require__(99), __esModule: true };
-
-/***/ }),
-/* 49 */
-/***/ (function(module, exports, __webpack_require__) {
-
-var META = __webpack_require__(30)('meta');
-var isObject = __webpack_require__(13);
-var has = __webpack_require__(16);
-var setDesc = __webpack_require__(4).f;
-var id = 0;
-var isExtensible = Object.isExtensible || function () {
-  return true;
-};
-var FREEZE = !__webpack_require__(15)(function () {
-  return isExtensible(Object.preventExtensions({}));
-});
-var setMeta = function (it) {
-  setDesc(it, META, { value: {
-    i: 'O' + ++id, // object ID
-    w: {}          // weak collections IDs
-  } });
-};
-var fastKey = function (it, create) {
-  // return primitive with prefix
-  if (!isObject(it)) return typeof it == 'symbol' ? it : (typeof it == 'string' ? 'S' : 'P') + it;
-  if (!has(it, META)) {
-    // can't set metadata to uncaught frozen object
-    if (!isExtensible(it)) return 'F';
-    // not necessary to add metadata
-    if (!create) return 'E';
-    // add missing metadata
-    setMeta(it);
-  // return object ID
-  } return it[META].i;
-};
-var getWeak = function (it, create) {
-  if (!has(it, META)) {
-    // can't set metadata to uncaught frozen object
-    if (!isExtensible(it)) return true;
-    // not necessary to add metadata
-    if (!create) return false;
-    // add missing metadata
-    setMeta(it);
-  // return hash weak collections IDs
-  } return it[META].w;
-};
-// add metadata on freeze-family methods calling
-var onFreeze = function (it) {
-  if (FREEZE && meta.NEED && isExtensible(it) && !has(it, META)) setMeta(it);
-  return it;
-};
-var meta = module.exports = {
-  KEY: META,
-  NEED: false,
-  fastKey: fastKey,
-  getWeak: getWeak,
-  onFreeze: onFreeze
-};
-
-
-/***/ }),
-/* 50 */
-/***/ (function(module, exports, __webpack_require__) {
-
-exports.f = __webpack_require__(2);
-
-
-/***/ }),
-/* 51 */
-/***/ (function(module, exports) {
-
-exports.f = Object.getOwnPropertySymbols;
-
-
-/***/ }),
-/* 52 */
-/***/ (function(module, exports, __webpack_require__) {
-
-var global = __webpack_require__(5);
-var core = __webpack_require__(0);
-var LIBRARY = __webpack_require__(27);
-var wksExt = __webpack_require__(50);
-var defineProperty = __webpack_require__(4).f;
-module.exports = function (name) {
-  var $Symbol = core.Symbol || (core.Symbol = LIBRARY ? {} : global.Symbol || {});
-  if (name.charAt(0) != '_' && !(name in $Symbol)) defineProperty($Symbol, name, { value: wksExt.f(name) });
-};
-
-
-/***/ }),
-/* 53 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return Observer; });
-/* harmony export (immutable) */ __webpack_exports__["c"] = protect;
-/* harmony export (immutable) */ __webpack_exports__["b"] = add;
-/* unused harmony export choose */
-/* unused harmony export filter */
-/* unused harmony export map */
-/* unused harmony export merge */
-/* unused harmony export pairwise */
-/* unused harmony export partition */
-/* unused harmony export scan */
-/* unused harmony export split */
-/* unused harmony export subscribe */
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_babel_runtime_helpers_classCallCheck__ = __webpack_require__(7);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_babel_runtime_helpers_classCallCheck___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_babel_runtime_helpers_classCallCheck__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_babel_runtime_helpers_createClass__ = __webpack_require__(8);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_babel_runtime_helpers_createClass___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_babel_runtime_helpers_createClass__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__Symbol__ = __webpack_require__(9);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__Util__ = __webpack_require__(1);
-
-
-
-
-var Observer = function () {
-    function Observer(onNext, onError, onCompleted) {
-        __WEBPACK_IMPORTED_MODULE_0_babel_runtime_helpers_classCallCheck___default()(this, Observer);
-
-        this.OnNext = onNext;
-        this.OnError = onError || function (e) {
-            return;
-        };
-        this.OnCompleted = onCompleted || function () {
-            return;
-        };
-    }
-
-    __WEBPACK_IMPORTED_MODULE_1_babel_runtime_helpers_createClass___default()(Observer, [{
-        key: __WEBPACK_IMPORTED_MODULE_2__Symbol__["a" /* default */].reflection,
-        value: function value() {
-            return { interfaces: ["System.IObserver"] };
-        }
-    }]);
-
-    return Observer;
-}();
-
-var Observable = function () {
-    function Observable(subscribe) {
-        __WEBPACK_IMPORTED_MODULE_0_babel_runtime_helpers_classCallCheck___default()(this, Observable);
-
-        this.Subscribe = subscribe;
-    }
-
-    __WEBPACK_IMPORTED_MODULE_1_babel_runtime_helpers_createClass___default()(Observable, [{
-        key: __WEBPACK_IMPORTED_MODULE_2__Symbol__["a" /* default */].reflection,
-        value: function value() {
-            return { interfaces: ["System.IObservable"] };
-        }
-    }]);
-
-    return Observable;
-}();
-
-function protect(f, succeed, fail) {
-    try {
-        return succeed(f());
-    } catch (e) {
-        fail(e);
-    }
-}
-function add(callback, source) {
-    source.Subscribe(new Observer(callback));
-}
-function choose(chooser, source) {
-    return new Observable(function (observer) {
-        return source.Subscribe(new Observer(function (t) {
-            return protect(function () {
-                return chooser(t);
-            }, function (u) {
-                if (u != null) {
-                    observer.OnNext(u);
-                }
-            }, observer.OnError);
-        }, observer.OnError, observer.OnCompleted));
-    });
-}
-function filter(predicate, source) {
-    return choose(function (x) {
-        return predicate(x) ? x : null;
-    }, source);
-}
-function map(mapping, source) {
-    return new Observable(function (observer) {
-        return source.Subscribe(new Observer(function (t) {
-            protect(function () {
-                return mapping(t);
-            }, observer.OnNext, observer.OnError);
-        }, observer.OnError, observer.OnCompleted));
-    });
-}
-function merge(source1, source2) {
-    return new Observable(function (observer) {
-        var stopped = false;
-        var completed1 = false;
-        var completed2 = false;
-        var h1 = source1.Subscribe(new Observer(function (v) {
-            if (!stopped) {
-                observer.OnNext(v);
-            }
-        }, function (e) {
-            if (!stopped) {
-                stopped = true;
-                observer.OnError(e);
-            }
-        }, function () {
-            if (!stopped) {
-                completed1 = true;
-                if (completed2) {
-                    stopped = true;
-                    observer.OnCompleted();
-                }
-            }
-        }));
-        var h2 = source2.Subscribe(new Observer(function (v) {
-            if (!stopped) {
-                observer.OnNext(v);
-            }
-        }, function (e) {
-            if (!stopped) {
-                stopped = true;
-                observer.OnError(e);
-            }
-        }, function () {
-            if (!stopped) {
-                completed2 = true;
-                if (completed1) {
-                    stopped = true;
-                    observer.OnCompleted();
-                }
-            }
-        }));
-        return Object(__WEBPACK_IMPORTED_MODULE_3__Util__["d" /* createDisposable */])(function () {
-            h1.Dispose();
-            h2.Dispose();
-        });
-    });
-}
-function pairwise(source) {
-    return new Observable(function (observer) {
-        var last = null;
-        return source.Subscribe(new Observer(function (next) {
-            if (last != null) {
-                observer.OnNext([last, next]);
-            }
-            last = next;
-        }, observer.OnError, observer.OnCompleted));
-    });
-}
-function partition(predicate, source) {
-    return [filter(predicate, source), filter(function (x) {
-        return !predicate(x);
-    }, source)];
-}
-function scan(collector, state, source) {
-    return new Observable(function (observer) {
-        return source.Subscribe(new Observer(function (t) {
-            protect(function () {
-                return collector(state, t);
-            }, function (u) {
-                state = u;observer.OnNext(u);
-            }, observer.OnError);
-        }, observer.OnError, observer.OnCompleted));
-    });
-}
-function split(splitter, source) {
-    return [choose(function (v) {
-        return splitter(v).valueIfChoice1;
-    }, source), choose(function (v) {
-        return splitter(v).valueIfChoice2;
-    }, source)];
-}
-function subscribe(callback, source) {
-    return source.Subscribe(new Observer(callback));
-}
-
-/***/ }),
-/* 54 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* unused harmony export map */
-/* harmony export (immutable) */ __webpack_exports__["b"] = mapIndexed;
-/* unused harmony export indexed */
-/* unused harmony export addRangeInPlace */
-/* unused harmony export copyTo */
-/* unused harmony export partition */
-/* harmony export (immutable) */ __webpack_exports__["c"] = permute;
-/* unused harmony export removeInPlace */
-/* unused harmony export setSlice */
-/* unused harmony export sortInPlaceBy */
-/* unused harmony export unzip */
-/* unused harmony export unzip3 */
-/* harmony export (immutable) */ __webpack_exports__["a"] = chunkBySize;
-/* unused harmony export getSubArray */
-/* unused harmony export fill */
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_babel_runtime_core_js_get_iterator__ = __webpack_require__(11);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_babel_runtime_core_js_get_iterator___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_babel_runtime_core_js_get_iterator__);
-
-function map(f, source, target) {
-    for (var i = 0; i < source.length; i++) {
-        target[i] = f(source[i]);
-    }
-    return target;
-}
-function mapIndexed(f, source, target) {
-    for (var i = 0; i < source.length; i++) {
-        target[i] = f(i, source[i]);
-    }
-    return target;
-}
-function indexed(source, target) {
-    return mapIndexed(function (i, x) {
-        return [i, x];
-    }, source, target);
-}
-function addRangeInPlace(range, xs) {
-    var iter = __WEBPACK_IMPORTED_MODULE_0_babel_runtime_core_js_get_iterator___default()(range);
-    var cur = iter.next();
-    while (!cur.done) {
-        xs.push(cur.value);
-        cur = iter.next();
-    }
-}
-function copyTo(source, sourceIndex, target, targetIndex, count) {
-    while (count--) {
-        target[targetIndex++] = source[sourceIndex++];
-    }
-}
-function partition(f, xs) {
-    var ys = [];
-    var zs = [];
-    var j = 0;
-    var k = 0;
-    for (var i = 0; i < xs.length; i++) {
-        if (f(xs[i])) {
-            ys[j++] = xs[i];
-        } else {
-            zs[k++] = xs[i];
-        }
-    }
-    return [ys, zs];
-}
-function permute(f, xs) {
-    // Keep the type of the array
-    var ys = xs.map(function () {
-        return null;
-    });
-    var checkFlags = new Array(xs.length);
-    for (var i = 0; i < xs.length; i++) {
-        var j = f(i);
-        if (j < 0 || j >= xs.length) {
-            throw new Error("Not a valid permutation");
-        }
-        ys[j] = xs[i];
-        checkFlags[j] = 1;
-    }
-    for (var _i = 0; _i < xs.length; _i++) {
-        if (checkFlags[_i] !== 1) {
-            throw new Error("Not a valid permutation");
-        }
-    }
-    return ys;
-}
-function removeInPlace(item, xs) {
-    var i = xs.indexOf(item);
-    if (i > -1) {
-        xs.splice(i, 1);
-        return true;
-    }
-    return false;
-}
-function setSlice(target, lower, upper, source) {
-    var length = (upper || target.length - 1) - lower;
-    if (ArrayBuffer.isView(target) && source.length <= length) {
-        target.set(source, lower);
-    } else {
-        for (var i = lower | 0, j = 0; j <= length; i++, j++) {
-            target[i] = source[j];
-        }
-    }
-}
-function sortInPlaceBy(f, xs) {
-    var dir = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : 1;
-
-    return xs.sort(function (x, y) {
-        x = f(x);
-        y = f(y);
-        return (x < y ? -1 : x === y ? 0 : 1) * dir;
-    });
-}
-function unzip(xs) {
-    var bs = new Array(xs.length);
-    var cs = new Array(xs.length);
-    for (var i = 0; i < xs.length; i++) {
-        bs[i] = xs[i][0];
-        cs[i] = xs[i][1];
-    }
-    return [bs, cs];
-}
-function unzip3(xs) {
-    var bs = new Array(xs.length);
-    var cs = new Array(xs.length);
-    var ds = new Array(xs.length);
-    for (var i = 0; i < xs.length; i++) {
-        bs[i] = xs[i][0];
-        cs[i] = xs[i][1];
-        ds[i] = xs[i][2];
-    }
-    return [bs, cs, ds];
-}
-function chunkBySize(size, xs) {
-    if (size < 1) {
-        throw new Error("The input must be positive. parameter name: chunkSize");
-    }
-    if (xs.length === 0) {
-        return [[]];
-    }
-    var result = [];
-    // add each chunk to the result
-    for (var x = 0; x < Math.ceil(xs.length / size); x++) {
-        var start = x * size;
-        var end = start + size;
-        result.push(xs.slice(start, end));
-    }
-    return result;
-}
-function getSubArray(xs, startIndex, count) {
-    return xs.slice(startIndex, startIndex + count);
+function filter(predicate, array) {
+  return array.filter(predicate);
 }
 function fill(target, targetIndex, count, value) {
-    target.fill(value, targetIndex, targetIndex + count);
+  target.fill(value, targetIndex, targetIndex + count);
+  return target;
+}
+function getSubArray(array$$3, start$$1, count$$2) {
+  return array$$3.slice(start$$1, start$$1 + count$$2);
+}
+function last(array$$5) {
+  if (array$$5.length === 0) {
+    throw new Error("The input array was empty\\nParameter name: array");
+  }
+
+  return array$$5[array$$5.length - 1];
+}
+function tryLast(array$$6) {
+  if (array$$6.length === 0) {
+    return null;
+  } else {
+    return Object(_Option_js__WEBPACK_IMPORTED_MODULE_1__["some"])(array$$6[array$$6.length - 1]);
+  }
+}
+function mapIndexed(f, source, cons$$1) {
+  if (ArrayBuffer.isView(source)) {
+    var len = source.length | 0;
+    var target$$1 = new cons$$1(len);
+
+    for (var i$$2 = 0; i$$2 <= len - 1; i$$2++) {
+      target$$1[i$$2] = f(i$$2, source[i$$2]);
+    }
+
+    return target$$1;
+  } else {
+    return source.map(function mapping(x, i$$3) {
+      return f(i$$3, x);
+    });
+  }
+}
+function map(f$$1, source$$1, cons$$2) {
+  if (ArrayBuffer.isView(source$$1)) {
+    var len$$1 = source$$1.length | 0;
+    var target$$2 = new cons$$2(len$$1);
+
+    for (var i$$4 = 0; i$$4 <= len$$1 - 1; i$$4++) {
+      target$$2[i$$4] = f$$1(source$$1[i$$4]);
+    }
+
+    return target$$2;
+  } else {
+    return source$$1.map(function mapping$$1(x$$1) {
+      return f$$1(x$$1);
+    });
+  }
+}
+function mapIndexed2(f$$2, source1, source2, cons$$3) {
+  if (source1.length !== source2.length) {
+    throw new Error("Arrays had different lengths");
+  }
+
+  var result = new cons$$3(source1.length);
+
+  for (var i$$5 = 0; i$$5 <= source1.length - 1; i$$5++) {
+    result[i$$5] = f$$2(i$$5, source1[i$$5], source2[i$$5]);
+  }
+
+  return result;
+}
+function map2(f$$3, source1$$1, source2$$1, cons$$4) {
+  if (source1$$1.length !== source2$$1.length) {
+    throw new Error("Arrays had different lengths");
+  }
+
+  var result$$1 = new cons$$4(source1$$1.length);
+
+  for (var i$$6 = 0; i$$6 <= source1$$1.length - 1; i$$6++) {
+    result$$1[i$$6] = f$$3(source1$$1[i$$6], source2$$1[i$$6]);
+  }
+
+  return result$$1;
+}
+function mapIndexed3(f$$4, source1$$2, source2$$2, source3, cons$$5) {
+  if (source1$$2.length !== source2$$2.length ? true : source2$$2.length !== source3.length) {
+    throw new Error("Arrays had different lengths");
+  }
+
+  var result$$2 = new cons$$5(source1$$2.length);
+
+  for (var i$$7 = 0; i$$7 <= source1$$2.length - 1; i$$7++) {
+    result$$2[i$$7] = f$$4(i$$7, source1$$2[i$$7], source2$$2[i$$7], source3[i$$7]);
+  }
+
+  return result$$2;
+}
+function map3(f$$5, source1$$3, source2$$3, source3$$1, cons$$6) {
+  if (source1$$3.length !== source2$$3.length ? true : source2$$3.length !== source3$$1.length) {
+    throw new Error("Arrays had different lengths");
+  }
+
+  var result$$3 = new cons$$6(source1$$3.length);
+
+  for (var i$$8 = 0; i$$8 <= source1$$3.length - 1; i$$8++) {
+    result$$3[i$$8] = f$$5(source1$$3[i$$8], source2$$3[i$$8], source3$$1[i$$8]);
+  }
+
+  return result$$3;
+}
+function mapFold(mapping$$2, state, array$$9, cons$$7) {
+  var matchValue = array$$9.length | 0;
+
+  if (matchValue === 0) {
+    return [[], state];
+  } else {
+    var len$$2 = matchValue | 0;
+    var acc = state;
+    var res = new cons$$7(len$$2);
+
+    for (var i$$9 = 0; i$$9 <= array$$9.length - 1; i$$9++) {
+      var patternInput = mapping$$2(acc, array$$9[i$$9]);
+      res[i$$9] = patternInput[0];
+      acc = patternInput[1];
+    }
+
+    return [res, acc];
+  }
+}
+function mapFoldBack(mapping$$3, array$$10, state$$1, cons$$8) {
+  var matchValue$$1 = array$$10.length | 0;
+
+  if (matchValue$$1 === 0) {
+    return [[], state$$1];
+  } else {
+    var len$$3 = matchValue$$1 | 0;
+    var acc$$1 = state$$1;
+    var res$$1 = new cons$$8(len$$3);
+
+    for (var i$$10 = array$$10.length - 1; i$$10 >= 0; i$$10--) {
+      var patternInput$$1 = mapping$$3(array$$10[i$$10], acc$$1);
+      res$$1[i$$10] = patternInput$$1[0];
+      acc$$1 = patternInput$$1[1];
+    }
+
+    return [res$$1, acc$$1];
+  }
+}
+function indexed(source$$2) {
+  var len$$4 = source$$2.length | 0;
+  var target$$3 = new Array(len$$4);
+
+  for (var i$$11 = 0; i$$11 <= len$$4 - 1; i$$11++) {
+    target$$3[i$$11] = [i$$11, source$$2[i$$11]];
+  }
+
+  return target$$3;
+}
+function truncate(count$$4, array$$11) {
+  var count$$5 = Object(_Util_js__WEBPACK_IMPORTED_MODULE_2__["max"])(_Util_js__WEBPACK_IMPORTED_MODULE_2__["comparePrimitives"], 0, count$$4) | 0;
+  return array$$11.slice(0, 0 + count$$5);
+}
+function concat(arrays, cons$$9) {
+  var arrays$$1 = Array.from(arrays);
+  var matchValue$$2 = arrays$$1.length | 0;
+
+  switch (matchValue$$2) {
+    case 0:
+      {
+        return new cons$$9(0);
+      }
+
+    case 1:
+      {
+        return arrays$$1[0];
+      }
+
+    default:
+      {
+        if (ArrayBuffer.isView(arrays$$1[0])) {
+          var totalIdx = 0;
+          var totalLength = 0;
+
+          for (var idx = 0; idx <= arrays$$1.length - 1; idx++) {
+            var arr$$4 = arrays$$1[idx];
+            totalLength = totalLength + arr$$4.length;
+          }
+
+          var result$$4 = new cons$$9(totalLength);
+
+          for (var idx$$1 = 0; idx$$1 <= arrays$$1.length - 1; idx$$1++) {
+            var arr$$5 = arrays$$1[idx$$1];
+
+            for (var j = 0; j <= arr$$5.length - 1; j++) {
+              result$$4[totalIdx] = arr$$5[j];
+              totalIdx = totalIdx + 1;
+            }
+          }
+
+          return result$$4;
+        } else {
+          var _arrays$$1$;
+
+          return (_arrays$$1$ = arrays$$1[0]).concat.apply(_arrays$$1$, _babel_runtime_helpers_toConsumableArray__WEBPACK_IMPORTED_MODULE_0___default()(arrays$$1.slice(1)));
+        }
+      }
+  }
+}
+function collect(mapping$$4, array$$14, cons$$10) {
+  var mapped = map(mapping$$4, array$$14, Array);
+  return concat(mapped, cons$$10);
+}
+function countBy(projection, array$$15, eq) {
+  var dict = Object(_Map_js__WEBPACK_IMPORTED_MODULE_3__["createMutable"])([], Object(_Util_js__WEBPACK_IMPORTED_MODULE_2__["comparerFromEqualityComparer"])(eq));
+
+  for (var idx$$2 = 0; idx$$2 <= array$$15.length - 1; idx$$2++) {
+    var value$$2 = array$$15[idx$$2];
+    var key = projection(value$$2);
+    var matchValue$$3 = Object(_Util_js__WEBPACK_IMPORTED_MODULE_2__["tryGetValue"])(dict, key, 0);
+
+    if (matchValue$$3[0]) {
+      dict.set(key, matchValue$$3[1] + 1);
+    } else {
+      dict.set(key, 1);
+    }
+  }
+
+  var res$$2 = new Array(dict.size);
+  var i$$12 = 0;
+  Object(_Seq_js__WEBPACK_IMPORTED_MODULE_4__["iterate"])(function (group) {
+    res$$2[i$$12] = [group[0], group[1]];
+    i$$12 = i$$12 + 1;
+  }, dict);
+  return res$$2;
+}
+function distinctBy(projection$$1, array$$16, eq$$1) {
+  var hashSet = Object(_Set_js__WEBPACK_IMPORTED_MODULE_5__["createMutable"])([], Object(_Util_js__WEBPACK_IMPORTED_MODULE_2__["comparerFromEqualityComparer"])(eq$$1));
+  return filter(function predicate$$2($arg$$3) {
+    return Object(_Util_js__WEBPACK_IMPORTED_MODULE_2__["addToSet"])(projection$$1($arg$$3), hashSet);
+  }, array$$16);
+}
+function distinct(array$$18, eq$$2) {
+  return distinctBy(function (x$$2) {
+    return x$$2;
+  }, array$$18, eq$$2);
+}
+function where(predicate$$3, array$$19) {
+  return array$$19.filter(predicate$$3);
+}
+function contains(value$$3, array$$21, eq$$3) {
+  var loop = function loop(i$$13) {
+    loop: while (true) {
+      if (i$$13 >= array$$21.length) {
+        return false;
+      } else if (eq$$3.Equals(value$$3, array$$21[i$$13])) {
+        return true;
+      } else {
+        var $i$$13$$51 = i$$13;
+        i$$13 = $i$$13$$51 + 1;
+        continue loop;
+      }
+
+      break;
+    }
+  };
+
+  return loop(0);
+}
+function except(itemsToExclude, array$$22, eq$$4) {
+  if (array$$22.length === 0) {
+    return array$$22;
+  } else {
+    var cached = Object(_Set_js__WEBPACK_IMPORTED_MODULE_5__["createMutable"])(itemsToExclude, Object(_Util_js__WEBPACK_IMPORTED_MODULE_2__["comparerFromEqualityComparer"])(eq$$4));
+    return array$$22.filter(function predicate$$5(arg00$$1) {
+      return Object(_Util_js__WEBPACK_IMPORTED_MODULE_2__["addToSet"])(arg00$$1, cached);
+    });
+  }
+}
+function groupBy(projection$$2, array$$25, cons$$11, eq$$5) {
+  var dict$$1 = Object(_Map_js__WEBPACK_IMPORTED_MODULE_3__["createMutable"])([], Object(_Util_js__WEBPACK_IMPORTED_MODULE_2__["comparerFromEqualityComparer"])(eq$$5));
+  var keys = [];
+
+  for (var idx$$3 = 0; idx$$3 <= array$$25.length - 1; idx$$3++) {
+    var v = array$$25[idx$$3];
+    var key$$1 = projection$$2(v);
+    var matchValue$$4 = Object(_Util_js__WEBPACK_IMPORTED_MODULE_2__["tryGetValue"])(dict$$1, key$$1, null);
+
+    if (matchValue$$4[0]) {
+      dict$$1.set(key$$1, new _Types_js__WEBPACK_IMPORTED_MODULE_6__["List"](v, matchValue$$4[1]));
+    } else {
+      Object(_Util_js__WEBPACK_IMPORTED_MODULE_2__["addToDict"])(dict$$1, key$$1, new _Types_js__WEBPACK_IMPORTED_MODULE_6__["List"](v, new _Types_js__WEBPACK_IMPORTED_MODULE_6__["List"]()));
+      keys.push(key$$1);
+    }
+  }
+
+  var result$$5 = new Array(Object(_Util_js__WEBPACK_IMPORTED_MODULE_2__["count"])(keys));
+  Object(_Seq_js__WEBPACK_IMPORTED_MODULE_4__["iterateIndexed"])(function action(i$$14, key$$2) {
+    result$$5[i$$14] = [key$$2, cons$$11.from(Object(_Util_js__WEBPACK_IMPORTED_MODULE_2__["getItemFromDict"])(dict$$1, key$$2)).reverse()];
+  }, keys);
+  return result$$5;
+}
+function empty(cons$$12) {
+  return new cons$$12(0);
+}
+function singleton(value$$4, cons$$14) {
+  var ar = new cons$$14(1);
+  ar[0] = value$$4;
+  return ar;
+}
+function initialize(count$$8, initializer, cons$$15) {
+  if (count$$8 < 0) {
+    throw new Error("The input must be non-negative\\nParameter name: count");
+  }
+
+  var result$$6 = new cons$$15(count$$8);
+
+  for (var i$$15 = 0; i$$15 <= count$$8 - 1; i$$15++) {
+    result$$6[i$$15] = initializer(i$$15);
+  }
+
+  return result$$6;
+}
+function pairwise(array$$28) {
+  if (array$$28.length < 2) {
+    return [];
+  } else {
+    var count$$9 = array$$28.length - 1 | 0;
+    var result$$7 = new Array(count$$9);
+
+    for (var i$$16 = 0; i$$16 <= count$$9 - 1; i$$16++) {
+      result$$7[i$$16] = [array$$28[i$$16], array$$28[i$$16 + 1]];
+    }
+
+    return result$$7;
+  }
+}
+function replicate(count$$10, initial, cons$$16) {
+  if (count$$10 < 0) {
+    throw new Error("The input must be non-negative\\nParameter name: count");
+  }
+
+  var result$$8 = new cons$$16(count$$10);
+
+  for (var i$$17 = 0; i$$17 <= result$$8.length - 1; i$$17++) {
+    result$$8[i$$17] = initial;
+  }
+
+  return result$$8;
+}
+function copy(array$$29, cons$$17) {
+  return array$$29.slice();
+}
+function reverse(array$$31, cons$$18) {
+  return array$$31.slice().reverse();
+}
+function scan(folder, state$$2, array$$35, cons$$19) {
+  var res$$3 = new cons$$19(array$$35.length + 1);
+  res$$3[0] = state$$2;
+
+  for (var i$$18 = 0; i$$18 <= array$$35.length - 1; i$$18++) {
+    res$$3[i$$18 + 1] = folder(res$$3[i$$18], array$$35[i$$18]);
+  }
+
+  return res$$3;
+}
+function scanBack(folder$$1, array$$36, state$$3, cons$$20) {
+  var res$$4 = new cons$$20(array$$36.length + 1);
+  res$$4[array$$36.length] = state$$3;
+
+  for (var i$$19 = array$$36.length - 1; i$$19 >= 0; i$$19--) {
+    res$$4[i$$19] = folder$$1(array$$36[i$$19], res$$4[i$$19 + 1]);
+  }
+
+  return res$$4;
+}
+function skip(count$$11, array$$37, cons$$21) {
+  if (count$$11 > array$$37.length) {
+    throw new Error("count is greater than array length\\nParameter name: count");
+  }
+
+  if (count$$11 === array$$37.length) {
+    return new cons$$21(0);
+  } else {
+    var count$$12 = (count$$11 < 0 ? 0 : count$$11) | 0;
+    return array$$37.slice(count$$12);
+  }
+}
+function skipWhile(predicate$$7, array$$39, cons$$23) {
+  var count$$14 = 0;
+
+  while (count$$14 < array$$39.length ? predicate$$7(array$$39[count$$14]) : false) {
+    count$$14 = count$$14 + 1;
+  }
+
+  if (count$$14 === array$$39.length) {
+    return new cons$$23(0);
+  } else {
+    return array$$39.slice(count$$14);
+  }
+}
+function take(count$$16, array$$41, cons$$25) {
+  if (count$$16 < 0) {
+    throw new Error("The input must be non-negative\\nParameter name: count");
+  }
+
+  if (count$$16 > array$$41.length) {
+    throw new Error("count is greater than array length\\nParameter name: count");
+  }
+
+  if (count$$16 === 0) {
+    return new cons$$25(0);
+  } else {
+    return array$$41.slice(0, 0 + count$$16);
+  }
+}
+function takeWhile(predicate$$8, array$$43, cons$$27) {
+  var count$$18 = 0;
+
+  while (count$$18 < array$$43.length ? predicate$$8(array$$43[count$$18]) : false) {
+    count$$18 = count$$18 + 1;
+  }
+
+  if (count$$18 === 0) {
+    return new cons$$27(0);
+  } else {
+    return array$$43.slice(0, 0 + count$$18);
+  }
+}
+function addRangeInPlace(range, array$$45) {
+  var iter = range[Symbol.iterator]();
+  var cur = iter.next();
+
+  while (!cur.done) {
+    array$$45.push(cur.value);
+    cur = iter.next();
+  }
+}
+function removeInPlace(item$$2, array$$47) {
+  var i$$20 = array$$47.indexOf(item$$2);
+
+  if (i$$20 > -1) {
+    array$$47.splice(i$$20, 1);
+    return true;
+  } else {
+    return false;
+  }
+}
+function removeAllInPlace(predicate$$9, array$$50) {
+  var countRemoveAll = function countRemoveAll(count$$20) {
+    var i$$21 = array$$50.findIndex(predicate$$9);
+
+    if (i$$21 > -1) {
+      array$$50.splice(i$$21, 1);
+      return countRemoveAll(count$$20) + 1 | 0;
+    } else {
+      return count$$20 | 0;
+    }
+  };
+
+  return countRemoveAll(0) | 0;
+}
+function copyTo(source$$4, sourceIndex, target$$4, targetIndex$$1, count$$21) {
+  var diff = targetIndex$$1 - sourceIndex | 0;
+
+  for (var i$$22 = sourceIndex; i$$22 <= sourceIndex + count$$21 - 1; i$$22++) {
+    target$$4[i$$22 + diff] = source$$4[i$$22];
+  }
+}
+function partition(f$$6, source$$5, cons$$29) {
+  var len$$9 = source$$5.length | 0;
+  var res1 = new cons$$29(len$$9);
+  var res2 = new cons$$29(len$$9);
+  var iTrue = 0;
+  var iFalse = 0;
+
+  for (var i$$23 = 0; i$$23 <= len$$9 - 1; i$$23++) {
+    if (f$$6(source$$5[i$$23])) {
+      res1[iTrue] = source$$5[i$$23];
+      iTrue = iTrue + 1;
+    } else {
+      res2[iFalse] = source$$5[i$$23];
+      iFalse = iFalse + 1;
+    }
+  }
+
+  return [truncate(iTrue, res1), truncate(iFalse, res2)];
+}
+function find(predicate$$11, array$$55) {
+  var matchValue$$5 = array$$55.find(predicate$$11);
+
+  if (matchValue$$5 == null) {
+    return indexNotFound();
+  } else {
+    var res$$5 = Object(_Option_js__WEBPACK_IMPORTED_MODULE_1__["value"])(matchValue$$5);
+    return res$$5;
+  }
+}
+function tryFind(predicate$$13, array$$57) {
+  return array$$57.find(predicate$$13);
+}
+function findIndex(predicate$$15, array$$59) {
+  var index;
+  var matchValue$$6 = array$$59.findIndex(predicate$$15);
+
+  if (index = matchValue$$6 | 0, index > -1) {
+    var index$$1 = matchValue$$6 | 0;
+    return index$$1 | 0;
+  } else {
+    return indexNotFound() | 0;
+  }
+}
+function tryFindIndex(predicate$$17, array$$61) {
+  var index$$2;
+  var matchValue$$7 = array$$61.findIndex(predicate$$17);
+
+  if (index$$2 = matchValue$$7 | 0, index$$2 > -1) {
+    var index$$3 = matchValue$$7 | 0;
+    return index$$3;
+  } else {
+    return null;
+  }
+}
+function pick(chooser, array$$63) {
+  var loop$$1 = function loop$$1(i$$24) {
+    loop$$1: while (true) {
+      if (i$$24 >= array$$63.length) {
+        return indexNotFound();
+      } else {
+        var matchValue$$8 = chooser(array$$63[i$$24]);
+
+        if (matchValue$$8 != null) {
+          var res$$6 = Object(_Option_js__WEBPACK_IMPORTED_MODULE_1__["value"])(matchValue$$8);
+          return res$$6;
+        } else {
+          var $i$$24$$88 = i$$24;
+          i$$24 = $i$$24$$88 + 1;
+          continue loop$$1;
+        }
+      }
+
+      break;
+    }
+  };
+
+  return loop$$1(0);
+}
+function tryPick(chooser$$1, array$$64) {
+  var loop$$2 = function loop$$2(i$$25) {
+    loop$$2: while (true) {
+      if (i$$25 >= array$$64.length) {
+        return null;
+      } else {
+        var matchValue$$9 = chooser$$1(array$$64[i$$25]);
+
+        if (matchValue$$9 == null) {
+          var $i$$25$$91 = i$$25;
+          i$$25 = $i$$25$$91 + 1;
+          continue loop$$2;
+        } else {
+          var res$$7 = matchValue$$9;
+          return res$$7;
+        }
+      }
+
+      break;
+    }
+  };
+
+  return loop$$2(0);
+}
+function findBack(predicate$$19, array$$65) {
+  var loop$$3 = function loop$$3(i$$26) {
+    loop$$3: while (true) {
+      if (i$$26 < 0) {
+        return indexNotFound();
+      } else if (predicate$$19(array$$65[i$$26])) {
+        return array$$65[i$$26];
+      } else {
+        var $i$$26$$94 = i$$26;
+        i$$26 = $i$$26$$94 - 1;
+        continue loop$$3;
+      }
+
+      break;
+    }
+  };
+
+  return loop$$3(array$$65.length - 1);
+}
+function tryFindBack(predicate$$20, array$$66) {
+  var loop$$4 = function loop$$4(i$$27) {
+    loop$$4: while (true) {
+      if (i$$27 < 0) {
+        return null;
+      } else if (predicate$$20(array$$66[i$$27])) {
+        return Object(_Option_js__WEBPACK_IMPORTED_MODULE_1__["some"])(array$$66[i$$27]);
+      } else {
+        var $i$$27$$97 = i$$27;
+        i$$27 = $i$$27$$97 - 1;
+        continue loop$$4;
+      }
+
+      break;
+    }
+  };
+
+  return loop$$4(array$$66.length - 1);
+}
+function findLastIndex(predicate$$21, array$$67) {
+  var loop$$5 = function loop$$5(i$$28) {
+    loop$$5: while (true) {
+      if (i$$28 < 0) {
+        return -1 | 0;
+      } else if (predicate$$21(array$$67[i$$28])) {
+        return i$$28 | 0;
+      } else {
+        var $i$$28$$100 = i$$28;
+        i$$28 = $i$$28$$100 - 1;
+        continue loop$$5;
+      }
+
+      break;
+    }
+  };
+
+  return loop$$5(array$$67.length - 1) | 0;
+}
+function findIndexBack(predicate$$22, array$$68) {
+  var loop$$6 = function loop$$6(i$$29) {
+    loop$$6: while (true) {
+      if (i$$29 < 0) {
+        return indexNotFound() | 0;
+      } else if (predicate$$22(array$$68[i$$29])) {
+        return i$$29 | 0;
+      } else {
+        var $i$$29$$103 = i$$29;
+        i$$29 = $i$$29$$103 - 1;
+        continue loop$$6;
+      }
+
+      break;
+    }
+  };
+
+  return loop$$6(array$$68.length - 1) | 0;
+}
+function tryFindIndexBack(predicate$$23, array$$69) {
+  var loop$$7 = function loop$$7(i$$30) {
+    loop$$7: while (true) {
+      if (i$$30 < 0) {
+        return null;
+      } else if (predicate$$23(array$$69[i$$30])) {
+        return i$$30;
+      } else {
+        var $i$$30$$106 = i$$30;
+        i$$30 = $i$$30$$106 - 1;
+        continue loop$$7;
+      }
+
+      break;
+    }
+  };
+
+  return loop$$7(array$$69.length - 1);
+}
+function choose(chooser$$2, array$$70, cons$$30) {
+  var f$$7 = function f$$7(x$$3) {
+    return chooser$$2(x$$3) != null;
+  };
+
+  var g = function g(x$$4) {
+    return Object(_Option_js__WEBPACK_IMPORTED_MODULE_1__["value"])(chooser$$2(x$$4));
+  };
+
+  var arr$$6 = array$$70.filter(f$$7);
+  return map(g, arr$$6, cons$$30);
+}
+function foldIndexed(folder$$2, state$$4, array$$72) {
+  return array$$72.reduce(function folder$$3(acc$$2, x$$5, i$$31) {
+    return folder$$2(i$$31, acc$$2, x$$5);
+  }, state$$4);
+}
+function fold(folder$$4, state$$6, array$$74) {
+  return array$$74.reduce(folder$$4, state$$6);
+}
+function iterate(action$$1, array$$76) {
+  for (var i$$32 = 0; i$$32 <= array$$76.length - 1; i$$32++) {
+    action$$1(array$$76[i$$32]);
+  }
+}
+function iterateIndexed(action$$2, array$$77) {
+  for (var i$$33 = 0; i$$33 <= array$$77.length - 1; i$$33++) {
+    action$$2(i$$33, array$$77[i$$33]);
+  }
+}
+function iterate2(action$$3, array1$$2, array2$$2) {
+  if (array1$$2.length !== array2$$2.length) {
+    throw new Error("Arrays had different lengths");
+  }
+
+  for (var i$$34 = 0; i$$34 <= array1$$2.length - 1; i$$34++) {
+    action$$3(array1$$2[i$$34], array2$$2[i$$34]);
+  }
+}
+function iterateIndexed2(action$$4, array1$$3, array2$$3) {
+  if (array1$$3.length !== array2$$3.length) {
+    throw new Error("Arrays had different lengths");
+  }
+
+  for (var i$$35 = 0; i$$35 <= array1$$3.length - 1; i$$35++) {
+    action$$4(i$$35, array1$$3[i$$35], array2$$3[i$$35]);
+  }
+}
+function isEmpty(array$$78) {
+  return array$$78.length === 0;
+}
+function forAll(predicate$$25, array$$79) {
+  return array$$79.every(predicate$$25);
+}
+function permute(f$$8, array$$81) {
+  var size = array$$81.length | 0;
+  var res$$8 = new array$$81.constructor(array$$81.length);
+  var checkFlags = new Array(size);
+  iterateIndexed(function (i$$36, x$$7) {
+    var j$$1 = f$$8(i$$36) | 0;
+
+    if (j$$1 < 0 ? true : j$$1 >= size) {
+      throw new Error("Not a valid permutation");
+    }
+
+    res$$8[j$$1] = x$$7;
+    checkFlags[j$$1] = 1;
+  }, array$$81);
+  var isValid = forAll(function (y) {
+    return 1 === y;
+  }, checkFlags);
+
+  if (!isValid) {
+    throw new Error("Not a valid permutation");
+  }
+
+  return res$$8;
+}
+function setSlice(target$$5, lower, upper, source$$6) {
+  var lower$$1 = Object(_Option_js__WEBPACK_IMPORTED_MODULE_1__["defaultArg"])(lower, 0) | 0;
+  var upper$$1 = Object(_Option_js__WEBPACK_IMPORTED_MODULE_1__["defaultArg"])(upper, 0) | 0;
+  var length = (upper$$1 > 0 ? upper$$1 : target$$5.length - 1) - lower$$1 | 0;
+
+  if (ArrayBuffer.isView(target$$5) ? source$$6.length <= length : false) {
+    return target$$5.set(source$$6, lower$$1);
+  } else {
+    for (var i$$37 = 0; i$$37 <= length; i$$37++) {
+      target$$5[i$$37 + lower$$1] = source$$6[i$$37];
+    }
+  }
+}
+function sortInPlaceBy(projection$$3, xs, comparer) {
+  xs.sort(function (x$$9, y$$1) {
+    return comparer.Compare(projection$$3(x$$9), projection$$3(y$$1));
+  });
+}
+function sortInPlace(xs$$1, comparer$$1) {
+  xs$$1.sort(function (x$$10, y$$2) {
+    return comparer$$1.Compare(x$$10, y$$2);
+  });
+}
+
+function copyArray(array$$82) {
+  var result$$9 = new array$$82.constructor(array$$82.length);
+
+  for (var i$$38 = 0; i$$38 <= array$$82.length - 1; i$$38++) {
+    result$$9[i$$38] = array$$82[i$$38];
+  }
+
+  return result$$9;
+}
+
+function sort(xs$$2, comparer$$2) {
+  var xs$$3 = copyArray(xs$$2);
+  xs$$3.sort(function comparer$$3(x$$11, y$$3) {
+    return comparer$$2.Compare(x$$11, y$$3);
+  });
+  return xs$$3;
+}
+function sortBy(projection$$4, xs$$4, comparer$$4) {
+  var xs$$5 = copyArray(xs$$4);
+  xs$$5.sort(function comparer$$5(x$$12, y$$4) {
+    return comparer$$4.Compare(projection$$4(x$$12), projection$$4(y$$4));
+  });
+  return xs$$5;
+}
+function sortDescending(xs$$6, comparer$$6) {
+  var xs$$7 = copyArray(xs$$6);
+  xs$$7.sort(function comparer$$7(x$$13, y$$5) {
+    return comparer$$6.Compare(x$$13, y$$5) * -1;
+  });
+  return xs$$7;
+}
+function sortByDescending(projection$$5, xs$$8, comparer$$8) {
+  var xs$$9 = copyArray(xs$$8);
+  xs$$9.sort(function comparer$$9(x$$14, y$$6) {
+    return comparer$$8.Compare(projection$$5(x$$14), projection$$5(y$$6)) * -1;
+  });
+  return xs$$9;
+}
+function sortWith(comparer$$10, xs$$10) {
+  var xs$$11 = copyArray(xs$$10);
+  xs$$11.sort(comparer$$10);
+  return xs$$11;
+}
+function unfold(generator, state$$8) {
+  var res$$9 = [];
+
+  var loop$$8 = function loop$$8(state$$9) {
+    loop$$8: while (true) {
+      var matchValue$$10 = generator(state$$9);
+
+      if (matchValue$$10 != null) {
+        var x$$15 = matchValue$$10[0];
+        var s$0027$$2 = matchValue$$10[1];
+        res$$9.push(x$$15);
+        state$$9 = s$0027$$2;
+        continue loop$$8;
+      }
+
+      break;
+    }
+  };
+
+  loop$$8(state$$8);
+  return res$$9;
+}
+function unzip(array$$84) {
+  var len$$11 = array$$84.length | 0;
+  var res1$$1 = new Array(len$$11);
+  var res2$$1 = new Array(len$$11);
+  iterateIndexed(function (i$$39, tupledArg) {
+    res1$$1[i$$39] = tupledArg[0];
+    res2$$1[i$$39] = tupledArg[1];
+  }, array$$84);
+  return [res1$$1, res2$$1];
+}
+function unzip3(array$$85) {
+  var len$$14 = array$$85.length | 0;
+  var res1$$2 = new Array(len$$14);
+  var res2$$2 = new Array(len$$14);
+  var res3 = new Array(len$$14);
+  iterateIndexed(function (i$$40, tupledArg$$1) {
+    res1$$2[i$$40] = tupledArg$$1[0];
+    res2$$2[i$$40] = tupledArg$$1[1];
+    res3[i$$40] = tupledArg$$1[2];
+  }, array$$85);
+  return [res1$$2, res2$$2, res3];
+}
+function zip(array1$$4, array2$$4) {
+  if (array1$$4.length !== array2$$4.length) {
+    throw new Error("Arrays had different lengths");
+  }
+
+  var result$$10 = new Array(array1$$4.length);
+
+  for (var i$$41 = 0; i$$41 <= array1$$4.length - 1; i$$41++) {
+    result$$10[i$$41] = [array1$$4[i$$41], array2$$4[i$$41]];
+  }
+
+  return result$$10;
+}
+function zip3(array1$$5, array2$$5, array3) {
+  if (array1$$5.length !== array2$$5.length ? true : array2$$5.length !== array3.length) {
+    throw new Error("Arrays had different lengths");
+  }
+
+  var result$$11 = new Array(array1$$5.length);
+
+  for (var i$$42 = 0; i$$42 <= array1$$5.length - 1; i$$42++) {
+    result$$11[i$$42] = [array1$$5[i$$42], array2$$5[i$$42], array3[i$$42]];
+  }
+
+  return result$$11;
+}
+function chunkBySize(chunkSize, array$$86) {
+  if (chunkSize < 1) {
+    throw new Error("The input must be positive.\\nParameter name: size");
+  }
+
+  if (array$$86.length === 0) {
+    return [[]];
+  } else {
+    var result$$12 = [];
+
+    for (var x$$16 = 0; x$$16 <= ~~Math.ceil(array$$86.length / chunkSize) - 1; x$$16++) {
+      var start$$8 = x$$16 * chunkSize | 0;
+      var slice = array$$86.slice(start$$8, start$$8 + chunkSize);
+      result$$12.push(slice);
+    }
+
+    return result$$12;
+  }
+}
+function splitAt(index$$4, array$$89) {
+  if (index$$4 < 0) {
+    throw new Error("The input must be non-negative\\nParameter name: index");
+  }
+
+  if (index$$4 > array$$89.length) {
+    throw new Error("The input sequence has an insufficient number of elements.\\nParameter name: index");
+  }
+
+  return [array$$89.slice(0, 0 + index$$4), array$$89.slice(index$$4)];
+}
+function compareWith(comparer$$12, array1$$6, array2$$6) {
+  if (array1$$6 == null) {
+    if (array2$$6 == null) {
+      return 0;
+    } else {
+      return -1 | 0;
+    }
+  } else if (array2$$6 == null) {
+    return 1;
+  } else {
+    var i$$43 = 0;
+    var result$$13 = 0;
+    var length1 = array1$$6.length | 0;
+    var length2 = array2$$6.length | 0;
+
+    if (length1 > length2) {
+      return 1;
+    } else if (length1 < length2) {
+      return -1 | 0;
+    } else {
+      while (i$$43 < length1 ? result$$13 === 0 : false) {
+        result$$13 = comparer$$12(array1$$6[i$$43], array2$$6[i$$43]);
+        i$$43 = i$$43 + 1;
+      }
+
+      return result$$13 | 0;
+    }
+  }
+}
+function equalsWith(comparer$$13, array1$$7, array2$$7) {
+  return compareWith(_Util_js__WEBPACK_IMPORTED_MODULE_2__["compare"], array1$$7, array2$$7) === 0;
+}
+function exactlyOne(array$$92) {
+  if (array$$92.length === 1) {
+    return array$$92[0];
+  } else if (array$$92.length === 0) {
+    throw new Error("The input sequence was empty\\nParameter name: array");
+  } else {
+    throw new Error("Input array too long\\nParameter name: array");
+  }
+}
+function head(array$$93) {
+  if (array$$93.length === 0) {
+    throw new Error("The input array was empty\\nParameter name: array");
+  } else {
+    return array$$93[0];
+  }
+}
+function tryHead(array$$94) {
+  if (array$$94.length === 0) {
+    return null;
+  } else {
+    return Object(_Option_js__WEBPACK_IMPORTED_MODULE_1__["some"])(array$$94[0]);
+  }
+}
+function tail(array$$95) {
+  if (array$$95.length === 0) {
+    throw new Error("Not enough elements\\nParameter name: array");
+  }
+
+  return array$$95.slice(1);
+}
+function item(index$$5, array$$97) {
+  return array$$97[index$$5];
+}
+function tryItem(index$$6, array$$98) {
+  if (index$$6 < 0 ? true : index$$6 >= array$$98.length) {
+    return null;
+  } else {
+    return Object(_Option_js__WEBPACK_IMPORTED_MODULE_1__["some"])(array$$98[index$$6]);
+  }
+}
+function foldBackIndexed(folder$$6, array$$99, state$$10) {
+  return array$$99.reduceRight(function folder$$7(acc$$4, x$$17, i$$44) {
+    return folder$$6(i$$44, x$$17, acc$$4);
+  }, state$$10);
+}
+function foldBack(folder$$8, array$$101, state$$12) {
+  return array$$101.reduceRight(function folder$$9(acc$$5, x$$18) {
+    return folder$$8(x$$18, acc$$5);
+  }, state$$12);
+}
+function foldIndexed2(folder$$10, state$$14, array1$$8, array2$$8) {
+  var acc$$6 = state$$14;
+
+  if (array1$$8.length !== array2$$8.length) {
+    throw new Error("Arrays have different lengths");
+  }
+
+  for (var i$$45 = 0; i$$45 <= array1$$8.length - 1; i$$45++) {
+    acc$$6 = folder$$10(i$$45, acc$$6, array1$$8[i$$45], array2$$8[i$$45]);
+  }
+
+  return acc$$6;
+}
+function fold2(folder$$11, state$$15, array1$$9, array2$$9) {
+  return foldIndexed2(function (_arg1, acc$$7, x$$19, y$$7) {
+    return folder$$11(acc$$7, x$$19, y$$7);
+  }, state$$15, array1$$9, array2$$9);
+}
+function foldBackIndexed2(folder$$12, array1$$10, array2$$10, state$$16) {
+  var acc$$8 = state$$16;
+
+  if (array1$$10.length !== array2$$10.length) {
+    throw new Error("Arrays had different lengths");
+  }
+
+  var size$$1 = array1$$10.length | 0;
+
+  for (var i$$46 = 1; i$$46 <= size$$1; i$$46++) {
+    acc$$8 = folder$$12(i$$46 - 1, array1$$10[size$$1 - i$$46], array2$$10[size$$1 - i$$46], acc$$8);
+  }
+
+  return acc$$8;
+}
+function foldBack2(f$$9, array1$$11, array2$$11, state$$17) {
+  return foldBackIndexed2(function (_arg1$$1, x$$20, y$$8, acc$$9) {
+    return f$$9(x$$20, y$$8, acc$$9);
+  }, array1$$11, array2$$11, state$$17);
+}
+function reduce(reduction, array$$103) {
+  if (array$$103.length === 0) {
+    throw new Error("The input array was empty");
+  }
+
+  return array$$103.reduce(reduction);
+}
+function reduceBack(reduction$$2, array$$105) {
+  if (array$$105.length === 0) {
+    throw new Error("The input array was empty");
+  }
+
+  return array$$105.reduceRight(reduction$$2);
+}
+function forAll2(predicate$$27, array1$$12, array2$$12) {
+  return fold2(function (acc$$10, x$$21, y$$9) {
+    return acc$$10 ? predicate$$27(x$$21, y$$9) : false;
+  }, true, array1$$12, array2$$12);
+}
+function existsOffset($arg$$178, $arg$$179, $arg$$180) {
+  existsOffset: while (true) {
+    var predicate$$28 = $arg$$178,
+        array$$107 = $arg$$179,
+        index$$7 = $arg$$180;
+
+    if (index$$7 === array$$107.length) {
+      return false;
+    } else if (predicate$$28(array$$107[index$$7])) {
+      return true;
+    } else {
+      $arg$$178 = predicate$$28;
+      $arg$$179 = array$$107;
+      $arg$$180 = index$$7 + 1;
+      continue existsOffset;
+    }
+
+    break;
+  }
+}
+function exists(predicate$$29, array$$108) {
+  return existsOffset(predicate$$29, array$$108, 0);
+}
+function existsOffset2($arg$$183, $arg$$184, $arg$$185, $arg$$186) {
+  existsOffset2: while (true) {
+    var predicate$$30 = $arg$$183,
+        array1$$13 = $arg$$184,
+        array2$$13 = $arg$$185,
+        index$$8 = $arg$$186;
+
+    if (index$$8 === array1$$13.length) {
+      return false;
+    } else if (predicate$$30(array1$$13[index$$8], array2$$13[index$$8])) {
+      return true;
+    } else {
+      $arg$$183 = predicate$$30;
+      $arg$$184 = array1$$13;
+      $arg$$185 = array2$$13;
+      $arg$$186 = index$$8 + 1;
+      continue existsOffset2;
+    }
+
+    break;
+  }
+}
+function exists2(predicate$$31, array1$$14, array2$$14) {
+  if (array1$$14.length !== array2$$14.length) {
+    throw new Error("Arrays had different lengths");
+  }
+
+  return existsOffset2(predicate$$31, array1$$14, array2$$14, 0);
+}
+function sum(array$$109, adder) {
+  var acc$$11 = adder.GetZero();
+
+  for (var i$$47 = 0; i$$47 <= array$$109.length - 1; i$$47++) {
+    acc$$11 = adder.Add(acc$$11, array$$109[i$$47]);
+  }
+
+  return acc$$11;
+}
+function sumBy(projection$$6, array$$110, adder$$1) {
+  var acc$$12 = adder$$1.GetZero();
+
+  for (var i$$48 = 0; i$$48 <= array$$110.length - 1; i$$48++) {
+    acc$$12 = adder$$1.Add(acc$$12, projection$$6(array$$110[i$$48]));
+  }
+
+  return acc$$12;
+}
+function maxBy(projection$$7, xs$$12, comparer$$14) {
+  return reduce(function (x$$22, y$$10) {
+    return comparer$$14.Compare(projection$$7(y$$10), projection$$7(x$$22)) > 0 ? y$$10 : x$$22;
+  }, xs$$12);
+}
+function max(xs$$13, comparer$$15) {
+  return reduce(function (x$$23, y$$11) {
+    return comparer$$15.Compare(y$$11, x$$23) > 0 ? y$$11 : x$$23;
+  }, xs$$13);
+}
+function minBy(projection$$8, xs$$14, comparer$$16) {
+  return reduce(function (x$$24, y$$12) {
+    return comparer$$16.Compare(projection$$8(y$$12), projection$$8(x$$24)) > 0 ? x$$24 : y$$12;
+  }, xs$$14);
+}
+function min(xs$$15, comparer$$17) {
+  return reduce(function (x$$25, y$$13) {
+    return comparer$$17.Compare(y$$13, x$$25) > 0 ? x$$25 : y$$13;
+  }, xs$$15);
+}
+function average(array$$111, averager) {
+  if (array$$111.length === 0) {
+    throw new Error("The input array was empty\\nParameter name: array");
+  }
+
+  var total = averager.GetZero();
+
+  for (var i$$49 = 0; i$$49 <= array$$111.length - 1; i$$49++) {
+    total = averager.Add(total, array$$111[i$$49]);
+  }
+
+  return averager.DivideByInt(total, array$$111.length);
+}
+function averageBy(projection$$9, array$$112, averager$$1) {
+  if (array$$112.length === 0) {
+    throw new Error("The input array was empty\\nParameter name: array");
+  }
+
+  var total$$1 = averager$$1.GetZero();
+
+  for (var i$$50 = 0; i$$50 <= array$$112.length - 1; i$$50++) {
+    total$$1 = averager$$1.Add(total$$1, projection$$9(array$$112[i$$50]));
+  }
+
+  return averager$$1.DivideByInt(total$$1, array$$112.length);
+}
+function ofSeq(source$$8, cons$$31) {
+  return cons$$31.from(source$$8);
+}
+function ofList(source$$9, cons$$32) {
+  return cons$$32.from(source$$9);
+}
+function toList(source$$10) {
+  var len$$20 = source$$10.length | 0;
+  var target$$7 = new _Types_js__WEBPACK_IMPORTED_MODULE_6__["List"]();
+
+  for (var i$$51 = len$$20 - 1; i$$51 >= 0; i$$51--) {
+    target$$7 = new _Types_js__WEBPACK_IMPORTED_MODULE_6__["List"](source$$10[i$$51], target$$7);
+  }
+
+  return target$$7;
+}
+function windowed(windowSize, source$$11) {
+  if (windowSize <= 0) {
+    throw new Error("windowSize must be positive");
+  }
+
+  var res$$10 = new Array(Object(_Util_js__WEBPACK_IMPORTED_MODULE_2__["max"])(_Util_js__WEBPACK_IMPORTED_MODULE_2__["comparePrimitives"], 0, source$$11.length - windowSize));
+
+  for (var i$$52 = windowSize; i$$52 <= source$$11.length; i$$52++) {
+    res$$10[i$$52 - windowSize] = source$$11.slice(i$$52 - windowSize, i$$52 - 1 + 1);
+  }
+
+  return res$$10;
 }
 
 /***/ }),
-/* 55 */
-/***/ (function(module, exports) {
 
-module.exports = function (it) {
-  if (typeof it != 'function') throw TypeError(it + ' is not a function!');
-  return it;
-};
-
-
-/***/ }),
-/* 56 */
-/***/ (function(module, exports, __webpack_require__) {
-
-module.exports = !__webpack_require__(6) && !__webpack_require__(15)(function () {
-  return Object.defineProperty(__webpack_require__(57)('div'), 'a', { get: function () { return 7; } }).a != 7;
-});
-
-
-/***/ }),
-/* 57 */
-/***/ (function(module, exports, __webpack_require__) {
-
-var isObject = __webpack_require__(13);
-var document = __webpack_require__(5).document;
-// typeof document.createElement is 'object' in old IE
-var is = isObject(document) && isObject(document.createElement);
-module.exports = function (it) {
-  return is ? document.createElement(it) : {};
-};
-
-
-/***/ }),
-/* 58 */
-/***/ (function(module, exports, __webpack_require__) {
-
-module.exports = __webpack_require__(12);
-
-
-/***/ }),
-/* 59 */
-/***/ (function(module, exports, __webpack_require__) {
-
-var has = __webpack_require__(16);
-var toIObject = __webpack_require__(17);
-var arrayIndexOf = __webpack_require__(83)(false);
-var IE_PROTO = __webpack_require__(42)('IE_PROTO');
-
-module.exports = function (object, names) {
-  var O = toIObject(object);
-  var i = 0;
-  var result = [];
-  var key;
-  for (key in O) if (key != IE_PROTO) has(O, key) && result.push(key);
-  // Don't enum bug & hidden keys
-  while (names.length > i) if (has(O, key = names[i++])) {
-    ~arrayIndexOf(result, key) || result.push(key);
-  }
-  return result;
-};
-
-
-/***/ }),
-/* 60 */
-/***/ (function(module, exports, __webpack_require__) {
-
-// 19.1.2.9 / 15.2.3.2 Object.getPrototypeOf(O)
-var has = __webpack_require__(16);
-var toObject = __webpack_require__(24);
-var IE_PROTO = __webpack_require__(42)('IE_PROTO');
-var ObjectProto = Object.prototype;
-
-module.exports = Object.getPrototypeOf || function (O) {
-  O = toObject(O);
-  if (has(O, IE_PROTO)) return O[IE_PROTO];
-  if (typeof O.constructor == 'function' && O instanceof O.constructor) {
-    return O.constructor.prototype;
-  } return O instanceof Object ? ObjectProto : null;
-};
-
-
-/***/ }),
-/* 61 */
-/***/ (function(module, exports, __webpack_require__) {
-
-// call something on iterator step with safe closing on error
-var anObject = __webpack_require__(14);
-module.exports = function (iterator, fn, value, entries) {
-  try {
-    return entries ? fn(anObject(value)[0], value[1]) : fn(value);
-  // 7.4.6 IteratorClose(iterator, completion)
-  } catch (e) {
-    var ret = iterator['return'];
-    if (ret !== undefined) anObject(ret.call(iterator));
-    throw e;
-  }
-};
-
-
-/***/ }),
-/* 62 */
-/***/ (function(module, exports, __webpack_require__) {
-
-// check on default Array iterator
-var Iterators = __webpack_require__(20);
-var ITERATOR = __webpack_require__(2)('iterator');
-var ArrayProto = Array.prototype;
-
-module.exports = function (it) {
-  return it !== undefined && (Iterators.Array === it || ArrayProto[ITERATOR] === it);
-};
-
-
-/***/ }),
-/* 63 */
-/***/ (function(module, exports) {
-
-module.exports = function (done, value) {
-  return { value: value, done: !!done };
-};
-
-
-/***/ }),
-/* 64 */
-/***/ (function(module, exports, __webpack_require__) {
-
-module.exports = { "default": __webpack_require__(93), __esModule: true };
-
-/***/ }),
-/* 65 */
-/***/ (function(module, exports, __webpack_require__) {
-
-var pIE = __webpack_require__(33);
-var createDesc = __webpack_require__(23);
-var toIObject = __webpack_require__(17);
-var toPrimitive = __webpack_require__(38);
-var has = __webpack_require__(16);
-var IE8_DOM_DEFINE = __webpack_require__(56);
-var gOPD = Object.getOwnPropertyDescriptor;
-
-exports.f = __webpack_require__(6) ? gOPD : function getOwnPropertyDescriptor(O, P) {
-  O = toIObject(O);
-  P = toPrimitive(P, true);
-  if (IE8_DOM_DEFINE) try {
-    return gOPD(O, P);
-  } catch (e) { /* empty */ }
-  if (has(O, P)) return createDesc(!pIE.f.call(O, P), O[P]);
-};
-
-
-/***/ }),
-/* 66 */
-/***/ (function(module, exports) {
-
-
-
-/***/ }),
-/* 67 */
-/***/ (function(module, exports, __webpack_require__) {
-
-var hide = __webpack_require__(12);
-module.exports = function (target, src, safe) {
-  for (var key in src) {
-    if (safe && target[key]) target[key] = src[key];
-    else hide(target, key, src[key]);
-  } return target;
-};
-
-
-/***/ }),
-/* 68 */
-/***/ (function(module, exports) {
-
-module.exports = function (it, Constructor, name, forbiddenField) {
-  if (!(it instanceof Constructor) || (forbiddenField !== undefined && forbiddenField in it)) {
-    throw TypeError(name + ': incorrect invocation!');
-  } return it;
-};
-
-
-/***/ }),
-/* 69 */
-/***/ (function(module, exports, __webpack_require__) {
-
-var isObject = __webpack_require__(13);
-module.exports = function (it, TYPE) {
-  if (!isObject(it) || it._t !== TYPE) throw TypeError('Incompatible receiver, ' + TYPE + ' required!');
-  return it;
-};
-
-
-/***/ }),
-/* 70 */
-/***/ (function(module, exports, __webpack_require__) {
-
-// 7.2.2 IsArray(argument)
-var cof = __webpack_require__(41);
-module.exports = Array.isArray || function isArray(arg) {
-  return cof(arg) == 'Array';
-};
-
-
-/***/ }),
-/* 71 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-exports.__esModule = true;
-
-var _defineProperty = __webpack_require__(64);
-
-var _defineProperty2 = _interopRequireDefault(_defineProperty);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-exports.default = function (obj, key, value) {
-  if (key in obj) {
-    (0, _defineProperty2.default)(obj, key, {
-      value: value,
-      enumerable: true,
-      configurable: true,
-      writable: true
-    });
-  } else {
-    obj[key] = value;
-  }
-
-  return obj;
-};
-
-/***/ }),
-/* 72 */
-/***/ (function(module, exports, __webpack_require__) {
-
-// fallback for IE11 buggy Object.getOwnPropertyNames with iframe and window
-var toIObject = __webpack_require__(17);
-var gOPN = __webpack_require__(73).f;
-var toString = {}.toString;
-
-var windowNames = typeof window == 'object' && window && Object.getOwnPropertyNames
-  ? Object.getOwnPropertyNames(window) : [];
-
-var getWindowNames = function (it) {
-  try {
-    return gOPN(it);
-  } catch (e) {
-    return windowNames.slice();
-  }
-};
-
-module.exports.f = function getOwnPropertyNames(it) {
-  return windowNames && toString.call(it) == '[object Window]' ? getWindowNames(it) : gOPN(toIObject(it));
-};
-
-
-/***/ }),
-/* 73 */
-/***/ (function(module, exports, __webpack_require__) {
-
-// 19.1.2.7 / 15.2.3.4 Object.getOwnPropertyNames(O)
-var $keys = __webpack_require__(59);
-var hiddenKeys = __webpack_require__(44).concat('length', 'prototype');
-
-exports.f = Object.getOwnPropertyNames || function getOwnPropertyNames(O) {
-  return $keys(O, hiddenKeys);
-};
-
-
-/***/ }),
-/* 74 */
-/***/ (function(module, exports, __webpack_require__) {
-
-module.exports = { "default": __webpack_require__(128), __esModule: true };
-
-/***/ }),
-/* 75 */
+/***/ "./.fable/fable-library.2.2.3/Date.js":
+/*!********************************************!*\
+  !*** ./.fable/fable-library.2.2.3/Date.js ***!
+  \********************************************/
+/*! exports provided: offsetRegex, dateOffsetToString, dateToHalfUTCString, toString, default, fromTicks, fromDateTimeOffset, getTicks, minValue, maxValue, parseRaw, parse, tryParse, create, now, utcNow, today, isLeapYear, daysInMonth, toUniversalTime, toLocalTime, timeOfDay, date, day, hour, millisecond, minute, month, second, year, dayOfWeek, dayOfYear, add, addDays, addHours, addMinutes, addSeconds, addMilliseconds, addYears, addMonths, subtract, toLongDateString, toShortDateString, toLongTimeString, toShortTimeString, equals, compare, compareTo, op_Addition, op_Subtraction, isDaylightSavingTime */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* unused harmony export Long */
-/* unused harmony export isLong */
-/* unused harmony export fromInt */
-/* harmony export (immutable) */ __webpack_exports__["a"] = fromNumber;
-/* unused harmony export fromBits */
-/* unused harmony export fromString */
-/* unused harmony export fromValue */
-/* unused harmony export ZERO */
-/* unused harmony export UZERO */
-/* unused harmony export ONE */
-/* unused harmony export UONE */
-/* unused harmony export NEG_ONE */
-/* unused harmony export MAX_VALUE */
-/* unused harmony export MAX_UNSIGNED_VALUE */
-/* unused harmony export MIN_VALUE */
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_babel_runtime_helpers_classCallCheck__ = __webpack_require__(7);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_babel_runtime_helpers_classCallCheck___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_babel_runtime_helpers_classCallCheck__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_babel_runtime_helpers_createClass__ = __webpack_require__(8);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_babel_runtime_helpers_createClass___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_babel_runtime_helpers_createClass__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__Int32__ = __webpack_require__(140);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__Symbol__ = __webpack_require__(9);
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "offsetRegex", function() { return offsetRegex; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "dateOffsetToString", function() { return dateOffsetToString; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "dateToHalfUTCString", function() { return dateToHalfUTCString; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "toString", function() { return toString; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return DateTime; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "fromTicks", function() { return fromTicks; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "fromDateTimeOffset", function() { return fromDateTimeOffset; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getTicks", function() { return getTicks; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "minValue", function() { return minValue; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "maxValue", function() { return maxValue; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "parseRaw", function() { return parseRaw; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "parse", function() { return parse; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "tryParse", function() { return tryParse; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "create", function() { return create; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "now", function() { return now; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "utcNow", function() { return utcNow; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "today", function() { return today; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "isLeapYear", function() { return isLeapYear; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "daysInMonth", function() { return daysInMonth; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "toUniversalTime", function() { return toUniversalTime; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "toLocalTime", function() { return toLocalTime; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "timeOfDay", function() { return timeOfDay; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "date", function() { return date; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "day", function() { return day; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "hour", function() { return hour; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "millisecond", function() { return millisecond; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "minute", function() { return minute; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "month", function() { return month; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "second", function() { return second; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "year", function() { return year; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "dayOfWeek", function() { return dayOfWeek; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "dayOfYear", function() { return dayOfYear; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "add", function() { return add; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "addDays", function() { return addDays; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "addHours", function() { return addHours; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "addMinutes", function() { return addMinutes; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "addSeconds", function() { return addSeconds; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "addMilliseconds", function() { return addMilliseconds; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "addYears", function() { return addYears; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "addMonths", function() { return addMonths; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "subtract", function() { return subtract; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "toLongDateString", function() { return toLongDateString; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "toShortDateString", function() { return toShortDateString; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "toLongTimeString", function() { return toLongTimeString; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "toShortTimeString", function() { return toShortTimeString; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "equals", function() { return equals; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "compare", function() { return compare; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "compareTo", function() { return compareTo; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "op_Addition", function() { return op_Addition; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "op_Subtraction", function() { return op_Subtraction; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "isDaylightSavingTime", function() { return isDaylightSavingTime; });
+/* harmony import */ var _Long__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./Long */ "./.fable/fable-library.2.2.3/Long.js");
+/* harmony import */ var _Util__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./Util */ "./.fable/fable-library.2.2.3/Util.js");
+/**
+ * DateTimeOffset functions.
+ *
+ * Note: Date instances are always DateObjects in local
+ * timezone (because JS dates are all kinds of messed up).
+ * A local date returns UTC epoc when `.getTime()` is called.
+ *
+ * Basically; invariant: date.getTime() always return UTC time.
+ */
 
 
-// Source: https://github.com/dcodeIO/long.js/blob/master/LICENSE
-// tslint:disable:curly
-// tslint:disable:member-access
-// tslint:disable:member-ordering
+var offsetRegex = /(?:Z|[+-](\d+):?([0-5]?\d)?)\s*$/;
+function dateOffsetToString(offset) {
+  var isMinus = offset < 0;
+  offset = Math.abs(offset);
+  var hours = ~~(offset / 3600000);
+  var minutes = offset % 3600000 / 60000;
+  return (isMinus ? "-" : "+") + Object(_Util__WEBPACK_IMPORTED_MODULE_1__["padWithZeros"])(hours, 2) + ":" + Object(_Util__WEBPACK_IMPORTED_MODULE_1__["padWithZeros"])(minutes, 2);
+}
+function dateToHalfUTCString(date, half) {
+  var str = date.toISOString();
+  return half === "first" ? str.substring(0, str.indexOf("T")) : str.substring(str.indexOf("T") + 1, str.length - 1);
+}
+
+function dateToISOString(d, utc) {
+  if (utc) {
+    return d.toISOString();
+  } else {
+    // JS Date is always local
+    var printOffset = d.kind == null ? true : d.kind === 2
+    /* Local */
+    ;
+    return Object(_Util__WEBPACK_IMPORTED_MODULE_1__["padWithZeros"])(d.getFullYear(), 4) + "-" + Object(_Util__WEBPACK_IMPORTED_MODULE_1__["padWithZeros"])(d.getMonth() + 1, 2) + "-" + Object(_Util__WEBPACK_IMPORTED_MODULE_1__["padWithZeros"])(d.getDate(), 2) + "T" + Object(_Util__WEBPACK_IMPORTED_MODULE_1__["padWithZeros"])(d.getHours(), 2) + ":" + Object(_Util__WEBPACK_IMPORTED_MODULE_1__["padWithZeros"])(d.getMinutes(), 2) + ":" + Object(_Util__WEBPACK_IMPORTED_MODULE_1__["padWithZeros"])(d.getSeconds(), 2) + "." + Object(_Util__WEBPACK_IMPORTED_MODULE_1__["padWithZeros"])(d.getMilliseconds(), 3) + (printOffset ? dateOffsetToString(d.getTimezoneOffset() * -60000) : "");
+  }
+}
+
+function dateToISOStringWithOffset(dateWithOffset, offset) {
+  var str = dateWithOffset.toISOString();
+  return str.substring(0, str.length - 1) + dateOffsetToString(offset);
+}
+
+function dateToStringWithCustomFormat(date, format, utc) {
+  return format.replace(/(\w)\1*/g, function (match) {
+    var rep = match;
+
+    switch (match.substring(0, 1)) {
+      case "y":
+        var y = utc ? date.getUTCFullYear() : date.getFullYear();
+        rep = match.length < 4 ? y % 100 : y;
+        break;
+
+      case "M":
+        rep = (utc ? date.getUTCMonth() : date.getMonth()) + 1;
+        break;
+
+      case "d":
+        rep = utc ? date.getUTCDate() : date.getDate();
+        break;
+
+      case "H":
+        rep = utc ? date.getUTCHours() : date.getHours();
+        break;
+
+      case "h":
+        var h = utc ? date.getUTCHours() : date.getHours();
+        rep = h > 12 ? h % 12 : h;
+        break;
+
+      case "m":
+        rep = utc ? date.getUTCMinutes() : date.getMinutes();
+        break;
+
+      case "s":
+        rep = utc ? date.getUTCSeconds() : date.getSeconds();
+        break;
+
+      case "f":
+        rep = utc ? date.getUTCMilliseconds() : date.getMilliseconds();
+        break;
+    }
+
+    if (rep !== match && rep < 10 && match.length > 1) {
+      rep = "0" + rep;
+    }
+
+    return rep;
+  });
+}
+
+function dateToStringWithOffset(date, format) {
+  var d = new Date(date.getTime() + date.offset);
+
+  if (typeof format !== "string") {
+    return d.toISOString().replace(/\.\d+/, "").replace(/[A-Z]|\.\d+/g, " ") + dateOffsetToString(date.offset);
+  } else if (format.length === 1) {
+    switch (format) {
+      case "D":
+      case "d":
+        return dateToHalfUTCString(d, "first");
+
+      case "T":
+      case "t":
+        return dateToHalfUTCString(d, "second");
+
+      case "O":
+      case "o":
+        return dateToISOStringWithOffset(d, date.offset);
+
+      default:
+        throw new Error("Unrecognized Date print format");
+    }
+  } else {
+    return dateToStringWithCustomFormat(d, format, true);
+  }
+}
+
+function dateToStringWithKind(date, format) {
+  var utc = date.kind === 1
+  /* UTC */
+  ;
+
+  if (typeof format !== "string") {
+    return utc ? date.toUTCString() : date.toLocaleString();
+  } else if (format.length === 1) {
+    switch (format) {
+      case "D":
+      case "d":
+        return utc ? dateToHalfUTCString(date, "first") : date.toLocaleDateString();
+
+      case "T":
+      case "t":
+        return utc ? dateToHalfUTCString(date, "second") : date.toLocaleTimeString();
+
+      case "O":
+      case "o":
+        return dateToISOString(date, utc);
+
+      default:
+        throw new Error("Unrecognized Date print format");
+    }
+  } else {
+    return dateToStringWithCustomFormat(date, format, utc);
+  }
+}
+
+function toString(date, format) {
+  return date.offset != null ? dateToStringWithOffset(date, format) : dateToStringWithKind(date, format);
+}
+function DateTime(value, kind) {
+  var d = new Date(value);
+  d.kind = (kind == null ? 0
+  /* Unspecified */
+  : kind) | 0;
+  return d;
+}
+function fromTicks(ticks, kind) {
+  ticks = Object(_Long__WEBPACK_IMPORTED_MODULE_0__["fromValue"])(ticks);
+  kind = kind != null ? kind : 0
+  /* Unspecified */
+  ;
+  var date = DateTime(Object(_Long__WEBPACK_IMPORTED_MODULE_0__["ticksToUnixEpochMilliseconds"])(ticks), kind); // Ticks are local to offset (in this case, either UTC or Local/Unknown).
+  // If kind is anything but UTC, that means that the tick number was not
+  // in utc, thus getTime() cannot return UTC, and needs to be shifted.
+
+  if (kind !== 1
+  /* UTC */
+  ) {
+      date = DateTime(date.getTime() - Object(_Util__WEBPACK_IMPORTED_MODULE_1__["dateOffset"])(date), kind);
+    }
+
+  return date;
+}
+function fromDateTimeOffset(date, kind) {
+  switch (kind) {
+    case 1
+    /* UTC */
+    :
+      return DateTime(date.getTime(), 1
+      /* UTC */
+      );
+
+    case 2
+    /* Local */
+    :
+      return DateTime(date.getTime(), 2
+      /* Local */
+      );
+
+    default:
+      var d = DateTime(date.getTime() + date.offset, kind);
+      return DateTime(d.getTime() - Object(_Util__WEBPACK_IMPORTED_MODULE_1__["dateOffset"])(d), kind);
+  }
+}
+function getTicks(date) {
+  return Object(_Long__WEBPACK_IMPORTED_MODULE_0__["unixEpochMillisecondsToTicks"])(date.getTime(), Object(_Util__WEBPACK_IMPORTED_MODULE_1__["dateOffset"])(date));
+}
+function minValue() {
+  // This is "0001-01-01T00:00:00.000Z", actual JS min value is -8640000000000000
+  return DateTime(-62135596800000, 0
+  /* Unspecified */
+  );
+}
+function maxValue() {
+  // This is "9999-12-31T23:59:59.999Z", actual JS max value is 8640000000000000
+  return DateTime(253402300799999, 0
+  /* Unspecified */
+  );
+}
+function parseRaw(str) {
+  var date = new Date(str);
+
+  if (isNaN(date.getTime())) {
+    // Try to check strings JS Date cannot parse (see #1045, #1422)
+    // tslint:disable-next-line:max-line-length
+    var m = /^\s*(\d+[^\w\s:]\d+[^\w\s:]\d+)?\s*(\d+:\d+(?::\d+(?:\.\d+)?)?)?\s*([AaPp][Mm])?\s*([+-]\d+(?::\d+)?)?\s*$/.exec(str);
+
+    if (m != null) {
+      var baseDate = null;
+      var timeInSeconds = 0;
+
+      if (m[2] != null) {
+        var timeParts = m[2].split(":");
+        timeInSeconds = parseInt(timeParts[0], 10) * 3600 + parseInt(timeParts[1] || "0", 10) * 60 + parseFloat(timeParts[2] || "0");
+
+        if (m[3] != null && m[3].toUpperCase() === "PM") {
+          timeInSeconds += 720;
+        }
+      }
+
+      if (m[4] != null) {
+        // There's an offset, parse as UTC
+        if (m[1] != null) {
+          baseDate = new Date(m[1] + " UTC");
+        } else {
+          var d = new Date();
+          baseDate = new Date(d.getUTCFullYear() + "/" + (d.getUTCMonth() + 1) + "/" + d.getUTCDate());
+        }
+
+        var offsetParts = m[4].substr(1).split(":");
+        var offsetInMinutes = parseInt(offsetParts[0], 10) * 60 + parseInt(offsetParts[1] || "0", 10);
+
+        if (m[4][0] === "+") {
+          offsetInMinutes *= -1;
+        }
+
+        timeInSeconds += offsetInMinutes * 60;
+      } else {
+        if (m[1] != null) {
+          baseDate = new Date(m[1]);
+        } else {
+          var _d = new Date();
+
+          baseDate = new Date(_d.getFullYear() + "/" + (_d.getMonth() + 1) + "/" + _d.getDate());
+        }
+      }
+
+      date = new Date(baseDate.getTime() + timeInSeconds * 1000); // correct for daylight savings time
+
+      date = new Date(date.getTime() + (date.getTimezoneOffset() - baseDate.getTimezoneOffset()) * 60000);
+    } else {
+      throw new Error("The string is not a valid Date.");
+    }
+  }
+
+  return date;
+}
+function parse(str) {
+  var detectUTC = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : false;
+  var date = parseRaw(str);
+  var offset = offsetRegex.exec(str); // .NET always parses DateTime as Local if there's offset info (even "Z")
+  // Newtonsoft.Json uses UTC if the offset is "Z"
+
+  var kind = offset != null ? detectUTC && offset[0] === "Z" ? 1
+  /* UTC */
+  : 2
+  /* Local */
+  : 0
+  /* Unspecified */
+  ;
+  return DateTime(date.getTime(), kind);
+}
+function tryParse(v) {
+  try {
+    // if value is null or whitespace, parsing fails
+    if (v === null || v.trim() === "") {
+      return [false, minValue()];
+    }
+
+    return [true, parse(v)];
+  } catch (_err) {
+    return [false, minValue()];
+  }
+}
+function create(year, month, day) {
+  var h = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : 0;
+  var m = arguments.length > 4 && arguments[4] !== undefined ? arguments[4] : 0;
+  var s = arguments.length > 5 && arguments[5] !== undefined ? arguments[5] : 0;
+  var ms = arguments.length > 6 && arguments[6] !== undefined ? arguments[6] : 0;
+  var kind = arguments.length > 7 ? arguments[7] : undefined;
+  var dateValue = kind === 1
+  /* UTC */
+  ? Date.UTC(year, month - 1, day, h, m, s, ms) : new Date(year, month - 1, day, h, m, s, ms).getTime();
+
+  if (isNaN(dateValue)) {
+    throw new Error("The parameters describe an unrepresentable Date.");
+  }
+
+  var date = DateTime(dateValue, kind);
+
+  if (year <= 99) {
+    date.setFullYear(year, month - 1, day);
+  }
+
+  return date;
+}
+function now() {
+  return DateTime(Date.now(), 2
+  /* Local */
+  );
+}
+function utcNow() {
+  return DateTime(Date.now(), 1
+  /* UTC */
+  );
+}
+function today() {
+  return date(now());
+}
+function isLeapYear(year) {
+  return year % 4 === 0 && year % 100 !== 0 || year % 400 === 0;
+}
+function daysInMonth(year, month) {
+  return month === 2 ? isLeapYear(year) ? 29 : 28 : month >= 8 ? month % 2 === 0 ? 31 : 30 : month % 2 === 0 ? 30 : 31;
+}
+function toUniversalTime(date) {
+  return date.kind === 1
+  /* UTC */
+  ? date : DateTime(date.getTime(), 1
+  /* UTC */
+  );
+}
+function toLocalTime(date) {
+  return date.kind === 2
+  /* Local */
+  ? date : DateTime(date.getTime(), 2
+  /* Local */
+  );
+}
+function timeOfDay(d) {
+  return hour(d) * 3600000 + minute(d) * 60000 + second(d) * 1000 + millisecond(d);
+}
+function date(d) {
+  return create(year(d), month(d), day(d), 0, 0, 0, 0, d.kind);
+}
+function day(d) {
+  return d.kind === 1
+  /* UTC */
+  ? d.getUTCDate() : d.getDate();
+}
+function hour(d) {
+  return d.kind === 1
+  /* UTC */
+  ? d.getUTCHours() : d.getHours();
+}
+function millisecond(d) {
+  return d.kind === 1
+  /* UTC */
+  ? d.getUTCMilliseconds() : d.getMilliseconds();
+}
+function minute(d) {
+  return d.kind === 1
+  /* UTC */
+  ? d.getUTCMinutes() : d.getMinutes();
+}
+function month(d) {
+  return (d.kind === 1
+  /* UTC */
+  ? d.getUTCMonth() : d.getMonth()) + 1;
+}
+function second(d) {
+  return d.kind === 1
+  /* UTC */
+  ? d.getUTCSeconds() : d.getSeconds();
+}
+function year(d) {
+  return d.kind === 1
+  /* UTC */
+  ? d.getUTCFullYear() : d.getFullYear();
+}
+function dayOfWeek(d) {
+  return d.kind === 1
+  /* UTC */
+  ? d.getUTCDay() : d.getDay();
+}
+function dayOfYear(d) {
+  var _year = year(d);
+
+  var _month = month(d);
+
+  var _day = day(d);
+
+  for (var i = 1; i < _month; i++) {
+    _day += daysInMonth(_year, i);
+  }
+
+  return _day;
+}
+function add(d, ts) {
+  return DateTime(d.getTime() + ts, d.kind);
+}
+function addDays(d, v) {
+  return DateTime(d.getTime() + v * 86400000, d.kind);
+}
+function addHours(d, v) {
+  return DateTime(d.getTime() + v * 3600000, d.kind);
+}
+function addMinutes(d, v) {
+  return DateTime(d.getTime() + v * 60000, d.kind);
+}
+function addSeconds(d, v) {
+  return DateTime(d.getTime() + v * 1000, d.kind);
+}
+function addMilliseconds(d, v) {
+  return DateTime(d.getTime() + v, d.kind);
+}
+function addYears(d, v) {
+  var newMonth = month(d);
+  var newYear = year(d) + v;
+
+  var _daysInMonth = daysInMonth(newYear, newMonth);
+
+  var newDay = Math.min(_daysInMonth, day(d));
+  return create(newYear, newMonth, newDay, hour(d), minute(d), second(d), millisecond(d), d.kind);
+}
+function addMonths(d, v) {
+  var newMonth = month(d) + v;
+  var newMonth_ = 0;
+  var yearOffset = 0;
+
+  if (newMonth > 12) {
+    newMonth_ = newMonth % 12;
+    yearOffset = Math.floor(newMonth / 12);
+    newMonth = newMonth_;
+  } else if (newMonth < 1) {
+    newMonth_ = 12 + newMonth % 12;
+    yearOffset = Math.floor(newMonth / 12) + (newMonth_ === 12 ? -1 : 0);
+    newMonth = newMonth_;
+  }
+
+  var newYear = year(d) + yearOffset;
+
+  var _daysInMonth = daysInMonth(newYear, newMonth);
+
+  var newDay = Math.min(_daysInMonth, day(d));
+  return create(newYear, newMonth, newDay, hour(d), minute(d), second(d), millisecond(d), d.kind);
+}
+function subtract(d, that) {
+  return typeof that === "number" ? DateTime(d.getTime() - that, d.kind) : d.getTime() - that.getTime();
+}
+function toLongDateString(d) {
+  return d.toDateString();
+}
+function toShortDateString(d) {
+  return d.toLocaleDateString();
+}
+function toLongTimeString(d) {
+  return d.toLocaleTimeString();
+}
+function toShortTimeString(d) {
+  return d.toLocaleTimeString().replace(/:\d\d(?!:)/, "");
+}
+function equals(d1, d2) {
+  return d1.getTime() === d2.getTime();
+}
+var compare = _Util__WEBPACK_IMPORTED_MODULE_1__["compareDates"];
+var compareTo = _Util__WEBPACK_IMPORTED_MODULE_1__["compareDates"];
+function op_Addition(x, y) {
+  return add(x, y);
+}
+function op_Subtraction(x, y) {
+  return subtract(x, y);
+}
+function isDaylightSavingTime(x) {
+  var jan = new Date(x.getFullYear(), 0, 1);
+  var jul = new Date(x.getFullYear(), 6, 1);
+  return isDST(jan.getTimezoneOffset(), jul.getTimezoneOffset(), x.getTimezoneOffset());
+}
+
+function isDST(janOffset, julOffset, tOffset) {
+  return Math.min(janOffset, julOffset) === tOffset;
+}
+
+/***/ }),
+
+/***/ "./.fable/fable-library.2.2.3/Event.js":
+/*!*********************************************!*\
+  !*** ./.fable/fable-library.2.2.3/Event.js ***!
+  \*********************************************/
+/*! exports provided: default, add, choose, filter, map, merge, pairwise, partition, scan, split */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return Event; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "add", function() { return add; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "choose", function() { return choose; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "filter", function() { return filter; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "map", function() { return map; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "merge", function() { return merge; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "pairwise", function() { return pairwise; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "partition", function() { return partition; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "scan", function() { return scan; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "split", function() { return split; });
+/* harmony import */ var _babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/helpers/classCallCheck */ "./node_modules/@babel/runtime/helpers/classCallCheck.js");
+/* harmony import */ var _babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @babel/runtime/helpers/createClass */ "./node_modules/@babel/runtime/helpers/createClass.js");
+/* harmony import */ var _babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _Observable__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./Observable */ "./.fable/fable-library.2.2.3/Observable.js");
+/* harmony import */ var _Option__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./Option */ "./.fable/fable-library.2.2.3/Option.js");
+/* harmony import */ var _Seq__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./Seq */ "./.fable/fable-library.2.2.3/Seq.js");
 
 
-// The internal representation of a long is the two given signed, 32-bit values.
+
+
+
+
+var Event =
+/*#__PURE__*/
+function () {
+  function Event(_subscriber, delegates) {
+    _babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_0___default()(this, Event);
+
+    this._subscriber = _subscriber;
+    this.delegates = delegates || new Array();
+  }
+
+  _babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_1___default()(Event, [{
+    key: "Add",
+    value: function Add(f) {
+      this._addHandler(f);
+    } // IEvent<T> methods
+
+  }, {
+    key: "Trigger",
+    value: function Trigger(value) {
+      Object(_Seq__WEBPACK_IMPORTED_MODULE_4__["iterate"])(function (f) {
+        return f(value);
+      }, this.delegates);
+    } // IDelegateEvent<T> methods
+
+  }, {
+    key: "AddHandler",
+    value: function AddHandler(handler) {
+      if (this._dotnetDelegates == null) {
+        this._dotnetDelegates = new Map();
+      }
+
+      var f = function f(x) {
+        return handler(null, x);
+      };
+
+      this._dotnetDelegates.set(handler, f);
+
+      this._addHandler(f);
+    }
+  }, {
+    key: "RemoveHandler",
+    value: function RemoveHandler(handler) {
+      if (this._dotnetDelegates != null) {
+        var f = this._dotnetDelegates.get(handler);
+
+        if (f != null) {
+          this._dotnetDelegates["delete"](handler);
+
+          this._removeHandler(f);
+        }
+      }
+    } // IObservable<T> methods
+
+  }, {
+    key: "Subscribe",
+    value: function Subscribe(arg) {
+      return typeof arg === "function" ? this._subscribeFromCallback(arg) : this._subscribeFromObserver(arg);
+    }
+  }, {
+    key: "_addHandler",
+    value: function _addHandler(f) {
+      this.delegates.push(f);
+    }
+  }, {
+    key: "_removeHandler",
+    value: function _removeHandler(f) {
+      var index = this.delegates.indexOf(f);
+
+      if (index > -1) {
+        this.delegates.splice(index, 1);
+      }
+    }
+  }, {
+    key: "_subscribeFromObserver",
+    value: function _subscribeFromObserver(observer) {
+      var _this = this;
+
+      if (this._subscriber) {
+        return this._subscriber(observer);
+      }
+
+      var callback = observer.OnNext;
+
+      this._addHandler(callback);
+
+      return {
+        Dispose: function Dispose() {
+          _this._removeHandler(callback);
+        }
+      };
+    }
+  }, {
+    key: "_subscribeFromCallback",
+    value: function _subscribeFromCallback(callback) {
+      var _this2 = this;
+
+      this._addHandler(callback);
+
+      return {
+        Dispose: function Dispose() {
+          _this2._removeHandler(callback);
+        }
+      };
+    }
+  }, {
+    key: "Publish",
+    get: function get() {
+      return this;
+    }
+  }]);
+
+  return Event;
+}();
+
+
+function add(callback, sourceEvent) {
+  sourceEvent.Subscribe(new _Observable__WEBPACK_IMPORTED_MODULE_2__["Observer"](callback));
+}
+function choose(chooser, sourceEvent) {
+  var source = sourceEvent;
+  return new Event(function (observer) {
+    return source.Subscribe(new _Observable__WEBPACK_IMPORTED_MODULE_2__["Observer"](function (t) {
+      return Object(_Observable__WEBPACK_IMPORTED_MODULE_2__["protect"])(function () {
+        return chooser(t);
+      }, function (u) {
+        if (u != null) {
+          observer.OnNext(Object(_Option__WEBPACK_IMPORTED_MODULE_3__["value"])(u));
+        }
+      }, observer.OnError);
+    }, observer.OnError, observer.OnCompleted));
+  }, source.delegates);
+}
+function filter(predicate, sourceEvent) {
+  return choose(function (x) {
+    return predicate(x) ? x : null;
+  }, sourceEvent);
+}
+function map(mapping, sourceEvent) {
+  var source = sourceEvent;
+  return new Event(function (observer) {
+    return source.Subscribe(new _Observable__WEBPACK_IMPORTED_MODULE_2__["Observer"](function (t) {
+      return Object(_Observable__WEBPACK_IMPORTED_MODULE_2__["protect"])(function () {
+        return mapping(t);
+      }, observer.OnNext, observer.OnError);
+    }, observer.OnError, observer.OnCompleted));
+  }, source.delegates);
+}
+function merge(event1, event2) {
+  var source1 = event1;
+  var source2 = event2;
+  return new Event(function (observer) {
+    var stopped = false;
+    var completed1 = false;
+    var completed2 = false;
+    var h1 = source1.Subscribe(new _Observable__WEBPACK_IMPORTED_MODULE_2__["Observer"](function (v) {
+      if (!stopped) {
+        observer.OnNext(v);
+      }
+    }, function (e) {
+      if (!stopped) {
+        stopped = true;
+        observer.OnError(e);
+      }
+    }, function () {
+      if (!stopped) {
+        completed1 = true;
+
+        if (completed2) {
+          stopped = true;
+          observer.OnCompleted();
+        }
+      }
+    }));
+    var h2 = source2.Subscribe(new _Observable__WEBPACK_IMPORTED_MODULE_2__["Observer"](function (v) {
+      if (!stopped) {
+        observer.OnNext(v);
+      }
+    }, function (e) {
+      if (!stopped) {
+        stopped = true;
+        observer.OnError(e);
+      }
+    }, function () {
+      if (!stopped) {
+        completed2 = true;
+
+        if (completed1) {
+          stopped = true;
+          observer.OnCompleted();
+        }
+      }
+    }));
+    return {
+      Dispose: function Dispose() {
+        h1.Dispose();
+        h2.Dispose();
+      }
+    };
+  }, source1.delegates.concat(source2.delegates));
+}
+function pairwise(sourceEvent) {
+  var source = sourceEvent;
+  return new Event(function (observer) {
+    var last = null;
+    return source.Subscribe(new _Observable__WEBPACK_IMPORTED_MODULE_2__["Observer"](function (next) {
+      if (last != null) {
+        observer.OnNext([last, next]);
+      }
+
+      last = next;
+    }, observer.OnError, observer.OnCompleted));
+  }, source.delegates);
+}
+function partition(predicate, sourceEvent) {
+  return [filter(predicate, sourceEvent), filter(function (x) {
+    return !predicate(x);
+  }, sourceEvent)];
+}
+function scan(collector, state, sourceEvent) {
+  var source = sourceEvent;
+  return new Event(function (observer) {
+    return source.Subscribe(new _Observable__WEBPACK_IMPORTED_MODULE_2__["Observer"](function (t) {
+      Object(_Observable__WEBPACK_IMPORTED_MODULE_2__["protect"])(function () {
+        return collector(state, t);
+      }, function (u) {
+        state = u;
+        observer.OnNext(u);
+      }, observer.OnError);
+    }, observer.OnError, observer.OnCompleted));
+  }, source.delegates);
+}
+function split(splitter, sourceEvent) {
+  return [choose(function (v) {
+    return Object(_Option__WEBPACK_IMPORTED_MODULE_3__["tryValueIfChoice1"])(splitter(v));
+  }, sourceEvent), choose(function (v) {
+    return Object(_Option__WEBPACK_IMPORTED_MODULE_3__["tryValueIfChoice2"])(splitter(v));
+  }, sourceEvent)];
+}
+
+/***/ }),
+
+/***/ "./.fable/fable-library.2.2.3/Int32.js":
+/*!*********************************************!*\
+  !*** ./.fable/fable-library.2.2.3/Int32.js ***!
+  \*********************************************/
+/*! exports provided: NumberStyles, isValid, parse, tryParse, op_UnaryNegation_Int8, op_UnaryNegation_Int16, op_UnaryNegation_Int32 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "NumberStyles", function() { return NumberStyles; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "isValid", function() { return isValid; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "parse", function() { return parse; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "tryParse", function() { return tryParse; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "op_UnaryNegation_Int8", function() { return op_UnaryNegation_Int8; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "op_UnaryNegation_Int16", function() { return op_UnaryNegation_Int16; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "op_UnaryNegation_Int32", function() { return op_UnaryNegation_Int32; });
+/* harmony import */ var _babel_runtime_helpers_slicedToArray__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/helpers/slicedToArray */ "./node_modules/@babel/runtime/helpers/slicedToArray.js");
+/* harmony import */ var _babel_runtime_helpers_slicedToArray__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_helpers_slicedToArray__WEBPACK_IMPORTED_MODULE_0__);
+
+var NumberStyles;
+
+(function (NumberStyles) {
+  // None = 0x00000000,
+  // AllowLeadingWhite = 0x00000001,
+  // AllowTrailingWhite = 0x00000002,
+  // AllowLeadingSign = 0x00000004,
+  // AllowTrailingSign = 0x00000008,
+  // AllowParentheses = 0x00000010,
+  // AllowDecimalPoint = 0x00000020,
+  // AllowThousands = 0x00000040,
+  // AllowExponent = 0x00000080,
+  // AllowCurrencySymbol = 0x00000100,
+  NumberStyles[NumberStyles["AllowHexSpecifier"] = 512] = "AllowHexSpecifier"; // Integer = AllowLeadingWhite | AllowTrailingWhite | AllowLeadingSign,
+  // HexNumber = AllowLeadingWhite | AllowTrailingWhite | AllowHexSpecifier,
+  // Number = AllowLeadingWhite | AllowTrailingWhite | AllowLeadingSign |
+  //          AllowTrailingSign | AllowDecimalPoint | AllowThousands,
+  // Float = AllowLeadingWhite | AllowTrailingWhite | AllowLeadingSign |
+  //         AllowDecimalPoint | AllowExponent,
+  // Currency = AllowLeadingWhite | AllowTrailingWhite | AllowLeadingSign | AllowTrailingSign |
+  //            AllowParentheses | AllowDecimalPoint | AllowThousands | AllowCurrencySymbol,
+  // Any = AllowLeadingWhite | AllowTrailingWhite | AllowLeadingSign | AllowTrailingSign |
+  //       AllowParentheses | AllowDecimalPoint | AllowThousands | AllowCurrencySymbol | AllowExponent,
+})(NumberStyles || (NumberStyles = {}));
+
+function validResponse(regexMatch, radix) {
+  var _regexMatch = _babel_runtime_helpers_slicedToArray__WEBPACK_IMPORTED_MODULE_0___default()(regexMatch, 4),
+      _all = _regexMatch[0],
+      sign = _regexMatch[1],
+      prefix = _regexMatch[2],
+      digits = _regexMatch[3];
+
+  return {
+    sign: sign || "",
+    prefix: prefix || "",
+    digits: digits,
+    radix: radix
+  };
+}
+
+function getRange(unsigned, bitsize) {
+  switch (bitsize) {
+    case 8:
+      return unsigned ? [0, 255] : [-128, 127];
+
+    case 16:
+      return unsigned ? [0, 65535] : [-32768, 32767];
+
+    case 32:
+      return unsigned ? [0, 4294967295] : [-2147483648, 2147483647];
+
+    default:
+      throw new Error("Invalid bit size.");
+  }
+}
+
+function getInvalidDigits(radix) {
+  switch (radix) {
+    case 2:
+      return /[^0-1]/;
+
+    case 8:
+      return /[^0-7]/;
+
+    case 10:
+      return /[^0-9]/;
+
+    case 16:
+      return /[^0-9a-fA-F]/;
+
+    default:
+      throw new Error("Invalid Base.");
+  }
+}
+
+function getRadix(prefix, style) {
+  if (style & NumberStyles.AllowHexSpecifier) {
+    return 16;
+  } else {
+    switch (prefix) {
+      case "0b":
+      case "0B":
+        return 2;
+
+      case "0o":
+      case "0O":
+        return 8;
+
+      case "0x":
+      case "0X":
+        return 16;
+
+      default:
+        return 10;
+    }
+  }
+}
+
+function isValid(str, style, radix) {
+  var integerRegex = /^\s*([\+\-])?(0[xXoObB])?([0-9a-fA-F]+)\s*$/;
+  var res = integerRegex.exec(str.replace("_", ""));
+
+  if (res != null) {
+    var _res = _babel_runtime_helpers_slicedToArray__WEBPACK_IMPORTED_MODULE_0___default()(res, 4),
+        _all = _res[0],
+        sign = _res[1],
+        prefix = _res[2],
+        digits = _res[3];
+
+    radix = radix || getRadix(prefix, style);
+    var invalidDigits = getInvalidDigits(radix);
+
+    if (!invalidDigits.test(digits)) {
+      return validResponse(res, radix);
+    }
+  }
+
+  return null;
+}
+function parse(str, style, unsigned, bitsize, radix) {
+  var res = isValid(str, style, radix);
+
+  if (res != null) {
+    var v = Number.parseInt(res.sign + res.digits, res.radix);
+
+    if (!Number.isNaN(v)) {
+      var _getRange = getRange(true, bitsize),
+          _getRange2 = _babel_runtime_helpers_slicedToArray__WEBPACK_IMPORTED_MODULE_0___default()(_getRange, 2),
+          umin = _getRange2[0],
+          umax = _getRange2[1];
+
+      if (!unsigned && res.radix !== 10 && v >= umin && v <= umax) {
+        v = v << 32 - bitsize >> 32 - bitsize;
+      }
+
+      var _getRange3 = getRange(unsigned, bitsize),
+          _getRange4 = _babel_runtime_helpers_slicedToArray__WEBPACK_IMPORTED_MODULE_0___default()(_getRange3, 2),
+          min = _getRange4[0],
+          max = _getRange4[1];
+
+      if (v >= min && v <= max) {
+        return v;
+      }
+    }
+  }
+
+  throw new Error("Input string was not in a correct format.");
+}
+function tryParse(str, style, unsigned, bitsize) {
+  try {
+    var v = parse(str, style, unsigned, bitsize);
+    return [true, v];
+  } catch (_a) {// supress error
+  }
+
+  return [false, 0];
+}
+function op_UnaryNegation_Int8(x) {
+  return x === -128 ? x : -x;
+}
+function op_UnaryNegation_Int16(x) {
+  return x === -32768 ? x : -x;
+}
+function op_UnaryNegation_Int32(x) {
+  return x === -2147483648 ? x : -x;
+}
+
+/***/ }),
+
+/***/ "./.fable/fable-library.2.2.3/List.js":
+/*!********************************************!*\
+  !*** ./.fable/fable-library.2.2.3/List.js ***!
+  \********************************************/
+/*! exports provided: head, tryHead, tail, last, tryLast, compareWith, foldIndexedAux, foldIndexed, fold, reverse, foldBack, toSeq, ofSeq, concat, foldIndexed2Aux, foldIndexed2, fold2, foldBack2, unfold, foldIndexed3Aux, foldIndexed3, fold3, scan, scanBack, length, append, collect, map, mapIndexed, indexed, map2, mapIndexed2, map3, mapIndexed3, mapFold, mapFoldBack, iterate, iterate2, iterateIndexed, iterateIndexed2, ofArray, empty, isEmpty, tryPickIndexedAux, tryPickIndexed, tryPick, pick, tryFindIndexed, tryFind, findIndexed, find, findBack, tryFindBack, tryFindIndex, tryFindIndexBack, findIndex, findIndexBack, item, tryItem, filter, partition, choose, contains, except, initialize, replicate, reduce, reduceBack, forAll, forAll2, exists, exists2, unzip, unzip3, zip, zip3, sort, sortBy, sortDescending, sortByDescending, sortWith, sum, sumBy, maxBy, max, minBy, min, average, averageBy, permute, skip, skipWhile, takeSplitAux, take, takeWhile, truncate, splitAt, slice, distinctBy, distinct, exactlyOne, groupBy, countBy, where, pairwise, windowed */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "head", function() { return head; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "tryHead", function() { return tryHead; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "tail", function() { return tail; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "last", function() { return last; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "tryLast", function() { return tryLast; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "compareWith", function() { return compareWith; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "foldIndexedAux", function() { return foldIndexedAux; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "foldIndexed", function() { return foldIndexed; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "fold", function() { return fold; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "reverse", function() { return reverse; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "foldBack", function() { return foldBack; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "toSeq", function() { return toSeq; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ofSeq", function() { return ofSeq; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "concat", function() { return concat; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "foldIndexed2Aux", function() { return foldIndexed2Aux; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "foldIndexed2", function() { return foldIndexed2; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "fold2", function() { return fold2; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "foldBack2", function() { return foldBack2; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "unfold", function() { return unfold; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "foldIndexed3Aux", function() { return foldIndexed3Aux; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "foldIndexed3", function() { return foldIndexed3; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "fold3", function() { return fold3; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "scan", function() { return scan; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "scanBack", function() { return scanBack; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "length", function() { return length; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "append", function() { return append; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "collect", function() { return collect; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "map", function() { return map; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "mapIndexed", function() { return mapIndexed; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "indexed", function() { return indexed; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "map2", function() { return map2; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "mapIndexed2", function() { return mapIndexed2; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "map3", function() { return map3; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "mapIndexed3", function() { return mapIndexed3; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "mapFold", function() { return mapFold; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "mapFoldBack", function() { return mapFoldBack; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "iterate", function() { return iterate; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "iterate2", function() { return iterate2; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "iterateIndexed", function() { return iterateIndexed; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "iterateIndexed2", function() { return iterateIndexed2; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ofArray", function() { return ofArray; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "empty", function() { return empty; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "isEmpty", function() { return isEmpty; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "tryPickIndexedAux", function() { return tryPickIndexedAux; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "tryPickIndexed", function() { return tryPickIndexed; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "tryPick", function() { return tryPick; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "pick", function() { return pick; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "tryFindIndexed", function() { return tryFindIndexed; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "tryFind", function() { return tryFind; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "findIndexed", function() { return findIndexed; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "find", function() { return find; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "findBack", function() { return findBack; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "tryFindBack", function() { return tryFindBack; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "tryFindIndex", function() { return tryFindIndex; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "tryFindIndexBack", function() { return tryFindIndexBack; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "findIndex", function() { return findIndex; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "findIndexBack", function() { return findIndexBack; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "item", function() { return item; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "tryItem", function() { return tryItem; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "filter", function() { return filter; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "partition", function() { return partition; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "choose", function() { return choose; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "contains", function() { return contains; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "except", function() { return except; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "initialize", function() { return initialize; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "replicate", function() { return replicate; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "reduce", function() { return reduce; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "reduceBack", function() { return reduceBack; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "forAll", function() { return forAll; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "forAll2", function() { return forAll2; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "exists", function() { return exists; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "exists2", function() { return exists2; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "unzip", function() { return unzip; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "unzip3", function() { return unzip3; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "zip", function() { return zip; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "zip3", function() { return zip3; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "sort", function() { return sort; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "sortBy", function() { return sortBy; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "sortDescending", function() { return sortDescending; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "sortByDescending", function() { return sortByDescending; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "sortWith", function() { return sortWith; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "sum", function() { return sum; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "sumBy", function() { return sumBy; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "maxBy", function() { return maxBy; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "max", function() { return max; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "minBy", function() { return minBy; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "min", function() { return min; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "average", function() { return average; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "averageBy", function() { return averageBy; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "permute", function() { return permute; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "skip", function() { return skip; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "skipWhile", function() { return skipWhile; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "takeSplitAux", function() { return takeSplitAux; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "take", function() { return take; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "takeWhile", function() { return takeWhile; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "truncate", function() { return truncate; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "splitAt", function() { return splitAt; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "slice", function() { return slice; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "distinctBy", function() { return distinctBy; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "distinct", function() { return distinct; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "exactlyOne", function() { return exactlyOne; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "groupBy", function() { return groupBy; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "countBy", function() { return countBy; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "where", function() { return where; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "pairwise", function() { return pairwise; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "windowed", function() { return windowed; });
+/* harmony import */ var _Option_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./Option.js */ "./.fable/fable-library.2.2.3/Option.js");
+/* harmony import */ var _Types_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./Types.js */ "./.fable/fable-library.2.2.3/Types.js");
+/* harmony import */ var _Seq_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./Seq.js */ "./.fable/fable-library.2.2.3/Seq.js");
+/* harmony import */ var _Util_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./Util.js */ "./.fable/fable-library.2.2.3/Util.js");
+/* harmony import */ var _Array_js__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./Array.js */ "./.fable/fable-library.2.2.3/Array.js");
+/* harmony import */ var _Set_js__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./Set.js */ "./.fable/fable-library.2.2.3/Set.js");
+/* harmony import */ var _Map_js__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./Map.js */ "./.fable/fable-library.2.2.3/Map.js");
+
+
+
+
+
+
+
+
+function head(_arg1) {
+  if (_arg1.tail != null) {
+    var x = _arg1.head;
+    return x;
+  } else {
+    throw new Error("List was empty");
+  }
+}
+function tryHead(_arg1$$1) {
+  if (_arg1$$1.tail != null) {
+    var x$$1 = _arg1$$1.head;
+    return Object(_Option_js__WEBPACK_IMPORTED_MODULE_0__["some"])(x$$1);
+  } else {
+    return null;
+  }
+}
+function tail(_arg1$$2) {
+  if (_arg1$$2.tail != null) {
+    var xs = _arg1$$2.tail;
+    return xs;
+  } else {
+    throw new Error("List was empty");
+  }
+}
+function last(_arg1$$3) {
+  last: while (true) {
+    if (_arg1$$3.tail != null) {
+      if (_arg1$$3.tail.tail == null) {
+        return _arg1$$3.head;
+      } else {
+        var $_arg1$$3$$2 = _arg1$$3;
+        _arg1$$3 = $_arg1$$3$$2.tail;
+        continue last;
+      }
+    } else {
+      throw new Error("List was empty");
+    }
+
+    break;
+  }
+}
+function tryLast(_arg1$$4) {
+  tryLast: while (true) {
+    if (_arg1$$4.tail != null) {
+      if (_arg1$$4.tail.tail == null) {
+        return Object(_Option_js__WEBPACK_IMPORTED_MODULE_0__["some"])(_arg1$$4.head);
+      } else {
+        var $_arg1$$4$$3 = _arg1$$4;
+        _arg1$$4 = $_arg1$$4$$3.tail;
+        continue tryLast;
+      }
+    } else {
+      return null;
+    }
+
+    break;
+  }
+}
+function compareWith(comparer, xs$$3, ys) {
+  if (xs$$3 === ys) {
+    return 0;
+  } else {
+    var loop = function loop(xs$$4, ys$$1) {
+      loop: while (true) {
+        var matchValue = [xs$$4, ys$$1];
+
+        if (matchValue[0].tail != null) {
+          if (matchValue[1].tail != null) {
+            var matchValue$$1 = comparer(matchValue[0].head, matchValue[1].head) | 0;
+
+            if (matchValue$$1 === 0) {
+              xs$$4 = matchValue[0].tail;
+              ys$$1 = matchValue[1].tail;
+              continue loop;
+            } else {
+              var res = matchValue$$1 | 0;
+              return res | 0;
+            }
+          } else {
+            return 1;
+          }
+        } else if (matchValue[1].tail == null) {
+          return 0;
+        } else {
+          return -1 | 0;
+        }
+
+        break;
+      }
+    };
+
+    return loop(xs$$3, ys) | 0;
+  }
+}
+function foldIndexedAux($arg$$7, $arg$$8, $arg$$9, $arg$$10) {
+  foldIndexedAux: while (true) {
+    var f = $arg$$7,
+        i = $arg$$8,
+        acc = $arg$$9,
+        _arg1$$5 = $arg$$10;
+
+    if (_arg1$$5.tail != null) {
+      var xs$$6 = _arg1$$5.tail;
+      var x$$5 = _arg1$$5.head;
+      $arg$$7 = f;
+      $arg$$8 = i + 1;
+      $arg$$9 = f(i, acc, x$$5);
+      $arg$$10 = xs$$6;
+      continue foldIndexedAux;
+    } else {
+      return acc;
+    }
+
+    break;
+  }
+}
+function foldIndexed(f$$1, state, xs$$7) {
+  return foldIndexedAux(f$$1, 0, state, xs$$7);
+}
+function fold($arg$$14, $arg$$15, $arg$$16) {
+  fold: while (true) {
+    var f$$2 = $arg$$14,
+        state$$1 = $arg$$15,
+        xs$$8 = $arg$$16;
+
+    if (xs$$8.tail != null) {
+      var t = xs$$8.tail;
+      var h = xs$$8.head;
+      $arg$$14 = f$$2;
+      $arg$$15 = f$$2(state$$1, h);
+      $arg$$16 = t;
+      continue fold;
+    } else {
+      return state$$1;
+    }
+
+    break;
+  }
+}
+function reverse(xs$$9) {
+  return fold(function (acc$$1, x$$6) {
+    return new _Types_js__WEBPACK_IMPORTED_MODULE_1__["List"](x$$6, acc$$1);
+  }, new _Types_js__WEBPACK_IMPORTED_MODULE_1__["List"](), xs$$9);
+}
+function foldBack(f$$3, xs$$10, state$$2) {
+  return fold(function (acc$$2, x$$7) {
+    return f$$3(x$$7, acc$$2);
+  }, state$$2, reverse(xs$$10));
+}
+function toSeq(xs$$11) {
+  return Object(_Seq_js__WEBPACK_IMPORTED_MODULE_2__["map"])(function (x$$8) {
+    return x$$8;
+  }, xs$$11);
+}
+function ofSeq(xs$$12) {
+  return reverse(Object(_Seq_js__WEBPACK_IMPORTED_MODULE_2__["fold"])(function (acc$$3, x$$9) {
+    return new _Types_js__WEBPACK_IMPORTED_MODULE_1__["List"](x$$9, acc$$3);
+  }, new _Types_js__WEBPACK_IMPORTED_MODULE_1__["List"](), xs$$12));
+}
+function concat(lists) {
+  return reverse(Object(_Seq_js__WEBPACK_IMPORTED_MODULE_2__["fold"])(function (state$$3, xs$$14) {
+    return fold(function f$$4(acc$$4, x$$10) {
+      return new _Types_js__WEBPACK_IMPORTED_MODULE_1__["List"](x$$10, acc$$4);
+    }, state$$3, xs$$14);
+  }, new _Types_js__WEBPACK_IMPORTED_MODULE_1__["List"](), lists));
+}
+function foldIndexed2Aux($arg$$20, $arg$$21, $arg$$22, $arg$$23, $arg$$24) {
+  foldIndexed2Aux: while (true) {
+    var f$$5 = $arg$$20,
+        i$$1 = $arg$$21,
+        acc$$5 = $arg$$22,
+        bs = $arg$$23,
+        cs = $arg$$24;
+    var matchValue$$2 = [bs, cs];
+    var $target$$25, x$$11, xs$$16, y$$1, ys$$3;
+
+    if (matchValue$$2[0].tail != null) {
+      if (matchValue$$2[1].tail != null) {
+        $target$$25 = 1;
+        x$$11 = matchValue$$2[0].head;
+        xs$$16 = matchValue$$2[0].tail;
+        y$$1 = matchValue$$2[1].head;
+        ys$$3 = matchValue$$2[1].tail;
+      } else {
+        $target$$25 = 2;
+      }
+    } else if (matchValue$$2[1].tail == null) {
+      $target$$25 = 0;
+    } else {
+      $target$$25 = 2;
+    }
+
+    switch ($target$$25) {
+      case 0:
+        {
+          return acc$$5;
+        }
+
+      case 1:
+        {
+          $arg$$20 = f$$5;
+          $arg$$21 = i$$1 + 1;
+          $arg$$22 = f$$5(i$$1, acc$$5, x$$11, y$$1);
+          $arg$$23 = xs$$16;
+          $arg$$24 = ys$$3;
+          continue foldIndexed2Aux;
+        }
+
+      case 2:
+        {
+          throw new Error("Lists had different lengths");
+        }
+    }
+
+    break;
+  }
+}
+function foldIndexed2(f$$6, state$$4, xs$$17, ys$$4) {
+  return foldIndexed2Aux(f$$6, 0, state$$4, xs$$17, ys$$4);
+}
+function fold2(f$$7, state$$5, xs$$18, ys$$5) {
+  return Object(_Seq_js__WEBPACK_IMPORTED_MODULE_2__["fold2"])(f$$7, state$$5, xs$$18, ys$$5);
+}
+function foldBack2(f$$8, xs$$19, ys$$6, state$$6) {
+  return Object(_Seq_js__WEBPACK_IMPORTED_MODULE_2__["foldBack2"])(f$$8, xs$$19, ys$$6, state$$6);
+}
+function unfold(f$$9, state$$7) {
+  var unfoldInner = function unfoldInner(acc$$6, state$$8) {
+    unfoldInner: while (true) {
+      var matchValue$$3 = f$$9(state$$8);
+
+      if (matchValue$$3 != null) {
+        var x$$12 = matchValue$$3[0];
+        var state$$9 = matchValue$$3[1];
+        var $acc$$6$$40 = acc$$6;
+        acc$$6 = new _Types_js__WEBPACK_IMPORTED_MODULE_1__["List"](x$$12, $acc$$6$$40);
+        state$$8 = state$$9;
+        continue unfoldInner;
+      } else {
+        return reverse(acc$$6);
+      }
+
+      break;
+    }
+  };
+
+  return unfoldInner(new _Types_js__WEBPACK_IMPORTED_MODULE_1__["List"](), state$$7);
+}
+function foldIndexed3Aux($arg$$41, $arg$$42, $arg$$43, $arg$$44, $arg$$45, $arg$$46) {
+  foldIndexed3Aux: while (true) {
+    var f$$10 = $arg$$41,
+        i$$2 = $arg$$42,
+        acc$$7 = $arg$$43,
+        bs$$1 = $arg$$44,
+        cs$$1 = $arg$$45,
+        ds = $arg$$46;
+    var matchValue$$4 = [bs$$1, cs$$1, ds];
+    var $target$$47, x$$13, xs$$20, y$$2, ys$$7, z, zs;
+
+    if (matchValue$$4[0].tail != null) {
+      if (matchValue$$4[1].tail != null) {
+        if (matchValue$$4[2].tail != null) {
+          $target$$47 = 1;
+          x$$13 = matchValue$$4[0].head;
+          xs$$20 = matchValue$$4[0].tail;
+          y$$2 = matchValue$$4[1].head;
+          ys$$7 = matchValue$$4[1].tail;
+          z = matchValue$$4[2].head;
+          zs = matchValue$$4[2].tail;
+        } else {
+          $target$$47 = 2;
+        }
+      } else {
+        $target$$47 = 2;
+      }
+    } else if (matchValue$$4[1].tail == null) {
+      if (matchValue$$4[2].tail == null) {
+        $target$$47 = 0;
+      } else {
+        $target$$47 = 2;
+      }
+    } else {
+      $target$$47 = 2;
+    }
+
+    switch ($target$$47) {
+      case 0:
+        {
+          return acc$$7;
+        }
+
+      case 1:
+        {
+          $arg$$41 = f$$10;
+          $arg$$42 = i$$2 + 1;
+          $arg$$43 = f$$10(i$$2, acc$$7, x$$13, y$$2, z);
+          $arg$$44 = xs$$20;
+          $arg$$45 = ys$$7;
+          $arg$$46 = zs;
+          continue foldIndexed3Aux;
+        }
+
+      case 2:
+        {
+          throw new Error("Lists had different lengths");
+        }
+    }
+
+    break;
+  }
+}
+function foldIndexed3(f$$11, seed, xs$$21, ys$$8, zs$$1) {
+  return foldIndexed3Aux(f$$11, 0, seed, xs$$21, ys$$8, zs$$1);
+}
+function fold3(f$$12, state$$10, xs$$22, ys$$9, zs$$2) {
+  return foldIndexed3(function (_arg1$$6, acc$$8, x$$14, y$$3, z$$1) {
+    return f$$12(acc$$8, x$$14, y$$3, z$$1);
+  }, state$$10, xs$$22, ys$$9, zs$$2);
+}
+function scan(f$$13, state$$11, xs$$23) {
+  return ofSeq(Object(_Seq_js__WEBPACK_IMPORTED_MODULE_2__["scan"])(f$$13, state$$11, xs$$23));
+}
+function scanBack(f$$14, xs$$25, state$$12) {
+  return ofSeq(Object(_Seq_js__WEBPACK_IMPORTED_MODULE_2__["scanBack"])(f$$14, xs$$25, state$$12));
+}
+function length(xs$$27) {
+  return fold(function (acc$$9, _arg1$$7) {
+    return acc$$9 + 1;
+  }, 0, xs$$27);
+}
+function append(xs$$28, ys$$10) {
+  return fold(function (acc$$10, x$$15) {
+    return new _Types_js__WEBPACK_IMPORTED_MODULE_1__["List"](x$$15, acc$$10);
+  }, ys$$10, reverse(xs$$28));
+}
+function collect(f$$15, xs$$29) {
+  return ofSeq(Object(_Seq_js__WEBPACK_IMPORTED_MODULE_2__["collect"])(f$$15, xs$$29));
+}
+function map(f$$16, xs$$31) {
+  return reverse(fold(function (acc$$11, x$$16) {
+    return new _Types_js__WEBPACK_IMPORTED_MODULE_1__["List"](f$$16(x$$16), acc$$11);
+  }, new _Types_js__WEBPACK_IMPORTED_MODULE_1__["List"](), xs$$31));
+}
+function mapIndexed(f$$17, xs$$33) {
+  return reverse(foldIndexed(function (i$$3, acc$$12, x$$17) {
+    return new _Types_js__WEBPACK_IMPORTED_MODULE_1__["List"](f$$17(i$$3, x$$17), acc$$12);
+  }, new _Types_js__WEBPACK_IMPORTED_MODULE_1__["List"](), xs$$33));
+}
+function indexed(xs$$35) {
+  return mapIndexed(function (i$$4, x$$18) {
+    return [i$$4, x$$18];
+  }, xs$$35);
+}
+function map2(f$$18, xs$$36, ys$$11) {
+  return reverse(fold2(function (acc$$13, x$$19, y$$4) {
+    return new _Types_js__WEBPACK_IMPORTED_MODULE_1__["List"](f$$18(x$$19, y$$4), acc$$13);
+  }, new _Types_js__WEBPACK_IMPORTED_MODULE_1__["List"](), xs$$36, ys$$11));
+}
+function mapIndexed2(f$$19, xs$$38, ys$$12) {
+  return reverse(foldIndexed2(function (i$$5, acc$$14, x$$20, y$$5) {
+    return new _Types_js__WEBPACK_IMPORTED_MODULE_1__["List"](f$$19(i$$5, x$$20, y$$5), acc$$14);
+  }, new _Types_js__WEBPACK_IMPORTED_MODULE_1__["List"](), xs$$38, ys$$12));
+}
+function map3(f$$20, xs$$40, ys$$13, zs$$3) {
+  return reverse(fold3(function (acc$$15, x$$21, y$$6, z$$2) {
+    return new _Types_js__WEBPACK_IMPORTED_MODULE_1__["List"](f$$20(x$$21, y$$6, z$$2), acc$$15);
+  }, new _Types_js__WEBPACK_IMPORTED_MODULE_1__["List"](), xs$$40, ys$$13, zs$$3));
+}
+function mapIndexed3(f$$21, xs$$42, ys$$14, zs$$4) {
+  return reverse(foldIndexed3(function (i$$6, acc$$16, x$$22, y$$7, z$$3) {
+    return new _Types_js__WEBPACK_IMPORTED_MODULE_1__["List"](f$$21(i$$6, x$$22, y$$7, z$$3), acc$$16);
+  }, new _Types_js__WEBPACK_IMPORTED_MODULE_1__["List"](), xs$$42, ys$$14, zs$$4));
+}
+function mapFold(f$$22, s, xs$$44) {
+  var foldFn = function foldFn(tupledArg, x$$23) {
+    var patternInput = f$$22(tupledArg[1], x$$23);
+    return [new _Types_js__WEBPACK_IMPORTED_MODULE_1__["List"](patternInput[0], tupledArg[0]), patternInput[1]];
+  };
+
+  var patternInput$$1 = fold(foldFn, [new _Types_js__WEBPACK_IMPORTED_MODULE_1__["List"](), s], xs$$44);
+  return [reverse(patternInput$$1[0]), patternInput$$1[1]];
+}
+function mapFoldBack(f$$23, xs$$45, s$$2) {
+  return mapFold(function (s$$3, v) {
+    return f$$23(v, s$$3);
+  }, s$$2, reverse(xs$$45));
+}
+function iterate(f$$24, xs$$46) {
+  fold(function (unitVar0, x$$24) {
+    f$$24(x$$24);
+  }, null, xs$$46);
+}
+function iterate2(f$$25, xs$$47, ys$$15) {
+  fold2(function (unitVar0$$1, x$$25, y$$8) {
+    f$$25(x$$25, y$$8);
+  }, null, xs$$47, ys$$15);
+}
+function iterateIndexed(f$$26, xs$$48) {
+  foldIndexed(function (i$$7, unitVar1, x$$26) {
+    f$$26(i$$7, x$$26);
+  }, null, xs$$48);
+}
+function iterateIndexed2(f$$27, xs$$49, ys$$16) {
+  foldIndexed2(function (i$$8, unitVar1$$1, x$$27, y$$9) {
+    f$$27(i$$8, x$$27, y$$9);
+  }, null, xs$$49, ys$$16);
+}
+function ofArray(xs$$50) {
+  var res$$1 = new _Types_js__WEBPACK_IMPORTED_MODULE_1__["List"]();
+
+  for (var i$$9 = Object(_Util_js__WEBPACK_IMPORTED_MODULE_3__["count"])(xs$$50) - 1; i$$9 >= 0; i$$9--) {
+    res$$1 = new _Types_js__WEBPACK_IMPORTED_MODULE_1__["List"](xs$$50[i$$9], res$$1);
+  }
+
+  return res$$1;
+}
+function empty() {
+  return new _Types_js__WEBPACK_IMPORTED_MODULE_1__["List"]();
+}
+function isEmpty(_arg1$$8) {
+  if (_arg1$$8.tail == null) {
+    return true;
+  } else {
+    return false;
+  }
+}
+function tryPickIndexedAux($arg$$100, $arg$$101, $arg$$102) {
+  tryPickIndexedAux: while (true) {
+    var f$$28 = $arg$$100,
+        i$$10 = $arg$$101,
+        _arg1$$9 = $arg$$102;
+
+    if (_arg1$$9.tail != null) {
+      var xs$$51 = _arg1$$9.tail;
+      var x$$28 = _arg1$$9.head;
+      var result = f$$28(i$$10, x$$28);
+
+      if (result == null) {
+        $arg$$100 = f$$28;
+        $arg$$101 = i$$10 + 1;
+        $arg$$102 = xs$$51;
+        continue tryPickIndexedAux;
+      } else {
+        return result;
+      }
+    } else {
+      return null;
+    }
+
+    break;
+  }
+}
+function tryPickIndexed(f$$29, xs$$52) {
+  return tryPickIndexedAux(f$$29, 0, xs$$52);
+}
+function tryPick(f$$30, xs$$53) {
+  return tryPickIndexed(function (_arg1$$10, x$$29) {
+    return f$$30(x$$29);
+  }, xs$$53);
+}
+function pick(f$$31, xs$$54) {
+  var matchValue$$5 = tryPick(f$$31, xs$$54);
+
+  if (matchValue$$5 != null) {
+    var x$$30 = Object(_Option_js__WEBPACK_IMPORTED_MODULE_0__["value"])(matchValue$$5);
+    return x$$30;
+  } else {
+    throw new Error("List did not contain any matching elements");
+  }
+}
+function tryFindIndexed(f$$32, xs$$55) {
+  return tryPickIndexed(function (i$$11, x$$31) {
+    return f$$32(i$$11, x$$31) ? Object(_Option_js__WEBPACK_IMPORTED_MODULE_0__["some"])(x$$31) : null;
+  }, xs$$55);
+}
+function tryFind(f$$33, xs$$56) {
+  return tryPickIndexed(function (_arg1$$11, x$$32) {
+    return f$$33(x$$32) ? Object(_Option_js__WEBPACK_IMPORTED_MODULE_0__["some"])(x$$32) : null;
+  }, xs$$56);
+}
+function findIndexed(f$$34, xs$$57) {
+  var matchValue$$6 = tryFindIndexed(f$$34, xs$$57);
+
+  if (matchValue$$6 != null) {
+    var x$$33 = Object(_Option_js__WEBPACK_IMPORTED_MODULE_0__["value"])(matchValue$$6);
+    return x$$33;
+  } else {
+    throw new Error("List did not contain any matching elements");
+  }
+}
+function find(f$$35, xs$$58) {
+  return findIndexed(function (_arg1$$12, x$$34) {
+    return f$$35(x$$34);
+  }, xs$$58);
+}
+function findBack(f$$36, xs$$59) {
+  return find(f$$36, reverse(xs$$59));
+}
+function tryFindBack(f$$37, xs$$62) {
+  return tryFind(f$$37, reverse(xs$$62));
+}
+function tryFindIndex(f$$38, xs$$65) {
+  return tryPickIndexed(function (i$$12, x$$35) {
+    return f$$38(x$$35) ? i$$12 : null;
+  }, xs$$65);
+}
+function tryFindIndexBack(f$$39, xs$$66) {
+  return Object(_Array_js__WEBPACK_IMPORTED_MODULE_4__["tryFindIndexBack"])(f$$39, Object(_Array_js__WEBPACK_IMPORTED_MODULE_4__["ofList"])(xs$$66, Array));
+}
+function findIndex(f$$40, xs$$67) {
+  var matchValue$$7 = tryFindIndex(f$$40, xs$$67);
+
+  if (matchValue$$7 != null) {
+    var x$$36 = matchValue$$7 | 0;
+    return x$$36 | 0;
+  } else {
+    throw new Error("List did not contain any matching elements");
+  }
+}
+function findIndexBack(f$$41, xs$$68) {
+  return Object(_Array_js__WEBPACK_IMPORTED_MODULE_4__["findIndexBack"])(f$$41, Object(_Array_js__WEBPACK_IMPORTED_MODULE_4__["ofList"])(xs$$68, Array));
+}
+function item(n, xs$$69) {
+  return findIndexed(function (i$$13, _arg1$$13) {
+    return n === i$$13;
+  }, xs$$69);
+}
+function tryItem(n$$1, xs$$70) {
+  return tryFindIndexed(function (i$$14, _arg1$$14) {
+    return n$$1 === i$$14;
+  }, xs$$70);
+}
+function filter(f$$42, xs$$71) {
+  return reverse(fold(function (acc$$17, x$$37) {
+    return f$$42(x$$37) ? new _Types_js__WEBPACK_IMPORTED_MODULE_1__["List"](x$$37, acc$$17) : acc$$17;
+  }, new _Types_js__WEBPACK_IMPORTED_MODULE_1__["List"](), xs$$71));
+}
+function partition(f$$43, xs$$73) {
+  return fold(function (tupledArg$$1, x$$38) {
+    return f$$43(x$$38) ? [new _Types_js__WEBPACK_IMPORTED_MODULE_1__["List"](x$$38, tupledArg$$1[0]), tupledArg$$1[1]] : [tupledArg$$1[0], new _Types_js__WEBPACK_IMPORTED_MODULE_1__["List"](x$$38, tupledArg$$1[1])];
+  }, [new _Types_js__WEBPACK_IMPORTED_MODULE_1__["List"](), new _Types_js__WEBPACK_IMPORTED_MODULE_1__["List"]()], reverse(xs$$73));
+}
+function choose(f$$44, xs$$74) {
+  return reverse(fold(function (acc$$18, x$$39) {
+    var matchValue$$8 = f$$44(x$$39);
+
+    if (matchValue$$8 == null) {
+      return acc$$18;
+    } else {
+      var y$$10 = Object(_Option_js__WEBPACK_IMPORTED_MODULE_0__["value"])(matchValue$$8);
+      return new _Types_js__WEBPACK_IMPORTED_MODULE_1__["List"](y$$10, acc$$18);
+    }
+  }, new _Types_js__WEBPACK_IMPORTED_MODULE_1__["List"](), xs$$74));
+}
+function contains(value, list, eq) {
+  var loop$$1 = function loop$$1(xs$$76) {
+    loop$$1: while (true) {
+      if (xs$$76.tail != null) {
+        var v$$1 = xs$$76.head;
+        var rest = xs$$76.tail;
+
+        if (eq.Equals(value, v$$1)) {
+          return true;
+        } else {
+          xs$$76 = rest;
+          continue loop$$1;
+        }
+      } else {
+        return false;
+      }
+
+      break;
+    }
+  };
+
+  return loop$$1(list);
+}
+function except(itemsToExclude, array$$2, eq$$1) {
+  if (isEmpty(array$$2)) {
+    return array$$2;
+  } else {
+    var cached = Object(_Set_js__WEBPACK_IMPORTED_MODULE_5__["createMutable"])(itemsToExclude, Object(_Util_js__WEBPACK_IMPORTED_MODULE_3__["comparerFromEqualityComparer"])(eq$$1));
+    return filter(function f$$45(arg00) {
+      return Object(_Util_js__WEBPACK_IMPORTED_MODULE_3__["addToSet"])(arg00, cached);
+    }, array$$2);
+  }
+}
+function initialize(n$$2, f$$46) {
+  var xs$$78 = new _Types_js__WEBPACK_IMPORTED_MODULE_1__["List"]();
+
+  for (var i$$15 = 1; i$$15 <= n$$2; i$$15++) {
+    xs$$78 = new _Types_js__WEBPACK_IMPORTED_MODULE_1__["List"](f$$46(n$$2 - i$$15), xs$$78);
+  }
+
+  return xs$$78;
+}
+function replicate(n$$3, x$$40) {
+  return initialize(n$$3, function (_arg1$$15) {
+    return x$$40;
+  });
+}
+function reduce(f$$47, _arg1$$16) {
+  if (_arg1$$16.tail != null) {
+    var t$$1 = _arg1$$16.tail;
+    var h$$1 = _arg1$$16.head;
+    return fold(f$$47, h$$1, t$$1);
+  } else {
+    throw new Error("List was empty");
+  }
+}
+function reduceBack(f$$48, _arg1$$17) {
+  if (_arg1$$17.tail != null) {
+    var t$$2 = _arg1$$17.tail;
+    var h$$2 = _arg1$$17.head;
+    return foldBack(f$$48, t$$2, h$$2);
+  } else {
+    throw new Error("List was empty");
+  }
+}
+function forAll(f$$49, xs$$79) {
+  return fold(function (acc$$19, x$$41) {
+    return acc$$19 ? f$$49(x$$41) : false;
+  }, true, xs$$79);
+}
+function forAll2(f$$50, xs$$80, ys$$17) {
+  return fold2(function (acc$$20, x$$42, y$$11) {
+    return acc$$20 ? f$$50(x$$42, y$$11) : false;
+  }, true, xs$$80, ys$$17);
+}
+function exists($arg$$146, $arg$$147) {
+  exists: while (true) {
+    var f$$51 = $arg$$146,
+        _arg1$$18 = $arg$$147;
+
+    if (_arg1$$18.tail != null) {
+      var xs$$81 = _arg1$$18.tail;
+      var x$$43 = _arg1$$18.head;
+
+      if (f$$51(x$$43)) {
+        return true;
+      } else {
+        $arg$$146 = f$$51;
+        $arg$$147 = xs$$81;
+        continue exists;
+      }
+    } else {
+      return false;
+    }
+
+    break;
+  }
+}
+function exists2($arg$$148, $arg$$149, $arg$$150) {
+  exists2: while (true) {
+    var f$$52 = $arg$$148,
+        bs$$2 = $arg$$149,
+        cs$$2 = $arg$$150;
+    var matchValue$$9 = [bs$$2, cs$$2];
+    var $target$$151, x$$44, xs$$82, y$$12, ys$$18;
+
+    if (matchValue$$9[0].tail != null) {
+      if (matchValue$$9[1].tail != null) {
+        $target$$151 = 1;
+        x$$44 = matchValue$$9[0].head;
+        xs$$82 = matchValue$$9[0].tail;
+        y$$12 = matchValue$$9[1].head;
+        ys$$18 = matchValue$$9[1].tail;
+      } else {
+        $target$$151 = 2;
+      }
+    } else if (matchValue$$9[1].tail == null) {
+      $target$$151 = 0;
+    } else {
+      $target$$151 = 2;
+    }
+
+    switch ($target$$151) {
+      case 0:
+        {
+          return false;
+        }
+
+      case 1:
+        {
+          if (f$$52(x$$44, y$$12)) {
+            return true;
+          } else {
+            $arg$$148 = f$$52;
+            $arg$$149 = xs$$82;
+            $arg$$150 = ys$$18;
+            continue exists2;
+          }
+        }
+
+      case 2:
+        {
+          throw new Error("Lists had different lengths");
+        }
+    }
+
+    break;
+  }
+}
+function unzip(xs$$83) {
+  return foldBack(function (tupledArg$$2, tupledArg$$3) {
+    return [new _Types_js__WEBPACK_IMPORTED_MODULE_1__["List"](tupledArg$$2[0], tupledArg$$3[0]), new _Types_js__WEBPACK_IMPORTED_MODULE_1__["List"](tupledArg$$2[1], tupledArg$$3[1])];
+  }, xs$$83, [new _Types_js__WEBPACK_IMPORTED_MODULE_1__["List"](), new _Types_js__WEBPACK_IMPORTED_MODULE_1__["List"]()]);
+}
+function unzip3(xs$$84) {
+  return foldBack(function (tupledArg$$4, tupledArg$$5) {
+    return [new _Types_js__WEBPACK_IMPORTED_MODULE_1__["List"](tupledArg$$4[0], tupledArg$$5[0]), new _Types_js__WEBPACK_IMPORTED_MODULE_1__["List"](tupledArg$$4[1], tupledArg$$5[1]), new _Types_js__WEBPACK_IMPORTED_MODULE_1__["List"](tupledArg$$4[2], tupledArg$$5[2])];
+  }, xs$$84, [new _Types_js__WEBPACK_IMPORTED_MODULE_1__["List"](), new _Types_js__WEBPACK_IMPORTED_MODULE_1__["List"](), new _Types_js__WEBPACK_IMPORTED_MODULE_1__["List"]()]);
+}
+function zip(xs$$85, ys$$19) {
+  return map2(function (x$$47, y$$15) {
+    return [x$$47, y$$15];
+  }, xs$$85, ys$$19);
+}
+function zip3(xs$$86, ys$$20, zs$$5) {
+  return map3(function (x$$48, y$$16, z$$5) {
+    return [x$$48, y$$16, z$$5];
+  }, xs$$86, ys$$20, zs$$5);
+}
+function sort(xs$$87, comparer$$1) {
+  var xs$$88;
+  return ofArray((xs$$88 = Object(_Array_js__WEBPACK_IMPORTED_MODULE_4__["ofList"])(xs$$87, Array), (xs$$88.sort(function comparer$$2(x$$49, y$$17) {
+    return comparer$$1.Compare(x$$49, y$$17);
+  }), xs$$88)));
+}
+function sortBy(projection, xs$$90, comparer$$3) {
+  var xs$$91;
+  return ofArray((xs$$91 = Object(_Array_js__WEBPACK_IMPORTED_MODULE_4__["ofList"])(xs$$90, Array), (xs$$91.sort(function comparer$$4(x$$50, y$$18) {
+    return comparer$$3.Compare(projection(x$$50), projection(y$$18));
+  }), xs$$91)));
+}
+function sortDescending(xs$$93, comparer$$5) {
+  var xs$$94;
+  return ofArray((xs$$94 = Object(_Array_js__WEBPACK_IMPORTED_MODULE_4__["ofList"])(xs$$93, Array), (xs$$94.sort(function comparer$$6(x$$51, y$$19) {
+    return comparer$$5.Compare(x$$51, y$$19) * -1;
+  }), xs$$94)));
+}
+function sortByDescending(projection$$1, xs$$96, comparer$$7) {
+  var xs$$97;
+  return ofArray((xs$$97 = Object(_Array_js__WEBPACK_IMPORTED_MODULE_4__["ofList"])(xs$$96, Array), (xs$$97.sort(function comparer$$8(x$$52, y$$20) {
+    return comparer$$7.Compare(projection$$1(x$$52), projection$$1(y$$20)) * -1;
+  }), xs$$97)));
+}
+function sortWith(comparer$$9, xs$$99) {
+  var xs$$100;
+  return ofArray((xs$$100 = Object(_Array_js__WEBPACK_IMPORTED_MODULE_4__["ofList"])(xs$$99, Array), (xs$$100.sort(comparer$$9), xs$$100)));
+}
+function sum(xs$$102, adder) {
+  return fold(function (acc$$21, x$$53) {
+    return adder.Add(acc$$21, x$$53);
+  }, adder.GetZero(), xs$$102);
+}
+function sumBy(f$$53, xs$$103, adder$$1) {
+  return fold(function (acc$$22, x$$54) {
+    return adder$$1.Add(acc$$22, f$$53(x$$54));
+  }, adder$$1.GetZero(), xs$$103);
+}
+function maxBy(projection$$2, xs$$104, comparer$$11) {
+  return reduce(function (x$$55, y$$21) {
+    return comparer$$11.Compare(projection$$2(y$$21), projection$$2(x$$55)) > 0 ? y$$21 : x$$55;
+  }, xs$$104);
+}
+function max(li, comparer$$12) {
+  return reduce(function (x$$56, y$$22) {
+    return comparer$$12.Compare(y$$22, x$$56) > 0 ? y$$22 : x$$56;
+  }, li);
+}
+function minBy(projection$$3, xs$$105, comparer$$13) {
+  return reduce(function (x$$57, y$$23) {
+    return comparer$$13.Compare(projection$$3(y$$23), projection$$3(x$$57)) > 0 ? x$$57 : y$$23;
+  }, xs$$105);
+}
+function min(xs$$106, comparer$$14) {
+  return reduce(function (x$$58, y$$24) {
+    return comparer$$14.Compare(y$$24, x$$58) > 0 ? x$$58 : y$$24;
+  }, xs$$106);
+}
+function average(xs$$107, averager) {
+  var total = fold(function (acc$$23, x$$59) {
+    return averager.Add(acc$$23, x$$59);
+  }, averager.GetZero(), xs$$107);
+  return averager.DivideByInt(total, length(xs$$107));
+}
+function averageBy(f$$54, xs$$108, averager$$1) {
+  var total$$1 = fold(function (acc$$24, x$$60) {
+    return averager$$1.Add(acc$$24, f$$54(x$$60));
+  }, averager$$1.GetZero(), xs$$108);
+  return averager$$1.DivideByInt(total$$1, length(xs$$108));
+}
+function permute(f$$55, xs$$109) {
+  return ofArray(Object(_Array_js__WEBPACK_IMPORTED_MODULE_4__["permute"])(f$$55, Object(_Array_js__WEBPACK_IMPORTED_MODULE_4__["ofList"])(xs$$109, Array)));
+}
+function skip(i$$16, xs$$111) {
+  var skipInner = function skipInner(i$$17, xs$$112) {
+    skipInner: while (true) {
+      var matchValue$$10 = [i$$17, xs$$112];
+
+      if (matchValue$$10[0] === 0) {
+        return xs$$112;
+      } else if (matchValue$$10[1].tail != null) {
+        var xs$$113 = matchValue$$10[1].tail;
+        var $i$$17$$174 = i$$17;
+        i$$17 = $i$$17$$174 - 1;
+        xs$$112 = xs$$113;
+        continue skipInner;
+      } else {
+        throw new Error("The input sequence has an insufficient number of elements.");
+      }
+
+      break;
+    }
+  };
+
+  var matchValue$$11 = [i$$16, xs$$111];
+
+  if (matchValue$$11[0] < 0) {
+    throw new Error("The input must be non-negative.");
+  } else {
+    var $target$$175, i$$20, xs$$115;
+
+    if (matchValue$$11[0] === 0) {
+      $target$$175 = 0;
+    } else if (matchValue$$11[0] === 1) {
+      if (matchValue$$11[1].tail != null) {
+        $target$$175 = 1;
+      } else {
+        $target$$175 = 2;
+        i$$20 = matchValue$$11[0];
+        xs$$115 = matchValue$$11[1];
+      }
+    } else {
+      $target$$175 = 2;
+      i$$20 = matchValue$$11[0];
+      xs$$115 = matchValue$$11[1];
+    }
+
+    switch ($target$$175) {
+      case 0:
+        {
+          return xs$$111;
+        }
+
+      case 1:
+        {
+          var xs$$114 = matchValue$$11[1].tail;
+          return xs$$114;
+        }
+
+      case 2:
+        {
+          return skipInner(i$$20, xs$$115);
+        }
+    }
+  }
+}
+function skipWhile($arg$$176, $arg$$177) {
+  var t$$3, h$$3;
+
+  skipWhile: while (true) {
+    var predicate = $arg$$176,
+        xs$$116 = $arg$$177;
+    var $target$$178, h$$4, t$$4;
+
+    if (xs$$116.tail != null) {
+      if (t$$3 = xs$$116.tail, (h$$3 = xs$$116.head, predicate(h$$3))) {
+        $target$$178 = 0;
+        h$$4 = xs$$116.head;
+        t$$4 = xs$$116.tail;
+      } else {
+        $target$$178 = 1;
+      }
+    } else {
+      $target$$178 = 1;
+    }
+
+    switch ($target$$178) {
+      case 0:
+        {
+          $arg$$176 = predicate;
+          $arg$$177 = t$$4;
+          continue skipWhile;
+        }
+
+      case 1:
+        {
+          return xs$$116;
+        }
+    }
+
+    break;
+  }
+}
+function takeSplitAux(error, i$$21, acc$$25, xs$$117) {
+  takeSplitAux: while (true) {
+    var matchValue$$12 = [i$$21, xs$$117];
+
+    if (matchValue$$12[0] === 0) {
+      return [reverse(acc$$25), xs$$117];
+    } else if (matchValue$$12[1].tail != null) {
+      var xs$$118 = matchValue$$12[1].tail;
+      var x$$61 = matchValue$$12[1].head;
+      var $acc$$25$$181 = acc$$25;
+      var $error$$179 = error;
+      var $i$$21$$180 = i$$21;
+      error = $error$$179;
+      i$$21 = $i$$21$$180 - 1;
+      acc$$25 = new _Types_js__WEBPACK_IMPORTED_MODULE_1__["List"](x$$61, $acc$$25$$181);
+      xs$$117 = xs$$118;
+      continue takeSplitAux;
+    } else {
+      if (error) {
+        throw new Error("The input sequence has an insufficient number of elements.");
+      } else {
+        return [reverse(acc$$25), xs$$117];
+      }
+    }
+
+    break;
+  }
+}
+function take(i$$22, xs$$119) {
+  var matchValue$$13 = [i$$22, xs$$119];
+
+  if (matchValue$$13[0] < 0) {
+    throw new Error("The input must be non-negative.");
+  } else {
+    var $target$$182, i$$25, xs$$120;
+
+    if (matchValue$$13[0] === 0) {
+      $target$$182 = 0;
+    } else if (matchValue$$13[0] === 1) {
+      if (matchValue$$13[1].tail != null) {
+        $target$$182 = 1;
+      } else {
+        $target$$182 = 2;
+        i$$25 = matchValue$$13[0];
+        xs$$120 = matchValue$$13[1];
+      }
+    } else {
+      $target$$182 = 2;
+      i$$25 = matchValue$$13[0];
+      xs$$120 = matchValue$$13[1];
+    }
+
+    switch ($target$$182) {
+      case 0:
+        {
+          return new _Types_js__WEBPACK_IMPORTED_MODULE_1__["List"]();
+        }
+
+      case 1:
+        {
+          var x$$62 = matchValue$$13[1].head;
+          return new _Types_js__WEBPACK_IMPORTED_MODULE_1__["List"](x$$62, new _Types_js__WEBPACK_IMPORTED_MODULE_1__["List"]());
+        }
+
+      case 2:
+        {
+          return takeSplitAux(true, i$$25, new _Types_js__WEBPACK_IMPORTED_MODULE_1__["List"](), xs$$120)[0];
+        }
+    }
+  }
+}
+function takeWhile(predicate$$1, xs$$121) {
+  if (xs$$121.tail != null) {
+    if (xs$$121.tail.tail == null) {
+      if (predicate$$1(xs$$121.head)) {
+        return xs$$121;
+      } else {
+        return xs$$121.tail;
+      }
+    } else {
+      if (!predicate$$1(xs$$121.head)) {
+        return new _Types_js__WEBPACK_IMPORTED_MODULE_1__["List"]();
+      } else {
+        return new _Types_js__WEBPACK_IMPORTED_MODULE_1__["List"](xs$$121.head, takeWhile(predicate$$1, xs$$121.tail));
+      }
+    }
+  } else {
+    return xs$$121;
+  }
+}
+function truncate(i$$26, xs$$123) {
+  var matchValue$$14 = [i$$26, xs$$123];
+
+  if (matchValue$$14[0] < 0) {
+    throw new Error("The input must be non-negative.");
+  } else {
+    var $target$$185, i$$29, xs$$124;
+
+    if (matchValue$$14[0] === 0) {
+      $target$$185 = 0;
+    } else if (matchValue$$14[0] === 1) {
+      if (matchValue$$14[1].tail != null) {
+        $target$$185 = 1;
+      } else {
+        $target$$185 = 2;
+        i$$29 = matchValue$$14[0];
+        xs$$124 = matchValue$$14[1];
+      }
+    } else {
+      $target$$185 = 2;
+      i$$29 = matchValue$$14[0];
+      xs$$124 = matchValue$$14[1];
+    }
+
+    switch ($target$$185) {
+      case 0:
+        {
+          return new _Types_js__WEBPACK_IMPORTED_MODULE_1__["List"]();
+        }
+
+      case 1:
+        {
+          var x$$65 = matchValue$$14[1].head;
+          return new _Types_js__WEBPACK_IMPORTED_MODULE_1__["List"](x$$65, new _Types_js__WEBPACK_IMPORTED_MODULE_1__["List"]());
+        }
+
+      case 2:
+        {
+          return takeSplitAux(false, i$$29, new _Types_js__WEBPACK_IMPORTED_MODULE_1__["List"](), xs$$124)[0];
+        }
+    }
+  }
+}
+function splitAt(i$$30, xs$$125) {
+  var matchValue$$15 = [i$$30, xs$$125];
+
+  if (matchValue$$15[0] < 0) {
+    throw new Error("The input must be non-negative.");
+  } else {
+    var $target$$186, i$$33, xs$$127;
+
+    if (matchValue$$15[0] === 0) {
+      $target$$186 = 0;
+    } else if (matchValue$$15[0] === 1) {
+      if (matchValue$$15[1].tail != null) {
+        $target$$186 = 1;
+      } else {
+        $target$$186 = 2;
+        i$$33 = matchValue$$15[0];
+        xs$$127 = matchValue$$15[1];
+      }
+    } else {
+      $target$$186 = 2;
+      i$$33 = matchValue$$15[0];
+      xs$$127 = matchValue$$15[1];
+    }
+
+    switch ($target$$186) {
+      case 0:
+        {
+          return [new _Types_js__WEBPACK_IMPORTED_MODULE_1__["List"](), xs$$125];
+        }
+
+      case 1:
+        {
+          var xs$$126 = matchValue$$15[1].tail;
+          var x$$66 = matchValue$$15[1].head;
+          return [new _Types_js__WEBPACK_IMPORTED_MODULE_1__["List"](x$$66, new _Types_js__WEBPACK_IMPORTED_MODULE_1__["List"]()), xs$$126];
+        }
+
+      case 2:
+        {
+          return takeSplitAux(true, i$$33, new _Types_js__WEBPACK_IMPORTED_MODULE_1__["List"](), xs$$127);
+        }
+    }
+  }
+}
+function slice(lower, upper, xs$$128) {
+  var lower$$1 = Object(_Option_js__WEBPACK_IMPORTED_MODULE_0__["defaultArg"])(lower, -1) | 0;
+  var upper$$1 = Object(_Option_js__WEBPACK_IMPORTED_MODULE_0__["defaultArg"])(upper, -1) | 0;
+  return reverse(foldIndexed(function f$$56(i$$34, acc$$26, x$$67) {
+    if ((lower$$1 === -1 ? true : lower$$1 <= i$$34) ? upper$$1 === -1 ? true : i$$34 <= upper$$1 : false) {
+      return new _Types_js__WEBPACK_IMPORTED_MODULE_1__["List"](x$$67, acc$$26);
+    } else {
+      return acc$$26;
+    }
+  }, new _Types_js__WEBPACK_IMPORTED_MODULE_1__["List"](), xs$$128));
+}
+function distinctBy(projection$$4, xs$$131, eq$$2) {
+  var hashSet = Object(_Set_js__WEBPACK_IMPORTED_MODULE_5__["createMutable"])([], Object(_Util_js__WEBPACK_IMPORTED_MODULE_3__["comparerFromEqualityComparer"])(eq$$2));
+  return filter(function f$$57($arg$$1) {
+    return Object(_Util_js__WEBPACK_IMPORTED_MODULE_3__["addToSet"])(projection$$4($arg$$1), hashSet);
+  }, xs$$131);
+}
+function distinct(xs$$133, eq$$3) {
+  return distinctBy(function (x$$68) {
+    return x$$68;
+  }, xs$$133, eq$$3);
+}
+function exactlyOne(xs$$134) {
+  if (xs$$134.tail != null) {
+    if (xs$$134.tail.tail != null) {
+      throw new Error("Input list too long\\nParameter name: list");
+    } else {
+      return xs$$134.head;
+    }
+  } else {
+    throw new Error("The input sequence was empty\\nParameter name: list");
+  }
+}
+function groupBy(projection$$5, xs$$136, eq$$4) {
+  var dict = Object(_Map_js__WEBPACK_IMPORTED_MODULE_6__["createMutable"])([], Object(_Util_js__WEBPACK_IMPORTED_MODULE_3__["comparerFromEqualityComparer"])(eq$$4));
+  var keys = [];
+  Object(_Seq_js__WEBPACK_IMPORTED_MODULE_2__["iterate"])(function (v$$2) {
+    var key = projection$$5(v$$2);
+    var matchValue$$16 = Object(_Util_js__WEBPACK_IMPORTED_MODULE_3__["tryGetValue"])(dict, key, null);
+
+    if (matchValue$$16[0]) {
+      dict.set(key, new _Types_js__WEBPACK_IMPORTED_MODULE_1__["List"](v$$2, matchValue$$16[1]));
+    } else {
+      Object(_Util_js__WEBPACK_IMPORTED_MODULE_3__["addToDict"])(dict, key, new _Types_js__WEBPACK_IMPORTED_MODULE_1__["List"](v$$2, new _Types_js__WEBPACK_IMPORTED_MODULE_1__["List"]()));
+      keys.push(key);
+    }
+  }, xs$$136);
+  return ofSeq(Object(_Seq_js__WEBPACK_IMPORTED_MODULE_2__["map"])(function mapping(key$$1) {
+    return [key$$1, reverse(Object(_Util_js__WEBPACK_IMPORTED_MODULE_3__["getItemFromDict"])(dict, key$$1))];
+  }, keys));
+}
+function countBy(projection$$6, xs$$138, eq$$5) {
+  var dict$$1 = Object(_Map_js__WEBPACK_IMPORTED_MODULE_6__["createMutable"])([], Object(_Util_js__WEBPACK_IMPORTED_MODULE_3__["comparerFromEqualityComparer"])(eq$$5));
+  iterate(function (v$$3) {
+    var key$$2 = projection$$6(v$$3);
+    var matchValue$$17 = Object(_Util_js__WEBPACK_IMPORTED_MODULE_3__["tryGetValue"])(dict$$1, key$$2, null);
+
+    if (matchValue$$17[0]) {
+      matchValue$$17[1].contents = matchValue$$17[1].contents + 1;
+    } else {
+      dict$$1.set(key$$2, new _Types_js__WEBPACK_IMPORTED_MODULE_1__["FSharpRef"](1));
+    }
+  }, xs$$138);
+  var result$$1 = new _Types_js__WEBPACK_IMPORTED_MODULE_1__["List"]();
+  Object(_Seq_js__WEBPACK_IMPORTED_MODULE_2__["iterate"])(function (group) {
+    result$$1 = new _Types_js__WEBPACK_IMPORTED_MODULE_1__["List"]([group[0], group[1].contents], result$$1);
+  }, dict$$1);
+  return result$$1;
+}
+function where(predicate$$2, xs$$139) {
+  return filter(predicate$$2, xs$$139);
+}
+function pairwise(xs$$140) {
+  var inner = function inner(xs$$141, acc$$27, x1$$1) {
+    inner: while (true) {
+      if (xs$$141.tail != null) {
+        var xs$$142 = xs$$141.tail;
+        var x2$$1 = xs$$141.head;
+        acc$$27.push([x1$$1, x2$$1]);
+        var $acc$$27$$198 = acc$$27;
+        xs$$141 = xs$$142;
+        acc$$27 = $acc$$27$$198;
+        x1$$1 = x2$$1;
+        continue inner;
+      } else {
+        return ofArray(acc$$27);
+      }
+
+      break;
+    }
+  };
+
+  var $target$$199, x1$$2, x2$$2, xs$$143;
+
+  if (xs$$140.tail != null) {
+    if (xs$$140.tail.tail != null) {
+      $target$$199 = 1;
+      x1$$2 = xs$$140.head;
+      x2$$2 = xs$$140.tail.head;
+      xs$$143 = xs$$140.tail.tail;
+    } else {
+      $target$$199 = 0;
+    }
+  } else {
+    $target$$199 = 0;
+  }
+
+  switch ($target$$199) {
+    case 0:
+      {
+        return new _Types_js__WEBPACK_IMPORTED_MODULE_1__["List"]();
+      }
+
+    case 1:
+      {
+        var acc$$28 = [];
+        acc$$28.push([x1$$2, x2$$2]);
+        return inner(xs$$143, acc$$28, x2$$2);
+      }
+  }
+}
+function windowed(windowSize, source$$1) {
+  if (windowSize <= 0) {
+    throw new Error("windowSize must be positive");
+  }
+
+  var res$$2 = new _Types_js__WEBPACK_IMPORTED_MODULE_1__["List"]();
+
+  for (var i$$35 = length(source$$1); i$$35 >= windowSize; i$$35--) {
+    res$$2 = new _Types_js__WEBPACK_IMPORTED_MODULE_1__["List"](slice(i$$35 - windowSize, i$$35 - 1, source$$1), res$$2);
+  }
+
+  return res$$2;
+}
+
+/***/ }),
+
+/***/ "./.fable/fable-library.2.2.3/Long.js":
+/*!********************************************!*\
+  !*** ./.fable/fable-library.2.2.3/Long.js ***!
+  \********************************************/
+/*! exports provided: default, neg, not, add, sub, mul, div, mod, shl, shr, and, or, xor, fromInt, fromNumber, fromInteger, fromBits, fromString, parse, tryParse, fromValue, ZERO, UZERO, ONE, UONE, NEG_ONE, MAX_VALUE, MAX_UNSIGNED_VALUE, MIN_VALUE, toInt, toNumber, toString, getHighBits, getHighBitsUnsigned, getLowBits, getLowBitsUnsigned, getNumBitsAbs, isZero, isNegative, isPositive, isOdd, isEven, equals, notEquals, lessThan, lessThanOrEqual, greaterThan, greaterThanOrEqual, compare, abs, op_UnaryNegation, op_Addition, op_Subtraction, op_Multiply, op_Division, op_Modulus, op_LogicalNot, op_BitwiseAnd, op_BitwiseOr, op_ExclusiveOr, op_LeftShift, op_RightShift, op_RightShiftUnsigned, toSigned, toUnsigned, toBytes, toBytesLE, toBytesBE, fromBytes, fromBytesLE, fromBytesBE, unixEpochMillisecondsToTicks, ticksToUnixEpochMilliseconds, makeRangeStepFunction */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return Long; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "neg", function() { return neg; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "not", function() { return not; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "add", function() { return add; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "sub", function() { return sub; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "mul", function() { return mul; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "div", function() { return div; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "mod", function() { return mod; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "shl", function() { return shl; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "shr", function() { return shr; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "and", function() { return and; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "or", function() { return or; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "xor", function() { return xor; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "fromInt", function() { return fromInt; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "fromNumber", function() { return fromNumber; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "fromInteger", function() { return fromInteger; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "fromBits", function() { return fromBits; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "fromString", function() { return fromString; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "parse", function() { return parse; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "tryParse", function() { return tryParse; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "fromValue", function() { return fromValue; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ZERO", function() { return ZERO; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "UZERO", function() { return UZERO; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ONE", function() { return ONE; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "UONE", function() { return UONE; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "NEG_ONE", function() { return NEG_ONE; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "MAX_VALUE", function() { return MAX_VALUE; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "MAX_UNSIGNED_VALUE", function() { return MAX_UNSIGNED_VALUE; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "MIN_VALUE", function() { return MIN_VALUE; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "toInt", function() { return toInt; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "toNumber", function() { return toNumber; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "toString", function() { return toString; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getHighBits", function() { return getHighBits; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getHighBitsUnsigned", function() { return getHighBitsUnsigned; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getLowBits", function() { return getLowBits; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getLowBitsUnsigned", function() { return getLowBitsUnsigned; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getNumBitsAbs", function() { return getNumBitsAbs; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "isZero", function() { return isZero; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "isNegative", function() { return isNegative; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "isPositive", function() { return isPositive; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "isOdd", function() { return isOdd; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "isEven", function() { return isEven; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "equals", function() { return equals; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "notEquals", function() { return notEquals; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "lessThan", function() { return lessThan; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "lessThanOrEqual", function() { return lessThanOrEqual; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "greaterThan", function() { return greaterThan; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "greaterThanOrEqual", function() { return greaterThanOrEqual; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "compare", function() { return compare; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "abs", function() { return abs; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "op_UnaryNegation", function() { return op_UnaryNegation; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "op_Addition", function() { return op_Addition; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "op_Subtraction", function() { return op_Subtraction; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "op_Multiply", function() { return op_Multiply; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "op_Division", function() { return op_Division; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "op_Modulus", function() { return op_Modulus; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "op_LogicalNot", function() { return op_LogicalNot; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "op_BitwiseAnd", function() { return op_BitwiseAnd; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "op_BitwiseOr", function() { return op_BitwiseOr; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "op_ExclusiveOr", function() { return op_ExclusiveOr; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "op_LeftShift", function() { return op_LeftShift; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "op_RightShift", function() { return op_RightShift; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "op_RightShiftUnsigned", function() { return op_RightShiftUnsigned; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "toSigned", function() { return toSigned; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "toUnsigned", function() { return toUnsigned; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "toBytes", function() { return toBytes; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "toBytesLE", function() { return toBytesLE; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "toBytesBE", function() { return toBytesBE; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "fromBytes", function() { return fromBytes; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "fromBytesLE", function() { return fromBytesLE; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "fromBytesBE", function() { return fromBytesBE; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "unixEpochMillisecondsToTicks", function() { return unixEpochMillisecondsToTicks; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ticksToUnixEpochMilliseconds", function() { return ticksToUnixEpochMilliseconds; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "makeRangeStepFunction", function() { return makeRangeStepFunction; });
+/* harmony import */ var _Int32__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./Int32 */ "./.fable/fable-library.2.2.3/Int32.js");
+/* harmony import */ var _Util__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./Util */ "./.fable/fable-library.2.2.3/Util.js");
+// Adapted from: https://github.com/dcodeIO/long.js/blob/f572e3a17d313730cf11eb838f6d2a5e31626f8a/src/long.js
+// Apache License 2.0: https://github.com/dcodeIO/long.js/blob/master/LICENSE
+
+/* tslint:disable */
+
+
+/**
+ * wasm optimizations, to do native i64 multiplication and divide
+ */
+
+var wasm = null;
+
+try {
+  wasm = new WebAssembly.Instance(new WebAssembly.Module(new Uint8Array([0, 97, 115, 109, 1, 0, 0, 0, 1, 13, 2, 96, 0, 1, 127, 96, 4, 127, 127, 127, 127, 1, 127, 3, 7, 6, 0, 1, 1, 1, 1, 1, 6, 6, 1, 127, 1, 65, 0, 11, 7, 50, 6, 3, 109, 117, 108, 0, 1, 5, 100, 105, 118, 95, 115, 0, 2, 5, 100, 105, 118, 95, 117, 0, 3, 5, 114, 101, 109, 95, 115, 0, 4, 5, 114, 101, 109, 95, 117, 0, 5, 8, 103, 101, 116, 95, 104, 105, 103, 104, 0, 0, 10, 191, 1, 6, 4, 0, 35, 0, 11, 36, 1, 1, 126, 32, 0, 173, 32, 1, 173, 66, 32, 134, 132, 32, 2, 173, 32, 3, 173, 66, 32, 134, 132, 126, 34, 4, 66, 32, 135, 167, 36, 0, 32, 4, 167, 11, 36, 1, 1, 126, 32, 0, 173, 32, 1, 173, 66, 32, 134, 132, 32, 2, 173, 32, 3, 173, 66, 32, 134, 132, 127, 34, 4, 66, 32, 135, 167, 36, 0, 32, 4, 167, 11, 36, 1, 1, 126, 32, 0, 173, 32, 1, 173, 66, 32, 134, 132, 32, 2, 173, 32, 3, 173, 66, 32, 134, 132, 128, 34, 4, 66, 32, 135, 167, 36, 0, 32, 4, 167, 11, 36, 1, 1, 126, 32, 0, 173, 32, 1, 173, 66, 32, 134, 132, 32, 2, 173, 32, 3, 173, 66, 32, 134, 132, 129, 34, 4, 66, 32, 135, 167, 36, 0, 32, 4, 167, 11, 36, 1, 1, 126, 32, 0, 173, 32, 1, 173, 66, 32, 134, 132, 32, 2, 173, 32, 3, 173, 66, 32, 134, 132, 130, 34, 4, 66, 32, 135, 167, 36, 0, 32, 4, 167, 11])), {}).exports;
+} catch (e) {} // no wasm support :(
+
+/**
+ * Constructs a 64 bit two's-complement integer, given its low and high 32 bit values as *signed* integers.
+ *  See the from* functions below for more convenient ways of constructing Longs.
+ * @exports Long
+ * @class A Long class for representing a 64 bit two's-complement integer value.
+ * @param {number} low The low (signed) 32 bits of the long
+ * @param {number} high The high (signed) 32 bits of the long
+ * @param {boolean=} unsigned Whether unsigned or not, defaults to signed
+ * @constructor
+ */
+
+
+function Long(low, high, unsigned) {
+  /**
+   * The low 32 bits as a signed value.
+   * @type {number}
+   */
+  this.low = low | 0;
+  /**
+   * The high 32 bits as a signed value.
+   * @type {number}
+   */
+
+  this.high = high | 0;
+  /**
+   * Whether unsigned or not.
+   * @type {boolean}
+   */
+
+  this.unsigned = !!unsigned;
+}
+
+Long.prototype.GetHashCode = function () {
+  return Object(_Util__WEBPACK_IMPORTED_MODULE_1__["combineHashCodes"])([this.unsigned ? 1 : 0, this.high, this.low]);
+};
+
+Long.prototype.Equals = function (x) {
+  return equals(this, x);
+};
+
+Long.prototype.CompareTo = function (x) {
+  return compare(this, x);
+};
+
+Long.prototype.toString = function (radix) {
+  return toString(this, radix);
+};
+
+Long.prototype.toJSON = function () {
+  return toString(this);
+};
+
+var neg = op_UnaryNegation;
+var not = op_LogicalNot;
+var add = op_Addition;
+var sub = op_Subtraction;
+var mul = op_Multiply;
+var div = op_Division;
+var mod = op_Modulus;
+var shl = op_LeftShift;
+var shr = op_RightShift;
+var and = op_BitwiseAnd;
+var or = op_BitwiseOr;
+var xor = op_ExclusiveOr; // The internal representation of a long is the two given signed, 32-bit values.
 // We use 32-bit pieces because these are the size of integers on which
 // Javascript performs bit-operations.  For operations like addition and
 // multiplication, we split each number into 16 bit pieces, which can easily be
@@ -3671,1560 +3978,8757 @@ module.exports = { "default": __webpack_require__(128), __esModule: true };
 //
 // Common constant values ZERO, ONE, NEG_ONE, etc. are defined below the from*
 // methods on which they depend.
+
 /**
- * @class A Long class for representing a 64 bit two's-complement integer value.
+ * An indicator used to reliably determine if an object is a Long or not.
+ * @type {boolean}
+ * @const
+ * @private
  */
-var Long = function () {
-    /**
-     * Constructs a 64 bit two's-complement integer, given its low and high 32 bit values as *signed* integers.
-     *  See the from* functions below for more convenient ways of constructing Longs.
-     * @param {number} low The low (signed) 32 bits of the long
-     * @param {number} high The high (signed) 32 bits of the long
-     * @param {boolean=} unsigned Whether unsigned or not, defaults to `false` for signed
-     */
-    function Long(low, high, unsigned) {
-        __WEBPACK_IMPORTED_MODULE_0_babel_runtime_helpers_classCallCheck___default()(this, Long);
 
-        /**
-         * Tests if this Long's value equals the specified's. This is an alias of {@link Long#equals}.
-         * @param {!Long|number|string} other Other value
-         * @returns {boolean}
-         */
-        this.eq = this.equals;
-        /**
-         * Tests if this Long's value differs from the specified's. This is an alias of {@link Long#notEquals}.
-         * @param {!Long|number|string} other Other value
-         * @returns {boolean}
-         */
-        this.neq = this.notEquals;
-        /**
-         * Tests if this Long's value is less than the specified's. This is an alias of {@link Long#lessThan}.
-         * @param {!Long|number|string} other Other value
-         * @returns {boolean}
-         */
-        this.lt = this.lessThan;
-        /**
-         * Tests if this Long's value is less than or equal the specified's.
-         * This is an alias of {@link Long#lessThanOrEqual}.
-         * @param {!Long|number|string} other Other value
-         * @returns {boolean}
-         */
-        this.lte = this.lessThanOrEqual;
-        /**
-         * Tests if this Long's value is greater than the specified's. This is an alias of {@link Long#greaterThan}.
-         * @param {!Long|number|string} other Other value
-         * @returns {boolean}
-         */
-        this.gt = this.greaterThan;
-        /**
-         * Tests if this Long's value is greater than or equal the specified's.
-         * This is an alias of {@link Long#greaterThanOrEqual}.
-         * @param {!Long|number|string} other Other value
-         * @returns {boolean}
-         */
-        this.gte = this.greaterThanOrEqual;
-        /**
-         * Compares this Long's value with the specified's. This is an alias of {@link Long#compare}.
-         * @param {!Long|number|string} other Other value
-         * @returns {number} 0 if they are the same, 1 if the this is greater and -1
-         *  if the given one is greater
-         */
-        this.comp = this.compare;
-        /**
-         * Negates this Long's value. This is an alias of {@link Long#negate}.
-         * @returns {!Long} Negated Long
-         */
-        this.neg = this.negate;
-        /**
-         * Returns this Long's absolute value. This is an alias of {@link Long#absolute}.
-         * @returns {!Long} Absolute Long
-         */
-        this.abs = this.absolute;
-        /**
-         * Returns the difference of this and the specified  This is an alias of {@link Long#subtract}.
-         * @param {!Long|number|string} subtrahend Subtrahend
-         * @returns {!Long} Difference
-         */
-        this.sub = this.subtract;
-        /**
-         * Returns the product of this and the specified  This is an alias of {@link Long#multiply}.
-         * @param {!Long|number|string} multiplier Multiplier
-         * @returns {!Long} Product
-         */
-        this.mul = this.multiply;
-        /**
-         * Returns this Long divided by the specified. This is an alias of {@link Long#divide}.
-         * @param {!Long|number|string} divisor Divisor
-         * @returns {!Long} Quotient
-         */
-        this.div = this.divide;
-        /**
-         * Returns this Long modulo the specified. This is an alias of {@link Long#modulo}.
-         * @param {!Long|number|string} divisor Divisor
-         * @returns {!Long} Remainder
-         */
-        this.mod = this.modulo;
-        /**
-         * Returns this Long with bits shifted to the left by the given amount. This is an alias of {@link Long#shiftLeft}.
-         * @param {number|!Long} numBits Number of bits
-         * @returns {!Long} Shifted Long
-         */
-        this.shl = this.shiftLeft;
-        /**
-         * Returns this Long with bits arithmetically shifted to the right by the given amount.
-         * This is an alias of {@link Long#shiftRight}.
-         * @param {number|!Long} numBits Number of bits
-         * @returns {!Long} Shifted Long
-         */
-        this.shr = this.shiftRight;
-        /**
-         * Returns this Long with bits logically shifted to the right by the given amount.
-         * This is an alias of {@link Long#shiftRightUnsigned}.
-         * @param {number|!Long} numBits Number of bits
-         * @returns {!Long} Shifted Long
-         */
-        this.shru = this.shiftRightUnsigned;
-        // Aliases for compatibility with Fable
-        this.Equals = this.equals;
-        this.CompareTo = this.compare;
-        this.ToString = this.toString;
-        this.low = low | 0;
-        this.high = high | 0;
-        this.unsigned = !!unsigned;
-    }
-    /**
-     * Converts the Long to a 32 bit integer, assuming it is a 32 bit integer.
-     * @returns {number}
-     */
-
-
-    __WEBPACK_IMPORTED_MODULE_1_babel_runtime_helpers_createClass___default()(Long, [{
-        key: "toInt",
-        value: function toInt() {
-            return this.unsigned ? this.low >>> 0 : this.low;
-        }
-        /**
-         * Converts the Long to a the nearest floating-point representation of this value (double, 53 bit mantissa).
-         * @returns {number}
-         */
-
-    }, {
-        key: "toNumber",
-        value: function toNumber() {
-            if (this.unsigned) return (this.high >>> 0) * TWO_PWR_32_DBL + (this.low >>> 0);
-            return this.high * TWO_PWR_32_DBL + (this.low >>> 0);
-        }
-        /**
-         * Converts the Long to a string written in the specified radix.
-         * @param {number=} radix Radix (2-36), defaults to 10
-         * @returns {string}
-         * @override
-         * @throws {RangeError} If `radix` is out of range
-         */
-
-    }, {
-        key: "toString",
-        value: function toString() {
-            var radix = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 10;
-
-            radix = radix || 10;
-            if (radix < 2 || 36 < radix) throw RangeError("radix");
-            if (this.isZero()) return "0";
-            if (this.isNegative()) {
-                if (this.eq(MIN_VALUE)) {
-                    // We need to change the Long value before it can be negated, so we remove
-                    // the bottom-most digit in this base and then recurse to do the rest.
-                    var radixLong = fromNumber(radix);
-                    var div = this.div(radixLong);
-                    var rem1 = div.mul(radixLong).sub(this);
-                    return div.toString(radix) + rem1.toInt().toString(radix);
-                } else return "-" + this.neg().toString(radix);
-            }
-            // Do several (6) digits each time through the loop, so as to
-            // minimize the calls to the very expensive emulated div.
-            var radixToPower = fromNumber(pow_dbl(radix, 6), this.unsigned);
-            var rem = this;
-            var result = "";
-            while (true) {
-                var remDiv = rem.div(radixToPower);
-                var intval = rem.sub(remDiv.mul(radixToPower)).toInt() >>> 0;
-                var digits = intval.toString(radix);
-                rem = remDiv;
-                if (rem.isZero()) return digits + result;else {
-                    while (digits.length < 6) {
-                        digits = "0" + digits;
-                    }result = "" + digits + result;
-                }
-            }
-        }
-        /**
-         * Gets the high 32 bits as a signed integer.
-         * @returns {number} Signed high bits
-         */
-
-    }, {
-        key: "getHighBits",
-        value: function getHighBits() {
-            return this.high;
-        }
-        /**
-         * Gets the high 32 bits as an unsigned integer.
-         * @returns {number} Unsigned high bits
-         */
-
-    }, {
-        key: "getHighBitsUnsigned",
-        value: function getHighBitsUnsigned() {
-            return this.high >>> 0;
-        }
-        /**
-         * Gets the low 32 bits as a signed integer.
-         * @returns {number} Signed low bits
-         */
-
-    }, {
-        key: "getLowBits",
-        value: function getLowBits() {
-            return this.low;
-        }
-        /**
-         * Gets the low 32 bits as an unsigned integer.
-         * @returns {number} Unsigned low bits
-         */
-
-    }, {
-        key: "getLowBitsUnsigned",
-        value: function getLowBitsUnsigned() {
-            return this.low >>> 0;
-        }
-        /**
-         * Gets the number of bits needed to represent the absolute value of this
-         * @returns {number}
-         */
-
-    }, {
-        key: "getNumBitsAbs",
-        value: function getNumBitsAbs() {
-            if (this.isNegative()) return this.eq(MIN_VALUE) ? 64 : this.neg().getNumBitsAbs();
-            var val = this.high !== 0 ? this.high : this.low;
-            var bit = void 0;
-            for (bit = 31; bit > 0; bit--) {
-                if ((val & 1 << bit) !== 0) break;
-            }return this.high !== 0 ? bit + 33 : bit + 1;
-        }
-        /**
-         * Tests if this Long's value equals zero.
-         * @returns {boolean}
-         */
-
-    }, {
-        key: "isZero",
-        value: function isZero() {
-            return this.high === 0 && this.low === 0;
-        }
-        /**
-         * Tests if this Long's value is negative.
-         * @returns {boolean}
-         */
-
-    }, {
-        key: "isNegative",
-        value: function isNegative() {
-            return !this.unsigned && this.high < 0;
-        }
-        /**
-         * Tests if this Long's value is positive.
-         * @returns {boolean}
-         */
-
-    }, {
-        key: "isPositive",
-        value: function isPositive() {
-            return this.unsigned || this.high >= 0;
-        }
-        /**
-         * Tests if this Long's value is odd.
-         * @returns {boolean}
-         */
-
-    }, {
-        key: "isOdd",
-        value: function isOdd() {
-            return (this.low & 1) === 1;
-        }
-        /**
-         * Tests if this Long's value is even.
-         * @returns {boolean}
-         */
-
-    }, {
-        key: "isEven",
-        value: function isEven() {
-            return (this.low & 1) === 0;
-        }
-        /**
-         * Tests if this Long's value equals the specified's.
-         * @param {!Long|number|string} other Other value
-         * @returns {boolean}
-         */
-
-    }, {
-        key: "equals",
-        value: function equals(other) {
-            if (!isLong(other)) other = fromValue(other);
-            if (this.unsigned !== other.unsigned && this.high >>> 31 === 1 && other.high >>> 31 === 1) return false;
-            return this.high === other.high && this.low === other.low;
-        }
-        /**
-         * Tests if this Long's value differs from the specified's.
-         * @param {!Long|number|string} other Other value
-         * @returns {boolean}
-         */
-
-    }, {
-        key: "notEquals",
-        value: function notEquals(other) {
-            return !this.eq( /* validates */other);
-        }
-        /**
-         * Tests if this Long's value is less than the specified's.
-         * @param {!Long|number|string} other Other value
-         * @returns {boolean}
-         */
-
-    }, {
-        key: "lessThan",
-        value: function lessThan(other) {
-            return this.comp( /* validates */other) < 0;
-        }
-        /**
-         * Tests if this Long's value is less than or equal the specified's.
-         * @param {!Long|number|string} other Other value
-         * @returns {boolean}
-         */
-
-    }, {
-        key: "lessThanOrEqual",
-        value: function lessThanOrEqual(other) {
-            return this.comp( /* validates */other) <= 0;
-        }
-        /**
-         * Tests if this Long's value is greater than the specified's.
-         * @param {!Long|number|string} other Other value
-         * @returns {boolean}
-         */
-
-    }, {
-        key: "greaterThan",
-        value: function greaterThan(other) {
-            return this.comp( /* validates */other) > 0;
-        }
-        /**
-         * Tests if this Long's value is greater than or equal the specified's.
-         * @param {!Long|number|string} other Other value
-         * @returns {boolean}
-         */
-
-    }, {
-        key: "greaterThanOrEqual",
-        value: function greaterThanOrEqual(other) {
-            return this.comp( /* validates */other) >= 0;
-        }
-        /**
-         * Compares this Long's value with the specified's.
-         * @param {!Long|number|string} other Other value
-         * @returns {number} 0 if they are the same, 1 if the this is greater and -1
-         *  if the given one is greater
-         */
-
-    }, {
-        key: "compare",
-        value: function compare(other) {
-            if (!isLong(other)) other = fromValue(other);
-            if (this.eq(other)) return 0;
-            var thisNeg = this.isNegative();
-            var otherNeg = other.isNegative();
-            if (thisNeg && !otherNeg) return -1;
-            if (!thisNeg && otherNeg) return 1;
-            // At this point the sign bits are the same
-            if (!this.unsigned) return this.sub(other).isNegative() ? -1 : 1;
-            // Both are positive if at least one is unsigned
-            return other.high >>> 0 > this.high >>> 0 || other.high === this.high && other.low >>> 0 > this.low >>> 0 ? -1 : 1;
-        }
-        /**
-         * Negates this Long's value.
-         * @returns {!Long} Negated Long
-         */
-
-    }, {
-        key: "negate",
-        value: function negate() {
-            if (!this.unsigned && this.eq(MIN_VALUE)) return MIN_VALUE;
-            return this.not().add(ONE);
-        }
-        /**
-         * Returns this Long's absolute value.
-         * @returns {!Long} Absolute Long
-         */
-
-    }, {
-        key: "absolute",
-        value: function absolute() {
-            if (!this.unsigned && this.isNegative()) return this.negate();else return this;
-        }
-        /**
-         * Returns the sum of this and the specified
-         * @param {!Long|number|string} addend Addend
-         * @returns {!Long} Sum
-         */
-
-    }, {
-        key: "add",
-        value: function add(addend) {
-            if (!isLong(addend)) addend = fromValue(addend);
-            // Divide each number into 4 chunks of 16 bits, and then sum the chunks.
-            var a48 = this.high >>> 16;
-            var a32 = this.high & 0xFFFF;
-            var a16 = this.low >>> 16;
-            var a00 = this.low & 0xFFFF;
-            var b48 = addend.high >>> 16;
-            var b32 = addend.high & 0xFFFF;
-            var b16 = addend.low >>> 16;
-            var b00 = addend.low & 0xFFFF;
-            var c48 = 0;
-            var c32 = 0;
-            var c16 = 0;
-            var c00 = 0;
-            c00 += a00 + b00;
-            c16 += c00 >>> 16;
-            c00 &= 0xFFFF;
-            c16 += a16 + b16;
-            c32 += c16 >>> 16;
-            c16 &= 0xFFFF;
-            c32 += a32 + b32;
-            c48 += c32 >>> 16;
-            c32 &= 0xFFFF;
-            c48 += a48 + b48;
-            c48 &= 0xFFFF;
-            return fromBits(c16 << 16 | c00, c48 << 16 | c32, this.unsigned);
-        }
-        /**
-         * Returns the difference of this and the specified
-         * @param {!Long|number|string} subtrahend Subtrahend
-         * @returns {!Long} Difference
-         */
-
-    }, {
-        key: "subtract",
-        value: function subtract(subtrahend) {
-            if (!isLong(subtrahend)) subtrahend = fromValue(subtrahend);
-            return this.add(subtrahend.neg());
-        }
-        /**
-         * Returns the product of this and the specified
-         * @param {!Long|number|string} multiplier Multiplier
-         * @returns {!Long} Product
-         */
-
-    }, {
-        key: "multiply",
-        value: function multiply(multiplier) {
-            if (this.isZero()) return ZERO;
-            if (!isLong(multiplier)) multiplier = fromValue(multiplier);
-            if (multiplier.isZero()) return ZERO;
-            if (this.eq(MIN_VALUE)) return multiplier.isOdd() ? MIN_VALUE : ZERO;
-            if (multiplier.eq(MIN_VALUE)) return this.isOdd() ? MIN_VALUE : ZERO;
-            if (this.isNegative()) {
-                if (multiplier.isNegative()) return this.neg().mul(multiplier.neg());else return this.neg().mul(multiplier).neg();
-            } else if (multiplier.isNegative()) return this.mul(multiplier.neg()).neg();
-            // If both longs are small, use float multiplication
-            if (this.lt(TWO_PWR_24) && multiplier.lt(TWO_PWR_24)) return fromNumber(this.toNumber() * multiplier.toNumber(), this.unsigned);
-            // Divide each long into 4 chunks of 16 bits, and then add up 4x4 products.
-            // We can skip products that would overflow.
-            var a48 = this.high >>> 16;
-            var a32 = this.high & 0xFFFF;
-            var a16 = this.low >>> 16;
-            var a00 = this.low & 0xFFFF;
-            var b48 = multiplier.high >>> 16;
-            var b32 = multiplier.high & 0xFFFF;
-            var b16 = multiplier.low >>> 16;
-            var b00 = multiplier.low & 0xFFFF;
-            var c48 = 0;
-            var c32 = 0;
-            var c16 = 0;
-            var c00 = 0;
-            c00 += a00 * b00;
-            c16 += c00 >>> 16;
-            c00 &= 0xFFFF;
-            c16 += a16 * b00;
-            c32 += c16 >>> 16;
-            c16 &= 0xFFFF;
-            c16 += a00 * b16;
-            c32 += c16 >>> 16;
-            c16 &= 0xFFFF;
-            c32 += a32 * b00;
-            c48 += c32 >>> 16;
-            c32 &= 0xFFFF;
-            c32 += a16 * b16;
-            c48 += c32 >>> 16;
-            c32 &= 0xFFFF;
-            c32 += a00 * b32;
-            c48 += c32 >>> 16;
-            c32 &= 0xFFFF;
-            c48 += a48 * b00 + a32 * b16 + a16 * b32 + a00 * b48;
-            c48 &= 0xFFFF;
-            return fromBits(c16 << 16 | c00, c48 << 16 | c32, this.unsigned);
-        }
-        /**
-         * Returns this Long divided by the specified. The result is signed if this Long is signed or
-         *  unsigned if this Long is unsigned.
-         * @param {!Long|number|string} divisor Divisor
-         * @returns {!Long} Quotient
-         */
-
-    }, {
-        key: "divide",
-        value: function divide(divisor) {
-            if (!isLong(divisor)) divisor = fromValue(divisor);
-            if (divisor.isZero()) throw Error("division by zero");
-            if (this.isZero()) return this.unsigned ? UZERO : ZERO;
-            var rem = ZERO;
-            var res = ZERO;
-            if (!this.unsigned) {
-                // This section is only relevant for signed longs and is derived from the
-                // closure library as a whole.
-                if (this.eq(MIN_VALUE)) {
-                    if (divisor.eq(ONE) || divisor.eq(NEG_ONE)) return MIN_VALUE; // recall that -MIN_VALUE == MIN_VALUE
-                    else if (divisor.eq(MIN_VALUE)) return ONE;else {
-                            // At this point, we have |other| >= 2, so |this/other| < |MIN_VALUE|.
-                            var halfThis = this.shr(1);
-                            var approx = halfThis.div(divisor).shl(1);
-                            if (approx.eq(ZERO)) {
-                                return divisor.isNegative() ? ONE : NEG_ONE;
-                            } else {
-                                rem = this.sub(divisor.mul(approx));
-                                res = approx.add(rem.div(divisor));
-                                return res;
-                            }
-                        }
-                } else if (divisor.eq(MIN_VALUE)) return this.unsigned ? UZERO : ZERO;
-                if (this.isNegative()) {
-                    if (divisor.isNegative()) return this.neg().div(divisor.neg());
-                    return this.neg().div(divisor).neg();
-                } else if (divisor.isNegative()) return this.div(divisor.neg()).neg();
-                res = ZERO;
-            } else {
-                // The algorithm below has not been made for unsigned longs. It's therefore
-                // required to take special care of the MSB prior to running it.
-                if (!divisor.unsigned) divisor = divisor.toUnsigned();
-                if (divisor.gt(this)) return UZERO;
-                if (divisor.gt(this.shru(1))) return UONE;
-                res = UZERO;
-            }
-            // Repeat the following until the remainder is less than other:  find a
-            // floating-point that approximates remainder / other *from below*, add this
-            // into the result, and subtract it from the remainder.  It is critical that
-            // the approximate value is less than or equal to the real value so that the
-            // remainder never becomes negative.
-            rem = this;
-            while (rem.gte(divisor)) {
-                // Approximate the result of division. This may be a little greater or
-                // smaller than the actual value.
-                var _approx = Math.max(1, Math.floor(rem.toNumber() / divisor.toNumber()));
-                // We will tweak the approximate result by changing it in the 48-th digit or
-                // the smallest non-fractional digit, whichever is larger.
-                // tslint:disable-next-line:prefer-const
-                // tslint:disable-next-line:semicolon
-                var log2 = Math.ceil(Math.log(_approx) / Math.LN2);
-                var delta = log2 <= 48 ? 1 : pow_dbl(2, log2 - 48);
-                // Decrease the approximation until it is smaller than the remainder.  Note
-                // that if it is too large, the product overflows and is negative.
-                var approxRes = fromNumber(_approx);
-                var approxRem = approxRes.mul(divisor);
-                while (approxRem.isNegative() || approxRem.gt(rem)) {
-                    _approx -= delta;
-                    approxRes = fromNumber(_approx, this.unsigned);
-                    approxRem = approxRes.mul(divisor);
-                }
-                // We know the answer can't be zero... and actually, zero would cause
-                // infinite recursion since we would make no progress.
-                if (approxRes.isZero()) approxRes = ONE;
-                res = res.add(approxRes);
-                rem = rem.sub(approxRem);
-            }
-            return res;
-        }
-        /**
-         * Returns this Long modulo the specified.
-         * @param {!Long|number|string} divisor Divisor
-         * @returns {!Long} Remainder
-         */
-
-    }, {
-        key: "modulo",
-        value: function modulo(divisor) {
-            if (!isLong(divisor)) divisor = fromValue(divisor);
-            return this.sub(this.div(divisor).mul(divisor));
-        }
-        /**
-         * Returns the bitwise NOT of this
-         * @returns {!Long}
-         */
-
-    }, {
-        key: "not",
-        value: function not() {
-            return fromBits(~this.low, ~this.high, this.unsigned);
-        }
-        /**
-         * Returns the bitwise AND of this Long and the specified.
-         * @param {!Long|number|string} other Other Long
-         * @returns {!Long}
-         */
-
-    }, {
-        key: "and",
-        value: function and(other) {
-            if (!isLong(other)) other = fromValue(other);
-            return fromBits(this.low & other.low, this.high & other.high, this.unsigned);
-        }
-        /**
-         * Returns the bitwise OR of this Long and the specified.
-         * @param {!Long|number|string} other Other Long
-         * @returns {!Long}
-         */
-
-    }, {
-        key: "or",
-        value: function or(other) {
-            if (!isLong(other)) other = fromValue(other);
-            return fromBits(this.low | other.low, this.high | other.high, this.unsigned);
-        }
-        /**
-         * Returns the bitwise XOR of this Long and the given one.
-         * @param {!Long|number|string} other Other Long
-         * @returns {!Long}
-         */
-
-    }, {
-        key: "xor",
-        value: function xor(other) {
-            if (!isLong(other)) other = fromValue(other);
-            return fromBits(this.low ^ other.low, this.high ^ other.high, this.unsigned);
-        }
-        /**
-         * Returns this Long with bits shifted to the left by the given amount.
-         * @param {number|!Long} numBits Number of bits
-         * @returns {!Long} Shifted Long
-         */
-
-    }, {
-        key: "shiftLeft",
-        value: function shiftLeft(numBits) {
-            if (isLong(numBits)) numBits = numBits.toInt();
-            numBits = numBits & 63;
-            if (numBits === 0) return this;else if (numBits < 32) return fromBits(this.low << numBits, this.high << numBits | this.low >>> 32 - numBits, this.unsigned);else return fromBits(0, this.low << numBits - 32, this.unsigned);
-        }
-        /**
-         * Returns this Long with bits arithmetically shifted to the right by the given amount.
-         * @param {number|!Long} numBits Number of bits
-         * @returns {!Long} Shifted Long
-         */
-
-    }, {
-        key: "shiftRight",
-        value: function shiftRight(numBits) {
-            if (isLong(numBits)) numBits = numBits.toInt();
-            numBits = numBits & 63;
-            if (numBits === 0) return this;else if (numBits < 32) return fromBits(this.low >>> numBits | this.high << 32 - numBits, this.high >> numBits, this.unsigned);else return fromBits(this.high >> numBits - 32, this.high >= 0 ? 0 : -1, this.unsigned);
-        }
-        /**
-         * Returns this Long with bits logically shifted to the right by the given amount.
-         * @param {number|!Long} numBits Number of bits
-         * @returns {!Long} Shifted Long
-         */
-
-    }, {
-        key: "shiftRightUnsigned",
-        value: function shiftRightUnsigned(numBits) {
-            if (isLong(numBits)) numBits = numBits.toInt();
-            numBits = numBits & 63;
-            if (numBits === 0) return this;else {
-                var high = this.high;
-                if (numBits < 32) {
-                    var low = this.low;
-                    return fromBits(low >>> numBits | high << 32 - numBits, high >>> numBits, this.unsigned);
-                } else if (numBits === 32) return fromBits(high, 0, this.unsigned);else return fromBits(high >>> numBits - 32, 0, this.unsigned);
-            }
-        }
-        /**
-         * Converts this Long to signed.
-         * @returns {!Long} Signed long
-         */
-
-    }, {
-        key: "toSigned",
-        value: function toSigned() {
-            if (!this.unsigned) return this;
-            return fromBits(this.low, this.high, false);
-        }
-        /**
-         * Converts this Long to unsigned.
-         * @returns {!Long} Unsigned long
-         */
-
-    }, {
-        key: "toUnsigned",
-        value: function toUnsigned() {
-            if (this.unsigned) return this;
-            return fromBits(this.low, this.high, true);
-        }
-        /**
-         * Converts this Long to its byte representation.
-         * @param {boolean=} le Whether little or big endian, defaults to big endian
-         * @returns {!Array.<number>} Byte representation
-         */
-
-    }, {
-        key: "toBytes",
-        value: function toBytes(le) {
-            return le ? this.toBytesLE() : this.toBytesBE();
-        }
-        /**
-         * Converts this Long to its little endian byte representation.
-         * @returns {!Array.<number>} Little endian byte representation
-         */
-
-    }, {
-        key: "toBytesLE",
-        value: function toBytesLE() {
-            var hi = this.high;
-            var lo = this.low;
-            return [lo & 0xff, lo >>> 8 & 0xff, lo >>> 16 & 0xff, lo >>> 24 & 0xff, hi & 0xff, hi >>> 8 & 0xff, hi >>> 16 & 0xff, hi >>> 24 & 0xff];
-        }
-        /**
-         * Converts this Long to its big endian byte representation.
-         * @returns {!Array.<number>} Big endian byte representation
-         */
-
-    }, {
-        key: "toBytesBE",
-        value: function toBytesBE() {
-            var hi = this.high;
-            var lo = this.low;
-            return [hi >>> 24 & 0xff, hi >>> 16 & 0xff, hi >>> 8 & 0xff, hi & 0xff, lo >>> 24 & 0xff, lo >>> 16 & 0xff, lo >>> 8 & 0xff, lo & 0xff];
-        }
-    }, {
-        key: "toJSON",
-        value: function toJSON() {
-            return (!this.unsigned && !this.lessThan(0) ? "+" : "") + this.toString();
-        }
-    }, {
-        key: __WEBPACK_IMPORTED_MODULE_3__Symbol__["a" /* default */].reflection,
-        value: function value() {
-            return {
-                type: this.unsigned ? "System.UInt64" : "System.Int64",
-                interfaces: ["FSharpRecord", "System.IComparable"],
-                properties: {
-                    low: "number",
-                    high: "number",
-                    unsigned: "boolean"
-                }
-            };
-        }
-    }], [{
-        key: "ofJSON",
-        value: function ofJSON(str) {
-            return fromString(str, !/^[+-]/.test(str));
-        }
-    }]);
-
-    return Long;
-}();
-// A cache of the Long representations of small integer values.
-var INT_CACHE = {};
-// A cache of the Long representations of small unsigned integer values.
-var UINT_CACHE = {};
+Long.prototype.__isLong__;
+Object.defineProperty(Long.prototype, "__isLong__", {
+  value: true
+});
 /**
- * Tests if the specified object is a
+ * @function
  * @param {*} obj Object
  * @returns {boolean}
+ * @inner
  */
+
 function isLong(obj) {
-    return obj && obj instanceof Long;
+  return (obj && obj["__isLong__"]) === true;
 }
 /**
- * Returns a Long representing the given 32 bit integer value.
- * @param {number} value The 32 bit integer in question
- * @param {boolean=} unsigned Whether unsigned or not, defaults to `false` for signed
- * @returns {!Long} The corresponding Long value
+ * A cache of the Long representations of small integer values.
+ * @type {!Object}
+ * @inner
  */
-function fromInt(value) {
-    var unsigned = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : false;
 
-    var obj = void 0;
-    var cachedObj = void 0;
-    var cache = false;
-    if (unsigned) {
-        value >>>= 0;
-        if (0 <= value && value < 256) {
-            cache = true;
-            cachedObj = UINT_CACHE[value];
-            if (cachedObj) return cachedObj;
-        }
-        obj = fromBits(value, (value | 0) < 0 ? -1 : 0, true);
-        if (cache) UINT_CACHE[value] = obj;
-        return obj;
-    } else {
-        value |= 0;
-        if (-128 <= value && value < 128) {
-            cache = true;
-            cachedObj = INT_CACHE[value];
-            if (cachedObj) return cachedObj;
-        }
-        obj = fromBits(value, value < 0 ? -1 : 0, false);
-        if (cache) INT_CACHE[value] = obj;
-        return obj;
-    }
-}
-/**
- * Returns a Long representing the given value, provided that it is a finite number. Otherwise, zero is returned.
- * @param {number} value The number in question
- * @param {boolean=} unsigned Whether unsigned or not, defaults to `false` for signed
- * @returns {!Long} The corresponding Long value
- */
-function fromNumber(value) {
-    var unsigned = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : false;
 
-    if (isNaN(value) || !isFinite(value)) {
-        // TODO FormatException ?
-        throw new Error("Input string was not in a correct format.");
+var INT_CACHE = {};
+/**
+ * A cache of the Long representations of small unsigned integer values.
+ * @type {!Object}
+ * @inner
+ */
+
+var UINT_CACHE = {};
+/**
+ * @param {number} value
+ * @param {boolean=} unsigned
+ * @returns {!Long}
+ * @inner
+ */
+
+function fromInt(value, unsigned) {
+  var obj, cachedObj, cache;
+
+  if (unsigned) {
+    value >>>= 0;
+
+    if (cache = 0 <= value && value < 256) {
+      cachedObj = UINT_CACHE[value];
+      if (cachedObj) return cachedObj;
     }
-    if (unsigned) {
-        if (value < 0) return UZERO;
-        if (value >= TWO_PWR_64_DBL) return MAX_UNSIGNED_VALUE;
-    } else {
-        if (value <= -TWO_PWR_63_DBL) return MIN_VALUE;
-        if (value + 1 >= TWO_PWR_63_DBL) return MAX_VALUE;
+
+    obj = fromBits(value, (value | 0) < 0 ? -1 : 0, true);
+    if (cache) UINT_CACHE[value] = obj;
+    return obj;
+  } else {
+    value |= 0;
+
+    if (cache = -128 <= value && value < 128) {
+      cachedObj = INT_CACHE[value];
+      if (cachedObj) return cachedObj;
     }
-    if (value < 0) return fromNumber(-value, unsigned).neg();
-    return fromBits(value % TWO_PWR_32_DBL | 0, value / TWO_PWR_32_DBL | 0, unsigned);
+
+    obj = fromBits(value, value < 0 ? -1 : 0, false);
+    if (cache) INT_CACHE[value] = obj;
+    return obj;
+  }
 }
 /**
- * Returns a Long representing the 64 bit integer that comes by concatenating the given low and high bits. Each is
- *  assumed to use 32 bits.
- * @param {number} lowBits The low 32 bits
- * @param {number} highBits The high 32 bits
- * @param {boolean=} unsigned Whether unsigned or not, defaults to `false` for signed
- * @returns {!Long} The corresponding Long value
+ * @param {number} value
+ * @param {boolean=} unsigned
+ * @returns {!Long}
+ * @inner
  */
+
+function fromNumber(value, unsigned) {
+  if (isNaN(value)) return unsigned ? UZERO : ZERO;
+
+  if (unsigned) {
+    if (value < 0) return UZERO;
+    if (value >= TWO_PWR_64_DBL) return MAX_UNSIGNED_VALUE;
+  } else {
+    if (value <= -TWO_PWR_63_DBL) return MIN_VALUE;
+    if (value + 1 >= TWO_PWR_63_DBL) return MAX_VALUE;
+  }
+
+  if (value < 0) return op_UnaryNegation(fromNumber(-value, unsigned));
+  return fromBits(value % TWO_PWR_32_DBL | 0, value / TWO_PWR_32_DBL | 0, unsigned);
+}
+/**
+ * @param {number} value
+ * @param {boolean} unsigned
+ * @param {number} kind
+ * @returns {!Long}
+ * @inner
+ */
+
+function fromInteger(value, unsigned, kind) {
+  var x;
+  var xh = 0;
+
+  switch (kind) {
+    case 0:
+      x = value << 24 >> 24;
+      xh = x;
+      break;
+
+    case 4:
+      x = value << 24 >>> 24;
+      break;
+
+    case 1:
+      x = value << 16 >> 16;
+      xh = x;
+      break;
+
+    case 5:
+      x = value << 16 >>> 16;
+      break;
+
+    case 2:
+      x = value >> 0;
+      xh = x;
+      break;
+
+    case 6:
+      x = value >>> 0;
+  }
+
+  return fromBits(x, xh >> 31, unsigned);
+}
+/**
+ * @param {number} lowBits
+ * @param {number} highBits
+ * @param {boolean=} unsigned
+ * @returns {!Long}
+ * @inner
+ */
+
 function fromBits(lowBits, highBits, unsigned) {
-    return new Long(lowBits, highBits, unsigned);
+  return new Long(lowBits, highBits, unsigned);
 }
 /**
+ * @function
  * @param {number} base
  * @param {number} exponent
  * @returns {number}
+ * @inner
  */
-var pow_dbl = Math.pow; // Used 4 times (4*8 to 15+4)
-/**
- * Returns a Long representation of the given string, written using the specified radix.
- * @param {string} str The textual representation of the Long
- * @param {(boolean|number)=} unsigned Whether unsigned or not, defaults to `false` for signed
- * @param {number=} radix The radix in which the text is written (2-36), defaults to 10
- * @returns {!Long} The corresponding Long value
- */
-function fromString(str) {
-    var unsigned = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : false;
-    var radix = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : 10;
 
-    if (Object(__WEBPACK_IMPORTED_MODULE_2__Int32__["a" /* isValid */])(str, radix) === null) {
-        // TODO FormatException ?
-        throw new Error("Input string was not in a correct format.");
-    }
-    if (str.length === 0) throw Error("empty string");
-    if (str === "NaN" || str === "Infinity" || str === "+Infinity" || str === "-Infinity") return ZERO;
-    if (typeof unsigned === "number") {
-        // For goog.math.long compatibility
-        radix = unsigned, unsigned = false;
+var pow_dbl = Math.pow; // Used 4 times (4*8 to 15+4)
+
+/**
+ * @param {string} str
+ * @param {(boolean|number)=} unsigned
+ * @param {number=} radix
+ * @returns {!Long}
+ * @inner
+ */
+
+function fromString(str, unsigned, radix) {
+  if (str.length === 0) throw Error("empty string");
+  if (str === "NaN" || str === "Infinity" || str === "+Infinity" || str === "-Infinity") return ZERO;
+
+  if (typeof unsigned === "number") {
+    // For goog.math.long compatibility
+    radix = unsigned, unsigned = false;
+  } else {
+    unsigned = !!unsigned;
+  }
+
+  radix = radix || 10;
+  if (radix < 2 || 36 < radix) throw RangeError("radix");
+  var p = str.indexOf("-");
+  if (p > 0) throw Error("interior hyphen");else if (p === 0) {
+    return op_UnaryNegation(fromString(str.substring(1), unsigned, radix));
+  } // Do several (8) digits each time through the loop, so as to
+  // minimize the calls to the very expensive emulated div.
+
+  var radixToPower = fromNumber(pow_dbl(radix, 8));
+  var result = ZERO;
+
+  for (var i = 0; i < str.length; i += 8) {
+    var size = Math.min(8, str.length - i),
+        value = parseInt(str.substring(i, i + size), radix);
+
+    if (size < 8) {
+      var power = fromNumber(pow_dbl(radix, size));
+      result = op_Addition(op_Multiply(result, power), fromNumber(value));
     } else {
-        unsigned = !!unsigned;
+      result = op_Multiply(result, radixToPower);
+      result = op_Addition(result, fromNumber(value));
     }
-    radix = radix || 10;
-    if (radix < 2 || 36 < radix) throw RangeError("radix");
-    var p = str.indexOf("-");
-    if (p > 0) throw Error("interior hyphen");else if (p === 0) {
-        return fromString(str.substring(1), unsigned, radix).neg();
+  }
+
+  result.unsigned = unsigned;
+  return result;
+}
+
+function getMaxValue(unsigned, radix, isNegative) {
+  switch (radix) {
+    case 2:
+      return unsigned ? "1111111111111111111111111111111111111111111111111111111111111111" : isNegative ? "1000000000000000000000000000000000000000000000000000000000000000" : "111111111111111111111111111111111111111111111111111111111111111";
+
+    case 8:
+      return unsigned ? "1777777777777777777777" : isNegative ? "1000000000000000000000" : "777777777777777777777";
+
+    case 10:
+      return unsigned ? "18446744073709551615" : isNegative ? "9223372036854775808" : "9223372036854775807";
+
+    case 16:
+      return unsigned ? "FFFFFFFFFFFFFFFF" : isNegative ? "8000000000000000" : "7FFFFFFFFFFFFFFF";
+
+    default:
+      throw new Error("Invalid radix.");
+  }
+}
+
+function parse(str, style, unsigned, bitsize, radix) {
+  var res = Object(_Int32__WEBPACK_IMPORTED_MODULE_0__["isValid"])(str, style, radix);
+
+  if (res != null) {
+    var lessOrEqual = function lessOrEqual(x, y) {
+      var len = Math.max(x.length, y.length);
+      return x.padStart(len, "0") <= maxValue.padStart(len, "0");
+    };
+
+    var _isNegative = res.sign === "-";
+
+    var maxValue = getMaxValue(unsigned || res.radix !== 10, res.radix, _isNegative);
+
+    if (lessOrEqual(res.digits, maxValue)) {
+      str = _isNegative ? res.sign + res.digits : res.digits;
+      return fromString(str, unsigned, res.radix);
     }
-    // Do several (8) digits each time through the loop, so as to
-    // minimize the calls to the very expensive emulated div.
-    var radixToPower = fromNumber(pow_dbl(radix, 8));
-    var result = ZERO;
-    for (var i = 0; i < str.length; i += 8) {
-        var size = Math.min(8, str.length - i);
-        var value = parseInt(str.substring(i, i + size), radix);
-        if (size < 8) {
-            var power = fromNumber(pow_dbl(radix, size));
-            result = result.mul(power).add(fromNumber(value));
-        } else {
-            result = result.mul(radixToPower);
-            result = result.add(fromNumber(value));
-        }
-    }
-    result.unsigned = unsigned;
-    return result;
+  }
+
+  throw new Error("Input string was not in a correct format.");
+}
+function tryParse(str, style, unsigned, bitsize) {
+  try {
+    var v = parse(str, style, unsigned, bitsize);
+    return [true, v];
+  } catch (_a) {// supress error
+  }
+
+  return [false, ZERO];
 }
 /**
- * Converts the specified value to a
- * @param {!Long|number|string|!{low: number, high: number, unsigned: boolean}} val Value
+ * @function
+ * @param {!Long|number|string|!{low: number, high: number, unsigned: boolean}} val
+ * @param {boolean=} unsigned
  * @returns {!Long}
+ * @inner
  */
-function fromValue(val) {
-    if (val /* is compatible */ instanceof Long) return val;
-    if (typeof val === "number") return fromNumber(val);
-    if (typeof val === "string") return fromString(val);
-    // Throws for non-objects, converts non-instanceof Long:
-    return fromBits(val.low, val.high, val.unsigned);
-}
-// NOTE: the compiler should inline these constant values below and then remove these variables, so there should be
+
+function fromValue(val, unsigned) {
+  if (typeof val === "number") return fromNumber(val, unsigned);
+  if (typeof val === "string") return fromString(val, unsigned); // Throws for non-objects, converts non-instanceof Long:
+
+  return fromBits(val.low, val.high, typeof unsigned === "boolean" ? unsigned : val.unsigned);
+} // NOTE: the compiler should inline these constant values below and then remove these variables, so there should be
 // no runtime penalty for these.
+
+/**
+ * @type {number}
+ * @const
+ * @inner
+ */
+
 var TWO_PWR_16_DBL = 1 << 16;
+/**
+ * @type {number}
+ * @const
+ * @inner
+ */
+
 var TWO_PWR_24_DBL = 1 << 24;
+/**
+ * @type {number}
+ * @const
+ * @inner
+ */
+
 var TWO_PWR_32_DBL = TWO_PWR_16_DBL * TWO_PWR_16_DBL;
+/**
+ * @type {number}
+ * @const
+ * @inner
+ */
+
 var TWO_PWR_64_DBL = TWO_PWR_32_DBL * TWO_PWR_32_DBL;
+/**
+ * @type {number}
+ * @const
+ * @inner
+ */
+
 var TWO_PWR_63_DBL = TWO_PWR_64_DBL / 2;
+/**
+ * @type {!Long}
+ * @const
+ * @inner
+ */
+
 var TWO_PWR_24 = fromInt(TWO_PWR_24_DBL);
 /**
- * Signed zero.
  * @type {!Long}
+ * @inner
  */
+
 var ZERO = fromInt(0);
 /**
- * Unsigned zero.
  * @type {!Long}
+ * @inner
  */
+
 var UZERO = fromInt(0, true);
 /**
- * Signed one.
  * @type {!Long}
+ * @inner
  */
+
 var ONE = fromInt(1);
 /**
- * Unsigned one.
  * @type {!Long}
+ * @inner
  */
+
 var UONE = fromInt(1, true);
 /**
- * Signed negative one.
  * @type {!Long}
+ * @inner
  */
+
 var NEG_ONE = fromInt(-1);
 /**
- * Maximum signed value.
  * @type {!Long}
+ * @inner
  */
+
 var MAX_VALUE = fromBits(0xFFFFFFFF | 0, 0x7FFFFFFF | 0, false);
 /**
- * Maximum unsigned value.
  * @type {!Long}
+ * @inner
  */
+
 var MAX_UNSIGNED_VALUE = fromBits(0xFFFFFFFF | 0, 0xFFFFFFFF | 0, true);
 /**
- * Minimum signed value.
  * @type {!Long}
+ * @inner
  */
+
 var MIN_VALUE = fromBits(0, 0x80000000 | 0, false);
+/**
+ * Converts the Long to a 32 bit integer, assuming it is a 32 bit integer.
+ * @returns {number}
+ */
+
+function toInt($this) {
+  return $this.unsigned ? $this.low >>> 0 : $this.low;
+}
+;
+/**
+ * Converts the Long to a the nearest floating-point representation of this value (double, 53 bit mantissa).
+ * @returns {number}
+ */
+
+function toNumber($this) {
+  if ($this.unsigned) return ($this.high >>> 0) * TWO_PWR_32_DBL + ($this.low >>> 0);
+  return $this.high * TWO_PWR_32_DBL + ($this.low >>> 0);
+}
+;
+/**
+ * Converts the Long to a string written in the specified radix.
+ * @param {number=} radix Radix (2-36), defaults to 10
+ * @returns {string}
+ * @override
+ * @throws {RangeError} If `radix` is out of range
+ */
+
+function toString($this, radix) {
+  radix = radix || 10;
+  if (radix < 2 || 36 < radix) throw RangeError("radix");
+  if (isZero($this)) return "0";
+
+  if (isNegative($this)) {
+    // Unsigned Longs are never negative
+    if (equals($this, MIN_VALUE)) {
+      // We need to change the Long value before it can be negated, so we remove
+      // the bottom-most digit in this base and then recurse to do the rest.
+      var radixLong = fromNumber(radix),
+          div = op_Division($this, radixLong),
+          rem1 = op_Subtraction(op_Multiply(div, radixLong), $this);
+      return toString(div, radix) + toInt(rem1).toString(radix);
+    } else return "-" + toString(op_UnaryNegation($this), radix);
+  } // Do several (6) digits each time through the loop, so as to
+  // minimize the calls to the very expensive emulated div.
+
+
+  var radixToPower = fromNumber(pow_dbl(radix, 6), $this.unsigned),
+      rem = $this;
+  var result = "";
+
+  while (true) {
+    var remDiv = op_Division(rem, radixToPower),
+        intval = toInt(op_Subtraction(rem, op_Multiply(remDiv, radixToPower))) >>> 0,
+        digits = intval.toString(radix);
+    rem = remDiv;
+    if (isZero(rem)) return digits + result;else {
+      while (digits.length < 6) {
+        digits = "0" + digits;
+      }
+
+      result = "" + digits + result;
+    }
+  }
+}
+;
+/**
+ * Gets the high 32 bits as a signed integer.
+ * @returns {number} Signed high bits
+ */
+
+function getHighBits($this) {
+  return $this.high;
+}
+;
+/**
+ * Gets the high 32 bits as an unsigned integer.
+ * @returns {number} Unsigned high bits
+ */
+
+function getHighBitsUnsigned($this) {
+  return $this.high >>> 0;
+}
+;
+/**
+ * Gets the low 32 bits as a signed integer.
+ * @returns {number} Signed low bits
+ */
+
+function getLowBits($this) {
+  return $this.low;
+}
+;
+/**
+ * Gets the low 32 bits as an unsigned integer.
+ * @returns {number} Unsigned low bits
+ */
+
+function getLowBitsUnsigned($this) {
+  return $this.low >>> 0;
+}
+;
+/**
+ * Gets the number of bits needed to represent the absolute value of this Long.
+ * @returns {number}
+ */
+
+function getNumBitsAbs($this) {
+  if (isNegative($this)) // Unsigned Longs are never negative
+    return equals($this, MIN_VALUE) ? 64 : getNumBitsAbs(op_UnaryNegation($this));
+  var val = $this.high != 0 ? $this.high : $this.low;
+
+  for (var bit = 31; bit > 0; bit--) {
+    if ((val & 1 << bit) != 0) break;
+  }
+
+  return $this.high != 0 ? bit + 33 : bit + 1;
+}
+;
+/**
+ * Tests if this Long's value equals zero.
+ * @returns {boolean}
+ */
+
+function isZero($this) {
+  return $this.high === 0 && $this.low === 0;
+}
+;
+/**
+ * Tests if this Long's value is negative.
+ * @returns {boolean}
+ */
+
+function isNegative($this) {
+  return !$this.unsigned && $this.high < 0;
+}
+;
+/**
+ * Tests if this Long's value is positive.
+ * @returns {boolean}
+ */
+
+function isPositive($this) {
+  return $this.unsigned || $this.high >= 0;
+}
+;
+/**
+ * Tests if this Long's value is odd.
+ * @returns {boolean}
+ */
+
+function isOdd($this) {
+  return ($this.low & 1) === 1;
+}
+;
+/**
+ * Tests if this Long's value is even.
+ * @returns {boolean}
+ */
+
+function isEven($this) {
+  return ($this.low & 1) === 0;
+}
+;
+/**
+ * Tests if this Long's value equals the specified's.
+ * @param {!Long|number|string} other Other value
+ * @returns {boolean}
+ */
+
+function equals($this, other) {
+  if (!isLong(other)) other = fromValue(other);
+  if ($this.unsigned !== other.unsigned && $this.high >>> 31 === 1 && other.high >>> 31 === 1) return false;
+  return $this.high === other.high && $this.low === other.low;
+}
+;
+/**
+ * Tests if this Long's value differs from the specified's.
+ * @param {!Long|number|string} other Other value
+ * @returns {boolean}
+ */
+
+function notEquals($this, other) {
+  return !equals($this,
+  /* validates */
+  other);
+}
+;
+/**
+ * Tests if this Long's value is less than the specified's.
+ * @param {!Long|number|string} other Other value
+ * @returns {boolean}
+ */
+
+function lessThan($this, other) {
+  return compare($this,
+  /* validates */
+  other) < 0;
+}
+;
+/**
+ * Tests if this Long's value is less than or equal the specified's.
+ * @param {!Long|number|string} other Other value
+ * @returns {boolean}
+ */
+
+function lessThanOrEqual($this, other) {
+  return compare($this,
+  /* validates */
+  other) <= 0;
+}
+;
+/**
+ * Tests if this Long's value is greater than the specified's.
+ * @param {!Long|number|string} other Other value
+ * @returns {boolean}
+ */
+
+function greaterThan($this, other) {
+  return compare($this,
+  /* validates */
+  other) > 0;
+}
+;
+/**
+ * Tests if this Long's value is greater than or equal the specified's.
+ * @param {!Long|number|string} other Other value
+ * @returns {boolean}
+ */
+
+function greaterThanOrEqual($this, other) {
+  return compare($this,
+  /* validates */
+  other) >= 0;
+}
+;
+/**
+ * Compares this Long's value with the specified's.
+ * @param {!Long|number|string} other Other value
+ * @returns {number} 0 if they are the same, 1 if the this is greater and -1
+ *  if the given one is greater
+ */
+
+function compare($this, other) {
+  if (!isLong(other)) other = fromValue(other);
+  if (equals($this, other)) return 0;
+  var thisNeg = isNegative($this),
+      otherNeg = isNegative(other);
+  if (thisNeg && !otherNeg) return -1;
+  if (!thisNeg && otherNeg) return 1; // At this point the sign bits are the same
+
+  if (!$this.unsigned) return isNegative(op_Subtraction($this, other)) ? -1 : 1; // Both are positive if at least one is unsigned
+
+  return other.high >>> 0 > $this.high >>> 0 || other.high === $this.high && other.low >>> 0 > $this.low >>> 0 ? -1 : 1;
+}
+;
+/**
+ * Absolute value of the given number.
+ */
+
+function abs($this) {
+  if (!$this.unsigned && isNegative($this)) return op_UnaryNegation($this);else return $this;
+}
+/**
+ * Negates this Long's value.
+ * @returns {!Long} Negated Long
+ */
+
+function op_UnaryNegation($this) {
+  if (!$this.unsigned && equals($this, MIN_VALUE)) return MIN_VALUE;
+  return op_Addition(op_LogicalNot($this), ONE);
+}
+;
+/**
+ * Returns the sum of this and the specified Long.
+ * @param {!Long|number|string} addend Addend
+ * @returns {!Long} Sum
+ */
+
+function op_Addition($this, addend) {
+  if (!isLong(addend)) addend = fromValue(addend); // Divide each number into 4 chunks of 16 bits, and then sum the chunks.
+
+  var a48 = $this.high >>> 16;
+  var a32 = $this.high & 0xFFFF;
+  var a16 = $this.low >>> 16;
+  var a00 = $this.low & 0xFFFF;
+  var b48 = addend.high >>> 16;
+  var b32 = addend.high & 0xFFFF;
+  var b16 = addend.low >>> 16;
+  var b00 = addend.low & 0xFFFF;
+  var c48 = 0,
+      c32 = 0,
+      c16 = 0,
+      c00 = 0;
+  c00 += a00 + b00;
+  c16 += c00 >>> 16;
+  c00 &= 0xFFFF;
+  c16 += a16 + b16;
+  c32 += c16 >>> 16;
+  c16 &= 0xFFFF;
+  c32 += a32 + b32;
+  c48 += c32 >>> 16;
+  c32 &= 0xFFFF;
+  c48 += a48 + b48;
+  c48 &= 0xFFFF;
+  return fromBits(c16 << 16 | c00, c48 << 16 | c32, $this.unsigned);
+}
+;
+/**
+ * Returns the difference of this and the specified Long.
+ * @param {!Long|number|string} subtrahend Subtrahend
+ * @returns {!Long} Difference
+ */
+
+function op_Subtraction($this, subtrahend) {
+  if (!isLong(subtrahend)) subtrahend = fromValue(subtrahend);
+  return op_Addition($this, op_UnaryNegation(subtrahend));
+}
+;
+/**
+ * Returns the product of this and the specified Long.
+ * @param {!Long|number|string} multiplier Multiplier
+ * @returns {!Long} Product
+ */
+
+function op_Multiply($this, multiplier) {
+  if (isZero($this)) return $this.unsigned ? UZERO : ZERO;
+  if (!isLong(multiplier)) multiplier = fromValue(multiplier); // use wasm support if present
+
+  if (wasm) {
+    var low = wasm.mul($this.low, $this.high, multiplier.low, multiplier.high);
+    return fromBits(low, wasm.get_high(), $this.unsigned);
+  }
+
+  if (isZero(multiplier)) return $this.unsigned ? UZERO : ZERO;
+  if (equals($this, MIN_VALUE)) return isOdd(multiplier) ? MIN_VALUE : ZERO;
+  if (equals(multiplier, MIN_VALUE)) return isOdd($this) ? MIN_VALUE : ZERO;
+
+  if (isNegative($this)) {
+    if (isNegative(multiplier)) return op_Multiply(op_UnaryNegation($this), op_UnaryNegation(multiplier));else return op_UnaryNegation(op_Multiply(op_UnaryNegation($this), multiplier));
+  } else if (isNegative(multiplier)) return op_UnaryNegation(op_Multiply($this, op_UnaryNegation(multiplier))); // If both longs are small, use float multiplication
+
+
+  if (lessThan($this, TWO_PWR_24) && lessThan(multiplier, TWO_PWR_24)) return fromNumber(toNumber($this) * toNumber(multiplier), $this.unsigned); // Divide each long into 4 chunks of 16 bits, and then add up 4x4 products.
+  // We can skip products that would overflow.
+
+  var a48 = $this.high >>> 16;
+  var a32 = $this.high & 0xFFFF;
+  var a16 = $this.low >>> 16;
+  var a00 = $this.low & 0xFFFF;
+  var b48 = multiplier.high >>> 16;
+  var b32 = multiplier.high & 0xFFFF;
+  var b16 = multiplier.low >>> 16;
+  var b00 = multiplier.low & 0xFFFF;
+  var c48 = 0,
+      c32 = 0,
+      c16 = 0,
+      c00 = 0;
+  c00 += a00 * b00;
+  c16 += c00 >>> 16;
+  c00 &= 0xFFFF;
+  c16 += a16 * b00;
+  c32 += c16 >>> 16;
+  c16 &= 0xFFFF;
+  c16 += a00 * b16;
+  c32 += c16 >>> 16;
+  c16 &= 0xFFFF;
+  c32 += a32 * b00;
+  c48 += c32 >>> 16;
+  c32 &= 0xFFFF;
+  c32 += a16 * b16;
+  c48 += c32 >>> 16;
+  c32 &= 0xFFFF;
+  c32 += a00 * b32;
+  c48 += c32 >>> 16;
+  c32 &= 0xFFFF;
+  c48 += a48 * b00 + a32 * b16 + a16 * b32 + a00 * b48;
+  c48 &= 0xFFFF;
+  return fromBits(c16 << 16 | c00, c48 << 16 | c32, $this.unsigned);
+}
+;
+/**
+ * Returns this Long divided by the specified. The result is signed if this Long is signed or
+ *  unsigned if this Long is unsigned.
+ * @param {!Long|number|string} divisor Divisor
+ * @returns {!Long} Quotient
+ */
+
+function op_Division($this, divisor) {
+  if (!isLong(divisor)) divisor = fromValue(divisor);
+  if (isZero(divisor)) throw Error("division by zero"); // use wasm support if present
+
+  if (wasm) {
+    // guard against signed division overflow: the largest
+    // negative number / -1 would be 1 larger than the largest
+    // positive number, due to two's complement.
+    if (!$this.unsigned && $this.high === -0x80000000 && divisor.low === -1 && divisor.high === -1) {
+      // be consistent with non-wasm code path
+      return $this;
+    }
+
+    var low = ($this.unsigned ? wasm.div_u : wasm.div_s)($this.low, $this.high, divisor.low, divisor.high);
+    return fromBits(low, wasm.get_high(), $this.unsigned);
+  }
+
+  if (isZero($this)) return $this.unsigned ? UZERO : ZERO;
+  var approx, rem, res;
+
+  if (!$this.unsigned) {
+    // This section is only relevant for signed longs and is derived from the
+    // closure library as a whole.
+    if (equals($this, MIN_VALUE)) {
+      if (equals(divisor, ONE) || equals(divisor, NEG_ONE)) return MIN_VALUE; // recall that -MIN_VALUE == MIN_VALUE
+      else if (equals(divisor, MIN_VALUE)) return ONE;else {
+          // At this point, we have |other| >= 2, so |this/other| < |MIN_VALUE|.
+          var halfThis = op_RightShift($this, 1);
+          approx = op_LeftShift(op_Division(halfThis, divisor), 1);
+
+          if (equals(approx, ZERO)) {
+            return isNegative(divisor) ? ONE : NEG_ONE;
+          } else {
+            rem = op_Subtraction($this, op_Multiply(divisor, approx));
+            res = op_Addition(approx, op_Division(rem, divisor));
+            return res;
+          }
+        }
+    } else if (equals(divisor, MIN_VALUE)) return $this.unsigned ? UZERO : ZERO;
+
+    if (isNegative($this)) {
+      if (isNegative(divisor)) return op_Division(op_UnaryNegation($this), op_UnaryNegation(divisor));
+      return op_UnaryNegation(op_Division(op_UnaryNegation($this), divisor));
+    } else if (isNegative(divisor)) return op_UnaryNegation(op_Division($this, op_UnaryNegation(divisor)));
+
+    res = ZERO;
+  } else {
+    // The algorithm below has not been made for unsigned longs. It's therefore
+    // required to take special care of the MSB prior to running it.
+    if (!divisor.unsigned) divisor = toUnsigned(divisor);
+    if (greaterThan(divisor, $this)) return UZERO;
+    if (greaterThan(divisor, op_RightShiftUnsigned($this, 1))) // 15 >>> 1 = 7 ; with divisor = 8 ; true
+      return UONE;
+    res = UZERO;
+  } // Repeat the following until the remainder is less than other:  find a
+  // floating-point that approximates remainder / other *from below*, add this
+  // into the result, and subtract it from the remainder.  It is critical that
+  // the approximate value is less than or equal to the real value so that the
+  // remainder never becomes negative.
+
+
+  rem = $this;
+
+  while (greaterThanOrEqual(rem, divisor)) {
+    // Approximate the result of division. This may be a little greater or
+    // smaller than the actual value.
+    approx = Math.max(1, Math.floor(toNumber(rem) / toNumber(divisor))); // We will tweak the approximate result by changing it in the 48-th digit or
+    // the smallest non-fractional digit, whichever is larger.
+
+    var log2 = Math.ceil(Math.log(approx) / Math.LN2),
+        delta = log2 <= 48 ? 1 : pow_dbl(2, log2 - 48),
+        // Decrease the approximation until it is smaller than the remainder.  Note
+    // that if it is too large, the product overflows and is negative.
+    approxRes = fromNumber(approx),
+        approxRem = op_Multiply(approxRes, divisor);
+
+    while (isNegative(approxRem) || greaterThan(approxRem, rem)) {
+      approx -= delta;
+      approxRes = fromNumber(approx, $this.unsigned);
+      approxRem = op_Multiply(approxRes, divisor);
+    } // We know the answer can't be zero... and actually, zero would cause
+    // infinite recursion since we would make no progress.
+
+
+    if (isZero(approxRes)) approxRes = ONE;
+    res = op_Addition(res, approxRes);
+    rem = op_Subtraction(rem, approxRem);
+  }
+
+  return res;
+}
+;
+/**
+ * Returns this Long modulo the specified.
+ * @param {!Long|number|string} divisor Divisor
+ * @returns {!Long} Remainder
+ */
+
+function op_Modulus($this, divisor) {
+  if (!isLong(divisor)) divisor = fromValue(divisor); // use wasm support if present
+
+  if (wasm) {
+    var low = ($this.unsigned ? wasm.rem_u : wasm.rem_s)($this.low, $this.high, divisor.low, divisor.high);
+    return fromBits(low, wasm.get_high(), $this.unsigned);
+  }
+
+  return op_Subtraction($this, op_Multiply(op_Division($this, divisor), divisor));
+}
+;
+/**
+ * Returns the bitwise NOT of this Long.
+ * @returns {!Long}
+ */
+
+function op_LogicalNot($this) {
+  return fromBits(~$this.low, ~$this.high, $this.unsigned);
+}
+;
+/**
+ * Returns the bitwise AND of this Long and the specified.
+ * @param {!Long|number|string} other Other Long
+ * @returns {!Long}
+ */
+
+function op_BitwiseAnd($this, other) {
+  if (!isLong(other)) other = fromValue(other);
+  return fromBits($this.low & other.low, $this.high & other.high, $this.unsigned);
+}
+;
+/**
+ * Returns the bitwise OR of this Long and the specified.
+ * @param {!Long|number|string} other Other Long
+ * @returns {!Long}
+ */
+
+function op_BitwiseOr($this, other) {
+  if (!isLong(other)) other = fromValue(other);
+  return fromBits($this.low | other.low, $this.high | other.high, $this.unsigned);
+}
+;
+/**
+ * Returns the bitwise XOR of this Long and the given one.
+ * @param {!Long|number|string} other Other Long
+ * @returns {!Long}
+ */
+
+function op_ExclusiveOr($this, other) {
+  if (!isLong(other)) other = fromValue(other);
+  return fromBits($this.low ^ other.low, $this.high ^ other.high, $this.unsigned);
+}
+;
+/**
+ * Returns this Long with bits shifted to the left by the given amount.
+ * @param {number|!Long} numBits Number of bits
+ * @returns {!Long} Shifted Long
+ */
+
+function op_LeftShift($this, numBits) {
+  if (isLong(numBits)) numBits = toInt(numBits);
+  if ((numBits &= 63) === 0) return $this;else if (numBits < 32) return fromBits($this.low << numBits, $this.high << numBits | $this.low >>> 32 - numBits, $this.unsigned);else return fromBits(0, $this.low << numBits - 32, $this.unsigned);
+}
+;
+/**
+ * Returns this Long with bits arithmetically shifted to the right by the given amount.
+ * @param {number|!Long} numBits Number of bits
+ * @returns {!Long} Shifted Long
+ */
+
+function op_RightShift($this, numBits) {
+  if (isLong(numBits)) numBits = toInt(numBits);
+  if ((numBits &= 63) === 0) return $this;else if (numBits < 32) return fromBits($this.low >>> numBits | $this.high << 32 - numBits, $this.high >> numBits, $this.unsigned);else return fromBits($this.high >> numBits - 32, $this.high >= 0 ? 0 : -1, $this.unsigned);
+}
+;
+/**
+ * Returns this Long with bits logically shifted to the right by the given amount.
+ * @param {number|!Long} numBits Number of bits
+ * @returns {!Long} Shifted Long
+ */
+
+function op_RightShiftUnsigned($this, numBits) {
+  if (isLong(numBits)) numBits = toInt(numBits);
+  numBits &= 63;
+  if (numBits === 0) return $this;else {
+    var high = $this.high;
+
+    if (numBits < 32) {
+      var low = $this.low;
+      return fromBits(low >>> numBits | high << 32 - numBits, high >>> numBits, $this.unsigned);
+    } else if (numBits === 32) return fromBits(high, 0, $this.unsigned);else return fromBits(high >>> numBits - 32, 0, $this.unsigned);
+  }
+}
+;
+/**
+ * Converts this Long to signed.
+ * @returns {!Long} Signed long
+ */
+
+function toSigned($this) {
+  if (!$this.unsigned) return $this;
+  return fromBits($this.low, $this.high, false);
+}
+;
+/**
+ * Converts this Long to unsigned.
+ * @returns {!Long} Unsigned long
+ */
+
+function toUnsigned($this) {
+  if ($this.unsigned) return $this;
+  return fromBits($this.low, $this.high, true);
+}
+;
+/**
+ * Converts this Long to its byte representation.
+ * @param {boolean=} le Whether little or big endian, defaults to big endian
+ * @returns {!Array.<number>} Byte representation
+ */
+
+function toBytes($this, le) {
+  return le ? toBytesLE($this) : toBytesBE($this);
+}
+;
+/**
+ * Converts this Long to its little endian byte representation.
+ * @returns {!Array.<number>} Little endian byte representation
+ */
+
+function toBytesLE($this) {
+  var hi = $this.high,
+      lo = $this.low;
+  return [lo & 0xff, lo >>> 8 & 0xff, lo >>> 16 & 0xff, lo >>> 24, hi & 0xff, hi >>> 8 & 0xff, hi >>> 16 & 0xff, hi >>> 24];
+}
+;
+/**
+ * Converts this Long to its big endian byte representation.
+ * @returns {!Array.<number>} Big endian byte representation
+ */
+
+function toBytesBE($this) {
+  var hi = $this.high,
+      lo = $this.low;
+  return [hi >>> 24, hi >>> 16 & 0xff, hi >>> 8 & 0xff, hi & 0xff, lo >>> 24, lo >>> 16 & 0xff, lo >>> 8 & 0xff, lo & 0xff];
+}
+;
+/**
+ * Creates a Long from its byte representation.
+ * @param {!Array.<number>} bytes Byte representation
+ * @param {boolean=} unsigned Whether unsigned or not, defaults to signed
+ * @param {boolean=} le Whether little or big endian, defaults to big endian
+ * @returns {Long} The corresponding Long value
+ */
+
+function fromBytes(bytes, unsigned, le) {
+  return le ? fromBytesLE(bytes, unsigned) : fromBytesBE(bytes, unsigned);
+}
+;
+/**
+ * Creates a Long from its little endian byte representation.
+ * @param {!Array.<number>} bytes Little endian byte representation
+ * @param {boolean=} unsigned Whether unsigned or not, defaults to signed
+ * @returns {Long} The corresponding Long value
+ */
+
+function fromBytesLE(bytes, unsigned) {
+  return new Long(bytes[0] | bytes[1] << 8 | bytes[2] << 16 | bytes[3] << 24, bytes[4] | bytes[5] << 8 | bytes[6] << 16 | bytes[7] << 24, unsigned);
+}
+;
+/**
+ * Creates a Long from its big endian byte representation.
+ * @param {!Array.<number>} bytes Big endian byte representation
+ * @param {boolean=} unsigned Whether unsigned or not, defaults to signed
+ * @returns {Long} The corresponding Long value
+ */
+
+function fromBytesBE(bytes, unsigned) {
+  return new Long(bytes[4] << 24 | bytes[5] << 16 | bytes[6] << 8 | bytes[7], bytes[0] << 24 | bytes[1] << 16 | bytes[2] << 8 | bytes[3], unsigned);
+}
+;
+function unixEpochMillisecondsToTicks(ms, offset) {
+  return op_Multiply(op_Addition(op_Addition(fromNumber(ms), 62135596800000), offset), 10000);
+}
+function ticksToUnixEpochMilliseconds(ticks) {
+  return toNumber(op_Subtraction(op_Division(ticks, 10000), 62135596800000));
+}
+function makeRangeStepFunction(step, last, unsigned) {
+  var zero = unsigned ? UZERO : ZERO;
+  return function (x) {
+    return greaterThan(step, zero) && lessThanOrEqual(x, last) || lessThan(step, zero) && greaterThanOrEqual(x, last) ? [x, op_Addition(x, step)] : null;
+  };
+}
 
 /***/ }),
-/* 76 */
-/***/ (function(module, exports) {
 
-module.exports = require("path");
-
-/***/ }),
-/* 77 */
+/***/ "./.fable/fable-library.2.2.3/Map.js":
+/*!*******************************************!*\
+  !*** ./.fable/fable-library.2.2.3/Map.js ***!
+  \*******************************************/
+/*! exports provided: MapTree$00602, MapTree$00602$reflection, MapTreeModule$$$sizeAux, MapTreeModule$$$size, MapTreeModule$$$empty, MapTreeModule$$$height, MapTreeModule$$$isEmpty, MapTreeModule$$$mk, MapTreeModule$$$rebalance, MapTreeModule$$$add, MapTreeModule$$$find, MapTreeModule$$$tryFind, MapTreeModule$$$partition1, MapTreeModule$$$partitionAux, MapTreeModule$$$partition, MapTreeModule$$$filter1, MapTreeModule$$$filterAux, MapTreeModule$$$filter, MapTreeModule$$$spliceOutSuccessor, MapTreeModule$$$remove, MapTreeModule$$$mem, MapTreeModule$$$iter, MapTreeModule$$$tryPick, MapTreeModule$$$exists, MapTreeModule$$$forall, MapTreeModule$$$map, MapTreeModule$$$mapi, MapTreeModule$$$foldBack, MapTreeModule$$$fold, MapTreeModule$$$foldFromTo, MapTreeModule$$$foldSection, MapTreeModule$$$loop, MapTreeModule$$$toList, MapTreeModule$$$ofList, MapTreeModule$$$mkFromEnumerator, MapTreeModule$$$ofArray, MapTreeModule$$$ofSeq, MapTreeModule$$$copyToArray, MapTreeModule$002EMapIterator$00602, MapTreeModule$002EMapIterator$00602$reflection, MapTreeModule$$$collapseLHS, MapTreeModule$$$mkIterator, MapTreeModule$$$notStarted, MapTreeModule$$$alreadyFinished, MapTreeModule$$$current, MapTreeModule$$$moveNext, MapTreeModule$002EmkIEnumerator$0027$00602, MapTreeModule$002EmkIEnumerator$0027$00602$reflection, MapTreeModule$002EmkIEnumerator$0027$00602$$$$002Ector$$Z26BC498C, MapTreeModule$$$mkIEnumerator, MapTreeModule$$$toSeq, FSharpMap, FSharpMap$reflection, FSharpMap$$$$002Ector$$58ADD115, FSharpMap$$get_Comparer, FSharpMap$$get_Tree, FSharpMap$$Add$$5BDDA1, FSharpMap$$get_IsEmpty, FSharpMap$$get_Item$$2B595, FSharpMap$$TryGetValue$$5BDDA1, FSharpMap$$TryPick$$72321DD7, FSharpMap$$Exists$$Z395DDC35, FSharpMap$$Filter$$Z395DDC35, FSharpMap$$ForAll$$Z395DDC35, FSharpMap$$Fold, FSharpMap$$FoldSection, FSharpMap$$Iterate$$1DCFB91D, FSharpMap$$MapRange$$6DC7247, FSharpMap$$Map$$Z6F6B671C, FSharpMap$$Partition$$Z395DDC35, FSharpMap$$get_Count, FSharpMap$$ContainsKey$$2B595, FSharpMap$$Remove$$2B595, FSharpMap$$TryFind$$2B595, FSharpMap$$ToList, isEmpty, add, find, tryFind, remove, containsKey, iterate, tryPick, pick, exists, filter, partition, forAll, mapRange, map, fold, foldBack, toSeq, findKey, tryFindKey, ofList, ofSeq, ofArray, toList, toArray, empty, createMutable, groupBy, countBy, count */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__Renderer_fs__ = __webpack_require__(78);
-/* harmony namespace reexport (by provided) */ __webpack_require__.d(__webpack_exports__, "filesize", function() { return __WEBPACK_IMPORTED_MODULE_0__Renderer_fs__["e"]; });
-/* harmony namespace reexport (by provided) */ __webpack_require__.d(__webpack_exports__, "sizeToHuman", function() { return __WEBPACK_IMPORTED_MODULE_0__Renderer_fs__["k"]; });
-/* harmony namespace reexport (by provided) */ __webpack_require__.d(__webpack_exports__, "Ref", function() { return __WEBPACK_IMPORTED_MODULE_0__Renderer_fs__["b"]; });
-/* harmony namespace reexport (by provided) */ __webpack_require__.d(__webpack_exports__, "aboutWindow", function() { return __WEBPACK_IMPORTED_MODULE_0__Renderer_fs__["c"]; });
-/* harmony namespace reexport (by provided) */ __webpack_require__.d(__webpack_exports__, "remote", function() { return __WEBPACK_IMPORTED_MODULE_0__Renderer_fs__["j"]; });
-/* harmony namespace reexport (by provided) */ __webpack_require__.d(__webpack_exports__, "Navigate", function() { return __WEBPACK_IMPORTED_MODULE_0__Renderer_fs__["a"]; });
-/* harmony namespace reexport (by provided) */ __webpack_require__.d(__webpack_exports__, "navigation", function() { return __WEBPACK_IMPORTED_MODULE_0__Renderer_fs__["i"]; });
-/* harmony namespace reexport (by provided) */ __webpack_require__.d(__webpack_exports__, "createBreadcrumbSegment", function() { return __WEBPACK_IMPORTED_MODULE_0__Renderer_fs__["d"]; });
-/* harmony namespace reexport (by provided) */ __webpack_require__.d(__webpack_exports__, "generateBreadcrumb", function() { return __WEBPACK_IMPORTED_MODULE_0__Renderer_fs__["f"]; });
-/* harmony namespace reexport (by provided) */ __webpack_require__.d(__webpack_exports__, "generateFileRow", function() { return __WEBPACK_IMPORTED_MODULE_0__Renderer_fs__["g"]; });
-/* harmony namespace reexport (by provided) */ __webpack_require__.d(__webpack_exports__, "init", function() { return __WEBPACK_IMPORTED_MODULE_0__Renderer_fs__["h"]; });
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "MapTree$00602", function() { return MapTree$00602; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "MapTree$00602$reflection", function() { return MapTree$00602$reflection; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "MapTreeModule$$$sizeAux", function() { return MapTreeModule$$$sizeAux; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "MapTreeModule$$$size", function() { return MapTreeModule$$$size; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "MapTreeModule$$$empty", function() { return MapTreeModule$$$empty; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "MapTreeModule$$$height", function() { return MapTreeModule$$$height; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "MapTreeModule$$$isEmpty", function() { return MapTreeModule$$$isEmpty; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "MapTreeModule$$$mk", function() { return MapTreeModule$$$mk; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "MapTreeModule$$$rebalance", function() { return MapTreeModule$$$rebalance; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "MapTreeModule$$$add", function() { return MapTreeModule$$$add; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "MapTreeModule$$$find", function() { return MapTreeModule$$$find; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "MapTreeModule$$$tryFind", function() { return MapTreeModule$$$tryFind; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "MapTreeModule$$$partition1", function() { return MapTreeModule$$$partition1; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "MapTreeModule$$$partitionAux", function() { return MapTreeModule$$$partitionAux; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "MapTreeModule$$$partition", function() { return MapTreeModule$$$partition; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "MapTreeModule$$$filter1", function() { return MapTreeModule$$$filter1; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "MapTreeModule$$$filterAux", function() { return MapTreeModule$$$filterAux; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "MapTreeModule$$$filter", function() { return MapTreeModule$$$filter; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "MapTreeModule$$$spliceOutSuccessor", function() { return MapTreeModule$$$spliceOutSuccessor; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "MapTreeModule$$$remove", function() { return MapTreeModule$$$remove; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "MapTreeModule$$$mem", function() { return MapTreeModule$$$mem; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "MapTreeModule$$$iter", function() { return MapTreeModule$$$iter; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "MapTreeModule$$$tryPick", function() { return MapTreeModule$$$tryPick; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "MapTreeModule$$$exists", function() { return MapTreeModule$$$exists; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "MapTreeModule$$$forall", function() { return MapTreeModule$$$forall; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "MapTreeModule$$$map", function() { return MapTreeModule$$$map; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "MapTreeModule$$$mapi", function() { return MapTreeModule$$$mapi; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "MapTreeModule$$$foldBack", function() { return MapTreeModule$$$foldBack; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "MapTreeModule$$$fold", function() { return MapTreeModule$$$fold; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "MapTreeModule$$$foldFromTo", function() { return MapTreeModule$$$foldFromTo; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "MapTreeModule$$$foldSection", function() { return MapTreeModule$$$foldSection; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "MapTreeModule$$$loop", function() { return MapTreeModule$$$loop; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "MapTreeModule$$$toList", function() { return MapTreeModule$$$toList; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "MapTreeModule$$$ofList", function() { return MapTreeModule$$$ofList; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "MapTreeModule$$$mkFromEnumerator", function() { return MapTreeModule$$$mkFromEnumerator; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "MapTreeModule$$$ofArray", function() { return MapTreeModule$$$ofArray; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "MapTreeModule$$$ofSeq", function() { return MapTreeModule$$$ofSeq; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "MapTreeModule$$$copyToArray", function() { return MapTreeModule$$$copyToArray; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "MapTreeModule$002EMapIterator$00602", function() { return MapTreeModule$002EMapIterator$00602; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "MapTreeModule$002EMapIterator$00602$reflection", function() { return MapTreeModule$002EMapIterator$00602$reflection; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "MapTreeModule$$$collapseLHS", function() { return MapTreeModule$$$collapseLHS; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "MapTreeModule$$$mkIterator", function() { return MapTreeModule$$$mkIterator; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "MapTreeModule$$$notStarted", function() { return MapTreeModule$$$notStarted; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "MapTreeModule$$$alreadyFinished", function() { return MapTreeModule$$$alreadyFinished; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "MapTreeModule$$$current", function() { return MapTreeModule$$$current; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "MapTreeModule$$$moveNext", function() { return MapTreeModule$$$moveNext; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "MapTreeModule$002EmkIEnumerator$0027$00602", function() { return MapTreeModule$002EmkIEnumerator$0027$00602; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "MapTreeModule$002EmkIEnumerator$0027$00602$reflection", function() { return MapTreeModule$002EmkIEnumerator$0027$00602$reflection; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "MapTreeModule$002EmkIEnumerator$0027$00602$$$$002Ector$$Z26BC498C", function() { return MapTreeModule$002EmkIEnumerator$0027$00602$$$$002Ector$$Z26BC498C; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "MapTreeModule$$$mkIEnumerator", function() { return MapTreeModule$$$mkIEnumerator; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "MapTreeModule$$$toSeq", function() { return MapTreeModule$$$toSeq; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "FSharpMap", function() { return FSharpMap; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "FSharpMap$reflection", function() { return FSharpMap$reflection; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "FSharpMap$$$$002Ector$$58ADD115", function() { return FSharpMap$$$$002Ector$$58ADD115; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "FSharpMap$$get_Comparer", function() { return FSharpMap$$get_Comparer; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "FSharpMap$$get_Tree", function() { return FSharpMap$$get_Tree; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "FSharpMap$$Add$$5BDDA1", function() { return FSharpMap$$Add$$5BDDA1; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "FSharpMap$$get_IsEmpty", function() { return FSharpMap$$get_IsEmpty; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "FSharpMap$$get_Item$$2B595", function() { return FSharpMap$$get_Item$$2B595; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "FSharpMap$$TryGetValue$$5BDDA1", function() { return FSharpMap$$TryGetValue$$5BDDA1; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "FSharpMap$$TryPick$$72321DD7", function() { return FSharpMap$$TryPick$$72321DD7; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "FSharpMap$$Exists$$Z395DDC35", function() { return FSharpMap$$Exists$$Z395DDC35; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "FSharpMap$$Filter$$Z395DDC35", function() { return FSharpMap$$Filter$$Z395DDC35; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "FSharpMap$$ForAll$$Z395DDC35", function() { return FSharpMap$$ForAll$$Z395DDC35; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "FSharpMap$$Fold", function() { return FSharpMap$$Fold; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "FSharpMap$$FoldSection", function() { return FSharpMap$$FoldSection; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "FSharpMap$$Iterate$$1DCFB91D", function() { return FSharpMap$$Iterate$$1DCFB91D; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "FSharpMap$$MapRange$$6DC7247", function() { return FSharpMap$$MapRange$$6DC7247; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "FSharpMap$$Map$$Z6F6B671C", function() { return FSharpMap$$Map$$Z6F6B671C; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "FSharpMap$$Partition$$Z395DDC35", function() { return FSharpMap$$Partition$$Z395DDC35; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "FSharpMap$$get_Count", function() { return FSharpMap$$get_Count; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "FSharpMap$$ContainsKey$$2B595", function() { return FSharpMap$$ContainsKey$$2B595; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "FSharpMap$$Remove$$2B595", function() { return FSharpMap$$Remove$$2B595; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "FSharpMap$$TryFind$$2B595", function() { return FSharpMap$$TryFind$$2B595; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "FSharpMap$$ToList", function() { return FSharpMap$$ToList; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "isEmpty", function() { return isEmpty; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "add", function() { return add; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "find", function() { return find; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "tryFind", function() { return tryFind; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "remove", function() { return remove; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "containsKey", function() { return containsKey; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "iterate", function() { return iterate; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "tryPick", function() { return tryPick; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "pick", function() { return pick; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "exists", function() { return exists; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "filter", function() { return filter; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "partition", function() { return partition; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "forAll", function() { return forAll; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "mapRange", function() { return mapRange; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "map", function() { return map; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "fold", function() { return fold; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "foldBack", function() { return foldBack; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "toSeq", function() { return toSeq; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "findKey", function() { return findKey; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "tryFindKey", function() { return tryFindKey; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ofList", function() { return ofList; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ofSeq", function() { return ofSeq; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ofArray", function() { return ofArray; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "toList", function() { return toList; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "toArray", function() { return toArray; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "empty", function() { return empty; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "createMutable", function() { return createMutable; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "groupBy", function() { return groupBy; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "countBy", function() { return countBy; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "count", function() { return count; });
+/* harmony import */ var _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/helpers/defineProperty */ "./node_modules/@babel/runtime/helpers/defineProperty.js");
+/* harmony import */ var _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _babel_runtime_helpers_toConsumableArray__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @babel/runtime/helpers/toConsumableArray */ "./node_modules/@babel/runtime/helpers/toConsumableArray.js");
+/* harmony import */ var _babel_runtime_helpers_toConsumableArray__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_helpers_toConsumableArray__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _Types_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./Types.js */ "./.fable/fable-library.2.2.3/Types.js");
+/* harmony import */ var _Reflection_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./Reflection.js */ "./.fable/fable-library.2.2.3/Reflection.js");
+/* harmony import */ var _Option_js__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./Option.js */ "./.fable/fable-library.2.2.3/Option.js");
+/* harmony import */ var _Seq_js__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./Seq.js */ "./.fable/fable-library.2.2.3/Seq.js");
+/* harmony import */ var _Util_js__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./Util.js */ "./.fable/fable-library.2.2.3/Util.js");
+/* harmony import */ var _String_js__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./String.js */ "./.fable/fable-library.2.2.3/String.js");
 
 
-/***/ }),
-/* 78 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "e", function() { return filesize; });
-/* harmony export (immutable) */ __webpack_exports__["k"] = sizeToHuman;
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "b", function() { return Ref; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "c", function() { return aboutWindow; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "j", function() { return remote; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return Navigate; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "i", function() { return navigation; });
-/* harmony export (immutable) */ __webpack_exports__["d"] = createBreadcrumbSegment;
-/* harmony export (immutable) */ __webpack_exports__["f"] = generateBreadcrumb;
-/* harmony export (immutable) */ __webpack_exports__["g"] = generateFileRow;
-/* harmony export (immutable) */ __webpack_exports__["h"] = init;
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_babel_runtime_core_js_array_from__ = __webpack_require__(18);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_babel_runtime_core_js_array_from___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_babel_runtime_core_js_array_from__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_babel_runtime_core_js_get_iterator__ = __webpack_require__(11);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_babel_runtime_core_js_get_iterator___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_babel_runtime_core_js_get_iterator__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_babel_runtime_helpers_classCallCheck__ = __webpack_require__(7);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_babel_runtime_helpers_classCallCheck___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_babel_runtime_helpers_classCallCheck__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_babel_runtime_helpers_createClass__ = __webpack_require__(8);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_babel_runtime_helpers_createClass___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_babel_runtime_helpers_createClass__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_file_size__ = __webpack_require__(95);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_file_size___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4_file_size__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__nuget_packages_fable_core_1_2_0_beta_003_fable_core_Util__ = __webpack_require__(1);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6_electron__ = __webpack_require__(133);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6_electron___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_6_electron__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__nuget_packages_fable_core_1_2_0_beta_003_fable_core_Symbol__ = __webpack_require__(9);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__nuget_packages_fable_core_1_2_0_beta_003_fable_core_Event__ = __webpack_require__(134);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__nuget_packages_fable_core_1_2_0_beta_003_fable_core_String__ = __webpack_require__(139);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10_path__ = __webpack_require__(76);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10_path___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_10_path__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__nuget_packages_fable_core_1_2_0_beta_003_fable_core_Array__ = __webpack_require__(54);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__Html_fs__ = __webpack_require__(146);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__Mime_fs__ = __webpack_require__(147);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_14__nuget_packages_fable_core_1_2_0_beta_003_fable_core_List__ = __webpack_require__(149);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_15__nuget_packages_fable_core_1_2_0_beta_003_fable_core_Observable__ = __webpack_require__(53);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_16_fs__ = __webpack_require__(152);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_16_fs___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_16_fs__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_17_child_process__ = __webpack_require__(153);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_17_child_process___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_17_child_process__);
 
 
 
 
 
 
+var MapTree$00602 = Object(_Types_js__WEBPACK_IMPORTED_MODULE_2__["declare"])(function Map_MapTree(tag, name) {
+  for (var _len = arguments.length, fields = new Array(_len > 2 ? _len - 2 : 0), _key = 2; _key < _len; _key++) {
+    fields[_key - 2] = arguments[_key];
+  }
 
-
-
-
-
-
-
-
-
-
-
-
-
-var filesize = __WEBPACK_IMPORTED_MODULE_4_file_size__;
-function sizeToHuman(size) {
-    return filesize(size).human("si");
+  _Types_js__WEBPACK_IMPORTED_MODULE_2__["Union"].call.apply(_Types_js__WEBPACK_IMPORTED_MODULE_2__["Union"], [this, tag, name].concat(fields));
+}, _Types_js__WEBPACK_IMPORTED_MODULE_2__["Union"]);
+function MapTree$00602$reflection($gen$$3, $gen$$4) {
+  return Object(_Reflection_js__WEBPACK_IMPORTED_MODULE_3__["union"])("Map.MapTree`2", [$gen$$3, $gen$$4], MapTree$00602, function () {
+    return ["MapEmpty", ["MapOne", [$gen$$3, $gen$$4]], ["MapNode", [$gen$$3, $gen$$4, MapTree$00602$reflection($gen$$3, $gen$$4), MapTree$00602$reflection($gen$$3, $gen$$4), _Reflection_js__WEBPACK_IMPORTED_MODULE_3__["int32"]]]];
+  });
 }
-var Ref = function (__exports) {
-    var openFolder = __exports.openFolder = document.getElementById("act-open-folder");
-    var quit = __exports.quit = document.getElementById("act-quit");
-    var about = __exports.about = document.getElementById("act-about");
-    var addressBar = __exports.addressBar = document.getElementById("address-bar");
-    var filesList = __exports.filesList = document.getElementById("files-list");
-    return __exports;
-}({});
-var aboutWindow = Object(__WEBPACK_IMPORTED_MODULE_5__nuget_packages_fable_core_1_2_0_beta_003_fable_core_Util__["c" /* createAtom */])(null);
-var remote = __WEBPACK_IMPORTED_MODULE_6_electron__["remote"];
-var Navigate = function () {
-    function Navigate(path) {
-        __WEBPACK_IMPORTED_MODULE_2_babel_runtime_helpers_classCallCheck___default()(this, Navigate);
+function MapTreeModule$$$sizeAux(acc, m) {
+  MapTreeModule$$$sizeAux: while (true) {
+    switch (m.tag) {
+      case 1:
+        {
+          return acc + 1 | 0;
+        }
 
-        this.Path = path;
+      case 2:
+        {
+          var r = m.fields[3];
+          var l = m.fields[2];
+          var $acc$$5 = acc;
+          acc = MapTreeModule$$$sizeAux($acc$$5 + 1, l);
+          m = r;
+          continue MapTreeModule$$$sizeAux;
+        }
+
+      default:
+        {
+          return acc | 0;
+        }
     }
 
-    __WEBPACK_IMPORTED_MODULE_3_babel_runtime_helpers_createClass___default()(Navigate, [{
-        key: __WEBPACK_IMPORTED_MODULE_7__nuget_packages_fable_core_1_2_0_beta_003_fable_core_Symbol__["a" /* default */].reflection,
-        value: function value() {
-            return {
-                type: "Renderer.Navigate",
-                interfaces: ["FSharpRecord", "System.IEquatable", "System.IComparable"],
-                properties: {
-                    Path: "string"
-                }
-            };
-        }
-    }, {
-        key: "Equals",
-        value: function Equals(other) {
-            return Object(__WEBPACK_IMPORTED_MODULE_5__nuget_packages_fable_core_1_2_0_beta_003_fable_core_Util__["f" /* equalsRecords */])(this, other);
-        }
-    }, {
-        key: "CompareTo",
-        value: function CompareTo(other) {
-            return Object(__WEBPACK_IMPORTED_MODULE_5__nuget_packages_fable_core_1_2_0_beta_003_fable_core_Util__["b" /* compareRecords */])(this, other) | 0;
-        }
-    }]);
-
-    return Navigate;
-}();
-Object(__WEBPACK_IMPORTED_MODULE_7__nuget_packages_fable_core_1_2_0_beta_003_fable_core_Symbol__["b" /* setType */])("Renderer.Navigate", Navigate);
-var navigation = new __WEBPACK_IMPORTED_MODULE_8__nuget_packages_fable_core_1_2_0_beta_003_fable_core_Event__["a" /* default */]();
-function createBreadcrumbSegment(path, segment) {
-    var root = document.createElement("li");
-    var link = document.createElement("a");
-    link.href = "#";
-    link.innerText = segment;
-    link.addEventListener("click", function (_arg1) {
-        navigation.Trigger(new Navigate(path));
-        return null;
-    });
-    root.appendChild(link);
-    return root;
+    break;
+  }
 }
-function generateBreadcrumb(path) {
-    var segments = Object(__WEBPACK_IMPORTED_MODULE_9__nuget_packages_fable_core_1_2_0_beta_003_fable_core_String__["c" /* split */])(path, __WEBPACK_IMPORTED_MODULE_10_path__["sep"]);
-    return Object(__WEBPACK_IMPORTED_MODULE_11__nuget_packages_fable_core_1_2_0_beta_003_fable_core_Array__["b" /* mapIndexed */])(function (index, segment) {
-        var subPath = Object(__WEBPACK_IMPORTED_MODULE_9__nuget_packages_fable_core_1_2_0_beta_003_fable_core_String__["b" /* join */])(__WEBPACK_IMPORTED_MODULE_10_path__["sep"], segments.slice(0, index + 1));
-        return createBreadcrumbSegment(subPath, segment);
-    }, segments, new Array(segments.length));
+function MapTreeModule$$$size(x) {
+  return MapTreeModule$$$sizeAux(0, x);
 }
-function generateFileRow(path, filename, fileStats) {
-    var root = document.createElement("tr");
-    var icon = document.createElement("td");
-    var name = document.createElement("td");
-    var date = document.createElement("td");
-    var type = document.createElement("td");
-    var size = document.createElement("td");
-    var isDirectory = fileStats.isDirectory();
-    icon.appendChild(Object(__WEBPACK_IMPORTED_MODULE_12__Html_fs__["a" /* createIcon */])(Object(__WEBPACK_IMPORTED_MODULE_13__Mime_fs__["b" /* determineIcon */])(filename, isDirectory)));
-    name.appendChild(Object(__WEBPACK_IMPORTED_MODULE_12__Html_fs__["b" /* createLink */])(filename));
-    name.addEventListener("click", function (_arg1) {
-        navigation.Trigger(new Navigate(path));
-        return null;
-    });
-    var copyOfStruct = fileStats.birthtime;
-    date.innerText = Object(__WEBPACK_IMPORTED_MODULE_9__nuget_packages_fable_core_1_2_0_beta_003_fable_core_String__["a" /* format */])("{0:" + "dd-MM-yyyy hh:mm:ss" + "}", copyOfStruct);
-    type.innerText = Object(__WEBPACK_IMPORTED_MODULE_13__Mime_fs__["a" /* determineFileType */])(filename, isDirectory);
+function MapTreeModule$$$empty() {
+  return new MapTree$00602(0, "MapEmpty");
+}
+function MapTreeModule$$$height(_arg1) {
+  switch (_arg1.tag) {
+    case 1:
+      {
+        return 1;
+      }
 
-    if (!isDirectory) {
-        size.innerText = sizeToHuman(fileStats.size);
+    case 2:
+      {
+        var h = _arg1.fields[4] | 0;
+        return h | 0;
+      }
+
+    default:
+      {
+        return 0;
+      }
+  }
+}
+function MapTreeModule$$$isEmpty(m$$1) {
+  if (m$$1.tag === 0) {
+    return true;
+  } else {
+    return false;
+  }
+}
+function MapTreeModule$$$mk(l$$1, k, v, r$$1) {
+  var matchValue = [l$$1, r$$1];
+  var $target$$6;
+
+  if (matchValue[0].tag === 0) {
+    if (matchValue[1].tag === 0) {
+      $target$$6 = 0;
+    } else {
+      $target$$6 = 1;
     }
+  } else {
+    $target$$6 = 1;
+  }
 
-    Object(__WEBPACK_IMPORTED_MODULE_12__Html_fs__["c" /* replaceChildren */])(root, Object(__WEBPACK_IMPORTED_MODULE_14__nuget_packages_fable_core_1_2_0_beta_003_fable_core_List__["c" /* ofArray */])([icon, name, date, type, size]));
-    return root;
+  switch ($target$$6) {
+    case 0:
+      {
+        return new MapTree$00602(1, "MapOne", k, v);
+      }
+
+    case 1:
+      {
+        var hl = MapTreeModule$$$height(l$$1) | 0;
+        var hr = MapTreeModule$$$height(r$$1) | 0;
+        var m$$2 = (hl < hr ? hr : hl) | 0;
+        return new MapTree$00602(2, "MapNode", k, v, l$$1, r$$1, m$$2 + 1);
+      }
+  }
 }
-function init() {
-    Object(__WEBPACK_IMPORTED_MODULE_15__nuget_packages_fable_core_1_2_0_beta_003_fable_core_Observable__["b" /* add */])(function (ev) {
-        if (__WEBPACK_IMPORTED_MODULE_16_fs__["statSync"](__WEBPACK_IMPORTED_MODULE_10_path__["join"](ev.Path)).isDirectory()) {
-            var segments = generateBreadcrumb(ev.Path);
-            Object(__WEBPACK_IMPORTED_MODULE_12__Html_fs__["c" /* replaceChildren */])(Ref.addressBar, segments);
-            __WEBPACK_IMPORTED_MODULE_16_fs__["readdir"](ev.Path, function (error, files) {
-                if (function () {
-                    return error != null;
-                }()) {
-                    console.error(error);
-                }
+function MapTreeModule$$$rebalance(t1, k$$1, v$$1, t2) {
+  var t1h = MapTreeModule$$$height(t1) | 0;
+  var t2h = MapTreeModule$$$height(t2) | 0;
 
-                (function (children) {
-                    Object(__WEBPACK_IMPORTED_MODULE_12__Html_fs__["c" /* replaceChildren */])(Ref.filesList, children);
-                })(Object(__WEBPACK_IMPORTED_MODULE_14__nuget_packages_fable_core_1_2_0_beta_003_fable_core_List__["b" /* map */])(function (tupledArg) {
-                    return generateFileRow(__WEBPACK_IMPORTED_MODULE_10_path__["join"](ev.Path, tupledArg[0]), tupledArg[0], tupledArg[1]);
-                }, Object(__WEBPACK_IMPORTED_MODULE_14__nuget_packages_fable_core_1_2_0_beta_003_fable_core_List__["b" /* map */])(function (file) {
-                    return [file, __WEBPACK_IMPORTED_MODULE_16_fs__["statSync"](__WEBPACK_IMPORTED_MODULE_10_path__["join"](ev.Path, file))];
-                }, Object(__WEBPACK_IMPORTED_MODULE_14__nuget_packages_fable_core_1_2_0_beta_003_fable_core_List__["a" /* filter */])(function (file_1) {
-                    return !(file_1.indexOf(".") === 0);
-                }, files))));
-            });
+  if (t2h > t1h + 2) {
+    if (t2.tag === 2) {
+      var t2v = t2.fields[1];
+      var t2r = t2.fields[3];
+      var t2l = t2.fields[2];
+      var t2k = t2.fields[0];
+
+      if (MapTreeModule$$$height(t2l) > t1h + 1) {
+        if (t2l.tag === 2) {
+          var t2lv = t2l.fields[1];
+          var t2lr = t2l.fields[3];
+          var t2ll = t2l.fields[2];
+          var t2lk = t2l.fields[0];
+          return MapTreeModule$$$mk(MapTreeModule$$$mk(t1, k$$1, v$$1, t2ll), t2lk, t2lv, MapTreeModule$$$mk(t2lr, t2k, t2v, t2r));
         } else {
-            __WEBPACK_IMPORTED_MODULE_17_child_process__["exec"](ev.Path);
+          throw new Error("rebalance");
         }
-    }, navigation.Publish);
-    Ref.about.addEventListener("click", function (_arg1) {
-        if (function () {
-            return aboutWindow() != null;
-        }()) {
-            aboutWindow().show();
-        } else {
-            var options = {};
-            options.toolbar = false;
-            options.resizable = false;
-            options.show = true;
-            options.height = 250;
-            options.width = 600;
-            var about_1 = new remote.BrowserWindow(options);
-            about_1.setMenu(null);
-            about_1.on("closed", function () {
-                return aboutWindow(null);
-            });
-            about_1.loadURL(__WEBPACK_IMPORTED_MODULE_10_path__["join"]("file://", __dirname, "about.html"));
-            aboutWindow(about_1);
-        }
-
-        return null;
-    });
-    var inputSequence = document.querySelectorAll("[data-quick-access]");
-    var _iteratorNormalCompletion = true;
-    var _didIteratorError = false;
-    var _iteratorError = undefined;
-
-    try {
-        for (var _iterator = __WEBPACK_IMPORTED_MODULE_1_babel_runtime_core_js_get_iterator___default()(inputSequence), _step; !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {
-            var quickAccess = _step.value;
-            quickAccess.addEventListener("click", function (ev_1) {
-                var element = ev_1.target;
-                var quickAccessInfo = element.dataset["quickAccess"];
-                navigation.Trigger(new Navigate(remote.app.getPath(quickAccessInfo)));
-                return null;
-            });
-        }
-    } catch (err) {
-        _didIteratorError = true;
-        _iteratorError = err;
-    } finally {
-        try {
-            if (!_iteratorNormalCompletion && _iterator.return) {
-                _iterator.return();
-            }
-        } finally {
-            if (_didIteratorError) {
-                throw _iteratorError;
-            }
-        }
-    }
-
-    Ref.openFolder.addEventListener("click", function (_arg2) {
-        var options_1 = {};
-        options_1.properties = __WEBPACK_IMPORTED_MODULE_0_babel_runtime_core_js_array_from___default()(Object(__WEBPACK_IMPORTED_MODULE_14__nuget_packages_fable_core_1_2_0_beta_003_fable_core_List__["c" /* ofArray */])(["openDirectory"]));
-        var result = remote.dialog.showOpenDialog(options_1);
-
-        if (!(result == null) ? result.length > 0 : false) {
-            navigation.Trigger(new Navigate(result[0]));
-        }
-
-        return null;
-    });
-    Ref.quit.addEventListener("click", function (_arg3) {
-        var win = remote.getCurrentWindow();
-        win.close();
-        return null;
-    });
-    navigation.Trigger(new Navigate(process.cwd()));
-}
-init();
-
-/***/ }),
-/* 79 */
-/***/ (function(module, exports, __webpack_require__) {
-
-__webpack_require__(22);
-__webpack_require__(86);
-module.exports = __webpack_require__(0).Array.from;
-
-
-/***/ }),
-/* 80 */
-/***/ (function(module, exports, __webpack_require__) {
-
-var toInteger = __webpack_require__(35);
-var defined = __webpack_require__(36);
-// true  -> String#at
-// false -> String#codePointAt
-module.exports = function (TO_STRING) {
-  return function (that, pos) {
-    var s = String(defined(that));
-    var i = toInteger(pos);
-    var l = s.length;
-    var a, b;
-    if (i < 0 || i >= l) return TO_STRING ? '' : undefined;
-    a = s.charCodeAt(i);
-    return a < 0xd800 || a > 0xdbff || i + 1 === l || (b = s.charCodeAt(i + 1)) < 0xdc00 || b > 0xdfff
-      ? TO_STRING ? s.charAt(i) : a
-      : TO_STRING ? s.slice(i, i + 2) : (a - 0xd800 << 10) + (b - 0xdc00) + 0x10000;
-  };
-};
-
-
-/***/ }),
-/* 81 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-var create = __webpack_require__(39);
-var descriptor = __webpack_require__(23);
-var setToStringTag = __webpack_require__(31);
-var IteratorPrototype = {};
-
-// 25.1.2.1.1 %IteratorPrototype%[@@iterator]()
-__webpack_require__(12)(IteratorPrototype, __webpack_require__(2)('iterator'), function () { return this; });
-
-module.exports = function (Constructor, NAME, next) {
-  Constructor.prototype = create(IteratorPrototype, { next: descriptor(1, next) });
-  setToStringTag(Constructor, NAME + ' Iterator');
-};
-
-
-/***/ }),
-/* 82 */
-/***/ (function(module, exports, __webpack_require__) {
-
-var dP = __webpack_require__(4);
-var anObject = __webpack_require__(14);
-var getKeys = __webpack_require__(28);
-
-module.exports = __webpack_require__(6) ? Object.defineProperties : function defineProperties(O, Properties) {
-  anObject(O);
-  var keys = getKeys(Properties);
-  var length = keys.length;
-  var i = 0;
-  var P;
-  while (length > i) dP.f(O, P = keys[i++], Properties[P]);
-  return O;
-};
-
-
-/***/ }),
-/* 83 */
-/***/ (function(module, exports, __webpack_require__) {
-
-// false -> Array#indexOf
-// true  -> Array#includes
-var toIObject = __webpack_require__(17);
-var toLength = __webpack_require__(29);
-var toAbsoluteIndex = __webpack_require__(84);
-module.exports = function (IS_INCLUDES) {
-  return function ($this, el, fromIndex) {
-    var O = toIObject($this);
-    var length = toLength(O.length);
-    var index = toAbsoluteIndex(fromIndex, length);
-    var value;
-    // Array#includes uses SameValueZero equality algorithm
-    // eslint-disable-next-line no-self-compare
-    if (IS_INCLUDES && el != el) while (length > index) {
-      value = O[index++];
-      // eslint-disable-next-line no-self-compare
-      if (value != value) return true;
-    // Array#indexOf ignores holes, Array#includes - not
-    } else for (;length > index; index++) if (IS_INCLUDES || index in O) {
-      if (O[index] === el) return IS_INCLUDES || index || 0;
-    } return !IS_INCLUDES && -1;
-  };
-};
-
-
-/***/ }),
-/* 84 */
-/***/ (function(module, exports, __webpack_require__) {
-
-var toInteger = __webpack_require__(35);
-var max = Math.max;
-var min = Math.min;
-module.exports = function (index, length) {
-  index = toInteger(index);
-  return index < 0 ? max(index + length, 0) : min(index, length);
-};
-
-
-/***/ }),
-/* 85 */
-/***/ (function(module, exports, __webpack_require__) {
-
-var document = __webpack_require__(5).document;
-module.exports = document && document.documentElement;
-
-
-/***/ }),
-/* 86 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-var ctx = __webpack_require__(19);
-var $export = __webpack_require__(3);
-var toObject = __webpack_require__(24);
-var call = __webpack_require__(61);
-var isArrayIter = __webpack_require__(62);
-var toLength = __webpack_require__(29);
-var createProperty = __webpack_require__(87);
-var getIterFn = __webpack_require__(45);
-
-$export($export.S + $export.F * !__webpack_require__(88)(function (iter) { Array.from(iter); }), 'Array', {
-  // 22.1.2.1 Array.from(arrayLike, mapfn = undefined, thisArg = undefined)
-  from: function from(arrayLike /* , mapfn = undefined, thisArg = undefined */) {
-    var O = toObject(arrayLike);
-    var C = typeof this == 'function' ? this : Array;
-    var aLen = arguments.length;
-    var mapfn = aLen > 1 ? arguments[1] : undefined;
-    var mapping = mapfn !== undefined;
-    var index = 0;
-    var iterFn = getIterFn(O);
-    var length, result, step, iterator;
-    if (mapping) mapfn = ctx(mapfn, aLen > 2 ? arguments[2] : undefined, 2);
-    // if object isn't iterable or it's array with default iterator - use simple case
-    if (iterFn != undefined && !(C == Array && isArrayIter(iterFn))) {
-      for (iterator = iterFn.call(O), result = new C(); !(step = iterator.next()).done; index++) {
-        createProperty(result, index, mapping ? call(iterator, mapfn, [step.value, index], true) : step.value);
+      } else {
+        return MapTreeModule$$$mk(MapTreeModule$$$mk(t1, k$$1, v$$1, t2l), t2k, t2v, t2r);
       }
     } else {
-      length = toLength(O.length);
-      for (result = new C(length); length > index; index++) {
-        createProperty(result, index, mapping ? mapfn(O[index], index) : O[index]);
-      }
+      throw new Error("rebalance");
     }
-    result.length = index;
-    return result;
+  } else if (t1h > t2h + 2) {
+    if (t1.tag === 2) {
+      var t1v = t1.fields[1];
+      var t1r = t1.fields[3];
+      var t1l = t1.fields[2];
+      var t1k = t1.fields[0];
+
+      if (MapTreeModule$$$height(t1r) > t2h + 1) {
+        if (t1r.tag === 2) {
+          var t1rv = t1r.fields[1];
+          var t1rr = t1r.fields[3];
+          var t1rl = t1r.fields[2];
+          var t1rk = t1r.fields[0];
+          return MapTreeModule$$$mk(MapTreeModule$$$mk(t1l, t1k, t1v, t1rl), t1rk, t1rv, MapTreeModule$$$mk(t1rr, k$$1, v$$1, t2));
+        } else {
+          throw new Error("re  balance");
+        }
+      } else {
+        return MapTreeModule$$$mk(t1l, t1k, t1v, MapTreeModule$$$mk(t1r, k$$1, v$$1, t2));
+      }
+    } else {
+      throw new Error("rebalance");
+    }
+  } else {
+    return MapTreeModule$$$mk(t1, k$$1, v$$1, t2);
+  }
+}
+function MapTreeModule$$$add(comparer, k$$2, v$$2, m$$3) {
+  switch (m$$3.tag) {
+    case 1:
+      {
+        var k2 = m$$3.fields[0];
+        var c = comparer.Compare(k$$2, k2) | 0;
+
+        if (c < 0) {
+          return new MapTree$00602(2, "MapNode", k$$2, v$$2, new MapTree$00602(0, "MapEmpty"), m$$3, 2);
+        } else if (c === 0) {
+          return new MapTree$00602(1, "MapOne", k$$2, v$$2);
+        } else {
+          return new MapTree$00602(2, "MapNode", k$$2, v$$2, m$$3, new MapTree$00602(0, "MapEmpty"), 2);
+        }
+      }
+
+    case 2:
+      {
+        var v2 = m$$3.fields[1];
+        var r$$2 = m$$3.fields[3];
+        var l$$2 = m$$3.fields[2];
+        var k2$$1 = m$$3.fields[0];
+        var h$$1 = m$$3.fields[4] | 0;
+        var c$$1 = comparer.Compare(k$$2, k2$$1) | 0;
+
+        if (c$$1 < 0) {
+          return MapTreeModule$$$rebalance(MapTreeModule$$$add(comparer, k$$2, v$$2, l$$2), k2$$1, v2, r$$2);
+        } else if (c$$1 === 0) {
+          return new MapTree$00602(2, "MapNode", k$$2, v$$2, l$$2, r$$2, h$$1);
+        } else {
+          return MapTreeModule$$$rebalance(l$$2, k2$$1, v2, MapTreeModule$$$add(comparer, k$$2, v$$2, r$$2));
+        }
+      }
+
+    default:
+      {
+        return new MapTree$00602(1, "MapOne", k$$2, v$$2);
+      }
+  }
+}
+function MapTreeModule$$$find(comparer$$1, k$$3, m$$4) {
+  MapTreeModule$$$find: while (true) {
+    switch (m$$4.tag) {
+      case 1:
+        {
+          var v2$$1 = m$$4.fields[1];
+          var k2$$2 = m$$4.fields[0];
+          var c$$2 = comparer$$1.Compare(k$$3, k2$$2) | 0;
+
+          if (c$$2 === 0) {
+            return v2$$1;
+          } else {
+            throw new Error("key not found");
+          }
+        }
+
+      case 2:
+        {
+          var v2$$2 = m$$4.fields[1];
+          var r$$3 = m$$4.fields[3];
+          var l$$3 = m$$4.fields[2];
+          var k2$$3 = m$$4.fields[0];
+          var c$$3 = comparer$$1.Compare(k$$3, k2$$3) | 0;
+
+          if (c$$3 < 0) {
+            var $comparer$$1$$7 = comparer$$1;
+            var $k$$3$$8 = k$$3;
+            comparer$$1 = $comparer$$1$$7;
+            k$$3 = $k$$3$$8;
+            m$$4 = l$$3;
+            continue MapTreeModule$$$find;
+          } else if (c$$3 === 0) {
+            return v2$$2;
+          } else {
+            var $comparer$$1$$9 = comparer$$1;
+            var $k$$3$$10 = k$$3;
+            comparer$$1 = $comparer$$1$$9;
+            k$$3 = $k$$3$$10;
+            m$$4 = r$$3;
+            continue MapTreeModule$$$find;
+          }
+        }
+
+      default:
+        {
+          throw new Error("key not found");
+        }
+    }
+
+    break;
+  }
+}
+function MapTreeModule$$$tryFind(comparer$$2, k$$4, m$$5) {
+  MapTreeModule$$$tryFind: while (true) {
+    switch (m$$5.tag) {
+      case 1:
+        {
+          var v2$$3 = m$$5.fields[1];
+          var k2$$4 = m$$5.fields[0];
+          var c$$4 = comparer$$2.Compare(k$$4, k2$$4) | 0;
+
+          if (c$$4 === 0) {
+            return Object(_Option_js__WEBPACK_IMPORTED_MODULE_4__["some"])(v2$$3);
+          } else {
+            return null;
+          }
+        }
+
+      case 2:
+        {
+          var v2$$4 = m$$5.fields[1];
+          var r$$4 = m$$5.fields[3];
+          var l$$4 = m$$5.fields[2];
+          var k2$$5 = m$$5.fields[0];
+          var c$$5 = comparer$$2.Compare(k$$4, k2$$5) | 0;
+
+          if (c$$5 < 0) {
+            var $comparer$$2$$11 = comparer$$2;
+            var $k$$4$$12 = k$$4;
+            comparer$$2 = $comparer$$2$$11;
+            k$$4 = $k$$4$$12;
+            m$$5 = l$$4;
+            continue MapTreeModule$$$tryFind;
+          } else if (c$$5 === 0) {
+            return Object(_Option_js__WEBPACK_IMPORTED_MODULE_4__["some"])(v2$$4);
+          } else {
+            var $comparer$$2$$13 = comparer$$2;
+            var $k$$4$$14 = k$$4;
+            comparer$$2 = $comparer$$2$$13;
+            k$$4 = $k$$4$$14;
+            m$$5 = r$$4;
+            continue MapTreeModule$$$tryFind;
+          }
+        }
+
+      default:
+        {
+          return null;
+        }
+    }
+
+    break;
+  }
+}
+function MapTreeModule$$$partition1(comparer$$3, f, k$$5, v$$3, acc1, acc2) {
+  if (f(k$$5, v$$3)) {
+    return [MapTreeModule$$$add(comparer$$3, k$$5, v$$3, acc1), acc2];
+  } else {
+    return [acc1, MapTreeModule$$$add(comparer$$3, k$$5, v$$3, acc2)];
+  }
+}
+function MapTreeModule$$$partitionAux($arg$$21, $arg$$22, $arg$$23, $arg$$24, $arg$$25) {
+  MapTreeModule$$$partitionAux: while (true) {
+    var comparer$$4 = $arg$$21,
+        f$$1 = $arg$$22,
+        s = $arg$$23,
+        acc_0 = $arg$$24,
+        acc_1 = $arg$$25;
+    var acc$$1 = [acc_0, acc_1];
+
+    switch (s.tag) {
+      case 1:
+        {
+          var v$$4 = s.fields[1];
+          var k$$6 = s.fields[0];
+          return MapTreeModule$$$partition1(comparer$$4, f$$1, k$$6, v$$4, acc$$1[0], acc$$1[1]);
+        }
+
+      case 2:
+        {
+          var v$$5 = s.fields[1];
+          var r$$5 = s.fields[3];
+          var l$$5 = s.fields[2];
+          var k$$7 = s.fields[0];
+          var acc$$2 = MapTreeModule$$$partitionAux(comparer$$4, f$$1, r$$5, acc$$1[0], acc$$1[1]);
+          var acc$$3 = MapTreeModule$$$partition1(comparer$$4, f$$1, k$$7, v$$5, acc$$2[0], acc$$2[1]);
+          $arg$$21 = comparer$$4;
+          $arg$$22 = f$$1;
+          $arg$$23 = l$$5;
+          $arg$$24 = acc$$3[0];
+          $arg$$25 = acc$$3[1];
+          continue MapTreeModule$$$partitionAux;
+        }
+
+      default:
+        {
+          return acc$$1;
+        }
+    }
+
+    break;
+  }
+}
+function MapTreeModule$$$partition(comparer$$5, f$$2, s$$1) {
+  return MapTreeModule$$$partitionAux(comparer$$5, f$$2, s$$1, MapTreeModule$$$empty(), MapTreeModule$$$empty());
+}
+function MapTreeModule$$$filter1(comparer$$6, f$$3, k$$8, v$$6, acc$$4) {
+  if (f$$3(k$$8, v$$6)) {
+    return MapTreeModule$$$add(comparer$$6, k$$8, v$$6, acc$$4);
+  } else {
+    return acc$$4;
+  }
+}
+function MapTreeModule$$$filterAux($arg$$34, $arg$$35, $arg$$36, $arg$$37) {
+  MapTreeModule$$$filterAux: while (true) {
+    var comparer$$7 = $arg$$34,
+        f$$4 = $arg$$35,
+        s$$2 = $arg$$36,
+        acc$$5 = $arg$$37;
+
+    switch (s$$2.tag) {
+      case 1:
+        {
+          var v$$7 = s$$2.fields[1];
+          var k$$9 = s$$2.fields[0];
+          return MapTreeModule$$$filter1(comparer$$7, f$$4, k$$9, v$$7, acc$$5);
+        }
+
+      case 2:
+        {
+          var v$$8 = s$$2.fields[1];
+          var r$$6 = s$$2.fields[3];
+          var l$$6 = s$$2.fields[2];
+          var k$$10 = s$$2.fields[0];
+          var acc$$6 = MapTreeModule$$$filterAux(comparer$$7, f$$4, l$$6, acc$$5);
+          var acc$$7 = MapTreeModule$$$filter1(comparer$$7, f$$4, k$$10, v$$8, acc$$6);
+          $arg$$34 = comparer$$7;
+          $arg$$35 = f$$4;
+          $arg$$36 = r$$6;
+          $arg$$37 = acc$$7;
+          continue MapTreeModule$$$filterAux;
+        }
+
+      default:
+        {
+          return acc$$5;
+        }
+    }
+
+    break;
+  }
+}
+function MapTreeModule$$$filter(comparer$$8, f$$5, s$$3) {
+  return MapTreeModule$$$filterAux(comparer$$8, f$$5, s$$3, MapTreeModule$$$empty());
+}
+function MapTreeModule$$$spliceOutSuccessor(m$$6) {
+  switch (m$$6.tag) {
+    case 1:
+      {
+        var v2$$5 = m$$6.fields[1];
+        var k2$$6 = m$$6.fields[0];
+        return [k2$$6, v2$$5, new MapTree$00602(0, "MapEmpty")];
+      }
+
+    case 2:
+      {
+        var v2$$6 = m$$6.fields[1];
+        var r$$7 = m$$6.fields[3];
+        var l$$7 = m$$6.fields[2];
+        var k2$$7 = m$$6.fields[0];
+
+        if (l$$7.tag === 0) {
+          return [k2$$7, v2$$6, r$$7];
+        } else {
+          var patternInput = MapTreeModule$$$spliceOutSuccessor(l$$7);
+          return [patternInput[0], patternInput[1], MapTreeModule$$$mk(patternInput[2], k2$$7, v2$$6, r$$7)];
+        }
+      }
+
+    default:
+      {
+        throw new Error("internal error: Map.spliceOutSuccessor");
+      }
+  }
+}
+function MapTreeModule$$$remove(comparer$$9, k$$11, m$$7) {
+  switch (m$$7.tag) {
+    case 1:
+      {
+        var k2$$8 = m$$7.fields[0];
+        var c$$6 = comparer$$9.Compare(k$$11, k2$$8) | 0;
+
+        if (c$$6 === 0) {
+          return new MapTree$00602(0, "MapEmpty");
+        } else {
+          return m$$7;
+        }
+      }
+
+    case 2:
+      {
+        var v2$$7 = m$$7.fields[1];
+        var r$$8 = m$$7.fields[3];
+        var l$$8 = m$$7.fields[2];
+        var k2$$9 = m$$7.fields[0];
+        var c$$7 = comparer$$9.Compare(k$$11, k2$$9) | 0;
+
+        if (c$$7 < 0) {
+          return MapTreeModule$$$rebalance(MapTreeModule$$$remove(comparer$$9, k$$11, l$$8), k2$$9, v2$$7, r$$8);
+        } else if (c$$7 === 0) {
+          var matchValue$$1 = [l$$8, r$$8];
+
+          if (matchValue$$1[0].tag === 0) {
+            return r$$8;
+          } else if (matchValue$$1[1].tag === 0) {
+            return l$$8;
+          } else {
+            var patternInput$$1 = MapTreeModule$$$spliceOutSuccessor(r$$8);
+            return MapTreeModule$$$mk(l$$8, patternInput$$1[0], patternInput$$1[1], patternInput$$1[2]);
+          }
+        } else {
+          return MapTreeModule$$$rebalance(l$$8, k2$$9, v2$$7, MapTreeModule$$$remove(comparer$$9, k$$11, r$$8));
+        }
+      }
+
+    default:
+      {
+        return MapTreeModule$$$empty();
+      }
+  }
+}
+function MapTreeModule$$$mem(comparer$$10, k$$12, m$$8) {
+  MapTreeModule$$$mem: while (true) {
+    switch (m$$8.tag) {
+      case 1:
+        {
+          var k2$$10 = m$$8.fields[0];
+          return comparer$$10.Compare(k$$12, k2$$10) === 0;
+        }
+
+      case 2:
+        {
+          var r$$9 = m$$8.fields[3];
+          var l$$9 = m$$8.fields[2];
+          var k2$$11 = m$$8.fields[0];
+          var c$$8 = comparer$$10.Compare(k$$12, k2$$11) | 0;
+
+          if (c$$8 < 0) {
+            var $comparer$$10$$41 = comparer$$10;
+            var $k$$12$$42 = k$$12;
+            comparer$$10 = $comparer$$10$$41;
+            k$$12 = $k$$12$$42;
+            m$$8 = l$$9;
+            continue MapTreeModule$$$mem;
+          } else if (c$$8 === 0) {
+            return true;
+          } else {
+            var $comparer$$10$$43 = comparer$$10;
+            var $k$$12$$44 = k$$12;
+            comparer$$10 = $comparer$$10$$43;
+            k$$12 = $k$$12$$44;
+            m$$8 = r$$9;
+            continue MapTreeModule$$$mem;
+          }
+        }
+
+      default:
+        {
+          return false;
+        }
+    }
+
+    break;
+  }
+}
+function MapTreeModule$$$iter($arg$$45, $arg$$46) {
+  MapTreeModule$$$iter: while (true) {
+    var f$$6 = $arg$$45,
+        m$$9 = $arg$$46;
+
+    switch (m$$9.tag) {
+      case 1:
+        {
+          var v2$$8 = m$$9.fields[1];
+          var k2$$12 = m$$9.fields[0];
+          f$$6(k2$$12, v2$$8);
+          break;
+        }
+
+      case 2:
+        {
+          var v2$$9 = m$$9.fields[1];
+          var r$$10 = m$$9.fields[3];
+          var l$$10 = m$$9.fields[2];
+          var k2$$13 = m$$9.fields[0];
+          MapTreeModule$$$iter(f$$6, l$$10);
+          f$$6(k2$$13, v2$$9);
+          $arg$$45 = f$$6;
+          $arg$$46 = r$$10;
+          continue MapTreeModule$$$iter;
+          break;
+        }
+
+      default:
+        {}
+    }
+
+    break;
+  }
+}
+function MapTreeModule$$$tryPick($arg$$47, $arg$$48) {
+  MapTreeModule$$$tryPick: while (true) {
+    var f$$7 = $arg$$47,
+        m$$10 = $arg$$48;
+
+    switch (m$$10.tag) {
+      case 1:
+        {
+          var v2$$10 = m$$10.fields[1];
+          var k2$$14 = m$$10.fields[0];
+          return f$$7(k2$$14, v2$$10);
+        }
+
+      case 2:
+        {
+          var v2$$11 = m$$10.fields[1];
+          var r$$11 = m$$10.fields[3];
+          var l$$11 = m$$10.fields[2];
+          var k2$$15 = m$$10.fields[0];
+          var matchValue$$2 = MapTreeModule$$$tryPick(f$$7, l$$11);
+
+          if (matchValue$$2 == null) {
+            var matchValue$$3 = f$$7(k2$$15, v2$$11);
+
+            if (matchValue$$3 == null) {
+              $arg$$47 = f$$7;
+              $arg$$48 = r$$11;
+              continue MapTreeModule$$$tryPick;
+            } else {
+              var res$$1 = matchValue$$3;
+              return res$$1;
+            }
+          } else {
+            var res = matchValue$$2;
+            return res;
+          }
+        }
+
+      default:
+        {
+          return null;
+        }
+    }
+
+    break;
+  }
+}
+function MapTreeModule$$$exists($arg$$49, $arg$$50) {
+  MapTreeModule$$$exists: while (true) {
+    var f$$8 = $arg$$49,
+        m$$11 = $arg$$50;
+
+    switch (m$$11.tag) {
+      case 1:
+        {
+          var v2$$12 = m$$11.fields[1];
+          var k2$$16 = m$$11.fields[0];
+          return f$$8(k2$$16, v2$$12);
+        }
+
+      case 2:
+        {
+          var v2$$13 = m$$11.fields[1];
+          var r$$12 = m$$11.fields[3];
+          var l$$12 = m$$11.fields[2];
+          var k2$$17 = m$$11.fields[0];
+
+          if (MapTreeModule$$$exists(f$$8, l$$12) ? true : f$$8(k2$$17, v2$$13)) {
+            return true;
+          } else {
+            $arg$$49 = f$$8;
+            $arg$$50 = r$$12;
+            continue MapTreeModule$$$exists;
+          }
+        }
+
+      default:
+        {
+          return false;
+        }
+    }
+
+    break;
+  }
+}
+function MapTreeModule$$$forall($arg$$51, $arg$$52) {
+  MapTreeModule$$$forall: while (true) {
+    var f$$9 = $arg$$51,
+        m$$12 = $arg$$52;
+
+    switch (m$$12.tag) {
+      case 1:
+        {
+          var v2$$14 = m$$12.fields[1];
+          var k2$$18 = m$$12.fields[0];
+          return f$$9(k2$$18, v2$$14);
+        }
+
+      case 2:
+        {
+          var v2$$15 = m$$12.fields[1];
+          var r$$13 = m$$12.fields[3];
+          var l$$13 = m$$12.fields[2];
+          var k2$$19 = m$$12.fields[0];
+
+          if (MapTreeModule$$$forall(f$$9, l$$13) ? f$$9(k2$$19, v2$$15) : false) {
+            $arg$$51 = f$$9;
+            $arg$$52 = r$$13;
+            continue MapTreeModule$$$forall;
+          } else {
+            return false;
+          }
+        }
+
+      default:
+        {
+          return true;
+        }
+    }
+
+    break;
+  }
+}
+function MapTreeModule$$$map(f$$10, m$$13) {
+  switch (m$$13.tag) {
+    case 1:
+      {
+        var v$$9 = m$$13.fields[1];
+        var k$$13 = m$$13.fields[0];
+        return new MapTree$00602(1, "MapOne", k$$13, f$$10(v$$9));
+      }
+
+    case 2:
+      {
+        var v$$10 = m$$13.fields[1];
+        var r$$14 = m$$13.fields[3];
+        var l$$14 = m$$13.fields[2];
+        var k$$14 = m$$13.fields[0];
+        var h$$2 = m$$13.fields[4] | 0;
+        var l2 = MapTreeModule$$$map(f$$10, l$$14);
+        var v2$$16 = f$$10(v$$10);
+        var r2 = MapTreeModule$$$map(f$$10, r$$14);
+        return new MapTree$00602(2, "MapNode", k$$14, v2$$16, l2, r2, h$$2);
+      }
+
+    default:
+      {
+        return MapTreeModule$$$empty();
+      }
+  }
+}
+function MapTreeModule$$$mapi(f$$11, m$$14) {
+  switch (m$$14.tag) {
+    case 1:
+      {
+        var v$$11 = m$$14.fields[1];
+        var k$$15 = m$$14.fields[0];
+        return new MapTree$00602(1, "MapOne", k$$15, f$$11(k$$15, v$$11));
+      }
+
+    case 2:
+      {
+        var v$$12 = m$$14.fields[1];
+        var r$$15 = m$$14.fields[3];
+        var l$$15 = m$$14.fields[2];
+        var k$$16 = m$$14.fields[0];
+        var h$$3 = m$$14.fields[4] | 0;
+        var l2$$1 = MapTreeModule$$$mapi(f$$11, l$$15);
+        var v2$$17 = f$$11(k$$16, v$$12);
+        var r2$$1 = MapTreeModule$$$mapi(f$$11, r$$15);
+        return new MapTree$00602(2, "MapNode", k$$16, v2$$17, l2$$1, r2$$1, h$$3);
+      }
+
+    default:
+      {
+        return MapTreeModule$$$empty();
+      }
+  }
+}
+function MapTreeModule$$$foldBack($arg$$57, $arg$$58, $arg$$59) {
+  MapTreeModule$$$foldBack: while (true) {
+    var f$$12 = $arg$$57,
+        m$$15 = $arg$$58,
+        x$$1 = $arg$$59;
+
+    switch (m$$15.tag) {
+      case 1:
+        {
+          var v$$13 = m$$15.fields[1];
+          var k$$17 = m$$15.fields[0];
+          return f$$12(k$$17, v$$13, x$$1);
+        }
+
+      case 2:
+        {
+          var v$$14 = m$$15.fields[1];
+          var r$$16 = m$$15.fields[3];
+          var l$$16 = m$$15.fields[2];
+          var k$$18 = m$$15.fields[0];
+          var x$$2 = MapTreeModule$$$foldBack(f$$12, r$$16, x$$1);
+          var x$$3 = f$$12(k$$18, v$$14, x$$2);
+          $arg$$57 = f$$12;
+          $arg$$58 = l$$16;
+          $arg$$59 = x$$3;
+          continue MapTreeModule$$$foldBack;
+        }
+
+      default:
+        {
+          return x$$1;
+        }
+    }
+
+    break;
+  }
+}
+function MapTreeModule$$$fold($arg$$60, $arg$$61, $arg$$62) {
+  MapTreeModule$$$fold: while (true) {
+    var f$$13 = $arg$$60,
+        x$$4 = $arg$$61,
+        m$$16 = $arg$$62;
+
+    switch (m$$16.tag) {
+      case 1:
+        {
+          var v$$15 = m$$16.fields[1];
+          var k$$19 = m$$16.fields[0];
+          return f$$13(x$$4, k$$19, v$$15);
+        }
+
+      case 2:
+        {
+          var v$$16 = m$$16.fields[1];
+          var r$$17 = m$$16.fields[3];
+          var l$$17 = m$$16.fields[2];
+          var k$$20 = m$$16.fields[0];
+          var x$$5 = MapTreeModule$$$fold(f$$13, x$$4, l$$17);
+          var x$$6 = f$$13(x$$5, k$$20, v$$16);
+          $arg$$60 = f$$13;
+          $arg$$61 = x$$6;
+          $arg$$62 = r$$17;
+          continue MapTreeModule$$$fold;
+        }
+
+      default:
+        {
+          return x$$4;
+        }
+    }
+
+    break;
+  }
+}
+function MapTreeModule$$$foldFromTo(comparer$$11, lo, hi, f$$14, m$$17, x$$7) {
+  switch (m$$17.tag) {
+    case 1:
+      {
+        var v$$17 = m$$17.fields[1];
+        var k$$21 = m$$17.fields[0];
+        var cLoKey = comparer$$11.Compare(lo, k$$21) | 0;
+        var cKeyHi = comparer$$11.Compare(k$$21, hi) | 0;
+        var x$$8 = (cLoKey <= 0 ? cKeyHi <= 0 : false) ? f$$14(k$$21, v$$17, x$$7) : x$$7;
+        return x$$8;
+      }
+
+    case 2:
+      {
+        var v$$18 = m$$17.fields[1];
+        var r$$18 = m$$17.fields[3];
+        var l$$18 = m$$17.fields[2];
+        var k$$22 = m$$17.fields[0];
+        var cLoKey$$1 = comparer$$11.Compare(lo, k$$22) | 0;
+        var cKeyHi$$1 = comparer$$11.Compare(k$$22, hi) | 0;
+        var x$$9 = cLoKey$$1 < 0 ? MapTreeModule$$$foldFromTo(comparer$$11, lo, hi, f$$14, l$$18, x$$7) : x$$7;
+        var x$$10 = (cLoKey$$1 <= 0 ? cKeyHi$$1 <= 0 : false) ? f$$14(k$$22, v$$18, x$$9) : x$$9;
+        var x$$11 = cKeyHi$$1 < 0 ? MapTreeModule$$$foldFromTo(comparer$$11, lo, hi, f$$14, r$$18, x$$10) : x$$10;
+        return x$$11;
+      }
+
+    default:
+      {
+        return x$$7;
+      }
+  }
+}
+function MapTreeModule$$$foldSection(comparer$$12, lo$$1, hi$$1, f$$15, m$$18, x$$12) {
+  if (comparer$$12.Compare(lo$$1, hi$$1) === 1) {
+    return x$$12;
+  } else {
+    return MapTreeModule$$$foldFromTo(comparer$$12, lo$$1, hi$$1, f$$15, m$$18, x$$12);
+  }
+}
+function MapTreeModule$$$loop(m$$19, acc$$8) {
+  MapTreeModule$$$loop: while (true) {
+    switch (m$$19.tag) {
+      case 1:
+        {
+          var v$$19 = m$$19.fields[1];
+          var k$$23 = m$$19.fields[0];
+          return new _Types_js__WEBPACK_IMPORTED_MODULE_2__["List"]([k$$23, v$$19], acc$$8);
+        }
+
+      case 2:
+        {
+          var v$$20 = m$$19.fields[1];
+          var r$$19 = m$$19.fields[3];
+          var l$$19 = m$$19.fields[2];
+          var k$$24 = m$$19.fields[0];
+          var $acc$$8$$75 = acc$$8;
+          m$$19 = l$$19;
+          acc$$8 = new _Types_js__WEBPACK_IMPORTED_MODULE_2__["List"]([k$$24, v$$20], MapTreeModule$$$loop(r$$19, $acc$$8$$75));
+          continue MapTreeModule$$$loop;
+        }
+
+      default:
+        {
+          return acc$$8;
+        }
+    }
+
+    break;
+  }
+}
+function MapTreeModule$$$toList(m$$20) {
+  return MapTreeModule$$$loop(m$$20, new _Types_js__WEBPACK_IMPORTED_MODULE_2__["List"]());
+}
+function MapTreeModule$$$ofList(comparer$$13, l$$20) {
+  return Object(_Seq_js__WEBPACK_IMPORTED_MODULE_5__["fold"])(function (acc$$9, tupledArg) {
+    return MapTreeModule$$$add(comparer$$13, tupledArg[0], tupledArg[1], acc$$9);
+  }, MapTreeModule$$$empty(), l$$20);
+}
+function MapTreeModule$$$mkFromEnumerator(comparer$$14, acc$$10, e) {
+  MapTreeModule$$$mkFromEnumerator: while (true) {
+    if (e.MoveNext()) {
+      var patternInput$$2 = e.Current;
+      var $acc$$10$$77 = acc$$10;
+      var $comparer$$14$$76 = comparer$$14;
+      var $e$$78 = e;
+      comparer$$14 = $comparer$$14$$76;
+      acc$$10 = MapTreeModule$$$add($comparer$$14$$76, patternInput$$2[0], patternInput$$2[1], $acc$$10$$77);
+      e = $e$$78;
+      continue MapTreeModule$$$mkFromEnumerator;
+    } else {
+      return acc$$10;
+    }
+
+    break;
+  }
+}
+function MapTreeModule$$$ofArray(comparer$$15, arr) {
+  var res$$2 = MapTreeModule$$$empty();
+
+  for (var i = 0; i <= arr.length - 1; i++) {
+    var patternInput$$3 = arr[i];
+    res$$2 = MapTreeModule$$$add(comparer$$15, patternInput$$3[0], patternInput$$3[1], res$$2);
+  }
+
+  return res$$2;
+}
+function MapTreeModule$$$ofSeq(comparer$$16, c$$9) {
+  var ie = Object(_Seq_js__WEBPACK_IMPORTED_MODULE_5__["getEnumerator"])(c$$9);
+
+  try {
+    return MapTreeModule$$$mkFromEnumerator(comparer$$16, MapTreeModule$$$empty(), ie);
+  } finally {
+    if (Object(_Util_js__WEBPACK_IMPORTED_MODULE_6__["isDisposable"])(ie)) {
+      ie.Dispose();
+    }
+  }
+}
+function MapTreeModule$$$copyToArray(s$$4, arr$$1, i$$1) {
+  var j = i$$1 | 0;
+  MapTreeModule$$$iter(function f$$16(x$$15, y$$2) {
+    arr$$1[j] = [x$$15, y$$2];
+    j = j + 1;
+  }, s$$4);
+}
+var MapTreeModule$002EMapIterator$00602 = Object(_Types_js__WEBPACK_IMPORTED_MODULE_2__["declare"])(function Map_MapTreeModule_MapIterator(arg1, arg2) {
+  this.stack = arg1;
+  this.started = arg2;
+}, _Types_js__WEBPACK_IMPORTED_MODULE_2__["Record"]);
+function MapTreeModule$002EMapIterator$00602$reflection($gen$$79, $gen$$80) {
+  return Object(_Reflection_js__WEBPACK_IMPORTED_MODULE_3__["record"])("Map.MapTreeModule.MapIterator`2", [$gen$$79, $gen$$80], MapTreeModule$002EMapIterator$00602, function () {
+    return [["stack", Object(_Reflection_js__WEBPACK_IMPORTED_MODULE_3__["list"])(MapTree$00602$reflection($gen$$79, $gen$$80))], ["started", _Reflection_js__WEBPACK_IMPORTED_MODULE_3__["bool"]]];
+  });
+}
+function MapTreeModule$$$collapseLHS(stack) {
+  MapTreeModule$$$collapseLHS: while (true) {
+    if (stack.tail != null) {
+      if (stack.head.tag === 1) {
+        return stack;
+      } else if (stack.head.tag === 2) {
+        var $stack$$81 = stack;
+        stack = new _Types_js__WEBPACK_IMPORTED_MODULE_2__["List"]($stack$$81.head.fields[2], new _Types_js__WEBPACK_IMPORTED_MODULE_2__["List"](new MapTree$00602(1, "MapOne", $stack$$81.head.fields[0], $stack$$81.head.fields[1]), new _Types_js__WEBPACK_IMPORTED_MODULE_2__["List"]($stack$$81.head.fields[3], $stack$$81.tail)));
+        continue MapTreeModule$$$collapseLHS;
+      } else {
+        var $stack$$82 = stack;
+        stack = $stack$$82.tail;
+        continue MapTreeModule$$$collapseLHS;
+      }
+    } else {
+      return new _Types_js__WEBPACK_IMPORTED_MODULE_2__["List"]();
+    }
+
+    break;
+  }
+}
+function MapTreeModule$$$mkIterator(s$$5) {
+  return new MapTreeModule$002EMapIterator$00602(MapTreeModule$$$collapseLHS(new _Types_js__WEBPACK_IMPORTED_MODULE_2__["List"](s$$5, new _Types_js__WEBPACK_IMPORTED_MODULE_2__["List"]())), false);
+}
+function MapTreeModule$$$notStarted() {
+  throw new Error("enumeration not started");
+}
+function MapTreeModule$$$alreadyFinished() {
+  throw new Error("enumeration already finished");
+}
+function MapTreeModule$$$current(i$$2) {
+  if (i$$2.started) {
+    var matchValue$$4 = i$$2.stack;
+
+    if (matchValue$$4.tail == null) {
+      return MapTreeModule$$$alreadyFinished();
+    } else if (matchValue$$4.head.tag === 1) {
+      return [matchValue$$4.head.fields[0], matchValue$$4.head.fields[1]];
+    } else {
+      throw new Error("Please report error: Map iterator, unexpected stack for current");
+    }
+  } else {
+    return MapTreeModule$$$notStarted();
+  }
+}
+function MapTreeModule$$$moveNext(i$$3) {
+  if (i$$3.started) {
+    var matchValue$$5 = i$$3.stack;
+
+    if (matchValue$$5.tail == null) {
+      return false;
+    } else if (matchValue$$5.head.tag === 1) {
+      i$$3.stack = MapTreeModule$$$collapseLHS(matchValue$$5.tail);
+      return !(i$$3.stack.tail == null);
+    } else {
+      throw new Error("Please report error: Map iterator, unexpected stack for moveNext");
+    }
+  } else {
+    i$$3.started = true;
+    return !(i$$3.stack.tail == null);
+  }
+}
+var MapTreeModule$002EmkIEnumerator$0027$00602 = Object(_Types_js__WEBPACK_IMPORTED_MODULE_2__["declare"])(function Map_MapTreeModule_mkIEnumerator_(s$$6) {
+  var $this$$1 = this;
+  $this$$1.s = s$$6;
+  $this$$1.i = MapTreeModule$$$mkIterator($this$$1.s);
+});
+function MapTreeModule$002EmkIEnumerator$0027$00602$reflection($gen$$83, $gen$$84) {
+  return Object(_Reflection_js__WEBPACK_IMPORTED_MODULE_3__["type"])("Map.MapTreeModule.mkIEnumerator'`2", [$gen$$83, $gen$$84]);
+}
+function MapTreeModule$002EmkIEnumerator$0027$00602$$$$002Ector$$Z26BC498C(s$$6) {
+  return this instanceof MapTreeModule$002EmkIEnumerator$0027$00602 ? MapTreeModule$002EmkIEnumerator$0027$00602.call(this, s$$6) : new MapTreeModule$002EmkIEnumerator$0027$00602(s$$6);
+}
+Object.defineProperty(MapTreeModule$002EmkIEnumerator$0027$00602.prototype, "Current", {
+  "get": function get() {
+    var __ = this;
+
+    return MapTreeModule$$$current(__.i);
   }
 });
 
+MapTreeModule$002EmkIEnumerator$0027$00602.prototype.MoveNext = function () {
+  var __$$1 = this;
 
-/***/ }),
-/* 87 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-var $defineProperty = __webpack_require__(4);
-var createDesc = __webpack_require__(23);
-
-module.exports = function (object, index, value) {
-  if (index in object) $defineProperty.f(object, index, createDesc(0, value));
-  else object[index] = value;
+  return MapTreeModule$$$moveNext(__$$1.i);
 };
 
+MapTreeModule$002EmkIEnumerator$0027$00602.prototype.Reset = function () {
+  var __$$2 = this;
 
-/***/ }),
-/* 88 */
-/***/ (function(module, exports, __webpack_require__) {
-
-var ITERATOR = __webpack_require__(2)('iterator');
-var SAFE_CLOSING = false;
-
-try {
-  var riter = [7][ITERATOR]();
-  riter['return'] = function () { SAFE_CLOSING = true; };
-  // eslint-disable-next-line no-throw-literal
-  Array.from(riter, function () { throw 2; });
-} catch (e) { /* empty */ }
-
-module.exports = function (exec, skipClosing) {
-  if (!skipClosing && !SAFE_CLOSING) return false;
-  var safe = false;
-  try {
-    var arr = [7];
-    var iter = arr[ITERATOR]();
-    iter.next = function () { return { done: safe = true }; };
-    arr[ITERATOR] = function () { return iter; };
-    exec(arr);
-  } catch (e) { /* empty */ }
-  return safe;
+  __$$2.i = MapTreeModule$$$mkIterator(__$$2.s);
 };
 
+MapTreeModule$002EmkIEnumerator$0027$00602.prototype.Dispose = function () {};
 
-/***/ }),
-/* 89 */
-/***/ (function(module, exports, __webpack_require__) {
+function MapTreeModule$$$mkIEnumerator(s$$7) {
+  return MapTreeModule$002EmkIEnumerator$0027$00602$$$$002Ector$$Z26BC498C(s$$7);
+}
+function MapTreeModule$$$toSeq(s$$8) {
+  var en = MapTreeModule$$$mkIEnumerator(s$$8);
+  return Object(_Seq_js__WEBPACK_IMPORTED_MODULE_5__["unfold"])(function generator(en$$1) {
+    if (en$$1.MoveNext()) {
+      return [en$$1.Current, en$$1];
+    } else {
+      return null;
+    }
+  }, en);
+}
+var FSharpMap = Object(_Types_js__WEBPACK_IMPORTED_MODULE_2__["declare"])(function Map_Map(comparer$$17, tree) {
+  var $this$$2 = this;
+  $this$$2.comparer = comparer$$17;
+  $this$$2.tree = tree;
+});
+function FSharpMap$reflection($gen$$85, $gen$$86) {
+  return Object(_Reflection_js__WEBPACK_IMPORTED_MODULE_3__["type"])("Map.FSharpMap", [$gen$$85, $gen$$86]);
+}
+function FSharpMap$$$$002Ector$$58ADD115(comparer$$17, tree) {
+  return this instanceof FSharpMap ? FSharpMap.call(this, comparer$$17, tree) : new FSharpMap(comparer$$17, tree);
+}
+function FSharpMap$$get_Comparer(__$$4) {
+  return __$$4.comparer;
+}
+function FSharpMap$$get_Tree(__$$5) {
+  return __$$5.tree;
+}
+function FSharpMap$$Add$$5BDDA1(__$$6, k$$28, v$$24) {
+  return FSharpMap$$$$002Ector$$58ADD115(__$$6.comparer, MapTreeModule$$$add(__$$6.comparer, k$$28, v$$24, __$$6.tree));
+}
+function FSharpMap$$get_IsEmpty(__$$7) {
+  return MapTreeModule$$$isEmpty(__$$7.tree);
+}
+function FSharpMap$$get_Item$$2B595(__$$8, k$$29) {
+  return MapTreeModule$$$find(__$$8.comparer, k$$29, __$$8.tree);
+}
+function FSharpMap$$TryGetValue$$5BDDA1(__$$9, k$$30, defValue) {
+  var matchValue$$6 = MapTreeModule$$$tryFind(__$$9.comparer, k$$30, __$$9.tree);
 
-__webpack_require__(32);
-__webpack_require__(22);
-module.exports = __webpack_require__(92);
-
-
-/***/ }),
-/* 90 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-var addToUnscopables = __webpack_require__(91);
-var step = __webpack_require__(63);
-var Iterators = __webpack_require__(20);
-var toIObject = __webpack_require__(17);
-
-// 22.1.3.4 Array.prototype.entries()
-// 22.1.3.13 Array.prototype.keys()
-// 22.1.3.29 Array.prototype.values()
-// 22.1.3.30 Array.prototype[@@iterator]()
-module.exports = __webpack_require__(37)(Array, 'Array', function (iterated, kind) {
-  this._t = toIObject(iterated); // target
-  this._i = 0;                   // next index
-  this._k = kind;                // kind
-// 22.1.5.2.1 %ArrayIteratorPrototype%.next()
-}, function () {
-  var O = this._t;
-  var kind = this._k;
-  var index = this._i++;
-  if (!O || index >= O.length) {
-    this._t = undefined;
-    return step(1);
+  if (matchValue$$6 == null) {
+    return [false, defValue];
+  } else {
+    var v$$25 = Object(_Option_js__WEBPACK_IMPORTED_MODULE_4__["value"])(matchValue$$6);
+    return [true, v$$25];
   }
-  if (kind == 'keys') return step(0, index);
-  if (kind == 'values') return step(0, O[index]);
-  return step(0, [index, O[index]]);
-}, 'values');
+}
+function FSharpMap$$TryPick$$72321DD7(__$$10, f$$17) {
+  return MapTreeModule$$$tryPick(f$$17, __$$10.tree);
+}
+function FSharpMap$$Exists$$Z395DDC35(__$$11, f$$18) {
+  return MapTreeModule$$$exists(f$$18, __$$11.tree);
+}
+function FSharpMap$$Filter$$Z395DDC35(__$$12, f$$19) {
+  return FSharpMap$$$$002Ector$$58ADD115(__$$12.comparer, MapTreeModule$$$filter(__$$12.comparer, f$$19, __$$12.tree));
+}
+function FSharpMap$$ForAll$$Z395DDC35(__$$13, f$$20) {
+  return MapTreeModule$$$forall(f$$20, __$$13.tree);
+}
+function FSharpMap$$Fold(__$$14, f$$21, acc$$11) {
+  return MapTreeModule$$$foldBack(f$$21, __$$14.tree, acc$$11);
+}
+function FSharpMap$$FoldSection(__$$15, lo$$2, hi$$2, f$$22, acc$$12) {
+  return MapTreeModule$$$foldSection(__$$15.comparer, lo$$2, hi$$2, f$$22, __$$15.tree, acc$$12);
+}
+function FSharpMap$$Iterate$$1DCFB91D(__$$16, f$$23) {
+  MapTreeModule$$$iter(f$$23, __$$16.tree);
+}
+function FSharpMap$$MapRange$$6DC7247(__$$17, f$$24) {
+  return FSharpMap$$$$002Ector$$58ADD115(__$$17.comparer, MapTreeModule$$$map(f$$24, __$$17.tree));
+}
+function FSharpMap$$Map$$Z6F6B671C(__$$18, f$$25) {
+  return FSharpMap$$$$002Ector$$58ADD115(__$$18.comparer, MapTreeModule$$$mapi(f$$25, __$$18.tree));
+}
+function FSharpMap$$Partition$$Z395DDC35(__$$19, f$$26) {
+  var patternInput$$4 = MapTreeModule$$$partition(__$$19.comparer, f$$26, __$$19.tree);
+  return [FSharpMap$$$$002Ector$$58ADD115(__$$19.comparer, patternInput$$4[0]), FSharpMap$$$$002Ector$$58ADD115(__$$19.comparer, patternInput$$4[1])];
+}
+function FSharpMap$$get_Count(__$$20) {
+  return MapTreeModule$$$size(__$$20.tree);
+}
+function FSharpMap$$ContainsKey$$2B595(__$$21, k$$31) {
+  return MapTreeModule$$$mem(__$$21.comparer, k$$31, __$$21.tree);
+}
+function FSharpMap$$Remove$$2B595(__$$22, k$$32) {
+  return FSharpMap$$$$002Ector$$58ADD115(__$$22.comparer, MapTreeModule$$$remove(__$$22.comparer, k$$32, __$$22.tree));
+}
+function FSharpMap$$TryFind$$2B595(__$$23, k$$33) {
+  return MapTreeModule$$$tryFind(__$$23.comparer, k$$33, __$$23.tree);
+}
+function FSharpMap$$ToList(__$$24) {
+  return MapTreeModule$$$toList(__$$24.tree);
+}
 
-// argumentsList[@@iterator] is %ArrayProto_values% (9.4.4.6, 9.4.4.7)
-Iterators.Arguments = Iterators.Array;
+FSharpMap.prototype.toString = function () {
+  var this$ = this;
+  return "map [" + _String_js__WEBPACK_IMPORTED_MODULE_7__["join"].apply(void 0, ["; "].concat(_babel_runtime_helpers_toConsumableArray__WEBPACK_IMPORTED_MODULE_1___default()(Object(_Seq_js__WEBPACK_IMPORTED_MODULE_5__["map"])(function mapping(kv) {
+    return Object(_String_js__WEBPACK_IMPORTED_MODULE_7__["toText"])(Object(_String_js__WEBPACK_IMPORTED_MODULE_7__["printf"])("(%A, %A)"))(kv[0])(kv[1]);
+  }, this$)))) + "]";
+};
 
-addToUnscopables('keys');
-addToUnscopables('values');
-addToUnscopables('entries');
+FSharpMap.prototype.GetHashCode = function () {
+  var this$$$1 = this;
 
+  var combineHash = function combineHash(x$$16, y$$3) {
+    return (x$$16 << 1) + y$$3 + 631;
+  };
+
+  var res$$3 = 0;
+  var e$$1 = MapTreeModule$$$mkIEnumerator(FSharpMap$$get_Tree(this$$$1));
+
+  while (e$$1.MoveNext()) {
+    var activePatternResult3090 = e$$1.Current;
+    res$$3 = combineHash(res$$3, Object(_Util_js__WEBPACK_IMPORTED_MODULE_6__["structuralHash"])(activePatternResult3090[0]));
+    res$$3 = combineHash(res$$3, Object(_Util_js__WEBPACK_IMPORTED_MODULE_6__["structuralHash"])(activePatternResult3090[1]));
+  }
+
+  return Math.abs(res$$3) | 0;
+};
+
+FSharpMap.prototype.Equals = function (that) {
+  var this$$$2 = this;
+  return this$$$2.CompareTo(that) === 0;
+};
+
+FSharpMap.prototype[Symbol.iterator] = function () {
+  var __$$25 = this;
+
+  return Object(_Seq_js__WEBPACK_IMPORTED_MODULE_5__["toIterator"])(MapTreeModule$$$mkIEnumerator(__$$25.tree));
+};
+
+FSharpMap.prototype.CompareTo = function (obj) {
+  var m$$22 = this;
+  var m2 = obj;
+  var res$$4 = 0;
+  var finished = false;
+  var e1 = MapTreeModule$$$mkIEnumerator(FSharpMap$$get_Tree(m$$22));
+
+  try {
+    var e2 = MapTreeModule$$$mkIEnumerator(FSharpMap$$get_Tree(m2));
+
+    try {
+      while (!finished ? res$$4 === 0 : false) {
+        var matchValue$$7 = [e1.MoveNext(), e2.MoveNext()];
+
+        if (matchValue$$7[0]) {
+          if (matchValue$$7[1]) {
+            var kvp1 = e1.Current;
+            var kvp2 = e2.Current;
+            var c$$10 = m$$22.comparer.Compare(kvp1[0], kvp2[0]) | 0;
+            res$$4 = c$$10 !== 0 ? c$$10 : Object(_Util_js__WEBPACK_IMPORTED_MODULE_6__["compare"])(kvp1[1], kvp2[1]);
+          } else {
+            res$$4 = 1;
+          }
+        } else if (matchValue$$7[1]) {
+          res$$4 = -1;
+        } else {
+          finished = true;
+        }
+      }
+
+      return res$$4 | 0;
+    } finally {
+      if (Object(_Util_js__WEBPACK_IMPORTED_MODULE_6__["isDisposable"])(e2)) {
+        e2.Dispose();
+      }
+    }
+  } finally {
+    if (Object(_Util_js__WEBPACK_IMPORTED_MODULE_6__["isDisposable"])(e1)) {
+      e1.Dispose();
+    }
+  }
+};
+
+function isEmpty(m$$23) {
+  return FSharpMap$$get_IsEmpty(m$$23);
+}
+function add(k$$34, v$$26, m$$24) {
+  return FSharpMap$$Add$$5BDDA1(m$$24, k$$34, v$$26);
+}
+function find(k$$35, m$$25) {
+  return FSharpMap$$get_Item$$2B595(m$$25, k$$35);
+}
+function tryFind(k$$36, m$$26) {
+  return FSharpMap$$TryFind$$2B595(m$$26, k$$36);
+}
+function remove(k$$37, m$$27) {
+  return FSharpMap$$Remove$$2B595(m$$27, k$$37);
+}
+function containsKey(k$$38, m$$28) {
+  return FSharpMap$$ContainsKey$$2B595(m$$28, k$$38);
+}
+function iterate(f$$27, m$$29) {
+  FSharpMap$$Iterate$$1DCFB91D(m$$29, f$$27);
+}
+function tryPick(f$$28, m$$30) {
+  return FSharpMap$$TryPick$$72321DD7(m$$30, f$$28);
+}
+function pick(f$$29, m$$31) {
+  var matchValue$$8 = tryPick(f$$29, m$$31);
+
+  if (matchValue$$8 != null) {
+    var res$$5 = Object(_Option_js__WEBPACK_IMPORTED_MODULE_4__["value"])(matchValue$$8);
+    return res$$5;
+  } else {
+    throw new Error("key not found");
+  }
+}
+function exists(f$$30, m$$32) {
+  return FSharpMap$$Exists$$Z395DDC35(m$$32, f$$30);
+}
+function filter(f$$31, m$$33) {
+  return FSharpMap$$Filter$$Z395DDC35(m$$33, f$$31);
+}
+function partition(f$$32, m$$34) {
+  return FSharpMap$$Partition$$Z395DDC35(m$$34, f$$32);
+}
+function forAll(f$$33, m$$35) {
+  return FSharpMap$$ForAll$$Z395DDC35(m$$35, f$$33);
+}
+function mapRange(f$$34, m$$36) {
+  return FSharpMap$$MapRange$$6DC7247(m$$36, f$$34);
+}
+function map(f$$35, m$$37) {
+  return FSharpMap$$Map$$Z6F6B671C(m$$37, f$$35);
+}
+function fold(f$$36, z, m$$38) {
+  return MapTreeModule$$$fold(f$$36, z, FSharpMap$$get_Tree(m$$38));
+}
+function foldBack(f$$37, m$$39, z$$1) {
+  return MapTreeModule$$$foldBack(f$$37, FSharpMap$$get_Tree(m$$39), z$$1);
+}
+function toSeq(m$$40) {
+  return MapTreeModule$$$toSeq(FSharpMap$$get_Tree(m$$40));
+}
+function findKey(f$$38, m$$41) {
+  var _arg1$$1 = MapTreeModule$$$tryPick(function f$$39(k$$39, v$$27) {
+    if (f$$38(k$$39, v$$27)) {
+      return Object(_Option_js__WEBPACK_IMPORTED_MODULE_4__["some"])(k$$39);
+    } else {
+      return null;
+    }
+  }, FSharpMap$$get_Tree(m$$41));
+
+  if (_arg1$$1 == null) {
+    throw new Error("Key not found");
+  } else {
+    var k$$40 = Object(_Option_js__WEBPACK_IMPORTED_MODULE_4__["value"])(_arg1$$1);
+    return k$$40;
+  }
+}
+function tryFindKey(f$$40, m$$43) {
+  return MapTreeModule$$$tryPick(function f$$41(k$$41, v$$28) {
+    if (f$$40(k$$41, v$$28)) {
+      return Object(_Option_js__WEBPACK_IMPORTED_MODULE_4__["some"])(k$$41);
+    } else {
+      return null;
+    }
+  }, FSharpMap$$get_Tree(m$$43));
+}
+function ofList(l$$22, comparer$$18) {
+  return FSharpMap$$$$002Ector$$58ADD115(comparer$$18, MapTreeModule$$$ofList(comparer$$18, l$$22));
+}
+function ofSeq(l$$23, comparer$$19) {
+  return FSharpMap$$$$002Ector$$58ADD115(comparer$$19, MapTreeModule$$$ofSeq(comparer$$19, l$$23));
+}
+function ofArray(array, comparer$$20) {
+  return FSharpMap$$$$002Ector$$58ADD115(comparer$$20, MapTreeModule$$$ofArray(comparer$$20, array));
+}
+function toList(m$$45) {
+  return FSharpMap$$ToList(m$$45);
+}
+function toArray(m$$46) {
+  var res$$6 = new Array(FSharpMap$$get_Count(m$$46));
+  MapTreeModule$$$copyToArray(FSharpMap$$get_Tree(m$$46), res$$6, 0);
+  return res$$6;
+}
+function empty(comparer$$21) {
+  return FSharpMap$$$$002Ector$$58ADD115(comparer$$21, new MapTree$00602(0, "MapEmpty"));
+}
+
+function createMutablePrivate(comparer$$22, tree$0027) {
+  var _ref;
+
+  var tree$$1 = tree$0027;
+  return _ref = {
+    get size() {
+      return MapTreeModule$$$size(tree$$1);
+    },
+
+    clear: function clear() {
+      tree$$1 = new MapTree$00602(0, "MapEmpty");
+    },
+    "delete": function _delete(x$$18) {
+      if (MapTreeModule$$$mem(comparer$$22, x$$18, tree$$1)) {
+        tree$$1 = MapTreeModule$$$remove(comparer$$22, x$$18, tree$$1);
+        return true;
+      } else {
+        return false;
+      }
+    },
+    entries: function entries() {
+      return MapTreeModule$$$toSeq(tree$$1);
+    },
+    get: function get(k$$42) {
+      return MapTreeModule$$$find(comparer$$22, k$$42, tree$$1);
+    },
+    has: function has(x$$19) {
+      return MapTreeModule$$$mem(comparer$$22, x$$19, tree$$1);
+    },
+    keys: function keys() {
+      return Object(_Seq_js__WEBPACK_IMPORTED_MODULE_5__["map"])(function mapping$$1(kv$$1) {
+        return kv$$1[0];
+      }, MapTreeModule$$$toSeq(tree$$1));
+    },
+    set: function set(k$$43, v$$29) {
+      var this$$$3 = this;
+      tree$$1 = MapTreeModule$$$add(comparer$$22, k$$43, v$$29, tree$$1);
+      return this$$$3;
+    },
+    values: function values() {
+      return Object(_Seq_js__WEBPACK_IMPORTED_MODULE_5__["map"])(function mapping$$2(kv$$2) {
+        return kv$$2[1];
+      }, MapTreeModule$$$toSeq(tree$$1));
+    }
+  }, _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_ref, Symbol.iterator, function () {
+    return Object(_Seq_js__WEBPACK_IMPORTED_MODULE_5__["toIterator"])(MapTreeModule$$$mkIEnumerator(tree$$1));
+  }), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_ref, "GetEnumerator", function GetEnumerator() {
+    return MapTreeModule$$$mkIEnumerator(tree$$1);
+  }), _ref;
+}
+
+function createMutable(source$$3, comparer$$23) {
+  return createMutablePrivate(comparer$$23, MapTreeModule$$$ofSeq(comparer$$23, source$$3));
+}
+function groupBy(projection, xs, comparer$$24) {
+  var dict = createMutable(Object(_Seq_js__WEBPACK_IMPORTED_MODULE_5__["empty"])(), comparer$$24);
+  Object(_Seq_js__WEBPACK_IMPORTED_MODULE_5__["iterate"])(function (v$$30) {
+    var key = projection(v$$30);
+
+    if (dict.has(key)) {
+      dict.get(key).push(v$$30);
+    } else {
+      dict.set(key, Array.from([v$$30]));
+    }
+  }, xs);
+  return Object(_Seq_js__WEBPACK_IMPORTED_MODULE_5__["map"])(function mapping$$3(kv$$3) {
+    return [kv$$3[0], kv$$3[1]];
+  }, dict);
+}
+function countBy(projection$$1, xs$$1, comparer$$25) {
+  var dict$$1 = createMutable(Object(_Seq_js__WEBPACK_IMPORTED_MODULE_5__["empty"])(), comparer$$25);
+  Object(_Seq_js__WEBPACK_IMPORTED_MODULE_5__["iterate"])(function (value$$1) {
+    var key$$1 = projection$$1(value$$1);
+    dict$$1.has(key$$1) ? dict$$1.set(key$$1, dict$$1.get(key$$1) + 1) : dict$$1.set(key$$1, 1);
+  }, xs$$1);
+  return Object(_Seq_js__WEBPACK_IMPORTED_MODULE_5__["map"])(function mapping$$4(kv$$4) {
+    return [kv$$4[0], kv$$4[1]];
+  }, dict$$1);
+}
+function count(m$$47) {
+  return FSharpMap$$get_Count(m$$47);
+}
 
 /***/ }),
-/* 91 */
+
+/***/ "./.fable/fable-library.2.2.3/Observable.js":
+/*!**************************************************!*\
+  !*** ./.fable/fable-library.2.2.3/Observable.js ***!
+  \**************************************************/
+/*! exports provided: Observer, protect, add, choose, filter, map, merge, pairwise, partition, scan, split, subscribe */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "Observer", function() { return Observer; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "protect", function() { return protect; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "add", function() { return add; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "choose", function() { return choose; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "filter", function() { return filter; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "map", function() { return map; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "merge", function() { return merge; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "pairwise", function() { return pairwise; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "partition", function() { return partition; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "scan", function() { return scan; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "split", function() { return split; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "subscribe", function() { return subscribe; });
+/* harmony import */ var _babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/helpers/classCallCheck */ "./node_modules/@babel/runtime/helpers/classCallCheck.js");
+/* harmony import */ var _babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _Option__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./Option */ "./.fable/fable-library.2.2.3/Option.js");
+
+
+var Observer = function Observer(onNext, onError, onCompleted) {
+  _babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_0___default()(this, Observer);
+
+  this.OnNext = onNext;
+
+  this.OnError = onError || function (e) {
+    return;
+  };
+
+  this.OnCompleted = onCompleted || function () {
+    return;
+  };
+};
+
+var Observable = function Observable(subscribe) {
+  _babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_0___default()(this, Observable);
+
+  this.Subscribe = subscribe;
+};
+
+function protect(f, succeed, fail) {
+  try {
+    return succeed(f());
+  } catch (e) {
+    fail(e);
+  }
+}
+function add(callback, source) {
+  source.Subscribe(new Observer(callback));
+}
+function choose(chooser, source) {
+  return new Observable(function (observer) {
+    return source.Subscribe(new Observer(function (t) {
+      return protect(function () {
+        return chooser(t);
+      }, function (u) {
+        if (u != null) {
+          observer.OnNext(Object(_Option__WEBPACK_IMPORTED_MODULE_1__["value"])(u));
+        }
+      }, observer.OnError);
+    }, observer.OnError, observer.OnCompleted));
+  });
+}
+function filter(predicate, source) {
+  return choose(function (x) {
+    return predicate(x) ? x : null;
+  }, source);
+}
+function map(mapping, source) {
+  return new Observable(function (observer) {
+    return source.Subscribe(new Observer(function (t) {
+      protect(function () {
+        return mapping(t);
+      }, observer.OnNext, observer.OnError);
+    }, observer.OnError, observer.OnCompleted));
+  });
+}
+function merge(source1, source2) {
+  return new Observable(function (observer) {
+    var stopped = false;
+    var completed1 = false;
+    var completed2 = false;
+    var h1 = source1.Subscribe(new Observer(function (v) {
+      if (!stopped) {
+        observer.OnNext(v);
+      }
+    }, function (e) {
+      if (!stopped) {
+        stopped = true;
+        observer.OnError(e);
+      }
+    }, function () {
+      if (!stopped) {
+        completed1 = true;
+
+        if (completed2) {
+          stopped = true;
+          observer.OnCompleted();
+        }
+      }
+    }));
+    var h2 = source2.Subscribe(new Observer(function (v) {
+      if (!stopped) {
+        observer.OnNext(v);
+      }
+    }, function (e) {
+      if (!stopped) {
+        stopped = true;
+        observer.OnError(e);
+      }
+    }, function () {
+      if (!stopped) {
+        completed2 = true;
+
+        if (completed1) {
+          stopped = true;
+          observer.OnCompleted();
+        }
+      }
+    }));
+    return {
+      Dispose: function Dispose() {
+        h1.Dispose();
+        h2.Dispose();
+      }
+    };
+  });
+}
+function pairwise(source) {
+  return new Observable(function (observer) {
+    var last = null;
+    return source.Subscribe(new Observer(function (next) {
+      if (last != null) {
+        observer.OnNext([last, next]);
+      }
+
+      last = next;
+    }, observer.OnError, observer.OnCompleted));
+  });
+}
+function partition(predicate, source) {
+  return [filter(predicate, source), filter(function (x) {
+    return !predicate(x);
+  }, source)];
+}
+function scan(collector, state, source) {
+  return new Observable(function (observer) {
+    return source.Subscribe(new Observer(function (t) {
+      protect(function () {
+        return collector(state, t);
+      }, function (u) {
+        state = u;
+        observer.OnNext(u);
+      }, observer.OnError);
+    }, observer.OnError, observer.OnCompleted));
+  });
+}
+function split(splitter, source) {
+  return [choose(function (v) {
+    return Object(_Option__WEBPACK_IMPORTED_MODULE_1__["tryValueIfChoice1"])(splitter(v));
+  }, source), choose(function (v) {
+    return Object(_Option__WEBPACK_IMPORTED_MODULE_1__["tryValueIfChoice2"])(splitter(v));
+  }, source)];
+}
+function subscribe(callback, source) {
+  return source.Subscribe(new Observer(callback));
+}
+
+/***/ }),
+
+/***/ "./.fable/fable-library.2.2.3/Option.js":
+/*!**********************************************!*\
+  !*** ./.fable/fable-library.2.2.3/Option.js ***!
+  \**********************************************/
+/*! exports provided: Some, some, value, defaultArg, defaultArgWith, filter, Choice, choice1, choice2, tryValueIfChoice1, tryValueIfChoice2, Result, ok, error, mapOk, mapError, bindOk */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "Some", function() { return Some; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "some", function() { return some; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "value", function() { return value; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "defaultArg", function() { return defaultArg; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "defaultArgWith", function() { return defaultArgWith; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "filter", function() { return filter; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "Choice", function() { return Choice; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "choice1", function() { return choice1; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "choice2", function() { return choice2; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "tryValueIfChoice1", function() { return tryValueIfChoice1; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "tryValueIfChoice2", function() { return tryValueIfChoice2; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "Result", function() { return Result; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ok", function() { return ok; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "error", function() { return error; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "mapOk", function() { return mapOk; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "mapError", function() { return mapError; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "bindOk", function() { return bindOk; });
+/* harmony import */ var _babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/helpers/classCallCheck */ "./node_modules/@babel/runtime/helpers/classCallCheck.js");
+/* harmony import */ var _babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @babel/runtime/helpers/createClass */ "./node_modules/@babel/runtime/helpers/createClass.js");
+/* harmony import */ var _babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _Types__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./Types */ "./.fable/fable-library.2.2.3/Types.js");
+/* harmony import */ var _Util__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./Util */ "./.fable/fable-library.2.2.3/Util.js");
+
+
+
+ // Options are erased in runtime by Fable, but we have
+// the `Some` type below to wrap values that would evaluate
+// to null in runtime. These two rules must be followed:
+// 1- None is always null in runtime, a non-strict null check
+//    (`x == null`) is enough to check the case of an option.
+// 2- To get the value of an option the `getValue` helper
+//    below must **always** be used.
+// export type Option<T> = T | Some<T>;
+// Using a class here for better compatibility with TS files importing Some
+
+var Some =
+/*#__PURE__*/
+function () {
+  function Some(value) {
+    _babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_0___default()(this, Some);
+
+    this.value = value;
+  } // Don't add "Some" for consistency with erased options
+
+
+  _babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_1___default()(Some, [{
+    key: "toString",
+    value: function toString() {
+      return String(this.value);
+    }
+  }, {
+    key: "toJSON",
+    value: function toJSON() {
+      return this.value;
+    }
+  }, {
+    key: "GetHashCode",
+    value: function GetHashCode() {
+      return Object(_Util__WEBPACK_IMPORTED_MODULE_3__["structuralHash"])(this.value);
+    }
+  }, {
+    key: "Equals",
+    value: function Equals(other) {
+      return other == null ? false : Object(_Util__WEBPACK_IMPORTED_MODULE_3__["equals"])(this.value, other instanceof Some ? other.value : other);
+    }
+  }, {
+    key: "CompareTo",
+    value: function CompareTo(other) {
+      return other == null ? 1 : Object(_Util__WEBPACK_IMPORTED_MODULE_3__["compare"])(this.value, other instanceof Some ? other.value : other);
+    }
+  }]);
+
+  return Some;
+}();
+function some(x) {
+  return x == null || x instanceof Some ? new Some(x) : x;
+}
+function value(x, acceptNull) {
+  if (x == null) {
+    if (!acceptNull) {
+      throw new Error("Option has no value");
+    }
+
+    return null;
+  } else {
+    return x instanceof Some ? x.value : x;
+  }
+}
+function defaultArg(arg, defaultValue, f) {
+  return arg == null ? defaultValue : f != null ? f(value(arg)) : value(arg);
+}
+function defaultArgWith(arg, defThunk) {
+  return arg == null ? defThunk() : value(arg);
+}
+function filter(predicate, arg) {
+  return arg != null ? !predicate(value(arg)) ? null : arg : arg;
+} // CHOICE
+
+var Choice = Object(_Types__WEBPACK_IMPORTED_MODULE_2__["declare"])(function Choice(tag, name, field) {
+  _Types__WEBPACK_IMPORTED_MODULE_2__["Union"].call(this, tag, name, field);
+}, _Types__WEBPACK_IMPORTED_MODULE_2__["Union"]);
+function choice1(x) {
+  return new Choice(0, "Choice1Of2", x);
+}
+function choice2(x) {
+  return new Choice(1, "Choice2Of2", x);
+}
+function tryValueIfChoice1(x) {
+  return x.tag === 0 ? some(x.fields[0]) : null;
+}
+function tryValueIfChoice2(x) {
+  return x.tag === 1 ? some(x.fields[0]) : null;
+} // RESULT
+
+var Result = Object(_Types__WEBPACK_IMPORTED_MODULE_2__["declare"])(function Result(tag, name, field) {
+  _Types__WEBPACK_IMPORTED_MODULE_2__["Union"].call(this, tag, name, field);
+}, _Types__WEBPACK_IMPORTED_MODULE_2__["Union"]);
+function ok(x) {
+  return new Result(0, "Ok", x);
+}
+function error(x) {
+  return new Result(1, "Error", x);
+}
+function mapOk(f, result) {
+  return result.tag === 0 ? ok(f(result.fields[0])) : result;
+}
+function mapError(f, result) {
+  return result.tag === 1 ? error(f(result.fields[0])) : result;
+}
+function bindOk(f, result) {
+  return result.tag === 0 ? f(result.fields[0]) : result;
+}
+
+/***/ }),
+
+/***/ "./.fable/fable-library.2.2.3/Reflection.js":
+/*!**************************************************!*\
+  !*** ./.fable/fable-library.2.2.3/Reflection.js ***!
+  \**************************************************/
+/*! exports provided: CaseInfo, TypeInfo, getGenerics, equals, compare, type, record, union, tuple, delegate, lambda, option, list, array, obj, unit, char, string, bool, int8, uint8, int16, uint16, int32, uint32, float32, float64, decimal, name, fullName, namespace, isArray, getElementType, isGenericType, getGenericTypeDefinition, getUnionCases, getRecordElements, getTupleElements, getFunctionElements, isUnion, isRecord, isTuple, isFunction, getUnionFields, getUnionCaseFields, getRecordFields, getRecordField, getTupleFields, getTupleField, makeUnion, makeRecord, makeTuple, getCaseTag, getCaseName, getCaseFields */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "CaseInfo", function() { return CaseInfo; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "TypeInfo", function() { return TypeInfo; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getGenerics", function() { return getGenerics; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "equals", function() { return equals; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "compare", function() { return compare; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "type", function() { return type; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "record", function() { return record; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "union", function() { return union; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "tuple", function() { return tuple; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "delegate", function() { return delegate; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "lambda", function() { return lambda; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "option", function() { return option; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "list", function() { return list; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "array", function() { return array; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "obj", function() { return obj; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "unit", function() { return unit; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "char", function() { return _char; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "string", function() { return string; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "bool", function() { return bool; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "int8", function() { return int8; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "uint8", function() { return uint8; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "int16", function() { return int16; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "uint16", function() { return uint16; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "int32", function() { return int32; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "uint32", function() { return uint32; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "float32", function() { return float32; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "float64", function() { return float64; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "decimal", function() { return decimal; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "name", function() { return name; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "fullName", function() { return fullName; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "namespace", function() { return namespace; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "isArray", function() { return isArray; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getElementType", function() { return getElementType; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "isGenericType", function() { return isGenericType; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getGenericTypeDefinition", function() { return getGenericTypeDefinition; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getUnionCases", function() { return getUnionCases; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getRecordElements", function() { return getRecordElements; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getTupleElements", function() { return getTupleElements; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getFunctionElements", function() { return getFunctionElements; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "isUnion", function() { return isUnion; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "isRecord", function() { return isRecord; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "isTuple", function() { return isTuple; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "isFunction", function() { return isFunction; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getUnionFields", function() { return getUnionFields; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getUnionCaseFields", function() { return getUnionCaseFields; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getRecordFields", function() { return getRecordFields; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getRecordField", function() { return getRecordField; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getTupleFields", function() { return getTupleFields; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getTupleField", function() { return getTupleField; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "makeUnion", function() { return makeUnion; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "makeRecord", function() { return makeRecord; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "makeTuple", function() { return makeTuple; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getCaseTag", function() { return getCaseTag; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getCaseName", function() { return getCaseName; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getCaseFields", function() { return getCaseFields; });
+/* harmony import */ var _babel_runtime_helpers_construct__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/helpers/construct */ "./node_modules/@babel/runtime/helpers/construct.js");
+/* harmony import */ var _babel_runtime_helpers_construct__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_helpers_construct__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _babel_runtime_helpers_toConsumableArray__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @babel/runtime/helpers/toConsumableArray */ "./node_modules/@babel/runtime/helpers/toConsumableArray.js");
+/* harmony import */ var _babel_runtime_helpers_toConsumableArray__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_helpers_toConsumableArray__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @babel/runtime/helpers/createClass */ "./node_modules/@babel/runtime/helpers/createClass.js");
+/* harmony import */ var _babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var _babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @babel/runtime/helpers/classCallCheck */ "./node_modules/@babel/runtime/helpers/classCallCheck.js");
+/* harmony import */ var _babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_3__);
+/* harmony import */ var _Types__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./Types */ "./.fable/fable-library.2.2.3/Types.js");
+/* harmony import */ var _Util__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./Util */ "./.fable/fable-library.2.2.3/Util.js");
+
+
+
+
+
+
+var CaseInfo = function CaseInfo(declaringType, tag, name, fields) {
+  _babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_3___default()(this, CaseInfo);
+
+  this.declaringType = declaringType;
+  this.tag = tag;
+  this.name = name;
+  this.fields = fields;
+};
+var TypeInfo =
+/*#__PURE__*/
+function () {
+  function TypeInfo(fullname, generics, constructor, fields, cases) {
+    _babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_3___default()(this, TypeInfo);
+
+    this.fullname = fullname;
+    this.generics = generics;
+    this.constructor = constructor;
+    this.fields = fields;
+    this.cases = cases;
+  }
+
+  _babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_2___default()(TypeInfo, [{
+    key: "toString",
+    value: function toString() {
+      return fullName(this);
+    }
+  }, {
+    key: "Equals",
+    value: function Equals(other) {
+      return equals(this, other);
+    }
+  }, {
+    key: "CompareTo",
+    value: function CompareTo(other) {
+      return compare(this, other);
+    }
+  }]);
+
+  return TypeInfo;
+}();
+function getGenerics(t) {
+  return t.generics != null ? t.generics : [];
+}
+function equals(t1, t2) {
+  return t1.fullname === t2.fullname && Object(_Util__WEBPACK_IMPORTED_MODULE_5__["equalArraysWith"])(getGenerics(t1), getGenerics(t2), equals);
+} // System.Type is not comparable in .NET, but let's implement this
+// in case users want to create a dictionary with types as keys
+
+function compare(t1, t2) {
+  if (t1.fullname !== t2.fullname) {
+    return t1.fullname < t2.fullname ? -1 : 1;
+  } else {
+    return Object(_Util__WEBPACK_IMPORTED_MODULE_5__["compareArraysWith"])(getGenerics(t1), getGenerics(t2), compare);
+  }
+}
+function type(fullname, generics) {
+  return new TypeInfo(fullname, generics);
+}
+function record(fullname, generics, constructor, fields) {
+  return new TypeInfo(fullname, generics, constructor, fields);
+}
+function union(fullname, generics, constructor, cases) {
+  var t = new TypeInfo(fullname, generics, constructor, null, function () {
+    return cases().map(function (x, i) {
+      return typeof x === "string" ? new CaseInfo(t, i, x) : new CaseInfo(t, i, x[0], x[1]);
+    });
+  });
+  return t;
+}
+function tuple() {
+  for (var _len = arguments.length, generics = new Array(_len), _key = 0; _key < _len; _key++) {
+    generics[_key] = arguments[_key];
+  }
+
+  return new TypeInfo("System.Tuple`" + generics.length, generics);
+}
+function delegate() {
+  for (var _len2 = arguments.length, generics = new Array(_len2), _key2 = 0; _key2 < _len2; _key2++) {
+    generics[_key2] = arguments[_key2];
+  }
+
+  return new TypeInfo("System.Func`" + generics.length, generics);
+}
+function lambda(argType, returnType) {
+  return new TypeInfo("Microsoft.FSharp.Core.FSharpFunc`2", [argType, returnType]);
+}
+function option(generic) {
+  return new TypeInfo("Microsoft.FSharp.Core.FSharpOption`1", [generic]);
+}
+function list(generic) {
+  return new TypeInfo("Microsoft.FSharp.Collections.FSharpList`1", [generic]);
+}
+function array(generic) {
+  return new TypeInfo(generic.fullname + "[]", [generic]);
+}
+var obj = new TypeInfo("System.Object");
+var unit = new TypeInfo("Microsoft.FSharp.Core.Unit");
+
+var _char = new TypeInfo("System.Char");
+
+
+var string = new TypeInfo("System.String");
+var bool = new TypeInfo("System.Boolean");
+var int8 = new TypeInfo("System.SByte");
+var uint8 = new TypeInfo("System.Byte");
+var int16 = new TypeInfo("System.Int16");
+var uint16 = new TypeInfo("System.UInt16");
+var int32 = new TypeInfo("System.Int32");
+var uint32 = new TypeInfo("System.UInt32");
+var float32 = new TypeInfo("System.Single");
+var float64 = new TypeInfo("System.Double");
+var decimal = new TypeInfo("System.Decimal");
+function name(info) {
+  if (Array.isArray(info)) {
+    return info[0];
+  } else if (info instanceof CaseInfo) {
+    return info.name;
+  } else {
+    var i = info.fullname.lastIndexOf(".");
+    return i === -1 ? info.fullname : info.fullname.substr(i + 1);
+  }
+}
+function fullName(t) {
+  var gen = t.generics != null && !isArray(t) ? t.generics : [];
+
+  if (gen.length > 0) {
+    return t.fullname + "[" + gen.map(function (x) {
+      return fullName(x);
+    }).join(",") + "]";
+  } else {
+    return t.fullname;
+  }
+}
+function namespace(t) {
+  var i = t.fullname.lastIndexOf(".");
+  return i === -1 ? "" : t.fullname.substr(0, i);
+}
+function isArray(t) {
+  return t.fullname.endsWith("[]");
+}
+function getElementType(t) {
+  return isArray(t) ? t.generics[0] : null;
+}
+function isGenericType(t) {
+  return t.generics != null && t.generics.length > 0;
+}
+/**
+ * This doesn't replace types for fields (records) or cases (unions)
+ * but it should be enough for type comparison purposes
+ */
+
+function getGenericTypeDefinition(t) {
+  return t.generics == null ? t : new TypeInfo(t.fullname, t.generics.map(function () {
+    return obj;
+  }));
+} // FSharpType
+
+function getUnionCases(t) {
+  if (t.cases != null) {
+    return t.cases();
+  } else {
+    throw new Error("".concat(t.fullname, " is not an F# union type"));
+  }
+}
+function getRecordElements(t) {
+  if (t.fields != null) {
+    return t.fields();
+  } else {
+    throw new Error("".concat(t.fullname, " is not an F# record type"));
+  }
+}
+function getTupleElements(t) {
+  if (isTuple(t)) {
+    return t.generics;
+  } else {
+    throw new Error("".concat(t.fullname, " is not a tuple type"));
+  }
+}
+function getFunctionElements(t) {
+  if (isFunction(t)) {
+    var gen = t.generics;
+    return [gen[0], gen[1]];
+  } else {
+    throw new Error("".concat(t.fullname, " is not an F# function type"));
+  }
+}
+function isUnion(t) {
+  return t instanceof TypeInfo ? t.cases != null : t instanceof _Types__WEBPACK_IMPORTED_MODULE_4__["Union"];
+}
+function isRecord(t) {
+  return t instanceof TypeInfo ? t.fields != null : t instanceof _Types__WEBPACK_IMPORTED_MODULE_4__["Record"];
+}
+function isTuple(t) {
+  return t.fullname.startsWith("System.Tuple");
+} // In .NET this is false for delegates
+
+function isFunction(t) {
+  return t.fullname === "Microsoft.FSharp.Core.FSharpFunc`2";
+} // FSharpValue
+
+function getUnionFields(v, t) {
+  var cases = getUnionCases(t);
+  var case_ = cases[v.tag];
+
+  if (case_ == null) {
+    throw new Error("Cannot find case ".concat(v.name, " in union type"));
+  }
+
+  return [case_, v.fields];
+}
+function getUnionCaseFields(uci) {
+  return uci.fields == null ? [] : uci.fields.map(function (t, i) {
+    return ["Data" + i, t];
+  });
+}
+function getRecordFields(v) {
+  return Object.keys(v).map(function (k) {
+    return v[k];
+  });
+}
+function getRecordField(v, field) {
+  return v[field[0]];
+}
+function getTupleFields(v) {
+  return v;
+}
+function getTupleField(v, i) {
+  return v[i];
+}
+function makeUnion(uci, values) {
+  var expectedLength = (uci.fields || []).length;
+
+  if (values.length !== expectedLength) {
+    throw new Error("Expected an array of length ".concat(expectedLength, " but got ").concat(values.length));
+  }
+
+  return _babel_runtime_helpers_construct__WEBPACK_IMPORTED_MODULE_0___default()(uci.declaringType.constructor, [uci.tag, uci.name].concat(_babel_runtime_helpers_toConsumableArray__WEBPACK_IMPORTED_MODULE_1___default()(values)));
+}
+function makeRecord(t, values) {
+  var fields = getRecordElements(t);
+
+  if (fields.length !== values.length) {
+    throw new Error("Expected an array of length ".concat(fields.length, " but got ").concat(values.length));
+  }
+
+  return _babel_runtime_helpers_construct__WEBPACK_IMPORTED_MODULE_0___default()(t.constructor, _babel_runtime_helpers_toConsumableArray__WEBPACK_IMPORTED_MODULE_1___default()(values));
+}
+function makeTuple(values, t) {
+  return values;
+} // Fable.Core.Reflection
+
+function assertUnion(x) {
+  if (!(x instanceof _Types__WEBPACK_IMPORTED_MODULE_4__["Union"])) {
+    throw new Error("Value is not an F# union type");
+  }
+}
+
+function getCaseTag(x) {
+  assertUnion(x);
+  return x.tag;
+}
+function getCaseName(x) {
+  assertUnion(x);
+  return x.name;
+}
+function getCaseFields(x) {
+  assertUnion(x);
+  return x.fields;
+}
+
+/***/ }),
+
+/***/ "./.fable/fable-library.2.2.3/RegExp.js":
+/*!**********************************************!*\
+  !*** ./.fable/fable-library.2.2.3/RegExp.js ***!
+  \**********************************************/
+/*! exports provided: create, escape, unescape, isMatch, match, matches, options, replace, split */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "create", function() { return create; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "escape", function() { return escape; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "unescape", function() { return unescape; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "isMatch", function() { return isMatch; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "match", function() { return match; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "matches", function() { return matches; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "options", function() { return options; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "replace", function() { return replace; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "split", function() { return split; });
+function create(pattern, options) {
+  // Supported RegexOptions
+  // * IgnoreCase:  0x0001
+  // * Multiline:   0x0002
+  // * ECMAScript:  0x0100 (ignored)
+  if ((options & ~(1 ^ 2 ^ 256)) !== 0) {
+    throw new Error("RegexOptions only supports: IgnoreCase, Multiline and ECMAScript");
+  }
+
+  var flags = "g";
+  flags += options & 1 ? "i" : ""; // 0x0001 RegexOptions.IgnoreCase
+
+  flags += options & 2 ? "m" : "";
+  return new RegExp(pattern, flags);
+} // From http://stackoverflow.com/questions/3446170/escape-string-for-use-in-javascript-regex
+
+function escape(str) {
+  return str.replace(/[\-\[\/\{\}\(\)\*\+\?\.\\\^\$\|]/g, "\\$&");
+}
+function unescape(str) {
+  return str.replace(/\\([\-\[\/\{\}\(\)\*\+\?\.\\\^\$\|])/g, "$1");
+}
+function isMatch(str, pattern) {
+  var options = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : 0;
+  var reg;
+  reg = str instanceof RegExp ? (reg = str, str = pattern, reg.lastIndex = options, reg) : reg = create(pattern, options);
+  return reg.test(str);
+}
+function match(str, pattern) {
+  var options = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : 0;
+  var reg;
+  reg = str instanceof RegExp ? (reg = str, str = pattern, reg.lastIndex = options, reg) : reg = create(pattern, options);
+  return reg.exec(str);
+}
+function matches(str, pattern) {
+  var options = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : 0;
+  var reg;
+  reg = str instanceof RegExp ? (reg = str, str = pattern, reg.lastIndex = options, reg) : reg = create(pattern, options);
+
+  if (!reg.global) {
+    throw new Error("Non-global RegExp"); // Prevent infinite loop
+  }
+
+  var m = reg.exec(str);
+  var matches = [];
+
+  while (m !== null) {
+    matches.push(m);
+    m = reg.exec(str);
+  }
+
+  return matches;
+}
+function options(reg) {
+  var options = 256; // ECMAScript
+
+  options |= reg.ignoreCase ? 1 : 0;
+  options |= reg.multiline ? 2 : 0;
+  return options;
+}
+function replace(reg, input, replacement, limit) {
+  var offset = arguments.length > 4 && arguments[4] !== undefined ? arguments[4] : 0;
+
+  function replacer() {
+    var res = arguments[0];
+
+    if (limit !== 0) {
+      limit--;
+      var _match = [];
+      var len = arguments.length;
+
+      for (var i = 0; i < len - 2; i++) {
+        _match.push(arguments[i]);
+      }
+
+      _match.index = arguments[len - 2];
+      _match.input = arguments[len - 1];
+      res = replacement(_match);
+    }
+
+    return res;
+  }
+
+  if (typeof reg === "string") {
+    var tmp = reg;
+    reg = create(input, limit);
+    input = tmp;
+    limit = undefined;
+  }
+
+  if (typeof replacement === "function") {
+    limit = limit == null ? -1 : limit;
+    return input.substring(0, offset) + input.substring(offset).replace(reg, replacer);
+  } else {
+    // $0 doesn't work with JS regex, see #1155
+    replacement = replacement.replace(/\$0/g, function (s) {
+      return "$&";
+    });
+
+    if (limit != null) {
+      var m;
+      var sub1 = input.substring(offset);
+
+      var _matches = matches(reg, sub1);
+
+      var sub2 = matches.length > limit ? (m = _matches[limit - 1], sub1.substring(0, m.index + m[0].length)) : sub1;
+      return input.substring(0, offset) + sub2.replace(reg, replacement) + input.substring(offset + sub2.length);
+    } else {
+      return input.replace(reg, replacement);
+    }
+  }
+}
+function split(reg, input, limit) {
+  var offset = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : 0;
+
+  if (typeof reg === "string") {
+    var tmp = reg;
+    reg = create(input, limit);
+    input = tmp;
+    limit = undefined;
+  }
+
+  input = input.substring(offset);
+  return input.split(reg, limit);
+}
+
+/***/ }),
+
+/***/ "./.fable/fable-library.2.2.3/Seq.js":
+/*!*******************************************!*\
+  !*** ./.fable/fable-library.2.2.3/Seq.js ***!
+  \*******************************************/
+/*! exports provided: Enumerator, getEnumerator, toIterator, ofArray, append, average, averageBy, concat, collect, choose, compareWith, delay, empty, enumerateWhile, enumerateThenFinally, enumerateUsing, exactlyOne, except, exists, exists2, forAll, forAll2, contains, filter, where, fold, foldBack, fold2, foldBack2, tryHead, head, initialize, initializeInfinite, tryItem, item, iterate, iterate2, iterateIndexed, iterateIndexed2, isEmpty, tryLast, last, length, map, mapIndexed, indexed, map2, mapIndexed2, map3, mapFold, mapFoldBack, max, maxBy, min, minBy, pairwise, rangeChar, rangeLong, rangeNumber, readOnly, reduce, reduceBack, replicate, reverse, scan, scanBack, singleton, skip, skipWhile, sortWith, sum, sumBy, tail, take, truncate, takeWhile, tryFind, find, tryFindBack, findBack, tryFindIndex, findIndex, tryFindIndexBack, findIndexBack, tryPick, pick, unfold, zip, zip3, windowed */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "Enumerator", function() { return Enumerator; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getEnumerator", function() { return getEnumerator; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "toIterator", function() { return toIterator; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ofArray", function() { return ofArray; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "append", function() { return append; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "average", function() { return average; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "averageBy", function() { return averageBy; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "concat", function() { return concat; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "collect", function() { return collect; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "choose", function() { return choose; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "compareWith", function() { return compareWith; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "delay", function() { return delay; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "empty", function() { return empty; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "enumerateWhile", function() { return enumerateWhile; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "enumerateThenFinally", function() { return enumerateThenFinally; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "enumerateUsing", function() { return enumerateUsing; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "exactlyOne", function() { return exactlyOne; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "except", function() { return except; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "exists", function() { return exists; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "exists2", function() { return exists2; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "forAll", function() { return forAll; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "forAll2", function() { return forAll2; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "contains", function() { return contains; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "filter", function() { return filter; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "where", function() { return where; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "fold", function() { return fold; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "foldBack", function() { return foldBack; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "fold2", function() { return fold2; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "foldBack2", function() { return foldBack2; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "tryHead", function() { return tryHead; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "head", function() { return head; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "initialize", function() { return initialize; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "initializeInfinite", function() { return initializeInfinite; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "tryItem", function() { return tryItem; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "item", function() { return item; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "iterate", function() { return iterate; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "iterate2", function() { return iterate2; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "iterateIndexed", function() { return iterateIndexed; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "iterateIndexed2", function() { return iterateIndexed2; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "isEmpty", function() { return isEmpty; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "tryLast", function() { return tryLast; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "last", function() { return last; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "length", function() { return length; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "map", function() { return map; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "mapIndexed", function() { return mapIndexed; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "indexed", function() { return indexed; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "map2", function() { return map2; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "mapIndexed2", function() { return mapIndexed2; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "map3", function() { return map3; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "mapFold", function() { return mapFold; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "mapFoldBack", function() { return mapFoldBack; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "max", function() { return max; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "maxBy", function() { return maxBy; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "min", function() { return min; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "minBy", function() { return minBy; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "pairwise", function() { return pairwise; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "rangeChar", function() { return rangeChar; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "rangeLong", function() { return rangeLong; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "rangeNumber", function() { return rangeNumber; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "readOnly", function() { return readOnly; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "reduce", function() { return reduce; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "reduceBack", function() { return reduceBack; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "replicate", function() { return replicate; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "reverse", function() { return reverse; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "scan", function() { return scan; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "scanBack", function() { return scanBack; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "singleton", function() { return singleton; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "skip", function() { return skip; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "skipWhile", function() { return skipWhile; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "sortWith", function() { return sortWith; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "sum", function() { return sum; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "sumBy", function() { return sumBy; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "tail", function() { return tail; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "take", function() { return take; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "truncate", function() { return truncate; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "takeWhile", function() { return takeWhile; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "tryFind", function() { return tryFind; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "find", function() { return find; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "tryFindBack", function() { return tryFindBack; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "findBack", function() { return findBack; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "tryFindIndex", function() { return tryFindIndex; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "findIndex", function() { return findIndex; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "tryFindIndexBack", function() { return tryFindIndexBack; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "findIndexBack", function() { return findIndexBack; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "tryPick", function() { return tryPick; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "pick", function() { return pick; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "unfold", function() { return unfold; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "zip", function() { return zip; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "zip3", function() { return zip3; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "windowed", function() { return windowed; });
+/* harmony import */ var _babel_runtime_helpers_slicedToArray__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/helpers/slicedToArray */ "./node_modules/@babel/runtime/helpers/slicedToArray.js");
+/* harmony import */ var _babel_runtime_helpers_slicedToArray__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_helpers_slicedToArray__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @babel/runtime/helpers/defineProperty */ "./node_modules/@babel/runtime/helpers/defineProperty.js");
+/* harmony import */ var _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @babel/runtime/helpers/classCallCheck */ "./node_modules/@babel/runtime/helpers/classCallCheck.js");
+/* harmony import */ var _babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var _babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @babel/runtime/helpers/createClass */ "./node_modules/@babel/runtime/helpers/createClass.js");
+/* harmony import */ var _babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_3__);
+/* harmony import */ var _Long__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./Long */ "./.fable/fable-library.2.2.3/Long.js");
+/* harmony import */ var _Option__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./Option */ "./.fable/fable-library.2.2.3/Option.js");
+/* harmony import */ var _Util__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./Util */ "./.fable/fable-library.2.2.3/Util.js");
+
+
+
+
+
+
+
+var Enumerator =
+/*#__PURE__*/
+function () {
+  function Enumerator(iter) {
+    _babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_2___default()(this, Enumerator);
+
+    this.iter = iter;
+  }
+
+  _babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_3___default()(Enumerator, [{
+    key: "MoveNext",
+    value: function MoveNext() {
+      var cur = this.iter.next();
+      this.current = cur.value;
+      return !cur.done;
+    }
+  }, {
+    key: "Reset",
+    value: function Reset() {
+      throw new Error("JS iterators cannot be reset");
+    }
+  }, {
+    key: "Dispose",
+    value: function Dispose() {
+      return;
+    }
+  }, {
+    key: "Current",
+    get: function get() {
+      return this.current;
+    }
+  }]);
+
+  return Enumerator;
+}();
+function getEnumerator(o) {
+  return new Enumerator(o[Symbol.iterator]());
+}
+function toIterator(en) {
+  return {
+    next: function next() {
+      return en.MoveNext() ? {
+        done: false,
+        value: en.Current
+      } : {
+        done: true,
+        value: null
+      };
+    }
+  };
+} // export function toIterable<T>(en: IEnumerable<T>): Iterable<T> {
+//   return {
+//     [Symbol.iterator]() {
+//       return toIterator(en.GetEnumerator());
+//     },
+//   };
+// }
+
+function __failIfNone(res) {
+  if (res == null) {
+    throw new Error("Seq did not contain any matching element");
+  }
+
+  return Object(_Option__WEBPACK_IMPORTED_MODULE_5__["value"])(res);
+}
+
+function ofArray(xs) {
+  return delay(function () {
+    return unfold(function (i) {
+      return i < xs.length ? [xs[i], i + 1] : null;
+    }, 0);
+  });
+}
+function append(xs, ys) {
+  return delay(function () {
+    var firstDone = false;
+    var i = xs[Symbol.iterator]();
+    var iters = [i, null];
+    return unfold(function () {
+      var cur;
+
+      if (!firstDone) {
+        cur = iters[0].next();
+
+        if (!cur.done) {
+          return [cur.value, iters];
+        } else {
+          firstDone = true;
+          iters = [null, ys[Symbol.iterator]()];
+        }
+      }
+
+      cur = iters[1].next();
+      return !cur.done ? [cur.value, iters] : null;
+    }, iters);
+  });
+}
+function average(xs, averager) {
+  var count = 0;
+  var total = fold(function (acc, x) {
+    count++;
+    return averager.Add(acc, x);
+  }, averager.GetZero(), xs);
+  return averager.DivideByInt(total, count);
+}
+function averageBy(f, xs, averager) {
+  var count = 0;
+  var total = fold(function (acc, x) {
+    count++;
+    return averager.Add(acc, f(x));
+  }, averager.GetZero(), xs);
+  return averager.DivideByInt(total, count);
+}
+function concat(xs) {
+  return delay(function () {
+    var iter = xs[Symbol.iterator]();
+    var output = {
+      value: null
+    };
+    return unfold(function (innerIter) {
+      var hasFinished = false;
+
+      while (!hasFinished) {
+        if (innerIter == null) {
+          var cur = iter.next();
+
+          if (!cur.done) {
+            innerIter = cur.value[Symbol.iterator]();
+          } else {
+            hasFinished = true;
+          }
+        } else {
+          var _cur = innerIter.next();
+
+          if (!_cur.done) {
+            output = {
+              value: _cur.value
+            };
+            hasFinished = true;
+          } else {
+            innerIter = null;
+          }
+        }
+      }
+
+      return innerIter != null && output != null ? [output.value, innerIter] : null;
+    }, null);
+  });
+}
+function collect(f, xs) {
+  return concat(map(f, xs));
+}
+function choose(f, xs) {
+  return delay(function () {
+    return unfold(function (iter) {
+      var cur = iter.next();
+
+      while (!cur.done) {
+        var y = f(cur.value);
+
+        if (y != null) {
+          return [Object(_Option__WEBPACK_IMPORTED_MODULE_5__["value"])(y), iter];
+        }
+
+        cur = iter.next();
+      }
+
+      return null;
+    }, xs[Symbol.iterator]());
+  });
+}
+function compareWith(f, xs, ys) {
+  var nonZero = tryFind(function (i) {
+    return i !== 0;
+  }, map2(function (x, y) {
+    return f(x, y);
+  }, xs, ys));
+  return nonZero != null ? Object(_Option__WEBPACK_IMPORTED_MODULE_5__["value"])(nonZero) : length(xs) - length(ys);
+}
+function delay(f) {
+  return _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_1___default()({}, Symbol.iterator, function () {
+    return f()[Symbol.iterator]();
+  });
+}
+function empty() {
+  return unfold(function () {
+    return void 0;
+  });
+}
+function enumerateWhile(cond, xs) {
+  return concat(unfold(function () {
+    return cond() ? [xs, true] : null;
+  }));
+}
+function enumerateThenFinally(xs, finalFn) {
+  return delay(function () {
+    var iter;
+
+    try {
+      iter = xs[Symbol.iterator]();
+    } catch (err) {
+      return void 0;
+    } finally {
+      finalFn();
+    }
+
+    return unfold(function (it) {
+      try {
+        var cur = it.next();
+        return !cur.done ? [cur.value, it] : null;
+      } catch (err) {
+        return void 0;
+      } finally {
+        finalFn();
+      }
+    }, iter);
+  });
+}
+function enumerateUsing(disp, work) {
+  var isDisposed = false;
+
+  var disposeOnce = function disposeOnce() {
+    if (!isDisposed) {
+      isDisposed = true;
+      disp.Dispose();
+    }
+  };
+
+  try {
+    return enumerateThenFinally(work(disp), disposeOnce);
+  } catch (err) {
+    return void 0;
+  } finally {
+    disposeOnce();
+  }
+}
+function exactlyOne(xs) {
+  var iter = xs[Symbol.iterator]();
+  var fst = iter.next();
+
+  if (fst.done) {
+    throw new Error("Seq was empty");
+  }
+
+  var snd = iter.next();
+
+  if (!snd.done) {
+    throw new Error("Seq had multiple items");
+  }
+
+  return fst.value;
+}
+function except(itemsToExclude, source) {
+  var exclusionItems = Array.from(itemsToExclude);
+
+  var testIsNotInExclusionItems = function testIsNotInExclusionItems(element) {
+    return !exclusionItems.some(function (excludedItem) {
+      return Object(_Util__WEBPACK_IMPORTED_MODULE_6__["equals"])(excludedItem, element);
+    });
+  };
+
+  return filter(testIsNotInExclusionItems, source);
+}
+function exists(f, xs) {
+  var cur;
+
+  for (var iter = xs[Symbol.iterator]();;) {
+    cur = iter.next();
+
+    if (cur.done) {
+      break;
+    }
+
+    if (f(cur.value)) {
+      return true;
+    }
+  }
+
+  return false;
+}
+function exists2(f, xs, ys) {
+  var cur1;
+  var cur2;
+
+  for (var iter1 = xs[Symbol.iterator](), iter2 = ys[Symbol.iterator]();;) {
+    cur1 = iter1.next();
+    cur2 = iter2.next();
+
+    if (cur1.done || cur2.done) {
+      break;
+    }
+
+    if (f(cur1.value, cur2.value)) {
+      return true;
+    }
+  }
+
+  return false;
+}
+function forAll(f, xs) {
+  return !exists(function (x) {
+    return !f(x);
+  }, xs);
+}
+function forAll2(f, xs, ys) {
+  return !exists2(function (x, y) {
+    return !f(x, y);
+  }, xs, ys);
+}
+function contains(i, xs) {
+  return exists(function (x) {
+    return Object(_Util__WEBPACK_IMPORTED_MODULE_6__["equals"])(x, i);
+  }, xs);
+}
+function filter(f, xs) {
+  return delay(function () {
+    return unfold(function (iter) {
+      var cur = iter.next();
+
+      while (!cur.done) {
+        if (f(cur.value)) {
+          return [cur.value, iter];
+        }
+
+        cur = iter.next();
+      }
+
+      return null;
+    }, xs[Symbol.iterator]());
+  });
+}
+function where(f, xs) {
+  return filter(f, xs);
+}
+function fold(f, acc, xs) {
+  if (Array.isArray(xs) || ArrayBuffer.isView(xs)) {
+    return xs.reduce(f, acc);
+  } else {
+    var cur;
+
+    for (var i = 0, iter = xs[Symbol.iterator]();; i++) {
+      cur = iter.next();
+
+      if (cur.done) {
+        break;
+      }
+
+      acc = f(acc, cur.value, i);
+    }
+
+    return acc;
+  }
+}
+function foldBack(f, xs, acc) {
+  var arr = Array.isArray(xs) || ArrayBuffer.isView(xs) ? xs : Array.from(xs);
+
+  for (var i = arr.length - 1; i >= 0; i--) {
+    acc = f(arr[i], acc, i);
+  }
+
+  return acc;
+}
+function fold2(f, acc, xs, ys) {
+  var iter1 = xs[Symbol.iterator]();
+  var iter2 = ys[Symbol.iterator]();
+  var cur1;
+  var cur2;
+
+  for (var i = 0;; i++) {
+    cur1 = iter1.next();
+    cur2 = iter2.next();
+
+    if (cur1.done || cur2.done) {
+      break;
+    }
+
+    acc = f(acc, cur1.value, cur2.value, i);
+  }
+
+  return acc;
+}
+function foldBack2(f, xs, ys, acc) {
+  var ar1 = Array.isArray(xs) || ArrayBuffer.isView(xs) ? xs : Array.from(xs);
+  var ar2 = Array.isArray(ys) || ArrayBuffer.isView(ys) ? ys : Array.from(ys);
+
+  for (var i = ar1.length - 1; i >= 0; i--) {
+    acc = f(ar1[i], ar2[i], acc, i);
+  }
+
+  return acc;
+}
+function tryHead(xs) {
+  var iter = xs[Symbol.iterator]();
+  var cur = iter.next();
+  return cur.done ? null : Object(_Option__WEBPACK_IMPORTED_MODULE_5__["some"])(cur.value);
+}
+function head(xs) {
+  return __failIfNone(tryHead(xs));
+}
+function initialize(n, f) {
+  return delay(function () {
+    return unfold(function (i) {
+      return i < n ? [f(i), i + 1] : null;
+    }, 0);
+  });
+}
+function initializeInfinite(f) {
+  return delay(function () {
+    return unfold(function (i) {
+      return [f(i), i + 1];
+    }, 0);
+  });
+}
+function tryItem(i, xs) {
+  if (i < 0) {
+    return null;
+  }
+
+  if (Array.isArray(xs) || ArrayBuffer.isView(xs)) {
+    return i < xs.length ? Object(_Option__WEBPACK_IMPORTED_MODULE_5__["some"])(xs[i]) : null;
+  }
+
+  for (var j = 0, iter = xs[Symbol.iterator]();; j++) {
+    var cur = iter.next();
+
+    if (cur.done) {
+      break;
+    }
+
+    if (j === i) {
+      return Object(_Option__WEBPACK_IMPORTED_MODULE_5__["some"])(cur.value);
+    }
+  }
+
+  return null;
+}
+function item(i, xs) {
+  return __failIfNone(tryItem(i, xs));
+}
+function iterate(f, xs) {
+  fold(function (_, x) {
+    return f(x);
+  }, null, xs);
+}
+function iterate2(f, xs, ys) {
+  fold2(function (_, x, y) {
+    return f(x, y);
+  }, null, xs, ys);
+}
+function iterateIndexed(f, xs) {
+  fold(function (_, x, i) {
+    return f(i, x);
+  }, null, xs);
+}
+function iterateIndexed2(f, xs, ys) {
+  fold2(function (_, x, y, i) {
+    return f(i, x, y);
+  }, null, xs, ys);
+}
+function isEmpty(xs) {
+  var i = xs[Symbol.iterator]();
+  return i.next().done;
+}
+function tryLast(xs) {
+  return isEmpty(xs) ? null : Object(_Option__WEBPACK_IMPORTED_MODULE_5__["some"])(reduce(function (_, x) {
+    return x;
+  }, xs));
+}
+function last(xs) {
+  return __failIfNone(tryLast(xs));
+}
+function length(xs) {
+  return Array.isArray(xs) || ArrayBuffer.isView(xs) ? xs.length : fold(function (acc, x) {
+    return acc + 1;
+  }, 0, xs);
+}
+function map(f, xs) {
+  return delay(function () {
+    return unfold(function (iter) {
+      var cur = iter.next();
+      return !cur.done ? [f(cur.value), iter] : null;
+    }, xs[Symbol.iterator]());
+  });
+}
+function mapIndexed(f, xs) {
+  return delay(function () {
+    var i = 0;
+    return unfold(function (iter) {
+      var cur = iter.next();
+      return !cur.done ? [f(i++, cur.value), iter] : null;
+    }, xs[Symbol.iterator]());
+  });
+}
+function indexed(xs) {
+  return mapIndexed(function (i, x) {
+    return [i, x];
+  }, xs);
+}
+function map2(f, xs, ys) {
+  return delay(function () {
+    var iter1 = xs[Symbol.iterator]();
+    var iter2 = ys[Symbol.iterator]();
+    return unfold(function () {
+      var cur1 = iter1.next();
+      var cur2 = iter2.next();
+      return !cur1.done && !cur2.done ? [f(cur1.value, cur2.value), null] : null;
+    });
+  });
+}
+function mapIndexed2(f, xs, ys) {
+  return delay(function () {
+    var i = 0;
+    var iter1 = xs[Symbol.iterator]();
+    var iter2 = ys[Symbol.iterator]();
+    return unfold(function () {
+      var cur1 = iter1.next();
+      var cur2 = iter2.next();
+      return !cur1.done && !cur2.done ? [f(i++, cur1.value, cur2.value), null] : null;
+    });
+  });
+}
+function map3(f, xs, ys, zs) {
+  return delay(function () {
+    var iter1 = xs[Symbol.iterator]();
+    var iter2 = ys[Symbol.iterator]();
+    var iter3 = zs[Symbol.iterator]();
+    return unfold(function () {
+      var cur1 = iter1.next();
+      var cur2 = iter2.next();
+      var cur3 = iter3.next();
+      return !cur1.done && !cur2.done && !cur3.done ? [f(cur1.value, cur2.value, cur3.value), null] : null;
+    });
+  });
+}
+function mapFold(f, acc, xs, transform) {
+  var result = [];
+  var r;
+  var cur;
+
+  for (var i = 0, iter = xs[Symbol.iterator]();; i++) {
+    cur = iter.next();
+
+    if (cur.done) {
+      break;
+    }
+
+    var _f = f(acc, cur.value);
+
+    var _f2 = _babel_runtime_helpers_slicedToArray__WEBPACK_IMPORTED_MODULE_0___default()(_f, 2);
+
+    r = _f2[0];
+    acc = _f2[1];
+    result.push(r);
+  }
+
+  return transform !== void 0 ? [transform(result), acc] : [result, acc];
+}
+function mapFoldBack(f, xs, acc, transform) {
+  var arr = Array.isArray(xs) || ArrayBuffer.isView(xs) ? xs : Array.from(xs);
+  var result = [];
+  var r;
+
+  for (var i = arr.length - 1; i >= 0; i--) {
+    var _f3 = f(arr[i], acc);
+
+    var _f4 = _babel_runtime_helpers_slicedToArray__WEBPACK_IMPORTED_MODULE_0___default()(_f3, 2);
+
+    r = _f4[0];
+    acc = _f4[1];
+    result.push(r);
+  }
+
+  return transform !== void 0 ? [transform(result), acc] : [result, acc];
+}
+function max(xs, comparer) {
+  var compareFn = comparer != null ? comparer.Compare : _Util__WEBPACK_IMPORTED_MODULE_6__["compare"];
+  return reduce(function (acc, x) {
+    return compareFn(acc, x) === 1 ? acc : x;
+  }, xs);
+}
+function maxBy(f, xs, comparer) {
+  var compareFn = comparer != null ? comparer.Compare : _Util__WEBPACK_IMPORTED_MODULE_6__["compare"];
+  return reduce(function (acc, x) {
+    return compareFn(f(acc), f(x)) === 1 ? acc : x;
+  }, xs);
+}
+function min(xs, comparer) {
+  var compareFn = comparer != null ? comparer.Compare : _Util__WEBPACK_IMPORTED_MODULE_6__["compare"];
+  return reduce(function (acc, x) {
+    return compareFn(acc, x) === -1 ? acc : x;
+  }, xs);
+}
+function minBy(f, xs, comparer) {
+  var compareFn = comparer != null ? comparer.Compare : _Util__WEBPACK_IMPORTED_MODULE_6__["compare"];
+  return reduce(function (acc, x) {
+    return compareFn(f(acc), f(x)) === -1 ? acc : x;
+  }, xs);
+}
+function pairwise(xs) {
+  return skip(2, scan(function (last, next) {
+    return [last[1], next];
+  }, [0, 0], xs));
+}
+function rangeChar(first, last) {
+  return delay(function () {
+    return unfold(function (x) {
+      return x <= last ? [x, String.fromCharCode(x.charCodeAt(0) + 1)] : null;
+    }, first);
+  });
+}
+function rangeLong(first, step, last, unsigned) {
+  var stepFn = Object(_Long__WEBPACK_IMPORTED_MODULE_4__["makeRangeStepFunction"])(step, last, unsigned);
+  return delay(function () {
+    return unfold(stepFn, first);
+  });
+}
+function rangeNumber(first, step, last) {
+  if (step === 0) {
+    throw new Error("Step cannot be 0");
+  }
+
+  return delay(function () {
+    return unfold(function (x) {
+      return step > 0 && x <= last || step < 0 && x >= last ? [x, x + step] : null;
+    }, first);
+  });
+}
+function readOnly(xs) {
+  return map(function (x) {
+    return x;
+  }, xs);
+}
+function reduce(f, xs) {
+  if (Array.isArray(xs) || ArrayBuffer.isView(xs)) {
+    return xs.reduce(f);
+  }
+
+  var iter = xs[Symbol.iterator]();
+  var cur = iter.next();
+
+  if (cur.done) {
+    throw new Error("Seq was empty");
+  }
+
+  var acc = cur.value;
+
+  while (true) {
+    cur = iter.next();
+
+    if (cur.done) {
+      break;
+    }
+
+    acc = f(acc, cur.value);
+  }
+
+  return acc;
+}
+function reduceBack(f, xs) {
+  var ar = Array.isArray(xs) || ArrayBuffer.isView(xs) ? xs : Array.from(xs);
+
+  if (ar.length === 0) {
+    throw new Error("Seq was empty");
+  }
+
+  var acc = ar[ar.length - 1];
+
+  for (var i = ar.length - 2; i >= 0; i--) {
+    acc = f(ar[i], acc, i);
+  }
+
+  return acc;
+}
+function replicate(n, x) {
+  return initialize(n, function () {
+    return x;
+  });
+}
+function reverse(xs) {
+  var ar = Array.isArray(xs) || ArrayBuffer.isView(xs) ? xs.slice(0) : Array.from(xs);
+  return ofArray(ar.reverse());
+}
+function scan(f, seed, xs) {
+  return delay(function () {
+    var iter = xs[Symbol.iterator]();
+    return unfold(function (acc) {
+      if (acc == null) {
+        return [seed, seed];
+      }
+
+      var cur = iter.next();
+
+      if (!cur.done) {
+        acc = f(acc, cur.value);
+        return [acc, acc];
+      }
+
+      return void 0;
+    }, null);
+  });
+}
+function scanBack(f, xs, seed) {
+  return reverse(scan(function (acc, x) {
+    return f(x, acc);
+  }, seed, reverse(xs)));
+}
+function singleton(y) {
+  return [y];
+}
+function skip(n, xs) {
+  return _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_1___default()({}, Symbol.iterator, function () {
+    var iter = xs[Symbol.iterator]();
+
+    for (var i = 1; i <= n; i++) {
+      if (iter.next().done) {
+        throw new Error("Seq has not enough elements");
+      }
+    }
+
+    return iter;
+  });
+}
+function skipWhile(f, xs) {
+  return delay(function () {
+    var hasPassed = false;
+    return filter(function (x) {
+      return hasPassed || (hasPassed = !f(x));
+    }, xs);
+  });
+}
+function sortWith(f, xs) {
+  var ys = Array.from(xs);
+  return ofArray(ys.sort(f));
+}
+function sum(xs, adder) {
+  return fold(function (acc, x) {
+    return adder.Add(acc, x);
+  }, adder.GetZero(), xs);
+}
+function sumBy(f, xs, adder) {
+  return fold(function (acc, x) {
+    return adder.Add(acc, f(x));
+  }, adder.GetZero(), xs);
+}
+function tail(xs) {
+  var iter = xs[Symbol.iterator]();
+  var cur = iter.next();
+
+  if (cur.done) {
+    throw new Error("Seq was empty");
+  }
+
+  return _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_1___default()({}, Symbol.iterator, function () {
+    return iter;
+  });
+}
+function take(n, xs) {
+  var truncate = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : false;
+  return delay(function () {
+    var iter = xs[Symbol.iterator]();
+    return unfold(function (i) {
+      if (i < n) {
+        var cur = iter.next();
+
+        if (!cur.done) {
+          return [cur.value, i + 1];
+        }
+
+        if (!truncate) {
+          throw new Error("Seq has not enough elements");
+        }
+      }
+
+      return void 0;
+    }, 0);
+  });
+}
+function truncate(n, xs) {
+  return take(n, xs, true);
+}
+function takeWhile(f, xs) {
+  return delay(function () {
+    var iter = xs[Symbol.iterator]();
+    return unfold(function (i) {
+      var cur = iter.next();
+
+      if (!cur.done && f(cur.value)) {
+        return [cur.value, null];
+      }
+
+      return void 0;
+    }, 0);
+  });
+}
+function tryFind(f, xs, defaultValue) {
+  for (var i = 0, iter = xs[Symbol.iterator]();; i++) {
+    var cur = iter.next();
+
+    if (cur.done) {
+      break;
+    }
+
+    if (f(cur.value, i)) {
+      return Object(_Option__WEBPACK_IMPORTED_MODULE_5__["some"])(cur.value);
+    }
+  }
+
+  return defaultValue === void 0 ? null : Object(_Option__WEBPACK_IMPORTED_MODULE_5__["some"])(defaultValue);
+}
+function find(f, xs) {
+  return __failIfNone(tryFind(f, xs));
+}
+function tryFindBack(f, xs, defaultValue) {
+  var arr = Array.isArray(xs) || ArrayBuffer.isView(xs) ? xs.slice(0) : Array.from(xs);
+  return tryFind(f, arr.reverse(), defaultValue);
+}
+function findBack(f, xs) {
+  return __failIfNone(tryFindBack(f, xs));
+}
+function tryFindIndex(f, xs) {
+  for (var i = 0, iter = xs[Symbol.iterator]();; i++) {
+    var cur = iter.next();
+
+    if (cur.done) {
+      break;
+    }
+
+    if (f(cur.value, i)) {
+      return i;
+    }
+  }
+
+  return null;
+}
+function findIndex(f, xs) {
+  return __failIfNone(tryFindIndex(f, xs));
+}
+function tryFindIndexBack(f, xs) {
+  var arr = Array.isArray(xs) || ArrayBuffer.isView(xs) ? xs.slice(0) : Array.from(xs);
+
+  for (var i = arr.length - 1; i >= 0; i--) {
+    if (f(arr[i], i)) {
+      return i;
+    }
+  }
+
+  return null;
+}
+function findIndexBack(f, xs) {
+  return __failIfNone(tryFindIndexBack(f, xs));
+}
+function tryPick(f, xs) {
+  for (var i = 0, iter = xs[Symbol.iterator]();; i++) {
+    var cur = iter.next();
+
+    if (cur.done) {
+      break;
+    }
+
+    var y = f(cur.value, i);
+
+    if (y != null) {
+      return y;
+    }
+  }
+
+  return null;
+}
+function pick(f, xs) {
+  return __failIfNone(tryPick(f, xs));
+}
+function unfold(f, fst) {
+  return _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_1___default()({}, Symbol.iterator, function () {
+    // Capture a copy of the first value in the closure
+    // so the sequence is restarted every time, see #1230
+    var acc = fst;
+    return {
+      next: function next() {
+        var res = f(acc);
+
+        if (res != null) {
+          acc = res[1];
+          return {
+            done: false,
+            value: res[0]
+          };
+        }
+
+        return {
+          done: true
+        };
+      }
+    };
+  });
+}
+function zip(xs, ys) {
+  return map2(function (x, y) {
+    return [x, y];
+  }, xs, ys);
+}
+function zip3(xs, ys, zs) {
+  return map3(function (x, y, z) {
+    return [x, y, z];
+  }, xs, ys, zs);
+}
+function windowed(windowSize, source) {
+  if (windowSize <= 0) {
+    throw new Error("windowSize must be positive");
+  }
+
+  return _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_1___default()({}, Symbol.iterator, function () {
+    var window = [];
+    var iter = source[Symbol.iterator]();
+    return {
+      next: function next() {
+        var cur;
+
+        while (window.length < windowSize) {
+          if ((cur = iter.next()).done) {
+            return {
+              done: true
+            };
+          }
+
+          window.push(cur.value);
+        }
+
+        var value = window;
+        window = window.slice(1);
+        return {
+          done: false,
+          value: value
+        };
+      }
+    };
+  });
+}
+
+/***/ }),
+
+/***/ "./.fable/fable-library.2.2.3/Set.js":
+/*!*******************************************!*\
+  !*** ./.fable/fable-library.2.2.3/Set.js ***!
+  \*******************************************/
+/*! exports provided: SetTree$00601, SetTree$00601$reflection, SetTreeModule$$$countAux, SetTreeModule$$$count, SetTreeModule$$$SetOne, SetTreeModule$$$SetNode, SetTreeModule$$$height, SetTreeModule$$$tolerance, SetTreeModule$$$mk, SetTreeModule$$$rebalance, SetTreeModule$$$add, SetTreeModule$$$balance, SetTreeModule$$$split, SetTreeModule$$$spliceOutSuccessor, SetTreeModule$$$remove, SetTreeModule$$$mem, SetTreeModule$$$iter, SetTreeModule$$$foldBack, SetTreeModule$$$fold, SetTreeModule$$$forall, SetTreeModule$$$exists, SetTreeModule$$$isEmpty, SetTreeModule$$$subset, SetTreeModule$$$psubset, SetTreeModule$$$filterAux, SetTreeModule$$$filter, SetTreeModule$$$diffAux, SetTreeModule$$$diff, SetTreeModule$$$union, SetTreeModule$$$intersectionAux, SetTreeModule$$$intersection, SetTreeModule$$$partition1, SetTreeModule$$$partitionAux, SetTreeModule$$$partition, SetTreeModule$$$$007CMatchSetNode$007CMatchSetEmpty$007C, SetTreeModule$$$minimumElementAux, SetTreeModule$$$minimumElementOpt, SetTreeModule$$$maximumElementAux, SetTreeModule$$$maximumElementOpt, SetTreeModule$$$minimumElement, SetTreeModule$$$maximumElement, SetTreeModule$002ESetIterator$00601, SetTreeModule$002ESetIterator$00601$reflection, SetTreeModule$$$collapseLHS, SetTreeModule$$$mkIterator, SetTreeModule$$$notStarted, SetTreeModule$$$alreadyFinished, SetTreeModule$$$current, SetTreeModule$$$moveNext, SetTreeModule$002EmkIEnumerator$00601, SetTreeModule$002EmkIEnumerator$00601$reflection, SetTreeModule$002EmkIEnumerator$00601$$$$002Ector$$Z5B395D56, SetTreeModule$$$mkIEnumerator, SetTreeModule$$$toSeq, SetTreeModule$$$compareStacks, SetTreeModule$$$compare, SetTreeModule$$$choose, SetTreeModule$$$loop, SetTreeModule$$$toList, SetTreeModule$$$copyToArray, SetTreeModule$$$mkFromEnumerator, SetTreeModule$$$ofSeq, SetTreeModule$$$ofArray, FSharpSet, FSharpSet$reflection, FSharpSet$$$$002Ector$$2528C5CB, FSharpSet$$get_Comparer, FSharpSet$$get_Tree, FSharpSet$$Add$$2B595, FSharpSet$$Remove$$2B595, FSharpSet$$get_Count, FSharpSet$$Contains$$2B595, FSharpSet$$Iterate$$5028453F, FSharpSet$$Fold, FSharpSet$$get_IsEmpty, FSharpSet$$Partition$$Z1D55A0D7, FSharpSet$$Filter$$Z1D55A0D7, FSharpSet$$Map$$38806891, FSharpSet$$Exists$$Z1D55A0D7, FSharpSet$$ForAll$$Z1D55A0D7, FSharpSet$$$op_Subtraction, FSharpSet$$$op_Addition, FSharpSet$$$Intersection$$Z3BE9BFE0, FSharpSet$$$IntersectionMany$$Z15B59630, FSharpSet$$$Equality$$Z3BE9BFE0, FSharpSet$$$Compare$$Z3BE9BFE0, FSharpSet$$get_Choose, FSharpSet$$get_MinimumElement, FSharpSet$$get_MaximumElement, FSharpSet$$IsSubsetOf$$6A20B1FF, FSharpSet$$IsSupersetOf$$6A20B1FF, FSharpSet$$IsProperSubsetOf$$6A20B1FF, FSharpSet$$IsProperSupersetOf$$6A20B1FF, isEmpty, contains, add, singleton, remove, union, unionMany, intersect, intersectMany, iterate, empty, forAll, exists, filter, partition, fold, foldBack, map, count, minimumElement, maximumElement, ofList, ofArray, toList, toArray, toSeq, ofSeq, difference, isSubset, isSuperset, isProperSubset, isProperSuperset, minElement, maxElement, createMutable, distinct, distinctBy, unionWith, intersectWith, exceptWith, isSubsetOf, isSupersetOf, isProperSubsetOf, isProperSupersetOf */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "SetTree$00601", function() { return SetTree$00601; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "SetTree$00601$reflection", function() { return SetTree$00601$reflection; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "SetTreeModule$$$countAux", function() { return SetTreeModule$$$countAux; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "SetTreeModule$$$count", function() { return SetTreeModule$$$count; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "SetTreeModule$$$SetOne", function() { return SetTreeModule$$$SetOne; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "SetTreeModule$$$SetNode", function() { return SetTreeModule$$$SetNode; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "SetTreeModule$$$height", function() { return SetTreeModule$$$height; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "SetTreeModule$$$tolerance", function() { return SetTreeModule$$$tolerance; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "SetTreeModule$$$mk", function() { return SetTreeModule$$$mk; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "SetTreeModule$$$rebalance", function() { return SetTreeModule$$$rebalance; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "SetTreeModule$$$add", function() { return SetTreeModule$$$add; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "SetTreeModule$$$balance", function() { return SetTreeModule$$$balance; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "SetTreeModule$$$split", function() { return SetTreeModule$$$split; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "SetTreeModule$$$spliceOutSuccessor", function() { return SetTreeModule$$$spliceOutSuccessor; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "SetTreeModule$$$remove", function() { return SetTreeModule$$$remove; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "SetTreeModule$$$mem", function() { return SetTreeModule$$$mem; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "SetTreeModule$$$iter", function() { return SetTreeModule$$$iter; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "SetTreeModule$$$foldBack", function() { return SetTreeModule$$$foldBack; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "SetTreeModule$$$fold", function() { return SetTreeModule$$$fold; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "SetTreeModule$$$forall", function() { return SetTreeModule$$$forall; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "SetTreeModule$$$exists", function() { return SetTreeModule$$$exists; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "SetTreeModule$$$isEmpty", function() { return SetTreeModule$$$isEmpty; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "SetTreeModule$$$subset", function() { return SetTreeModule$$$subset; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "SetTreeModule$$$psubset", function() { return SetTreeModule$$$psubset; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "SetTreeModule$$$filterAux", function() { return SetTreeModule$$$filterAux; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "SetTreeModule$$$filter", function() { return SetTreeModule$$$filter; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "SetTreeModule$$$diffAux", function() { return SetTreeModule$$$diffAux; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "SetTreeModule$$$diff", function() { return SetTreeModule$$$diff; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "SetTreeModule$$$union", function() { return SetTreeModule$$$union; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "SetTreeModule$$$intersectionAux", function() { return SetTreeModule$$$intersectionAux; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "SetTreeModule$$$intersection", function() { return SetTreeModule$$$intersection; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "SetTreeModule$$$partition1", function() { return SetTreeModule$$$partition1; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "SetTreeModule$$$partitionAux", function() { return SetTreeModule$$$partitionAux; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "SetTreeModule$$$partition", function() { return SetTreeModule$$$partition; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "SetTreeModule$$$$007CMatchSetNode$007CMatchSetEmpty$007C", function() { return SetTreeModule$$$$007CMatchSetNode$007CMatchSetEmpty$007C; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "SetTreeModule$$$minimumElementAux", function() { return SetTreeModule$$$minimumElementAux; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "SetTreeModule$$$minimumElementOpt", function() { return SetTreeModule$$$minimumElementOpt; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "SetTreeModule$$$maximumElementAux", function() { return SetTreeModule$$$maximumElementAux; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "SetTreeModule$$$maximumElementOpt", function() { return SetTreeModule$$$maximumElementOpt; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "SetTreeModule$$$minimumElement", function() { return SetTreeModule$$$minimumElement; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "SetTreeModule$$$maximumElement", function() { return SetTreeModule$$$maximumElement; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "SetTreeModule$002ESetIterator$00601", function() { return SetTreeModule$002ESetIterator$00601; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "SetTreeModule$002ESetIterator$00601$reflection", function() { return SetTreeModule$002ESetIterator$00601$reflection; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "SetTreeModule$$$collapseLHS", function() { return SetTreeModule$$$collapseLHS; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "SetTreeModule$$$mkIterator", function() { return SetTreeModule$$$mkIterator; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "SetTreeModule$$$notStarted", function() { return SetTreeModule$$$notStarted; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "SetTreeModule$$$alreadyFinished", function() { return SetTreeModule$$$alreadyFinished; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "SetTreeModule$$$current", function() { return SetTreeModule$$$current; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "SetTreeModule$$$moveNext", function() { return SetTreeModule$$$moveNext; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "SetTreeModule$002EmkIEnumerator$00601", function() { return SetTreeModule$002EmkIEnumerator$00601; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "SetTreeModule$002EmkIEnumerator$00601$reflection", function() { return SetTreeModule$002EmkIEnumerator$00601$reflection; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "SetTreeModule$002EmkIEnumerator$00601$$$$002Ector$$Z5B395D56", function() { return SetTreeModule$002EmkIEnumerator$00601$$$$002Ector$$Z5B395D56; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "SetTreeModule$$$mkIEnumerator", function() { return SetTreeModule$$$mkIEnumerator; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "SetTreeModule$$$toSeq", function() { return SetTreeModule$$$toSeq; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "SetTreeModule$$$compareStacks", function() { return SetTreeModule$$$compareStacks; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "SetTreeModule$$$compare", function() { return SetTreeModule$$$compare; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "SetTreeModule$$$choose", function() { return SetTreeModule$$$choose; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "SetTreeModule$$$loop", function() { return SetTreeModule$$$loop; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "SetTreeModule$$$toList", function() { return SetTreeModule$$$toList; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "SetTreeModule$$$copyToArray", function() { return SetTreeModule$$$copyToArray; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "SetTreeModule$$$mkFromEnumerator", function() { return SetTreeModule$$$mkFromEnumerator; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "SetTreeModule$$$ofSeq", function() { return SetTreeModule$$$ofSeq; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "SetTreeModule$$$ofArray", function() { return SetTreeModule$$$ofArray; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "FSharpSet", function() { return FSharpSet; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "FSharpSet$reflection", function() { return FSharpSet$reflection; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "FSharpSet$$$$002Ector$$2528C5CB", function() { return FSharpSet$$$$002Ector$$2528C5CB; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "FSharpSet$$get_Comparer", function() { return FSharpSet$$get_Comparer; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "FSharpSet$$get_Tree", function() { return FSharpSet$$get_Tree; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "FSharpSet$$Add$$2B595", function() { return FSharpSet$$Add$$2B595; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "FSharpSet$$Remove$$2B595", function() { return FSharpSet$$Remove$$2B595; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "FSharpSet$$get_Count", function() { return FSharpSet$$get_Count; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "FSharpSet$$Contains$$2B595", function() { return FSharpSet$$Contains$$2B595; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "FSharpSet$$Iterate$$5028453F", function() { return FSharpSet$$Iterate$$5028453F; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "FSharpSet$$Fold", function() { return FSharpSet$$Fold; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "FSharpSet$$get_IsEmpty", function() { return FSharpSet$$get_IsEmpty; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "FSharpSet$$Partition$$Z1D55A0D7", function() { return FSharpSet$$Partition$$Z1D55A0D7; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "FSharpSet$$Filter$$Z1D55A0D7", function() { return FSharpSet$$Filter$$Z1D55A0D7; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "FSharpSet$$Map$$38806891", function() { return FSharpSet$$Map$$38806891; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "FSharpSet$$Exists$$Z1D55A0D7", function() { return FSharpSet$$Exists$$Z1D55A0D7; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "FSharpSet$$ForAll$$Z1D55A0D7", function() { return FSharpSet$$ForAll$$Z1D55A0D7; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "FSharpSet$$$op_Subtraction", function() { return FSharpSet$$$op_Subtraction; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "FSharpSet$$$op_Addition", function() { return FSharpSet$$$op_Addition; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "FSharpSet$$$Intersection$$Z3BE9BFE0", function() { return FSharpSet$$$Intersection$$Z3BE9BFE0; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "FSharpSet$$$IntersectionMany$$Z15B59630", function() { return FSharpSet$$$IntersectionMany$$Z15B59630; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "FSharpSet$$$Equality$$Z3BE9BFE0", function() { return FSharpSet$$$Equality$$Z3BE9BFE0; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "FSharpSet$$$Compare$$Z3BE9BFE0", function() { return FSharpSet$$$Compare$$Z3BE9BFE0; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "FSharpSet$$get_Choose", function() { return FSharpSet$$get_Choose; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "FSharpSet$$get_MinimumElement", function() { return FSharpSet$$get_MinimumElement; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "FSharpSet$$get_MaximumElement", function() { return FSharpSet$$get_MaximumElement; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "FSharpSet$$IsSubsetOf$$6A20B1FF", function() { return FSharpSet$$IsSubsetOf$$6A20B1FF; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "FSharpSet$$IsSupersetOf$$6A20B1FF", function() { return FSharpSet$$IsSupersetOf$$6A20B1FF; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "FSharpSet$$IsProperSubsetOf$$6A20B1FF", function() { return FSharpSet$$IsProperSubsetOf$$6A20B1FF; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "FSharpSet$$IsProperSupersetOf$$6A20B1FF", function() { return FSharpSet$$IsProperSupersetOf$$6A20B1FF; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "isEmpty", function() { return isEmpty; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "contains", function() { return contains; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "add", function() { return add; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "singleton", function() { return singleton; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "remove", function() { return remove; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "union", function() { return union; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "unionMany", function() { return unionMany; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "intersect", function() { return intersect; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "intersectMany", function() { return intersectMany; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "iterate", function() { return iterate; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "empty", function() { return empty; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "forAll", function() { return forAll; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "exists", function() { return exists; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "filter", function() { return filter; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "partition", function() { return partition; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "fold", function() { return fold; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "foldBack", function() { return foldBack; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "map", function() { return map; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "count", function() { return count; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "minimumElement", function() { return minimumElement; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "maximumElement", function() { return maximumElement; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ofList", function() { return ofList; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ofArray", function() { return ofArray; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "toList", function() { return toList; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "toArray", function() { return toArray; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "toSeq", function() { return toSeq; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ofSeq", function() { return ofSeq; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "difference", function() { return difference; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "isSubset", function() { return isSubset; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "isSuperset", function() { return isSuperset; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "isProperSubset", function() { return isProperSubset; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "isProperSuperset", function() { return isProperSuperset; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "minElement", function() { return minElement; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "maxElement", function() { return maxElement; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "createMutable", function() { return createMutable; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "distinct", function() { return distinct; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "distinctBy", function() { return distinctBy; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "unionWith", function() { return unionWith; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "intersectWith", function() { return intersectWith; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "exceptWith", function() { return exceptWith; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "isSubsetOf", function() { return isSubsetOf; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "isSupersetOf", function() { return isSupersetOf; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "isProperSubsetOf", function() { return isProperSubsetOf; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "isProperSupersetOf", function() { return isProperSupersetOf; });
+/* harmony import */ var _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/helpers/defineProperty */ "./node_modules/@babel/runtime/helpers/defineProperty.js");
+/* harmony import */ var _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _babel_runtime_helpers_toConsumableArray__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @babel/runtime/helpers/toConsumableArray */ "./node_modules/@babel/runtime/helpers/toConsumableArray.js");
+/* harmony import */ var _babel_runtime_helpers_toConsumableArray__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_helpers_toConsumableArray__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _Types_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./Types.js */ "./.fable/fable-library.2.2.3/Types.js");
+/* harmony import */ var _Reflection_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./Reflection.js */ "./.fable/fable-library.2.2.3/Reflection.js");
+/* harmony import */ var _Option_js__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./Option.js */ "./.fable/fable-library.2.2.3/Option.js");
+/* harmony import */ var _Seq_js__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./Seq.js */ "./.fable/fable-library.2.2.3/Seq.js");
+/* harmony import */ var _Util_js__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./Util.js */ "./.fable/fable-library.2.2.3/Util.js");
+/* harmony import */ var _String_js__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./String.js */ "./.fable/fable-library.2.2.3/String.js");
+
+
+
+
+
+
+
+
+var SetTree$00601 = Object(_Types_js__WEBPACK_IMPORTED_MODULE_2__["declare"])(function Set_SetTree(tag, name) {
+  for (var _len = arguments.length, fields = new Array(_len > 2 ? _len - 2 : 0), _key = 2; _key < _len; _key++) {
+    fields[_key - 2] = arguments[_key];
+  }
+
+  _Types_js__WEBPACK_IMPORTED_MODULE_2__["Union"].call.apply(_Types_js__WEBPACK_IMPORTED_MODULE_2__["Union"], [this, tag, name].concat(fields));
+}, _Types_js__WEBPACK_IMPORTED_MODULE_2__["Union"]);
+function SetTree$00601$reflection($gen$$3) {
+  return Object(_Reflection_js__WEBPACK_IMPORTED_MODULE_3__["union"])("Set.SetTree`1", [$gen$$3], SetTree$00601, function () {
+    return ["SetEmpty", ["SetNode", [$gen$$3, SetTree$00601$reflection($gen$$3), SetTree$00601$reflection($gen$$3), _Reflection_js__WEBPACK_IMPORTED_MODULE_3__["int32"]]], ["SetOne", [$gen$$3]]];
+  });
+}
+function SetTreeModule$$$countAux(s, acc) {
+  SetTreeModule$$$countAux: while (true) {
+    switch (s.tag) {
+      case 2:
+        {
+          return acc + 1 | 0;
+        }
+
+      case 0:
+        {
+          return acc | 0;
+        }
+
+      default:
+        {
+          var r = s.fields[2];
+          var l = s.fields[1];
+          var $acc$$4 = acc;
+          s = l;
+          acc = SetTreeModule$$$countAux(r, $acc$$4 + 1);
+          continue SetTreeModule$$$countAux;
+        }
+    }
+
+    break;
+  }
+}
+function SetTreeModule$$$count(s$$1) {
+  return SetTreeModule$$$countAux(s$$1, 0);
+}
+function SetTreeModule$$$SetOne(n) {
+  return new SetTree$00601(2, "SetOne", n);
+}
+function SetTreeModule$$$SetNode(x, l$$1, r$$1, h) {
+  return new SetTree$00601(1, "SetNode", x, l$$1, r$$1, h);
+}
+function SetTreeModule$$$height(t) {
+  switch (t.tag) {
+    case 2:
+      {
+        return 1;
+      }
+
+    case 1:
+      {
+        var h$$1 = t.fields[3] | 0;
+        return h$$1 | 0;
+      }
+
+    default:
+      {
+        return 0;
+      }
+  }
+}
+var SetTreeModule$$$tolerance = 2;
+function SetTreeModule$$$mk(l$$2, k, r$$2) {
+  var matchValue = [l$$2, r$$2];
+  var $target$$5;
+
+  if (matchValue[0].tag === 0) {
+    if (matchValue[1].tag === 0) {
+      $target$$5 = 0;
+    } else {
+      $target$$5 = 1;
+    }
+  } else {
+    $target$$5 = 1;
+  }
+
+  switch ($target$$5) {
+    case 0:
+      {
+        return SetTreeModule$$$SetOne(k);
+      }
+
+    case 1:
+      {
+        var hl = SetTreeModule$$$height(l$$2) | 0;
+        var hr = SetTreeModule$$$height(r$$2) | 0;
+        var m = (hl < hr ? hr : hl) | 0;
+        return SetTreeModule$$$SetNode(k, l$$2, r$$2, m + 1);
+      }
+  }
+}
+function SetTreeModule$$$rebalance(t1, k$$1, t2) {
+  var t1h = SetTreeModule$$$height(t1) | 0;
+  var t2h = SetTreeModule$$$height(t2) | 0;
+
+  if (t2h > t1h + SetTreeModule$$$tolerance) {
+    if (t2.tag === 1) {
+      var t2r = t2.fields[2];
+      var t2l = t2.fields[1];
+      var t2k = t2.fields[0];
+
+      if (SetTreeModule$$$height(t2l) > t1h + 1) {
+        if (t2l.tag === 1) {
+          var t2lr = t2l.fields[2];
+          var t2ll = t2l.fields[1];
+          var t2lk = t2l.fields[0];
+          return SetTreeModule$$$mk(SetTreeModule$$$mk(t1, k$$1, t2ll), t2lk, SetTreeModule$$$mk(t2lr, t2k, t2r));
+        } else {
+          throw new Error("rebalance");
+        }
+      } else {
+        return SetTreeModule$$$mk(SetTreeModule$$$mk(t1, k$$1, t2l), t2k, t2r);
+      }
+    } else {
+      throw new Error("rebalance");
+    }
+  } else if (t1h > t2h + SetTreeModule$$$tolerance) {
+    if (t1.tag === 1) {
+      var t1r = t1.fields[2];
+      var t1l = t1.fields[1];
+      var t1k = t1.fields[0];
+
+      if (SetTreeModule$$$height(t1r) > t2h + 1) {
+        if (t1r.tag === 1) {
+          var t1rr = t1r.fields[2];
+          var t1rl = t1r.fields[1];
+          var t1rk = t1r.fields[0];
+          return SetTreeModule$$$mk(SetTreeModule$$$mk(t1l, t1k, t1rl), t1rk, SetTreeModule$$$mk(t1rr, k$$1, t2));
+        } else {
+          throw new Error("rebalance");
+        }
+      } else {
+        return SetTreeModule$$$mk(t1l, t1k, SetTreeModule$$$mk(t1r, k$$1, t2));
+      }
+    } else {
+      throw new Error("rebalance");
+    }
+  } else {
+    return SetTreeModule$$$mk(t1, k$$1, t2);
+  }
+}
+function SetTreeModule$$$add(comparer, k$$2, t$$1) {
+  switch (t$$1.tag) {
+    case 2:
+      {
+        var k2$$1 = t$$1.fields[0];
+        var c$$1 = comparer.Compare(k$$2, k2$$1) | 0;
+
+        if (c$$1 < 0) {
+          return SetTreeModule$$$SetNode(k$$2, new SetTree$00601(0, "SetEmpty"), t$$1, 2);
+        } else if (c$$1 === 0) {
+          return t$$1;
+        } else {
+          return SetTreeModule$$$SetNode(k$$2, t$$1, new SetTree$00601(0, "SetEmpty"), 2);
+        }
+      }
+
+    case 0:
+      {
+        return SetTreeModule$$$SetOne(k$$2);
+      }
+
+    default:
+      {
+        var r$$3 = t$$1.fields[2];
+        var l$$3 = t$$1.fields[1];
+        var k2 = t$$1.fields[0];
+        var c = comparer.Compare(k$$2, k2) | 0;
+
+        if (c < 0) {
+          return SetTreeModule$$$rebalance(SetTreeModule$$$add(comparer, k$$2, l$$3), k2, r$$3);
+        } else if (c === 0) {
+          return t$$1;
+        } else {
+          return SetTreeModule$$$rebalance(l$$3, k2, SetTreeModule$$$add(comparer, k$$2, r$$3));
+        }
+      }
+  }
+}
+function SetTreeModule$$$balance(comparer$$1, t1$$1, k$$3, t2$$1) {
+  var matchValue$$1 = [t1$$1, t2$$1];
+  var $target$$6, t2$$2, t1$$2, k1, t2$$3, k2$$2, t1$$3, h1, h2, k1$$1, k2$$3, t11, t12, t21, t22;
+
+  if (matchValue$$1[0].tag === 2) {
+    if (matchValue$$1[1].tag === 0) {
+      $target$$6 = 1;
+      t1$$2 = matchValue$$1[0];
+    } else if (matchValue$$1[1].tag === 2) {
+      $target$$6 = 2;
+      k1 = matchValue$$1[0].fields[0];
+      t2$$3 = matchValue$$1[1];
+    } else {
+      $target$$6 = 2;
+      k1 = matchValue$$1[0].fields[0];
+      t2$$3 = matchValue$$1[1];
+    }
+  } else if (matchValue$$1[0].tag === 1) {
+    if (matchValue$$1[1].tag === 2) {
+      $target$$6 = 3;
+      k2$$2 = matchValue$$1[1].fields[0];
+      t1$$3 = matchValue$$1[0];
+    } else if (matchValue$$1[1].tag === 1) {
+      $target$$6 = 4;
+      h1 = matchValue$$1[0].fields[3];
+      h2 = matchValue$$1[1].fields[3];
+      k1$$1 = matchValue$$1[0].fields[0];
+      k2$$3 = matchValue$$1[1].fields[0];
+      t11 = matchValue$$1[0].fields[1];
+      t12 = matchValue$$1[0].fields[2];
+      t21 = matchValue$$1[1].fields[1];
+      t22 = matchValue$$1[1].fields[2];
+    } else {
+      $target$$6 = 1;
+      t1$$2 = matchValue$$1[0];
+    }
+  } else {
+    $target$$6 = 0;
+    t2$$2 = matchValue$$1[1];
+  }
+
+  switch ($target$$6) {
+    case 0:
+      {
+        return SetTreeModule$$$add(comparer$$1, k$$3, t2$$2);
+      }
+
+    case 1:
+      {
+        return SetTreeModule$$$add(comparer$$1, k$$3, t1$$2);
+      }
+
+    case 2:
+      {
+        return SetTreeModule$$$add(comparer$$1, k$$3, SetTreeModule$$$add(comparer$$1, k1, t2$$3));
+      }
+
+    case 3:
+      {
+        return SetTreeModule$$$add(comparer$$1, k$$3, SetTreeModule$$$add(comparer$$1, k2$$2, t1$$3));
+      }
+
+    case 4:
+      {
+        if (h1 + SetTreeModule$$$tolerance < h2) {
+          return SetTreeModule$$$rebalance(SetTreeModule$$$balance(comparer$$1, t1$$1, k$$3, t21), k2$$3, t22);
+        } else if (h2 + SetTreeModule$$$tolerance < h1) {
+          return SetTreeModule$$$rebalance(t11, k1$$1, SetTreeModule$$$balance(comparer$$1, t12, k$$3, t2$$1));
+        } else {
+          return SetTreeModule$$$mk(t1$$1, k$$3, t2$$1);
+        }
+      }
+  }
+}
+function SetTreeModule$$$split(comparer$$2, pivot, t$$2) {
+  switch (t$$2.tag) {
+    case 2:
+      {
+        var k1$$3 = t$$2.fields[0];
+        var c$$3 = comparer$$2.Compare(k1$$3, pivot) | 0;
+
+        if (c$$3 < 0) {
+          return [t$$2, false, new SetTree$00601(0, "SetEmpty")];
+        } else if (c$$3 === 0) {
+          return [new SetTree$00601(0, "SetEmpty"), true, new SetTree$00601(0, "SetEmpty")];
+        } else {
+          return [new SetTree$00601(0, "SetEmpty"), false, t$$2];
+        }
+      }
+
+    case 0:
+      {
+        return [new SetTree$00601(0, "SetEmpty"), false, new SetTree$00601(0, "SetEmpty")];
+      }
+
+    default:
+      {
+        var t12$$1 = t$$2.fields[2];
+        var t11$$1 = t$$2.fields[1];
+        var k1$$2 = t$$2.fields[0];
+        var c$$2 = comparer$$2.Compare(pivot, k1$$2) | 0;
+
+        if (c$$2 < 0) {
+          var patternInput = SetTreeModule$$$split(comparer$$2, pivot, t11$$1);
+          return [patternInput[0], patternInput[1], SetTreeModule$$$balance(comparer$$2, patternInput[2], k1$$2, t12$$1)];
+        } else if (c$$2 === 0) {
+          return [t11$$1, true, t12$$1];
+        } else {
+          var patternInput$$1 = SetTreeModule$$$split(comparer$$2, pivot, t12$$1);
+          return [SetTreeModule$$$balance(comparer$$2, t11$$1, k1$$2, patternInput$$1[0]), patternInput$$1[1], patternInput$$1[2]];
+        }
+      }
+  }
+}
+function SetTreeModule$$$spliceOutSuccessor(t$$3) {
+  switch (t$$3.tag) {
+    case 2:
+      {
+        var k2$$4 = t$$3.fields[0];
+        return [k2$$4, new SetTree$00601(0, "SetEmpty")];
+      }
+
+    case 1:
+      {
+        var r$$4 = t$$3.fields[2];
+        var l$$4 = t$$3.fields[1];
+        var k2$$5 = t$$3.fields[0];
+
+        if (l$$4.tag === 0) {
+          return [k2$$5, r$$4];
+        } else {
+          var patternInput$$2 = SetTreeModule$$$spliceOutSuccessor(l$$4);
+          return [patternInput$$2[0], SetTreeModule$$$mk(patternInput$$2[1], k2$$5, r$$4)];
+        }
+      }
+
+    default:
+      {
+        throw new Error("internal error: Set.spliceOutSuccessor");
+      }
+  }
+}
+function SetTreeModule$$$remove(comparer$$3, k$$4, t$$4) {
+  switch (t$$4.tag) {
+    case 2:
+      {
+        var k2$$6 = t$$4.fields[0];
+        var c$$4 = comparer$$3.Compare(k$$4, k2$$6) | 0;
+
+        if (c$$4 === 0) {
+          return new SetTree$00601(0, "SetEmpty");
+        } else {
+          return t$$4;
+        }
+      }
+
+    case 1:
+      {
+        var r$$5 = t$$4.fields[2];
+        var l$$5 = t$$4.fields[1];
+        var k2$$7 = t$$4.fields[0];
+        var c$$5 = comparer$$3.Compare(k$$4, k2$$7) | 0;
+
+        if (c$$5 < 0) {
+          return SetTreeModule$$$rebalance(SetTreeModule$$$remove(comparer$$3, k$$4, l$$5), k2$$7, r$$5);
+        } else if (c$$5 === 0) {
+          var matchValue$$2 = [l$$5, r$$5];
+
+          if (matchValue$$2[0].tag === 0) {
+            return r$$5;
+          } else if (matchValue$$2[1].tag === 0) {
+            return l$$5;
+          } else {
+            var patternInput$$3 = SetTreeModule$$$spliceOutSuccessor(r$$5);
+            return SetTreeModule$$$mk(l$$5, patternInput$$3[0], patternInput$$3[1]);
+          }
+        } else {
+          return SetTreeModule$$$rebalance(l$$5, k2$$7, SetTreeModule$$$remove(comparer$$3, k$$4, r$$5));
+        }
+      }
+
+    default:
+      {
+        return t$$4;
+      }
+  }
+}
+function SetTreeModule$$$mem(comparer$$4, k$$5, t$$5) {
+  SetTreeModule$$$mem: while (true) {
+    switch (t$$5.tag) {
+      case 2:
+        {
+          var k2$$9 = t$$5.fields[0];
+          return comparer$$4.Compare(k$$5, k2$$9) === 0;
+        }
+
+      case 0:
+        {
+          return false;
+        }
+
+      default:
+        {
+          var r$$6 = t$$5.fields[2];
+          var l$$6 = t$$5.fields[1];
+          var k2$$8 = t$$5.fields[0];
+          var c$$6 = comparer$$4.Compare(k$$5, k2$$8) | 0;
+
+          if (c$$6 < 0) {
+            var $comparer$$4$$7 = comparer$$4;
+            var $k$$5$$8 = k$$5;
+            comparer$$4 = $comparer$$4$$7;
+            k$$5 = $k$$5$$8;
+            t$$5 = l$$6;
+            continue SetTreeModule$$$mem;
+          } else if (c$$6 === 0) {
+            return true;
+          } else {
+            var $comparer$$4$$9 = comparer$$4;
+            var $k$$5$$10 = k$$5;
+            comparer$$4 = $comparer$$4$$9;
+            k$$5 = $k$$5$$10;
+            t$$5 = r$$6;
+            continue SetTreeModule$$$mem;
+          }
+        }
+    }
+
+    break;
+  }
+}
+function SetTreeModule$$$iter($arg$$11, $arg$$12) {
+  SetTreeModule$$$iter: while (true) {
+    var f = $arg$$11,
+        t$$6 = $arg$$12;
+
+    switch (t$$6.tag) {
+      case 2:
+        {
+          var k2$$11 = t$$6.fields[0];
+          f(k2$$11);
+          break;
+        }
+
+      case 0:
+        {
+          break;
+        }
+
+      default:
+        {
+          var r$$7 = t$$6.fields[2];
+          var l$$7 = t$$6.fields[1];
+          var k2$$10 = t$$6.fields[0];
+          SetTreeModule$$$iter(f, l$$7);
+          f(k2$$10);
+          $arg$$11 = f;
+          $arg$$12 = r$$7;
+          continue SetTreeModule$$$iter;
+        }
+    }
+
+    break;
+  }
+}
+function SetTreeModule$$$foldBack($arg$$13, $arg$$14, $arg$$15) {
+  SetTreeModule$$$foldBack: while (true) {
+    var f$$1 = $arg$$13,
+        m$$1 = $arg$$14,
+        x$$1 = $arg$$15;
+
+    switch (m$$1.tag) {
+      case 2:
+        {
+          var k$$7 = m$$1.fields[0];
+          return f$$1(k$$7, x$$1);
+        }
+
+      case 0:
+        {
+          return x$$1;
+        }
+
+      default:
+        {
+          var r$$8 = m$$1.fields[2];
+          var l$$8 = m$$1.fields[1];
+          var k$$6 = m$$1.fields[0];
+          $arg$$13 = f$$1;
+          $arg$$14 = l$$8;
+          $arg$$15 = f$$1(k$$6, SetTreeModule$$$foldBack(f$$1, r$$8, x$$1));
+          continue SetTreeModule$$$foldBack;
+        }
+    }
+
+    break;
+  }
+}
+function SetTreeModule$$$fold($arg$$16, $arg$$17, $arg$$18) {
+  SetTreeModule$$$fold: while (true) {
+    var f$$2 = $arg$$16,
+        x$$2 = $arg$$17,
+        m$$2 = $arg$$18;
+
+    switch (m$$2.tag) {
+      case 2:
+        {
+          var k$$9 = m$$2.fields[0];
+          return f$$2(x$$2, k$$9);
+        }
+
+      case 0:
+        {
+          return x$$2;
+        }
+
+      default:
+        {
+          var r$$9 = m$$2.fields[2];
+          var l$$9 = m$$2.fields[1];
+          var k$$8 = m$$2.fields[0];
+          var x$$3 = SetTreeModule$$$fold(f$$2, x$$2, l$$9);
+          var x$$4 = f$$2(x$$3, k$$8);
+          $arg$$16 = f$$2;
+          $arg$$17 = x$$4;
+          $arg$$18 = r$$9;
+          continue SetTreeModule$$$fold;
+        }
+    }
+
+    break;
+  }
+}
+function SetTreeModule$$$forall($arg$$19, $arg$$20) {
+  SetTreeModule$$$forall: while (true) {
+    var f$$3 = $arg$$19,
+        m$$3 = $arg$$20;
+
+    switch (m$$3.tag) {
+      case 2:
+        {
+          var k2$$13 = m$$3.fields[0];
+          return f$$3(k2$$13);
+        }
+
+      case 0:
+        {
+          return true;
+        }
+
+      default:
+        {
+          var r$$10 = m$$3.fields[2];
+          var l$$10 = m$$3.fields[1];
+          var k2$$12 = m$$3.fields[0];
+
+          if (f$$3(k2$$12) ? SetTreeModule$$$forall(f$$3, l$$10) : false) {
+            $arg$$19 = f$$3;
+            $arg$$20 = r$$10;
+            continue SetTreeModule$$$forall;
+          } else {
+            return false;
+          }
+        }
+    }
+
+    break;
+  }
+}
+function SetTreeModule$$$exists($arg$$21, $arg$$22) {
+  SetTreeModule$$$exists: while (true) {
+    var f$$4 = $arg$$21,
+        m$$4 = $arg$$22;
+
+    switch (m$$4.tag) {
+      case 2:
+        {
+          var k2$$15 = m$$4.fields[0];
+          return f$$4(k2$$15);
+        }
+
+      case 0:
+        {
+          return false;
+        }
+
+      default:
+        {
+          var r$$11 = m$$4.fields[2];
+          var l$$11 = m$$4.fields[1];
+          var k2$$14 = m$$4.fields[0];
+
+          if (f$$4(k2$$14) ? true : SetTreeModule$$$exists(f$$4, l$$11)) {
+            return true;
+          } else {
+            $arg$$21 = f$$4;
+            $arg$$22 = r$$11;
+            continue SetTreeModule$$$exists;
+          }
+        }
+    }
+
+    break;
+  }
+}
+function SetTreeModule$$$isEmpty(m$$5) {
+  if (m$$5.tag === 0) {
+    return true;
+  } else {
+    return false;
+  }
+}
+function SetTreeModule$$$subset(comparer$$5, a, b) {
+  return SetTreeModule$$$forall(function (x$$5) {
+    return SetTreeModule$$$mem(comparer$$5, x$$5, b);
+  }, a);
+}
+function SetTreeModule$$$psubset(comparer$$6, a$$1, b$$1) {
+  if (SetTreeModule$$$forall(function (x$$6) {
+    return SetTreeModule$$$mem(comparer$$6, x$$6, b$$1);
+  }, a$$1)) {
+    return SetTreeModule$$$exists(function (x$$7) {
+      return !SetTreeModule$$$mem(comparer$$6, x$$7, a$$1);
+    }, b$$1);
+  } else {
+    return false;
+  }
+}
+function SetTreeModule$$$filterAux($arg$$23, $arg$$24, $arg$$25, $arg$$26) {
+  SetTreeModule$$$filterAux: while (true) {
+    var comparer$$7 = $arg$$23,
+        f$$5 = $arg$$24,
+        s$$2 = $arg$$25,
+        acc$$1 = $arg$$26;
+
+    switch (s$$2.tag) {
+      case 2:
+        {
+          var k$$11 = s$$2.fields[0];
+
+          if (f$$5(k$$11)) {
+            return SetTreeModule$$$add(comparer$$7, k$$11, acc$$1);
+          } else {
+            return acc$$1;
+          }
+        }
+
+      case 0:
+        {
+          return acc$$1;
+        }
+
+      default:
+        {
+          var r$$12 = s$$2.fields[2];
+          var l$$12 = s$$2.fields[1];
+          var k$$10 = s$$2.fields[0];
+          var acc$$2 = f$$5(k$$10) ? SetTreeModule$$$add(comparer$$7, k$$10, acc$$1) : acc$$1;
+          $arg$$23 = comparer$$7;
+          $arg$$24 = f$$5;
+          $arg$$25 = l$$12;
+          $arg$$26 = SetTreeModule$$$filterAux(comparer$$7, f$$5, r$$12, acc$$2);
+          continue SetTreeModule$$$filterAux;
+        }
+    }
+
+    break;
+  }
+}
+function SetTreeModule$$$filter(comparer$$8, f$$6, s$$3) {
+  return SetTreeModule$$$filterAux(comparer$$8, f$$6, s$$3, new SetTree$00601(0, "SetEmpty"));
+}
+function SetTreeModule$$$diffAux(comparer$$9, m$$6, acc$$3) {
+  SetTreeModule$$$diffAux: while (true) {
+    switch (m$$6.tag) {
+      case 2:
+        {
+          var k$$13 = m$$6.fields[0];
+          return SetTreeModule$$$remove(comparer$$9, k$$13, acc$$3);
+        }
+
+      case 0:
+        {
+          return acc$$3;
+        }
+
+      default:
+        {
+          var r$$13 = m$$6.fields[2];
+          var l$$13 = m$$6.fields[1];
+          var k$$12 = m$$6.fields[0];
+          var $acc$$3$$31 = acc$$3;
+          var $comparer$$9$$30 = comparer$$9;
+          comparer$$9 = $comparer$$9$$30;
+          m$$6 = l$$13;
+          acc$$3 = SetTreeModule$$$diffAux($comparer$$9$$30, r$$13, SetTreeModule$$$remove($comparer$$9$$30, k$$12, $acc$$3$$31));
+          continue SetTreeModule$$$diffAux;
+        }
+    }
+
+    break;
+  }
+}
+function SetTreeModule$$$diff(comparer$$10, a$$2, b$$2) {
+  return SetTreeModule$$$diffAux(comparer$$10, b$$2, a$$2);
+}
+function SetTreeModule$$$union(comparer$$11, t1$$4, t2$$4) {
+  var matchValue$$3 = [t1$$4, t2$$4];
+  var $target$$32, h1$$1, h2$$1, k1$$4, k2$$16, t11$$2, t12$$2, t21$$1, t22$$1, t$$7, t$$8, k1$$5, t2$$5, k2$$17, t1$$5;
+
+  if (matchValue$$3[0].tag === 0) {
+    $target$$32 = 1;
+    t$$7 = matchValue$$3[1];
+  } else if (matchValue$$3[0].tag === 2) {
+    if (matchValue$$3[1].tag === 0) {
+      $target$$32 = 2;
+      t$$8 = matchValue$$3[0];
+    } else if (matchValue$$3[1].tag === 2) {
+      $target$$32 = 3;
+      k1$$5 = matchValue$$3[0].fields[0];
+      t2$$5 = matchValue$$3[1];
+    } else {
+      $target$$32 = 3;
+      k1$$5 = matchValue$$3[0].fields[0];
+      t2$$5 = matchValue$$3[1];
+    }
+  } else if (matchValue$$3[1].tag === 0) {
+    $target$$32 = 2;
+    t$$8 = matchValue$$3[0];
+  } else if (matchValue$$3[1].tag === 2) {
+    $target$$32 = 4;
+    k2$$17 = matchValue$$3[1].fields[0];
+    t1$$5 = matchValue$$3[0];
+  } else {
+    $target$$32 = 0;
+    h1$$1 = matchValue$$3[0].fields[3];
+    h2$$1 = matchValue$$3[1].fields[3];
+    k1$$4 = matchValue$$3[0].fields[0];
+    k2$$16 = matchValue$$3[1].fields[0];
+    t11$$2 = matchValue$$3[0].fields[1];
+    t12$$2 = matchValue$$3[0].fields[2];
+    t21$$1 = matchValue$$3[1].fields[1];
+    t22$$1 = matchValue$$3[1].fields[2];
+  }
+
+  switch ($target$$32) {
+    case 0:
+      {
+        if (h1$$1 > h2$$1) {
+          var patternInput$$4 = SetTreeModule$$$split(comparer$$11, k1$$4, t2$$4);
+          return SetTreeModule$$$balance(comparer$$11, SetTreeModule$$$union(comparer$$11, t11$$2, patternInput$$4[0]), k1$$4, SetTreeModule$$$union(comparer$$11, t12$$2, patternInput$$4[2]));
+        } else {
+          var patternInput$$5 = SetTreeModule$$$split(comparer$$11, k2$$16, t1$$4);
+          return SetTreeModule$$$balance(comparer$$11, SetTreeModule$$$union(comparer$$11, t21$$1, patternInput$$5[0]), k2$$16, SetTreeModule$$$union(comparer$$11, t22$$1, patternInput$$5[2]));
+        }
+      }
+
+    case 1:
+      {
+        return t$$7;
+      }
+
+    case 2:
+      {
+        return t$$8;
+      }
+
+    case 3:
+      {
+        return SetTreeModule$$$add(comparer$$11, k1$$5, t2$$5);
+      }
+
+    case 4:
+      {
+        return SetTreeModule$$$add(comparer$$11, k2$$17, t1$$5);
+      }
+  }
+}
+function SetTreeModule$$$intersectionAux(comparer$$12, b$$3, m$$7, acc$$4) {
+  SetTreeModule$$$intersectionAux: while (true) {
+    switch (m$$7.tag) {
+      case 2:
+        {
+          var k$$15 = m$$7.fields[0];
+
+          if (SetTreeModule$$$mem(comparer$$12, k$$15, b$$3)) {
+            return SetTreeModule$$$add(comparer$$12, k$$15, acc$$4);
+          } else {
+            return acc$$4;
+          }
+        }
+
+      case 0:
+        {
+          return acc$$4;
+        }
+
+      default:
+        {
+          var r$$14 = m$$7.fields[2];
+          var l$$14 = m$$7.fields[1];
+          var k$$14 = m$$7.fields[0];
+          var acc$$5 = SetTreeModule$$$intersectionAux(comparer$$12, b$$3, r$$14, acc$$4);
+          var acc$$6 = SetTreeModule$$$mem(comparer$$12, k$$14, b$$3) ? SetTreeModule$$$add(comparer$$12, k$$14, acc$$5) : acc$$5;
+          var $b$$3$$34 = b$$3;
+          var $comparer$$12$$33 = comparer$$12;
+          comparer$$12 = $comparer$$12$$33;
+          b$$3 = $b$$3$$34;
+          m$$7 = l$$14;
+          acc$$4 = acc$$6;
+          continue SetTreeModule$$$intersectionAux;
+        }
+    }
+
+    break;
+  }
+}
+function SetTreeModule$$$intersection(comparer$$13, a$$3, b$$4) {
+  return SetTreeModule$$$intersectionAux(comparer$$13, b$$4, a$$3, new SetTree$00601(0, "SetEmpty"));
+}
+function SetTreeModule$$$partition1(comparer$$14, f$$7, k$$16, acc1, acc2) {
+  if (f$$7(k$$16)) {
+    return [SetTreeModule$$$add(comparer$$14, k$$16, acc1), acc2];
+  } else {
+    return [acc1, SetTreeModule$$$add(comparer$$14, k$$16, acc2)];
+  }
+}
+function SetTreeModule$$$partitionAux($arg$$40, $arg$$41, $arg$$42, $arg$$43, $arg$$44) {
+  SetTreeModule$$$partitionAux: while (true) {
+    var comparer$$15 = $arg$$40,
+        f$$8 = $arg$$41,
+        s$$4 = $arg$$42,
+        acc_0 = $arg$$43,
+        acc_1 = $arg$$44;
+    var acc$$7 = [acc_0, acc_1];
+
+    switch (s$$4.tag) {
+      case 2:
+        {
+          var k$$18 = s$$4.fields[0];
+          return SetTreeModule$$$partition1(comparer$$15, f$$8, k$$18, acc$$7[0], acc$$7[1]);
+        }
+
+      case 0:
+        {
+          return acc$$7;
+        }
+
+      default:
+        {
+          var r$$15 = s$$4.fields[2];
+          var l$$15 = s$$4.fields[1];
+          var k$$17 = s$$4.fields[0];
+          var acc$$8 = SetTreeModule$$$partitionAux(comparer$$15, f$$8, r$$15, acc$$7[0], acc$$7[1]);
+          var acc$$9 = SetTreeModule$$$partition1(comparer$$15, f$$8, k$$17, acc$$8[0], acc$$8[1]);
+          $arg$$40 = comparer$$15;
+          $arg$$41 = f$$8;
+          $arg$$42 = l$$15;
+          $arg$$43 = acc$$9[0];
+          $arg$$44 = acc$$9[1];
+          continue SetTreeModule$$$partitionAux;
+        }
+    }
+
+    break;
+  }
+}
+function SetTreeModule$$$partition(comparer$$16, f$$9, s$$5) {
+  var seed = [new SetTree$00601(0, "SetEmpty"), new SetTree$00601(0, "SetEmpty")];
+  return SetTreeModule$$$partitionAux(comparer$$16, f$$9, s$$5, seed[0], seed[1]);
+}
+function SetTreeModule$$$$007CMatchSetNode$007CMatchSetEmpty$007C(s$$6) {
+  switch (s$$6.tag) {
+    case 2:
+      {
+        var k2$$19 = s$$6.fields[0];
+        return new _Option_js__WEBPACK_IMPORTED_MODULE_4__["Choice"](0, "Choice1Of2", [k2$$19, new SetTree$00601(0, "SetEmpty"), new SetTree$00601(0, "SetEmpty")]);
+      }
+
+    case 0:
+      {
+        return new _Option_js__WEBPACK_IMPORTED_MODULE_4__["Choice"](1, "Choice2Of2", null);
+      }
+
+    default:
+      {
+        var r$$16 = s$$6.fields[2];
+        var l$$16 = s$$6.fields[1];
+        var k2$$18 = s$$6.fields[0];
+        return new _Option_js__WEBPACK_IMPORTED_MODULE_4__["Choice"](0, "Choice1Of2", [k2$$18, l$$16, r$$16]);
+      }
+  }
+}
+function SetTreeModule$$$minimumElementAux(s$$7, n$$1) {
+  SetTreeModule$$$minimumElementAux: while (true) {
+    switch (s$$7.tag) {
+      case 2:
+        {
+          var k$$20 = s$$7.fields[0];
+          return k$$20;
+        }
+
+      case 0:
+        {
+          return n$$1;
+        }
+
+      default:
+        {
+          var l$$17 = s$$7.fields[1];
+          var k$$19 = s$$7.fields[0];
+          s$$7 = l$$17;
+          n$$1 = k$$19;
+          continue SetTreeModule$$$minimumElementAux;
+        }
+    }
+
+    break;
+  }
+}
+function SetTreeModule$$$minimumElementOpt(s$$8) {
+  switch (s$$8.tag) {
+    case 2:
+      {
+        var k$$22 = s$$8.fields[0];
+        return Object(_Option_js__WEBPACK_IMPORTED_MODULE_4__["some"])(k$$22);
+      }
+
+    case 0:
+      {
+        return null;
+      }
+
+    default:
+      {
+        var l$$18 = s$$8.fields[1];
+        var k$$21 = s$$8.fields[0];
+        return Object(_Option_js__WEBPACK_IMPORTED_MODULE_4__["some"])(SetTreeModule$$$minimumElementAux(l$$18, k$$21));
+      }
+  }
+}
+function SetTreeModule$$$maximumElementAux(s$$9, n$$2) {
+  SetTreeModule$$$maximumElementAux: while (true) {
+    switch (s$$9.tag) {
+      case 2:
+        {
+          var k$$24 = s$$9.fields[0];
+          return k$$24;
+        }
+
+      case 0:
+        {
+          return n$$2;
+        }
+
+      default:
+        {
+          var r$$17 = s$$9.fields[2];
+          var k$$23 = s$$9.fields[0];
+          s$$9 = r$$17;
+          n$$2 = k$$23;
+          continue SetTreeModule$$$maximumElementAux;
+        }
+    }
+
+    break;
+  }
+}
+function SetTreeModule$$$maximumElementOpt(s$$10) {
+  switch (s$$10.tag) {
+    case 2:
+      {
+        var k$$26 = s$$10.fields[0];
+        return Object(_Option_js__WEBPACK_IMPORTED_MODULE_4__["some"])(k$$26);
+      }
+
+    case 0:
+      {
+        return null;
+      }
+
+    default:
+      {
+        var r$$18 = s$$10.fields[2];
+        var k$$25 = s$$10.fields[0];
+        return Object(_Option_js__WEBPACK_IMPORTED_MODULE_4__["some"])(SetTreeModule$$$maximumElementAux(r$$18, k$$25));
+      }
+  }
+}
+function SetTreeModule$$$minimumElement(s$$11) {
+  var matchValue$$4 = SetTreeModule$$$minimumElementOpt(s$$11);
+
+  if (matchValue$$4 == null) {
+    throw new Error("Set contains no elements");
+  } else {
+    var k$$27 = Object(_Option_js__WEBPACK_IMPORTED_MODULE_4__["value"])(matchValue$$4);
+    return k$$27;
+  }
+}
+function SetTreeModule$$$maximumElement(s$$12) {
+  var matchValue$$5 = SetTreeModule$$$maximumElementOpt(s$$12);
+
+  if (matchValue$$5 == null) {
+    throw new Error("Set contains no elements");
+  } else {
+    var k$$28 = Object(_Option_js__WEBPACK_IMPORTED_MODULE_4__["value"])(matchValue$$5);
+    return k$$28;
+  }
+}
+var SetTreeModule$002ESetIterator$00601 = Object(_Types_js__WEBPACK_IMPORTED_MODULE_2__["declare"])(function Set_SetTreeModule_SetIterator(arg1, arg2) {
+  this.stack = arg1;
+  this.started = arg2;
+}, _Types_js__WEBPACK_IMPORTED_MODULE_2__["Record"]);
+function SetTreeModule$002ESetIterator$00601$reflection($gen$$48) {
+  return Object(_Reflection_js__WEBPACK_IMPORTED_MODULE_3__["record"])("Set.SetTreeModule.SetIterator`1", [$gen$$48], SetTreeModule$002ESetIterator$00601, function () {
+    return [["stack", Object(_Reflection_js__WEBPACK_IMPORTED_MODULE_3__["list"])(SetTree$00601$reflection($gen$$48))], ["started", _Reflection_js__WEBPACK_IMPORTED_MODULE_3__["bool"]]];
+  });
+}
+function SetTreeModule$$$collapseLHS(stack) {
+  SetTreeModule$$$collapseLHS: while (true) {
+    if (stack.tail != null) {
+      if (stack.head.tag === 2) {
+        return stack;
+      } else if (stack.head.tag === 1) {
+        var $stack$$49 = stack;
+        stack = new _Types_js__WEBPACK_IMPORTED_MODULE_2__["List"]($stack$$49.head.fields[1], new _Types_js__WEBPACK_IMPORTED_MODULE_2__["List"](SetTreeModule$$$SetOne($stack$$49.head.fields[0]), new _Types_js__WEBPACK_IMPORTED_MODULE_2__["List"]($stack$$49.head.fields[2], $stack$$49.tail)));
+        continue SetTreeModule$$$collapseLHS;
+      } else {
+        var $stack$$50 = stack;
+        stack = $stack$$50.tail;
+        continue SetTreeModule$$$collapseLHS;
+      }
+    } else {
+      return new _Types_js__WEBPACK_IMPORTED_MODULE_2__["List"]();
+    }
+
+    break;
+  }
+}
+function SetTreeModule$$$mkIterator(s$$13) {
+  return new SetTreeModule$002ESetIterator$00601(SetTreeModule$$$collapseLHS(new _Types_js__WEBPACK_IMPORTED_MODULE_2__["List"](s$$13, new _Types_js__WEBPACK_IMPORTED_MODULE_2__["List"]())), false);
+}
+function SetTreeModule$$$notStarted() {
+  throw new Error("Enumeration not started");
+}
+function SetTreeModule$$$alreadyFinished() {
+  throw new Error("Enumeration already started");
+}
+function SetTreeModule$$$current(i) {
+  if (i.started) {
+    var matchValue$$6 = i.stack;
+
+    if (matchValue$$6.tail == null) {
+      return SetTreeModule$$$alreadyFinished();
+    } else if (matchValue$$6.head.tag === 2) {
+      return matchValue$$6.head.fields[0];
+    } else {
+      throw new Error("Please report error: Set iterator, unexpected stack for current");
+    }
+  } else {
+    return SetTreeModule$$$notStarted();
+  }
+}
+function SetTreeModule$$$moveNext(i$$1) {
+  if (i$$1.started) {
+    var matchValue$$7 = i$$1.stack;
+
+    if (matchValue$$7.tail == null) {
+      return false;
+    } else if (matchValue$$7.head.tag === 2) {
+      i$$1.stack = SetTreeModule$$$collapseLHS(matchValue$$7.tail);
+      return !(i$$1.stack.tail == null);
+    } else {
+      throw new Error("Please report error: Set iterator, unexpected stack for moveNext");
+    }
+  } else {
+    i$$1.started = true;
+    return !(i$$1.stack.tail == null);
+  }
+}
+var SetTreeModule$002EmkIEnumerator$00601 = Object(_Types_js__WEBPACK_IMPORTED_MODULE_2__["declare"])(function Set_SetTreeModule_mkIEnumerator(s$$14) {
+  var $this$$1 = this;
+  $this$$1.s = s$$14;
+  $this$$1.i = SetTreeModule$$$mkIterator($this$$1.s);
+});
+function SetTreeModule$002EmkIEnumerator$00601$reflection($gen$$51) {
+  return Object(_Reflection_js__WEBPACK_IMPORTED_MODULE_3__["type"])("Set.SetTreeModule.mkIEnumerator`1", [$gen$$51]);
+}
+function SetTreeModule$002EmkIEnumerator$00601$$$$002Ector$$Z5B395D56(s$$14) {
+  return this instanceof SetTreeModule$002EmkIEnumerator$00601 ? SetTreeModule$002EmkIEnumerator$00601.call(this, s$$14) : new SetTreeModule$002EmkIEnumerator$00601(s$$14);
+}
+Object.defineProperty(SetTreeModule$002EmkIEnumerator$00601.prototype, "Current", {
+  "get": function get() {
+    var __ = this;
+
+    return SetTreeModule$$$current(__.i);
+  }
+});
+
+SetTreeModule$002EmkIEnumerator$00601.prototype.MoveNext = function () {
+  var __$$1 = this;
+
+  return SetTreeModule$$$moveNext(__$$1.i);
+};
+
+SetTreeModule$002EmkIEnumerator$00601.prototype.Reset = function () {
+  var __$$2 = this;
+
+  __$$2.i = SetTreeModule$$$mkIterator(__$$2.s);
+};
+
+SetTreeModule$002EmkIEnumerator$00601.prototype.Dispose = function () {};
+
+function SetTreeModule$$$mkIEnumerator(s$$15) {
+  return SetTreeModule$002EmkIEnumerator$00601$$$$002Ector$$Z5B395D56(s$$15);
+}
+function SetTreeModule$$$toSeq(s$$16) {
+  var en = SetTreeModule$$$mkIEnumerator(s$$16);
+  return Object(_Seq_js__WEBPACK_IMPORTED_MODULE_5__["unfold"])(function generator(en$$1) {
+    if (en$$1.MoveNext()) {
+      return [en$$1.Current, en$$1];
+    } else {
+      return null;
+    }
+  }, en);
+}
+function SetTreeModule$$$compareStacks(comparer$$17, l1, l2) {
+  SetTreeModule$$$compareStacks: while (true) {
+    var matchValue$$8 = [l1, l2];
+    var $target$$52, t1$$6, t2$$6, n1k, n2k, t1$$7, t2$$7, n1k$$1, n2k$$1, n2r, t1$$8, t2$$8, emp, n1k$$2, n1r, n2k$$2, t1$$9, t2$$9, n1k$$3, n1r$$1, n2k$$3, n2r$$1, t1$$10, t2$$10, n1k$$4, t1$$11, n1k$$5, n1l, n1r$$2, t1$$12, n2k$$4, t2$$11, n2k$$5, n2l, n2r$$2, t2$$12;
+
+    if (matchValue$$8[0].tail != null) {
+      if (matchValue$$8[1].tail != null) {
+        if (matchValue$$8[1].head.tag === 2) {
+          if (matchValue$$8[0].head.tag === 2) {
+            $target$$52 = 4;
+            n1k = matchValue$$8[0].head.fields[0];
+            n2k = matchValue$$8[1].head.fields[0];
+            t1$$7 = matchValue$$8[0].tail;
+            t2$$7 = matchValue$$8[1].tail;
+          } else if (matchValue$$8[0].head.tag === 1) {
+            if (matchValue$$8[0].head.fields[1].tag === 0) {
+              $target$$52 = 6;
+              emp = matchValue$$8[0].head.fields[1];
+              n1k$$2 = matchValue$$8[0].head.fields[0];
+              n1r = matchValue$$8[0].head.fields[2];
+              n2k$$2 = matchValue$$8[1].head.fields[0];
+              t1$$9 = matchValue$$8[0].tail;
+              t2$$9 = matchValue$$8[1].tail;
+            } else {
+              $target$$52 = 9;
+              n1k$$5 = matchValue$$8[0].head.fields[0];
+              n1l = matchValue$$8[0].head.fields[1];
+              n1r$$2 = matchValue$$8[0].head.fields[2];
+              t1$$12 = matchValue$$8[0].tail;
+            }
+          } else {
+            $target$$52 = 10;
+            n2k$$4 = matchValue$$8[1].head.fields[0];
+            t2$$11 = matchValue$$8[1].tail;
+          }
+        } else if (matchValue$$8[1].head.tag === 1) {
+          if (matchValue$$8[1].head.fields[1].tag === 0) {
+            if (matchValue$$8[0].head.tag === 2) {
+              $target$$52 = 5;
+              n1k$$1 = matchValue$$8[0].head.fields[0];
+              n2k$$1 = matchValue$$8[1].head.fields[0];
+              n2r = matchValue$$8[1].head.fields[2];
+              t1$$8 = matchValue$$8[0].tail;
+              t2$$8 = matchValue$$8[1].tail;
+            } else if (matchValue$$8[0].head.tag === 1) {
+              if (matchValue$$8[0].head.fields[1].tag === 0) {
+                $target$$52 = 7;
+                n1k$$3 = matchValue$$8[0].head.fields[0];
+                n1r$$1 = matchValue$$8[0].head.fields[2];
+                n2k$$3 = matchValue$$8[1].head.fields[0];
+                n2r$$1 = matchValue$$8[1].head.fields[2];
+                t1$$10 = matchValue$$8[0].tail;
+                t2$$10 = matchValue$$8[1].tail;
+              } else {
+                $target$$52 = 9;
+                n1k$$5 = matchValue$$8[0].head.fields[0];
+                n1l = matchValue$$8[0].head.fields[1];
+                n1r$$2 = matchValue$$8[0].head.fields[2];
+                t1$$12 = matchValue$$8[0].tail;
+              }
+            } else {
+              $target$$52 = 11;
+              n2k$$5 = matchValue$$8[1].head.fields[0];
+              n2l = matchValue$$8[1].head.fields[1];
+              n2r$$2 = matchValue$$8[1].head.fields[2];
+              t2$$12 = matchValue$$8[1].tail;
+            }
+          } else if (matchValue$$8[0].head.tag === 2) {
+            $target$$52 = 8;
+            n1k$$4 = matchValue$$8[0].head.fields[0];
+            t1$$11 = matchValue$$8[0].tail;
+          } else if (matchValue$$8[0].head.tag === 1) {
+            $target$$52 = 9;
+            n1k$$5 = matchValue$$8[0].head.fields[0];
+            n1l = matchValue$$8[0].head.fields[1];
+            n1r$$2 = matchValue$$8[0].head.fields[2];
+            t1$$12 = matchValue$$8[0].tail;
+          } else {
+            $target$$52 = 11;
+            n2k$$5 = matchValue$$8[1].head.fields[0];
+            n2l = matchValue$$8[1].head.fields[1];
+            n2r$$2 = matchValue$$8[1].head.fields[2];
+            t2$$12 = matchValue$$8[1].tail;
+          }
+        } else if (matchValue$$8[0].head.tag === 2) {
+          $target$$52 = 8;
+          n1k$$4 = matchValue$$8[0].head.fields[0];
+          t1$$11 = matchValue$$8[0].tail;
+        } else if (matchValue$$8[0].head.tag === 1) {
+          $target$$52 = 9;
+          n1k$$5 = matchValue$$8[0].head.fields[0];
+          n1l = matchValue$$8[0].head.fields[1];
+          n1r$$2 = matchValue$$8[0].head.fields[2];
+          t1$$12 = matchValue$$8[0].tail;
+        } else {
+          $target$$52 = 3;
+          t1$$6 = matchValue$$8[0].tail;
+          t2$$6 = matchValue$$8[1].tail;
+        }
+      } else {
+        $target$$52 = 2;
+      }
+    } else if (matchValue$$8[1].tail != null) {
+      $target$$52 = 1;
+    } else {
+      $target$$52 = 0;
+    }
+
+    switch ($target$$52) {
+      case 0:
+        {
+          return 0;
+        }
+
+      case 1:
+        {
+          return -1 | 0;
+        }
+
+      case 2:
+        {
+          return 1;
+        }
+
+      case 3:
+        {
+          var $comparer$$17$$53 = comparer$$17;
+          comparer$$17 = $comparer$$17$$53;
+          l1 = t1$$6;
+          l2 = t2$$6;
+          continue SetTreeModule$$$compareStacks;
+        }
+
+      case 4:
+        {
+          var c$$7 = comparer$$17.Compare(n1k, n2k) | 0;
+
+          if (c$$7 !== 0) {
+            return c$$7 | 0;
+          } else {
+            var $comparer$$17$$54 = comparer$$17;
+            comparer$$17 = $comparer$$17$$54;
+            l1 = t1$$7;
+            l2 = t2$$7;
+            continue SetTreeModule$$$compareStacks;
+          }
+        }
+
+      case 5:
+        {
+          var c$$8 = comparer$$17.Compare(n1k$$1, n2k$$1) | 0;
+
+          if (c$$8 !== 0) {
+            return c$$8 | 0;
+          } else {
+            var $comparer$$17$$55 = comparer$$17;
+            comparer$$17 = $comparer$$17$$55;
+            l1 = new _Types_js__WEBPACK_IMPORTED_MODULE_2__["List"](new SetTree$00601(0, "SetEmpty"), t1$$8);
+            l2 = new _Types_js__WEBPACK_IMPORTED_MODULE_2__["List"](n2r, t2$$8);
+            continue SetTreeModule$$$compareStacks;
+          }
+        }
+
+      case 6:
+        {
+          var c$$9 = comparer$$17.Compare(n1k$$2, n2k$$2) | 0;
+
+          if (c$$9 !== 0) {
+            return c$$9 | 0;
+          } else {
+            var $comparer$$17$$56 = comparer$$17;
+            comparer$$17 = $comparer$$17$$56;
+            l1 = new _Types_js__WEBPACK_IMPORTED_MODULE_2__["List"](n1r, t1$$9);
+            l2 = new _Types_js__WEBPACK_IMPORTED_MODULE_2__["List"](emp, t2$$9);
+            continue SetTreeModule$$$compareStacks;
+          }
+        }
+
+      case 7:
+        {
+          var c$$10 = comparer$$17.Compare(n1k$$3, n2k$$3) | 0;
+
+          if (c$$10 !== 0) {
+            return c$$10 | 0;
+          } else {
+            var $comparer$$17$$57 = comparer$$17;
+            comparer$$17 = $comparer$$17$$57;
+            l1 = new _Types_js__WEBPACK_IMPORTED_MODULE_2__["List"](n1r$$1, t1$$10);
+            l2 = new _Types_js__WEBPACK_IMPORTED_MODULE_2__["List"](n2r$$1, t2$$10);
+            continue SetTreeModule$$$compareStacks;
+          }
+        }
+
+      case 8:
+        {
+          var $comparer$$17$$58 = comparer$$17;
+          var $l2$$59 = l2;
+          comparer$$17 = $comparer$$17$$58;
+          l1 = new _Types_js__WEBPACK_IMPORTED_MODULE_2__["List"](new SetTree$00601(0, "SetEmpty"), new _Types_js__WEBPACK_IMPORTED_MODULE_2__["List"](SetTreeModule$$$SetOne(n1k$$4), t1$$11));
+          l2 = $l2$$59;
+          continue SetTreeModule$$$compareStacks;
+        }
+
+      case 9:
+        {
+          var $comparer$$17$$60 = comparer$$17;
+          var $l2$$61 = l2;
+          comparer$$17 = $comparer$$17$$60;
+          l1 = new _Types_js__WEBPACK_IMPORTED_MODULE_2__["List"](n1l, new _Types_js__WEBPACK_IMPORTED_MODULE_2__["List"](SetTreeModule$$$SetNode(n1k$$5, new SetTree$00601(0, "SetEmpty"), n1r$$2, 0), t1$$12));
+          l2 = $l2$$61;
+          continue SetTreeModule$$$compareStacks;
+        }
+
+      case 10:
+        {
+          var $comparer$$17$$62 = comparer$$17;
+          var $l1$$63 = l1;
+          comparer$$17 = $comparer$$17$$62;
+          l1 = $l1$$63;
+          l2 = new _Types_js__WEBPACK_IMPORTED_MODULE_2__["List"](new SetTree$00601(0, "SetEmpty"), new _Types_js__WEBPACK_IMPORTED_MODULE_2__["List"](SetTreeModule$$$SetOne(n2k$$4), t2$$11));
+          continue SetTreeModule$$$compareStacks;
+        }
+
+      case 11:
+        {
+          var $comparer$$17$$64 = comparer$$17;
+          var $l1$$65 = l1;
+          comparer$$17 = $comparer$$17$$64;
+          l1 = $l1$$65;
+          l2 = new _Types_js__WEBPACK_IMPORTED_MODULE_2__["List"](n2l, new _Types_js__WEBPACK_IMPORTED_MODULE_2__["List"](SetTreeModule$$$SetNode(n2k$$5, new SetTree$00601(0, "SetEmpty"), n2r$$2, 0), t2$$12));
+          continue SetTreeModule$$$compareStacks;
+        }
+    }
+
+    break;
+  }
+}
+function SetTreeModule$$$compare(comparer$$18, s1, s2) {
+  var matchValue$$9 = [s1, s2];
+
+  if (matchValue$$9[0].tag === 0) {
+    if (matchValue$$9[1].tag === 0) {
+      return 0;
+    } else {
+      return -1 | 0;
+    }
+  } else if (matchValue$$9[1].tag === 0) {
+    return 1;
+  } else {
+    return SetTreeModule$$$compareStacks(comparer$$18, new _Types_js__WEBPACK_IMPORTED_MODULE_2__["List"](s1, new _Types_js__WEBPACK_IMPORTED_MODULE_2__["List"]()), new _Types_js__WEBPACK_IMPORTED_MODULE_2__["List"](s2, new _Types_js__WEBPACK_IMPORTED_MODULE_2__["List"]())) | 0;
+  }
+}
+function SetTreeModule$$$choose(s$$17) {
+  return SetTreeModule$$$minimumElement(s$$17);
+}
+function SetTreeModule$$$loop(m$$8, acc$$10) {
+  SetTreeModule$$$loop: while (true) {
+    switch (m$$8.tag) {
+      case 2:
+        {
+          var k$$32 = m$$8.fields[0];
+          return new _Types_js__WEBPACK_IMPORTED_MODULE_2__["List"](k$$32, acc$$10);
+        }
+
+      case 0:
+        {
+          return acc$$10;
+        }
+
+      default:
+        {
+          var r$$20 = m$$8.fields[2];
+          var l$$20 = m$$8.fields[1];
+          var k$$31 = m$$8.fields[0];
+          var $acc$$10$$66 = acc$$10;
+          m$$8 = l$$20;
+          acc$$10 = new _Types_js__WEBPACK_IMPORTED_MODULE_2__["List"](k$$31, SetTreeModule$$$loop(r$$20, $acc$$10$$66));
+          continue SetTreeModule$$$loop;
+        }
+    }
+
+    break;
+  }
+}
+function SetTreeModule$$$toList(s$$18) {
+  return SetTreeModule$$$loop(s$$18, new _Types_js__WEBPACK_IMPORTED_MODULE_2__["List"]());
+}
+function SetTreeModule$$$copyToArray(s$$19, arr, i$$2) {
+  var j = i$$2 | 0;
+  SetTreeModule$$$iter(function (x$$8) {
+    arr[j] = x$$8;
+    j = j + 1;
+  }, s$$19);
+}
+function SetTreeModule$$$mkFromEnumerator(comparer$$19, acc$$11, e) {
+  SetTreeModule$$$mkFromEnumerator: while (true) {
+    if (e.MoveNext()) {
+      var $acc$$11$$68 = acc$$11;
+      var $comparer$$19$$67 = comparer$$19;
+      var $e$$69 = e;
+      comparer$$19 = $comparer$$19$$67;
+      acc$$11 = SetTreeModule$$$add($comparer$$19$$67, $e$$69.Current, $acc$$11$$68);
+      e = $e$$69;
+      continue SetTreeModule$$$mkFromEnumerator;
+    } else {
+      return acc$$11;
+    }
+
+    break;
+  }
+}
+function SetTreeModule$$$ofSeq(comparer$$20, c$$11) {
+  var ie = Object(_Seq_js__WEBPACK_IMPORTED_MODULE_5__["getEnumerator"])(c$$11);
+
+  try {
+    return SetTreeModule$$$mkFromEnumerator(comparer$$20, new SetTree$00601(0, "SetEmpty"), ie);
+  } finally {
+    if (Object(_Util_js__WEBPACK_IMPORTED_MODULE_6__["isDisposable"])(ie)) {
+      ie.Dispose();
+    }
+  }
+}
+function SetTreeModule$$$ofArray(comparer$$21, arr$$1) {
+  var acc$$12 = new SetTree$00601(0, "SetEmpty");
+
+  for (var i$$3 = 0; i$$3 <= arr$$1.length - 1; i$$3++) {
+    acc$$12 = SetTreeModule$$$add(comparer$$21, arr$$1[i$$3], acc$$12);
+  }
+
+  return acc$$12;
+}
+var FSharpSet = Object(_Types_js__WEBPACK_IMPORTED_MODULE_2__["declare"])(function Set_Set(comparer$$22, tree) {
+  var $this$$2 = this;
+  $this$$2.comparer = comparer$$22;
+  $this$$2.tree = tree;
+});
+function FSharpSet$reflection($gen$$70) {
+  return Object(_Reflection_js__WEBPACK_IMPORTED_MODULE_3__["type"])("Set.FSharpSet", [$gen$$70]);
+}
+function FSharpSet$$$$002Ector$$2528C5CB(comparer$$22, tree) {
+  return this instanceof FSharpSet ? FSharpSet.call(this, comparer$$22, tree) : new FSharpSet(comparer$$22, tree);
+}
+function FSharpSet$$get_Comparer(__$$4) {
+  return __$$4.comparer;
+}
+function FSharpSet$$get_Tree(__$$5) {
+  return __$$5.tree;
+}
+function FSharpSet$$Add$$2B595(s$$20, x$$9) {
+  return FSharpSet$$$$002Ector$$2528C5CB(FSharpSet$$get_Comparer(s$$20), SetTreeModule$$$add(FSharpSet$$get_Comparer(s$$20), x$$9, FSharpSet$$get_Tree(s$$20)));
+}
+function FSharpSet$$Remove$$2B595(s$$21, x$$10) {
+  return FSharpSet$$$$002Ector$$2528C5CB(FSharpSet$$get_Comparer(s$$21), SetTreeModule$$$remove(FSharpSet$$get_Comparer(s$$21), x$$10, FSharpSet$$get_Tree(s$$21)));
+}
+function FSharpSet$$get_Count(s$$22) {
+  return SetTreeModule$$$count(FSharpSet$$get_Tree(s$$22));
+}
+function FSharpSet$$Contains$$2B595(s$$23, x$$11) {
+  return SetTreeModule$$$mem(FSharpSet$$get_Comparer(s$$23), x$$11, FSharpSet$$get_Tree(s$$23));
+}
+function FSharpSet$$Iterate$$5028453F(s$$24, x$$12) {
+  SetTreeModule$$$iter(x$$12, FSharpSet$$get_Tree(s$$24));
+}
+function FSharpSet$$Fold(s$$25, f$$10, z) {
+  return SetTreeModule$$$fold(function (x$$13, z$$1) {
+    return f$$10(z$$1, x$$13);
+  }, z, FSharpSet$$get_Tree(s$$25));
+}
+function FSharpSet$$get_IsEmpty(s$$26) {
+  return SetTreeModule$$$isEmpty(FSharpSet$$get_Tree(s$$26));
+}
+function FSharpSet$$Partition$$Z1D55A0D7(s$$27, f$$11) {
+  if (FSharpSet$$get_Tree(s$$27).tag === 0) {
+    return [s$$27, s$$27];
+  } else {
+    var patternInput$$6 = SetTreeModule$$$partition(FSharpSet$$get_Comparer(s$$27), f$$11, FSharpSet$$get_Tree(s$$27));
+    return [FSharpSet$$$$002Ector$$2528C5CB(FSharpSet$$get_Comparer(s$$27), patternInput$$6[0]), FSharpSet$$$$002Ector$$2528C5CB(FSharpSet$$get_Comparer(s$$27), patternInput$$6[1])];
+  }
+}
+function FSharpSet$$Filter$$Z1D55A0D7(s$$28, f$$12) {
+  if (FSharpSet$$get_Tree(s$$28).tag === 0) {
+    return s$$28;
+  } else {
+    return FSharpSet$$$$002Ector$$2528C5CB(FSharpSet$$get_Comparer(s$$28), SetTreeModule$$$filter(FSharpSet$$get_Comparer(s$$28), f$$12, FSharpSet$$get_Tree(s$$28)));
+  }
+}
+function FSharpSet$$Map$$38806891(s$$29, f$$13, comparer$$23) {
+  return FSharpSet$$$$002Ector$$2528C5CB(comparer$$23, SetTreeModule$$$fold(function (acc$$13, k$$33) {
+    return SetTreeModule$$$add(comparer$$23, f$$13(k$$33), acc$$13);
+  }, new SetTree$00601(0, "SetEmpty"), FSharpSet$$get_Tree(s$$29)));
+}
+function FSharpSet$$Exists$$Z1D55A0D7(s$$30, f$$14) {
+  return SetTreeModule$$$exists(f$$14, FSharpSet$$get_Tree(s$$30));
+}
+function FSharpSet$$ForAll$$Z1D55A0D7(s$$31, f$$15) {
+  return SetTreeModule$$$forall(f$$15, FSharpSet$$get_Tree(s$$31));
+}
+function FSharpSet$$$op_Subtraction(a$$4, b$$5) {
+  if (FSharpSet$$get_Tree(a$$4).tag === 0) {
+    return a$$4;
+  } else if (FSharpSet$$get_Tree(b$$5).tag === 0) {
+    return a$$4;
+  } else {
+    return FSharpSet$$$$002Ector$$2528C5CB(FSharpSet$$get_Comparer(a$$4), SetTreeModule$$$diff(FSharpSet$$get_Comparer(a$$4), FSharpSet$$get_Tree(a$$4), FSharpSet$$get_Tree(b$$5)));
+  }
+}
+function FSharpSet$$$op_Addition(a$$5, b$$6) {
+  if (FSharpSet$$get_Tree(b$$6).tag === 0) {
+    return a$$5;
+  } else if (FSharpSet$$get_Tree(a$$5).tag === 0) {
+    return b$$6;
+  } else {
+    return FSharpSet$$$$002Ector$$2528C5CB(FSharpSet$$get_Comparer(a$$5), SetTreeModule$$$union(FSharpSet$$get_Comparer(a$$5), FSharpSet$$get_Tree(a$$5), FSharpSet$$get_Tree(b$$6)));
+  }
+}
+function FSharpSet$$$Intersection$$Z3BE9BFE0(a$$6, b$$7) {
+  if (FSharpSet$$get_Tree(b$$7).tag === 0) {
+    return b$$7;
+  } else if (FSharpSet$$get_Tree(a$$6).tag === 0) {
+    return a$$6;
+  } else {
+    return FSharpSet$$$$002Ector$$2528C5CB(FSharpSet$$get_Comparer(a$$6), SetTreeModule$$$intersection(FSharpSet$$get_Comparer(a$$6), FSharpSet$$get_Tree(a$$6), FSharpSet$$get_Tree(b$$7)));
+  }
+}
+function FSharpSet$$$IntersectionMany$$Z15B59630(sets) {
+  return Object(_Seq_js__WEBPACK_IMPORTED_MODULE_5__["reduce"])(FSharpSet$$$Intersection$$Z3BE9BFE0, sets);
+}
+function FSharpSet$$$Equality$$Z3BE9BFE0(a$$7, b$$8) {
+  return SetTreeModule$$$compare(FSharpSet$$get_Comparer(a$$7), FSharpSet$$get_Tree(a$$7), FSharpSet$$get_Tree(b$$8)) === 0;
+}
+function FSharpSet$$$Compare$$Z3BE9BFE0(a$$8, b$$9) {
+  return SetTreeModule$$$compare(FSharpSet$$get_Comparer(a$$8), FSharpSet$$get_Tree(a$$8), FSharpSet$$get_Tree(b$$9));
+}
+function FSharpSet$$get_Choose(x$$14) {
+  return SetTreeModule$$$choose(FSharpSet$$get_Tree(x$$14));
+}
+function FSharpSet$$get_MinimumElement(x$$15) {
+  return SetTreeModule$$$minimumElement(FSharpSet$$get_Tree(x$$15));
+}
+function FSharpSet$$get_MaximumElement(x$$16) {
+  return SetTreeModule$$$maximumElement(FSharpSet$$get_Tree(x$$16));
+}
+function FSharpSet$$IsSubsetOf$$6A20B1FF(x$$17, y) {
+  return SetTreeModule$$$subset(FSharpSet$$get_Comparer(x$$17), FSharpSet$$get_Tree(x$$17), FSharpSet$$get_Tree(y));
+}
+function FSharpSet$$IsSupersetOf$$6A20B1FF(x$$18, y$$1) {
+  return SetTreeModule$$$subset(FSharpSet$$get_Comparer(x$$18), FSharpSet$$get_Tree(y$$1), FSharpSet$$get_Tree(x$$18));
+}
+function FSharpSet$$IsProperSubsetOf$$6A20B1FF(x$$19, y$$2) {
+  return SetTreeModule$$$psubset(FSharpSet$$get_Comparer(x$$19), FSharpSet$$get_Tree(x$$19), FSharpSet$$get_Tree(y$$2));
+}
+function FSharpSet$$IsProperSupersetOf$$6A20B1FF(x$$20, y$$3) {
+  return SetTreeModule$$$psubset(FSharpSet$$get_Comparer(x$$20), FSharpSet$$get_Tree(y$$3), FSharpSet$$get_Tree(x$$20));
+}
+
+FSharpSet.prototype.toString = function () {
+  var this$ = this;
+  return "set [" + _String_js__WEBPACK_IMPORTED_MODULE_7__["join"].apply(void 0, ["; "].concat(_babel_runtime_helpers_toConsumableArray__WEBPACK_IMPORTED_MODULE_1___default()(Object(_Seq_js__WEBPACK_IMPORTED_MODULE_5__["map"])(String, this$)))) + "]";
+};
+
+FSharpSet.prototype.GetHashCode = function () {
+  var this$$$1 = this;
+
+  var combineHash = function combineHash(x$$22, y$$4) {
+    return (x$$22 << 1) + y$$4 + 631;
+  };
+
+  var res = 0;
+  var e$$1 = SetTreeModule$$$mkIEnumerator(FSharpSet$$get_Tree(this$$$1));
+
+  while (e$$1.MoveNext()) {
+    res = combineHash(res, Object(_Util_js__WEBPACK_IMPORTED_MODULE_6__["structuralHash"])(e$$1.Current));
+  }
+
+  return Math.abs(res) | 0;
+};
+
+FSharpSet.prototype.Equals = function (that) {
+  var this$$$2 = this;
+  return SetTreeModule$$$compare(FSharpSet$$get_Comparer(this$$$2), FSharpSet$$get_Tree(this$$$2), FSharpSet$$get_Tree(that)) === 0;
+};
+
+FSharpSet.prototype.CompareTo = function (that$$1) {
+  var this$$$3 = this;
+  return SetTreeModule$$$compare(FSharpSet$$get_Comparer(this$$$3), FSharpSet$$get_Tree(this$$$3), FSharpSet$$get_Tree(that$$1)) | 0;
+};
+
+FSharpSet.prototype[Symbol.iterator] = function () {
+  var s$$32 = this;
+  return Object(_Seq_js__WEBPACK_IMPORTED_MODULE_5__["toIterator"])(SetTreeModule$$$mkIEnumerator(FSharpSet$$get_Tree(s$$32)));
+};
+
+function isEmpty(s$$33) {
+  return FSharpSet$$get_IsEmpty(s$$33);
+}
+function contains(x$$23, s$$34) {
+  return FSharpSet$$Contains$$2B595(s$$34, x$$23);
+}
+function add(x$$24, s$$35) {
+  return FSharpSet$$Add$$2B595(s$$35, x$$24);
+}
+function singleton(x$$25, comparer$$24) {
+  return FSharpSet$$$$002Ector$$2528C5CB(comparer$$24, new SetTree$00601(2, "SetOne", x$$25));
+}
+function remove(x$$26, s$$36) {
+  return FSharpSet$$Remove$$2B595(s$$36, x$$26);
+}
+function union(s1$$2, s2$$2) {
+  return FSharpSet$$$op_Addition(s1$$2, s2$$2);
+}
+function unionMany(sets$$1, comparer$$25) {
+  return Object(_Seq_js__WEBPACK_IMPORTED_MODULE_5__["fold"])(FSharpSet$$$op_Addition, FSharpSet$$$$002Ector$$2528C5CB(comparer$$25, new SetTree$00601(0, "SetEmpty")), sets$$1);
+}
+function intersect(s1$$3, s2$$3) {
+  return FSharpSet$$$Intersection$$Z3BE9BFE0(s1$$3, s2$$3);
+}
+function intersectMany(sets$$2) {
+  return FSharpSet$$$IntersectionMany$$Z15B59630(sets$$2);
+}
+function iterate(f$$16, s$$37) {
+  FSharpSet$$Iterate$$5028453F(s$$37, f$$16);
+}
+function empty(comparer$$26) {
+  return FSharpSet$$$$002Ector$$2528C5CB(comparer$$26, new SetTree$00601(0, "SetEmpty"));
+}
+function forAll(f$$17, s$$38) {
+  return FSharpSet$$ForAll$$Z1D55A0D7(s$$38, f$$17);
+}
+function exists(f$$18, s$$39) {
+  return FSharpSet$$Exists$$Z1D55A0D7(s$$39, f$$18);
+}
+function filter(f$$19, s$$40) {
+  return FSharpSet$$Filter$$Z1D55A0D7(s$$40, f$$19);
+}
+function partition(f$$20, s$$41) {
+  return FSharpSet$$Partition$$Z1D55A0D7(s$$41, f$$20);
+}
+function fold(f$$21, z$$2, s$$42) {
+  return SetTreeModule$$$fold(f$$21, z$$2, FSharpSet$$get_Tree(s$$42));
+}
+function foldBack(f$$22, s$$43, z$$3) {
+  return SetTreeModule$$$foldBack(f$$22, FSharpSet$$get_Tree(s$$43), z$$3);
+}
+function map(f$$23, s$$44, comparer$$27) {
+  return FSharpSet$$Map$$38806891(s$$44, f$$23, comparer$$27);
+}
+function count(s$$45) {
+  return FSharpSet$$get_Count(s$$45);
+}
+function minimumElement(s$$46) {
+  return FSharpSet$$get_MinimumElement(s$$46);
+}
+function maximumElement(s$$47) {
+  return FSharpSet$$get_MaximumElement(s$$47);
+}
+function ofList(li, comparer$$28) {
+  return FSharpSet$$$$002Ector$$2528C5CB(comparer$$28, SetTreeModule$$$ofSeq(comparer$$28, li));
+}
+function ofArray(arr$$2, comparer$$29) {
+  return FSharpSet$$$$002Ector$$2528C5CB(comparer$$29, SetTreeModule$$$ofArray(comparer$$29, arr$$2));
+}
+function toList(s$$48) {
+  return SetTreeModule$$$toList(FSharpSet$$get_Tree(s$$48));
+}
+function toArray(s$$49, cons) {
+  var n$$3 = count(s$$49) | 0;
+  var res$$1 = new cons(n$$3);
+  SetTreeModule$$$copyToArray(FSharpSet$$get_Tree(s$$49), res$$1, 0);
+  return res$$1;
+}
+function toSeq(s$$50) {
+  return SetTreeModule$$$toSeq(FSharpSet$$get_Tree(s$$50));
+}
+function ofSeq(elements, comparer$$30) {
+  return FSharpSet$$$$002Ector$$2528C5CB(comparer$$30, SetTreeModule$$$ofSeq(comparer$$30, elements));
+}
+function difference(x$$28, y$$6) {
+  return FSharpSet$$$op_Subtraction(x$$28, y$$6);
+}
+function isSubset(x$$29, y$$7) {
+  return FSharpSet$$IsSubsetOf$$6A20B1FF(x$$29, y$$7);
+}
+function isSuperset(x$$30, y$$8) {
+  return FSharpSet$$IsSupersetOf$$6A20B1FF(x$$30, y$$8);
+}
+function isProperSubset(x$$31, y$$9) {
+  return FSharpSet$$IsProperSubsetOf$$6A20B1FF(x$$31, y$$9);
+}
+function isProperSuperset(x$$32, y$$10) {
+  return FSharpSet$$IsProperSupersetOf$$6A20B1FF(x$$32, y$$10);
+}
+function minElement(s$$51) {
+  return FSharpSet$$get_MinimumElement(s$$51);
+}
+function maxElement(s$$52) {
+  return FSharpSet$$get_MaximumElement(s$$52);
+}
+
+function createMutablePrivate(comparer$$31, tree$0027) {
+  var _ref;
+
+  var tree$$1 = tree$0027;
+  return _ref = {
+    get size() {
+      return SetTreeModule$$$count(tree$$1);
+    },
+
+    add: function add(x$$33) {
+      var this$$$4 = this;
+      tree$$1 = SetTreeModule$$$add(comparer$$31, x$$33, tree$$1);
+      return this$$$4;
+    },
+    add_: function add_(x$$34) {
+      if (SetTreeModule$$$mem(comparer$$31, x$$34, tree$$1)) {
+        return false;
+      } else {
+        tree$$1 = SetTreeModule$$$add(comparer$$31, x$$34, tree$$1);
+        return true;
+      }
+    },
+    clear: function clear() {
+      tree$$1 = new SetTree$00601(0, "SetEmpty");
+    },
+    "delete": function _delete(x$$35) {
+      if (SetTreeModule$$$mem(comparer$$31, x$$35, tree$$1)) {
+        tree$$1 = SetTreeModule$$$remove(comparer$$31, x$$35, tree$$1);
+        return true;
+      } else {
+        return false;
+      }
+    },
+    has: function has(x$$36) {
+      return SetTreeModule$$$mem(comparer$$31, x$$36, tree$$1);
+    },
+    values: function values() {
+      return SetTreeModule$$$toSeq(tree$$1);
+    }
+  }, _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_ref, Symbol.iterator, function () {
+    return Object(_Seq_js__WEBPACK_IMPORTED_MODULE_5__["toIterator"])(SetTreeModule$$$mkIEnumerator(tree$$1));
+  }), _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(_ref, "GetEnumerator", function GetEnumerator() {
+    return SetTreeModule$$$mkIEnumerator(tree$$1);
+  }), _ref;
+}
+
+function createMutable(source, comparer$$32) {
+  return createMutablePrivate(comparer$$32, SetTreeModule$$$ofSeq(comparer$$32, source));
+}
+function distinct(xs, comparer$$33) {
+  return createMutable(xs, comparer$$33);
+}
+function distinctBy(projection, xs$$1, comparer$$34) {
+  var li$$1 = [];
+  var hashSet = createMutable(Object(_Seq_js__WEBPACK_IMPORTED_MODULE_5__["empty"])(), comparer$$34);
+  Object(_Seq_js__WEBPACK_IMPORTED_MODULE_5__["iterate"])(function (x$$37) {
+    if (hashSet.add_(projection(x$$37))) {
+      li$$1.push(x$$37);
+    }
+  }, xs$$1);
+  return li$$1;
+}
+function unionWith(s1$$4, s2$$4) {
+  return Object(_Seq_js__WEBPACK_IMPORTED_MODULE_5__["fold"])(function folder(acc$$14, x$$38) {
+    return acc$$14.add(x$$38);
+  }, s1$$4, s2$$4);
+}
+function intersectWith(s1$$5, s2$$5, comparer$$35) {
+  var s2$$6 = ofSeq(s2$$5, comparer$$35);
+  Object(_Seq_js__WEBPACK_IMPORTED_MODULE_5__["iterate"])(function (x$$39) {
+    if (!FSharpSet$$Contains$$2B595(s2$$6, x$$39)) {
+      s1$$5["delete"](x$$39);
+    }
+  }, s1$$5);
+}
+function exceptWith(s1$$6, s2$$7) {
+  Object(_Seq_js__WEBPACK_IMPORTED_MODULE_5__["iterate"])(function (x$$40) {
+    s1$$6["delete"](x$$40);
+  }, s2$$7);
+}
+function isSubsetOf(s1$$7, s2$$8, comparer$$36) {
+  return isSubset(ofSeq(s1$$7, comparer$$36), ofSeq(s2$$8, comparer$$36));
+}
+function isSupersetOf(s1$$8, s2$$9, comparer$$37) {
+  return isSuperset(ofSeq(s1$$8, comparer$$37), ofSeq(s2$$9, comparer$$37));
+}
+function isProperSubsetOf(s1$$9, s2$$10, comparer$$38) {
+  return isProperSubset(ofSeq(s1$$9, comparer$$38), ofSeq(s2$$10, comparer$$38));
+}
+function isProperSupersetOf(s1$$10, s2$$11, comparer$$39) {
+  return isProperSuperset(ofSeq(s1$$10, comparer$$39), ofSeq(s2$$11, comparer$$39));
+}
+
+/***/ }),
+
+/***/ "./.fable/fable-library.2.2.3/String.js":
+/*!**********************************************!*\
+  !*** ./.fable/fable-library.2.2.3/String.js ***!
+  \**********************************************/
+/*! exports provided: compare, compareOrdinal, compareTo, startsWith, indexOfAny, printf, toConsole, toConsoleError, toText, toFail, fsFormat, format, endsWith, initialize, insert, isNullOrEmpty, isNullOrWhiteSpace, join, joinWithIndices, validateGuid, newGuid, guidToArray, arrayToGuid, toBase64String, fromBase64String, padLeft, padRight, remove, replace, replicate, getCharAtIndex, split, trim, trimStart, trimEnd, filter */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "compare", function() { return compare; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "compareOrdinal", function() { return compareOrdinal; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "compareTo", function() { return compareTo; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "startsWith", function() { return startsWith; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "indexOfAny", function() { return indexOfAny; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "printf", function() { return printf; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "toConsole", function() { return toConsole; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "toConsoleError", function() { return toConsoleError; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "toText", function() { return toText; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "toFail", function() { return toFail; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "fsFormat", function() { return fsFormat; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "format", function() { return format; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "endsWith", function() { return endsWith; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "initialize", function() { return initialize; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "insert", function() { return insert; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "isNullOrEmpty", function() { return isNullOrEmpty; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "isNullOrWhiteSpace", function() { return isNullOrWhiteSpace; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "join", function() { return join; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "joinWithIndices", function() { return joinWithIndices; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "validateGuid", function() { return validateGuid; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "newGuid", function() { return newGuid; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "guidToArray", function() { return guidToArray; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "arrayToGuid", function() { return arrayToGuid; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "toBase64String", function() { return toBase64String; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "fromBase64String", function() { return fromBase64String; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "padLeft", function() { return padLeft; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "padRight", function() { return padRight; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "remove", function() { return remove; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "replace", function() { return replace; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "replicate", function() { return replicate; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getCharAtIndex", function() { return getCharAtIndex; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "split", function() { return split; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "trim", function() { return trim; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "trimStart", function() { return trimStart; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "trimEnd", function() { return trimEnd; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "filter", function() { return filter; });
+/* harmony import */ var _babel_runtime_helpers_toConsumableArray__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/helpers/toConsumableArray */ "./node_modules/@babel/runtime/helpers/toConsumableArray.js");
+/* harmony import */ var _babel_runtime_helpers_toConsumableArray__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_helpers_toConsumableArray__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _babel_runtime_helpers_typeof__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @babel/runtime/helpers/typeof */ "./node_modules/@babel/runtime/helpers/typeof.js");
+/* harmony import */ var _babel_runtime_helpers_typeof__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_helpers_typeof__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _Date__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./Date */ "./.fable/fable-library.2.2.3/Date.js");
+/* harmony import */ var _Long__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./Long */ "./.fable/fable-library.2.2.3/Long.js");
+/* harmony import */ var _RegExp__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./RegExp */ "./.fable/fable-library.2.2.3/RegExp.js");
+
+
+
+
+
+var fsFormatRegExp = /(^|[^%])%([0+ ]*)(-?\d+)?(?:\.(\d+))?(\w)/;
+var formatRegExp = /\{(\d+)(,-?\d+)?(?:\:([a-zA-Z])(\d{0,2})|\:(.+?))?\}/g; // RFC 4122 compliant. From https://stackoverflow.com/a/13653180/3922220
+// const guidRegex = /^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/;
+// Relax GUID parsing, see #1637
+
+var guidRegex = /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/;
+
+function cmp(x, y, ic) {
+  function isIgnoreCase(i) {
+    return i === true || i === 1
+    /* CurrentCultureIgnoreCase */
+    || i === 3
+    /* InvariantCultureIgnoreCase */
+    || i === 5
+    /* OrdinalIgnoreCase */
+    ;
+  }
+
+  function isOrdinal(i) {
+    return i === 4
+    /* Ordinal */
+    || i === 5
+    /* OrdinalIgnoreCase */
+    ;
+  }
+
+  if (x == null) {
+    return y == null ? 0 : -1;
+  }
+
+  if (y == null) {
+    return 1;
+  } // everything is bigger than null
+
+
+  if (isOrdinal(ic)) {
+    if (isIgnoreCase(ic)) {
+      x = x.toLowerCase();
+      y = y.toLowerCase();
+    }
+
+    return x === y ? 0 : x < y ? -1 : 1;
+  } else {
+    if (isIgnoreCase(ic)) {
+      x = x.toLocaleLowerCase();
+      y = y.toLocaleLowerCase();
+    }
+
+    return x.localeCompare(y);
+  }
+}
+
+function compare() {
+  for (var _len = arguments.length, args = new Array(_len), _key = 0; _key < _len; _key++) {
+    args[_key] = arguments[_key];
+  }
+
+  switch (args.length) {
+    case 2:
+      return cmp(args[0], args[1], false);
+
+    case 3:
+      return cmp(args[0], args[1], args[2]);
+
+    case 4:
+      return cmp(args[0], args[1], args[2] === true);
+
+    case 5:
+      return cmp(args[0].substr(args[1], args[4]), args[2].substr(args[3], args[4]), false);
+
+    case 6:
+      return cmp(args[0].substr(args[1], args[4]), args[2].substr(args[3], args[4]), args[5]);
+
+    case 7:
+      return cmp(args[0].substr(args[1], args[4]), args[2].substr(args[3], args[4]), args[5] === true);
+
+    default:
+      throw new Error("String.compare: Unsupported number of parameters");
+  }
+}
+function compareOrdinal(x, y) {
+  return cmp(x, y, 4
+  /* Ordinal */
+  );
+}
+function compareTo(x, y) {
+  return cmp(x, y, 0
+  /* CurrentCulture */
+  );
+}
+function startsWith(str, pattern, ic) {
+  if (str.length >= pattern.length) {
+    return cmp(str.substr(0, pattern.length), pattern, ic) === 0;
+  }
+
+  return false;
+}
+function indexOfAny(str, anyOf) {
+  if (str == null || str === "") {
+    return -1;
+  }
+
+  var startIndex = (arguments.length <= 2 ? 0 : arguments.length - 2) > 0 ? arguments.length <= 2 ? undefined : arguments[2] : 0;
+
+  if (startIndex < 0) {
+    throw new Error("Start index cannot be negative");
+  }
+
+  var length = (arguments.length <= 2 ? 0 : arguments.length - 2) > 1 ? arguments.length <= 3 ? undefined : arguments[3] : str.length - startIndex;
+
+  if (length < 0) {
+    throw new Error("Length cannot be negative");
+  }
+
+  if (length > str.length - startIndex) {
+    throw new Error("Invalid startIndex and length");
+  }
+
+  str = str.substr(startIndex, length);
+  var _iteratorNormalCompletion = true;
+  var _didIteratorError = false;
+  var _iteratorError = undefined;
+
+  try {
+    for (var _iterator = anyOf[Symbol.iterator](), _step; !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {
+      var c = _step.value;
+      var index = str.indexOf(c);
+
+      if (index > -1) {
+        return index + startIndex;
+      }
+    }
+  } catch (err) {
+    _didIteratorError = true;
+    _iteratorError = err;
+  } finally {
+    try {
+      if (!_iteratorNormalCompletion && _iterator["return"] != null) {
+        _iterator["return"]();
+      }
+    } finally {
+      if (_didIteratorError) {
+        throw _iteratorError;
+      }
+    }
+  }
+
+  return -1;
+}
+
+function toHex(x) {
+  if (x instanceof _Long__WEBPACK_IMPORTED_MODULE_3__["default"]) {
+    return Object(_Long__WEBPACK_IMPORTED_MODULE_3__["toString"])(x.unsigned ? x : Object(_Long__WEBPACK_IMPORTED_MODULE_3__["fromBytes"])(Object(_Long__WEBPACK_IMPORTED_MODULE_3__["toBytes"])(x), true), 16);
+  } else {
+    return (Number(x) >>> 0).toString(16);
+  }
+}
+
+function printf(input) {
+  return {
+    input: input,
+    cont: fsFormat(input)
+  };
+}
+function toConsole(arg) {
+  // Don't remove the lambda here, see #1357
+  return arg.cont(function (x) {
+    console.log(x);
+  });
+}
+function toConsoleError(arg) {
+  return arg.cont(function (x) {
+    console.error(x);
+  });
+}
+function toText(arg) {
+  return arg.cont(function (x) {
+    return x;
+  });
+}
+function toFail(arg) {
+  return arg.cont(function (x) {
+    throw new Error(x);
+  });
+}
+
+function formatOnce(str2, rep) {
+  return str2.replace(fsFormatRegExp, function (_, prefix, flags, pad, precision, format) {
+    switch (format) {
+      case "f":
+      case "F":
+        rep = Number(rep).toFixed(precision || 6);
+        break;
+
+      case "g":
+      case "G":
+        rep = Number(rep).toPrecision(precision);
+        break;
+
+      case "e":
+      case "E":
+        rep = Number(rep).toExponential(precision);
+        break;
+
+      case "O":
+      case "A":
+        rep = String(rep);
+        break;
+
+      case "x":
+        rep = toHex(rep);
+        break;
+
+      case "X":
+        rep = toHex(rep).toUpperCase();
+        break;
+    }
+
+    var plusPrefix = flags.indexOf("+") >= 0 && parseInt(rep, 10) >= 0;
+    pad = parseInt(pad, 10);
+
+    if (!isNaN(pad)) {
+      var ch = pad >= 0 && flags.indexOf("0") >= 0 ? "0" : " ";
+      rep = padLeft(String(rep), Math.abs(pad) - (plusPrefix ? 1 : 0), ch, pad < 0);
+    }
+
+    var once = prefix + (plusPrefix ? "+" + rep : rep);
+    return once.replace(/%/g, "%%");
+  });
+}
+
+function createPrinter(str, cont) {
+  return function () {
+    // Make a copy as the function may be used several times
+    var strCopy = str;
+
+    for (var _len2 = arguments.length, args = new Array(_len2), _key2 = 0; _key2 < _len2; _key2++) {
+      args[_key2] = arguments[_key2];
+    }
+
+    for (var _i = 0, _args = args; _i < _args.length; _i++) {
+      var arg = _args[_i];
+      strCopy = formatOnce(strCopy, arg);
+    }
+
+    return fsFormatRegExp.test(strCopy) ? createPrinter(strCopy, cont) : cont(strCopy.replace(/%%/g, "%"));
+  };
+}
+
+function fsFormat(str) {
+  return function (cont) {
+    return fsFormatRegExp.test(str) ? createPrinter(str, cont) : cont(str);
+  };
+}
+function format(str) {
+  for (var _len3 = arguments.length, args = new Array(_len3 > 1 ? _len3 - 1 : 0), _key3 = 1; _key3 < _len3; _key3++) {
+    args[_key3 - 1] = arguments[_key3];
+  }
+
+  if (_babel_runtime_helpers_typeof__WEBPACK_IMPORTED_MODULE_1___default()(str) === "object" && args.length > 0) {
+    // Called with culture info
+    str = args[0];
+    args.shift();
+  }
+
+  return str.replace(formatRegExp, function (match, idx, pad, format, precision, pattern) {
+    var rep = args[idx];
+    var padSymbol = " ";
+    var isNumericType = typeof rep === "number" || rep instanceof _Long__WEBPACK_IMPORTED_MODULE_3__["default"]; // TODO: || (rep instanceof Decimal) || (rep instanceof BigInt);
+
+    if (isNumericType) {
+      switch (format) {
+        case "f":
+        case "F":
+          rep = precision ? rep.toFixed(precision) : rep.toFixed(2);
+          break;
+
+        case "g":
+        case "G":
+          rep = precision ? rep.toPrecision(precision) : rep.toPrecision();
+          break;
+
+        case "e":
+        case "E":
+          rep = precision ? rep.toExponential(precision) : rep.toExponential();
+          break;
+
+        case "p":
+        case "P":
+          rep = (precision ? (rep * 100).toFixed(precision) : (rep * 100).toFixed(2)) + " %";
+          break;
+
+        case "d":
+        case "D":
+          rep = precision ? padLeft(rep.toString(), precision, "0") : rep.toString();
+          break;
+
+        case "x":
+        case "X":
+          rep = precision ? padLeft(toHex(rep), precision, "0") : toHex(rep);
+
+          if (format === "X") {
+            rep = rep.toUpperCase();
+          }
+
+          break;
+
+        default:
+          var m = /^(0+)(\.0+)?$/.exec(pattern);
+
+          if (m != null) {
+            var decs = 0;
+
+            if (m[2] != null) {
+              rep = rep.toFixed(decs = m[2].length - 1);
+            }
+
+            pad = "," + (m[1].length + (decs ? decs + 1 : 0)).toString();
+            padSymbol = "0";
+          } else if (pattern) {
+            rep = pattern;
+          }
+
+      }
+    } else if (rep instanceof Date) {
+      rep = Object(_Date__WEBPACK_IMPORTED_MODULE_2__["toString"])(rep, pattern || format);
+    }
+
+    pad = parseInt((pad || "").substring(1), 10);
+
+    if (!isNaN(pad)) {
+      rep = padLeft(String(rep), Math.abs(pad), padSymbol, pad < 0);
+    }
+
+    return rep;
+  });
+}
+function endsWith(str, search) {
+  var idx = str.lastIndexOf(search);
+  return idx >= 0 && idx === str.length - search.length;
+}
+function initialize(n, f) {
+  if (n < 0) {
+    throw new Error("String length must be non-negative");
+  }
+
+  var xs = new Array(n);
+
+  for (var i = 0; i < n; i++) {
+    xs[i] = f(i);
+  }
+
+  return xs.join("");
+}
+function insert(str, startIndex, value) {
+  if (startIndex < 0 || startIndex > str.length) {
+    throw new Error("startIndex is negative or greater than the length of this instance.");
+  }
+
+  return str.substring(0, startIndex) + value + str.substring(startIndex);
+}
+function isNullOrEmpty(str) {
+  return typeof str !== "string" || str.length === 0;
+}
+function isNullOrWhiteSpace(str) {
+  return typeof str !== "string" || /^\s*$/.test(str);
+}
+function join(delimiter) {
+  for (var _len4 = arguments.length, xs = new Array(_len4 > 1 ? _len4 - 1 : 0), _key4 = 1; _key4 < _len4; _key4++) {
+    xs[_key4 - 1] = arguments[_key4];
+  }
+
+  return xs.map(function (x) {
+    return String(x);
+  }).join(delimiter);
+}
+function joinWithIndices(delimiter, xs, startIndex, count) {
+  var endIndexPlusOne = startIndex + count;
+
+  if (endIndexPlusOne > xs.length) {
+    throw new Error("Index and count must refer to a location within the buffer.");
+  }
+
+  return join.apply(void 0, [delimiter].concat(_babel_runtime_helpers_toConsumableArray__WEBPACK_IMPORTED_MODULE_0___default()(xs.slice(startIndex, endIndexPlusOne))));
+}
+/** Validates UUID as specified in RFC4122 (versions 1-5). Trims braces. */
+
+function validateGuid(str, doNotThrow) {
+  var trimmedAndLowered = trim(str, "{", "}").toLowerCase();
+
+  if (guidRegex.test(trimmedAndLowered)) {
+    return doNotThrow ? [true, trimmedAndLowered] : trimmedAndLowered;
+  } else if (doNotThrow) {
+    return [false, "00000000-0000-0000-0000-000000000000"];
+  }
+
+  throw new Error("Guid should contain 32 digits with 4 dashes: xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx");
+} // From https://gist.github.com/LeverOne/1308368
+
+function newGuid() {
+  var b = "";
+
+  for (var a = 0; a++ < 36;) {
+    b += a * 51 & 52 ? (a ^ 15 ? 8 ^ Math.random() * (a ^ 20 ? 16 : 4) : 4).toString(16) : "-";
+  }
+
+  return b;
+} // Maps for number <-> hex string conversion
+
+var _convertMapsInitialized = false;
+
+var _byteToHex;
+
+var _hexToByte;
+
+function initConvertMaps() {
+  _byteToHex = new Array(256);
+  _hexToByte = {};
+
+  for (var i = 0; i < 256; i++) {
+    _byteToHex[i] = (i + 0x100).toString(16).substr(1);
+    _hexToByte[_byteToHex[i]] = i;
+  }
+
+  _convertMapsInitialized = true;
+}
+/** Parse a UUID into it's component bytes */
+// Adapted from https://github.com/zefferus/uuid-parse
+
+
+function guidToArray(s) {
+  if (!_convertMapsInitialized) {
+    initConvertMaps();
+  }
+
+  var i = 0;
+  var buf = new Uint8Array(16);
+  s.toLowerCase().replace(/[0-9a-f]{2}/g, function (oct) {
+    switch (i) {
+      // .NET saves first three byte groups with different endianness
+      // See https://stackoverflow.com/a/16722909/3922220
+      case 0:
+      case 1:
+      case 2:
+      case 3:
+        buf[3 - i++] = _hexToByte[oct];
+        break;
+
+      case 4:
+      case 5:
+        buf[9 - i++] = _hexToByte[oct];
+        break;
+
+      case 6:
+      case 7:
+        buf[13 - i++] = _hexToByte[oct];
+        break;
+
+      case 8:
+      case 9:
+      case 10:
+      case 11:
+      case 12:
+      case 13:
+      case 14:
+      case 15:
+        buf[i++] = _hexToByte[oct];
+        break;
+    }
+  }); // Zero out remaining bytes if string was short
+
+  while (i < 16) {
+    buf[i++] = 0;
+  }
+
+  return buf;
+}
+/** Convert UUID byte array into a string */
+
+function arrayToGuid(buf) {
+  if (buf.length !== 16) {
+    throw new Error("Byte array for GUID must be exactly 16 bytes long");
+  }
+
+  if (!_convertMapsInitialized) {
+    initConvertMaps();
+  }
+
+  return _byteToHex[buf[3]] + _byteToHex[buf[2]] + _byteToHex[buf[1]] + _byteToHex[buf[0]] + "-" + _byteToHex[buf[5]] + _byteToHex[buf[4]] + "-" + _byteToHex[buf[7]] + _byteToHex[buf[6]] + "-" + _byteToHex[buf[8]] + _byteToHex[buf[9]] + "-" + _byteToHex[buf[10]] + _byteToHex[buf[11]] + _byteToHex[buf[12]] + _byteToHex[buf[13]] + _byteToHex[buf[14]] + _byteToHex[buf[15]];
+}
+
+function notSupported(name) {
+  throw new Error("The environment doesn't support '" + name + "', please use a polyfill.");
+}
+
+function toBase64String(inArray) {
+  var str = "";
+
+  for (var i = 0; i < inArray.length; i++) {
+    str += String.fromCharCode(inArray[i]);
+  }
+
+  return typeof btoa === "function" ? btoa(str) : notSupported("btoa");
+}
+function fromBase64String(b64Encoded) {
+  var binary = typeof atob === "function" ? atob(b64Encoded) : notSupported("atob");
+  var bytes = new Uint8Array(binary.length);
+
+  for (var i = 0; i < binary.length; i++) {
+    bytes[i] = binary.charCodeAt(i);
+  }
+
+  return bytes;
+}
+function padLeft(str, len, ch, isRight) {
+  ch = ch || " ";
+  len = len - str.length;
+
+  for (var i = 0; i < len; i++) {
+    str = isRight ? str + ch : ch + str;
+  }
+
+  return str;
+}
+function padRight(str, len, ch) {
+  return padLeft(str, len, ch, true);
+}
+function remove(str, startIndex, count) {
+  if (startIndex >= str.length) {
+    throw new Error("startIndex must be less than length of string");
+  }
+
+  if (typeof count === "number" && startIndex + count > str.length) {
+    throw new Error("Index and count must refer to a location within the string.");
+  }
+
+  return str.slice(0, startIndex) + (typeof count === "number" ? str.substr(startIndex + count) : "");
+}
+function replace(str, search, replace) {
+  return str.replace(new RegExp(Object(_RegExp__WEBPACK_IMPORTED_MODULE_4__["escape"])(search), "g"), replace);
+}
+function replicate(n, x) {
+  return initialize(n, function () {
+    return x;
+  });
+}
+function getCharAtIndex(input, index) {
+  if (index < 0 || index >= input.length) {
+    throw new Error("Index was outside the bounds of the array.");
+  }
+
+  return input[index];
+}
+function split(str, splitters, count, removeEmpty) {
+  count = typeof count === "number" ? count : null;
+  removeEmpty = typeof removeEmpty === "number" ? removeEmpty : null;
+
+  if (count < 0) {
+    throw new Error("Count cannot be less than zero");
+  }
+
+  if (count === 0) {
+    return [];
+  }
+
+  if (!Array.isArray(splitters)) {
+    if (removeEmpty === 0) {
+      return str.split(splitters, count);
+    }
+
+    var len = arguments.length;
+    splitters = Array(len - 1);
+
+    for (var key = 1; key < len; key++) {
+      splitters[key - 1] = arguments[key];
+    }
+  }
+
+  splitters = splitters.map(function (x) {
+    return Object(_RegExp__WEBPACK_IMPORTED_MODULE_4__["escape"])(x);
+  });
+  splitters = splitters.length > 0 ? splitters : [" "];
+  var i = 0;
+  var splits = [];
+  var reg = new RegExp(splitters.join("|"), "g");
+
+  while (count == null || count > 1) {
+    var m = reg.exec(str);
+
+    if (m === null) {
+      break;
+    }
+
+    if (!removeEmpty || m.index - i > 0) {
+      count = count != null ? count - 1 : count;
+      splits.push(str.substring(i, m.index));
+    }
+
+    i = reg.lastIndex;
+  }
+
+  if (!removeEmpty || str.length - i > 0) {
+    splits.push(str.substring(i));
+  }
+
+  return splits;
+}
+function trim(str) {
+  for (var _len5 = arguments.length, chars = new Array(_len5 > 1 ? _len5 - 1 : 0), _key5 = 1; _key5 < _len5; _key5++) {
+    chars[_key5 - 1] = arguments[_key5];
+  }
+
+  if (chars.length === 0) {
+    return str.trim();
+  }
+
+  var pattern = "[" + Object(_RegExp__WEBPACK_IMPORTED_MODULE_4__["escape"])(chars.join("")) + "]+";
+  return str.replace(new RegExp("^" + pattern), "").replace(new RegExp(pattern + "$"), "");
+}
+function trimStart(str) {
+  for (var _len6 = arguments.length, chars = new Array(_len6 > 1 ? _len6 - 1 : 0), _key6 = 1; _key6 < _len6; _key6++) {
+    chars[_key6 - 1] = arguments[_key6];
+  }
+
+  return chars.length === 0 ? str.trimStart() : str.replace(new RegExp("^[" + Object(_RegExp__WEBPACK_IMPORTED_MODULE_4__["escape"])(chars.join("")) + "]+"), "");
+}
+function trimEnd(str) {
+  for (var _len7 = arguments.length, chars = new Array(_len7 > 1 ? _len7 - 1 : 0), _key7 = 1; _key7 < _len7; _key7++) {
+    chars[_key7 - 1] = arguments[_key7];
+  }
+
+  return chars.length === 0 ? str.trimEnd() : str.replace(new RegExp("[" + Object(_RegExp__WEBPACK_IMPORTED_MODULE_4__["escape"])(chars.join("")) + "]+$"), "");
+}
+function filter(pred, x) {
+  return x.split("").filter(function (c) {
+    return pred(c);
+  }).join("");
+}
+
+/***/ }),
+
+/***/ "./.fable/fable-library.2.2.3/Types.js":
+/*!*********************************************!*\
+  !*** ./.fable/fable-library.2.2.3/Types.js ***!
+  \*********************************************/
+/*! exports provided: declare, SystemObject, List, Union, Record, anonRecord, FSharpRef, Exception, isException, FSharpException, MatchFailureException, Attribute */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "declare", function() { return declare; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "SystemObject", function() { return SystemObject; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "List", function() { return List; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "Union", function() { return Union; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "Record", function() { return Record; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "anonRecord", function() { return anonRecord; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "FSharpRef", function() { return FSharpRef; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "Exception", function() { return Exception; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "isException", function() { return isException; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "FSharpException", function() { return FSharpException; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "MatchFailureException", function() { return MatchFailureException; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "Attribute", function() { return Attribute; });
+/* harmony import */ var _Util__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./Util */ "./.fable/fable-library.2.2.3/Util.js");
+
+
+function sameType(x, y) {
+  return y != null && Object.getPrototypeOf(x).constructor === Object.getPrototypeOf(y).constructor;
+} // Taken from Babel helpers
+
+
+function inherits(subClass, superClass) {
+  // if (typeof superClass !== "function" && superClass !== null) {
+  //   throw new TypeError(
+  //     "Super expression must either be null or a function, not " +
+  //       typeof superClass
+  //   );
+  // }
+  subClass.prototype = Object.create(superClass && superClass.prototype, {
+    constructor: {
+      value: subClass,
+      enumerable: false,
+      writable: true,
+      configurable: true
+    }
+  }); // if (superClass)
+  //   Object.setPrototypeOf
+  //     ? Object.setPrototypeOf(subClass, superClass)
+  //     : (subClass.__proto__ = superClass);
+}
+
+function declare(cons, superClass) {
+  inherits(cons, superClass || SystemObject);
+  return cons;
+}
+function SystemObject() {}
+
+SystemObject.prototype.toString = function () {
+  var _this = this;
+
+  return "{" + Object.keys(this).map(function (k) {
+    return k + " = " + String(_this[k]);
+  }).join(";\n ") + "}";
+};
+
+SystemObject.prototype.GetHashCode = function () {
+  return Object(_Util__WEBPACK_IMPORTED_MODULE_0__["identityHash"])(this);
+};
+
+SystemObject.prototype.Equals = function (other) {
+  return this === other;
+};
+
+function compareList(self, other) {
+  if (self === other) {
+    return 0;
+  } else {
+    if (other == null) {
+      return -1;
+    }
+
+    while (self.tail != null) {
+      if (other.tail == null) {
+        return 1;
+      }
+
+      var res = Object(_Util__WEBPACK_IMPORTED_MODULE_0__["compare"])(self.head, other.head);
+
+      if (res !== 0) {
+        return res;
+      }
+
+      self = self.tail;
+      other = other.tail;
+    }
+
+    return other.tail == null ? 0 : -1;
+  }
+}
+
+function List(head, tail) {
+  this.head = head;
+  this.tail = tail;
+}
+
+List.prototype.toString = function () {
+  return "[" + Array.from(this).map(function (x) {
+    return String(x);
+  }).join("; ") + "]";
+};
+
+List.prototype.toJSON = function () {
+  return Array.from(this);
+};
+
+List.prototype[Symbol.iterator] = function () {
+  var cur = this;
+  return {
+    next: function next() {
+      var tmp = cur;
+      cur = cur.tail;
+      return {
+        done: tmp.tail == null,
+        value: tmp.head
+      };
+    }
+  };
+};
+
+List.prototype.GetHashCode = function () {
+  var hashes = Array.from(this).map(_Util__WEBPACK_IMPORTED_MODULE_0__["structuralHash"]);
+  return Object(_Util__WEBPACK_IMPORTED_MODULE_0__["combineHashCodes"])(hashes);
+};
+
+List.prototype.Equals = function (other) {
+  return compareList(this, other) === 0;
+};
+
+List.prototype.CompareTo = function (other) {
+  return compareList(this, other);
+};
+
+function Union(tag, name) {
+  this.tag = tag | 0;
+  this.name = name;
+
+  for (var _len = arguments.length, fields = new Array(_len > 2 ? _len - 2 : 0), _key = 2; _key < _len; _key++) {
+    fields[_key - 2] = arguments[_key];
+  }
+
+  this.fields = fields;
+}
+
+Union.prototype.toString = function () {
+  var len = this.fields.length;
+
+  if (len === 0) {
+    return this.name;
+  } else if (len === 1) {
+    return this.name + " " + String(this.fields[0]);
+  } else {
+    return this.name + " (" + this.fields.map(function (x) {
+      return String(x);
+    }).join(",") + ")";
+  }
+};
+
+Union.prototype.toJSON = function () {
+  return this.fields.length === 0 ? this.name : [this.name].concat(this.fields);
+};
+
+Union.prototype.GetHashCode = function () {
+  var hashes = this.fields.map(function (x) {
+    return Object(_Util__WEBPACK_IMPORTED_MODULE_0__["structuralHash"])(x);
+  });
+  hashes.splice(0, 0, Object(_Util__WEBPACK_IMPORTED_MODULE_0__["numberHash"])(this.tag));
+  return Object(_Util__WEBPACK_IMPORTED_MODULE_0__["combineHashCodes"])(hashes);
+};
+
+Union.prototype.Equals = function (other) {
+  return this === other || sameType(this, other) && this.tag === other.tag && Object(_Util__WEBPACK_IMPORTED_MODULE_0__["equalArrays"])(this.fields, other.fields);
+};
+
+Union.prototype.CompareTo = function (other) {
+  if (this === other) {
+    return 0;
+  } else if (!sameType(this, other)) {
+    return -1;
+  } else if (this.tag === other.tag) {
+    return Object(_Util__WEBPACK_IMPORTED_MODULE_0__["compareArrays"])(this.fields, other.fields);
+  } else {
+    return this.tag < other.tag ? -1 : 1;
+  }
+};
+
+function recordToJson(record, getFieldNames) {
+  var o = {};
+  var keys = getFieldNames == null ? Object.keys(record) : getFieldNames(record);
+
+  for (var i = 0; i < keys.length; i++) {
+    o[keys[i]] = record[keys[i]];
+  }
+
+  return o;
+}
+
+function recordEquals(self, other, getFieldNames) {
+  if (self === other) {
+    return true;
+  } else if (!sameType(self, other)) {
+    return false;
+  } else {
+    var thisNames = getFieldNames == null ? Object.keys(self) : getFieldNames(self);
+
+    for (var i = 0; i < thisNames.length; i++) {
+      if (!Object(_Util__WEBPACK_IMPORTED_MODULE_0__["equals"])(self[thisNames[i]], other[thisNames[i]])) {
+        return false;
+      }
+    }
+
+    return true;
+  }
+}
+
+function recordCompare(self, other, getFieldNames) {
+  if (self === other) {
+    return 0;
+  } else if (!sameType(self, other)) {
+    return -1;
+  } else {
+    var thisNames = getFieldNames == null ? Object.keys(self) : getFieldNames(self);
+
+    for (var i = 0; i < thisNames.length; i++) {
+      var result = Object(_Util__WEBPACK_IMPORTED_MODULE_0__["compare"])(self[thisNames[i]], other[thisNames[i]]);
+
+      if (result !== 0) {
+        return result;
+      }
+    }
+
+    return 0;
+  }
+}
+
+function Record() {}
+
+Record.prototype.toString = function () {
+  var _this2 = this;
+
+  return "{" + Object.keys(this).map(function (k) {
+    return k + " = " + String(_this2[k]);
+  }).join(";\n ") + "}";
+};
+
+Record.prototype.toJSON = function () {
+  return recordToJson(this);
+};
+
+Record.prototype.GetHashCode = function () {
+  var _this3 = this;
+
+  var hashes = Object.keys(this).map(function (k) {
+    return Object(_Util__WEBPACK_IMPORTED_MODULE_0__["structuralHash"])(_this3[k]);
+  });
+  return Object(_Util__WEBPACK_IMPORTED_MODULE_0__["combineHashCodes"])(hashes);
+};
+
+Record.prototype.Equals = function (other) {
+  return recordEquals(this, other);
+};
+
+Record.prototype.CompareTo = function (other) {
+  return recordCompare(this, other);
+};
+
+function anonRecord(o) {
+  return Object.assign(Object.create(Record.prototype), o);
+}
+var FSharpRef = declare(function FSharpRef(contents) {
+  this.contents = contents;
+}, Record); // EXCEPTIONS
+
+var Exception = declare(function Exception(msg) {
+  this.stack = Error().stack;
+  this.message = msg;
+});
+function isException(x) {
+  return x instanceof Error || x instanceof Exception;
+}
+
+function getFSharpExceptionFieldNames(self) {
+  return Object.keys(self).filter(function (k) {
+    return k !== "message" && k !== "stack";
+  });
+}
+
+var FSharpException = declare(function FSharpException() {
+  Exception.call(this);
+}, Exception);
+
+FSharpException.prototype.toString = function () {
+  var _this4 = this;
+
+  var fieldNames = getFSharpExceptionFieldNames(this);
+  var len = fieldNames.length;
+
+  if (len === 0) {
+    return this.message;
+  } else if (len === 1) {
+    return this.message + " " + String(this[fieldNames[0]]);
+  } else {
+    return this.message + " (" + fieldNames.map(function (k) {
+      return String(_this4[k]);
+    }).join(",") + ")";
+  }
+};
+
+FSharpException.prototype.toJSON = function () {
+  return recordToJson(this, getFSharpExceptionFieldNames);
+};
+
+FSharpException.prototype.GetHashCode = function () {
+  var _this5 = this;
+
+  var hashes = getFSharpExceptionFieldNames(this).map(function (k) {
+    return Object(_Util__WEBPACK_IMPORTED_MODULE_0__["structuralHash"])(_this5[k]);
+  });
+  return Object(_Util__WEBPACK_IMPORTED_MODULE_0__["combineHashCodes"])(hashes);
+};
+
+FSharpException.prototype.Equals = function (other) {
+  return recordEquals(this, other, getFSharpExceptionFieldNames);
+};
+
+FSharpException.prototype.CompareTo = function (other) {
+  return recordCompare(this, other, getFSharpExceptionFieldNames);
+};
+
+var MatchFailureException = declare(function MatchFailureException(arg1, arg2, arg3) {
+  this.arg1 = arg1;
+  this.arg2 = arg2 | 0;
+  this.arg3 = arg3 | 0;
+  this.message = "The match cases were incomplete";
+}, FSharpException);
+var Attribute = declare(function Attribute() {});
+
+/***/ }),
+
+/***/ "./.fable/fable-library.2.2.3/Util.js":
+/*!********************************************!*\
+  !*** ./.fable/fable-library.2.2.3/Util.js ***!
+  \********************************************/
+/*! exports provided: extend, isDisposable, Comparer, comparerFromEqualityComparer, containsValue, tryGetValue, addToSet, assertEqual, assertNotEqual, Lazy, lazyFromValue, padWithZeros, padLeftAndRightWithZeros, dateOffset, int16ToString, int32ToString, ObjectRef, stringHash, numberHash, combineHashCodes, identityHash, structuralHash, isArray, isIterable, equalArraysWith, equalArrays, equals, compareDates, comparePrimitives, compareArraysWith, compareArrays, compareObjects, compare, min, max, createAtom, createObj, jsOptions, round, sign, randomNext, randomBytes, unescapeDataString, escapeDataString, escapeUriString, count, clear, uncurry, curry, partialApply, addToDict, getItemFromDict */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "extend", function() { return extend; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "isDisposable", function() { return isDisposable; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "Comparer", function() { return Comparer; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "comparerFromEqualityComparer", function() { return comparerFromEqualityComparer; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "containsValue", function() { return containsValue; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "tryGetValue", function() { return tryGetValue; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "addToSet", function() { return addToSet; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "assertEqual", function() { return assertEqual; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "assertNotEqual", function() { return assertNotEqual; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "Lazy", function() { return Lazy; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "lazyFromValue", function() { return lazyFromValue; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "padWithZeros", function() { return padWithZeros; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "padLeftAndRightWithZeros", function() { return padLeftAndRightWithZeros; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "dateOffset", function() { return dateOffset; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "int16ToString", function() { return int16ToString; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "int32ToString", function() { return int32ToString; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ObjectRef", function() { return ObjectRef; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "stringHash", function() { return stringHash; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "numberHash", function() { return numberHash; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "combineHashCodes", function() { return combineHashCodes; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "identityHash", function() { return identityHash; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "structuralHash", function() { return structuralHash; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "isArray", function() { return isArray; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "isIterable", function() { return isIterable; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "equalArraysWith", function() { return equalArraysWith; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "equalArrays", function() { return equalArrays; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "equals", function() { return equals; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "compareDates", function() { return compareDates; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "comparePrimitives", function() { return comparePrimitives; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "compareArraysWith", function() { return compareArraysWith; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "compareArrays", function() { return compareArrays; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "compareObjects", function() { return compareObjects; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "compare", function() { return compare; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "min", function() { return min; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "max", function() { return max; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "createAtom", function() { return createAtom; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "createObj", function() { return createObj; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "jsOptions", function() { return jsOptions; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "round", function() { return round; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "sign", function() { return sign; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "randomNext", function() { return randomNext; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "randomBytes", function() { return randomBytes; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "unescapeDataString", function() { return unescapeDataString; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "escapeDataString", function() { return escapeDataString; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "escapeUriString", function() { return escapeUriString; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "count", function() { return count; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "clear", function() { return clear; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "uncurry", function() { return uncurry; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "curry", function() { return curry; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "partialApply", function() { return partialApply; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "addToDict", function() { return addToDict; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getItemFromDict", function() { return getItemFromDict; });
+/* harmony import */ var _babel_runtime_helpers_typeof__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/helpers/typeof */ "./node_modules/@babel/runtime/helpers/typeof.js");
+/* harmony import */ var _babel_runtime_helpers_typeof__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_helpers_typeof__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @babel/runtime/helpers/createClass */ "./node_modules/@babel/runtime/helpers/createClass.js");
+/* harmony import */ var _babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @babel/runtime/helpers/classCallCheck */ "./node_modules/@babel/runtime/helpers/classCallCheck.js");
+/* harmony import */ var _babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_2__);
+
+
+
+// tslint:disable:ban-types
+// Object.assign flattens getters and setters
+// See https://stackoverflow.com/questions/37054596/js-es5-how-to-assign-objects-with-setters-and-getters
+function extend(target) {
+  for (var _len = arguments.length, sources = new Array(_len > 1 ? _len - 1 : 0), _key = 1; _key < _len; _key++) {
+    sources[_key - 1] = arguments[_key];
+  }
+
+  for (var _i = 0, _sources = sources; _i < _sources.length; _i++) {
+    var source = _sources[_i];
+
+    for (var _i2 = 0, _Object$keys = Object.keys(source); _i2 < _Object$keys.length; _i2++) {
+      var key = _Object$keys[_i2];
+      Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key));
+    }
+  }
+
+  return target;
+}
+function isDisposable(x) {
+  return x != null && typeof x.Dispose === "function";
+}
+var Comparer = function Comparer(f) {
+  _babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_2___default()(this, Comparer);
+
+  this.Compare = f || compare;
+};
+function comparerFromEqualityComparer(comparer) {
+  // Sometimes IEqualityComparer also implements IComparer
+  if (typeof comparer.Compare === "function") {
+    return new Comparer(comparer.Compare);
+  } else {
+    return new Comparer(function (x, y) {
+      var xhash = comparer.GetHashCode(x);
+      var yhash = comparer.GetHashCode(y);
+
+      if (xhash === yhash) {
+        return comparer.Equals(x, y) ? 0 : -1;
+      } else {
+        return xhash < yhash ? -1 : 1;
+      }
+    });
+  }
+} // TODO: Move these three methods to Map and Set modules
+
+function containsValue(v, map) {
+  var _iteratorNormalCompletion = true;
+  var _didIteratorError = false;
+  var _iteratorError = undefined;
+
+  try {
+    for (var _iterator = map[Symbol.iterator](), _step; !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {
+      var kv = _step.value;
+
+      if (equals(v, kv[1])) {
+        return true;
+      }
+    }
+  } catch (err) {
+    _didIteratorError = true;
+    _iteratorError = err;
+  } finally {
+    try {
+      if (!_iteratorNormalCompletion && _iterator["return"] != null) {
+        _iterator["return"]();
+      }
+    } finally {
+      if (_didIteratorError) {
+        throw _iteratorError;
+      }
+    }
+  }
+
+  return false;
+}
+function tryGetValue(map, key, defaultValue) {
+  return map.has(key) ? [true, map.get(key)] : [false, defaultValue];
+}
+function addToSet(v, set) {
+  if (set.has(v)) {
+    return false;
+  }
+
+  set.add(v);
+  return true;
+}
+function assertEqual(actual, expected, msg) {
+  if (!equals(actual, expected)) {
+    throw Object.assign(new Error(msg || "Expected: ".concat(expected, " - Actual: ").concat(actual)), {
+      actual: actual,
+      expected: expected
+    });
+  }
+}
+function assertNotEqual(actual, expected, msg) {
+  if (equals(actual, expected)) {
+    throw Object.assign(new Error(msg || "Expected: ".concat(expected, " - Actual: ").concat(actual)), {
+      actual: actual,
+      expected: expected
+    });
+  }
+}
+var Lazy =
+/*#__PURE__*/
+function () {
+  function Lazy(factory) {
+    _babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_2___default()(this, Lazy);
+
+    this.factory = factory;
+    this.isValueCreated = false;
+  }
+
+  _babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_1___default()(Lazy, [{
+    key: "Value",
+    get: function get() {
+      if (!this.isValueCreated) {
+        this.createdValue = this.factory();
+        this.isValueCreated = true;
+      }
+
+      return this.createdValue;
+    }
+  }, {
+    key: "IsValueCreated",
+    get: function get() {
+      return this.isValueCreated;
+    }
+  }]);
+
+  return Lazy;
+}();
+function lazyFromValue(v) {
+  return new Lazy(function () {
+    return v;
+  });
+}
+function padWithZeros(i, length) {
+  var str = i.toString(10);
+
+  while (str.length < length) {
+    str = "0" + str;
+  }
+
+  return str;
+}
+function padLeftAndRightWithZeros(i, lengthLeft, lengthRight) {
+  var str = i.toString(10);
+
+  while (str.length < lengthLeft) {
+    str = "0" + str;
+  }
+
+  while (str.length < lengthRight) {
+    str = str + "0";
+  }
+
+  return str;
+}
+function dateOffset(date) {
+  var date1 = date;
+  return typeof date1.offset === "number" ? date1.offset : date.kind === 1
+  /* UTC */
+  ? 0 : date.getTimezoneOffset() * -60000;
+}
+function int16ToString(i, radix) {
+  i = i < 0 && radix != null && radix !== 10 ? 0xFFFF + i + 1 : i;
+  return i.toString(radix);
+}
+function int32ToString(i, radix) {
+  i = i < 0 && radix != null && radix !== 10 ? 0xFFFFFFFF + i + 1 : i;
+  return i.toString(radix);
+}
+var ObjectRef =
+/*#__PURE__*/
+function () {
+  function ObjectRef() {
+    _babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_2___default()(this, ObjectRef);
+  }
+
+  _babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_1___default()(ObjectRef, null, [{
+    key: "id",
+    value: function id(o) {
+      if (!ObjectRef.idMap.has(o)) {
+        ObjectRef.idMap.set(o, ++ObjectRef.count);
+      }
+
+      return ObjectRef.idMap.get(o);
+    }
+  }]);
+
+  return ObjectRef;
+}();
+ObjectRef.idMap = new WeakMap();
+ObjectRef.count = 0;
+function stringHash(s) {
+  var i = 0;
+  var h = 5381;
+  var len = s.length;
+
+  while (i < len) {
+    h = h * 33 ^ s.charCodeAt(i++);
+  }
+
+  return h;
+}
+function numberHash(x) {
+  return x * 2654435761 | 0;
+} // From https://stackoverflow.com/a/37449594
+
+function combineHashCodes(hashes) {
+  if (hashes.length === 0) {
+    return 0;
+  }
+
+  return hashes.reduce(function (h1, h2) {
+    return (h1 << 5) + h1 ^ h2;
+  });
+}
+function identityHash(x) {
+  if (x == null) {
+    return 0;
+  }
+
+  switch (_babel_runtime_helpers_typeof__WEBPACK_IMPORTED_MODULE_0___default()(x)) {
+    case "boolean":
+      return x ? 1 : 0;
+
+    case "number":
+      return numberHash(x);
+
+    case "string":
+      return stringHash(x);
+
+    default:
+      return numberHash(ObjectRef.id(x));
+  }
+}
+function structuralHash(x) {
+  if (x == null) {
+    return 0;
+  }
+
+  switch (_babel_runtime_helpers_typeof__WEBPACK_IMPORTED_MODULE_0___default()(x)) {
+    case "boolean":
+      return x ? 1 : 0;
+
+    case "number":
+      return numberHash(x);
+
+    case "string":
+      return stringHash(x);
+
+    default:
+      {
+        if (typeof x.GetHashCode === "function") {
+          return x.GetHashCode();
+        } else if (isArray(x)) {
+          var ar = x;
+          var len = ar.length;
+          var hashes = new Array(len);
+
+          for (var i = 0; i < len; i++) {
+            hashes[i] = structuralHash(ar[i]);
+          }
+
+          return combineHashCodes(hashes);
+        } else {
+          return stringHash(String(x));
+        }
+      }
+  }
+}
+function isArray(x) {
+  return Array.isArray(x) || ArrayBuffer.isView(x);
+}
+function isIterable(x) {
+  return x != null && _babel_runtime_helpers_typeof__WEBPACK_IMPORTED_MODULE_0___default()(x) === "object" && Symbol.iterator in x;
+}
+function equalArraysWith(x, y, eq) {
+  if (x == null) {
+    return y == null;
+  }
+
+  if (y == null) {
+    return false;
+  }
+
+  if (x.length !== y.length) {
+    return false;
+  }
+
+  for (var i = 0; i < x.length; i++) {
+    if (!eq(x[i], y[i])) {
+      return false;
+    }
+  }
+
+  return true;
+}
+function equalArrays(x, y) {
+  return equalArraysWith(x, y, equals);
+} // export function equalObjects(x: { [k: string]: any }, y: { [k: string]: any }): boolean {
+//   if (x == null) { return y == null; }
+//   if (y == null) { return false; }
+//   const xKeys = Object.keys(x);
+//   const yKeys = Object.keys(y);
+//   if (xKeys.length !== yKeys.length) {
+//     return false;
+//   }
+//   xKeys.sort();
+//   yKeys.sort();
+//   for (let i = 0; i < xKeys.length; i++) {
+//     if (xKeys[i] !== yKeys[i] || !equals(x[xKeys[i]], y[yKeys[i]])) {
+//       return false;
+//     }
+//   }
+//   return true;
+// }
+
+function equals(x, y) {
+  if (x === y) {
+    return true;
+  } else if (x == null) {
+    return y == null;
+  } else if (y == null) {
+    return false;
+  } else if (_babel_runtime_helpers_typeof__WEBPACK_IMPORTED_MODULE_0___default()(x) !== "object") {
+    return false;
+  } else if (typeof x.Equals === "function") {
+    return x.Equals(y);
+  } else if (isArray(x)) {
+    return isArray(y) && equalArrays(x, y);
+  } else if (x instanceof Date) {
+    return y instanceof Date && compareDates(x, y) === 0;
+  } else {
+    return false;
+  }
+}
+function compareDates(x, y) {
+  var xtime;
+  var ytime; // DateTimeOffset and DateTime deals with equality differently.
+
+  if ("offset" in x && "offset" in y) {
+    xtime = x.getTime();
+    ytime = y.getTime();
+  } else {
+    xtime = x.getTime() + dateOffset(x);
+    ytime = y.getTime() + dateOffset(y);
+  }
+
+  return xtime === ytime ? 0 : xtime < ytime ? -1 : 1;
+}
+function comparePrimitives(x, y) {
+  return x === y ? 0 : x < y ? -1 : 1;
+}
+function compareArraysWith(x, y, comp) {
+  if (x == null) {
+    return y == null ? 0 : 1;
+  }
+
+  if (y == null) {
+    return -1;
+  }
+
+  if (x.length !== y.length) {
+    return x.length < y.length ? -1 : 1;
+  }
+
+  for (var i = 0, j = 0; i < x.length; i++) {
+    j = comp(x[i], y[i]);
+
+    if (j !== 0) {
+      return j;
+    }
+  }
+
+  return 0;
+}
+function compareArrays(x, y) {
+  return compareArraysWith(x, y, compare);
+}
+function compareObjects(x, y) {
+  if (x == null) {
+    return y == null ? 0 : 1;
+  }
+
+  if (y == null) {
+    return -1;
+  }
+
+  var xKeys = Object.keys(x);
+  var yKeys = Object.keys(y);
+
+  if (xKeys.length !== yKeys.length) {
+    return xKeys.length < yKeys.length ? -1 : 1;
+  }
+
+  xKeys.sort();
+  yKeys.sort();
+
+  for (var i = 0, j = 0; i < xKeys.length; i++) {
+    var key = xKeys[i];
+
+    if (key !== yKeys[i]) {
+      return key < yKeys[i] ? -1 : 1;
+    } else {
+      j = compare(x[key], y[key]);
+
+      if (j !== 0) {
+        return j;
+      }
+    }
+  }
+
+  return 0;
+}
+function compare(x, y) {
+  if (x === y) {
+    return 0;
+  } else if (x == null) {
+    return y == null ? 0 : -1;
+  } else if (y == null) {
+    return 1;
+  } else if (_babel_runtime_helpers_typeof__WEBPACK_IMPORTED_MODULE_0___default()(x) !== "object") {
+    return x < y ? -1 : 1;
+  } else if (typeof x.CompareTo === "function") {
+    return x.CompareTo(y);
+  } else if (isArray(x)) {
+    return isArray(y) && compareArrays(x, y);
+  } else if (x instanceof Date) {
+    return y instanceof Date && compareDates(x, y);
+  } else {
+    return 1;
+  }
+}
+function min(comparer, x, y) {
+  return comparer(x, y) < 0 ? x : y;
+}
+function max(comparer, x, y) {
+  return comparer(x, y) > 0 ? x : y;
+}
+function createAtom(value) {
+  var atom = value;
+  return function (value) {
+    if (value === void 0) {
+      return atom;
+    } else {
+      atom = value;
+      return void 0;
+    }
+  };
+}
+var CaseRules = {
+  None: 0,
+  LowerFirst: 1
+};
+
+function changeCase(str, caseRule) {
+  switch (caseRule) {
+    case CaseRules.LowerFirst:
+      return str.charAt(0).toLowerCase() + str.slice(1);
+
+    case CaseRules.None:
+    default:
+      return str;
+  }
+}
+
+function createObj(fields) {
+  var caseRule = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : CaseRules.None;
+
+  function fail(kvPair) {
+    throw new Error("Cannot infer key and value of " + String(kvPair));
+  }
+
+  var o = {};
+  var definedCaseRule = caseRule;
+  var _iteratorNormalCompletion2 = true;
+  var _didIteratorError2 = false;
+  var _iteratorError2 = undefined;
+
+  try {
+    for (var _iterator2 = fields[Symbol.iterator](), _step2; !(_iteratorNormalCompletion2 = (_step2 = _iterator2.next()).done); _iteratorNormalCompletion2 = true) {
+      var kvPair = _step2.value;
+      var _caseRule = CaseRules.None;
+
+      if (kvPair == null) {
+        fail(kvPair);
+      } // Deflate unions and use the defined case rule
+
+
+      if (typeof kvPair.toJSON === "function") {
+        kvPair = kvPair.toJSON();
+        _caseRule = definedCaseRule;
+      }
+
+      if (Array.isArray(kvPair)) {
+        switch (kvPair.length) {
+          case 0:
+            fail(kvPair);
+            break;
+
+          case 1:
+            o[changeCase(kvPair[0], _caseRule)] = true;
+            break;
+
+          case 2:
+            var value = kvPair[1];
+            o[changeCase(kvPair[0], _caseRule)] = value;
+            break;
+
+          default:
+            o[changeCase(kvPair[0], _caseRule)] = kvPair.slice(1);
+        }
+      } else if (typeof kvPair === "string") {
+        o[changeCase(kvPair, _caseRule)] = true;
+      } else {
+        fail(kvPair);
+      }
+    }
+  } catch (err) {
+    _didIteratorError2 = true;
+    _iteratorError2 = err;
+  } finally {
+    try {
+      if (!_iteratorNormalCompletion2 && _iterator2["return"] != null) {
+        _iterator2["return"]();
+      }
+    } finally {
+      if (_didIteratorError2) {
+        throw _iteratorError2;
+      }
+    }
+  }
+
+  return o;
+}
+function jsOptions(mutator) {
+  var opts = {};
+  mutator(opts);
+  return opts;
+}
+function round(value) {
+  var digits = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 0;
+  var m = Math.pow(10, digits);
+  var n = +(digits ? value * m : value).toFixed(8);
+  var i = Math.floor(n);
+  var f = n - i;
+  var e = 1e-8;
+  var r = f > 0.5 - e && f < 0.5 + e ? i % 2 === 0 ? i : i + 1 : Math.round(n);
+  return digits ? r / m : r;
+}
+function sign(x) {
+  return x > 0 ? 1 : x < 0 ? -1 : 0;
+}
+function randomNext(min, max) {
+  return Math.floor(Math.random() * (max - min)) + min;
+}
+function randomBytes(buffer) {
+  if (buffer == null) {
+    throw new Error("Buffer cannot be null");
+  }
+
+  for (var i = 0; i < buffer.length; i += 6) {
+    // Pick random 48-bit number. Fill buffer in 2 24-bit chunks to avoid bitwise truncation.
+    var r = Math.floor(Math.random() * 281474976710656); // Low 24 bits = chunk 1.
+
+    var rhi = Math.floor(r / 16777216); // High 24 bits shifted via division = chunk 2.
+
+    for (var j = 0; j < 6 && i + j < buffer.length; j++) {
+      if (j === 3) {
+        r = rhi;
+      }
+
+      buffer[i + j] = r & 255;
+      r >>>= 8;
+    }
+  }
+}
+function unescapeDataString(s) {
+  // https://stackoverflow.com/a/4458580/524236
+  return decodeURIComponent(s.replace(/\+/g, "%20"));
+}
+function escapeDataString(s) {
+  return encodeURIComponent(s).replace(/!/g, "%21").replace(/'/g, "%27").replace(/\(/g, "%28").replace(/\)/g, "%29").replace(/\*/g, "%2A");
+}
+function escapeUriString(s) {
+  return encodeURI(s);
+} // ICollection.Clear and Count members can be called on Arrays
+// or Dictionaries so we need a runtime check (see #1120)
+
+function count(col) {
+  return isArray(col) ? col.length : col.size;
+}
+function clear(col) {
+  if (isArray(col)) {
+    col.splice(0);
+  } else {
+    col.clear();
+  }
+}
+function uncurry(arity, f) {
+  // f may be a function option with None value
+  if (f == null) {
+    return null;
+  } // return (...args: any[]) => {
+  //   // In some cases there may be more arguments applied than necessary
+  //   // (e.g. index when mapping an array), discard them
+  //   args = args.slice(0, arity);
+  //   let res = f;
+  //   while (args.length > 0) {
+  //       const curArgs = args.splice(0, res.length);
+  //       res = res.apply(null, curArgs);
+  //   }
+  //   return res;
+  // };
+
+
+  switch (arity) {
+    case 2:
+      return function (a1, a2) {
+        return f(a1)(a2);
+      };
+
+    case 3:
+      return function (a1, a2, a3) {
+        return f(a1)(a2)(a3);
+      };
+
+    case 4:
+      return function (a1, a2, a3, a4) {
+        return f(a1)(a2)(a3)(a4);
+      };
+
+    case 5:
+      return function (a1, a2, a3, a4, a5) {
+        return f(a1)(a2)(a3)(a4)(a5);
+      };
+
+    case 6:
+      return function (a1, a2, a3, a4, a5, a6) {
+        return f(a1)(a2)(a3)(a4)(a5)(a6);
+      };
+
+    case 7:
+      return function (a1, a2, a3, a4, a5, a6, a7) {
+        return f(a1)(a2)(a3)(a4)(a5)(a6)(a7);
+      };
+
+    case 8:
+      return function (a1, a2, a3, a4, a5, a6, a7, a8) {
+        return f(a1)(a2)(a3)(a4)(a5)(a6)(a7)(a8);
+      };
+
+    default:
+      throw new Error("Uncurrying to more than 8-arity is not supported: " + arity);
+  }
+}
+function curry(arity, f) {
+  if (f == null) {
+    return null;
+  }
+
+  switch (arity) {
+    case 2:
+      return function (a1) {
+        return function (a2) {
+          return f(a1, a2);
+        };
+      };
+
+    case 3:
+      return function (a1) {
+        return function (a2) {
+          return function (a3) {
+            return f(a1, a2, a3);
+          };
+        };
+      };
+
+    case 4:
+      return function (a1) {
+        return function (a2) {
+          return function (a3) {
+            return function (a4) {
+              return f(a1, a2, a3, a4);
+            };
+          };
+        };
+      };
+
+    case 5:
+      return function (a1) {
+        return function (a2) {
+          return function (a3) {
+            return function (a4) {
+              return function (a5) {
+                return f(a1, a2, a3, a4, a5);
+              };
+            };
+          };
+        };
+      };
+
+    case 6:
+      return function (a1) {
+        return function (a2) {
+          return function (a3) {
+            return function (a4) {
+              return function (a5) {
+                return function (a6) {
+                  return f(a1, a2, a3, a4, a5, a6);
+                };
+              };
+            };
+          };
+        };
+      };
+
+    case 7:
+      return function (a1) {
+        return function (a2) {
+          return function (a3) {
+            return function (a4) {
+              return function (a5) {
+                return function (a6) {
+                  return function (a7) {
+                    return f(a1, a2, a3, a4, a5, a6, a7);
+                  };
+                };
+              };
+            };
+          };
+        };
+      };
+
+    case 8:
+      return function (a1) {
+        return function (a2) {
+          return function (a3) {
+            return function (a4) {
+              return function (a5) {
+                return function (a6) {
+                  return function (a7) {
+                    return function (a8) {
+                      return f(a1, a2, a3, a4, a5, a6, a7, a8);
+                    };
+                  };
+                };
+              };
+            };
+          };
+        };
+      };
+
+    default:
+      throw new Error("Currying to more than 8-arity is not supported: " + arity);
+  }
+}
+function partialApply(arity, f, args) {
+  if (f == null) {
+    return null;
+  } else {
+    switch (arity) {
+      case 1:
+        // Wrap arguments to make sure .concat doesn't destruct arrays. Example
+        // [1,2].concat([3,4],5)   --> [1,2,3,4,5]    // fails
+        // [1,2].concat([[3,4],5]) --> [1,2,[3,4],5]  // ok
+        return function (a1) {
+          return f.apply(null, args.concat([a1]));
+        };
+
+      case 2:
+        return function (a1) {
+          return function (a2) {
+            return f.apply(null, args.concat([a1, a2]));
+          };
+        };
+
+      case 3:
+        return function (a1) {
+          return function (a2) {
+            return function (a3) {
+              return f.apply(null, args.concat([a1, a2, a3]));
+            };
+          };
+        };
+
+      case 4:
+        return function (a1) {
+          return function (a2) {
+            return function (a3) {
+              return function (a4) {
+                return f.apply(null, args.concat([a1, a2, a3, a4]));
+              };
+            };
+          };
+        };
+
+      case 5:
+        return function (a1) {
+          return function (a2) {
+            return function (a3) {
+              return function (a4) {
+                return function (a5) {
+                  return f.apply(null, args.concat([a1, a2, a3, a4, a5]));
+                };
+              };
+            };
+          };
+        };
+
+      case 6:
+        return function (a1) {
+          return function (a2) {
+            return function (a3) {
+              return function (a4) {
+                return function (a5) {
+                  return function (a6) {
+                    return f.apply(null, args.concat([a1, a2, a3, a4, a5, a6]));
+                  };
+                };
+              };
+            };
+          };
+        };
+
+      case 7:
+        return function (a1) {
+          return function (a2) {
+            return function (a3) {
+              return function (a4) {
+                return function (a5) {
+                  return function (a6) {
+                    return function (a7) {
+                      return f.apply(null, args.concat([a1, a2, a3, a4, a5, a6, a7]));
+                    };
+                  };
+                };
+              };
+            };
+          };
+        };
+
+      case 8:
+        return function (a1) {
+          return function (a2) {
+            return function (a3) {
+              return function (a4) {
+                return function (a5) {
+                  return function (a6) {
+                    return function (a7) {
+                      return function (a8) {
+                        return f.apply(null, args.concat([a1, a2, a3, a4, a5, a6, a7, a8]));
+                      };
+                    };
+                  };
+                };
+              };
+            };
+          };
+        };
+
+      default:
+        throw new Error("Partially applying to more than 8-arity is not supported: " + arity);
+    }
+  }
+}
+function addToDict(dict, k, v) {
+  if (dict.has(k)) {
+    throw new Error("An item with the same key has already been added. Key: " + k);
+  }
+
+  dict.set(k, v);
+}
+function getItemFromDict(map, key) {
+  if (map.has(key)) {
+    return map.get(key);
+  } else {
+    throw new Error("The given key '".concat(key, "' was not present in the dictionary."));
+  }
+}
+
+/***/ }),
+
+/***/ "./node_modules/@babel/runtime/helpers/arrayWithHoles.js":
+/*!***************************************************************!*\
+  !*** ./node_modules/@babel/runtime/helpers/arrayWithHoles.js ***!
+  \***************************************************************/
+/*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = function () { /* empty */ };
+function _arrayWithHoles(arr) {
+  if (Array.isArray(arr)) return arr;
+}
 
+module.exports = _arrayWithHoles;
 
 /***/ }),
-/* 92 */
+
+/***/ "./node_modules/@babel/runtime/helpers/arrayWithoutHoles.js":
+/*!******************************************************************!*\
+  !*** ./node_modules/@babel/runtime/helpers/arrayWithoutHoles.js ***!
+  \******************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+function _arrayWithoutHoles(arr) {
+  if (Array.isArray(arr)) {
+    for (var i = 0, arr2 = new Array(arr.length); i < arr.length; i++) {
+      arr2[i] = arr[i];
+    }
+
+    return arr2;
+  }
+}
+
+module.exports = _arrayWithoutHoles;
+
+/***/ }),
+
+/***/ "./node_modules/@babel/runtime/helpers/classCallCheck.js":
+/*!***************************************************************!*\
+  !*** ./node_modules/@babel/runtime/helpers/classCallCheck.js ***!
+  \***************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+function _classCallCheck(instance, Constructor) {
+  if (!(instance instanceof Constructor)) {
+    throw new TypeError("Cannot call a class as a function");
+  }
+}
+
+module.exports = _classCallCheck;
+
+/***/ }),
+
+/***/ "./node_modules/@babel/runtime/helpers/construct.js":
+/*!**********************************************************!*\
+  !*** ./node_modules/@babel/runtime/helpers/construct.js ***!
+  \**********************************************************/
+/*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-var anObject = __webpack_require__(14);
-var get = __webpack_require__(45);
-module.exports = __webpack_require__(0).getIterator = function (it) {
-  var iterFn = get(it);
-  if (typeof iterFn != 'function') throw TypeError(it + ' is not iterable!');
-  return anObject(iterFn.call(it));
-};
+var setPrototypeOf = __webpack_require__(/*! ./setPrototypeOf */ "./node_modules/@babel/runtime/helpers/setPrototypeOf.js");
 
+function isNativeReflectConstruct() {
+  if (typeof Reflect === "undefined" || !Reflect.construct) return false;
+  if (Reflect.construct.sham) return false;
+  if (typeof Proxy === "function") return true;
+
+  try {
+    Date.prototype.toString.call(Reflect.construct(Date, [], function () {}));
+    return true;
+  } catch (e) {
+    return false;
+  }
+}
+
+function _construct(Parent, args, Class) {
+  if (isNativeReflectConstruct()) {
+    module.exports = _construct = Reflect.construct;
+  } else {
+    module.exports = _construct = function _construct(Parent, args, Class) {
+      var a = [null];
+      a.push.apply(a, args);
+      var Constructor = Function.bind.apply(Parent, a);
+      var instance = new Constructor();
+      if (Class) setPrototypeOf(instance, Class.prototype);
+      return instance;
+    };
+  }
+
+  return _construct.apply(null, arguments);
+}
+
+module.exports = _construct;
 
 /***/ }),
-/* 93 */
+
+/***/ "./node_modules/@babel/runtime/helpers/createClass.js":
+/*!************************************************************!*\
+  !*** ./node_modules/@babel/runtime/helpers/createClass.js ***!
+  \************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+function _defineProperties(target, props) {
+  for (var i = 0; i < props.length; i++) {
+    var descriptor = props[i];
+    descriptor.enumerable = descriptor.enumerable || false;
+    descriptor.configurable = true;
+    if ("value" in descriptor) descriptor.writable = true;
+    Object.defineProperty(target, descriptor.key, descriptor);
+  }
+}
+
+function _createClass(Constructor, protoProps, staticProps) {
+  if (protoProps) _defineProperties(Constructor.prototype, protoProps);
+  if (staticProps) _defineProperties(Constructor, staticProps);
+  return Constructor;
+}
+
+module.exports = _createClass;
+
+/***/ }),
+
+/***/ "./node_modules/@babel/runtime/helpers/defineProperty.js":
+/*!***************************************************************!*\
+  !*** ./node_modules/@babel/runtime/helpers/defineProperty.js ***!
+  \***************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+function _defineProperty(obj, key, value) {
+  if (key in obj) {
+    Object.defineProperty(obj, key, {
+      value: value,
+      enumerable: true,
+      configurable: true,
+      writable: true
+    });
+  } else {
+    obj[key] = value;
+  }
+
+  return obj;
+}
+
+module.exports = _defineProperty;
+
+/***/ }),
+
+/***/ "./node_modules/@babel/runtime/helpers/iterableToArray.js":
+/*!****************************************************************!*\
+  !*** ./node_modules/@babel/runtime/helpers/iterableToArray.js ***!
+  \****************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+function _iterableToArray(iter) {
+  if (Symbol.iterator in Object(iter) || Object.prototype.toString.call(iter) === "[object Arguments]") return Array.from(iter);
+}
+
+module.exports = _iterableToArray;
+
+/***/ }),
+
+/***/ "./node_modules/@babel/runtime/helpers/iterableToArrayLimit.js":
+/*!*********************************************************************!*\
+  !*** ./node_modules/@babel/runtime/helpers/iterableToArrayLimit.js ***!
+  \*********************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+function _iterableToArrayLimit(arr, i) {
+  var _arr = [];
+  var _n = true;
+  var _d = false;
+  var _e = undefined;
+
+  try {
+    for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) {
+      _arr.push(_s.value);
+
+      if (i && _arr.length === i) break;
+    }
+  } catch (err) {
+    _d = true;
+    _e = err;
+  } finally {
+    try {
+      if (!_n && _i["return"] != null) _i["return"]();
+    } finally {
+      if (_d) throw _e;
+    }
+  }
+
+  return _arr;
+}
+
+module.exports = _iterableToArrayLimit;
+
+/***/ }),
+
+/***/ "./node_modules/@babel/runtime/helpers/nonIterableRest.js":
+/*!****************************************************************!*\
+  !*** ./node_modules/@babel/runtime/helpers/nonIterableRest.js ***!
+  \****************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+function _nonIterableRest() {
+  throw new TypeError("Invalid attempt to destructure non-iterable instance");
+}
+
+module.exports = _nonIterableRest;
+
+/***/ }),
+
+/***/ "./node_modules/@babel/runtime/helpers/nonIterableSpread.js":
+/*!******************************************************************!*\
+  !*** ./node_modules/@babel/runtime/helpers/nonIterableSpread.js ***!
+  \******************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+function _nonIterableSpread() {
+  throw new TypeError("Invalid attempt to spread non-iterable instance");
+}
+
+module.exports = _nonIterableSpread;
+
+/***/ }),
+
+/***/ "./node_modules/@babel/runtime/helpers/setPrototypeOf.js":
+/*!***************************************************************!*\
+  !*** ./node_modules/@babel/runtime/helpers/setPrototypeOf.js ***!
+  \***************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+function _setPrototypeOf(o, p) {
+  module.exports = _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) {
+    o.__proto__ = p;
+    return o;
+  };
+
+  return _setPrototypeOf(o, p);
+}
+
+module.exports = _setPrototypeOf;
+
+/***/ }),
+
+/***/ "./node_modules/@babel/runtime/helpers/slicedToArray.js":
+/*!**************************************************************!*\
+  !*** ./node_modules/@babel/runtime/helpers/slicedToArray.js ***!
+  \**************************************************************/
+/*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(94);
-var $Object = __webpack_require__(0).Object;
-module.exports = function defineProperty(it, key, desc) {
-  return $Object.defineProperty(it, key, desc);
-};
+var arrayWithHoles = __webpack_require__(/*! ./arrayWithHoles */ "./node_modules/@babel/runtime/helpers/arrayWithHoles.js");
 
+var iterableToArrayLimit = __webpack_require__(/*! ./iterableToArrayLimit */ "./node_modules/@babel/runtime/helpers/iterableToArrayLimit.js");
+
+var nonIterableRest = __webpack_require__(/*! ./nonIterableRest */ "./node_modules/@babel/runtime/helpers/nonIterableRest.js");
+
+function _slicedToArray(arr, i) {
+  return arrayWithHoles(arr) || iterableToArrayLimit(arr, i) || nonIterableRest();
+}
+
+module.exports = _slicedToArray;
 
 /***/ }),
-/* 94 */
+
+/***/ "./node_modules/@babel/runtime/helpers/toConsumableArray.js":
+/*!******************************************************************!*\
+  !*** ./node_modules/@babel/runtime/helpers/toConsumableArray.js ***!
+  \******************************************************************/
+/*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-var $export = __webpack_require__(3);
-// 19.1.2.4 / 15.2.3.6 Object.defineProperty(O, P, Attributes)
-$export($export.S + $export.F * !__webpack_require__(6), 'Object', { defineProperty: __webpack_require__(4).f });
+var arrayWithoutHoles = __webpack_require__(/*! ./arrayWithoutHoles */ "./node_modules/@babel/runtime/helpers/arrayWithoutHoles.js");
 
+var iterableToArray = __webpack_require__(/*! ./iterableToArray */ "./node_modules/@babel/runtime/helpers/iterableToArray.js");
+
+var nonIterableSpread = __webpack_require__(/*! ./nonIterableSpread */ "./node_modules/@babel/runtime/helpers/nonIterableSpread.js");
+
+function _toConsumableArray(arr) {
+  return arrayWithoutHoles(arr) || iterableToArray(arr) || nonIterableSpread();
+}
+
+module.exports = _toConsumableArray;
 
 /***/ }),
-/* 95 */
+
+/***/ "./node_modules/@babel/runtime/helpers/typeof.js":
+/*!*******************************************************!*\
+  !*** ./node_modules/@babel/runtime/helpers/typeof.js ***!
+  \*******************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+function _typeof2(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof2 = function _typeof2(obj) { return typeof obj; }; } else { _typeof2 = function _typeof2(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof2(obj); }
+
+function _typeof(obj) {
+  if (typeof Symbol === "function" && _typeof2(Symbol.iterator) === "symbol") {
+    module.exports = _typeof = function _typeof(obj) {
+      return _typeof2(obj);
+    };
+  } else {
+    module.exports = _typeof = function _typeof(obj) {
+      return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : _typeof2(obj);
+    };
+  }
+
+  return _typeof(obj);
+}
+
+module.exports = _typeof;
+
+/***/ }),
+
+/***/ "./node_modules/file-size/index.js":
+/*!*****************************************!*\
+  !*** ./node_modules/file-size/index.js ***!
+  \*****************************************/
+/*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
 var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;// File-Size | 1.0.0 | MIT | Nijiko Yonskai <nijikokun@gmail.com> | 2015
 (function (plugin) {
   /* istanbul ignore next: differing implementations */
-  if (typeof module !== 'undefined' && module.exports) return module.exports = plugin()
+  if ( true && module.exports) return module.exports = plugin()
   else if (true) return !(__WEBPACK_AMD_DEFINE_ARRAY__ = [], __WEBPACK_AMD_DEFINE_FACTORY__ = (plugin),
 				__WEBPACK_AMD_DEFINE_RESULT__ = (typeof __WEBPACK_AMD_DEFINE_FACTORY__ === 'function' ?
 				(__WEBPACK_AMD_DEFINE_FACTORY__.apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__)) : __WEBPACK_AMD_DEFINE_FACTORY__),
 				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__))
-  else this.filesize = plugin()
+  else {}
 })(function () {
   var units = 'BKMGTPEZY'.split('')
   function equals (a, b) { return a && a.toLowerCase() === b.toLowerCase() }
@@ -5280,3266 +12784,469 @@ var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_
 
 
 /***/ }),
-/* 96 */
-/***/ (function(module, exports, __webpack_require__) {
 
-module.exports = { "default": __webpack_require__(97), __esModule: true };
-
-/***/ }),
-/* 97 */
-/***/ (function(module, exports, __webpack_require__) {
-
-__webpack_require__(98);
-var $Object = __webpack_require__(0).Object;
-module.exports = function getOwnPropertyDescriptor(it, key) {
-  return $Object.getOwnPropertyDescriptor(it, key);
-};
-
-
-/***/ }),
-/* 98 */
-/***/ (function(module, exports, __webpack_require__) {
-
-// 19.1.2.6 Object.getOwnPropertyDescriptor(O, P)
-var toIObject = __webpack_require__(17);
-var $getOwnPropertyDescriptor = __webpack_require__(65).f;
-
-__webpack_require__(47)('getOwnPropertyDescriptor', function () {
-  return function getOwnPropertyDescriptor(it, key) {
-    return $getOwnPropertyDescriptor(toIObject(it), key);
-  };
-});
-
-
-/***/ }),
-/* 99 */
-/***/ (function(module, exports, __webpack_require__) {
-
-__webpack_require__(66);
-__webpack_require__(22);
-__webpack_require__(32);
-__webpack_require__(100);
-__webpack_require__(107);
-__webpack_require__(110);
-__webpack_require__(112);
-module.exports = __webpack_require__(0).Map;
-
-
-/***/ }),
-/* 100 */
-/***/ (function(module, exports, __webpack_require__) {
+/***/ "./src/Renderer/Html.fs":
+/*!******************************!*\
+  !*** ./src/Renderer/Html.fs ***!
+  \******************************/
+/*! exports provided: replaceChildren, createIcon, createLink */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "replaceChildren", function() { return replaceChildren; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "createIcon", function() { return createIcon; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "createLink", function() { return createLink; });
+/* harmony import */ var _fable_fable_library_2_2_3_Seq_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../.fable/fable-library.2.2.3/Seq.js */ "./.fable/fable-library.2.2.3/Seq.js");
 
-var strong = __webpack_require__(101);
-var validate = __webpack_require__(69);
-var MAP = 'Map';
-
-// 23.1 Map Objects
-module.exports = __webpack_require__(103)(MAP, function (get) {
-  return function Map() { return get(this, arguments.length > 0 ? arguments[0] : undefined); };
-}, {
-  // 23.1.3.6 Map.prototype.get(key)
-  get: function get(key) {
-    var entry = strong.getEntry(validate(this, MAP), key);
-    return entry && entry.v;
-  },
-  // 23.1.3.9 Map.prototype.set(key, value)
-  set: function set(key, value) {
-    return strong.def(validate(this, MAP), key === 0 ? 0 : key, value);
+function replaceChildren(root, children) {
+  while (!(root.firstChild == null)) {
+    root.removeChild(root.firstChild);
   }
-}, strong, true);
 
+  Object(_fable_fable_library_2_2_3_Seq_js__WEBPACK_IMPORTED_MODULE_0__["iterate"])(function (child) {
+    root.appendChild(child);
+  }, children);
+}
+function createIcon(faIcon) {
+  var root$$1 = document.createElement("span");
+  var icon = document.createElement("i");
+  root$$1.className = "icon";
+  icon.className = "fa " + faIcon;
+  root$$1.appendChild(icon);
+  return root$$1;
+}
+function createLink(filename) {
+  var root$$2 = document.createElement("a");
+  root$$2.href = "#";
+  root$$2.innerText = filename;
+  return root$$2;
+}
 
 /***/ }),
-/* 101 */
-/***/ (function(module, exports, __webpack_require__) {
+
+/***/ "./src/Renderer/Mime.fs":
+/*!******************************!*\
+  !*** ./src/Renderer/Mime.fs ***!
+  \******************************/
+/*! exports provided: MimeInfo, MimeInfo$reflection, iconMimeInfo, filetypeMimeInfo, mapMimeInfo, determineIcon, determineFileType */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-
-var dP = __webpack_require__(4).f;
-var create = __webpack_require__(39);
-var redefineAll = __webpack_require__(67);
-var ctx = __webpack_require__(19);
-var anInstance = __webpack_require__(68);
-var forOf = __webpack_require__(34);
-var $iterDefine = __webpack_require__(37);
-var step = __webpack_require__(63);
-var setSpecies = __webpack_require__(102);
-var DESCRIPTORS = __webpack_require__(6);
-var fastKey = __webpack_require__(49).fastKey;
-var validate = __webpack_require__(69);
-var SIZE = DESCRIPTORS ? '_s' : 'size';
-
-var getEntry = function (that, key) {
-  // fast case
-  var index = fastKey(key);
-  var entry;
-  if (index !== 'F') return that._i[index];
-  // frozen object case
-  for (entry = that._f; entry; entry = entry.n) {
-    if (entry.k == key) return entry;
-  }
-};
-
-module.exports = {
-  getConstructor: function (wrapper, NAME, IS_MAP, ADDER) {
-    var C = wrapper(function (that, iterable) {
-      anInstance(that, C, NAME, '_i');
-      that._t = NAME;         // collection type
-      that._i = create(null); // index
-      that._f = undefined;    // first entry
-      that._l = undefined;    // last entry
-      that[SIZE] = 0;         // size
-      if (iterable != undefined) forOf(iterable, IS_MAP, that[ADDER], that);
-    });
-    redefineAll(C.prototype, {
-      // 23.1.3.1 Map.prototype.clear()
-      // 23.2.3.2 Set.prototype.clear()
-      clear: function clear() {
-        for (var that = validate(this, NAME), data = that._i, entry = that._f; entry; entry = entry.n) {
-          entry.r = true;
-          if (entry.p) entry.p = entry.p.n = undefined;
-          delete data[entry.i];
-        }
-        that._f = that._l = undefined;
-        that[SIZE] = 0;
-      },
-      // 23.1.3.3 Map.prototype.delete(key)
-      // 23.2.3.4 Set.prototype.delete(value)
-      'delete': function (key) {
-        var that = validate(this, NAME);
-        var entry = getEntry(that, key);
-        if (entry) {
-          var next = entry.n;
-          var prev = entry.p;
-          delete that._i[entry.i];
-          entry.r = true;
-          if (prev) prev.n = next;
-          if (next) next.p = prev;
-          if (that._f == entry) that._f = next;
-          if (that._l == entry) that._l = prev;
-          that[SIZE]--;
-        } return !!entry;
-      },
-      // 23.2.3.6 Set.prototype.forEach(callbackfn, thisArg = undefined)
-      // 23.1.3.5 Map.prototype.forEach(callbackfn, thisArg = undefined)
-      forEach: function forEach(callbackfn /* , that = undefined */) {
-        validate(this, NAME);
-        var f = ctx(callbackfn, arguments.length > 1 ? arguments[1] : undefined, 3);
-        var entry;
-        while (entry = entry ? entry.n : this._f) {
-          f(entry.v, entry.k, this);
-          // revert to the last existing entry
-          while (entry && entry.r) entry = entry.p;
-        }
-      },
-      // 23.1.3.7 Map.prototype.has(key)
-      // 23.2.3.7 Set.prototype.has(value)
-      has: function has(key) {
-        return !!getEntry(validate(this, NAME), key);
-      }
-    });
-    if (DESCRIPTORS) dP(C.prototype, 'size', {
-      get: function () {
-        return validate(this, NAME)[SIZE];
-      }
-    });
-    return C;
-  },
-  def: function (that, key, value) {
-    var entry = getEntry(that, key);
-    var prev, index;
-    // change existing entry
-    if (entry) {
-      entry.v = value;
-    // create new entry
-    } else {
-      that._l = entry = {
-        i: index = fastKey(key, true), // <- index
-        k: key,                        // <- key
-        v: value,                      // <- value
-        p: prev = that._l,             // <- previous entry
-        n: undefined,                  // <- next entry
-        r: false                       // <- removed
-      };
-      if (!that._f) that._f = entry;
-      if (prev) prev.n = entry;
-      that[SIZE]++;
-      // add to index
-      if (index !== 'F') that._i[index] = entry;
-    } return that;
-  },
-  getEntry: getEntry,
-  setStrong: function (C, NAME, IS_MAP) {
-    // add .keys, .values, .entries, [@@iterator]
-    // 23.1.3.4, 23.1.3.8, 23.1.3.11, 23.1.3.12, 23.2.3.5, 23.2.3.8, 23.2.3.10, 23.2.3.11
-    $iterDefine(C, NAME, function (iterated, kind) {
-      this._t = validate(iterated, NAME); // target
-      this._k = kind;                     // kind
-      this._l = undefined;                // previous
-    }, function () {
-      var that = this;
-      var kind = that._k;
-      var entry = that._l;
-      // revert to the last existing entry
-      while (entry && entry.r) entry = entry.p;
-      // get next entry
-      if (!that._t || !(that._l = entry = entry ? entry.n : that._t._f)) {
-        // or finish the iteration
-        that._t = undefined;
-        return step(1);
-      }
-      // return step by kind
-      if (kind == 'keys') return step(0, entry.k);
-      if (kind == 'values') return step(0, entry.v);
-      return step(0, [entry.k, entry.v]);
-    }, IS_MAP ? 'entries' : 'values', !IS_MAP, true);
-
-    // add [@@species], 23.1.2.2, 23.2.2.2
-    setSpecies(NAME);
-  }
-};
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "MimeInfo", function() { return MimeInfo; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "MimeInfo$reflection", function() { return MimeInfo$reflection; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "iconMimeInfo", function() { return iconMimeInfo; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "filetypeMimeInfo", function() { return filetypeMimeInfo; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "mapMimeInfo", function() { return mapMimeInfo; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "determineIcon", function() { return determineIcon; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "determineFileType", function() { return determineFileType; });
+/* harmony import */ var _fable_fable_library_2_2_3_Types_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../.fable/fable-library.2.2.3/Types.js */ "./.fable/fable-library.2.2.3/Types.js");
+/* harmony import */ var _fable_fable_library_2_2_3_Reflection_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../.fable/fable-library.2.2.3/Reflection.js */ "./.fable/fable-library.2.2.3/Reflection.js");
+/* harmony import */ var path__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! path */ "path");
+/* harmony import */ var path__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(path__WEBPACK_IMPORTED_MODULE_2__);
 
 
-/***/ }),
-/* 102 */
-/***/ (function(module, exports, __webpack_require__) {
 
-"use strict";
-
-var global = __webpack_require__(5);
-var core = __webpack_require__(0);
-var dP = __webpack_require__(4);
-var DESCRIPTORS = __webpack_require__(6);
-var SPECIES = __webpack_require__(2)('species');
-
-module.exports = function (KEY) {
-  var C = typeof core[KEY] == 'function' ? core[KEY] : global[KEY];
-  if (DESCRIPTORS && C && !C[SPECIES]) dP.f(C, SPECIES, {
-    configurable: true,
-    get: function () { return this; }
+var MimeInfo = Object(_fable_fable_library_2_2_3_Types_js__WEBPACK_IMPORTED_MODULE_0__["declare"])(function Mime_MimeInfo(arg1, arg2, arg3, arg4, arg5, arg6, arg7, arg8, arg9, arg10, arg11) {
+  this.Text = arg1;
+  this.Image = arg2;
+  this.Unkown = arg3;
+  this.Directory = arg4;
+  this.Pdf = arg5;
+  this.Html = arg6;
+  this.Word = arg7;
+  this.Powerpoint = arg8;
+  this.Movie = arg9;
+  this.Audio = arg10;
+  this.Css = arg11;
+}, _fable_fable_library_2_2_3_Types_js__WEBPACK_IMPORTED_MODULE_0__["Record"]);
+function MimeInfo$reflection() {
+  return Object(_fable_fable_library_2_2_3_Reflection_js__WEBPACK_IMPORTED_MODULE_1__["record"])("Mime.MimeInfo", [], MimeInfo, function () {
+    return [["Text", _fable_fable_library_2_2_3_Reflection_js__WEBPACK_IMPORTED_MODULE_1__["string"]], ["Image", _fable_fable_library_2_2_3_Reflection_js__WEBPACK_IMPORTED_MODULE_1__["string"]], ["Unkown", _fable_fable_library_2_2_3_Reflection_js__WEBPACK_IMPORTED_MODULE_1__["string"]], ["Directory", _fable_fable_library_2_2_3_Reflection_js__WEBPACK_IMPORTED_MODULE_1__["string"]], ["Pdf", _fable_fable_library_2_2_3_Reflection_js__WEBPACK_IMPORTED_MODULE_1__["string"]], ["Html", _fable_fable_library_2_2_3_Reflection_js__WEBPACK_IMPORTED_MODULE_1__["string"]], ["Word", _fable_fable_library_2_2_3_Reflection_js__WEBPACK_IMPORTED_MODULE_1__["string"]], ["Powerpoint", _fable_fable_library_2_2_3_Reflection_js__WEBPACK_IMPORTED_MODULE_1__["string"]], ["Movie", _fable_fable_library_2_2_3_Reflection_js__WEBPACK_IMPORTED_MODULE_1__["string"]], ["Audio", _fable_fable_library_2_2_3_Reflection_js__WEBPACK_IMPORTED_MODULE_1__["string"]], ["Css", _fable_fable_library_2_2_3_Reflection_js__WEBPACK_IMPORTED_MODULE_1__["string"]]];
   });
-};
-
-
-/***/ }),
-/* 103 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-var global = __webpack_require__(5);
-var $export = __webpack_require__(3);
-var meta = __webpack_require__(49);
-var fails = __webpack_require__(15);
-var hide = __webpack_require__(12);
-var redefineAll = __webpack_require__(67);
-var forOf = __webpack_require__(34);
-var anInstance = __webpack_require__(68);
-var isObject = __webpack_require__(13);
-var setToStringTag = __webpack_require__(31);
-var dP = __webpack_require__(4).f;
-var each = __webpack_require__(104)(0);
-var DESCRIPTORS = __webpack_require__(6);
-
-module.exports = function (NAME, wrapper, methods, common, IS_MAP, IS_WEAK) {
-  var Base = global[NAME];
-  var C = Base;
-  var ADDER = IS_MAP ? 'set' : 'add';
-  var proto = C && C.prototype;
-  var O = {};
-  if (!DESCRIPTORS || typeof C != 'function' || !(IS_WEAK || proto.forEach && !fails(function () {
-    new C().entries().next();
-  }))) {
-    // create collection constructor
-    C = common.getConstructor(wrapper, NAME, IS_MAP, ADDER);
-    redefineAll(C.prototype, methods);
-    meta.NEED = true;
+}
+var iconMimeInfo = new MimeInfo("fa-file-text-o", "fa-file-image-o", "fa-file-o", "fa-folder-o", "fa-file-pdf-o", "fa-html5", "fa-file-word-o", "fa-file-powerpoint-o", "fa-file-video-o", "fa-file-audio-o", "fa-css3");
+var filetypeMimeInfo = new MimeInfo("Text document", "Image", "", "fa-folder-o", "PDF document", "Html document", "Word document", "Powerpoint document", "Video document", "Audio document", "Css document");
+function mapMimeInfo(info, path, isDirectory) {
+  if (isDirectory) {
+    return info.Directory;
   } else {
-    C = wrapper(function (target, iterable) {
-      anInstance(target, C, NAME, '_c');
-      target._c = new Base();
-      if (iterable != undefined) forOf(iterable, IS_MAP, target[ADDER], target);
-    });
-    each('add,clear,delete,forEach,get,has,set,keys,values,entries,toJSON'.split(','), function (KEY) {
-      var IS_ADDER = KEY == 'add' || KEY == 'set';
-      if (KEY in proto && !(IS_WEAK && KEY == 'clear')) hide(C.prototype, KEY, function (a, b) {
-        anInstance(this, C, KEY);
-        if (!IS_ADDER && IS_WEAK && !isObject(a)) return KEY == 'get' ? undefined : false;
-        var result = this._c[KEY](a === 0 ? 0 : a, b);
-        return IS_ADDER ? this : result;
-      });
-    });
-    IS_WEAK || dP(C.prototype, 'size', {
-      get: function () {
-        return this._c.size;
-      }
-    });
+    var fileInfo = path__WEBPACK_IMPORTED_MODULE_2__["parse"](path);
+    var matchValue = fileInfo.ext;
+
+    switch (matchValue) {
+      case ".txt":
+      case ".md":
+        {
+          return info.Text;
+        }
+
+      case ".jpg":
+      case ".jpge":
+      case ".png":
+      case ".gif":
+      case ".bmp":
+        {
+          return info.Image;
+        }
+
+      case ".pdf":
+        {
+          return info.Pdf;
+        }
+
+      case ".css":
+        {
+          return info.Css;
+        }
+
+      case ".html":
+        {
+          return info.Html;
+        }
+
+      case ".doc":
+      case ".docx":
+        {
+          return info.Word;
+        }
+
+      case ".ppt":
+      case ".pptx":
+        {
+          return info.Powerpoint;
+        }
+
+      case ".mkv":
+      case ".avi":
+      case ".rmvb":
+        {
+          return info.Movie;
+        }
+
+      case ".mp3":
+        {
+          return info.Audio;
+        }
+
+      default:
+        {
+          return info.Unkown;
+        }
+    }
   }
-
-  setToStringTag(C, NAME);
-
-  O[NAME] = C;
-  $export($export.G + $export.W + $export.F, O);
-
-  if (!IS_WEAK) common.setStrong(C, NAME, IS_MAP);
-
-  return C;
-};
-
-
-/***/ }),
-/* 104 */
-/***/ (function(module, exports, __webpack_require__) {
-
-// 0 -> Array#forEach
-// 1 -> Array#map
-// 2 -> Array#filter
-// 3 -> Array#some
-// 4 -> Array#every
-// 5 -> Array#find
-// 6 -> Array#findIndex
-var ctx = __webpack_require__(19);
-var IObject = __webpack_require__(40);
-var toObject = __webpack_require__(24);
-var toLength = __webpack_require__(29);
-var asc = __webpack_require__(105);
-module.exports = function (TYPE, $create) {
-  var IS_MAP = TYPE == 1;
-  var IS_FILTER = TYPE == 2;
-  var IS_SOME = TYPE == 3;
-  var IS_EVERY = TYPE == 4;
-  var IS_FIND_INDEX = TYPE == 6;
-  var NO_HOLES = TYPE == 5 || IS_FIND_INDEX;
-  var create = $create || asc;
-  return function ($this, callbackfn, that) {
-    var O = toObject($this);
-    var self = IObject(O);
-    var f = ctx(callbackfn, that, 3);
-    var length = toLength(self.length);
-    var index = 0;
-    var result = IS_MAP ? create($this, length) : IS_FILTER ? create($this, 0) : undefined;
-    var val, res;
-    for (;length > index; index++) if (NO_HOLES || index in self) {
-      val = self[index];
-      res = f(val, index, O);
-      if (TYPE) {
-        if (IS_MAP) result[index] = res;   // map
-        else if (res) switch (TYPE) {
-          case 3: return true;             // some
-          case 5: return val;              // find
-          case 6: return index;            // findIndex
-          case 2: result.push(val);        // filter
-        } else if (IS_EVERY) return false; // every
-      }
-    }
-    return IS_FIND_INDEX ? -1 : IS_SOME || IS_EVERY ? IS_EVERY : result;
+}
+function determineIcon(path$$1) {
+  return function (isDirectory$$1) {
+    return mapMimeInfo(iconMimeInfo, path$$1, isDirectory$$1);
   };
-};
-
-
-/***/ }),
-/* 105 */
-/***/ (function(module, exports, __webpack_require__) {
-
-// 9.4.2.3 ArraySpeciesCreate(originalArray, length)
-var speciesConstructor = __webpack_require__(106);
-
-module.exports = function (original, length) {
-  return new (speciesConstructor(original))(length);
-};
-
-
-/***/ }),
-/* 106 */
-/***/ (function(module, exports, __webpack_require__) {
-
-var isObject = __webpack_require__(13);
-var isArray = __webpack_require__(70);
-var SPECIES = __webpack_require__(2)('species');
-
-module.exports = function (original) {
-  var C;
-  if (isArray(original)) {
-    C = original.constructor;
-    // cross-realm fallback
-    if (typeof C == 'function' && (C === Array || isArray(C.prototype))) C = undefined;
-    if (isObject(C)) {
-      C = C[SPECIES];
-      if (C === null) C = undefined;
-    }
-  } return C === undefined ? Array : C;
-};
-
-
-/***/ }),
-/* 107 */
-/***/ (function(module, exports, __webpack_require__) {
-
-// https://github.com/DavidBruant/Map-Set.prototype.toJSON
-var $export = __webpack_require__(3);
-
-$export($export.P + $export.R, 'Map', { toJSON: __webpack_require__(108)('Map') });
-
-
-/***/ }),
-/* 108 */
-/***/ (function(module, exports, __webpack_require__) {
-
-// https://github.com/DavidBruant/Map-Set.prototype.toJSON
-var classof = __webpack_require__(46);
-var from = __webpack_require__(109);
-module.exports = function (NAME) {
-  return function toJSON() {
-    if (classof(this) != NAME) throw TypeError(NAME + "#toJSON isn't generic");
-    return from(this);
-  };
-};
-
-
-/***/ }),
-/* 109 */
-/***/ (function(module, exports, __webpack_require__) {
-
-var forOf = __webpack_require__(34);
-
-module.exports = function (iter, ITERATOR) {
-  var result = [];
-  forOf(iter, false, result.push, result, ITERATOR);
-  return result;
-};
-
-
-/***/ }),
-/* 110 */
-/***/ (function(module, exports, __webpack_require__) {
-
-// https://tc39.github.io/proposal-setmap-offrom/#sec-map.of
-__webpack_require__(111)('Map');
-
-
-/***/ }),
-/* 111 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-// https://tc39.github.io/proposal-setmap-offrom/
-var $export = __webpack_require__(3);
-
-module.exports = function (COLLECTION) {
-  $export($export.S, COLLECTION, { of: function of() {
-    var length = arguments.length;
-    var A = new Array(length);
-    while (length--) A[length] = arguments[length];
-    return new this(A);
-  } });
-};
-
-
-/***/ }),
-/* 112 */
-/***/ (function(module, exports, __webpack_require__) {
-
-// https://tc39.github.io/proposal-setmap-offrom/#sec-map.from
-__webpack_require__(113)('Map');
-
-
-/***/ }),
-/* 113 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-// https://tc39.github.io/proposal-setmap-offrom/
-var $export = __webpack_require__(3);
-var aFunction = __webpack_require__(55);
-var ctx = __webpack_require__(19);
-var forOf = __webpack_require__(34);
-
-module.exports = function (COLLECTION) {
-  $export($export.S, COLLECTION, { from: function from(source /* , mapFn, thisArg */) {
-    var mapFn = arguments[1];
-    var mapping, A, n, cb;
-    aFunction(this);
-    mapping = mapFn !== undefined;
-    if (mapping) aFunction(mapFn);
-    if (source == undefined) return new this();
-    A = [];
-    if (mapping) {
-      n = 0;
-      cb = ctx(mapFn, arguments[2], 2);
-      forOf(source, false, function (nextItem) {
-        A.push(cb(nextItem, n++));
-      });
-    } else {
-      forOf(source, false, A.push, A);
-    }
-    return new this(A);
-  } });
-};
-
-
-/***/ }),
-/* 114 */
-/***/ (function(module, exports, __webpack_require__) {
-
-module.exports = { "default": __webpack_require__(115), __esModule: true };
-
-/***/ }),
-/* 115 */
-/***/ (function(module, exports, __webpack_require__) {
-
-var core = __webpack_require__(0);
-var $JSON = core.JSON || (core.JSON = { stringify: JSON.stringify });
-module.exports = function stringify(it) { // eslint-disable-line no-unused-vars
-  return $JSON.stringify.apply($JSON, arguments);
-};
-
-
-/***/ }),
-/* 116 */
-/***/ (function(module, exports, __webpack_require__) {
-
-__webpack_require__(22);
-__webpack_require__(32);
-module.exports = __webpack_require__(50).f('iterator');
-
-
-/***/ }),
-/* 117 */
-/***/ (function(module, exports, __webpack_require__) {
-
-module.exports = { "default": __webpack_require__(118), __esModule: true };
-
-/***/ }),
-/* 118 */
-/***/ (function(module, exports, __webpack_require__) {
-
-__webpack_require__(119);
-module.exports = __webpack_require__(0).Object.assign;
-
-
-/***/ }),
-/* 119 */
-/***/ (function(module, exports, __webpack_require__) {
-
-// 19.1.3.1 Object.assign(target, source)
-var $export = __webpack_require__(3);
-
-$export($export.S + $export.F, 'Object', { assign: __webpack_require__(120) });
-
-
-/***/ }),
-/* 120 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-// 19.1.2.1 Object.assign(target, source, ...)
-var getKeys = __webpack_require__(28);
-var gOPS = __webpack_require__(51);
-var pIE = __webpack_require__(33);
-var toObject = __webpack_require__(24);
-var IObject = __webpack_require__(40);
-var $assign = Object.assign;
-
-// should work with symbols and should have deterministic property order (V8 bug)
-module.exports = !$assign || __webpack_require__(15)(function () {
-  var A = {};
-  var B = {};
-  // eslint-disable-next-line no-undef
-  var S = Symbol();
-  var K = 'abcdefghijklmnopqrst';
-  A[S] = 7;
-  K.split('').forEach(function (k) { B[k] = k; });
-  return $assign({}, A)[S] != 7 || Object.keys($assign({}, B)).join('') != K;
-}) ? function assign(target, source) { // eslint-disable-line no-unused-vars
-  var T = toObject(target);
-  var aLen = arguments.length;
-  var index = 1;
-  var getSymbols = gOPS.f;
-  var isEnum = pIE.f;
-  while (aLen > index) {
-    var S = IObject(arguments[index++]);
-    var keys = getSymbols ? getKeys(S).concat(getSymbols(S)) : getKeys(S);
-    var length = keys.length;
-    var j = 0;
-    var key;
-    while (length > j) if (isEnum.call(S, key = keys[j++])) T[key] = S[key];
-  } return T;
-} : $assign;
-
-
-/***/ }),
-/* 121 */
-/***/ (function(module, exports, __webpack_require__) {
-
-module.exports = { "default": __webpack_require__(122), __esModule: true };
-
-/***/ }),
-/* 122 */
-/***/ (function(module, exports, __webpack_require__) {
-
-__webpack_require__(123);
-var $Object = __webpack_require__(0).Object;
-module.exports = function getOwnPropertyNames(it) {
-  return $Object.getOwnPropertyNames(it);
-};
-
-
-/***/ }),
-/* 123 */
-/***/ (function(module, exports, __webpack_require__) {
-
-// 19.1.2.7 Object.getOwnPropertyNames(O)
-__webpack_require__(47)('getOwnPropertyNames', function () {
-  return __webpack_require__(72).f;
-});
-
-
-/***/ }),
-/* 124 */
-/***/ (function(module, exports, __webpack_require__) {
-
-module.exports = { "default": __webpack_require__(125), __esModule: true };
-
-/***/ }),
-/* 125 */
-/***/ (function(module, exports, __webpack_require__) {
-
-__webpack_require__(126);
-module.exports = __webpack_require__(0).Object.getPrototypeOf;
-
-
-/***/ }),
-/* 126 */
-/***/ (function(module, exports, __webpack_require__) {
-
-// 19.1.2.9 Object.getPrototypeOf(O)
-var toObject = __webpack_require__(24);
-var $getPrototypeOf = __webpack_require__(60);
-
-__webpack_require__(47)('getPrototypeOf', function () {
-  return function getPrototypeOf(it) {
-    return $getPrototypeOf(toObject(it));
-  };
-});
-
-
-/***/ }),
-/* 127 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-exports.__esModule = true;
-
-var _iterator = __webpack_require__(25);
-
-var _iterator2 = _interopRequireDefault(_iterator);
-
-var _symbol = __webpack_require__(74);
-
-var _symbol2 = _interopRequireDefault(_symbol);
-
-var _typeof = typeof _symbol2.default === "function" && typeof _iterator2.default === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof _symbol2.default === "function" && obj.constructor === _symbol2.default && obj !== _symbol2.default.prototype ? "symbol" : typeof obj; };
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-exports.default = typeof _symbol2.default === "function" && _typeof(_iterator2.default) === "symbol" ? function (obj) {
-  return typeof obj === "undefined" ? "undefined" : _typeof(obj);
-} : function (obj) {
-  return obj && typeof _symbol2.default === "function" && obj.constructor === _symbol2.default && obj !== _symbol2.default.prototype ? "symbol" : typeof obj === "undefined" ? "undefined" : _typeof(obj);
-};
-
-/***/ }),
-/* 128 */
-/***/ (function(module, exports, __webpack_require__) {
-
-__webpack_require__(129);
-__webpack_require__(66);
-__webpack_require__(131);
-__webpack_require__(132);
-module.exports = __webpack_require__(0).Symbol;
-
-
-/***/ }),
-/* 129 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-// ECMAScript 6 symbols shim
-var global = __webpack_require__(5);
-var has = __webpack_require__(16);
-var DESCRIPTORS = __webpack_require__(6);
-var $export = __webpack_require__(3);
-var redefine = __webpack_require__(58);
-var META = __webpack_require__(49).KEY;
-var $fails = __webpack_require__(15);
-var shared = __webpack_require__(43);
-var setToStringTag = __webpack_require__(31);
-var uid = __webpack_require__(30);
-var wks = __webpack_require__(2);
-var wksExt = __webpack_require__(50);
-var wksDefine = __webpack_require__(52);
-var enumKeys = __webpack_require__(130);
-var isArray = __webpack_require__(70);
-var anObject = __webpack_require__(14);
-var isObject = __webpack_require__(13);
-var toIObject = __webpack_require__(17);
-var toPrimitive = __webpack_require__(38);
-var createDesc = __webpack_require__(23);
-var _create = __webpack_require__(39);
-var gOPNExt = __webpack_require__(72);
-var $GOPD = __webpack_require__(65);
-var $DP = __webpack_require__(4);
-var $keys = __webpack_require__(28);
-var gOPD = $GOPD.f;
-var dP = $DP.f;
-var gOPN = gOPNExt.f;
-var $Symbol = global.Symbol;
-var $JSON = global.JSON;
-var _stringify = $JSON && $JSON.stringify;
-var PROTOTYPE = 'prototype';
-var HIDDEN = wks('_hidden');
-var TO_PRIMITIVE = wks('toPrimitive');
-var isEnum = {}.propertyIsEnumerable;
-var SymbolRegistry = shared('symbol-registry');
-var AllSymbols = shared('symbols');
-var OPSymbols = shared('op-symbols');
-var ObjectProto = Object[PROTOTYPE];
-var USE_NATIVE = typeof $Symbol == 'function';
-var QObject = global.QObject;
-// Don't use setters in Qt Script, https://github.com/zloirock/core-js/issues/173
-var setter = !QObject || !QObject[PROTOTYPE] || !QObject[PROTOTYPE].findChild;
-
-// fallback for old Android, https://code.google.com/p/v8/issues/detail?id=687
-var setSymbolDesc = DESCRIPTORS && $fails(function () {
-  return _create(dP({}, 'a', {
-    get: function () { return dP(this, 'a', { value: 7 }).a; }
-  })).a != 7;
-}) ? function (it, key, D) {
-  var protoDesc = gOPD(ObjectProto, key);
-  if (protoDesc) delete ObjectProto[key];
-  dP(it, key, D);
-  if (protoDesc && it !== ObjectProto) dP(ObjectProto, key, protoDesc);
-} : dP;
-
-var wrap = function (tag) {
-  var sym = AllSymbols[tag] = _create($Symbol[PROTOTYPE]);
-  sym._k = tag;
-  return sym;
-};
-
-var isSymbol = USE_NATIVE && typeof $Symbol.iterator == 'symbol' ? function (it) {
-  return typeof it == 'symbol';
-} : function (it) {
-  return it instanceof $Symbol;
-};
-
-var $defineProperty = function defineProperty(it, key, D) {
-  if (it === ObjectProto) $defineProperty(OPSymbols, key, D);
-  anObject(it);
-  key = toPrimitive(key, true);
-  anObject(D);
-  if (has(AllSymbols, key)) {
-    if (!D.enumerable) {
-      if (!has(it, HIDDEN)) dP(it, HIDDEN, createDesc(1, {}));
-      it[HIDDEN][key] = true;
-    } else {
-      if (has(it, HIDDEN) && it[HIDDEN][key]) it[HIDDEN][key] = false;
-      D = _create(D, { enumerable: createDesc(0, false) });
-    } return setSymbolDesc(it, key, D);
-  } return dP(it, key, D);
-};
-var $defineProperties = function defineProperties(it, P) {
-  anObject(it);
-  var keys = enumKeys(P = toIObject(P));
-  var i = 0;
-  var l = keys.length;
-  var key;
-  while (l > i) $defineProperty(it, key = keys[i++], P[key]);
-  return it;
-};
-var $create = function create(it, P) {
-  return P === undefined ? _create(it) : $defineProperties(_create(it), P);
-};
-var $propertyIsEnumerable = function propertyIsEnumerable(key) {
-  var E = isEnum.call(this, key = toPrimitive(key, true));
-  if (this === ObjectProto && has(AllSymbols, key) && !has(OPSymbols, key)) return false;
-  return E || !has(this, key) || !has(AllSymbols, key) || has(this, HIDDEN) && this[HIDDEN][key] ? E : true;
-};
-var $getOwnPropertyDescriptor = function getOwnPropertyDescriptor(it, key) {
-  it = toIObject(it);
-  key = toPrimitive(key, true);
-  if (it === ObjectProto && has(AllSymbols, key) && !has(OPSymbols, key)) return;
-  var D = gOPD(it, key);
-  if (D && has(AllSymbols, key) && !(has(it, HIDDEN) && it[HIDDEN][key])) D.enumerable = true;
-  return D;
-};
-var $getOwnPropertyNames = function getOwnPropertyNames(it) {
-  var names = gOPN(toIObject(it));
-  var result = [];
-  var i = 0;
-  var key;
-  while (names.length > i) {
-    if (!has(AllSymbols, key = names[i++]) && key != HIDDEN && key != META) result.push(key);
-  } return result;
-};
-var $getOwnPropertySymbols = function getOwnPropertySymbols(it) {
-  var IS_OP = it === ObjectProto;
-  var names = gOPN(IS_OP ? OPSymbols : toIObject(it));
-  var result = [];
-  var i = 0;
-  var key;
-  while (names.length > i) {
-    if (has(AllSymbols, key = names[i++]) && (IS_OP ? has(ObjectProto, key) : true)) result.push(AllSymbols[key]);
-  } return result;
-};
-
-// 19.4.1.1 Symbol([description])
-if (!USE_NATIVE) {
-  $Symbol = function Symbol() {
-    if (this instanceof $Symbol) throw TypeError('Symbol is not a constructor!');
-    var tag = uid(arguments.length > 0 ? arguments[0] : undefined);
-    var $set = function (value) {
-      if (this === ObjectProto) $set.call(OPSymbols, value);
-      if (has(this, HIDDEN) && has(this[HIDDEN], tag)) this[HIDDEN][tag] = false;
-      setSymbolDesc(this, tag, createDesc(1, value));
-    };
-    if (DESCRIPTORS && setter) setSymbolDesc(ObjectProto, tag, { configurable: true, set: $set });
-    return wrap(tag);
-  };
-  redefine($Symbol[PROTOTYPE], 'toString', function toString() {
-    return this._k;
-  });
-
-  $GOPD.f = $getOwnPropertyDescriptor;
-  $DP.f = $defineProperty;
-  __webpack_require__(73).f = gOPNExt.f = $getOwnPropertyNames;
-  __webpack_require__(33).f = $propertyIsEnumerable;
-  __webpack_require__(51).f = $getOwnPropertySymbols;
-
-  if (DESCRIPTORS && !__webpack_require__(27)) {
-    redefine(ObjectProto, 'propertyIsEnumerable', $propertyIsEnumerable, true);
-  }
-
-  wksExt.f = function (name) {
-    return wrap(wks(name));
+}
+function determineFileType(path$$2) {
+  return function (isDirectory$$2) {
+    return mapMimeInfo(filetypeMimeInfo, path$$2, isDirectory$$2);
   };
 }
 
-$export($export.G + $export.W + $export.F * !USE_NATIVE, { Symbol: $Symbol });
+/***/ }),
 
-for (var es6Symbols = (
-  // 19.4.2.2, 19.4.2.3, 19.4.2.4, 19.4.2.6, 19.4.2.8, 19.4.2.9, 19.4.2.10, 19.4.2.11, 19.4.2.12, 19.4.2.13, 19.4.2.14
-  'hasInstance,isConcatSpreadable,iterator,match,replace,search,species,split,toPrimitive,toStringTag,unscopables'
-).split(','), j = 0; es6Symbols.length > j;)wks(es6Symbols[j++]);
+/***/ "./src/Renderer/Renderer.fs":
+/*!**********************************!*\
+  !*** ./src/Renderer/Renderer.fs ***!
+  \**********************************/
+/*! exports provided: filesize, sizeToHuman, Ref$$$openFolder, Ref$$$quit, Ref$$$about, Ref$$$addressBar, Ref$$$filesList, aboutWindow, remote, Navigate, Navigate$reflection, navigation, createBreadcrumbSegment, generateBreadcrumb, generateFileRow, init */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
 
-for (var wellKnownSymbols = $keys(wks.store), k = 0; wellKnownSymbols.length > k;) wksDefine(wellKnownSymbols[k++]);
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "filesize", function() { return filesize; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "sizeToHuman", function() { return sizeToHuman; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "Ref$$$openFolder", function() { return Ref$$$openFolder; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "Ref$$$quit", function() { return Ref$$$quit; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "Ref$$$about", function() { return Ref$$$about; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "Ref$$$addressBar", function() { return Ref$$$addressBar; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "Ref$$$filesList", function() { return Ref$$$filesList; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "aboutWindow", function() { return aboutWindow; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "remote", function() { return remote; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "Navigate", function() { return Navigate; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "Navigate$reflection", function() { return Navigate$reflection; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "navigation", function() { return navigation; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "createBreadcrumbSegment", function() { return createBreadcrumbSegment; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "generateBreadcrumb", function() { return generateBreadcrumb; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "generateFileRow", function() { return generateFileRow; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "init", function() { return init; });
+/* harmony import */ var _babel_runtime_helpers_toConsumableArray__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/helpers/toConsumableArray */ "./node_modules/@babel/runtime/helpers/toConsumableArray.js");
+/* harmony import */ var _babel_runtime_helpers_toConsumableArray__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_helpers_toConsumableArray__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var file_size__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! file-size */ "./node_modules/file-size/index.js");
+/* harmony import */ var file_size__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(file_size__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _fable_fable_library_2_2_3_Util_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../.fable/fable-library.2.2.3/Util.js */ "./.fable/fable-library.2.2.3/Util.js");
+/* harmony import */ var electron__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! electron */ "electron");
+/* harmony import */ var electron__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(electron__WEBPACK_IMPORTED_MODULE_3__);
+/* harmony import */ var _fable_fable_library_2_2_3_Types_js__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../.fable/fable-library.2.2.3/Types.js */ "./.fable/fable-library.2.2.3/Types.js");
+/* harmony import */ var _fable_fable_library_2_2_3_Reflection_js__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../.fable/fable-library.2.2.3/Reflection.js */ "./.fable/fable-library.2.2.3/Reflection.js");
+/* harmony import */ var _fable_fable_library_2_2_3_Event_js__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../../.fable/fable-library.2.2.3/Event.js */ "./.fable/fable-library.2.2.3/Event.js");
+/* harmony import */ var path__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! path */ "path");
+/* harmony import */ var path__WEBPACK_IMPORTED_MODULE_7___default = /*#__PURE__*/__webpack_require__.n(path__WEBPACK_IMPORTED_MODULE_7__);
+/* harmony import */ var _fable_fable_library_2_2_3_String_js__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../../.fable/fable-library.2.2.3/String.js */ "./.fable/fable-library.2.2.3/String.js");
+/* harmony import */ var _fable_fable_library_2_2_3_Array_js__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ../../.fable/fable-library.2.2.3/Array.js */ "./.fable/fable-library.2.2.3/Array.js");
+/* harmony import */ var C_Users_Wilson_Wang_Desktop_Parallel_HDL_Dev_src_Renderer_Mime_fs__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./src/Renderer/Mime.fs */ "./src/Renderer/Mime.fs");
+/* harmony import */ var C_Users_Wilson_Wang_Desktop_Parallel_HDL_Dev_src_Renderer_Html_fs__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./src/Renderer/Html.fs */ "./src/Renderer/Html.fs");
+/* harmony import */ var _fable_fable_library_2_2_3_Date_js__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ../../.fable/fable-library.2.2.3/Date.js */ "./.fable/fable-library.2.2.3/Date.js");
+/* harmony import */ var fs__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! fs */ "fs");
+/* harmony import */ var fs__WEBPACK_IMPORTED_MODULE_13___default = /*#__PURE__*/__webpack_require__.n(fs__WEBPACK_IMPORTED_MODULE_13__);
+/* harmony import */ var _fable_fable_library_2_2_3_List_js__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ../../.fable/fable-library.2.2.3/List.js */ "./.fable/fable-library.2.2.3/List.js");
+/* harmony import */ var child_process__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! child_process */ "child_process");
+/* harmony import */ var child_process__WEBPACK_IMPORTED_MODULE_15___default = /*#__PURE__*/__webpack_require__.n(child_process__WEBPACK_IMPORTED_MODULE_15__);
+/* harmony import */ var _fable_fable_library_2_2_3_Observable_js__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! ../../.fable/fable-library.2.2.3/Observable.js */ "./.fable/fable-library.2.2.3/Observable.js");
+/* harmony import */ var _fable_fable_library_2_2_3_Seq_js__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(/*! ../../.fable/fable-library.2.2.3/Seq.js */ "./.fable/fable-library.2.2.3/Seq.js");
 
-$export($export.S + $export.F * !USE_NATIVE, 'Symbol', {
-  // 19.4.2.1 Symbol.for(key)
-  'for': function (key) {
-    return has(SymbolRegistry, key += '')
-      ? SymbolRegistry[key]
-      : SymbolRegistry[key] = $Symbol(key);
-  },
-  // 19.4.2.5 Symbol.keyFor(sym)
-  keyFor: function keyFor(sym) {
-    if (!isSymbol(sym)) throw TypeError(sym + ' is not a symbol!');
-    for (var key in SymbolRegistry) if (SymbolRegistry[key] === sym) return key;
-  },
-  useSetter: function () { setter = true; },
-  useSimple: function () { setter = false; }
-});
 
-$export($export.S + $export.F * !USE_NATIVE, 'Object', {
-  // 19.1.2.2 Object.create(O [, Properties])
-  create: $create,
-  // 19.1.2.4 Object.defineProperty(O, P, Attributes)
-  defineProperty: $defineProperty,
-  // 19.1.2.3 Object.defineProperties(O, Properties)
-  defineProperties: $defineProperties,
-  // 19.1.2.6 Object.getOwnPropertyDescriptor(O, P)
-  getOwnPropertyDescriptor: $getOwnPropertyDescriptor,
-  // 19.1.2.7 Object.getOwnPropertyNames(O)
-  getOwnPropertyNames: $getOwnPropertyNames,
-  // 19.1.2.8 Object.getOwnPropertySymbols(O)
-  getOwnPropertySymbols: $getOwnPropertySymbols
-});
 
-// 24.3.2 JSON.stringify(value [, replacer [, space]])
-$JSON && $export($export.S + $export.F * (!USE_NATIVE || $fails(function () {
-  var S = $Symbol();
-  // MS Edge converts symbol values to JSON as {}
-  // WebKit converts symbol values to JSON as null
-  // V8 throws on boxed symbols
-  return _stringify([S]) != '[null]' || _stringify({ a: S }) != '{}' || _stringify(Object(S)) != '{}';
-})), 'JSON', {
-  stringify: function stringify(it) {
-    var args = [it];
-    var i = 1;
-    var replacer, $replacer;
-    while (arguments.length > i) args.push(arguments[i++]);
-    $replacer = replacer = args[1];
-    if (!isObject(replacer) && it === undefined || isSymbol(it)) return; // IE8 returns string on undefined
-    if (!isArray(replacer)) replacer = function (key, value) {
-      if (typeof $replacer == 'function') value = $replacer.call(this, key, value);
-      if (!isSymbol(value)) return value;
-    };
-    args[1] = replacer;
-    return _stringify.apply($JSON, args);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+var filesize = file_size__WEBPACK_IMPORTED_MODULE_1__;
+function sizeToHuman(size) {
+  return function (arg20) {
+    return filesize(size).human(arg20);
+  }("si");
+}
+var Ref$$$openFolder = document.getElementById("act-open-folder");
+var Ref$$$quit = document.getElementById("act-quit");
+var Ref$$$about = document.getElementById("act-about");
+var Ref$$$addressBar = document.getElementById("address-bar");
+var Ref$$$filesList = document.getElementById("files-list");
+var aboutWindow = Object(_fable_fable_library_2_2_3_Util_js__WEBPACK_IMPORTED_MODULE_2__["createAtom"])(null);
+var remote = electron__WEBPACK_IMPORTED_MODULE_3__["remote"];
+var Navigate = Object(_fable_fable_library_2_2_3_Types_js__WEBPACK_IMPORTED_MODULE_4__["declare"])(function Renderer_Navigate(arg1) {
+  this.Path = arg1;
+}, _fable_fable_library_2_2_3_Types_js__WEBPACK_IMPORTED_MODULE_4__["Record"]);
+function Navigate$reflection() {
+  return Object(_fable_fable_library_2_2_3_Reflection_js__WEBPACK_IMPORTED_MODULE_5__["record"])("Renderer.Navigate", [], Navigate, function () {
+    return [["Path", _fable_fable_library_2_2_3_Reflection_js__WEBPACK_IMPORTED_MODULE_5__["string"]]];
+  });
+}
+var navigation = new _fable_fable_library_2_2_3_Event_js__WEBPACK_IMPORTED_MODULE_6__["default"]();
+function createBreadcrumbSegment(path, segment) {
+  var root = document.createElement("li");
+  var link = document.createElement("a");
+  link.href = "#";
+  link.innerText = segment;
+  link.addEventListener("click", function (_arg1) {
+    navigation.Trigger(new Navigate(path));
+    return null;
+  });
+  root.appendChild(link);
+  return root;
+}
+function generateBreadcrumb(path$$1) {
+  var segments = path$$1.split(path__WEBPACK_IMPORTED_MODULE_7__["sep"]);
+  return Object(_fable_fable_library_2_2_3_Array_js__WEBPACK_IMPORTED_MODULE_9__["mapIndexed"])(function mapping(index, segment$$1) {
+    var subPath = _fable_fable_library_2_2_3_String_js__WEBPACK_IMPORTED_MODULE_8__["join"].apply(void 0, [path__WEBPACK_IMPORTED_MODULE_7__["sep"]].concat(_babel_runtime_helpers_toConsumableArray__WEBPACK_IMPORTED_MODULE_0___default()(segments.slice(0, index + 1))));
+    return createBreadcrumbSegment(subPath, segment$$1);
+  }, segments, Array);
+}
+function generateFileRow(path$$2, filename, fileStats) {
+  var root$$1 = document.createElement("tr");
+  var icon = document.createElement("td");
+  var name = document.createElement("td");
+  var date = document.createElement("td");
+  var type = document.createElement("td");
+  var size$$1 = document.createElement("td");
+  var isDirectory = fileStats.isDirectory();
+  icon.appendChild(Object(C_Users_Wilson_Wang_Desktop_Parallel_HDL_Dev_src_Renderer_Html_fs__WEBPACK_IMPORTED_MODULE_11__["createIcon"])(Object(C_Users_Wilson_Wang_Desktop_Parallel_HDL_Dev_src_Renderer_Mime_fs__WEBPACK_IMPORTED_MODULE_10__["determineIcon"])(filename)(isDirectory)));
+  name.appendChild(Object(C_Users_Wilson_Wang_Desktop_Parallel_HDL_Dev_src_Renderer_Html_fs__WEBPACK_IMPORTED_MODULE_11__["createLink"])(filename));
+  name.addEventListener("click", function (_arg1$$1) {
+    navigation.Trigger(new Navigate(path$$2));
+    return null;
+  });
+  var copyOfStruct = fileStats.birthtime;
+  date.innerText = Object(_fable_fable_library_2_2_3_Date_js__WEBPACK_IMPORTED_MODULE_12__["toString"])(copyOfStruct, "dd-MM-yyyy hh:mm:ss");
+  type.innerText = Object(C_Users_Wilson_Wang_Desktop_Parallel_HDL_Dev_src_Renderer_Mime_fs__WEBPACK_IMPORTED_MODULE_10__["determineFileType"])(filename)(isDirectory);
+
+  if (!isDirectory) {
+    size$$1.innerText = sizeToHuman(fileStats.size);
   }
-});
 
-// 19.4.3.4 Symbol.prototype[@@toPrimitive](hint)
-$Symbol[PROTOTYPE][TO_PRIMITIVE] || __webpack_require__(12)($Symbol[PROTOTYPE], TO_PRIMITIVE, $Symbol[PROTOTYPE].valueOf);
-// 19.4.3.5 Symbol.prototype[@@toStringTag]
-setToStringTag($Symbol, 'Symbol');
-// 20.2.1.9 Math[@@toStringTag]
-setToStringTag(Math, 'Math', true);
-// 24.3.3 JSON[@@toStringTag]
-setToStringTag(global.JSON, 'JSON', true);
+  Object(C_Users_Wilson_Wang_Desktop_Parallel_HDL_Dev_src_Renderer_Html_fs__WEBPACK_IMPORTED_MODULE_11__["replaceChildren"])(root$$1, [icon, name, date, type, size$$1]);
+  return root$$1;
+}
+function init() {
+  Object(_fable_fable_library_2_2_3_Observable_js__WEBPACK_IMPORTED_MODULE_16__["add"])(function (ev) {
+    var path$$3 = ev.Path;
+
+    if (fs__WEBPACK_IMPORTED_MODULE_13__["statSync"](path__WEBPACK_IMPORTED_MODULE_7__["join"](path$$3)).isDirectory()) {
+      var segments$$1 = generateBreadcrumb(path$$3);
+      Object(C_Users_Wilson_Wang_Desktop_Parallel_HDL_Dev_src_Renderer_Html_fs__WEBPACK_IMPORTED_MODULE_11__["replaceChildren"])(Ref$$$addressBar, segments$$1);
+      fs__WEBPACK_IMPORTED_MODULE_13__["readdir"](path$$3, function (error, files) {
+        if (error != null) {
+          console.error(error);
+        }
+
+        Object(C_Users_Wilson_Wang_Desktop_Parallel_HDL_Dev_src_Renderer_Html_fs__WEBPACK_IMPORTED_MODULE_11__["replaceChildren"])(Ref$$$filesList, Object(_fable_fable_library_2_2_3_List_js__WEBPACK_IMPORTED_MODULE_14__["map"])(function mapping$$2(tupledArg) {
+          return generateFileRow(path__WEBPACK_IMPORTED_MODULE_7__["join"](path$$3, tupledArg[0]), tupledArg[0], tupledArg[1]);
+        }, Object(_fable_fable_library_2_2_3_List_js__WEBPACK_IMPORTED_MODULE_14__["map"])(function mapping$$1(file$$1) {
+          return [file$$1, fs__WEBPACK_IMPORTED_MODULE_13__["statSync"](path__WEBPACK_IMPORTED_MODULE_7__["join"](path$$3, file$$1))];
+        }, Object(_fable_fable_library_2_2_3_List_js__WEBPACK_IMPORTED_MODULE_14__["filter"])(function predicate(file) {
+          return !(file.indexOf(".") === 0);
+        }, files))));
+      });
+    } else {
+      child_process__WEBPACK_IMPORTED_MODULE_15__["exec"](path$$3);
+    }
+  }, navigation.Publish);
+  Ref$$$about.addEventListener("click", function (_arg1$$2) {
+    if (aboutWindow() != null) {
+      aboutWindow().show();
+    } else {
+      var options = {};
+      options.toolbar = false;
+      options.resizable = false;
+      options.show = true;
+      options.height = 250;
+      options.width = 600;
+      var about = new remote.BrowserWindow(options);
+      about.setMenu(null);
+      about.on("closed", function () {
+        aboutWindow(null);
+      });
+      about.loadURL(path__WEBPACK_IMPORTED_MODULE_7__["join"]("file://", __dirname, "about.html"));
+      aboutWindow(about);
+    }
+
+    return null;
+  });
+  Object(_fable_fable_library_2_2_3_Seq_js__WEBPACK_IMPORTED_MODULE_17__["iterate"])(function (quickAccess) {
+    quickAccess.addEventListener("click", function (ev$$1) {
+      var element = ev$$1.target;
+      var quickAccessInfo = element.dataset["quickAccess"];
+      navigation.Trigger(new Navigate(remote.app.getPath(quickAccessInfo)));
+      return null;
+    });
+  }, document.querySelectorAll("[data-quick-access]"));
+  Ref$$$openFolder.addEventListener("click", function (_arg2) {
+    var options$$1 = {};
+    options$$1.properties = Array.from(["openDirectory"]);
+    var result = remote.dialog.showOpenDialog(options$$1);
+
+    if (!(result == null) ? Object(_fable_fable_library_2_2_3_Util_js__WEBPACK_IMPORTED_MODULE_2__["count"])(result) > 0 : false) {
+      navigation.Trigger(new Navigate(result[0]));
+    }
+
+    return null;
+  });
+  Ref$$$quit.addEventListener("click", function (_arg3) {
+    var win = remote.getCurrentWindow();
+    win.close();
+    return null;
+  });
+  navigation.Trigger(new Navigate(process.cwd()));
+}
+init();
+
+/***/ }),
+
+/***/ "./src/Renderer/Renderer.fsproj":
+/*!**************************************!*\
+  !*** ./src/Renderer/Renderer.fsproj ***!
+  \**************************************/
+/*! exports provided: filesize, sizeToHuman, Ref$$$openFolder, Ref$$$quit, Ref$$$about, Ref$$$addressBar, Ref$$$filesList, aboutWindow, remote, Navigate, Navigate$reflection, navigation, createBreadcrumbSegment, generateBreadcrumb, generateFileRow, init */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _Renderer_fs__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./Renderer.fs */ "./src/Renderer/Renderer.fs");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "filesize", function() { return _Renderer_fs__WEBPACK_IMPORTED_MODULE_0__["filesize"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "sizeToHuman", function() { return _Renderer_fs__WEBPACK_IMPORTED_MODULE_0__["sizeToHuman"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "Ref$$$openFolder", function() { return _Renderer_fs__WEBPACK_IMPORTED_MODULE_0__["Ref$$$openFolder"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "Ref$$$quit", function() { return _Renderer_fs__WEBPACK_IMPORTED_MODULE_0__["Ref$$$quit"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "Ref$$$about", function() { return _Renderer_fs__WEBPACK_IMPORTED_MODULE_0__["Ref$$$about"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "Ref$$$addressBar", function() { return _Renderer_fs__WEBPACK_IMPORTED_MODULE_0__["Ref$$$addressBar"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "Ref$$$filesList", function() { return _Renderer_fs__WEBPACK_IMPORTED_MODULE_0__["Ref$$$filesList"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "aboutWindow", function() { return _Renderer_fs__WEBPACK_IMPORTED_MODULE_0__["aboutWindow"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "remote", function() { return _Renderer_fs__WEBPACK_IMPORTED_MODULE_0__["remote"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "Navigate", function() { return _Renderer_fs__WEBPACK_IMPORTED_MODULE_0__["Navigate"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "Navigate$reflection", function() { return _Renderer_fs__WEBPACK_IMPORTED_MODULE_0__["Navigate$reflection"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "navigation", function() { return _Renderer_fs__WEBPACK_IMPORTED_MODULE_0__["navigation"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "createBreadcrumbSegment", function() { return _Renderer_fs__WEBPACK_IMPORTED_MODULE_0__["createBreadcrumbSegment"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "generateBreadcrumb", function() { return _Renderer_fs__WEBPACK_IMPORTED_MODULE_0__["generateBreadcrumb"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "generateFileRow", function() { return _Renderer_fs__WEBPACK_IMPORTED_MODULE_0__["generateFileRow"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "init", function() { return _Renderer_fs__WEBPACK_IMPORTED_MODULE_0__["init"]; });
+
 
 
 /***/ }),
-/* 130 */
-/***/ (function(module, exports, __webpack_require__) {
 
-// all enumerable object keys, includes symbols
-var getKeys = __webpack_require__(28);
-var gOPS = __webpack_require__(51);
-var pIE = __webpack_require__(33);
-module.exports = function (it) {
-  var result = getKeys(it);
-  var getSymbols = gOPS.f;
-  if (getSymbols) {
-    var symbols = getSymbols(it);
-    var isEnum = pIE.f;
-    var i = 0;
-    var key;
-    while (symbols.length > i) if (isEnum.call(it, key = symbols[i++])) result.push(key);
-  } return result;
-};
+/***/ "child_process":
+/*!********************************!*\
+  !*** external "child_process" ***!
+  \********************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
 
+module.exports = require("child_process");
 
 /***/ }),
-/* 131 */
-/***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(52)('asyncIterator');
-
-
-/***/ }),
-/* 132 */
-/***/ (function(module, exports, __webpack_require__) {
-
-__webpack_require__(52)('observable');
-
-
-/***/ }),
-/* 133 */
+/***/ "electron":
+/*!***************************!*\
+  !*** external "electron" ***!
+  \***************************/
+/*! no static exports found */
 /***/ (function(module, exports) {
 
 module.exports = require("electron");
 
 /***/ }),
-/* 134 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
 
-"use strict";
-/* unused harmony export add */
-/* unused harmony export choose */
-/* unused harmony export filter */
-/* unused harmony export map */
-/* unused harmony export merge */
-/* unused harmony export pairwise */
-/* unused harmony export partition */
-/* unused harmony export scan */
-/* unused harmony export split */
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_babel_runtime_core_js_map__ = __webpack_require__(48);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_babel_runtime_core_js_map___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_babel_runtime_core_js_map__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_babel_runtime_helpers_classCallCheck__ = __webpack_require__(7);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_babel_runtime_helpers_classCallCheck___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_babel_runtime_helpers_classCallCheck__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_babel_runtime_helpers_createClass__ = __webpack_require__(8);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_babel_runtime_helpers_createClass___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_babel_runtime_helpers_createClass__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__Observable__ = __webpack_require__(53);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__Seq__ = __webpack_require__(10);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__Util__ = __webpack_require__(1);
-
-
-
-
-
-
-
-
-var Event = function () {
-    function Event(_subscriber, delegates) {
-        __WEBPACK_IMPORTED_MODULE_1_babel_runtime_helpers_classCallCheck___default()(this, Event);
-
-        this._subscriber = _subscriber;
-        this.delegates = delegates || new Array();
-    }
-
-    __WEBPACK_IMPORTED_MODULE_2_babel_runtime_helpers_createClass___default()(Event, [{
-        key: "Add",
-        value: function Add(f) {
-            this._addHandler(f);
-        }
-        // IEvent<T> methods
-
-    }, {
-        key: "Trigger",
-        value: function Trigger(value) {
-            Object(__WEBPACK_IMPORTED_MODULE_4__Seq__["d" /* iterate */])(function (f) {
-                return f(value);
-            }, this.delegates);
-        }
-        // IDelegateEvent<T> methods
-
-    }, {
-        key: "AddHandler",
-        value: function AddHandler(handler) {
-            if (this._dotnetDelegates == null) {
-                this._dotnetDelegates = new __WEBPACK_IMPORTED_MODULE_0_babel_runtime_core_js_map___default.a();
-            }
-            var f = function f(x) {
-                return handler(null, x);
-            };
-            this._dotnetDelegates.set(handler, f);
-            this._addHandler(f);
-        }
-    }, {
-        key: "RemoveHandler",
-        value: function RemoveHandler(handler) {
-            if (this._dotnetDelegates != null) {
-                var f = this._dotnetDelegates.get(handler);
-                if (f != null) {
-                    this._dotnetDelegates.delete(handler);
-                    this._removeHandler(f);
-                }
-            }
-        }
-        // IObservable<T> methods
-
-    }, {
-        key: "Subscribe",
-        value: function Subscribe(arg) {
-            return typeof arg === "function" ? this._subscribeFromCallback(arg) : this._subscribeFromObserver(arg);
-        }
-    }, {
-        key: "_addHandler",
-        value: function _addHandler(f) {
-            this.delegates.push(f);
-        }
-    }, {
-        key: "_removeHandler",
-        value: function _removeHandler(f) {
-            var index = this.delegates.indexOf(f);
-            if (index > -1) {
-                this.delegates.splice(index, 1);
-            }
-        }
-    }, {
-        key: "_subscribeFromObserver",
-        value: function _subscribeFromObserver(observer) {
-            var _this = this;
-
-            if (this._subscriber) {
-                return this._subscriber(observer);
-            }
-            var callback = observer.OnNext;
-            this._addHandler(callback);
-            return Object(__WEBPACK_IMPORTED_MODULE_5__Util__["d" /* createDisposable */])(function () {
-                return _this._removeHandler(callback);
-            });
-        }
-    }, {
-        key: "_subscribeFromCallback",
-        value: function _subscribeFromCallback(callback) {
-            var _this2 = this;
-
-            this._addHandler(callback);
-            return Object(__WEBPACK_IMPORTED_MODULE_5__Util__["d" /* createDisposable */])(function () {
-                return _this2._removeHandler(callback);
-            });
-        }
-    }, {
-        key: "Publish",
-        get: function get() {
-            return this;
-        }
-    }]);
-
-    return Event;
-}();
-
-/* harmony default export */ __webpack_exports__["a"] = (Event);
-
-function add(callback, sourceEvent) {
-    sourceEvent.Subscribe(new __WEBPACK_IMPORTED_MODULE_3__Observable__["a" /* Observer */](callback));
-}
-function choose(chooser, sourceEvent) {
-    var source = sourceEvent;
-    return new Event(function (observer) {
-        return source.Subscribe(new __WEBPACK_IMPORTED_MODULE_3__Observable__["a" /* Observer */](function (t) {
-            return Object(__WEBPACK_IMPORTED_MODULE_3__Observable__["c" /* protect */])(function () {
-                return chooser(t);
-            }, function (u) {
-                if (u != null) {
-                    observer.OnNext(u);
-                }
-            }, observer.OnError);
-        }, observer.OnError, observer.OnCompleted));
-    }, source.delegates);
-}
-function filter(predicate, sourceEvent) {
-    return choose(function (x) {
-        return predicate(x) ? x : null;
-    }, sourceEvent);
-}
-function map(mapping, sourceEvent) {
-    var source = sourceEvent;
-    return new Event(function (observer) {
-        return source.Subscribe(new __WEBPACK_IMPORTED_MODULE_3__Observable__["a" /* Observer */](function (t) {
-            return Object(__WEBPACK_IMPORTED_MODULE_3__Observable__["c" /* protect */])(function () {
-                return mapping(t);
-            }, observer.OnNext, observer.OnError);
-        }, observer.OnError, observer.OnCompleted));
-    }, source.delegates);
-}
-function merge(event1, event2) {
-    var source1 = event1;
-    var source2 = event2;
-    return new Event(function (observer) {
-        var stopped = false;
-        var completed1 = false;
-        var completed2 = false;
-        var h1 = source1.Subscribe(new __WEBPACK_IMPORTED_MODULE_3__Observable__["a" /* Observer */](function (v) {
-            if (!stopped) {
-                observer.OnNext(v);
-            }
-        }, function (e) {
-            if (!stopped) {
-                stopped = true;
-                observer.OnError(e);
-            }
-        }, function () {
-            if (!stopped) {
-                completed1 = true;
-                if (completed2) {
-                    stopped = true;
-                    observer.OnCompleted();
-                }
-            }
-        }));
-        var h2 = source2.Subscribe(new __WEBPACK_IMPORTED_MODULE_3__Observable__["a" /* Observer */](function (v) {
-            if (!stopped) {
-                observer.OnNext(v);
-            }
-        }, function (e) {
-            if (!stopped) {
-                stopped = true;
-                observer.OnError(e);
-            }
-        }, function () {
-            if (!stopped) {
-                completed2 = true;
-                if (completed1) {
-                    stopped = true;
-                    observer.OnCompleted();
-                }
-            }
-        }));
-        return Object(__WEBPACK_IMPORTED_MODULE_5__Util__["d" /* createDisposable */])(function () {
-            h1.Dispose();
-            h2.Dispose();
-        });
-    }, source1.delegates.concat(source2.delegates));
-}
-function pairwise(sourceEvent) {
-    var source = sourceEvent;
-    return new Event(function (observer) {
-        var last = null;
-        return source.Subscribe(new __WEBPACK_IMPORTED_MODULE_3__Observable__["a" /* Observer */](function (next) {
-            if (last != null) {
-                observer.OnNext([last, next]);
-            }
-            last = next;
-        }, observer.OnError, observer.OnCompleted));
-    }, source.delegates);
-}
-function partition(predicate, sourceEvent) {
-    return [filter(predicate, sourceEvent), filter(function (x) {
-        return !predicate(x);
-    }, sourceEvent)];
-}
-function scan(collector, state, sourceEvent) {
-    var source = sourceEvent;
-    return new Event(function (observer) {
-        return source.Subscribe(new __WEBPACK_IMPORTED_MODULE_3__Observable__["a" /* Observer */](function (t) {
-            Object(__WEBPACK_IMPORTED_MODULE_3__Observable__["c" /* protect */])(function () {
-                return collector(state, t);
-            }, function (u) {
-                state = u;observer.OnNext(u);
-            }, observer.OnError);
-        }, observer.OnError, observer.OnCompleted));
-    }, source.delegates);
-}
-function split(splitter, sourceEvent) {
-    return [choose(function (v) {
-        return splitter(v).valueIfChoice1;
-    }, sourceEvent), choose(function (v) {
-        return splitter(v).valueIfChoice2;
-    }, sourceEvent)];
-}
-
-/***/ }),
-/* 135 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-exports.__esModule = true;
-
-var _isIterable2 = __webpack_require__(136);
-
-var _isIterable3 = _interopRequireDefault(_isIterable2);
-
-var _getIterator2 = __webpack_require__(11);
-
-var _getIterator3 = _interopRequireDefault(_getIterator2);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-exports.default = function () {
-  function sliceIterator(arr, i) {
-    var _arr = [];
-    var _n = true;
-    var _d = false;
-    var _e = undefined;
-
-    try {
-      for (var _i = (0, _getIterator3.default)(arr), _s; !(_n = (_s = _i.next()).done); _n = true) {
-        _arr.push(_s.value);
-
-        if (i && _arr.length === i) break;
-      }
-    } catch (err) {
-      _d = true;
-      _e = err;
-    } finally {
-      try {
-        if (!_n && _i["return"]) _i["return"]();
-      } finally {
-        if (_d) throw _e;
-      }
-    }
-
-    return _arr;
-  }
-
-  return function (arr, i) {
-    if (Array.isArray(arr)) {
-      return arr;
-    } else if ((0, _isIterable3.default)(Object(arr))) {
-      return sliceIterator(arr, i);
-    } else {
-      throw new TypeError("Invalid attempt to destructure non-iterable instance");
-    }
-  };
-}();
-
-/***/ }),
-/* 136 */
-/***/ (function(module, exports, __webpack_require__) {
-
-module.exports = { "default": __webpack_require__(137), __esModule: true };
-
-/***/ }),
-/* 137 */
-/***/ (function(module, exports, __webpack_require__) {
-
-__webpack_require__(32);
-__webpack_require__(22);
-module.exports = __webpack_require__(138);
-
-
-/***/ }),
-/* 138 */
-/***/ (function(module, exports, __webpack_require__) {
-
-var classof = __webpack_require__(46);
-var ITERATOR = __webpack_require__(2)('iterator');
-var Iterators = __webpack_require__(20);
-module.exports = __webpack_require__(0).isIterable = function (it) {
-  var O = Object(it);
-  return O[ITERATOR] !== undefined
-    || '@@iterator' in O
-    // eslint-disable-next-line no-prototype-builtins
-    || Iterators.hasOwnProperty(classof(O));
-};
-
-
-/***/ }),
-/* 139 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* unused harmony export compare */
-/* unused harmony export compareTo */
-/* unused harmony export startsWith */
-/* unused harmony export indexOfAny */
-/* unused harmony export fsFormat */
-/* harmony export (immutable) */ __webpack_exports__["a"] = format;
-/* unused harmony export endsWith */
-/* unused harmony export initialize */
-/* unused harmony export insert */
-/* unused harmony export isNullOrEmpty */
-/* unused harmony export isNullOrWhiteSpace */
-/* harmony export (immutable) */ __webpack_exports__["b"] = join;
-/* unused harmony export newGuid */
-/* unused harmony export toBase64String */
-/* unused harmony export fromBase64String */
-/* unused harmony export padLeft */
-/* unused harmony export padRight */
-/* unused harmony export remove */
-/* unused harmony export replace */
-/* unused harmony export replicate */
-/* unused harmony export getCharAtIndex */
-/* harmony export (immutable) */ __webpack_exports__["c"] = split;
-/* unused harmony export trim */
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_babel_runtime_core_js_array_from__ = __webpack_require__(18);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_babel_runtime_core_js_array_from___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_babel_runtime_core_js_array_from__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_babel_runtime_core_js_get_iterator__ = __webpack_require__(11);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_babel_runtime_core_js_get_iterator___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_babel_runtime_core_js_get_iterator__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__Date__ = __webpack_require__(21);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__RegExp__ = __webpack_require__(145);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__Util__ = __webpack_require__(1);
-
-
-
-
-
-
-
-
-
-
-var fsFormatRegExp = /(^|[^%])%([0+ ]*)(-?\d+)?(?:\.(\d+))?(\w)/;
-var formatRegExp = /\{(\d+)(,-?\d+)?(?:\:(.+?))?\}/g;
-var StringComparison = {
-    CurrentCulture: 0,
-    CurrentCultureIgnoreCase: 1,
-    InvariantCulture: 2,
-    InvariantCultureIgnoreCase: 3,
-    Ordinal: 4,
-    OrdinalIgnoreCase: 5
-};
-function cmp(x, y, ic) {
-    function isIgnoreCase(i) {
-        return i === true || i === StringComparison.CurrentCultureIgnoreCase || i === StringComparison.InvariantCultureIgnoreCase || i === StringComparison.OrdinalIgnoreCase;
-    }
-    function isOrdinal(i) {
-        return i === StringComparison.Ordinal || i === StringComparison.OrdinalIgnoreCase;
-    }
-    if (x == null) {
-        return y == null ? 0 : -1;
-    }
-    if (y == null) {
-        return 1;
-    } // everything is bigger than null
-    if (isOrdinal(ic)) {
-        if (isIgnoreCase(ic)) {
-            x = x.toLowerCase();
-            y = y.toLowerCase();
-        }
-        return x === y ? 0 : x < y ? -1 : 1;
-    } else {
-        if (isIgnoreCase(ic)) {
-            x = x.toLocaleLowerCase();
-            y = y.toLocaleLowerCase();
-        }
-        return x.localeCompare(y);
-    }
-}
-function compare() {
-    for (var _len = arguments.length, args = Array(_len), _key = 0; _key < _len; _key++) {
-        args[_key] = arguments[_key];
-    }
-
-    switch (args.length) {
-        case 2:
-            return cmp(args[0], args[1], false);
-        case 3:
-            return cmp(args[0], args[1], args[2]);
-        case 4:
-            return cmp(args[0], args[1], args[2] === true);
-        case 5:
-            return cmp(args[0].substr(args[1], args[4]), args[2].substr(args[3], args[4]), false);
-        case 6:
-            return cmp(args[0].substr(args[1], args[4]), args[2].substr(args[3], args[4]), args[5]);
-        case 7:
-            return cmp(args[0].substr(args[1], args[4]), args[2].substr(args[3], args[4]), args[5] === true);
-        default:
-            throw new Error("String.compare: Unsupported number of parameters");
-    }
-}
-function compareTo(x, y) {
-    return cmp(x, y, false);
-}
-function startsWith(str, pattern, ic) {
-    if (str.length >= pattern.length) {
-        return cmp(str.substr(0, pattern.length), pattern, ic) === 0;
-    }
-    return false;
-}
-function indexOfAny(str, anyOf) {
-    if (str == null || str === "") {
-        return -1;
-    }
-    var startIndex = (arguments.length <= 2 ? 0 : arguments.length - 2) > 0 ? arguments.length <= 2 ? undefined : arguments[2] : 0;
-    if (startIndex < 0) {
-        throw new Error("String.indexOfAny: Start index cannot be negative");
-    }
-    var length = (arguments.length <= 2 ? 0 : arguments.length - 2) > 1 ? arguments.length <= 3 ? undefined : arguments[3] : str.length - startIndex;
-    if (length < 0) {
-        throw new Error("String.indexOfAny: Length cannot be negative");
-    }
-    if (length > str.length - startIndex) {
-        throw new Error("String.indexOfAny: Invalid startIndex and length");
-    }
-    str = str.substr(startIndex, length);
-    var _iteratorNormalCompletion = true;
-    var _didIteratorError = false;
-    var _iteratorError = undefined;
-
-    try {
-        for (var _iterator = __WEBPACK_IMPORTED_MODULE_1_babel_runtime_core_js_get_iterator___default()(anyOf), _step; !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {
-            var c = _step.value;
-
-            var index = str.indexOf(c);
-            if (index > -1) {
-                return index + startIndex;
-            }
-        }
-    } catch (err) {
-        _didIteratorError = true;
-        _iteratorError = err;
-    } finally {
-        try {
-            if (!_iteratorNormalCompletion && _iterator.return) {
-                _iterator.return();
-            }
-        } finally {
-            if (_didIteratorError) {
-                throw _iteratorError;
-            }
-        }
-    }
-
-    return -1;
-}
-function toHex(value) {
-    return value < 0 ? "ff" + (16777215 - (Math.abs(value) - 1)).toString(16) : value.toString(16);
-}
-function fsFormat(str) {
-    function formatOnce(str2, rep) {
-        return str2.replace(fsFormatRegExp, function (_, prefix, flags, pad, precision, format) {
-            switch (format) {
-                case "f":
-                case "F":
-                    rep = rep.toFixed(precision || 6);
-                    break;
-                case "g":
-                case "G":
-                    rep = rep.toPrecision(precision);
-                    break;
-                case "e":
-                case "E":
-                    rep = rep.toExponential(precision);
-                    break;
-                case "O":
-                    rep = Object(__WEBPACK_IMPORTED_MODULE_4__Util__["g" /* toString */])(rep);
-                    break;
-                case "A":
-                    rep = Object(__WEBPACK_IMPORTED_MODULE_4__Util__["g" /* toString */])(rep, true);
-                    break;
-                case "x":
-                    rep = toHex(Number(rep));
-                    break;
-                case "X":
-                    rep = toHex(Number(rep)).toUpperCase();
-                    break;
-            }
-            var plusPrefix = flags.indexOf("+") >= 0 && parseInt(rep, 10) >= 0;
-            pad = parseInt(pad, 10);
-            if (!isNaN(pad)) {
-                var ch = pad >= 0 && flags.indexOf("0") >= 0 ? "0" : " ";
-                rep = padLeft(rep, Math.abs(pad) - (plusPrefix ? 1 : 0), ch, pad < 0);
-            }
-            var once = prefix + (plusPrefix ? "+" + rep : rep);
-            return once.replace(/%/g, "%%");
-        });
-    }
-
-    for (var _len2 = arguments.length, args = Array(_len2 > 1 ? _len2 - 1 : 0), _key2 = 1; _key2 < _len2; _key2++) {
-        args[_key2 - 1] = arguments[_key2];
-    }
-
-    if (args.length === 0) {
-        return function (cont) {
-            if (fsFormatRegExp.test(str)) {
-                return function () {
-                    for (var _len3 = arguments.length, args2 = Array(_len3), _key3 = 0; _key3 < _len3; _key3++) {
-                        args2[_key3] = arguments[_key3];
-                    }
-
-                    var strCopy = str;
-                    var _iteratorNormalCompletion2 = true;
-                    var _didIteratorError2 = false;
-                    var _iteratorError2 = undefined;
-
-                    try {
-                        for (var _iterator2 = __WEBPACK_IMPORTED_MODULE_1_babel_runtime_core_js_get_iterator___default()(args2), _step2; !(_iteratorNormalCompletion2 = (_step2 = _iterator2.next()).done); _iteratorNormalCompletion2 = true) {
-                            var arg = _step2.value;
-
-                            strCopy = formatOnce(strCopy, arg);
-                        }
-                    } catch (err) {
-                        _didIteratorError2 = true;
-                        _iteratorError2 = err;
-                    } finally {
-                        try {
-                            if (!_iteratorNormalCompletion2 && _iterator2.return) {
-                                _iterator2.return();
-                            }
-                        } finally {
-                            if (_didIteratorError2) {
-                                throw _iteratorError2;
-                            }
-                        }
-                    }
-
-                    return cont(strCopy.replace(/%%/g, "%"));
-                };
-            } else {
-                return cont(str);
-            }
-        };
-    } else {
-        var _iteratorNormalCompletion3 = true;
-        var _didIteratorError3 = false;
-        var _iteratorError3 = undefined;
-
-        try {
-            for (var _iterator3 = __WEBPACK_IMPORTED_MODULE_1_babel_runtime_core_js_get_iterator___default()(args), _step3; !(_iteratorNormalCompletion3 = (_step3 = _iterator3.next()).done); _iteratorNormalCompletion3 = true) {
-                var arg = _step3.value;
-
-                str = formatOnce(str, arg);
-            }
-        } catch (err) {
-            _didIteratorError3 = true;
-            _iteratorError3 = err;
-        } finally {
-            try {
-                if (!_iteratorNormalCompletion3 && _iterator3.return) {
-                    _iterator3.return();
-                }
-            } finally {
-                if (_didIteratorError3) {
-                    throw _iteratorError3;
-                }
-            }
-        }
-
-        return str.replace(/%%/g, "%");
-    }
-}
-function format(str) {
-    for (var _len4 = arguments.length, args = Array(_len4 > 1 ? _len4 - 1 : 0), _key4 = 1; _key4 < _len4; _key4++) {
-        args[_key4 - 1] = arguments[_key4];
-    }
-
-    return str.replace(formatRegExp, function (match, idx, pad, format) {
-        var rep = args[idx];
-        var padSymbol = " ";
-        if (typeof rep === "number") {
-            switch ((format || "").substring(0, 1)) {
-                case "f":
-                case "F":
-                    rep = format.length > 1 ? rep.toFixed(format.substring(1)) : rep.toFixed(2);
-                    break;
-                case "g":
-                case "G":
-                    rep = format.length > 1 ? rep.toPrecision(format.substring(1)) : rep.toPrecision();
-                    break;
-                case "e":
-                case "E":
-                    rep = format.length > 1 ? rep.toExponential(format.substring(1)) : rep.toExponential();
-                    break;
-                case "p":
-                case "P":
-                    rep = (format.length > 1 ? (rep * 100).toFixed(format.substring(1)) : (rep * 100).toFixed(2)) + " %";
-                    break;
-                case "x":
-                    rep = toHex(Number(rep));
-                    break;
-                case "X":
-                    rep = toHex(Number(rep)).toUpperCase();
-                    break;
-                default:
-                    var m = /^(0+)(\.0+)?$/.exec(format);
-                    if (m != null) {
-                        var decs = 0;
-                        if (m[2] != null) {
-                            rep = rep.toFixed(decs = m[2].length - 1);
-                        }
-                        pad = "," + (m[1].length + (decs ? decs + 1 : 0)).toString();
-                        padSymbol = "0";
-                    } else if (format) {
-                        rep = format;
-                    }
-            }
-        } else if (rep instanceof Date) {
-            if (format.length === 1) {
-                switch (format) {
-                    case "D":
-                        rep = rep.toDateString();
-                        break;
-                    case "T":
-                        rep = rep.toLocaleTimeString();
-                        break;
-                    case "d":
-                        rep = rep.toLocaleDateString();
-                        break;
-                    case "t":
-                        rep = rep.toLocaleTimeString().replace(/:\d\d(?!:)/, "");
-                        break;
-                    case "o":
-                    case "O":
-                        if (rep.kind === 2 /* Local */) {
-                                var offset = rep.getTimezoneOffset() * -1;
-                                rep = format("{0:yyyy-MM-dd}T{0:HH:mm}:{1:00.000}{2}{3:00}:{4:00}", rep, Object(__WEBPACK_IMPORTED_MODULE_2__Date__["e" /* second */])(rep), offset >= 0 ? "+" : "-", ~~(offset / 60), offset % 60);
-                            } else {
-                            rep = rep.toISOString();
-                        }
-                }
-            } else {
-                rep = format.replace(/\w+/g, function (match2) {
-                    var rep2 = match2;
-                    switch (match2.substring(0, 1)) {
-                        case "y":
-                            rep2 = match2.length < 4 ? Object(__WEBPACK_IMPORTED_MODULE_2__Date__["f" /* year */])(rep) % 100 : Object(__WEBPACK_IMPORTED_MODULE_2__Date__["f" /* year */])(rep);
-                            break;
-                        case "h":
-                            rep2 = rep.getHours() > 12 ? Object(__WEBPACK_IMPORTED_MODULE_2__Date__["b" /* hour */])(rep) % 12 : Object(__WEBPACK_IMPORTED_MODULE_2__Date__["b" /* hour */])(rep);
-                            break;
-                        case "M":
-                            rep2 = Object(__WEBPACK_IMPORTED_MODULE_2__Date__["d" /* month */])(rep);
-                            break;
-                        case "d":
-                            rep2 = Object(__WEBPACK_IMPORTED_MODULE_2__Date__["a" /* day */])(rep);
-                            break;
-                        case "H":
-                            rep2 = Object(__WEBPACK_IMPORTED_MODULE_2__Date__["b" /* hour */])(rep);
-                            break;
-                        case "m":
-                            rep2 = Object(__WEBPACK_IMPORTED_MODULE_2__Date__["c" /* minute */])(rep);
-                            break;
-                        case "s":
-                            rep2 = Object(__WEBPACK_IMPORTED_MODULE_2__Date__["e" /* second */])(rep);
-                            break;
-                    }
-                    if (rep2 !== match2 && rep2 < 10 && match2.length > 1) {
-                        rep2 = "0" + rep2;
-                    }
-                    return rep2;
-                });
-            }
-        }
-        pad = parseInt((pad || "").substring(1), 10);
-        if (!isNaN(pad)) {
-            rep = padLeft(rep, Math.abs(pad), padSymbol, pad < 0);
-        }
-        return rep;
-    });
-}
-function endsWith(str, search) {
-    var idx = str.lastIndexOf(search);
-    return idx >= 0 && idx === str.length - search.length;
-}
-function initialize(n, f) {
-    if (n < 0) {
-        throw new Error("String length must be non-negative");
-    }
-    var xs = new Array(n);
-    for (var i = 0; i < n; i++) {
-        xs[i] = f(i);
-    }
-    return xs.join("");
-}
-function insert(str, startIndex, value) {
-    if (startIndex < 0 || startIndex > str.length) {
-        throw new Error("startIndex is negative or greater than the length of this instance.");
-    }
-    return str.substring(0, startIndex) + value + str.substring(startIndex);
-}
-function isNullOrEmpty(str) {
-    return typeof str !== "string" || str.length === 0;
-}
-function isNullOrWhiteSpace(str) {
-    return typeof str !== "string" || /^\s*$/.test(str);
-}
-function join(delimiter, xs) {
-    var xs2 = xs;
-    var len = arguments.length;
-    if (len > 2) {
-        xs2 = Array(len - 1);
-        for (var key = 1; key < len; key++) {
-            xs2[key - 1] = arguments[key];
-        }
-    } else if (!Array.isArray(xs)) {
-        xs2 = __WEBPACK_IMPORTED_MODULE_0_babel_runtime_core_js_array_from___default()(xs);
-    }
-    return xs2.map(function (x) {
-        return Object(__WEBPACK_IMPORTED_MODULE_4__Util__["g" /* toString */])(x);
-    }).join(delimiter);
-}
-function newGuid() {
-    var uuid = "";
-    for (var i = 0; i < 32; i++) {
-        var random = Math.random() * 16 | 0;
-        if (i === 8 || i === 12 || i === 16 || i === 20) {
-            uuid += "-";
-        }
-        uuid += (i === 12 ? 4 : i === 16 ? random & 3 | 8 : random).toString(16);
-    }
-    return uuid;
-}
-function toBase64String(inArray) {
-    var str = "";
-    for (var i = 0; i < inArray.length; i++) {
-        str += String.fromCharCode(inArray[i]);
-    }
-    return typeof btoa === "function" ? btoa(str) : new Buffer(str).toString("base64");
-}
-function fromBase64String(b64Encoded) {
-    var binary = typeof atob === "function" ? atob(b64Encoded) : new Buffer(b64Encoded, "base64").toString();
-    var bytes = new Uint8Array(binary.length);
-    for (var i = 0; i < binary.length; i++) {
-        bytes[i] = binary.charCodeAt(i);
-    }
-    return bytes;
-}
-function padLeft(str, len, ch, isRight) {
-    ch = ch || " ";
-    str = String(str);
-    len = len - str.length;
-    for (var i = 0; i < len; i++) {
-        str = isRight ? str + ch : ch + str;
-    }
-    return str;
-}
-function padRight(str, len, ch) {
-    return padLeft(str, len, ch, true);
-}
-function remove(str, startIndex, count) {
-    if (startIndex >= str.length) {
-        throw new Error("startIndex must be less than length of string");
-    }
-    if (typeof count === "number" && startIndex + count > str.length) {
-        throw new Error("Index and count must refer to a location within the string.");
-    }
-    return str.slice(0, startIndex) + (typeof count === "number" ? str.substr(startIndex + count) : "");
-}
-function replace(str, search, replace) {
-    return str.replace(new RegExp(Object(__WEBPACK_IMPORTED_MODULE_3__RegExp__["a" /* escape */])(search), "g"), replace);
-}
-function replicate(n, x) {
-    return initialize(n, function () {
-        return x;
-    });
-}
-function getCharAtIndex(input, index) {
-    if (index < 0 || index > input.length) {
-        throw new Error("System.IndexOutOfRangeException: Index was outside the bounds of the array.");
-    }
-    return input[index];
-}
-function split(str, splitters, count, removeEmpty) {
-    count = typeof count === "number" ? count : null;
-    removeEmpty = typeof removeEmpty === "number" ? removeEmpty : null;
-    if (count < 0) {
-        throw new Error("Count cannot be less than zero");
-    }
-    if (count === 0) {
-        return [];
-    }
-    var splitters2 = splitters;
-    if (!Array.isArray(splitters)) {
-        var len = arguments.length;
-        splitters2 = Array(len - 1);
-        for (var key = 1; key < len; key++) {
-            splitters2[key - 1] = arguments[key];
-        }
-    }
-    splitters2 = splitters2.map(function (x) {
-        return Object(__WEBPACK_IMPORTED_MODULE_3__RegExp__["a" /* escape */])(x);
-    });
-    splitters2 = splitters2.length > 0 ? splitters2 : [" "];
-    var i = 0;
-    var splits = [];
-    var reg = new RegExp(splitters2.join("|"), "g");
-    while (count == null || count > 1) {
-        var m = reg.exec(str);
-        if (m === null) {
-            break;
-        }
-        if (!removeEmpty || m.index - i > 0) {
-            count = count != null ? count - 1 : count;
-            splits.push(str.substring(i, m.index));
-        }
-        i = reg.lastIndex;
-    }
-    if (!removeEmpty || str.length - i > 0) {
-        splits.push(str.substring(i));
-    }
-    return splits;
-}
-function trim(str, side) {
-    for (var _len5 = arguments.length, chars = Array(_len5 > 2 ? _len5 - 2 : 0), _key5 = 2; _key5 < _len5; _key5++) {
-        chars[_key5 - 2] = arguments[_key5];
-    }
-
-    if (side === "both" && chars.length === 0) {
-        return str.trim();
-    }
-    if (side === "start" || side === "both") {
-        var reg = chars.length === 0 ? /^\s+/ : new RegExp("^[" + Object(__WEBPACK_IMPORTED_MODULE_3__RegExp__["a" /* escape */])(chars.join("")) + "]+");
-        str = str.replace(reg, "");
-    }
-    if (side === "end" || side === "both") {
-        var _reg = chars.length === 0 ? /\s+$/ : new RegExp("[" + Object(__WEBPACK_IMPORTED_MODULE_3__RegExp__["a" /* escape */])(chars.join("")) + "]+$");
-        str = str.replace(_reg, "");
-    }
-    return str;
-}
-
-/***/ }),
-/* 140 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony export (immutable) */ __webpack_exports__["a"] = isValid;
-/* unused harmony export tryParse */
-/* unused harmony export parse */
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_babel_runtime_core_js_number_is_nan__ = __webpack_require__(141);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_babel_runtime_core_js_number_is_nan___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_babel_runtime_core_js_number_is_nan__);
-
-// TODO verify that this matches the behavior of .NET
-var parseRadix10 = /^ *([\+\-]?[0-9]+) *$/;
-// TODO verify that this matches the behavior of .NET
-var parseRadix16 = /^ *([\+\-]?[0-9a-fA-F]+) *$/;
-function isValid(s, radix) {
-    if (s != null) {
-        if (radix === 16) {
-            return parseRadix16.exec(s);
-        } else if (radix <= 10) {
-            return parseRadix10.exec(s);
-        }
-    }
-    return null;
-}
-// TODO does this perfectly match the .NET behavior ?
-function tryParse(s, radix, initial) {
-    var a = isValid(s, radix);
-    if (a !== null) {
-        var v = parseInt(a[1], radix);
-        if (!__WEBPACK_IMPORTED_MODULE_0_babel_runtime_core_js_number_is_nan___default()(v)) {
-            return [true, v];
-        }
-    }
-    return [false, initial];
-}
-function parse(s) {
-    var radix = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 10;
-
-    var a = tryParse(s, radix, 0);
-    if (a[0]) {
-        return a[1];
-    } else {
-        // TODO FormatException ?
-        throw new Error("Input string was not in a correct format.");
-    }
-}
-
-/***/ }),
-/* 141 */
-/***/ (function(module, exports, __webpack_require__) {
-
-module.exports = { "default": __webpack_require__(142), __esModule: true };
-
-/***/ }),
-/* 142 */
-/***/ (function(module, exports, __webpack_require__) {
-
-__webpack_require__(143);
-module.exports = __webpack_require__(0).Number.isNaN;
-
-
-/***/ }),
-/* 143 */
-/***/ (function(module, exports, __webpack_require__) {
-
-// 20.1.2.4 Number.isNaN(number)
-var $export = __webpack_require__(3);
-
-$export($export.S, 'Number', {
-  isNaN: function isNaN(number) {
-    // eslint-disable-next-line no-self-compare
-    return number != number;
-  }
-});
-
-
-/***/ }),
-/* 144 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony export (immutable) */ __webpack_exports__["a"] = create;
-/* unused harmony export fromTicks */
-/* unused harmony export fromDays */
-/* unused harmony export fromHours */
-/* unused harmony export fromMinutes */
-/* unused harmony export fromSeconds */
-/* unused harmony export days */
-/* unused harmony export hours */
-/* unused harmony export minutes */
-/* unused harmony export seconds */
-/* unused harmony export milliseconds */
-/* unused harmony export ticks */
-/* unused harmony export totalDays */
-/* unused harmony export totalHours */
-/* unused harmony export totalMinutes */
-/* unused harmony export totalSeconds */
-/* unused harmony export negate */
-/* unused harmony export add */
-/* unused harmony export subtract */
-/* unused harmony export compare */
-/* unused harmony export compareTo */
-/* unused harmony export duration */
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__Long__ = __webpack_require__(75);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__Util__ = __webpack_require__(1);
-
-
-function create() {
-    var d = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 0;
-    var h = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 0;
-    var m = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : 0;
-    var s = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : 0;
-    var ms = arguments.length > 4 && arguments[4] !== undefined ? arguments[4] : 0;
-
-    switch (arguments.length) {
-        case 1:
-            // ticks
-            return fromTicks(arguments[0]);
-        case 3:
-            // h,m,s
-            d = 0, h = arguments[0], m = arguments[1], s = arguments[2], ms = 0;
-            break;
-        default:
-            // d,h,m,s,ms
-            break;
-    }
-    return d * 86400000 + h * 3600000 + m * 60000 + s * 1000 + ms;
-}
-function fromTicks(ticks) {
-    return ticks.div(10000).toNumber();
-}
-function fromDays(d) {
-    return create(d, 0, 0, 0);
-}
-function fromHours(h) {
-    return create(h, 0, 0);
-}
-function fromMinutes(m) {
-    return create(0, m, 0);
-}
-function fromSeconds(s) {
-    return create(0, 0, s);
-}
-function days(ts) {
-    return Math.floor(ts / 86400000);
-}
-function hours(ts) {
-    return Math.floor(ts % 86400000 / 3600000);
-}
-function minutes(ts) {
-    return Math.floor(ts % 3600000 / 60000);
-}
-function seconds(ts) {
-    return Math.floor(ts % 60000 / 1000);
-}
-function milliseconds(ts) {
-    return Math.floor(ts % 1000);
-}
-function ticks(ts) {
-    return __WEBPACK_IMPORTED_MODULE_0__Long__["a" /* fromNumber */](ts).mul(10000);
-}
-function totalDays(ts) {
-    return ts / 86400000;
-}
-function totalHours(ts) {
-    return ts / 3600000;
-}
-function totalMinutes(ts) {
-    return ts / 60000;
-}
-function totalSeconds(ts) {
-    return ts / 1000;
-}
-function negate(ts) {
-    return ts * -1;
-}
-function add(ts1, ts2) {
-    return ts1 + ts2;
-}
-function subtract(ts1, ts2) {
-    return ts1 - ts2;
-}
-function compare(x, y) {
-    return Object(__WEBPACK_IMPORTED_MODULE_1__Util__["a" /* compare */])(x, y);
-}
-function compareTo(x, y) {
-    return Object(__WEBPACK_IMPORTED_MODULE_1__Util__["a" /* compare */])(x, y);
-}
-function duration(x) {
-    return Math.abs(x);
-}
-
-/***/ }),
-/* 145 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* unused harmony export create */
-/* harmony export (immutable) */ __webpack_exports__["a"] = escape;
-/* unused harmony export unescape */
-/* unused harmony export isMatch */
-/* unused harmony export match */
-/* unused harmony export matches */
-/* unused harmony export options */
-/* unused harmony export replace */
-/* unused harmony export split */
-function create(pattern, options) {
-    var flags = "g";
-    flags += options & 1 ? "i" : "";
-    flags += options & 2 ? "m" : "";
-    return new RegExp(pattern, flags);
-}
-// From http://stackoverflow.com/questions/3446170/escape-string-for-use-in-javascript-regex
-function escape(str) {
-    return str.replace(/[\-\[\/\{\}\(\)\*\+\?\.\\\^\$\|]/g, "\\$&");
-}
-function unescape(str) {
-    return str.replace(/\\([\-\[\/\{\}\(\)\*\+\?\.\\\^\$\|])/g, "$1");
-}
-function isMatch(str, pattern) {
-    var options = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : 0;
-
-    var reg = void 0;
-    reg = str instanceof RegExp ? (reg = str, str = pattern, reg.lastIndex = options, reg) : reg = create(pattern, options);
-    return reg.test(str);
-}
-function match(str, pattern) {
-    var options = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : 0;
-
-    var reg = void 0;
-    reg = str instanceof RegExp ? (reg = str, str = pattern, reg.lastIndex = options, reg) : reg = create(pattern, options);
-    return reg.exec(str);
-}
-function matches(str, pattern) {
-    var options = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : 0;
-
-    var reg = void 0;
-    reg = str instanceof RegExp ? (reg = str, str = pattern, reg.lastIndex = options, reg) : reg = create(pattern, options);
-    if (!reg.global) {
-        throw new Error("Non-global RegExp"); // Prevent infinite loop
-    }
-    var m = reg.exec(str);
-    var matches = [];
-    while (m !== null) {
-        matches.push(m);
-        m = reg.exec(str);
-    }
-    return matches;
-}
-function options(reg) {
-    var options = 256; // ECMAScript
-    options |= reg.ignoreCase ? 1 : 0;
-    options |= reg.multiline ? 2 : 0;
-    return options;
-}
-function replace(reg, input, replacement, limit) {
-    var offset = arguments.length > 4 && arguments[4] !== undefined ? arguments[4] : 0;
-
-    function replacer() {
-        var res = arguments[0];
-        if (limit !== 0) {
-            limit--;
-            var _match = [];
-            var len = arguments.length;
-            for (var i = 0; i < len - 2; i++) {
-                _match.push(arguments[i]);
-            }
-            _match.index = arguments[len - 2];
-            _match.input = arguments[len - 1];
-            res = replacement(_match);
-        }
-        return res;
-    }
-    if (typeof reg === "string") {
-        var tmp = reg;
-        reg = create(input, limit);
-        input = tmp;
-        limit = undefined;
-    }
-    if (typeof replacement === "function") {
-        limit = limit == null ? -1 : limit;
-        return input.substring(0, offset) + input.substring(offset).replace(reg, replacer);
-    } else {
-        if (limit != null) {
-            var m = void 0;
-            var sub1 = input.substring(offset);
-            var _matches = matches(reg, sub1);
-            var sub2 = matches.length > limit ? (m = _matches[limit - 1], sub1.substring(0, m.index + m[0].length)) : sub1;
-            return input.substring(0, offset) + sub2.replace(reg, replacement) + input.substring(offset + sub2.length);
-        } else {
-            return input.replace(reg, replacement);
-        }
-    }
-}
-function split(reg, input, limit) {
-    var offset = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : 0;
-
-    if (typeof reg === "string") {
-        var tmp = reg;
-        reg = create(input, limit);
-        input = tmp;
-        limit = undefined;
-    }
-    input = input.substring(offset);
-    return input.split(reg, limit);
-}
-
-/***/ }),
-/* 146 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony export (immutable) */ __webpack_exports__["c"] = replaceChildren;
-/* harmony export (immutable) */ __webpack_exports__["a"] = createIcon;
-/* harmony export (immutable) */ __webpack_exports__["b"] = createLink;
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_babel_runtime_core_js_get_iterator__ = __webpack_require__(11);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_babel_runtime_core_js_get_iterator___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_babel_runtime_core_js_get_iterator__);
-
-function replaceChildren(root, children) {
-    while (!(root.firstChild == null)) {
-        root.removeChild(root.firstChild);
-    }
-
-    var _iteratorNormalCompletion = true;
-    var _didIteratorError = false;
-    var _iteratorError = undefined;
-
-    try {
-        for (var _iterator = __WEBPACK_IMPORTED_MODULE_0_babel_runtime_core_js_get_iterator___default()(children), _step; !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {
-            var child = _step.value;
-            root.appendChild(child);
-        }
-    } catch (err) {
-        _didIteratorError = true;
-        _iteratorError = err;
-    } finally {
-        try {
-            if (!_iteratorNormalCompletion && _iterator.return) {
-                _iterator.return();
-            }
-        } finally {
-            if (_didIteratorError) {
-                throw _iteratorError;
-            }
-        }
-    }
-}
-function createIcon(faIcon) {
-    var root = document.createElement("span");
-    var icon = document.createElement("i");
-    root.className = "icon";
-    icon.className = "fa " + faIcon;
-    root.appendChild(icon);
-    return root;
-}
-function createLink(filename) {
-    var root = document.createElement("a");
-    root.href = "#";
-    root.innerText = filename;
-    return root;
-}
-
-/***/ }),
-/* 147 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* unused harmony export MimeInfo */
-/* unused harmony export iconMimeInfo */
-/* unused harmony export filetypeMimeInfo */
-/* unused harmony export mapMimeInfo */
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "b", function() { return determineIcon; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return determineFileType; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_babel_runtime_helpers_classCallCheck__ = __webpack_require__(7);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_babel_runtime_helpers_classCallCheck___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_babel_runtime_helpers_classCallCheck__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_babel_runtime_helpers_createClass__ = __webpack_require__(8);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_babel_runtime_helpers_createClass___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_babel_runtime_helpers_createClass__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__nuget_packages_fable_core_1_2_0_beta_003_fable_core_Symbol__ = __webpack_require__(9);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__nuget_packages_fable_core_1_2_0_beta_003_fable_core_Util__ = __webpack_require__(1);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_path__ = __webpack_require__(76);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_path___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4_path__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__nuget_packages_fable_core_1_2_0_beta_003_fable_core_CurriedLambda__ = __webpack_require__(148);
-
-
-
-
-
-
-
-var MimeInfo = function () {
-    function MimeInfo(text, image, unkown, directory, pdf, html, word, powerpoint, movie, audio, css) {
-        __WEBPACK_IMPORTED_MODULE_0_babel_runtime_helpers_classCallCheck___default()(this, MimeInfo);
-
-        this.Text = text;
-        this.Image = image;
-        this.Unkown = unkown;
-        this.Directory = directory;
-        this.Pdf = pdf;
-        this.Html = html;
-        this.Word = word;
-        this.Powerpoint = powerpoint;
-        this.Movie = movie;
-        this.Audio = audio;
-        this.Css = css;
-    }
-
-    __WEBPACK_IMPORTED_MODULE_1_babel_runtime_helpers_createClass___default()(MimeInfo, [{
-        key: __WEBPACK_IMPORTED_MODULE_2__nuget_packages_fable_core_1_2_0_beta_003_fable_core_Symbol__["a" /* default */].reflection,
-        value: function value() {
-            return {
-                type: "Mime.MimeInfo",
-                interfaces: ["FSharpRecord", "System.IEquatable", "System.IComparable"],
-                properties: {
-                    Text: "string",
-                    Image: "string",
-                    Unkown: "string",
-                    Directory: "string",
-                    Pdf: "string",
-                    Html: "string",
-                    Word: "string",
-                    Powerpoint: "string",
-                    Movie: "string",
-                    Audio: "string",
-                    Css: "string"
-                }
-            };
-        }
-    }, {
-        key: "Equals",
-        value: function Equals(other) {
-            return Object(__WEBPACK_IMPORTED_MODULE_3__nuget_packages_fable_core_1_2_0_beta_003_fable_core_Util__["f" /* equalsRecords */])(this, other);
-        }
-    }, {
-        key: "CompareTo",
-        value: function CompareTo(other) {
-            return Object(__WEBPACK_IMPORTED_MODULE_3__nuget_packages_fable_core_1_2_0_beta_003_fable_core_Util__["b" /* compareRecords */])(this, other) | 0;
-        }
-    }]);
-
-    return MimeInfo;
-}();
-Object(__WEBPACK_IMPORTED_MODULE_2__nuget_packages_fable_core_1_2_0_beta_003_fable_core_Symbol__["b" /* setType */])("Mime.MimeInfo", MimeInfo);
-var iconMimeInfo = new MimeInfo("fa-file-text-o", "fa-file-image-o", "fa-file-o", "fa-folder-o", "fa-file-pdf-o", "fa-html5", "fa-file-word-o", "fa-file-powerpoint-o", "fa-file-video-o", "fa-file-audio-o", "fa-css3");
-var filetypeMimeInfo = new MimeInfo("Text document", "Image", "", "fa-folder-o", "PDF document", "Html document", "Word document", "Powerpoint document", "Video document", "Audio document", "Css document");
-function mapMimeInfo(info, path, isDirectory) {
-    if (isDirectory) {
-        return info.Directory;
-    } else {
-        var fileInfo = __WEBPACK_IMPORTED_MODULE_4_path__["parse"](path);
-        var matchValue = fileInfo.ext;
-
-        switch (matchValue) {
-            case ".txt":
-            case ".md":
-                return info.Text;
-
-            case ".jpg":
-            case ".jpge":
-            case ".png":
-            case ".gif":
-            case ".bmp":
-                return info.Image;
-
-            case ".pdf":
-                return info.Pdf;
-
-            case ".css":
-                return info.Css;
-
-            case ".html":
-                return info.Html;
-
-            case ".doc":
-            case ".docx":
-                return info.Word;
-
-            case ".ppt":
-            case ".pptx":
-                return info.Powerpoint;
-
-            case ".mkv":
-            case ".avi":
-            case ".rmvb":
-                return info.Movie;
-
-            case ".mp3":
-                return info.Audio;
-
-            default:
-                return info.Unkown;
-        }
-    }
-}
-var determineIcon = Object(__WEBPACK_IMPORTED_MODULE_5__nuget_packages_fable_core_1_2_0_beta_003_fable_core_CurriedLambda__["a" /* default */])(function (path, isDirectory) {
-    return mapMimeInfo(iconMimeInfo, path, isDirectory);
-});
-var determineFileType = Object(__WEBPACK_IMPORTED_MODULE_5__nuget_packages_fable_core_1_2_0_beta_003_fable_core_CurriedLambda__["a" /* default */])(function (path, isDirectory) {
-    return mapMimeInfo(filetypeMimeInfo, path, isDirectory);
-});
-
-/***/ }),
-/* 148 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony export (immutable) */ __webpack_exports__["a"] = CurriedLambda;
-function CurriedLambda(f, _this, expectedArgsLength) {
-    if (f.curried === true) {
-        return f;
-    }
-    var curriedFn = function curriedFn() {
-        for (var _len = arguments.length, args = Array(_len), _key = 0; _key < _len; _key++) {
-            args[_key] = arguments[_key];
-        }
-
-        // _this = _this || this;
-        expectedArgsLength = expectedArgsLength || f.length;
-        if (args.length >= expectedArgsLength) {
-            var restArgs = args.splice(expectedArgsLength);
-            var res = f.apply(_this, args);
-            if (typeof res === "function") {
-                var newLambda = CurriedLambda(res, _this);
-                return restArgs.length === 0 ? newLambda : newLambda.apply(_this, restArgs);
-            } else {
-                return res;
-            }
-        } else {
-            return CurriedLambda(function () {
-                for (var _len2 = arguments.length, args2 = Array(_len2), _key2 = 0; _key2 < _len2; _key2++) {
-                    args2[_key2] = arguments[_key2];
-                }
-
-                return f.apply(_this, args.concat(args2));
-            }, _this, expectedArgsLength - args.length);
-        }
-    };
-    curriedFn.curried = true;
-    return curriedFn;
-}
-
-/***/ }),
-/* 149 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* unused harmony export append */
-/* unused harmony export choose */
-/* unused harmony export collect */
-/* unused harmony export concat */
-/* harmony export (immutable) */ __webpack_exports__["a"] = filter;
-/* unused harmony export where */
-/* unused harmony export initialize */
-/* harmony export (immutable) */ __webpack_exports__["b"] = map;
-/* unused harmony export mapIndexed */
-/* unused harmony export indexed */
-/* unused harmony export partition */
-/* unused harmony export replicate */
-/* unused harmony export reverse */
-/* unused harmony export singleton */
-/* unused harmony export slice */
-/* unused harmony export unzip */
-/* unused harmony export unzip3 */
-/* unused harmony export groupBy */
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__ListClass__ = __webpack_require__(26);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__Map__ = __webpack_require__(150);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__Seq__ = __webpack_require__(10);
-/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "c", function() { return __WEBPACK_IMPORTED_MODULE_0__ListClass__["b"]; });
-
-
-
-
-
-
-/* unused harmony default export */ var _unused_webpack_default_export = (__WEBPACK_IMPORTED_MODULE_0__ListClass__["a" /* default */]);
-
-function append(xs, ys) {
-    return Object(__WEBPACK_IMPORTED_MODULE_2__Seq__["b" /* fold */])(function (acc, x) {
-        return new __WEBPACK_IMPORTED_MODULE_0__ListClass__["a" /* default */](x, acc);
-    }, ys, reverse(xs));
-}
-function choose(f, xs) {
-    var r = Object(__WEBPACK_IMPORTED_MODULE_2__Seq__["b" /* fold */])(function (acc, x) {
-        var y = f(x);
-        return y != null ? new __WEBPACK_IMPORTED_MODULE_0__ListClass__["a" /* default */](y, acc) : acc;
-    }, new __WEBPACK_IMPORTED_MODULE_0__ListClass__["a" /* default */](), xs);
-    return reverse(r);
-}
-function collect(f, xs) {
-    return Object(__WEBPACK_IMPORTED_MODULE_2__Seq__["b" /* fold */])(function (acc, x) {
-        return append(acc, f(x));
-    }, new __WEBPACK_IMPORTED_MODULE_0__ListClass__["a" /* default */](), xs);
-}
-// TODO: should be xs: Iterable<List<T>>
-function concat(xs) {
-    return collect(function (x) {
-        return x;
-    }, xs);
-}
-function filter(f, xs) {
-    return reverse(Object(__WEBPACK_IMPORTED_MODULE_2__Seq__["b" /* fold */])(function (acc, x) {
-        return f(x) ? new __WEBPACK_IMPORTED_MODULE_0__ListClass__["a" /* default */](x, acc) : acc;
-    }, new __WEBPACK_IMPORTED_MODULE_0__ListClass__["a" /* default */](), xs));
-}
-function where(f, xs) {
-    return filter(f, xs);
-}
-function initialize(n, f) {
-    if (n < 0) {
-        throw new Error("List length must be non-negative");
-    }
-    var xs = new __WEBPACK_IMPORTED_MODULE_0__ListClass__["a" /* default */]();
-    for (var i = 1; i <= n; i++) {
-        xs = new __WEBPACK_IMPORTED_MODULE_0__ListClass__["a" /* default */](f(n - i), xs);
-    }
-    return xs;
-}
-function map(f, xs) {
-    return reverse(Object(__WEBPACK_IMPORTED_MODULE_2__Seq__["b" /* fold */])(function (acc, x) {
-        return new __WEBPACK_IMPORTED_MODULE_0__ListClass__["a" /* default */](f(x), acc);
-    }, new __WEBPACK_IMPORTED_MODULE_0__ListClass__["a" /* default */](), xs));
-}
-function mapIndexed(f, xs) {
-    return reverse(Object(__WEBPACK_IMPORTED_MODULE_2__Seq__["b" /* fold */])(function (acc, x, i) {
-        return new __WEBPACK_IMPORTED_MODULE_0__ListClass__["a" /* default */](f(i, x), acc);
-    }, new __WEBPACK_IMPORTED_MODULE_0__ListClass__["a" /* default */](), xs));
-}
-function indexed(xs) {
-    return mapIndexed(function (i, x) {
-        return [i, x];
-    }, xs);
-}
-function partition(f, xs) {
-    return Object(__WEBPACK_IMPORTED_MODULE_2__Seq__["b" /* fold */])(function (acc, x) {
-        var lacc = acc[0];
-        var racc = acc[1];
-        return f(x) ? [new __WEBPACK_IMPORTED_MODULE_0__ListClass__["a" /* default */](x, lacc), racc] : [lacc, new __WEBPACK_IMPORTED_MODULE_0__ListClass__["a" /* default */](x, racc)];
-    }, [new __WEBPACK_IMPORTED_MODULE_0__ListClass__["a" /* default */](), new __WEBPACK_IMPORTED_MODULE_0__ListClass__["a" /* default */]()], reverse(xs));
-}
-function replicate(n, x) {
-    return initialize(n, function () {
-        return x;
-    });
-}
-function reverse(xs) {
-    return Object(__WEBPACK_IMPORTED_MODULE_2__Seq__["b" /* fold */])(function (acc, x) {
-        return new __WEBPACK_IMPORTED_MODULE_0__ListClass__["a" /* default */](x, acc);
-    }, new __WEBPACK_IMPORTED_MODULE_0__ListClass__["a" /* default */](), xs);
-}
-function singleton(x) {
-    return new __WEBPACK_IMPORTED_MODULE_0__ListClass__["a" /* default */](x, new __WEBPACK_IMPORTED_MODULE_0__ListClass__["a" /* default */]());
-}
-function slice(lower, upper, xs) {
-    var noLower = lower == null;
-    var noUpper = upper == null;
-    return reverse(Object(__WEBPACK_IMPORTED_MODULE_2__Seq__["b" /* fold */])(function (acc, x, i) {
-        return (noLower || lower <= i) && (noUpper || i <= upper) ? new __WEBPACK_IMPORTED_MODULE_0__ListClass__["a" /* default */](x, acc) : acc;
-    }, new __WEBPACK_IMPORTED_MODULE_0__ListClass__["a" /* default */](), xs));
-}
-/* ToDo: instance unzip() */
-function unzip(xs) {
-    return Object(__WEBPACK_IMPORTED_MODULE_2__Seq__["c" /* foldBack */])(function (xy, acc) {
-        return [new __WEBPACK_IMPORTED_MODULE_0__ListClass__["a" /* default */](xy[0], acc[0]), new __WEBPACK_IMPORTED_MODULE_0__ListClass__["a" /* default */](xy[1], acc[1])];
-    }, xs, [new __WEBPACK_IMPORTED_MODULE_0__ListClass__["a" /* default */](), new __WEBPACK_IMPORTED_MODULE_0__ListClass__["a" /* default */]()]);
-}
-/* ToDo: instance unzip3() */
-function unzip3(xs) {
-    return Object(__WEBPACK_IMPORTED_MODULE_2__Seq__["c" /* foldBack */])(function (xyz, acc) {
-        return [new __WEBPACK_IMPORTED_MODULE_0__ListClass__["a" /* default */](xyz[0], acc[0]), new __WEBPACK_IMPORTED_MODULE_0__ListClass__["a" /* default */](xyz[1], acc[1]), new __WEBPACK_IMPORTED_MODULE_0__ListClass__["a" /* default */](xyz[2], acc[2])];
-    }, xs, [new __WEBPACK_IMPORTED_MODULE_0__ListClass__["a" /* default */](), new __WEBPACK_IMPORTED_MODULE_0__ListClass__["a" /* default */](), new __WEBPACK_IMPORTED_MODULE_0__ListClass__["a" /* default */]()]);
-}
-function groupBy(f, xs) {
-    return Object(__WEBPACK_IMPORTED_MODULE_2__Seq__["g" /* toList */])(Object(__WEBPACK_IMPORTED_MODULE_2__Seq__["e" /* map */])(function (k) {
-        return [k[0], Object(__WEBPACK_IMPORTED_MODULE_2__Seq__["g" /* toList */])(k[1])];
-    }, Object(__WEBPACK_IMPORTED_MODULE_1__Map__["a" /* groupBy */])(f, xs)));
-}
-
-/***/ }),
-/* 150 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony export (immutable) */ __webpack_exports__["a"] = groupBy;
-/* unused harmony export countBy */
-/* unused harmony export MapTree */
-/* unused harmony export create */
-/* unused harmony export add */
-/* unused harmony export remove */
-/* unused harmony export containsValue */
-/* unused harmony export tryGetValue */
-/* unused harmony export exists */
-/* unused harmony export find */
-/* unused harmony export tryFind */
-/* unused harmony export filter */
-/* unused harmony export fold */
-/* unused harmony export foldBack */
-/* unused harmony export forAll */
-/* unused harmony export isEmpty */
-/* unused harmony export iterate */
-/* unused harmony export map */
-/* unused harmony export partition */
-/* unused harmony export findKey */
-/* unused harmony export tryFindKey */
-/* unused harmony export pick */
-/* unused harmony export tryPick */
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_babel_runtime_core_js_symbol_iterator__ = __webpack_require__(25);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_babel_runtime_core_js_symbol_iterator___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_babel_runtime_core_js_symbol_iterator__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_babel_runtime_core_js_array_from__ = __webpack_require__(18);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_babel_runtime_core_js_array_from___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_babel_runtime_core_js_array_from__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_babel_runtime_helpers_createClass__ = __webpack_require__(8);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_babel_runtime_helpers_createClass___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_babel_runtime_helpers_createClass__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_babel_runtime_helpers_classCallCheck__ = __webpack_require__(7);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_babel_runtime_helpers_classCallCheck___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_babel_runtime_helpers_classCallCheck__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_babel_runtime_core_js_get_iterator__ = __webpack_require__(11);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_babel_runtime_core_js_get_iterator___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4_babel_runtime_core_js_get_iterator__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__Comparer__ = __webpack_require__(151);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__ListClass__ = __webpack_require__(26);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__Seq__ = __webpack_require__(10);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__Symbol__ = __webpack_require__(9);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__Util__ = __webpack_require__(1);
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-// ----------------------------------------------
-// These functions belong to Seq.ts but are
-// implemented here to prevent cyclic dependencies
-function groupBy(f, xs) {
-    var keys = [];
-    var iter = __WEBPACK_IMPORTED_MODULE_4_babel_runtime_core_js_get_iterator___default()(xs);
-    var acc = create();
-    var cur = iter.next();
-    while (!cur.done) {
-        var k = f(cur.value);
-        var vs = tryFind(k, acc);
-        if (vs == null) {
-            keys.push(k);
-            acc = add(k, [cur.value], acc);
-        } else {
-            vs.push(cur.value);
-        }
-        cur = iter.next();
-    }
-    return keys.map(function (k) {
-        return [k, acc.get(k)];
-    });
-}
-function countBy(f, xs) {
-    return groupBy(f, xs).map(function (kv) {
-        return [kv[0], kv[1].length];
-    });
-}
-var MapTree = function MapTree(tag, data) {
-    __WEBPACK_IMPORTED_MODULE_3_babel_runtime_helpers_classCallCheck___default()(this, MapTree);
-
-    this.tag = tag | 0;
-    this.data = data;
-};
-function tree_sizeAux(acc, m) {
-    sizeAux: while (true) {
-        if (m.tag === 1) {
-            return acc + 1 | 0;
-        } else if (m.tag === 2) {
-            acc = tree_sizeAux(acc + 1, m.data[2]);
-            m = m.data[3];
-            continue sizeAux;
-        } else {
-            return acc | 0;
-        }
-    }
-}
-function tree_size(x) {
-    return tree_sizeAux(0, x);
-}
-function tree_empty() {
-    return new MapTree(0);
-}
-function tree_height(_arg1) {
-    return _arg1.tag === 1 ? 1 : _arg1.tag === 2 ? _arg1.data[4] : 0;
-}
-function tree_isEmpty(m) {
-    return m.tag === 0 ? true : false;
-}
-function tree_mk(l, k, v, r) {
-    var matchValue = l.tag === 0 ? r.tag === 0 ? 0 : 1 : 1;
-    switch (matchValue) {
-        case 0:
-            return new MapTree(1, [k, v]);
-        case 1:
-            var hl = tree_height(l) | 0;
-            var hr = tree_height(r) | 0;
-            var m = (hl < hr ? hr : hl) | 0;
-            return new MapTree(2, [k, v, l, r, m + 1]);
-    }
-    throw new Error("internal error: Map.tree_mk");
-}
-function tree_rebalance(t1, k, v, t2) {
-    var t1h = tree_height(t1);
-    var t2h = tree_height(t2);
-    if (t2h > t1h + 2) {
-        if (t2.tag === 2) {
-            if (tree_height(t2.data[2]) > t1h + 1) {
-                if (t2.data[2].tag === 2) {
-                    return tree_mk(tree_mk(t1, k, v, t2.data[2].data[2]), t2.data[2].data[0], t2.data[2].data[1], tree_mk(t2.data[2].data[3], t2.data[0], t2.data[1], t2.data[3]));
-                } else {
-                    throw new Error("rebalance");
-                }
-            } else {
-                return tree_mk(tree_mk(t1, k, v, t2.data[2]), t2.data[0], t2.data[1], t2.data[3]);
-            }
-        } else {
-            throw new Error("rebalance");
-        }
-    } else {
-        if (t1h > t2h + 2) {
-            if (t1.tag === 2) {
-                if (tree_height(t1.data[3]) > t2h + 1) {
-                    if (t1.data[3].tag === 2) {
-                        return tree_mk(tree_mk(t1.data[2], t1.data[0], t1.data[1], t1.data[3].data[2]), t1.data[3].data[0], t1.data[3].data[1], tree_mk(t1.data[3].data[3], k, v, t2));
-                    } else {
-                        throw new Error("rebalance");
-                    }
-                } else {
-                    return tree_mk(t1.data[2], t1.data[0], t1.data[1], tree_mk(t1.data[3], k, v, t2));
-                }
-            } else {
-                throw new Error("rebalance");
-            }
-        } else {
-            return tree_mk(t1, k, v, t2);
-        }
-    }
-}
-function tree_add(comparer, k, v, m) {
-    if (m.tag === 1) {
-        var c = comparer.Compare(k, m.data[0]);
-        if (c < 0) {
-            return new MapTree(2, [k, v, new MapTree(0), m, 2]);
-        } else if (c === 0) {
-            return new MapTree(1, [k, v]);
-        }
-        return new MapTree(2, [k, v, m, new MapTree(0), 2]);
-    } else if (m.tag === 2) {
-        var _c = comparer.Compare(k, m.data[0]);
-        if (_c < 0) {
-            return tree_rebalance(tree_add(comparer, k, v, m.data[2]), m.data[0], m.data[1], m.data[3]);
-        } else if (_c === 0) {
-            return new MapTree(2, [k, v, m.data[2], m.data[3], m.data[4]]);
-        }
-        return tree_rebalance(m.data[2], m.data[0], m.data[1], tree_add(comparer, k, v, m.data[3]));
-    }
-    return new MapTree(1, [k, v]);
-}
-function tree_find(comparer, k, m) {
-    var res = tree_tryFind(comparer, k, m);
-    if (res != null) {
-        return res;
-    }
-    throw new Error("key not found");
-}
-function tree_tryFind(comparer, k, m) {
-    tryFind: while (true) {
-        if (m.tag === 1) {
-            var c = comparer.Compare(k, m.data[0]) | 0;
-            if (c === 0) {
-                return m.data[1];
-            } else {
-                return null;
-            }
-        } else if (m.tag === 2) {
-            var c_1 = comparer.Compare(k, m.data[0]) | 0;
-            if (c_1 < 0) {
-                comparer = comparer;
-                k = k;
-                m = m.data[2];
-                continue tryFind;
-            } else if (c_1 === 0) {
-                return m.data[1];
-            } else {
-                comparer = comparer;
-                k = k;
-                m = m.data[3];
-                continue tryFind;
-            }
-        } else {
-            return null;
-        }
-    }
-}
-function tree_partition1(comparer, f, k, v, acc1, acc2) {
-    return f(k, v) ? [tree_add(comparer, k, v, acc1), acc2] : [acc1, tree_add(comparer, k, v, acc2)];
-}
-function tree_partitionAux(comparer, f, s, acc_0, acc_1) {
-    var acc = [acc_0, acc_1];
-    if (s.tag === 1) {
-        return tree_partition1(comparer, f, s.data[0], s.data[1], acc[0], acc[1]);
-    } else if (s.tag === 2) {
-        var acc_2 = tree_partitionAux(comparer, f, s.data[3], acc[0], acc[1]);
-        var acc_3 = tree_partition1(comparer, f, s.data[0], s.data[1], acc_2[0], acc_2[1]);
-        return tree_partitionAux(comparer, f, s.data[2], acc_3[0], acc_3[1]);
-    }
-    return acc;
-}
-function tree_partition(comparer, f, s) {
-    return tree_partitionAux(comparer, f, s, tree_empty(), tree_empty());
-}
-function tree_filter1(comparer, f, k, v, acc) {
-    return f(k, v) ? tree_add(comparer, k, v, acc) : acc;
-}
-function tree_filterAux(comparer, f, s, acc) {
-    return s.tag === 1 ? tree_filter1(comparer, f, s.data[0], s.data[1], acc) : s.tag === 2 ? tree_filterAux(comparer, f, s.data[3], tree_filter1(comparer, f, s.data[0], s.data[1], tree_filterAux(comparer, f, s.data[2], acc))) : acc;
-}
-function tree_filter(comparer, f, s) {
-    return tree_filterAux(comparer, f, s, tree_empty());
-}
-function tree_spliceOutSuccessor(m) {
-    if (m.tag === 1) {
-        return [m.data[0], m.data[1], new MapTree(0)];
-    } else if (m.tag === 2) {
-        if (m.data[2].tag === 0) {
-            return [m.data[0], m.data[1], m.data[3]];
-        } else {
-            var kvl = tree_spliceOutSuccessor(m.data[2]);
-            return [kvl[0], kvl[1], tree_mk(kvl[2], m.data[0], m.data[1], m.data[3])];
-        }
-    }
-    throw new Error("internal error: Map.spliceOutSuccessor");
-}
-function tree_remove(comparer, k, m) {
-    if (m.tag === 1) {
-        var c = comparer.Compare(k, m.data[0]);
-        if (c === 0) {
-            return new MapTree(0);
-        } else {
-            return m;
-        }
-    } else if (m.tag === 2) {
-        var _c2 = comparer.Compare(k, m.data[0]);
-        if (_c2 < 0) {
-            return tree_rebalance(tree_remove(comparer, k, m.data[2]), m.data[0], m.data[1], m.data[3]);
-        } else if (_c2 === 0) {
-            if (m.data[2].tag === 0) {
-                return m.data[3];
-            } else {
-                if (m.data[3].tag === 0) {
-                    return m.data[2];
-                } else {
-                    var input = tree_spliceOutSuccessor(m.data[3]);
-                    return tree_mk(m.data[2], input[0], input[1], input[2]);
-                }
-            }
-        } else {
-            return tree_rebalance(m.data[2], m.data[0], m.data[1], tree_remove(comparer, k, m.data[3]));
-        }
-    } else {
-        return tree_empty();
-    }
-}
-function tree_mem(comparer, k, m) {
-    mem: while (true) {
-        if (m.tag === 1) {
-            return comparer.Compare(k, m.data[0]) === 0;
-        } else if (m.tag === 2) {
-            var c = comparer.Compare(k, m.data[0]) | 0;
-            if (c < 0) {
-                comparer = comparer;
-                k = k;
-                m = m.data[2];
-                continue mem;
-            } else if (c === 0) {
-                return true;
-            } else {
-                comparer = comparer;
-                k = k;
-                m = m.data[3];
-                continue mem;
-            }
-        } else {
-            return false;
-        }
-    }
-}
-function tree_iter(f, m) {
-    if (m.tag === 1) {
-        f(m.data[0], m.data[1]);
-    } else if (m.tag === 2) {
-        tree_iter(f, m.data[2]);
-        f(m.data[0], m.data[1]);
-        tree_iter(f, m.data[3]);
-    }
-}
-function tree_tryPick(f, m) {
-    if (m.tag === 1) {
-        return f(m.data[0], m.data[1]);
-    } else if (m.tag === 2) {
-        var matchValue = tree_tryPick(f, m.data[2]);
-        if (matchValue == null) {
-            var matchValue_1 = f(m.data[0], m.data[1]);
-            if (matchValue_1 == null) {
-                return tree_tryPick(f, m.data[3]);
-            } else {
-                var res = matchValue_1;
-                return res;
-            }
-        } else {
-            return matchValue;
-        }
-    } else {
-        return null;
-    }
-}
-function tree_exists(f, m) {
-    return m.tag === 1 ? f(m.data[0], m.data[1]) : m.tag === 2 ? (tree_exists(f, m.data[2]) ? true : f(m.data[0], m.data[1])) ? true : tree_exists(f, m.data[3]) : false;
-}
-function tree_forall(f, m) {
-    return m.tag === 1 ? f(m.data[0], m.data[1]) : m.tag === 2 ? (tree_forall(f, m.data[2]) ? f(m.data[0], m.data[1]) : false) ? tree_forall(f, m.data[3]) : false : true;
-}
-function tree_mapi(f, m) {
-    return m.tag === 1 ? new MapTree(1, [m.data[0], f(m.data[0], m.data[1])]) : m.tag === 2 ? new MapTree(2, [m.data[0], f(m.data[0], m.data[1]), tree_mapi(f, m.data[2]), tree_mapi(f, m.data[3]), m.data[4]]) : tree_empty();
-}
-function tree_foldBack(f, m, x) {
-    return m.tag === 1 ? f(m.data[0], m.data[1], x) : m.tag === 2 ? tree_foldBack(f, m.data[2], f(m.data[0], m.data[1], tree_foldBack(f, m.data[3], x))) : x;
-}
-function tree_fold(f, x, m) {
-    return m.tag === 1 ? f(x, m.data[0], m.data[1]) : m.tag === 2 ? tree_fold(f, f(tree_fold(f, x, m.data[2]), m.data[0], m.data[1]), m.data[3]) : x;
-}
-// function tree_foldFromTo(
-//     comparer: IComparer<any>, lo: any, hi: any,
-//     f: (k:any, v: any, acc: any) => any, m: MapTree, x: any): any {
-//   if (m.tag === 1) {
-//     var cLoKey = comparer.Compare(lo, m.data[0]);
-//     var cKeyHi = comparer.Compare(m.data[0], hi);
-//     var x_1 = (cLoKey <= 0 ? cKeyHi <= 0 : false) ? f(m.data[0], m.data[1], x) : x;
-//     return x_1;
-//   } else if (m.tag === 2) {
-//     var cLoKey = comparer.Compare(lo, m.data[0]);
-//     var cKeyHi = comparer.Compare(m.data[0], hi);
-//     var x_1 = cLoKey < 0 ? tree_foldFromTo(comparer, lo, hi, f, m.data[2], x) : x;
-//     var x_2 = (cLoKey <= 0 ? cKeyHi <= 0 : false) ? f(m.data[0], m.data[1], x_1) : x_1;
-//     var x_3 = cKeyHi < 0 ? tree_foldFromTo(comparer, lo, hi, f, m.data[3], x_2) : x_2;
-//     return x_3;
-//   }
-//   return x;
-// }
-// function tree_foldSection(
-//     comparer: IComparer<any>, lo: any, hi: any,
-//     f: (k: any, v: any, acc: any) => any, m: MapTree, x: any) {
-//   return comparer.Compare(lo, hi) === 1 ? x : tree_foldFromTo(comparer, lo, hi, f, m, x);
-// }
-// function tree_loop(m: MapTree, acc: any): List<[any,any]> {
-//   return m.tag === 1
-//     ? new List([m.data[0], m.data[1]], acc)
-//     : m.tag === 2
-//       ? tree_loop(m.data[2], new List([m.data[0], m.data[1]], tree_loop(m.data[3], acc)))
-//       : acc;
-// }
-// function tree_toList(m: MapTree) {
-//   return tree_loop(m, new List());
-// }
-// function tree_toArray(m: MapTree) {
-//   return Array.from(tree_toList(m));
-// }
-// function tree_ofList(comparer: IComparer<any>, l: List<[any,any]>) {
-//   return Seq.fold((acc: MapTree, tupledArg: [any, any]) => {
-//     return tree_add(comparer, tupledArg[0], tupledArg[1], acc);
-//   }, tree_empty(), l);
-// }
-function tree_mkFromEnumerator(comparer, acc, e) {
-    var cur = e.next();
-    while (!cur.done) {
-        acc = tree_add(comparer, cur.value[0], cur.value[1], acc);
-        cur = e.next();
-    }
-    return acc;
-}
-// function tree_ofArray(comparer: IComparer<any>, arr: ArrayLike<[any,any]>) {
-//   var res = tree_empty();
-//   for (var i = 0; i <= arr.length - 1; i++) {
-//     res = tree_add(comparer, arr[i][0], arr[i][1], res);
-//   }
-//   return res;
-// }
-function tree_ofSeq(comparer, c) {
-    var ie = __WEBPACK_IMPORTED_MODULE_4_babel_runtime_core_js_get_iterator___default()(c);
-    return tree_mkFromEnumerator(comparer, tree_empty(), ie);
-}
-// function tree_copyToArray(s: MapTree, arr: ArrayLike<any>, i: number) {
-//   tree_iter((x, y) => { arr[i++] = [x, y]; }, s);
-// }
-function tree_collapseLHS(stack) {
-    if (stack.tail != null) {
-        if (stack.head.tag === 1) {
-            return stack;
-        } else if (stack.head.tag === 2) {
-            return tree_collapseLHS(Object(__WEBPACK_IMPORTED_MODULE_6__ListClass__["b" /* ofArray */])([stack.head.data[2], new MapTree(1, [stack.head.data[0], stack.head.data[1]]), stack.head.data[3]], stack.tail));
-        } else {
-            return tree_collapseLHS(stack.tail);
-        }
-    } else {
-        return new __WEBPACK_IMPORTED_MODULE_6__ListClass__["a" /* default */]();
-    }
-}
-function tree_mkIterator(s) {
-    return { stack: tree_collapseLHS(new __WEBPACK_IMPORTED_MODULE_6__ListClass__["a" /* default */](s, new __WEBPACK_IMPORTED_MODULE_6__ListClass__["a" /* default */]())), started: false };
-}
-function tree_moveNext(i) {
-    function current(it) {
-        if (it.stack.tail == null) {
-            return null;
-        } else if (it.stack.head.tag === 1) {
-            return [it.stack.head.data[0], it.stack.head.data[1]];
-        }
-        throw new Error("Please report error: Map iterator, unexpected stack for current");
-    }
-    if (i.started) {
-        if (i.stack.tail == null) {
-            return { done: true, value: null };
-        } else {
-            if (i.stack.head.tag === 1) {
-                i.stack = tree_collapseLHS(i.stack.tail);
-                return {
-                    done: i.stack.tail == null,
-                    value: current(i)
-                };
-            } else {
-                throw new Error("Please report error: Map iterator, unexpected stack for moveNext");
-            }
-        }
-    } else {
-        i.started = true;
-        return {
-            done: i.stack.tail == null,
-            value: current(i)
-        };
-    }
-}
-
-var FableMap = function () {
-    /** Do not call, use Map.create instead. */
-    function FableMap() {
-        __WEBPACK_IMPORTED_MODULE_3_babel_runtime_helpers_classCallCheck___default()(this, FableMap);
-
-        return;
-    }
-
-    __WEBPACK_IMPORTED_MODULE_2_babel_runtime_helpers_createClass___default()(FableMap, [{
-        key: "ToString",
-        value: function ToString() {
-            return "map [" + __WEBPACK_IMPORTED_MODULE_1_babel_runtime_core_js_array_from___default()(this).map(function (x) {
-                return Object(__WEBPACK_IMPORTED_MODULE_9__Util__["g" /* toString */])(x);
-            }).join("; ") + "]";
-        }
-    }, {
-        key: "Equals",
-        value: function Equals(m2) {
-            return this.CompareTo(m2) === 0;
-        }
-    }, {
-        key: "CompareTo",
-        value: function CompareTo(m2) {
-            var _this = this;
-
-            return this === m2 ? 0 : Object(__WEBPACK_IMPORTED_MODULE_7__Seq__["a" /* compareWith */])(function (kvp1, kvp2) {
-                var c = _this.comparer.Compare(kvp1[0], kvp2[0]);
-                return c !== 0 ? c : Object(__WEBPACK_IMPORTED_MODULE_9__Util__["a" /* compare */])(kvp1[1], kvp2[1]);
-            }, this, m2);
-        }
-    }, {
-        key: __WEBPACK_IMPORTED_MODULE_0_babel_runtime_core_js_symbol_iterator___default.a,
-        value: function value() {
-            var i = tree_mkIterator(this.tree);
-            return {
-                next: function next() {
-                    return tree_moveNext(i);
-                }
-            };
-        }
-    }, {
-        key: "entries",
-        value: function entries() {
-            return __WEBPACK_IMPORTED_MODULE_4_babel_runtime_core_js_get_iterator___default()(this);
-        }
-    }, {
-        key: "keys",
-        value: function keys() {
-            return Object(__WEBPACK_IMPORTED_MODULE_7__Seq__["e" /* map */])(function (kv) {
-                return kv[0];
-            }, this);
-        }
-    }, {
-        key: "values",
-        value: function values() {
-            return Object(__WEBPACK_IMPORTED_MODULE_7__Seq__["e" /* map */])(function (kv) {
-                return kv[1];
-            }, this);
-        }
-    }, {
-        key: "get",
-        value: function get(k) {
-            return tree_find(this.comparer, k, this.tree);
-        }
-    }, {
-        key: "has",
-        value: function has(k) {
-            return tree_mem(this.comparer, k, this.tree);
-        }
-        /** Mutating method */
-
-    }, {
-        key: "set",
-        value: function set(k, v) {
-            this.tree = tree_add(this.comparer, k, v, this.tree);
-        }
-        /** Mutating method */
-
-    }, {
-        key: "delete",
-        value: function _delete(k) {
-            // TODO: Is calculating the size twice is more performant than calling tree_mem?
-            var oldSize = tree_size(this.tree);
-            this.tree = tree_remove(this.comparer, k, this.tree);
-            return oldSize > tree_size(this.tree);
-        }
-        /** Mutating method */
-
-    }, {
-        key: "clear",
-        value: function clear() {
-            this.tree = tree_empty();
-        }
-    }, {
-        key: __WEBPACK_IMPORTED_MODULE_8__Symbol__["a" /* default */].reflection,
-        value: function value() {
-            return {
-                type: "Microsoft.FSharp.Collections.FSharpMap",
-                interfaces: ["System.IEquatable", "System.IComparable", "System.Collections.Generic.IDictionary"]
-            };
-        }
-    }, {
-        key: "size",
-        get: function get() {
-            return tree_size(this.tree);
-        }
-    }]);
-
-    return FableMap;
-}();
-
-/* unused harmony default export */ var _unused_webpack_default_export = (FableMap);
-
-function from(comparer, tree) {
-    var map = new FableMap();
-    map.tree = tree;
-    map.comparer = comparer || new __WEBPACK_IMPORTED_MODULE_5__Comparer__["a" /* default */]();
-    return map;
-}
-function create(ie, comparer) {
-    comparer = comparer || new __WEBPACK_IMPORTED_MODULE_5__Comparer__["a" /* default */]();
-    return from(comparer, ie ? tree_ofSeq(comparer, ie) : tree_empty());
-}
-function add(k, v, map) {
-    return from(map.comparer, tree_add(map.comparer, k, v, map.tree));
-}
-function remove(item, map) {
-    return from(map.comparer, tree_remove(map.comparer, item, map.tree));
-}
-function containsValue(v, map) {
-    return Object(__WEBPACK_IMPORTED_MODULE_7__Seq__["b" /* fold */])(function (acc, k) {
-        return acc || Object(__WEBPACK_IMPORTED_MODULE_9__Util__["e" /* equals */])(map.get(k), v);
-    }, false, map.keys());
-}
-function tryGetValue(map, key, defaultValue) {
-    return map.has(key) ? [true, map.get(key)] : [false, defaultValue];
-}
-function exists(f, map) {
-    return tree_exists(f, map.tree);
-}
-function find(k, map) {
-    return tree_find(map.comparer, k, map.tree);
-}
-function tryFind(k, map) {
-    return tree_tryFind(map.comparer, k, map.tree);
-}
-function filter(f, map) {
-    return from(map.comparer, tree_filter(map.comparer, f, map.tree));
-}
-function fold(f, seed, map) {
-    return tree_fold(f, seed, map.tree);
-}
-function foldBack(f, map, seed) {
-    return tree_foldBack(f, map.tree, seed);
-}
-function forAll(f, map) {
-    return tree_forall(f, map.tree);
-}
-function isEmpty(map) {
-    return tree_isEmpty(map.tree);
-}
-function iterate(f, map) {
-    tree_iter(f, map.tree);
-}
-function map(f, map) {
-    return from(map.comparer, tree_mapi(f, map.tree));
-}
-function partition(f, map) {
-    var rs = tree_partition(map.comparer, f, map.tree);
-    return [from(map.comparer, rs[0]), from(map.comparer, rs[1])];
-}
-function findKey(f, map) {
-    return Object(__WEBPACK_IMPORTED_MODULE_7__Seq__["f" /* pick */])(function (kv) {
-        return f(kv[0], kv[1]) ? kv[0] : null;
-    }, map);
-}
-function tryFindKey(f, map) {
-    return Object(__WEBPACK_IMPORTED_MODULE_7__Seq__["h" /* tryPick */])(function (kv) {
-        return f(kv[0], kv[1]) ? kv[0] : null;
-    }, map);
-}
-function pick(f, map) {
-    var res = tryPick(f, map);
-    if (res != null) {
-        return res;
-    }
-    throw new Error("key not found");
-}
-function tryPick(f, map) {
-    return tree_tryPick(f, map.tree);
-}
-
-/***/ }),
-/* 151 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* unused harmony export fromEqualityComparer */
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_babel_runtime_helpers_classCallCheck__ = __webpack_require__(7);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_babel_runtime_helpers_classCallCheck___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_babel_runtime_helpers_classCallCheck__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_babel_runtime_helpers_createClass__ = __webpack_require__(8);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_babel_runtime_helpers_createClass___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_babel_runtime_helpers_createClass__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__Symbol__ = __webpack_require__(9);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__Util__ = __webpack_require__(1);
-
-
-
-
-
-var Comparer = function () {
-    function Comparer(f) {
-        __WEBPACK_IMPORTED_MODULE_0_babel_runtime_helpers_classCallCheck___default()(this, Comparer);
-
-        this.Compare = f || __WEBPACK_IMPORTED_MODULE_3__Util__["a" /* compare */];
-    }
-
-    __WEBPACK_IMPORTED_MODULE_1_babel_runtime_helpers_createClass___default()(Comparer, [{
-        key: __WEBPACK_IMPORTED_MODULE_2__Symbol__["a" /* default */].reflection,
-        value: function value() {
-            return { interfaces: ["System.IComparer"] };
-        }
-    }]);
-
-    return Comparer;
-}();
-
-/* harmony default export */ __webpack_exports__["a"] = (Comparer);
-
-function fromEqualityComparer(comparer) {
-    // Sometimes IEqualityComparer also implements IComparer
-    if (typeof comparer.Compare === "function") {
-        return new Comparer(comparer.Compare);
-    } else {
-        return new Comparer(function (x, y) {
-            var xhash = comparer.GetHashCode(x);
-            var yhash = comparer.GetHashCode(y);
-            if (xhash === yhash) {
-                return comparer.Equals(x, y) ? 0 : -1;
-            } else {
-                return xhash < yhash ? -1 : 1;
-            }
-        });
-    }
-}
-
-/***/ }),
-/* 152 */
+/***/ "fs":
+/*!*********************!*\
+  !*** external "fs" ***!
+  \*********************/
+/*! no static exports found */
 /***/ (function(module, exports) {
 
 module.exports = require("fs");
 
 /***/ }),
-/* 153 */
+
+/***/ "path":
+/*!***********************!*\
+  !*** external "path" ***!
+  \***********************/
+/*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = require("child_process");
+module.exports = require("path");
 
 /***/ })
-/******/ ]);
+
+/******/ });
 //# sourceMappingURL=renderer.js.map
