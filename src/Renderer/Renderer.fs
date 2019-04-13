@@ -5,7 +5,6 @@ open Fable.Core.JsInterop
 open Fable.Import
 open Electron
 open Node.Exports
-open Fable.PowerPack
 
 let filesize = import<obj> "*" "file-size"
 // This is a dynamic programming instruction because we don't have a binding for file-size lib

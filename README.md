@@ -1,15 +1,37 @@
 # HDL editor
 
-### Progress
+### Framework
 
-Started an electron framework
+F#, using Fable to compile to JavaScript.
 
-Have tested JointJS
+Electron as the platform to run the JavaScript application.
 
-Have not moved to F# and fable
+Electron is based on Node.js.
+
+### Software Requirements:
+
+Node.js installed.
+
+Npm installed, which should be installed automatically when installing Node.js.
+
+Yarn installed.
+
+Dotnet SDK installed.
 
 ### Usage
 
-Run `npm install` followed by `npm start`
+#### Frist Time Setup:
 
-Need to have Node.js installed
+`yarn install`
+
+`dotnet restore`
+
+#### Run the Application:
+
+In one command line window, run:
+
+`yarn start`
+
+Open another command line window, run:
+
+`yarn launch`
