@@ -49,7 +49,7 @@ var mainConfig = Object.assign({
   entry: resolve("src/Main/Main.fsproj"),
   output: {
     path: resolve("app"),
-    filename: "main.js"
+    filename: "js/main.js"
   }
 }, basicConfig);
 
@@ -58,7 +58,7 @@ var rendererConfig = Object.assign({
   entry: resolve("src/Renderer/Renderer.fsproj"),
   output: {
     path: resolve("app"),
-    filename: "renderer.js"
+    filename: "js/renderer.js"
   }
 }, basicConfig);
 

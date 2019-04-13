@@ -1140,12 +1140,12 @@ __webpack_require__.r(__webpack_exports__);
 var mainWindow = Object(_fable_fable_library_2_2_3_Util_js__WEBPACK_IMPORTED_MODULE_0__["createAtom"])(null);
 function createMainWindow() {
   var options = {};
-  options.width = 800;
-  options.height = 600;
-  options.autoHideMenuBar = true;
+  options.width = 1366;
+  options.height = 1024;
+  options.autoHideMenuBar = false;
   var window$ = new electron__WEBPACK_IMPORTED_MODULE_1___default.a.BrowserWindow(options);
   var opts = {};
-  opts.pathname = path__WEBPACK_IMPORTED_MODULE_2__["join"](__dirname, "index.html");
+  opts.pathname = path__WEBPACK_IMPORTED_MODULE_2__["join"](__dirname, "../index.html");
   opts.protocol = "file:";
   window$.loadURL(url__WEBPACK_IMPORTED_MODULE_3__["format"](opts));
   fs__WEBPACK_IMPORTED_MODULE_4__["watch"](path__WEBPACK_IMPORTED_MODULE_2__["join"](__dirname, "renderer.js"), function (_arg2, _arg1) {

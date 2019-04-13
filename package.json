@@ -2,11 +2,11 @@
   "private": true,
   "productName": "hdl_editor",
   "version": "1.0.0",
-  "main": "app/main.js",
+  "main": "app/js/main.js",
   "scripts": {
     "start": "yarn webpack --port free -w --config webpack.config.js",
     "build": "cd src/Main && dotnet fable webpack --port free -- -p --config ../../webpack.config.js",
-    "launch": "electron .",
+    "launch": "electron . -w",
     "release": "electron-packager . --out release --overwrite"
   },
   "keywords": [

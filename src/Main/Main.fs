@@ -12,14 +12,14 @@ let mutable mainWindow: BrowserWindow option = Option.None
 
 let createMainWindow () =
     let options = createEmpty<BrowserWindowOptions>
-    options.width <- Some 800.
-    options.height <- Some 600.
-    options.autoHideMenuBar <- Some true
+    options.width <- Some 1366.
+    options.height <- Some 1024.
+    options.autoHideMenuBar <- Some false
     let window = electron.BrowserWindow.Create(options)
 
     // Load the index.html of the app.
     let opts = createEmpty<Node.Url.Url<obj>>
-    opts.pathname <- Some <| Path.join(Node.Globals.__dirname, "index.html")
+    opts.pathname <- Some <| Path.join(Node.Globals.__dirname, "../index.html")
     opts.protocol <- Some "file:"
     window.loadURL(Url.format(opts))
 
