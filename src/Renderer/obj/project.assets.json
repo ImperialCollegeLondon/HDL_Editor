@@ -123,7 +123,7 @@
           "lib/netstandard1.0/_._": {}
         }
       },
-      "NETStandard.Library/2.0.3": {
+      "NETStandard.Library/2.0.0": {
         "type": "package",
         "dependencies": {
           "Microsoft.NETCore.Platforms": "1.1.0"
@@ -1290,14 +1290,16 @@
         "version.txt"
       ]
     },
-    "NETStandard.Library/2.0.3": {
-      "sha512": "n4o57QFCr04ER6rYvoLsm1oLYa4g8MtMDMR18cwyxayMknFxPSp9U1gRiDD5hIZHs/8neoPvkWhBf62lu4983w==",
+    "NETStandard.Library/2.0.0": {
+      "sha512": "7jnbRU+L08FXKMxqUflxEXtVymWvNOrS8yHgu9s6EM8Anr6T/wIX4nZ08j/u3Asz+tCufp3YVwFSEvFTPYmBPA==",
       "type": "package",
-      "path": "netstandard.library/2.0.3",
+      "path": "netstandard.library/2.0.0",
       "files": [
         ".nupkg.metadata",
+        ".signature.p7s",
         "LICENSE.TXT",
         "THIRD-PARTY-NOTICES.TXT",
+        "build/NETStandard.Library.targets",
         "build/netstandard2.0/NETStandard.Library.targets",
         "build/netstandard2.0/ref/Microsoft.Win32.Primitives.dll",
         "build/netstandard2.0/ref/System.AppContext.dll",
@@ -1414,9 +1416,8 @@
         "build/netstandard2.0/ref/netstandard.dll",
         "build/netstandard2.0/ref/netstandard.xml",
         "lib/netstandard1.0/_._",
-        "netstandard.library.2.0.3.nupkg.sha512",
-        "netstandard.library.nuspec",
-        "paket-installmodel.cache"
+        "netstandard.library.2.0.0.nupkg.sha512",
+        "netstandard.library.nuspec"
       ]
     },
     "runtime.debian.8-x64.runtime.native.System.Security.Cryptography.OpenSsl/4.3.1": {
@@ -4461,7 +4462,7 @@
       "Fable.PowerPack >= 1.2.0",
       "Microsoft.NETCore.Platforms >= 2.0.0",
       "Microsoft.NETCore.Targets >= 2.0.0",
-      "NETStandard.Library >= 2.0.3",
+      "NETStandard.Library >= 2.0.0",
       "System.Collections >= 4.3.0",
       "System.Collections.Concurrent >= 4.3.0",
       "System.Console >= 4.3.0",
@@ -4560,14 +4561,6 @@
         "netstandard2.0": {
           "projectReferences": {}
         }
-      },
-      "warningProperties": {
-        "noWarn": [
-          "NU1603",
-          "NU1604",
-          "NU1605",
-          "NU1608"
-        ]
       }
     },
     "frameworks": {
@@ -4608,8 +4601,7 @@
           "NETStandard.Library": {
             "suppressParent": "All",
             "target": "Package",
-            "version": "[2.0.3, )",
-            "autoReferenced": true
+            "version": "[2.0.0, )"
           },
           "System.Collections": {
             "target": "Package",
