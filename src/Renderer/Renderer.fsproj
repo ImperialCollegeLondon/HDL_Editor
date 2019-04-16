@@ -1,10 +1,11 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="Blocks.fs" />
+    <Compile Include="Canvas.fs" />
     <Compile Include="Html.fs" />
     <Compile Include="Mime.fs" />
     <Compile Include="Renderer.fs" />
