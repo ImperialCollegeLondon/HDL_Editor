@@ -6,17 +6,21 @@
 module Blocks
 
 /// define the dimensions of the canvas
-let mutable canvasXMax = 1000;
+let mutable canvasXMax = int64 1000
+let mutable canvasXMin = int64 -1000
+let mutable canvasYMax = int64 1000
+let mutable canvasYMin = int64 -1000
 
-let mutable canvasYMax = 1000;
-
-let canvasExtraSpece = 10;
+let canvasExtraSpece = int64 10;
 
 /// possible errors when creating or interacting with blocks
 type BlockError = 
-    | ``X coordinate is out of range`` of XCoordinate:int
-    | ``Y coordinate is out of range`` of YCoordinate:int
-    | ``Both coordinates are out of range`` of XCoordinate:int * YCoordinate:int
+    | ``X Max coordinate is out of range`` of XMaxCoordinate:int64
+    | ``Y Max coordinate is out of range`` of YMaxCoordinate:int64
+    | ``Both Max coordinates are out of range`` of XMaxCoordinate:int64 * YMaxCoordinate:int64
+    | ``X Min coordinate is out of range`` of XMinCoordinate:int64
+    | ``Y Min coordinate is out of range`` of YMinCoordinate:int64
+    | ``Both Min coordinates are out of range`` of XMinCoordinate:int64 * YMinCoordinate:int64
 
 /// built-in block types
 type BuiltinBlockTypes = 
@@ -39,8 +43,8 @@ type ConnectionInfo = {
 
 /// the coordinates of the corners of the block
 type BuildinBlockCoordinates = {
-    XCoordinate: int;
-    YCoordinate: int
+    XCoordinate: int64;
+    YCoordinate: int64
 }
 
 type BlockCorner = {
@@ -54,28 +58,41 @@ type BlockCorner = {
 type BuiltinBlockInfo = {
     BlockName: string;
     BlockType: BuiltinBlockTypes;
+    BlockPins: BuiltinBlockPin List;
     ConnectionStatus: ConnectionInfo List option;
     CornerCoordinates: BlockCorner
 }
 
 let getBuiltinBlockSize (blockType:BuiltinBlockTypes) = 
     match blockType with
-    | BlockA -> 10, 10
+    | BlockA -> int64 10, int64 10
+
+let getBuiltinBlockPins (blockType:BuiltinBlockTypes) = 
+    match blockType with
+    | BlockA -> [PinA]
 
 let checkBlockCornerWithinBorder (corners:BlockCorner) =   
     let checkOneCorner oneCorner = match (oneCorner.XCoordinate, oneCorner.YCoordinate) with
-                                   | (a, b) when a > canvasXMax && b > canvasYMax -> ``Both coordinates are out of range`` (XCoordinate = a, YCoordinate = b) |> Error
-                                   | a, _ when a > canvasXMax -> ``X coordinate is out of range`` (XCoordinate = a) |> Error
-                                   | _, b when b > canvasYMax -> ``Y coordinate is out of range`` (YCoordinate = b) |> Error
+                                   | (a, b) when a > canvasXMax && b > canvasYMax -> ``Both Max coordinates are out of range`` (XMaxCoordinate = a, YMaxCoordinate = b) |> Error
+                                   | (a, _) when a > canvasXMax -> ``X Max coordinate is out of range`` (XMaxCoordinate = a) |> Error
+                                   | (_, b) when b > canvasYMax -> ``Y Max coordinate is out of range`` (YMaxCoordinate = b) |> Error
+                                   | (a, b) when a < canvasXMin && b < canvasYMin -> ``Both Min coordinates are out of range`` (XMinCoordinate = a, YMinCoordinate = b) |> Error
+                                   | (a, _) when a < canvasXMin -> ``X Min coordinate is out of range`` (XMinCoordinate = a) |> Error
+                                   | (_, b) when b < canvasYMin -> ``Y Min coordinate is out of range`` (YMinCoordinate = b) |> Error
                                    | _, _ -> oneCorner |> Ok
     [corners.TopLeft; corners.ButtomLeft; corners.TopRight; corners.ButtomRight] |> List.map checkOneCorner
 
 let resizeCanvasDimension (sizeError:BlockError) = 
     match sizeError with
-    | ``X coordinate is out of range``(XCoordinate = x) -> canvasXMax <- x + canvasExtraSpece
-    | ``Y coordinate is out of range``(YCoordinate = y) -> canvasYMax <- y + canvasExtraSpece
-    | ``Both coordinates are out of range``(XCoordinate = x; YCoordinate = y) -> canvasXMax <- (x + canvasExtraSpece)
-                                                                                 canvasYMax <- (y + canvasExtraSpece)
+    | ``X Max coordinate is out of range`` (XMaxCoordinate = x) -> canvasXMax <- x + canvasExtraSpece
+    | ``Y Max coordinate is out of range`` (YMaxCoordinate = y) -> canvasYMax <- y + canvasExtraSpece
+    | ``Both Max coordinates are out of range`` (XMaxCoordinate = x; YMaxCoordinate = y) -> canvasXMax <- x + canvasExtraSpece
+                                                                                            canvasYMax <- y + canvasExtraSpece
+    | ``X Min coordinate is out of range`` (XMinCoordinate = x) -> canvasXMin <- x - canvasExtraSpece
+    | ``Y Min coordinate is out of range`` (YMinCoordinate = y) -> canvasYMin <- y - canvasExtraSpece
+    | ``Both Min coordinates are out of range`` (XMinCoordinate = x; YMinCoordinate = y) -> canvasXMin <- x - canvasExtraSpece
+                                                                                            canvasYMin <- y - canvasExtraSpece
+
 let blockNameGenerator (blockType:BuiltinBlockTypes) = 
     "Block A"
 
@@ -90,6 +107,7 @@ let createBuiltinBlock (coordinate:BuildinBlockCoordinates) (blockType:BuiltinBl
                                }
     let block = {BlockName = blockNameGenerator blockType;
                  BlockType = blockType;
+                 BlockPins = getBuiltinBlockPins blockType;
                  ConnectionStatus = None;
                  CornerCoordinates = allCornerCoordinates}
     let findErrorInCheckingCorners corner = match corner with
