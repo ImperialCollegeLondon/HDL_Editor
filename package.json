@@ -31,6 +31,7 @@
     "fable-compiler": "^2.2.3",
     "fable-loader": "^2.1.5",
     "loglevel": "^1.4.1",
+    "ts2fable": "^0.6.2",
     "webpack": "^4.29.6",
     "webpack-cli": "^3.3.0"
   }

@@ -21,14 +21,6 @@ let removeFromBlockStorage (block:BuiltinBlockInfo) =
     | Some el -> blockStorage <-removeFromBlockStorage' el blockStorage []
     | None -> blockStorage <- blockStorage
 
-let getBlockIndexInBlockStorage (block:BuiltinBlockInfo) = 
-    let rec getBlockIndexInBlockStorage' blockList index = 
-        match blockList with
-        | a::b when a.BlockName = block.BlockName -> index |> Ok
-        | a::b when a.BlockName <> block.BlockName -> getBlockIndexInBlockStorage' b (index+1)
-        | _ -> ``The block is not found``(BlockName = block.BlockName) |> Error
-    getBlockIndexInBlockStorage' blockStorage 0
-
 let decreaseCanvasDimension = 
     let add a b = a + b;
     canvasXMax <- blockStorage 
@@ -49,8 +41,22 @@ let decreaseCanvasDimension =
                   |> add canvasExtraSpece
  
 let moveBlocks (block:BuiltinBlockInfo) (coordinate:BuildinBlockCoordinates) = 
-    let blockIndex = getBlockIndexInBlockStorage block
     let updatedBlock = block.BlockType 
                        |> createBuiltinBlock coordinate
-    blockStorage.[blockIndex] <- updatedBlock
+    List.find (fun el -> el.BlockName = block.BlockName) blockStorage <- updatedBlock
 
+let deleteBlock (block:BuiltinBlockInfo) = 
+    let rec deleteBlock' blockList res = 
+        match blockList with
+        | a::b when a.BlockName = block.BlockName -> deleteBlock' b res
+        | a::b when a.BlockName <> block.BlockName -> deleteBlock' b (a::res)
+        | _ -> res
+    blockStorage <- deleteBlock' blockStorage []
+
+let renameBlock (block:BuiltinBlockInfo) (newBlockName:string) = 
+    let updatedBlock = {BlockName = newBlockName;
+                        BlockType = block.BlockType;
+                        BlockPins = block.BlockPins;
+                        ConnectionStatus = block.ConnectionStatus;
+                        CornerCoordinates = block.CornerCoordinates}
+    List.find (fun el -> el.BlockName = block.BlockName) blockStorage <- updatedBlock
