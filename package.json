@@ -16,8 +16,10 @@
   "license": "MIT",
   "dependencies": {
     "@babel/runtime": "^7.4.3",
+    "@types/rappid": "^1.5.31",
     "core-js": "^3.0.1",
-    "file-size": "^1.0.0"
+    "file-size": "^1.0.0",
+    "mxgraph": "^3.9.12"
   },
   "devDependencies": {
     "@babel/core": "^7.4.3",
