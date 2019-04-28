@@ -4,17 +4,11 @@
     <TargetFramework>netstandard2.0</TargetFramework>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="BpmnModdle.fs" />
     <Compile Include="Blocks.fs" />
     <Compile Include="Canvas.fs" />
-    <Compile Include="Backbone.fs" />
-    <Compile Include="Geometry.fs" />
-    <Compile Include="Vectorizer.fs" />
-    <Compile Include="Jointjs.fs" />
-    <Compile Include="Rappidjs.fs" />
     <Compile Include="Html.fs" />
     <Compile Include="Mime.fs" />
-    <Compile Include="MxGraph.fs" />
+    <Compile Include="HTMLUtilities.fs" />
     <Compile Include="Renderer.fs" />
   </ItemGroup>
   <Import Project="..\..\.paket\Paket.Restore.targets" />

@@ -10,14 +10,6 @@ let filesize = import<obj> "*" "file-size"
 // This is a dynamic programming instruction because we don't have a binding for file-size lib
 let sizeToHuman (size: float) : string = (filesize $ (size))?human $ ("si") |> unbox<string>
 
-// Reference the element of the View used by the application
-module Ref =
-
-    let openFolder = Browser.document.getElementById("act-open-folder")
-    let quit = Browser.document.getElementById("act-quit")
-    let about = Browser.document.getElementById("act-about")
-    let addressBar = Browser.document.getElementById("address-bar")
-    let filesList = Browser.document.getElementById("files-list")
 
 // Used to storage a reference of the about window
 // Otherwise, the window is destroy by the Garbage Collector
@@ -33,47 +25,6 @@ type Navigate =
 
 // Create a navigation event which handle path update
 let navigation = Event<Navigate>()
-
-
-///**Description**
-///
-///**Parameters**
-///  * `path` - parameter of type `string` - Absolute path of the directory
-///  * `segment` - parameter of type `string` - Name to display
-///
-///**Output Type**
-///  * `Browser.HTMLLIElement`
-///
-let createBreadcrumbSegment path segment =
-    let root = Browser.document.createElement_li()
-    let link = Browser.document.createElement_a()
-    link.href <- "#"
-    link.innerText <- segment
-
-    link.addEventListener_click(fun _ ->
-        navigation.Trigger({ Path = path })
-        null
-    )
-
-    root.appendChild(link) |> ignore
-    root
-
-///**Description**
-///
-///**Parameters**
-///  * `path` - parameter of type `string` - Absolute path to represent
-///
-///**Output Type**
-///  * `Browser.HTMLLIElement []`
-///
-let generateBreadcrumb (path : string) =
-    let segments = path.Split(char Path.sep)
-
-    segments
-    |> Array.mapi(fun index segment ->
-        let subPath = segments.[0..index] |> String.concat Path.sep
-        createBreadcrumbSegment subPath segment
-    )
 
 
 ///**Description**

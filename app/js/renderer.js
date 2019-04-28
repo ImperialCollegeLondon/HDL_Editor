@@ -12393,6 +12393,42 @@ function getItemFromDict(map, key) {
 
 /***/ }),
 
+/***/ "./node_modules/@babel/runtime/helpers/arrayWithHoles.js":
+/*!***************************************************************!*\
+  !*** ./node_modules/@babel/runtime/helpers/arrayWithHoles.js ***!
+  \***************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+function _arrayWithHoles(arr) {
+  if (Array.isArray(arr)) return arr;
+}
+
+module.exports = _arrayWithHoles;
+
+/***/ }),
+
+/***/ "./node_modules/@babel/runtime/helpers/arrayWithoutHoles.js":
+/*!******************************************************************!*\
+  !*** ./node_modules/@babel/runtime/helpers/arrayWithoutHoles.js ***!
+  \******************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+function _arrayWithoutHoles(arr) {
+  if (Array.isArray(arr)) {
+    for (var i = 0, arr2 = new Array(arr.length); i < arr.length; i++) {
+      arr2[i] = arr[i];
+    }
+
+    return arr2;
+  }
+}
+
+module.exports = _arrayWithoutHoles;
+
+/***/ }),
+
 /***/ "./node_modules/@babel/runtime/helpers/classCallCheck.js":
 /*!***************************************************************!*\
   !*** ./node_modules/@babel/runtime/helpers/classCallCheck.js ***!
@@ -12400,7 +12436,13 @@ function getItemFromDict(map, key) {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-throw new Error("Module build failed: Error: ENOENT: no such file or directory, open 'C:\\Users\\Wilson_Wang\\Desktop\\Parallel_HDL_Dev\\node_modules\\@babel\\runtime\\helpers\\classCallCheck.js'");
+function _classCallCheck(instance, Constructor) {
+  if (!(instance instanceof Constructor)) {
+    throw new TypeError("Cannot call a class as a function");
+  }
+}
+
+module.exports = _classCallCheck;
 
 /***/ }),
 
@@ -12409,9 +12451,41 @@ throw new Error("Module build failed: Error: ENOENT: no such file or directory, 
   !*** ./node_modules/@babel/runtime/helpers/construct.js ***!
   \**********************************************************/
 /*! no static exports found */
-/***/ (function(module, exports) {
+/***/ (function(module, exports, __webpack_require__) {
 
-throw new Error("Module build failed: Error: ENOENT: no such file or directory, open 'C:\\Users\\Wilson_Wang\\Desktop\\Parallel_HDL_Dev\\node_modules\\@babel\\runtime\\helpers\\construct.js'");
+var setPrototypeOf = __webpack_require__(/*! ./setPrototypeOf */ "./node_modules/@babel/runtime/helpers/setPrototypeOf.js");
+
+function isNativeReflectConstruct() {
+  if (typeof Reflect === "undefined" || !Reflect.construct) return false;
+  if (Reflect.construct.sham) return false;
+  if (typeof Proxy === "function") return true;
+
+  try {
+    Date.prototype.toString.call(Reflect.construct(Date, [], function () {}));
+    return true;
+  } catch (e) {
+    return false;
+  }
+}
+
+function _construct(Parent, args, Class) {
+  if (isNativeReflectConstruct()) {
+    module.exports = _construct = Reflect.construct;
+  } else {
+    module.exports = _construct = function _construct(Parent, args, Class) {
+      var a = [null];
+      a.push.apply(a, args);
+      var Constructor = Function.bind.apply(Parent, a);
+      var instance = new Constructor();
+      if (Class) setPrototypeOf(instance, Class.prototype);
+      return instance;
+    };
+  }
+
+  return _construct.apply(null, arguments);
+}
+
+module.exports = _construct;
 
 /***/ }),
 
@@ -12422,7 +12496,23 @@ throw new Error("Module build failed: Error: ENOENT: no such file or directory, 
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-throw new Error("Module build failed: Error: ENOENT: no such file or directory, open 'C:\\Users\\Wilson_Wang\\Desktop\\Parallel_HDL_Dev\\node_modules\\@babel\\runtime\\helpers\\createClass.js'");
+function _defineProperties(target, props) {
+  for (var i = 0; i < props.length; i++) {
+    var descriptor = props[i];
+    descriptor.enumerable = descriptor.enumerable || false;
+    descriptor.configurable = true;
+    if ("value" in descriptor) descriptor.writable = true;
+    Object.defineProperty(target, descriptor.key, descriptor);
+  }
+}
+
+function _createClass(Constructor, protoProps, staticProps) {
+  if (protoProps) _defineProperties(Constructor.prototype, protoProps);
+  if (staticProps) _defineProperties(Constructor, staticProps);
+  return Constructor;
+}
+
+module.exports = _createClass;
 
 /***/ }),
 
@@ -12433,7 +12523,124 @@ throw new Error("Module build failed: Error: ENOENT: no such file or directory, 
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-throw new Error("Module build failed: Error: ENOENT: no such file or directory, open 'C:\\Users\\Wilson_Wang\\Desktop\\Parallel_HDL_Dev\\node_modules\\@babel\\runtime\\helpers\\defineProperty.js'");
+function _defineProperty(obj, key, value) {
+  if (key in obj) {
+    Object.defineProperty(obj, key, {
+      value: value,
+      enumerable: true,
+      configurable: true,
+      writable: true
+    });
+  } else {
+    obj[key] = value;
+  }
+
+  return obj;
+}
+
+module.exports = _defineProperty;
+
+/***/ }),
+
+/***/ "./node_modules/@babel/runtime/helpers/iterableToArray.js":
+/*!****************************************************************!*\
+  !*** ./node_modules/@babel/runtime/helpers/iterableToArray.js ***!
+  \****************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+function _iterableToArray(iter) {
+  if (Symbol.iterator in Object(iter) || Object.prototype.toString.call(iter) === "[object Arguments]") return Array.from(iter);
+}
+
+module.exports = _iterableToArray;
+
+/***/ }),
+
+/***/ "./node_modules/@babel/runtime/helpers/iterableToArrayLimit.js":
+/*!*********************************************************************!*\
+  !*** ./node_modules/@babel/runtime/helpers/iterableToArrayLimit.js ***!
+  \*********************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+function _iterableToArrayLimit(arr, i) {
+  var _arr = [];
+  var _n = true;
+  var _d = false;
+  var _e = undefined;
+
+  try {
+    for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) {
+      _arr.push(_s.value);
+
+      if (i && _arr.length === i) break;
+    }
+  } catch (err) {
+    _d = true;
+    _e = err;
+  } finally {
+    try {
+      if (!_n && _i["return"] != null) _i["return"]();
+    } finally {
+      if (_d) throw _e;
+    }
+  }
+
+  return _arr;
+}
+
+module.exports = _iterableToArrayLimit;
+
+/***/ }),
+
+/***/ "./node_modules/@babel/runtime/helpers/nonIterableRest.js":
+/*!****************************************************************!*\
+  !*** ./node_modules/@babel/runtime/helpers/nonIterableRest.js ***!
+  \****************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+function _nonIterableRest() {
+  throw new TypeError("Invalid attempt to destructure non-iterable instance");
+}
+
+module.exports = _nonIterableRest;
+
+/***/ }),
+
+/***/ "./node_modules/@babel/runtime/helpers/nonIterableSpread.js":
+/*!******************************************************************!*\
+  !*** ./node_modules/@babel/runtime/helpers/nonIterableSpread.js ***!
+  \******************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+function _nonIterableSpread() {
+  throw new TypeError("Invalid attempt to spread non-iterable instance");
+}
+
+module.exports = _nonIterableSpread;
+
+/***/ }),
+
+/***/ "./node_modules/@babel/runtime/helpers/setPrototypeOf.js":
+/*!***************************************************************!*\
+  !*** ./node_modules/@babel/runtime/helpers/setPrototypeOf.js ***!
+  \***************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+function _setPrototypeOf(o, p) {
+  module.exports = _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) {
+    o.__proto__ = p;
+    return o;
+  };
+
+  return _setPrototypeOf(o, p);
+}
+
+module.exports = _setPrototypeOf;
 
 /***/ }),
 
@@ -12442,9 +12649,19 @@ throw new Error("Module build failed: Error: ENOENT: no such file or directory, 
   !*** ./node_modules/@babel/runtime/helpers/slicedToArray.js ***!
   \**************************************************************/
 /*! no static exports found */
-/***/ (function(module, exports) {
+/***/ (function(module, exports, __webpack_require__) {
 
-throw new Error("Module build failed: Error: ENOENT: no such file or directory, open 'C:\\Users\\Wilson_Wang\\Desktop\\Parallel_HDL_Dev\\node_modules\\@babel\\runtime\\helpers\\slicedToArray.js'");
+var arrayWithHoles = __webpack_require__(/*! ./arrayWithHoles */ "./node_modules/@babel/runtime/helpers/arrayWithHoles.js");
+
+var iterableToArrayLimit = __webpack_require__(/*! ./iterableToArrayLimit */ "./node_modules/@babel/runtime/helpers/iterableToArrayLimit.js");
+
+var nonIterableRest = __webpack_require__(/*! ./nonIterableRest */ "./node_modules/@babel/runtime/helpers/nonIterableRest.js");
+
+function _slicedToArray(arr, i) {
+  return arrayWithHoles(arr) || iterableToArrayLimit(arr, i) || nonIterableRest();
+}
+
+module.exports = _slicedToArray;
 
 /***/ }),
 
@@ -12453,9 +12670,19 @@ throw new Error("Module build failed: Error: ENOENT: no such file or directory, 
   !*** ./node_modules/@babel/runtime/helpers/toConsumableArray.js ***!
   \******************************************************************/
 /*! no static exports found */
-/***/ (function(module, exports) {
+/***/ (function(module, exports, __webpack_require__) {
 
-throw new Error("Module build failed: Error: ENOENT: no such file or directory, open 'C:\\Users\\Wilson_Wang\\Desktop\\Parallel_HDL_Dev\\node_modules\\@babel\\runtime\\helpers\\toConsumableArray.js'");
+var arrayWithoutHoles = __webpack_require__(/*! ./arrayWithoutHoles */ "./node_modules/@babel/runtime/helpers/arrayWithoutHoles.js");
+
+var iterableToArray = __webpack_require__(/*! ./iterableToArray */ "./node_modules/@babel/runtime/helpers/iterableToArray.js");
+
+var nonIterableSpread = __webpack_require__(/*! ./nonIterableSpread */ "./node_modules/@babel/runtime/helpers/nonIterableSpread.js");
+
+function _toConsumableArray(arr) {
+  return arrayWithoutHoles(arr) || iterableToArray(arr) || nonIterableSpread();
+}
+
+module.exports = _toConsumableArray;
 
 /***/ }),
 
@@ -12466,7 +12693,23 @@ throw new Error("Module build failed: Error: ENOENT: no such file or directory, 
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-throw new Error("Module build failed: Error: ENOENT: no such file or directory, open 'C:\\Users\\Wilson_Wang\\Desktop\\Parallel_HDL_Dev\\node_modules\\@babel\\runtime\\helpers\\typeof.js'");
+function _typeof2(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof2 = function _typeof2(obj) { return typeof obj; }; } else { _typeof2 = function _typeof2(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof2(obj); }
+
+function _typeof(obj) {
+  if (typeof Symbol === "function" && _typeof2(Symbol.iterator) === "symbol") {
+    module.exports = _typeof = function _typeof(obj) {
+      return _typeof2(obj);
+    };
+  } else {
+    module.exports = _typeof = function _typeof(obj) {
+      return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : _typeof2(obj);
+    };
+  }
+
+  return _typeof(obj);
+}
+
+module.exports = _typeof;
 
 /***/ }),
 
@@ -12711,51 +12954,40 @@ function determineFileType(path$$2) {
 /*!**********************************!*\
   !*** ./src/Renderer/Renderer.fs ***!
   \**********************************/
-/*! exports provided: filesize, sizeToHuman, Ref$$$openFolder, Ref$$$quit, Ref$$$about, Ref$$$addressBar, Ref$$$filesList, aboutWindow, remote, Navigate, Navigate$reflection, navigation, createBreadcrumbSegment, generateBreadcrumb, generateFileRow, init */
+/*! exports provided: filesize, sizeToHuman, aboutWindow, remote, Navigate, Navigate$reflection, navigation, generateFileRow, init */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "filesize", function() { return filesize; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "sizeToHuman", function() { return sizeToHuman; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "Ref$$$openFolder", function() { return Ref$$$openFolder; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "Ref$$$quit", function() { return Ref$$$quit; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "Ref$$$about", function() { return Ref$$$about; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "Ref$$$addressBar", function() { return Ref$$$addressBar; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "Ref$$$filesList", function() { return Ref$$$filesList; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "aboutWindow", function() { return aboutWindow; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "remote", function() { return remote; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "Navigate", function() { return Navigate; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "Navigate$reflection", function() { return Navigate$reflection; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "navigation", function() { return navigation; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "createBreadcrumbSegment", function() { return createBreadcrumbSegment; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "generateBreadcrumb", function() { return generateBreadcrumb; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "generateFileRow", function() { return generateFileRow; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "init", function() { return init; });
-/* harmony import */ var _babel_runtime_helpers_toConsumableArray__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/helpers/toConsumableArray */ "./node_modules/@babel/runtime/helpers/toConsumableArray.js");
-/* harmony import */ var _babel_runtime_helpers_toConsumableArray__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_helpers_toConsumableArray__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var file_size__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! file-size */ "./node_modules/file-size/index.js");
-/* harmony import */ var file_size__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(file_size__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var _fable_fable_library_2_2_3_Util_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../.fable/fable-library.2.2.3/Util.js */ "./.fable/fable-library.2.2.3/Util.js");
-/* harmony import */ var electron__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! electron */ "electron");
-/* harmony import */ var electron__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(electron__WEBPACK_IMPORTED_MODULE_3__);
-/* harmony import */ var _fable_fable_library_2_2_3_Types_js__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../.fable/fable-library.2.2.3/Types.js */ "./.fable/fable-library.2.2.3/Types.js");
-/* harmony import */ var _fable_fable_library_2_2_3_Reflection_js__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../.fable/fable-library.2.2.3/Reflection.js */ "./.fable/fable-library.2.2.3/Reflection.js");
-/* harmony import */ var _fable_fable_library_2_2_3_Event_js__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../../.fable/fable-library.2.2.3/Event.js */ "./.fable/fable-library.2.2.3/Event.js");
-/* harmony import */ var path__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! path */ "path");
-/* harmony import */ var path__WEBPACK_IMPORTED_MODULE_7___default = /*#__PURE__*/__webpack_require__.n(path__WEBPACK_IMPORTED_MODULE_7__);
-/* harmony import */ var _fable_fable_library_2_2_3_String_js__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../../.fable/fable-library.2.2.3/String.js */ "./.fable/fable-library.2.2.3/String.js");
-/* harmony import */ var _fable_fable_library_2_2_3_Array_js__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ../../.fable/fable-library.2.2.3/Array.js */ "./.fable/fable-library.2.2.3/Array.js");
-/* harmony import */ var C_Users_Wilson_Wang_Desktop_Parallel_HDL_Dev_src_Renderer_Mime_fs__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./src/Renderer/Mime.fs */ "./src/Renderer/Mime.fs");
-/* harmony import */ var C_Users_Wilson_Wang_Desktop_Parallel_HDL_Dev_src_Renderer_Html_fs__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./src/Renderer/Html.fs */ "./src/Renderer/Html.fs");
-/* harmony import */ var _fable_fable_library_2_2_3_Date_js__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ../../.fable/fable-library.2.2.3/Date.js */ "./.fable/fable-library.2.2.3/Date.js");
-/* harmony import */ var fs__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! fs */ "fs");
-/* harmony import */ var fs__WEBPACK_IMPORTED_MODULE_13___default = /*#__PURE__*/__webpack_require__.n(fs__WEBPACK_IMPORTED_MODULE_13__);
-/* harmony import */ var _fable_fable_library_2_2_3_List_js__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ../../.fable/fable-library.2.2.3/List.js */ "./.fable/fable-library.2.2.3/List.js");
-/* harmony import */ var child_process__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! child_process */ "child_process");
-/* harmony import */ var child_process__WEBPACK_IMPORTED_MODULE_15___default = /*#__PURE__*/__webpack_require__.n(child_process__WEBPACK_IMPORTED_MODULE_15__);
-/* harmony import */ var _fable_fable_library_2_2_3_Observable_js__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! ../../.fable/fable-library.2.2.3/Observable.js */ "./.fable/fable-library.2.2.3/Observable.js");
-/* harmony import */ var _fable_fable_library_2_2_3_Seq_js__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(/*! ../../.fable/fable-library.2.2.3/Seq.js */ "./.fable/fable-library.2.2.3/Seq.js");
+/* harmony import */ var file_size__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! file-size */ "./node_modules/file-size/index.js");
+/* harmony import */ var file_size__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(file_size__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _fable_fable_library_2_2_3_Util_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../.fable/fable-library.2.2.3/Util.js */ "./.fable/fable-library.2.2.3/Util.js");
+/* harmony import */ var electron__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! electron */ "electron");
+/* harmony import */ var electron__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(electron__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var _fable_fable_library_2_2_3_Types_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../.fable/fable-library.2.2.3/Types.js */ "./.fable/fable-library.2.2.3/Types.js");
+/* harmony import */ var _fable_fable_library_2_2_3_Reflection_js__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../.fable/fable-library.2.2.3/Reflection.js */ "./.fable/fable-library.2.2.3/Reflection.js");
+/* harmony import */ var _fable_fable_library_2_2_3_Event_js__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../.fable/fable-library.2.2.3/Event.js */ "./.fable/fable-library.2.2.3/Event.js");
+/* harmony import */ var C_Users_Wilson_Wang_Desktop_Parallel_HDL_Dev_src_Renderer_Mime_fs__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./src/Renderer/Mime.fs */ "./src/Renderer/Mime.fs");
+/* harmony import */ var C_Users_Wilson_Wang_Desktop_Parallel_HDL_Dev_src_Renderer_Html_fs__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./src/Renderer/Html.fs */ "./src/Renderer/Html.fs");
+/* harmony import */ var _fable_fable_library_2_2_3_Date_js__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../../.fable/fable-library.2.2.3/Date.js */ "./.fable/fable-library.2.2.3/Date.js");
+/* harmony import */ var path__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! path */ "path");
+/* harmony import */ var path__WEBPACK_IMPORTED_MODULE_9___default = /*#__PURE__*/__webpack_require__.n(path__WEBPACK_IMPORTED_MODULE_9__);
+/* harmony import */ var fs__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! fs */ "fs");
+/* harmony import */ var fs__WEBPACK_IMPORTED_MODULE_10___default = /*#__PURE__*/__webpack_require__.n(fs__WEBPACK_IMPORTED_MODULE_10__);
+/* harmony import */ var _fable_fable_library_2_2_3_List_js__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ../../.fable/fable-library.2.2.3/List.js */ "./.fable/fable-library.2.2.3/List.js");
+/* harmony import */ var child_process__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! child_process */ "child_process");
+/* harmony import */ var child_process__WEBPACK_IMPORTED_MODULE_12___default = /*#__PURE__*/__webpack_require__.n(child_process__WEBPACK_IMPORTED_MODULE_12__);
+/* harmony import */ var _fable_fable_library_2_2_3_Observable_js__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ../../.fable/fable-library.2.2.3/Observable.js */ "./.fable/fable-library.2.2.3/Observable.js");
+/* harmony import */ var _fable_fable_library_2_2_3_Seq_js__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ../../.fable/fable-library.2.2.3/Seq.js */ "./.fable/fable-library.2.2.3/Seq.js");
 
 
 
@@ -12771,121 +13003,79 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-
-
-
-var filesize = file_size__WEBPACK_IMPORTED_MODULE_1__;
+var filesize = file_size__WEBPACK_IMPORTED_MODULE_0__;
 function sizeToHuman(size) {
   return function (arg20) {
     return filesize(size).human(arg20);
   }("si");
 }
-var Ref$$$openFolder = document.getElementById("act-open-folder");
-var Ref$$$quit = document.getElementById("act-quit");
-var Ref$$$about = document.getElementById("act-about");
-var Ref$$$addressBar = document.getElementById("address-bar");
-var Ref$$$filesList = document.getElementById("files-list");
-var aboutWindow = Object(_fable_fable_library_2_2_3_Util_js__WEBPACK_IMPORTED_MODULE_2__["createAtom"])(null);
-var remote = electron__WEBPACK_IMPORTED_MODULE_3__["remote"];
-var Navigate = Object(_fable_fable_library_2_2_3_Types_js__WEBPACK_IMPORTED_MODULE_4__["declare"])(function Renderer_Navigate(arg1) {
+var aboutWindow = Object(_fable_fable_library_2_2_3_Util_js__WEBPACK_IMPORTED_MODULE_1__["createAtom"])(null);
+var remote = electron__WEBPACK_IMPORTED_MODULE_2__["remote"];
+var Navigate = Object(_fable_fable_library_2_2_3_Types_js__WEBPACK_IMPORTED_MODULE_3__["declare"])(function Renderer_Navigate(arg1) {
   this.Path = arg1;
-}, _fable_fable_library_2_2_3_Types_js__WEBPACK_IMPORTED_MODULE_4__["Record"]);
+}, _fable_fable_library_2_2_3_Types_js__WEBPACK_IMPORTED_MODULE_3__["Record"]);
 function Navigate$reflection() {
-  return Object(_fable_fable_library_2_2_3_Reflection_js__WEBPACK_IMPORTED_MODULE_5__["record"])("Renderer.Navigate", [], Navigate, function () {
-    return [["Path", _fable_fable_library_2_2_3_Reflection_js__WEBPACK_IMPORTED_MODULE_5__["string"]]];
+  return Object(_fable_fable_library_2_2_3_Reflection_js__WEBPACK_IMPORTED_MODULE_4__["record"])("Renderer.Navigate", [], Navigate, function () {
+    return [["Path", _fable_fable_library_2_2_3_Reflection_js__WEBPACK_IMPORTED_MODULE_4__["string"]]];
   });
 }
-var navigation = new _fable_fable_library_2_2_3_Event_js__WEBPACK_IMPORTED_MODULE_6__["default"]();
-function createBreadcrumbSegment(path, segment) {
-  var root = document.createElement("li");
-  var link = document.createElement("a");
-  link.href = "#";
-  link.innerText = segment;
-  link.addEventListener("click", function (_arg1) {
-    navigation.Trigger(new Navigate(path));
-    return null;
-  });
-  root.appendChild(link);
-  return root;
-}
-function generateBreadcrumb(path$$1) {
-  var segments = path$$1.split(path__WEBPACK_IMPORTED_MODULE_7__["sep"]);
-  return Object(_fable_fable_library_2_2_3_Array_js__WEBPACK_IMPORTED_MODULE_9__["mapIndexed"])(function mapping(index, segment$$1) {
-    var subPath = _fable_fable_library_2_2_3_String_js__WEBPACK_IMPORTED_MODULE_8__["join"].apply(void 0, [path__WEBPACK_IMPORTED_MODULE_7__["sep"]].concat(_babel_runtime_helpers_toConsumableArray__WEBPACK_IMPORTED_MODULE_0___default()(segments.slice(0, index + 1))));
-    return createBreadcrumbSegment(subPath, segment$$1);
-  }, segments, Array);
-}
-function generateFileRow(path$$2, filename, fileStats) {
-  var root$$1 = document.createElement("tr");
+var navigation = new _fable_fable_library_2_2_3_Event_js__WEBPACK_IMPORTED_MODULE_5__["default"]();
+function generateFileRow(path, filename, fileStats) {
+  var root = document.createElement("tr");
   var icon = document.createElement("td");
   var name = document.createElement("td");
   var date = document.createElement("td");
   var type = document.createElement("td");
   var size$$1 = document.createElement("td");
   var isDirectory = fileStats.isDirectory();
-  icon.appendChild(Object(C_Users_Wilson_Wang_Desktop_Parallel_HDL_Dev_src_Renderer_Html_fs__WEBPACK_IMPORTED_MODULE_11__["createIcon"])(Object(C_Users_Wilson_Wang_Desktop_Parallel_HDL_Dev_src_Renderer_Mime_fs__WEBPACK_IMPORTED_MODULE_10__["determineIcon"])(filename)(isDirectory)));
-  name.appendChild(Object(C_Users_Wilson_Wang_Desktop_Parallel_HDL_Dev_src_Renderer_Html_fs__WEBPACK_IMPORTED_MODULE_11__["createLink"])(filename));
-  name.addEventListener("click", function (_arg1$$1) {
-    navigation.Trigger(new Navigate(path$$2));
+  icon.appendChild(Object(C_Users_Wilson_Wang_Desktop_Parallel_HDL_Dev_src_Renderer_Html_fs__WEBPACK_IMPORTED_MODULE_7__["createIcon"])(Object(C_Users_Wilson_Wang_Desktop_Parallel_HDL_Dev_src_Renderer_Mime_fs__WEBPACK_IMPORTED_MODULE_6__["determineIcon"])(filename)(isDirectory)));
+  name.appendChild(Object(C_Users_Wilson_Wang_Desktop_Parallel_HDL_Dev_src_Renderer_Html_fs__WEBPACK_IMPORTED_MODULE_7__["createLink"])(filename));
+  name.addEventListener("click", function (_arg1) {
+    navigation.Trigger(new Navigate(path));
     return null;
   });
   var copyOfStruct = fileStats.birthtime;
-  date.innerText = Object(_fable_fable_library_2_2_3_Date_js__WEBPACK_IMPORTED_MODULE_12__["toString"])(copyOfStruct, "dd-MM-yyyy hh:mm:ss");
-  type.innerText = Object(C_Users_Wilson_Wang_Desktop_Parallel_HDL_Dev_src_Renderer_Mime_fs__WEBPACK_IMPORTED_MODULE_10__["determineFileType"])(filename)(isDirectory);
+  date.innerText = Object(_fable_fable_library_2_2_3_Date_js__WEBPACK_IMPORTED_MODULE_8__["toString"])(copyOfStruct, "dd-MM-yyyy hh:mm:ss");
+  type.innerText = Object(C_Users_Wilson_Wang_Desktop_Parallel_HDL_Dev_src_Renderer_Mime_fs__WEBPACK_IMPORTED_MODULE_6__["determineFileType"])(filename)(isDirectory);
 
   if (!isDirectory) {
     size$$1.innerText = sizeToHuman(fileStats.size);
   }
 
-  Object(C_Users_Wilson_Wang_Desktop_Parallel_HDL_Dev_src_Renderer_Html_fs__WEBPACK_IMPORTED_MODULE_11__["replaceChildren"])(root$$1, [icon, name, date, type, size$$1]);
-  return root$$1;
+  Object(C_Users_Wilson_Wang_Desktop_Parallel_HDL_Dev_src_Renderer_Html_fs__WEBPACK_IMPORTED_MODULE_7__["replaceChildren"])(root, [icon, name, date, type, size$$1]);
+  return root;
 }
 function init() {
-  Object(_fable_fable_library_2_2_3_Observable_js__WEBPACK_IMPORTED_MODULE_16__["add"])(function (ev) {
-    var path$$3 = ev.Path;
+  Object(_fable_fable_library_2_2_3_Observable_js__WEBPACK_IMPORTED_MODULE_13__["add"])(function (ev) {
+    var path$$1 = ev.Path;
 
-    if (fs__WEBPACK_IMPORTED_MODULE_13__["statSync"](path__WEBPACK_IMPORTED_MODULE_7__["join"](path$$3)).isDirectory()) {
-      var segments$$1 = generateBreadcrumb(path$$3);
-      Object(C_Users_Wilson_Wang_Desktop_Parallel_HDL_Dev_src_Renderer_Html_fs__WEBPACK_IMPORTED_MODULE_11__["replaceChildren"])(Ref$$$addressBar, segments$$1);
-      fs__WEBPACK_IMPORTED_MODULE_13__["readdir"](path$$3, function (error, files) {
+    if (fs__WEBPACK_IMPORTED_MODULE_10__["statSync"](path__WEBPACK_IMPORTED_MODULE_9__["join"](path$$1)).isDirectory()) {
+      var segments;
+      throw 1;
+      Object(C_Users_Wilson_Wang_Desktop_Parallel_HDL_Dev_src_Renderer_Html_fs__WEBPACK_IMPORTED_MODULE_7__["replaceChildren"])(function () {
+        throw 1;
+      }(), segments);
+      fs__WEBPACK_IMPORTED_MODULE_10__["readdir"](path$$1, function (error, files) {
         if (error != null) {
           console.error(error);
         }
 
-        Object(C_Users_Wilson_Wang_Desktop_Parallel_HDL_Dev_src_Renderer_Html_fs__WEBPACK_IMPORTED_MODULE_11__["replaceChildren"])(Ref$$$filesList, Object(_fable_fable_library_2_2_3_List_js__WEBPACK_IMPORTED_MODULE_14__["map"])(function mapping$$2(tupledArg) {
-          return generateFileRow(path__WEBPACK_IMPORTED_MODULE_7__["join"](path$$3, tupledArg[0]), tupledArg[0], tupledArg[1]);
-        }, Object(_fable_fable_library_2_2_3_List_js__WEBPACK_IMPORTED_MODULE_14__["map"])(function mapping$$1(file$$1) {
-          return [file$$1, fs__WEBPACK_IMPORTED_MODULE_13__["statSync"](path__WEBPACK_IMPORTED_MODULE_7__["join"](path$$3, file$$1))];
-        }, Object(_fable_fable_library_2_2_3_List_js__WEBPACK_IMPORTED_MODULE_14__["filter"])(function predicate(file) {
+        Object(C_Users_Wilson_Wang_Desktop_Parallel_HDL_Dev_src_Renderer_Html_fs__WEBPACK_IMPORTED_MODULE_7__["replaceChildren"])(function () {
+          throw 1;
+        }(), Object(_fable_fable_library_2_2_3_List_js__WEBPACK_IMPORTED_MODULE_11__["map"])(function mapping$$1(tupledArg) {
+          return generateFileRow(path__WEBPACK_IMPORTED_MODULE_9__["join"](path$$1, tupledArg[0]), tupledArg[0], tupledArg[1]);
+        }, Object(_fable_fable_library_2_2_3_List_js__WEBPACK_IMPORTED_MODULE_11__["map"])(function mapping(file$$1) {
+          return [file$$1, fs__WEBPACK_IMPORTED_MODULE_10__["statSync"](path__WEBPACK_IMPORTED_MODULE_9__["join"](path$$1, file$$1))];
+        }, Object(_fable_fable_library_2_2_3_List_js__WEBPACK_IMPORTED_MODULE_11__["filter"])(function predicate(file) {
           return !(file.indexOf(".") === 0);
         }, files))));
       });
     } else {
-      child_process__WEBPACK_IMPORTED_MODULE_15__["exec"](path$$3);
+      child_process__WEBPACK_IMPORTED_MODULE_12__["exec"](path$$1);
     }
   }, navigation.Publish);
-  Ref$$$about.addEventListener("click", function (_arg1$$2) {
-    if (aboutWindow() != null) {
-      aboutWindow().show();
-    } else {
-      var options = {};
-      options.toolbar = false;
-      options.resizable = false;
-      options.show = true;
-      options.height = 250;
-      options.width = 600;
-      var about = new remote.BrowserWindow(options);
-      about.setMenu(null);
-      about.on("closed", function () {
-        aboutWindow(null);
-      });
-      about.loadURL(path__WEBPACK_IMPORTED_MODULE_7__["join"]("file://", __dirname, "about.html"));
-      aboutWindow(about);
-    }
-
-    return null;
-  });
-  Object(_fable_fable_library_2_2_3_Seq_js__WEBPACK_IMPORTED_MODULE_17__["iterate"])(function (quickAccess) {
+  throw 1;
+  Object(_fable_fable_library_2_2_3_Seq_js__WEBPACK_IMPORTED_MODULE_14__["iterate"])(function (quickAccess) {
     quickAccess.addEventListener("click", function (ev$$1) {
       var element = ev$$1.target;
       var quickAccessInfo = element.dataset["quickAccess"];
@@ -12893,22 +13083,8 @@ function init() {
       return null;
     });
   }, document.querySelectorAll("[data-quick-access]"));
-  Ref$$$openFolder.addEventListener("click", function (_arg2) {
-    var options$$1 = {};
-    options$$1.properties = Array.from(["openDirectory"]);
-    var result = remote.dialog.showOpenDialog(options$$1);
-
-    if (!(result == null) ? Object(_fable_fable_library_2_2_3_Util_js__WEBPACK_IMPORTED_MODULE_2__["count"])(result) > 0 : false) {
-      navigation.Trigger(new Navigate(result[0]));
-    }
-
-    return null;
-  });
-  Ref$$$quit.addEventListener("click", function (_arg3) {
-    var win = remote.getCurrentWindow();
-    win.close();
-    return null;
-  });
+  throw 1;
+  throw 1;
   navigation.Trigger(new Navigate(process.cwd()));
 }
 init();
@@ -12919,7 +13095,7 @@ init();
 /*!**************************************!*\
   !*** ./src/Renderer/Renderer.fsproj ***!
   \**************************************/
-/*! exports provided: filesize, sizeToHuman, Ref$$$openFolder, Ref$$$quit, Ref$$$about, Ref$$$addressBar, Ref$$$filesList, aboutWindow, remote, Navigate, Navigate$reflection, navigation, createBreadcrumbSegment, generateBreadcrumb, generateFileRow, init */
+/*! exports provided: filesize, sizeToHuman, aboutWindow, remote, Navigate, Navigate$reflection, navigation, generateFileRow, init */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -12928,16 +13104,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "filesize", function() { return _Renderer_fs__WEBPACK_IMPORTED_MODULE_0__["filesize"]; });
 
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "sizeToHuman", function() { return _Renderer_fs__WEBPACK_IMPORTED_MODULE_0__["sizeToHuman"]; });
-
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "Ref$$$openFolder", function() { return _Renderer_fs__WEBPACK_IMPORTED_MODULE_0__["Ref$$$openFolder"]; });
-
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "Ref$$$quit", function() { return _Renderer_fs__WEBPACK_IMPORTED_MODULE_0__["Ref$$$quit"]; });
-
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "Ref$$$about", function() { return _Renderer_fs__WEBPACK_IMPORTED_MODULE_0__["Ref$$$about"]; });
-
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "Ref$$$addressBar", function() { return _Renderer_fs__WEBPACK_IMPORTED_MODULE_0__["Ref$$$addressBar"]; });
-
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "Ref$$$filesList", function() { return _Renderer_fs__WEBPACK_IMPORTED_MODULE_0__["Ref$$$filesList"]; });
 
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "aboutWindow", function() { return _Renderer_fs__WEBPACK_IMPORTED_MODULE_0__["aboutWindow"]; });
 
@@ -12948,10 +13114,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "Navigate$reflection", function() { return _Renderer_fs__WEBPACK_IMPORTED_MODULE_0__["Navigate$reflection"]; });
 
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "navigation", function() { return _Renderer_fs__WEBPACK_IMPORTED_MODULE_0__["navigation"]; });
-
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "createBreadcrumbSegment", function() { return _Renderer_fs__WEBPACK_IMPORTED_MODULE_0__["createBreadcrumbSegment"]; });
-
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "generateBreadcrumb", function() { return _Renderer_fs__WEBPACK_IMPORTED_MODULE_0__["generateBreadcrumb"]; });
 
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "generateFileRow", function() { return _Renderer_fs__WEBPACK_IMPORTED_MODULE_0__["generateFileRow"]; });
 
