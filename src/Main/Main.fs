@@ -26,7 +26,7 @@ type MenuItemClass(clickData:Func<MenuItem, BrowserWindow, unit> option,
                    roleData:U2<MenuItemRole, MenuItemRoleMac> option) = 
     let mutable clickData = clickData
     let mutable typeData = typeData
-    let mutable labelData = labelData
+    let mutable label = labelData
     let mutable sublabelData = sublabelData
     let mutable acceleratorData = acceleratorData
     let mutable iconData = iconData
@@ -46,8 +46,8 @@ type MenuItemClass(clickData:Func<MenuItem, BrowserWindow, unit> option,
             with get() = typeData
             and set typeVal = typeData <- typeVal
         member self.label
-            with get() = labelData
-            and set labelVal = labelData <- labelVal
+            with get() = label
+            and set labelVal = label <- labelVal
         member self.sublabel
             with get() = sublabelData
             and set sublabelVal = sublabelData <- sublabelVal
@@ -105,12 +105,15 @@ let createMainWindow () =
                                  submenuData = Option.None,
                                  idData = Option.None,
                                  positionData = Option.None,
-                                 roleData = Some (U2.Case1 MenuItemRole.Quit))
-    menuItem.label <- Some "Quit"
+                                 roleData = Some (U2.Case1 MenuItemRole.Quit))                                
+    (menuItem :> MenuItemOptions).label <- Some "QuitQuit"
     menuTemplate.Add(menuItem)
+    printf "menuTemplate %A" <| menuTemplate.[0]
     let systemMenu = electron.Menu.buildFromTemplate(menuTemplate)
+    printf "creating class"
 
     electron.Menu.setApplicationMenu(systemMenu)
+
 
     #if DEBUG
     Fs.watch(Path.join(Node.Globals.__dirname, "renderer.js"), fun _ _ ->

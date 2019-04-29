@@ -1,4 +1,4 @@
-module.exports.drawRectangle = function (positionX, positionY) {
+nodeModule.exports.drawRectangle = function (positionX, positionY) {
     var rect = new joint.shapes.standard.Rectangle();
     rect.position(positionX, positionY);
     rect.resize(100, 40);
