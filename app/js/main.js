@@ -86,6 +86,704 @@
 /************************************************************************/
 /******/ ({
 
+/***/ "./.fable/fable-library.2.2.3/Reflection.js":
+/*!**************************************************!*\
+  !*** ./.fable/fable-library.2.2.3/Reflection.js ***!
+  \**************************************************/
+/*! exports provided: CaseInfo, TypeInfo, getGenerics, equals, compare, type, record, union, tuple, delegate, lambda, option, list, array, obj, unit, char, string, bool, int8, uint8, int16, uint16, int32, uint32, float32, float64, decimal, name, fullName, namespace, isArray, getElementType, isGenericType, getGenericTypeDefinition, getUnionCases, getRecordElements, getTupleElements, getFunctionElements, isUnion, isRecord, isTuple, isFunction, getUnionFields, getUnionCaseFields, getRecordFields, getRecordField, getTupleFields, getTupleField, makeUnion, makeRecord, makeTuple, getCaseTag, getCaseName, getCaseFields */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "CaseInfo", function() { return CaseInfo; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "TypeInfo", function() { return TypeInfo; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getGenerics", function() { return getGenerics; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "equals", function() { return equals; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "compare", function() { return compare; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "type", function() { return type; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "record", function() { return record; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "union", function() { return union; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "tuple", function() { return tuple; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "delegate", function() { return delegate; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "lambda", function() { return lambda; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "option", function() { return option; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "list", function() { return list; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "array", function() { return array; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "obj", function() { return obj; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "unit", function() { return unit; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "char", function() { return _char; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "string", function() { return string; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "bool", function() { return bool; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "int8", function() { return int8; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "uint8", function() { return uint8; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "int16", function() { return int16; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "uint16", function() { return uint16; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "int32", function() { return int32; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "uint32", function() { return uint32; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "float32", function() { return float32; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "float64", function() { return float64; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "decimal", function() { return decimal; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "name", function() { return name; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "fullName", function() { return fullName; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "namespace", function() { return namespace; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "isArray", function() { return isArray; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getElementType", function() { return getElementType; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "isGenericType", function() { return isGenericType; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getGenericTypeDefinition", function() { return getGenericTypeDefinition; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getUnionCases", function() { return getUnionCases; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getRecordElements", function() { return getRecordElements; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getTupleElements", function() { return getTupleElements; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getFunctionElements", function() { return getFunctionElements; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "isUnion", function() { return isUnion; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "isRecord", function() { return isRecord; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "isTuple", function() { return isTuple; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "isFunction", function() { return isFunction; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getUnionFields", function() { return getUnionFields; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getUnionCaseFields", function() { return getUnionCaseFields; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getRecordFields", function() { return getRecordFields; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getRecordField", function() { return getRecordField; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getTupleFields", function() { return getTupleFields; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getTupleField", function() { return getTupleField; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "makeUnion", function() { return makeUnion; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "makeRecord", function() { return makeRecord; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "makeTuple", function() { return makeTuple; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getCaseTag", function() { return getCaseTag; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getCaseName", function() { return getCaseName; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getCaseFields", function() { return getCaseFields; });
+/* harmony import */ var _babel_runtime_helpers_construct__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/helpers/construct */ "./node_modules/@babel/runtime/helpers/construct.js");
+/* harmony import */ var _babel_runtime_helpers_construct__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_helpers_construct__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _babel_runtime_helpers_toConsumableArray__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @babel/runtime/helpers/toConsumableArray */ "./node_modules/@babel/runtime/helpers/toConsumableArray.js");
+/* harmony import */ var _babel_runtime_helpers_toConsumableArray__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_helpers_toConsumableArray__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @babel/runtime/helpers/createClass */ "./node_modules/@babel/runtime/helpers/createClass.js");
+/* harmony import */ var _babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var _babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @babel/runtime/helpers/classCallCheck */ "./node_modules/@babel/runtime/helpers/classCallCheck.js");
+/* harmony import */ var _babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_3__);
+/* harmony import */ var _Types__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./Types */ "./.fable/fable-library.2.2.3/Types.js");
+/* harmony import */ var _Util__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./Util */ "./.fable/fable-library.2.2.3/Util.js");
+
+
+
+
+
+
+var CaseInfo = function CaseInfo(declaringType, tag, name, fields) {
+  _babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_3___default()(this, CaseInfo);
+
+  this.declaringType = declaringType;
+  this.tag = tag;
+  this.name = name;
+  this.fields = fields;
+};
+var TypeInfo =
+/*#__PURE__*/
+function () {
+  function TypeInfo(fullname, generics, constructor, fields, cases) {
+    _babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_3___default()(this, TypeInfo);
+
+    this.fullname = fullname;
+    this.generics = generics;
+    this.constructor = constructor;
+    this.fields = fields;
+    this.cases = cases;
+  }
+
+  _babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_2___default()(TypeInfo, [{
+    key: "toString",
+    value: function toString() {
+      return fullName(this);
+    }
+  }, {
+    key: "Equals",
+    value: function Equals(other) {
+      return equals(this, other);
+    }
+  }, {
+    key: "CompareTo",
+    value: function CompareTo(other) {
+      return compare(this, other);
+    }
+  }]);
+
+  return TypeInfo;
+}();
+function getGenerics(t) {
+  return t.generics != null ? t.generics : [];
+}
+function equals(t1, t2) {
+  return t1.fullname === t2.fullname && Object(_Util__WEBPACK_IMPORTED_MODULE_5__["equalArraysWith"])(getGenerics(t1), getGenerics(t2), equals);
+} // System.Type is not comparable in .NET, but let's implement this
+// in case users want to create a dictionary with types as keys
+
+function compare(t1, t2) {
+  if (t1.fullname !== t2.fullname) {
+    return t1.fullname < t2.fullname ? -1 : 1;
+  } else {
+    return Object(_Util__WEBPACK_IMPORTED_MODULE_5__["compareArraysWith"])(getGenerics(t1), getGenerics(t2), compare);
+  }
+}
+function type(fullname, generics) {
+  return new TypeInfo(fullname, generics);
+}
+function record(fullname, generics, constructor, fields) {
+  return new TypeInfo(fullname, generics, constructor, fields);
+}
+function union(fullname, generics, constructor, cases) {
+  var t = new TypeInfo(fullname, generics, constructor, null, function () {
+    return cases().map(function (x, i) {
+      return typeof x === "string" ? new CaseInfo(t, i, x) : new CaseInfo(t, i, x[0], x[1]);
+    });
+  });
+  return t;
+}
+function tuple() {
+  for (var _len = arguments.length, generics = new Array(_len), _key = 0; _key < _len; _key++) {
+    generics[_key] = arguments[_key];
+  }
+
+  return new TypeInfo("System.Tuple`" + generics.length, generics);
+}
+function delegate() {
+  for (var _len2 = arguments.length, generics = new Array(_len2), _key2 = 0; _key2 < _len2; _key2++) {
+    generics[_key2] = arguments[_key2];
+  }
+
+  return new TypeInfo("System.Func`" + generics.length, generics);
+}
+function lambda(argType, returnType) {
+  return new TypeInfo("Microsoft.FSharp.Core.FSharpFunc`2", [argType, returnType]);
+}
+function option(generic) {
+  return new TypeInfo("Microsoft.FSharp.Core.FSharpOption`1", [generic]);
+}
+function list(generic) {
+  return new TypeInfo("Microsoft.FSharp.Collections.FSharpList`1", [generic]);
+}
+function array(generic) {
+  return new TypeInfo(generic.fullname + "[]", [generic]);
+}
+var obj = new TypeInfo("System.Object");
+var unit = new TypeInfo("Microsoft.FSharp.Core.Unit");
+
+var _char = new TypeInfo("System.Char");
+
+
+var string = new TypeInfo("System.String");
+var bool = new TypeInfo("System.Boolean");
+var int8 = new TypeInfo("System.SByte");
+var uint8 = new TypeInfo("System.Byte");
+var int16 = new TypeInfo("System.Int16");
+var uint16 = new TypeInfo("System.UInt16");
+var int32 = new TypeInfo("System.Int32");
+var uint32 = new TypeInfo("System.UInt32");
+var float32 = new TypeInfo("System.Single");
+var float64 = new TypeInfo("System.Double");
+var decimal = new TypeInfo("System.Decimal");
+function name(info) {
+  if (Array.isArray(info)) {
+    return info[0];
+  } else if (info instanceof CaseInfo) {
+    return info.name;
+  } else {
+    var i = info.fullname.lastIndexOf(".");
+    return i === -1 ? info.fullname : info.fullname.substr(i + 1);
+  }
+}
+function fullName(t) {
+  var gen = t.generics != null && !isArray(t) ? t.generics : [];
+
+  if (gen.length > 0) {
+    return t.fullname + "[" + gen.map(function (x) {
+      return fullName(x);
+    }).join(",") + "]";
+  } else {
+    return t.fullname;
+  }
+}
+function namespace(t) {
+  var i = t.fullname.lastIndexOf(".");
+  return i === -1 ? "" : t.fullname.substr(0, i);
+}
+function isArray(t) {
+  return t.fullname.endsWith("[]");
+}
+function getElementType(t) {
+  return isArray(t) ? t.generics[0] : null;
+}
+function isGenericType(t) {
+  return t.generics != null && t.generics.length > 0;
+}
+/**
+ * This doesn't replace types for fields (records) or cases (unions)
+ * but it should be enough for type comparison purposes
+ */
+
+function getGenericTypeDefinition(t) {
+  return t.generics == null ? t : new TypeInfo(t.fullname, t.generics.map(function () {
+    return obj;
+  }));
+} // FSharpType
+
+function getUnionCases(t) {
+  if (t.cases != null) {
+    return t.cases();
+  } else {
+    throw new Error("".concat(t.fullname, " is not an F# union type"));
+  }
+}
+function getRecordElements(t) {
+  if (t.fields != null) {
+    return t.fields();
+  } else {
+    throw new Error("".concat(t.fullname, " is not an F# record type"));
+  }
+}
+function getTupleElements(t) {
+  if (isTuple(t)) {
+    return t.generics;
+  } else {
+    throw new Error("".concat(t.fullname, " is not a tuple type"));
+  }
+}
+function getFunctionElements(t) {
+  if (isFunction(t)) {
+    var gen = t.generics;
+    return [gen[0], gen[1]];
+  } else {
+    throw new Error("".concat(t.fullname, " is not an F# function type"));
+  }
+}
+function isUnion(t) {
+  return t instanceof TypeInfo ? t.cases != null : t instanceof _Types__WEBPACK_IMPORTED_MODULE_4__["Union"];
+}
+function isRecord(t) {
+  return t instanceof TypeInfo ? t.fields != null : t instanceof _Types__WEBPACK_IMPORTED_MODULE_4__["Record"];
+}
+function isTuple(t) {
+  return t.fullname.startsWith("System.Tuple");
+} // In .NET this is false for delegates
+
+function isFunction(t) {
+  return t.fullname === "Microsoft.FSharp.Core.FSharpFunc`2";
+} // FSharpValue
+
+function getUnionFields(v, t) {
+  var cases = getUnionCases(t);
+  var case_ = cases[v.tag];
+
+  if (case_ == null) {
+    throw new Error("Cannot find case ".concat(v.name, " in union type"));
+  }
+
+  return [case_, v.fields];
+}
+function getUnionCaseFields(uci) {
+  return uci.fields == null ? [] : uci.fields.map(function (t, i) {
+    return ["Data" + i, t];
+  });
+}
+function getRecordFields(v) {
+  return Object.keys(v).map(function (k) {
+    return v[k];
+  });
+}
+function getRecordField(v, field) {
+  return v[field[0]];
+}
+function getTupleFields(v) {
+  return v;
+}
+function getTupleField(v, i) {
+  return v[i];
+}
+function makeUnion(uci, values) {
+  var expectedLength = (uci.fields || []).length;
+
+  if (values.length !== expectedLength) {
+    throw new Error("Expected an array of length ".concat(expectedLength, " but got ").concat(values.length));
+  }
+
+  return _babel_runtime_helpers_construct__WEBPACK_IMPORTED_MODULE_0___default()(uci.declaringType.constructor, [uci.tag, uci.name].concat(_babel_runtime_helpers_toConsumableArray__WEBPACK_IMPORTED_MODULE_1___default()(values)));
+}
+function makeRecord(t, values) {
+  var fields = getRecordElements(t);
+
+  if (fields.length !== values.length) {
+    throw new Error("Expected an array of length ".concat(fields.length, " but got ").concat(values.length));
+  }
+
+  return _babel_runtime_helpers_construct__WEBPACK_IMPORTED_MODULE_0___default()(t.constructor, _babel_runtime_helpers_toConsumableArray__WEBPACK_IMPORTED_MODULE_1___default()(values));
+}
+function makeTuple(values, t) {
+  return values;
+} // Fable.Core.Reflection
+
+function assertUnion(x) {
+  if (!(x instanceof _Types__WEBPACK_IMPORTED_MODULE_4__["Union"])) {
+    throw new Error("Value is not an F# union type");
+  }
+}
+
+function getCaseTag(x) {
+  assertUnion(x);
+  return x.tag;
+}
+function getCaseName(x) {
+  assertUnion(x);
+  return x.name;
+}
+function getCaseFields(x) {
+  assertUnion(x);
+  return x.fields;
+}
+
+/***/ }),
+
+/***/ "./.fable/fable-library.2.2.3/Types.js":
+/*!*********************************************!*\
+  !*** ./.fable/fable-library.2.2.3/Types.js ***!
+  \*********************************************/
+/*! exports provided: declare, SystemObject, List, Union, Record, anonRecord, FSharpRef, Exception, isException, FSharpException, MatchFailureException, Attribute */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "declare", function() { return declare; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "SystemObject", function() { return SystemObject; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "List", function() { return List; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "Union", function() { return Union; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "Record", function() { return Record; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "anonRecord", function() { return anonRecord; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "FSharpRef", function() { return FSharpRef; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "Exception", function() { return Exception; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "isException", function() { return isException; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "FSharpException", function() { return FSharpException; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "MatchFailureException", function() { return MatchFailureException; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "Attribute", function() { return Attribute; });
+/* harmony import */ var _Util__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./Util */ "./.fable/fable-library.2.2.3/Util.js");
+
+
+function sameType(x, y) {
+  return y != null && Object.getPrototypeOf(x).constructor === Object.getPrototypeOf(y).constructor;
+} // Taken from Babel helpers
+
+
+function inherits(subClass, superClass) {
+  // if (typeof superClass !== "function" && superClass !== null) {
+  //   throw new TypeError(
+  //     "Super expression must either be null or a function, not " +
+  //       typeof superClass
+  //   );
+  // }
+  subClass.prototype = Object.create(superClass && superClass.prototype, {
+    constructor: {
+      value: subClass,
+      enumerable: false,
+      writable: true,
+      configurable: true
+    }
+  }); // if (superClass)
+  //   Object.setPrototypeOf
+  //     ? Object.setPrototypeOf(subClass, superClass)
+  //     : (subClass.__proto__ = superClass);
+}
+
+function declare(cons, superClass) {
+  inherits(cons, superClass || SystemObject);
+  return cons;
+}
+function SystemObject() {}
+
+SystemObject.prototype.toString = function () {
+  var _this = this;
+
+  return "{" + Object.keys(this).map(function (k) {
+    return k + " = " + String(_this[k]);
+  }).join(";\n ") + "}";
+};
+
+SystemObject.prototype.GetHashCode = function () {
+  return Object(_Util__WEBPACK_IMPORTED_MODULE_0__["identityHash"])(this);
+};
+
+SystemObject.prototype.Equals = function (other) {
+  return this === other;
+};
+
+function compareList(self, other) {
+  if (self === other) {
+    return 0;
+  } else {
+    if (other == null) {
+      return -1;
+    }
+
+    while (self.tail != null) {
+      if (other.tail == null) {
+        return 1;
+      }
+
+      var res = Object(_Util__WEBPACK_IMPORTED_MODULE_0__["compare"])(self.head, other.head);
+
+      if (res !== 0) {
+        return res;
+      }
+
+      self = self.tail;
+      other = other.tail;
+    }
+
+    return other.tail == null ? 0 : -1;
+  }
+}
+
+function List(head, tail) {
+  this.head = head;
+  this.tail = tail;
+}
+
+List.prototype.toString = function () {
+  return "[" + Array.from(this).map(function (x) {
+    return String(x);
+  }).join("; ") + "]";
+};
+
+List.prototype.toJSON = function () {
+  return Array.from(this);
+};
+
+List.prototype[Symbol.iterator] = function () {
+  var cur = this;
+  return {
+    next: function next() {
+      var tmp = cur;
+      cur = cur.tail;
+      return {
+        done: tmp.tail == null,
+        value: tmp.head
+      };
+    }
+  };
+};
+
+List.prototype.GetHashCode = function () {
+  var hashes = Array.from(this).map(_Util__WEBPACK_IMPORTED_MODULE_0__["structuralHash"]);
+  return Object(_Util__WEBPACK_IMPORTED_MODULE_0__["combineHashCodes"])(hashes);
+};
+
+List.prototype.Equals = function (other) {
+  return compareList(this, other) === 0;
+};
+
+List.prototype.CompareTo = function (other) {
+  return compareList(this, other);
+};
+
+function Union(tag, name) {
+  this.tag = tag | 0;
+  this.name = name;
+
+  for (var _len = arguments.length, fields = new Array(_len > 2 ? _len - 2 : 0), _key = 2; _key < _len; _key++) {
+    fields[_key - 2] = arguments[_key];
+  }
+
+  this.fields = fields;
+}
+
+Union.prototype.toString = function () {
+  var len = this.fields.length;
+
+  if (len === 0) {
+    return this.name;
+  } else if (len === 1) {
+    return this.name + " " + String(this.fields[0]);
+  } else {
+    return this.name + " (" + this.fields.map(function (x) {
+      return String(x);
+    }).join(",") + ")";
+  }
+};
+
+Union.prototype.toJSON = function () {
+  return this.fields.length === 0 ? this.name : [this.name].concat(this.fields);
+};
+
+Union.prototype.GetHashCode = function () {
+  var hashes = this.fields.map(function (x) {
+    return Object(_Util__WEBPACK_IMPORTED_MODULE_0__["structuralHash"])(x);
+  });
+  hashes.splice(0, 0, Object(_Util__WEBPACK_IMPORTED_MODULE_0__["numberHash"])(this.tag));
+  return Object(_Util__WEBPACK_IMPORTED_MODULE_0__["combineHashCodes"])(hashes);
+};
+
+Union.prototype.Equals = function (other) {
+  return this === other || sameType(this, other) && this.tag === other.tag && Object(_Util__WEBPACK_IMPORTED_MODULE_0__["equalArrays"])(this.fields, other.fields);
+};
+
+Union.prototype.CompareTo = function (other) {
+  if (this === other) {
+    return 0;
+  } else if (!sameType(this, other)) {
+    return -1;
+  } else if (this.tag === other.tag) {
+    return Object(_Util__WEBPACK_IMPORTED_MODULE_0__["compareArrays"])(this.fields, other.fields);
+  } else {
+    return this.tag < other.tag ? -1 : 1;
+  }
+};
+
+function recordToJson(record, getFieldNames) {
+  var o = {};
+  var keys = getFieldNames == null ? Object.keys(record) : getFieldNames(record);
+
+  for (var i = 0; i < keys.length; i++) {
+    o[keys[i]] = record[keys[i]];
+  }
+
+  return o;
+}
+
+function recordEquals(self, other, getFieldNames) {
+  if (self === other) {
+    return true;
+  } else if (!sameType(self, other)) {
+    return false;
+  } else {
+    var thisNames = getFieldNames == null ? Object.keys(self) : getFieldNames(self);
+
+    for (var i = 0; i < thisNames.length; i++) {
+      if (!Object(_Util__WEBPACK_IMPORTED_MODULE_0__["equals"])(self[thisNames[i]], other[thisNames[i]])) {
+        return false;
+      }
+    }
+
+    return true;
+  }
+}
+
+function recordCompare(self, other, getFieldNames) {
+  if (self === other) {
+    return 0;
+  } else if (!sameType(self, other)) {
+    return -1;
+  } else {
+    var thisNames = getFieldNames == null ? Object.keys(self) : getFieldNames(self);
+
+    for (var i = 0; i < thisNames.length; i++) {
+      var result = Object(_Util__WEBPACK_IMPORTED_MODULE_0__["compare"])(self[thisNames[i]], other[thisNames[i]]);
+
+      if (result !== 0) {
+        return result;
+      }
+    }
+
+    return 0;
+  }
+}
+
+function Record() {}
+
+Record.prototype.toString = function () {
+  var _this2 = this;
+
+  return "{" + Object.keys(this).map(function (k) {
+    return k + " = " + String(_this2[k]);
+  }).join(";\n ") + "}";
+};
+
+Record.prototype.toJSON = function () {
+  return recordToJson(this);
+};
+
+Record.prototype.GetHashCode = function () {
+  var _this3 = this;
+
+  var hashes = Object.keys(this).map(function (k) {
+    return Object(_Util__WEBPACK_IMPORTED_MODULE_0__["structuralHash"])(_this3[k]);
+  });
+  return Object(_Util__WEBPACK_IMPORTED_MODULE_0__["combineHashCodes"])(hashes);
+};
+
+Record.prototype.Equals = function (other) {
+  return recordEquals(this, other);
+};
+
+Record.prototype.CompareTo = function (other) {
+  return recordCompare(this, other);
+};
+
+function anonRecord(o) {
+  return Object.assign(Object.create(Record.prototype), o);
+}
+var FSharpRef = declare(function FSharpRef(contents) {
+  this.contents = contents;
+}, Record); // EXCEPTIONS
+
+var Exception = declare(function Exception(msg) {
+  this.stack = Error().stack;
+  this.message = msg;
+});
+function isException(x) {
+  return x instanceof Error || x instanceof Exception;
+}
+
+function getFSharpExceptionFieldNames(self) {
+  return Object.keys(self).filter(function (k) {
+    return k !== "message" && k !== "stack";
+  });
+}
+
+var FSharpException = declare(function FSharpException() {
+  Exception.call(this);
+}, Exception);
+
+FSharpException.prototype.toString = function () {
+  var _this4 = this;
+
+  var fieldNames = getFSharpExceptionFieldNames(this);
+  var len = fieldNames.length;
+
+  if (len === 0) {
+    return this.message;
+  } else if (len === 1) {
+    return this.message + " " + String(this[fieldNames[0]]);
+  } else {
+    return this.message + " (" + fieldNames.map(function (k) {
+      return String(_this4[k]);
+    }).join(",") + ")";
+  }
+};
+
+FSharpException.prototype.toJSON = function () {
+  return recordToJson(this, getFSharpExceptionFieldNames);
+};
+
+FSharpException.prototype.GetHashCode = function () {
+  var _this5 = this;
+
+  var hashes = getFSharpExceptionFieldNames(this).map(function (k) {
+    return Object(_Util__WEBPACK_IMPORTED_MODULE_0__["structuralHash"])(_this5[k]);
+  });
+  return Object(_Util__WEBPACK_IMPORTED_MODULE_0__["combineHashCodes"])(hashes);
+};
+
+FSharpException.prototype.Equals = function (other) {
+  return recordEquals(this, other, getFSharpExceptionFieldNames);
+};
+
+FSharpException.prototype.CompareTo = function (other) {
+  return recordCompare(this, other, getFSharpExceptionFieldNames);
+};
+
+var MatchFailureException = declare(function MatchFailureException(arg1, arg2, arg3) {
+  this.arg1 = arg1;
+  this.arg2 = arg2 | 0;
+  this.arg3 = arg3 | 0;
+  this.message = "The match cases were incomplete";
+}, FSharpException);
+var Attribute = declare(function Attribute() {});
+
+/***/ }),
+
 /***/ "./.fable/fable-library.2.2.3/Util.js":
 /*!********************************************!*\
   !*** ./.fable/fable-library.2.2.3/Util.js ***!
@@ -1041,6 +1739,27 @@ function getItemFromDict(map, key) {
 
 /***/ }),
 
+/***/ "./node_modules/@babel/runtime/helpers/arrayWithoutHoles.js":
+/*!******************************************************************!*\
+  !*** ./node_modules/@babel/runtime/helpers/arrayWithoutHoles.js ***!
+  \******************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+function _arrayWithoutHoles(arr) {
+  if (Array.isArray(arr)) {
+    for (var i = 0, arr2 = new Array(arr.length); i < arr.length; i++) {
+      arr2[i] = arr[i];
+    }
+
+    return arr2;
+  }
+}
+
+module.exports = _arrayWithoutHoles;
+
+/***/ }),
+
 /***/ "./node_modules/@babel/runtime/helpers/classCallCheck.js":
 /*!***************************************************************!*\
   !*** ./node_modules/@babel/runtime/helpers/classCallCheck.js ***!
@@ -1055,6 +1774,49 @@ function _classCallCheck(instance, Constructor) {
 }
 
 module.exports = _classCallCheck;
+
+/***/ }),
+
+/***/ "./node_modules/@babel/runtime/helpers/construct.js":
+/*!**********************************************************!*\
+  !*** ./node_modules/@babel/runtime/helpers/construct.js ***!
+  \**********************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+var setPrototypeOf = __webpack_require__(/*! ./setPrototypeOf */ "./node_modules/@babel/runtime/helpers/setPrototypeOf.js");
+
+function isNativeReflectConstruct() {
+  if (typeof Reflect === "undefined" || !Reflect.construct) return false;
+  if (Reflect.construct.sham) return false;
+  if (typeof Proxy === "function") return true;
+
+  try {
+    Date.prototype.toString.call(Reflect.construct(Date, [], function () {}));
+    return true;
+  } catch (e) {
+    return false;
+  }
+}
+
+function _construct(Parent, args, Class) {
+  if (isNativeReflectConstruct()) {
+    module.exports = _construct = Reflect.construct;
+  } else {
+    module.exports = _construct = function _construct(Parent, args, Class) {
+      var a = [null];
+      a.push.apply(a, args);
+      var Constructor = Function.bind.apply(Parent, a);
+      var instance = new Constructor();
+      if (Class) setPrototypeOf(instance, Class.prototype);
+      return instance;
+    };
+  }
+
+  return _construct.apply(null, arguments);
+}
+
+module.exports = _construct;
 
 /***/ }),
 
@@ -1082,6 +1844,77 @@ function _createClass(Constructor, protoProps, staticProps) {
 }
 
 module.exports = _createClass;
+
+/***/ }),
+
+/***/ "./node_modules/@babel/runtime/helpers/iterableToArray.js":
+/*!****************************************************************!*\
+  !*** ./node_modules/@babel/runtime/helpers/iterableToArray.js ***!
+  \****************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+function _iterableToArray(iter) {
+  if (Symbol.iterator in Object(iter) || Object.prototype.toString.call(iter) === "[object Arguments]") return Array.from(iter);
+}
+
+module.exports = _iterableToArray;
+
+/***/ }),
+
+/***/ "./node_modules/@babel/runtime/helpers/nonIterableSpread.js":
+/*!******************************************************************!*\
+  !*** ./node_modules/@babel/runtime/helpers/nonIterableSpread.js ***!
+  \******************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+function _nonIterableSpread() {
+  throw new TypeError("Invalid attempt to spread non-iterable instance");
+}
+
+module.exports = _nonIterableSpread;
+
+/***/ }),
+
+/***/ "./node_modules/@babel/runtime/helpers/setPrototypeOf.js":
+/*!***************************************************************!*\
+  !*** ./node_modules/@babel/runtime/helpers/setPrototypeOf.js ***!
+  \***************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+function _setPrototypeOf(o, p) {
+  module.exports = _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) {
+    o.__proto__ = p;
+    return o;
+  };
+
+  return _setPrototypeOf(o, p);
+}
+
+module.exports = _setPrototypeOf;
+
+/***/ }),
+
+/***/ "./node_modules/@babel/runtime/helpers/toConsumableArray.js":
+/*!******************************************************************!*\
+  !*** ./node_modules/@babel/runtime/helpers/toConsumableArray.js ***!
+  \******************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+var arrayWithoutHoles = __webpack_require__(/*! ./arrayWithoutHoles */ "./node_modules/@babel/runtime/helpers/arrayWithoutHoles.js");
+
+var iterableToArray = __webpack_require__(/*! ./iterableToArray */ "./node_modules/@babel/runtime/helpers/iterableToArray.js");
+
+var nonIterableSpread = __webpack_require__(/*! ./nonIterableSpread */ "./node_modules/@babel/runtime/helpers/nonIterableSpread.js");
+
+function _toConsumableArray(arr) {
+  return arrayWithoutHoles(arr) || iterableToArray(arr) || nonIterableSpread();
+}
+
+module.exports = _toConsumableArray;
 
 /***/ }),
 
@@ -1116,39 +1949,204 @@ module.exports = _typeof;
 /*!**************************!*\
   !*** ./src/Main/Main.fs ***!
   \**************************/
-/*! exports provided: mainWindow, createMainWindow */
+/*! exports provided: mainWindow, MenuItemClass, MenuItemClass$reflection, MenuItemClass$$$$002Ector$$7A0753F0, createMainWindow */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "mainWindow", function() { return mainWindow; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "MenuItemClass", function() { return MenuItemClass; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "MenuItemClass$reflection", function() { return MenuItemClass$reflection; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "MenuItemClass$$$$002Ector$$7A0753F0", function() { return MenuItemClass$$$$002Ector$$7A0753F0; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "createMainWindow", function() { return createMainWindow; });
 /* harmony import */ var _fable_fable_library_2_2_3_Util_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../.fable/fable-library.2.2.3/Util.js */ "./.fable/fable-library.2.2.3/Util.js");
-/* harmony import */ var electron__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! electron */ "electron");
-/* harmony import */ var electron__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(electron__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var path__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! path */ "path");
-/* harmony import */ var path__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(path__WEBPACK_IMPORTED_MODULE_2__);
-/* harmony import */ var url__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! url */ "url");
-/* harmony import */ var url__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(url__WEBPACK_IMPORTED_MODULE_3__);
-/* harmony import */ var fs__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! fs */ "fs");
-/* harmony import */ var fs__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(fs__WEBPACK_IMPORTED_MODULE_4__);
+/* harmony import */ var _fable_fable_library_2_2_3_Types_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../.fable/fable-library.2.2.3/Types.js */ "./.fable/fable-library.2.2.3/Types.js");
+/* harmony import */ var _fable_fable_library_2_2_3_Reflection_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../.fable/fable-library.2.2.3/Reflection.js */ "./.fable/fable-library.2.2.3/Reflection.js");
+/* harmony import */ var electron__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! electron */ "electron");
+/* harmony import */ var electron__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(electron__WEBPACK_IMPORTED_MODULE_3__);
+/* harmony import */ var path__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! path */ "path");
+/* harmony import */ var path__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(path__WEBPACK_IMPORTED_MODULE_4__);
+/* harmony import */ var url__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! url */ "url");
+/* harmony import */ var url__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(url__WEBPACK_IMPORTED_MODULE_5__);
+/* harmony import */ var fs__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! fs */ "fs");
+/* harmony import */ var fs__WEBPACK_IMPORTED_MODULE_6___default = /*#__PURE__*/__webpack_require__.n(fs__WEBPACK_IMPORTED_MODULE_6__);
+
+
 
 
 
 
 
 var mainWindow = Object(_fable_fable_library_2_2_3_Util_js__WEBPACK_IMPORTED_MODULE_0__["createAtom"])(null);
+var MenuItemClass = Object(_fable_fable_library_2_2_3_Types_js__WEBPACK_IMPORTED_MODULE_1__["declare"])(function Main_MenuItemClass(clickData, typeData, labelData, sublabelData, acceleratorData, iconData, enabledData, visibleData, checkedData, submenuData, idData, positionData, roleData) {
+  var $this$$1 = this;
+  $this$$1["clickData@27"] = clickData;
+  $this$$1["typeData@28"] = typeData;
+  $this$$1["labelData@29"] = labelData;
+  $this$$1["sublabelData@30"] = sublabelData;
+  $this$$1["acceleratorData@31"] = acceleratorData;
+  $this$$1["iconData@32"] = iconData;
+  $this$$1["enabledData@33"] = enabledData;
+  $this$$1["visibleData@34"] = visibleData;
+  $this$$1["checkedData@35"] = checkedData;
+  $this$$1["submenuData@36"] = submenuData;
+  $this$$1["idData@37"] = idData;
+  $this$$1["positionData@38"] = positionData;
+  $this$$1["roleData@39"] = roleData;
+});
+function MenuItemClass$reflection() {
+  return Object(_fable_fable_library_2_2_3_Reflection_js__WEBPACK_IMPORTED_MODULE_2__["type"])("Main.MenuItemClass");
+}
+function MenuItemClass$$$$002Ector$$7A0753F0(clickData, typeData, labelData, sublabelData, acceleratorData, iconData, enabledData, visibleData, checkedData, submenuData, idData, positionData, roleData) {
+  return this instanceof MenuItemClass ? MenuItemClass.call(this, clickData, typeData, labelData, sublabelData, acceleratorData, iconData, enabledData, visibleData, checkedData, submenuData, idData, positionData, roleData) : new MenuItemClass(clickData, typeData, labelData, sublabelData, acceleratorData, iconData, enabledData, visibleData, checkedData, submenuData, idData, positionData, roleData);
+}
+Object.defineProperty(MenuItemClass.prototype, "click", {
+  "get": function get() {
+    var self$ = this;
+    return self$["clickData@27"];
+  },
+  "set": function set(clickVal) {
+    var self$$$1 = this;
+    self$$$1["clickData@27"] = clickVal;
+  }
+});
+Object.defineProperty(MenuItemClass.prototype, "type", {
+  "get": function get() {
+    var self$$$2 = this;
+    return self$$$2["typeData@28"];
+  },
+  "set": function set(typeVal) {
+    var self$$$3 = this;
+    self$$$3["typeData@28"] = typeVal;
+  }
+});
+Object.defineProperty(MenuItemClass.prototype, "label", {
+  "get": function get() {
+    var self$$$4 = this;
+    return self$$$4["labelData@29"];
+  },
+  "set": function set(labelVal) {
+    var self$$$5 = this;
+    self$$$5["labelData@29"] = labelVal;
+  }
+});
+Object.defineProperty(MenuItemClass.prototype, "sublabel", {
+  "get": function get() {
+    var self$$$6 = this;
+    return self$$$6["sublabelData@30"];
+  },
+  "set": function set(sublabelVal) {
+    var self$$$7 = this;
+    self$$$7["sublabelData@30"] = sublabelVal;
+  }
+});
+Object.defineProperty(MenuItemClass.prototype, "accelerator", {
+  "get": function get() {
+    var self$$$8 = this;
+    return self$$$8["acceleratorData@31"];
+  },
+  "set": function set(acceleratorVal) {
+    var self$$$9 = this;
+    self$$$9["acceleratorData@31"] = acceleratorVal;
+  }
+});
+Object.defineProperty(MenuItemClass.prototype, "icon", {
+  "get": function get() {
+    var self$$$10 = this;
+    return self$$$10["iconData@32"];
+  },
+  "set": function set(iconVal) {
+    var self$$$11 = this;
+    self$$$11["iconData@32"] = iconVal;
+  }
+});
+Object.defineProperty(MenuItemClass.prototype, "enabled", {
+  "get": function get() {
+    var self$$$12 = this;
+    return self$$$12["enabledData@33"];
+  },
+  "set": function set(enabledVal) {
+    var self$$$13 = this;
+    self$$$13["enabledData@33"] = enabledVal;
+  }
+});
+Object.defineProperty(MenuItemClass.prototype, "visible", {
+  "get": function get() {
+    var self$$$14 = this;
+    return self$$$14["visibleData@34"];
+  },
+  "set": function set(visibleVal) {
+    var self$$$15 = this;
+    self$$$15["visibleData@34"] = visibleVal;
+  }
+});
+Object.defineProperty(MenuItemClass.prototype, "checked", {
+  "get": function get() {
+    var self$$$16 = this;
+    return self$$$16["checkedData@35"];
+  },
+  "set": function set(checkedVal) {
+    var self$$$17 = this;
+    self$$$17["checkedData@35"] = checkedVal;
+  }
+});
+Object.defineProperty(MenuItemClass.prototype, "submenu", {
+  "get": function get() {
+    var self$$$18 = this;
+    return self$$$18["submenuData@36"];
+  },
+  "set": function set(submenuVal) {
+    var self$$$19 = this;
+    self$$$19["submenuData@36"] = submenuVal;
+  }
+});
+Object.defineProperty(MenuItemClass.prototype, "id", {
+  "get": function get() {
+    var self$$$20 = this;
+    return self$$$20["idData@37"];
+  },
+  "set": function set(idVal) {
+    var self$$$21 = this;
+    self$$$21["idData@37"] = idVal;
+  }
+});
+Object.defineProperty(MenuItemClass.prototype, "position", {
+  "get": function get() {
+    var self$$$22 = this;
+    return self$$$22["positionData@38"];
+  },
+  "set": function set(positionVal) {
+    var self$$$23 = this;
+    self$$$23["positionData@38"] = positionVal;
+  }
+});
+Object.defineProperty(MenuItemClass.prototype, "role", {
+  "get": function get() {
+    var self$$$24 = this;
+    return self$$$24["roleData@39"];
+  },
+  "set": function set(roleVal) {
+    var self$$$25 = this;
+    self$$$25["roleData@39"] = roleVal;
+  }
+});
 function createMainWindow() {
   var options = {};
   options.width = 1366;
   options.height = 1024;
   options.autoHideMenuBar = false;
-  var window$ = new electron__WEBPACK_IMPORTED_MODULE_1___default.a.BrowserWindow(options);
+  var window$ = new electron__WEBPACK_IMPORTED_MODULE_3___default.a.BrowserWindow(options);
   var opts = {};
-  opts.pathname = path__WEBPACK_IMPORTED_MODULE_2__["join"](__dirname, "../index.html");
+  opts.pathname = path__WEBPACK_IMPORTED_MODULE_4__["join"](__dirname, "../index.html");
   opts.protocol = "file:";
-  window$.loadURL(url__WEBPACK_IMPORTED_MODULE_3__["format"](opts));
-  fs__WEBPACK_IMPORTED_MODULE_4__["watch"](path__WEBPACK_IMPORTED_MODULE_2__["join"](__dirname, "renderer.js"), function (_arg2, _arg1) {
+  window$.loadURL(url__WEBPACK_IMPORTED_MODULE_5__["format"](opts));
+  var menuTemplate = [];
+  var menuItem = MenuItemClass$$$$002Ector$$7A0753F0(null, "normal", "Quit", null, "Ctrl+Q", null, true, true, false, null, null, null, "quit");
+  throw 1;
+  menuTemplate.push(menuItem);
+  var systemMenu = electron__WEBPACK_IMPORTED_MODULE_3___default.a.Menu.buildFromTemplate(menuTemplate);
+  electron__WEBPACK_IMPORTED_MODULE_3___default.a.Menu.setApplicationMenu(systemMenu);
+  fs__WEBPACK_IMPORTED_MODULE_6__["watch"](path__WEBPACK_IMPORTED_MODULE_4__["join"](__dirname, "renderer.js"), function (_arg2, _arg1) {
     window$.webContents.reloadIgnoringCache();
   });
   window$.on("closed", function () {
@@ -1157,15 +2155,15 @@ function createMainWindow() {
   window$.maximize();
   mainWindow(window$);
 }
-electron__WEBPACK_IMPORTED_MODULE_1___default.a.app.on("ready", function () {
+electron__WEBPACK_IMPORTED_MODULE_3___default.a.app.on("ready", function () {
   createMainWindow();
 });
-electron__WEBPACK_IMPORTED_MODULE_1___default.a.app.on("window-all-closed", function () {
+electron__WEBPACK_IMPORTED_MODULE_3___default.a.app.on("window-all-closed", function () {
   if (process.platform !== "darwin") {
-    electron__WEBPACK_IMPORTED_MODULE_1___default.a.app.quit();
+    electron__WEBPACK_IMPORTED_MODULE_3___default.a.app.quit();
   }
 });
-electron__WEBPACK_IMPORTED_MODULE_1___default.a.app.on("activate", function () {
+electron__WEBPACK_IMPORTED_MODULE_3___default.a.app.on("activate", function () {
   if (mainWindow() == null) {
     createMainWindow();
   }
@@ -1177,13 +2175,19 @@ electron__WEBPACK_IMPORTED_MODULE_1___default.a.app.on("activate", function () {
 /*!******************************!*\
   !*** ./src/Main/Main.fsproj ***!
   \******************************/
-/*! exports provided: mainWindow, createMainWindow */
+/*! exports provided: mainWindow, MenuItemClass, MenuItemClass$reflection, MenuItemClass$$$$002Ector$$7A0753F0, createMainWindow */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _Main_fs__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./Main.fs */ "./src/Main/Main.fs");
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "mainWindow", function() { return _Main_fs__WEBPACK_IMPORTED_MODULE_0__["mainWindow"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "MenuItemClass", function() { return _Main_fs__WEBPACK_IMPORTED_MODULE_0__["MenuItemClass"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "MenuItemClass$reflection", function() { return _Main_fs__WEBPACK_IMPORTED_MODULE_0__["MenuItemClass$reflection"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "MenuItemClass$$$$002Ector$$7A0753F0", function() { return _Main_fs__WEBPACK_IMPORTED_MODULE_0__["MenuItemClass$$$$002Ector$$7A0753F0"]; });
 
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "createMainWindow", function() { return _Main_fs__WEBPACK_IMPORTED_MODULE_0__["createMainWindow"]; });
 
