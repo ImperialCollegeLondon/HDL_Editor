@@ -28,6 +28,7 @@ let navigation = Event<Navigate>()
 
 
 let init () =
-    null
+    printf "calling initMenu()"
+    MenuBar.initMenu()
 
 init()

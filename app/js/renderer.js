@@ -86,6 +86,562 @@
 /************************************************************************/
 /******/ ({
 
+/***/ "./.fable/fable-library.2.2.3/Date.js":
+/*!********************************************!*\
+  !*** ./.fable/fable-library.2.2.3/Date.js ***!
+  \********************************************/
+/*! exports provided: offsetRegex, dateOffsetToString, dateToHalfUTCString, toString, default, fromTicks, fromDateTimeOffset, getTicks, minValue, maxValue, parseRaw, parse, tryParse, create, now, utcNow, today, isLeapYear, daysInMonth, toUniversalTime, toLocalTime, timeOfDay, date, day, hour, millisecond, minute, month, second, year, dayOfWeek, dayOfYear, add, addDays, addHours, addMinutes, addSeconds, addMilliseconds, addYears, addMonths, subtract, toLongDateString, toShortDateString, toLongTimeString, toShortTimeString, equals, compare, compareTo, op_Addition, op_Subtraction, isDaylightSavingTime */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "offsetRegex", function() { return offsetRegex; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "dateOffsetToString", function() { return dateOffsetToString; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "dateToHalfUTCString", function() { return dateToHalfUTCString; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "toString", function() { return toString; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return DateTime; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "fromTicks", function() { return fromTicks; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "fromDateTimeOffset", function() { return fromDateTimeOffset; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getTicks", function() { return getTicks; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "minValue", function() { return minValue; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "maxValue", function() { return maxValue; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "parseRaw", function() { return parseRaw; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "parse", function() { return parse; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "tryParse", function() { return tryParse; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "create", function() { return create; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "now", function() { return now; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "utcNow", function() { return utcNow; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "today", function() { return today; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "isLeapYear", function() { return isLeapYear; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "daysInMonth", function() { return daysInMonth; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "toUniversalTime", function() { return toUniversalTime; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "toLocalTime", function() { return toLocalTime; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "timeOfDay", function() { return timeOfDay; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "date", function() { return date; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "day", function() { return day; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "hour", function() { return hour; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "millisecond", function() { return millisecond; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "minute", function() { return minute; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "month", function() { return month; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "second", function() { return second; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "year", function() { return year; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "dayOfWeek", function() { return dayOfWeek; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "dayOfYear", function() { return dayOfYear; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "add", function() { return add; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "addDays", function() { return addDays; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "addHours", function() { return addHours; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "addMinutes", function() { return addMinutes; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "addSeconds", function() { return addSeconds; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "addMilliseconds", function() { return addMilliseconds; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "addYears", function() { return addYears; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "addMonths", function() { return addMonths; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "subtract", function() { return subtract; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "toLongDateString", function() { return toLongDateString; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "toShortDateString", function() { return toShortDateString; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "toLongTimeString", function() { return toLongTimeString; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "toShortTimeString", function() { return toShortTimeString; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "equals", function() { return equals; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "compare", function() { return compare; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "compareTo", function() { return compareTo; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "op_Addition", function() { return op_Addition; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "op_Subtraction", function() { return op_Subtraction; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "isDaylightSavingTime", function() { return isDaylightSavingTime; });
+/* harmony import */ var _Long__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./Long */ "./.fable/fable-library.2.2.3/Long.js");
+/* harmony import */ var _Util__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./Util */ "./.fable/fable-library.2.2.3/Util.js");
+/**
+ * DateTimeOffset functions.
+ *
+ * Note: Date instances are always DateObjects in local
+ * timezone (because JS dates are all kinds of messed up).
+ * A local date returns UTC epoc when `.getTime()` is called.
+ *
+ * Basically; invariant: date.getTime() always return UTC time.
+ */
+
+
+var offsetRegex = /(?:Z|[+-](\d+):?([0-5]?\d)?)\s*$/;
+function dateOffsetToString(offset) {
+  var isMinus = offset < 0;
+  offset = Math.abs(offset);
+  var hours = ~~(offset / 3600000);
+  var minutes = offset % 3600000 / 60000;
+  return (isMinus ? "-" : "+") + Object(_Util__WEBPACK_IMPORTED_MODULE_1__["padWithZeros"])(hours, 2) + ":" + Object(_Util__WEBPACK_IMPORTED_MODULE_1__["padWithZeros"])(minutes, 2);
+}
+function dateToHalfUTCString(date, half) {
+  var str = date.toISOString();
+  return half === "first" ? str.substring(0, str.indexOf("T")) : str.substring(str.indexOf("T") + 1, str.length - 1);
+}
+
+function dateToISOString(d, utc) {
+  if (utc) {
+    return d.toISOString();
+  } else {
+    // JS Date is always local
+    var printOffset = d.kind == null ? true : d.kind === 2
+    /* Local */
+    ;
+    return Object(_Util__WEBPACK_IMPORTED_MODULE_1__["padWithZeros"])(d.getFullYear(), 4) + "-" + Object(_Util__WEBPACK_IMPORTED_MODULE_1__["padWithZeros"])(d.getMonth() + 1, 2) + "-" + Object(_Util__WEBPACK_IMPORTED_MODULE_1__["padWithZeros"])(d.getDate(), 2) + "T" + Object(_Util__WEBPACK_IMPORTED_MODULE_1__["padWithZeros"])(d.getHours(), 2) + ":" + Object(_Util__WEBPACK_IMPORTED_MODULE_1__["padWithZeros"])(d.getMinutes(), 2) + ":" + Object(_Util__WEBPACK_IMPORTED_MODULE_1__["padWithZeros"])(d.getSeconds(), 2) + "." + Object(_Util__WEBPACK_IMPORTED_MODULE_1__["padWithZeros"])(d.getMilliseconds(), 3) + (printOffset ? dateOffsetToString(d.getTimezoneOffset() * -60000) : "");
+  }
+}
+
+function dateToISOStringWithOffset(dateWithOffset, offset) {
+  var str = dateWithOffset.toISOString();
+  return str.substring(0, str.length - 1) + dateOffsetToString(offset);
+}
+
+function dateToStringWithCustomFormat(date, format, utc) {
+  return format.replace(/(\w)\1*/g, function (match) {
+    var rep = match;
+
+    switch (match.substring(0, 1)) {
+      case "y":
+        var y = utc ? date.getUTCFullYear() : date.getFullYear();
+        rep = match.length < 4 ? y % 100 : y;
+        break;
+
+      case "M":
+        rep = (utc ? date.getUTCMonth() : date.getMonth()) + 1;
+        break;
+
+      case "d":
+        rep = utc ? date.getUTCDate() : date.getDate();
+        break;
+
+      case "H":
+        rep = utc ? date.getUTCHours() : date.getHours();
+        break;
+
+      case "h":
+        var h = utc ? date.getUTCHours() : date.getHours();
+        rep = h > 12 ? h % 12 : h;
+        break;
+
+      case "m":
+        rep = utc ? date.getUTCMinutes() : date.getMinutes();
+        break;
+
+      case "s":
+        rep = utc ? date.getUTCSeconds() : date.getSeconds();
+        break;
+
+      case "f":
+        rep = utc ? date.getUTCMilliseconds() : date.getMilliseconds();
+        break;
+    }
+
+    if (rep !== match && rep < 10 && match.length > 1) {
+      rep = "0" + rep;
+    }
+
+    return rep;
+  });
+}
+
+function dateToStringWithOffset(date, format) {
+  var d = new Date(date.getTime() + date.offset);
+
+  if (typeof format !== "string") {
+    return d.toISOString().replace(/\.\d+/, "").replace(/[A-Z]|\.\d+/g, " ") + dateOffsetToString(date.offset);
+  } else if (format.length === 1) {
+    switch (format) {
+      case "D":
+      case "d":
+        return dateToHalfUTCString(d, "first");
+
+      case "T":
+      case "t":
+        return dateToHalfUTCString(d, "second");
+
+      case "O":
+      case "o":
+        return dateToISOStringWithOffset(d, date.offset);
+
+      default:
+        throw new Error("Unrecognized Date print format");
+    }
+  } else {
+    return dateToStringWithCustomFormat(d, format, true);
+  }
+}
+
+function dateToStringWithKind(date, format) {
+  var utc = date.kind === 1
+  /* UTC */
+  ;
+
+  if (typeof format !== "string") {
+    return utc ? date.toUTCString() : date.toLocaleString();
+  } else if (format.length === 1) {
+    switch (format) {
+      case "D":
+      case "d":
+        return utc ? dateToHalfUTCString(date, "first") : date.toLocaleDateString();
+
+      case "T":
+      case "t":
+        return utc ? dateToHalfUTCString(date, "second") : date.toLocaleTimeString();
+
+      case "O":
+      case "o":
+        return dateToISOString(date, utc);
+
+      default:
+        throw new Error("Unrecognized Date print format");
+    }
+  } else {
+    return dateToStringWithCustomFormat(date, format, utc);
+  }
+}
+
+function toString(date, format) {
+  return date.offset != null ? dateToStringWithOffset(date, format) : dateToStringWithKind(date, format);
+}
+function DateTime(value, kind) {
+  var d = new Date(value);
+  d.kind = (kind == null ? 0
+  /* Unspecified */
+  : kind) | 0;
+  return d;
+}
+function fromTicks(ticks, kind) {
+  ticks = Object(_Long__WEBPACK_IMPORTED_MODULE_0__["fromValue"])(ticks);
+  kind = kind != null ? kind : 0
+  /* Unspecified */
+  ;
+  var date = DateTime(Object(_Long__WEBPACK_IMPORTED_MODULE_0__["ticksToUnixEpochMilliseconds"])(ticks), kind); // Ticks are local to offset (in this case, either UTC or Local/Unknown).
+  // If kind is anything but UTC, that means that the tick number was not
+  // in utc, thus getTime() cannot return UTC, and needs to be shifted.
+
+  if (kind !== 1
+  /* UTC */
+  ) {
+      date = DateTime(date.getTime() - Object(_Util__WEBPACK_IMPORTED_MODULE_1__["dateOffset"])(date), kind);
+    }
+
+  return date;
+}
+function fromDateTimeOffset(date, kind) {
+  switch (kind) {
+    case 1
+    /* UTC */
+    :
+      return DateTime(date.getTime(), 1
+      /* UTC */
+      );
+
+    case 2
+    /* Local */
+    :
+      return DateTime(date.getTime(), 2
+      /* Local */
+      );
+
+    default:
+      var d = DateTime(date.getTime() + date.offset, kind);
+      return DateTime(d.getTime() - Object(_Util__WEBPACK_IMPORTED_MODULE_1__["dateOffset"])(d), kind);
+  }
+}
+function getTicks(date) {
+  return Object(_Long__WEBPACK_IMPORTED_MODULE_0__["unixEpochMillisecondsToTicks"])(date.getTime(), Object(_Util__WEBPACK_IMPORTED_MODULE_1__["dateOffset"])(date));
+}
+function minValue() {
+  // This is "0001-01-01T00:00:00.000Z", actual JS min value is -8640000000000000
+  return DateTime(-62135596800000, 0
+  /* Unspecified */
+  );
+}
+function maxValue() {
+  // This is "9999-12-31T23:59:59.999Z", actual JS max value is 8640000000000000
+  return DateTime(253402300799999, 0
+  /* Unspecified */
+  );
+}
+function parseRaw(str) {
+  var date = new Date(str);
+
+  if (isNaN(date.getTime())) {
+    // Try to check strings JS Date cannot parse (see #1045, #1422)
+    // tslint:disable-next-line:max-line-length
+    var m = /^\s*(\d+[^\w\s:]\d+[^\w\s:]\d+)?\s*(\d+:\d+(?::\d+(?:\.\d+)?)?)?\s*([AaPp][Mm])?\s*([+-]\d+(?::\d+)?)?\s*$/.exec(str);
+
+    if (m != null) {
+      var baseDate = null;
+      var timeInSeconds = 0;
+
+      if (m[2] != null) {
+        var timeParts = m[2].split(":");
+        timeInSeconds = parseInt(timeParts[0], 10) * 3600 + parseInt(timeParts[1] || "0", 10) * 60 + parseFloat(timeParts[2] || "0");
+
+        if (m[3] != null && m[3].toUpperCase() === "PM") {
+          timeInSeconds += 720;
+        }
+      }
+
+      if (m[4] != null) {
+        // There's an offset, parse as UTC
+        if (m[1] != null) {
+          baseDate = new Date(m[1] + " UTC");
+        } else {
+          var d = new Date();
+          baseDate = new Date(d.getUTCFullYear() + "/" + (d.getUTCMonth() + 1) + "/" + d.getUTCDate());
+        }
+
+        var offsetParts = m[4].substr(1).split(":");
+        var offsetInMinutes = parseInt(offsetParts[0], 10) * 60 + parseInt(offsetParts[1] || "0", 10);
+
+        if (m[4][0] === "+") {
+          offsetInMinutes *= -1;
+        }
+
+        timeInSeconds += offsetInMinutes * 60;
+      } else {
+        if (m[1] != null) {
+          baseDate = new Date(m[1]);
+        } else {
+          var _d = new Date();
+
+          baseDate = new Date(_d.getFullYear() + "/" + (_d.getMonth() + 1) + "/" + _d.getDate());
+        }
+      }
+
+      date = new Date(baseDate.getTime() + timeInSeconds * 1000); // correct for daylight savings time
+
+      date = new Date(date.getTime() + (date.getTimezoneOffset() - baseDate.getTimezoneOffset()) * 60000);
+    } else {
+      throw new Error("The string is not a valid Date.");
+    }
+  }
+
+  return date;
+}
+function parse(str) {
+  var detectUTC = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : false;
+  var date = parseRaw(str);
+  var offset = offsetRegex.exec(str); // .NET always parses DateTime as Local if there's offset info (even "Z")
+  // Newtonsoft.Json uses UTC if the offset is "Z"
+
+  var kind = offset != null ? detectUTC && offset[0] === "Z" ? 1
+  /* UTC */
+  : 2
+  /* Local */
+  : 0
+  /* Unspecified */
+  ;
+  return DateTime(date.getTime(), kind);
+}
+function tryParse(v) {
+  try {
+    // if value is null or whitespace, parsing fails
+    if (v === null || v.trim() === "") {
+      return [false, minValue()];
+    }
+
+    return [true, parse(v)];
+  } catch (_err) {
+    return [false, minValue()];
+  }
+}
+function create(year, month, day) {
+  var h = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : 0;
+  var m = arguments.length > 4 && arguments[4] !== undefined ? arguments[4] : 0;
+  var s = arguments.length > 5 && arguments[5] !== undefined ? arguments[5] : 0;
+  var ms = arguments.length > 6 && arguments[6] !== undefined ? arguments[6] : 0;
+  var kind = arguments.length > 7 ? arguments[7] : undefined;
+  var dateValue = kind === 1
+  /* UTC */
+  ? Date.UTC(year, month - 1, day, h, m, s, ms) : new Date(year, month - 1, day, h, m, s, ms).getTime();
+
+  if (isNaN(dateValue)) {
+    throw new Error("The parameters describe an unrepresentable Date.");
+  }
+
+  var date = DateTime(dateValue, kind);
+
+  if (year <= 99) {
+    date.setFullYear(year, month - 1, day);
+  }
+
+  return date;
+}
+function now() {
+  return DateTime(Date.now(), 2
+  /* Local */
+  );
+}
+function utcNow() {
+  return DateTime(Date.now(), 1
+  /* UTC */
+  );
+}
+function today() {
+  return date(now());
+}
+function isLeapYear(year) {
+  return year % 4 === 0 && year % 100 !== 0 || year % 400 === 0;
+}
+function daysInMonth(year, month) {
+  return month === 2 ? isLeapYear(year) ? 29 : 28 : month >= 8 ? month % 2 === 0 ? 31 : 30 : month % 2 === 0 ? 30 : 31;
+}
+function toUniversalTime(date) {
+  return date.kind === 1
+  /* UTC */
+  ? date : DateTime(date.getTime(), 1
+  /* UTC */
+  );
+}
+function toLocalTime(date) {
+  return date.kind === 2
+  /* Local */
+  ? date : DateTime(date.getTime(), 2
+  /* Local */
+  );
+}
+function timeOfDay(d) {
+  return hour(d) * 3600000 + minute(d) * 60000 + second(d) * 1000 + millisecond(d);
+}
+function date(d) {
+  return create(year(d), month(d), day(d), 0, 0, 0, 0, d.kind);
+}
+function day(d) {
+  return d.kind === 1
+  /* UTC */
+  ? d.getUTCDate() : d.getDate();
+}
+function hour(d) {
+  return d.kind === 1
+  /* UTC */
+  ? d.getUTCHours() : d.getHours();
+}
+function millisecond(d) {
+  return d.kind === 1
+  /* UTC */
+  ? d.getUTCMilliseconds() : d.getMilliseconds();
+}
+function minute(d) {
+  return d.kind === 1
+  /* UTC */
+  ? d.getUTCMinutes() : d.getMinutes();
+}
+function month(d) {
+  return (d.kind === 1
+  /* UTC */
+  ? d.getUTCMonth() : d.getMonth()) + 1;
+}
+function second(d) {
+  return d.kind === 1
+  /* UTC */
+  ? d.getUTCSeconds() : d.getSeconds();
+}
+function year(d) {
+  return d.kind === 1
+  /* UTC */
+  ? d.getUTCFullYear() : d.getFullYear();
+}
+function dayOfWeek(d) {
+  return d.kind === 1
+  /* UTC */
+  ? d.getUTCDay() : d.getDay();
+}
+function dayOfYear(d) {
+  var _year = year(d);
+
+  var _month = month(d);
+
+  var _day = day(d);
+
+  for (var i = 1; i < _month; i++) {
+    _day += daysInMonth(_year, i);
+  }
+
+  return _day;
+}
+function add(d, ts) {
+  return DateTime(d.getTime() + ts, d.kind);
+}
+function addDays(d, v) {
+  return DateTime(d.getTime() + v * 86400000, d.kind);
+}
+function addHours(d, v) {
+  return DateTime(d.getTime() + v * 3600000, d.kind);
+}
+function addMinutes(d, v) {
+  return DateTime(d.getTime() + v * 60000, d.kind);
+}
+function addSeconds(d, v) {
+  return DateTime(d.getTime() + v * 1000, d.kind);
+}
+function addMilliseconds(d, v) {
+  return DateTime(d.getTime() + v, d.kind);
+}
+function addYears(d, v) {
+  var newMonth = month(d);
+  var newYear = year(d) + v;
+
+  var _daysInMonth = daysInMonth(newYear, newMonth);
+
+  var newDay = Math.min(_daysInMonth, day(d));
+  return create(newYear, newMonth, newDay, hour(d), minute(d), second(d), millisecond(d), d.kind);
+}
+function addMonths(d, v) {
+  var newMonth = month(d) + v;
+  var newMonth_ = 0;
+  var yearOffset = 0;
+
+  if (newMonth > 12) {
+    newMonth_ = newMonth % 12;
+    yearOffset = Math.floor(newMonth / 12);
+    newMonth = newMonth_;
+  } else if (newMonth < 1) {
+    newMonth_ = 12 + newMonth % 12;
+    yearOffset = Math.floor(newMonth / 12) + (newMonth_ === 12 ? -1 : 0);
+    newMonth = newMonth_;
+  }
+
+  var newYear = year(d) + yearOffset;
+
+  var _daysInMonth = daysInMonth(newYear, newMonth);
+
+  var newDay = Math.min(_daysInMonth, day(d));
+  return create(newYear, newMonth, newDay, hour(d), minute(d), second(d), millisecond(d), d.kind);
+}
+function subtract(d, that) {
+  return typeof that === "number" ? DateTime(d.getTime() - that, d.kind) : d.getTime() - that.getTime();
+}
+function toLongDateString(d) {
+  return d.toDateString();
+}
+function toShortDateString(d) {
+  return d.toLocaleDateString();
+}
+function toLongTimeString(d) {
+  return d.toLocaleTimeString();
+}
+function toShortTimeString(d) {
+  return d.toLocaleTimeString().replace(/:\d\d(?!:)/, "");
+}
+function equals(d1, d2) {
+  return d1.getTime() === d2.getTime();
+}
+var compare = _Util__WEBPACK_IMPORTED_MODULE_1__["compareDates"];
+var compareTo = _Util__WEBPACK_IMPORTED_MODULE_1__["compareDates"];
+function op_Addition(x, y) {
+  return add(x, y);
+}
+function op_Subtraction(x, y) {
+  return subtract(x, y);
+}
+function isDaylightSavingTime(x) {
+  var jan = new Date(x.getFullYear(), 0, 1);
+  var jul = new Date(x.getFullYear(), 6, 1);
+  return isDST(jan.getTimezoneOffset(), jul.getTimezoneOffset(), x.getTimezoneOffset());
+}
+
+function isDST(janOffset, julOffset, tOffset) {
+  return Math.min(janOffset, julOffset) === tOffset;
+}
+
+/***/ }),
+
 /***/ "./.fable/fable-library.2.2.3/Event.js":
 /*!*********************************************!*\
   !*** ./.fable/fable-library.2.2.3/Event.js ***!
@@ -2437,6 +2993,152 @@ function getCaseFields(x) {
 
 /***/ }),
 
+/***/ "./.fable/fable-library.2.2.3/RegExp.js":
+/*!**********************************************!*\
+  !*** ./.fable/fable-library.2.2.3/RegExp.js ***!
+  \**********************************************/
+/*! exports provided: create, escape, unescape, isMatch, match, matches, options, replace, split */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "create", function() { return create; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "escape", function() { return escape; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "unescape", function() { return unescape; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "isMatch", function() { return isMatch; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "match", function() { return match; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "matches", function() { return matches; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "options", function() { return options; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "replace", function() { return replace; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "split", function() { return split; });
+function create(pattern, options) {
+  // Supported RegexOptions
+  // * IgnoreCase:  0x0001
+  // * Multiline:   0x0002
+  // * ECMAScript:  0x0100 (ignored)
+  if ((options & ~(1 ^ 2 ^ 256)) !== 0) {
+    throw new Error("RegexOptions only supports: IgnoreCase, Multiline and ECMAScript");
+  }
+
+  var flags = "g";
+  flags += options & 1 ? "i" : ""; // 0x0001 RegexOptions.IgnoreCase
+
+  flags += options & 2 ? "m" : "";
+  return new RegExp(pattern, flags);
+} // From http://stackoverflow.com/questions/3446170/escape-string-for-use-in-javascript-regex
+
+function escape(str) {
+  return str.replace(/[\-\[\/\{\}\(\)\*\+\?\.\\\^\$\|]/g, "\\$&");
+}
+function unescape(str) {
+  return str.replace(/\\([\-\[\/\{\}\(\)\*\+\?\.\\\^\$\|])/g, "$1");
+}
+function isMatch(str, pattern) {
+  var options = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : 0;
+  var reg;
+  reg = str instanceof RegExp ? (reg = str, str = pattern, reg.lastIndex = options, reg) : reg = create(pattern, options);
+  return reg.test(str);
+}
+function match(str, pattern) {
+  var options = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : 0;
+  var reg;
+  reg = str instanceof RegExp ? (reg = str, str = pattern, reg.lastIndex = options, reg) : reg = create(pattern, options);
+  return reg.exec(str);
+}
+function matches(str, pattern) {
+  var options = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : 0;
+  var reg;
+  reg = str instanceof RegExp ? (reg = str, str = pattern, reg.lastIndex = options, reg) : reg = create(pattern, options);
+
+  if (!reg.global) {
+    throw new Error("Non-global RegExp"); // Prevent infinite loop
+  }
+
+  var m = reg.exec(str);
+  var matches = [];
+
+  while (m !== null) {
+    matches.push(m);
+    m = reg.exec(str);
+  }
+
+  return matches;
+}
+function options(reg) {
+  var options = 256; // ECMAScript
+
+  options |= reg.ignoreCase ? 1 : 0;
+  options |= reg.multiline ? 2 : 0;
+  return options;
+}
+function replace(reg, input, replacement, limit) {
+  var offset = arguments.length > 4 && arguments[4] !== undefined ? arguments[4] : 0;
+
+  function replacer() {
+    var res = arguments[0];
+
+    if (limit !== 0) {
+      limit--;
+      var _match = [];
+      var len = arguments.length;
+
+      for (var i = 0; i < len - 2; i++) {
+        _match.push(arguments[i]);
+      }
+
+      _match.index = arguments[len - 2];
+      _match.input = arguments[len - 1];
+      res = replacement(_match);
+    }
+
+    return res;
+  }
+
+  if (typeof reg === "string") {
+    var tmp = reg;
+    reg = create(input, limit);
+    input = tmp;
+    limit = undefined;
+  }
+
+  if (typeof replacement === "function") {
+    limit = limit == null ? -1 : limit;
+    return input.substring(0, offset) + input.substring(offset).replace(reg, replacer);
+  } else {
+    // $0 doesn't work with JS regex, see #1155
+    replacement = replacement.replace(/\$0/g, function (s) {
+      return "$&";
+    });
+
+    if (limit != null) {
+      var m;
+      var sub1 = input.substring(offset);
+
+      var _matches = matches(reg, sub1);
+
+      var sub2 = matches.length > limit ? (m = _matches[limit - 1], sub1.substring(0, m.index + m[0].length)) : sub1;
+      return input.substring(0, offset) + sub2.replace(reg, replacement) + input.substring(offset + sub2.length);
+    } else {
+      return input.replace(reg, replacement);
+    }
+  }
+}
+function split(reg, input, limit) {
+  var offset = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : 0;
+
+  if (typeof reg === "string") {
+    var tmp = reg;
+    reg = create(input, limit);
+    input = tmp;
+    limit = undefined;
+  }
+
+  input = input.substring(offset);
+  return input.split(reg, limit);
+}
+
+/***/ }),
+
 /***/ "./.fable/fable-library.2.2.3/Seq.js":
 /*!*******************************************!*\
   !*** ./.fable/fable-library.2.2.3/Seq.js ***!
@@ -3490,6 +4192,704 @@ function windowed(windowSize, source) {
       }
     };
   });
+}
+
+/***/ }),
+
+/***/ "./.fable/fable-library.2.2.3/String.js":
+/*!**********************************************!*\
+  !*** ./.fable/fable-library.2.2.3/String.js ***!
+  \**********************************************/
+/*! exports provided: compare, compareOrdinal, compareTo, startsWith, indexOfAny, printf, toConsole, toConsoleError, toText, toFail, fsFormat, format, endsWith, initialize, insert, isNullOrEmpty, isNullOrWhiteSpace, join, joinWithIndices, validateGuid, newGuid, guidToArray, arrayToGuid, toBase64String, fromBase64String, padLeft, padRight, remove, replace, replicate, getCharAtIndex, split, trim, trimStart, trimEnd, filter */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "compare", function() { return compare; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "compareOrdinal", function() { return compareOrdinal; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "compareTo", function() { return compareTo; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "startsWith", function() { return startsWith; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "indexOfAny", function() { return indexOfAny; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "printf", function() { return printf; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "toConsole", function() { return toConsole; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "toConsoleError", function() { return toConsoleError; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "toText", function() { return toText; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "toFail", function() { return toFail; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "fsFormat", function() { return fsFormat; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "format", function() { return format; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "endsWith", function() { return endsWith; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "initialize", function() { return initialize; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "insert", function() { return insert; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "isNullOrEmpty", function() { return isNullOrEmpty; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "isNullOrWhiteSpace", function() { return isNullOrWhiteSpace; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "join", function() { return join; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "joinWithIndices", function() { return joinWithIndices; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "validateGuid", function() { return validateGuid; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "newGuid", function() { return newGuid; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "guidToArray", function() { return guidToArray; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "arrayToGuid", function() { return arrayToGuid; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "toBase64String", function() { return toBase64String; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "fromBase64String", function() { return fromBase64String; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "padLeft", function() { return padLeft; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "padRight", function() { return padRight; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "remove", function() { return remove; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "replace", function() { return replace; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "replicate", function() { return replicate; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getCharAtIndex", function() { return getCharAtIndex; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "split", function() { return split; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "trim", function() { return trim; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "trimStart", function() { return trimStart; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "trimEnd", function() { return trimEnd; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "filter", function() { return filter; });
+/* harmony import */ var _babel_runtime_helpers_toConsumableArray__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/helpers/toConsumableArray */ "./node_modules/@babel/runtime/helpers/toConsumableArray.js");
+/* harmony import */ var _babel_runtime_helpers_toConsumableArray__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_helpers_toConsumableArray__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _babel_runtime_helpers_typeof__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @babel/runtime/helpers/typeof */ "./node_modules/@babel/runtime/helpers/typeof.js");
+/* harmony import */ var _babel_runtime_helpers_typeof__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_helpers_typeof__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _Date__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./Date */ "./.fable/fable-library.2.2.3/Date.js");
+/* harmony import */ var _Long__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./Long */ "./.fable/fable-library.2.2.3/Long.js");
+/* harmony import */ var _RegExp__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./RegExp */ "./.fable/fable-library.2.2.3/RegExp.js");
+
+
+
+
+
+var fsFormatRegExp = /(^|[^%])%([0+ ]*)(-?\d+)?(?:\.(\d+))?(\w)/;
+var formatRegExp = /\{(\d+)(,-?\d+)?(?:\:([a-zA-Z])(\d{0,2})|\:(.+?))?\}/g; // RFC 4122 compliant. From https://stackoverflow.com/a/13653180/3922220
+// const guidRegex = /^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/;
+// Relax GUID parsing, see #1637
+
+var guidRegex = /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/;
+
+function cmp(x, y, ic) {
+  function isIgnoreCase(i) {
+    return i === true || i === 1
+    /* CurrentCultureIgnoreCase */
+    || i === 3
+    /* InvariantCultureIgnoreCase */
+    || i === 5
+    /* OrdinalIgnoreCase */
+    ;
+  }
+
+  function isOrdinal(i) {
+    return i === 4
+    /* Ordinal */
+    || i === 5
+    /* OrdinalIgnoreCase */
+    ;
+  }
+
+  if (x == null) {
+    return y == null ? 0 : -1;
+  }
+
+  if (y == null) {
+    return 1;
+  } // everything is bigger than null
+
+
+  if (isOrdinal(ic)) {
+    if (isIgnoreCase(ic)) {
+      x = x.toLowerCase();
+      y = y.toLowerCase();
+    }
+
+    return x === y ? 0 : x < y ? -1 : 1;
+  } else {
+    if (isIgnoreCase(ic)) {
+      x = x.toLocaleLowerCase();
+      y = y.toLocaleLowerCase();
+    }
+
+    return x.localeCompare(y);
+  }
+}
+
+function compare() {
+  for (var _len = arguments.length, args = new Array(_len), _key = 0; _key < _len; _key++) {
+    args[_key] = arguments[_key];
+  }
+
+  switch (args.length) {
+    case 2:
+      return cmp(args[0], args[1], false);
+
+    case 3:
+      return cmp(args[0], args[1], args[2]);
+
+    case 4:
+      return cmp(args[0], args[1], args[2] === true);
+
+    case 5:
+      return cmp(args[0].substr(args[1], args[4]), args[2].substr(args[3], args[4]), false);
+
+    case 6:
+      return cmp(args[0].substr(args[1], args[4]), args[2].substr(args[3], args[4]), args[5]);
+
+    case 7:
+      return cmp(args[0].substr(args[1], args[4]), args[2].substr(args[3], args[4]), args[5] === true);
+
+    default:
+      throw new Error("String.compare: Unsupported number of parameters");
+  }
+}
+function compareOrdinal(x, y) {
+  return cmp(x, y, 4
+  /* Ordinal */
+  );
+}
+function compareTo(x, y) {
+  return cmp(x, y, 0
+  /* CurrentCulture */
+  );
+}
+function startsWith(str, pattern, ic) {
+  if (str.length >= pattern.length) {
+    return cmp(str.substr(0, pattern.length), pattern, ic) === 0;
+  }
+
+  return false;
+}
+function indexOfAny(str, anyOf) {
+  if (str == null || str === "") {
+    return -1;
+  }
+
+  var startIndex = (arguments.length <= 2 ? 0 : arguments.length - 2) > 0 ? arguments.length <= 2 ? undefined : arguments[2] : 0;
+
+  if (startIndex < 0) {
+    throw new Error("Start index cannot be negative");
+  }
+
+  var length = (arguments.length <= 2 ? 0 : arguments.length - 2) > 1 ? arguments.length <= 3 ? undefined : arguments[3] : str.length - startIndex;
+
+  if (length < 0) {
+    throw new Error("Length cannot be negative");
+  }
+
+  if (length > str.length - startIndex) {
+    throw new Error("Invalid startIndex and length");
+  }
+
+  str = str.substr(startIndex, length);
+  var _iteratorNormalCompletion = true;
+  var _didIteratorError = false;
+  var _iteratorError = undefined;
+
+  try {
+    for (var _iterator = anyOf[Symbol.iterator](), _step; !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {
+      var c = _step.value;
+      var index = str.indexOf(c);
+
+      if (index > -1) {
+        return index + startIndex;
+      }
+    }
+  } catch (err) {
+    _didIteratorError = true;
+    _iteratorError = err;
+  } finally {
+    try {
+      if (!_iteratorNormalCompletion && _iterator["return"] != null) {
+        _iterator["return"]();
+      }
+    } finally {
+      if (_didIteratorError) {
+        throw _iteratorError;
+      }
+    }
+  }
+
+  return -1;
+}
+
+function toHex(x) {
+  if (x instanceof _Long__WEBPACK_IMPORTED_MODULE_3__["default"]) {
+    return Object(_Long__WEBPACK_IMPORTED_MODULE_3__["toString"])(x.unsigned ? x : Object(_Long__WEBPACK_IMPORTED_MODULE_3__["fromBytes"])(Object(_Long__WEBPACK_IMPORTED_MODULE_3__["toBytes"])(x), true), 16);
+  } else {
+    return (Number(x) >>> 0).toString(16);
+  }
+}
+
+function printf(input) {
+  return {
+    input: input,
+    cont: fsFormat(input)
+  };
+}
+function toConsole(arg) {
+  // Don't remove the lambda here, see #1357
+  return arg.cont(function (x) {
+    console.log(x);
+  });
+}
+function toConsoleError(arg) {
+  return arg.cont(function (x) {
+    console.error(x);
+  });
+}
+function toText(arg) {
+  return arg.cont(function (x) {
+    return x;
+  });
+}
+function toFail(arg) {
+  return arg.cont(function (x) {
+    throw new Error(x);
+  });
+}
+
+function formatOnce(str2, rep) {
+  return str2.replace(fsFormatRegExp, function (_, prefix, flags, pad, precision, format) {
+    switch (format) {
+      case "f":
+      case "F":
+        rep = Number(rep).toFixed(precision || 6);
+        break;
+
+      case "g":
+      case "G":
+        rep = Number(rep).toPrecision(precision);
+        break;
+
+      case "e":
+      case "E":
+        rep = Number(rep).toExponential(precision);
+        break;
+
+      case "O":
+      case "A":
+        rep = String(rep);
+        break;
+
+      case "x":
+        rep = toHex(rep);
+        break;
+
+      case "X":
+        rep = toHex(rep).toUpperCase();
+        break;
+    }
+
+    var plusPrefix = flags.indexOf("+") >= 0 && parseInt(rep, 10) >= 0;
+    pad = parseInt(pad, 10);
+
+    if (!isNaN(pad)) {
+      var ch = pad >= 0 && flags.indexOf("0") >= 0 ? "0" : " ";
+      rep = padLeft(String(rep), Math.abs(pad) - (plusPrefix ? 1 : 0), ch, pad < 0);
+    }
+
+    var once = prefix + (plusPrefix ? "+" + rep : rep);
+    return once.replace(/%/g, "%%");
+  });
+}
+
+function createPrinter(str, cont) {
+  return function () {
+    // Make a copy as the function may be used several times
+    var strCopy = str;
+
+    for (var _len2 = arguments.length, args = new Array(_len2), _key2 = 0; _key2 < _len2; _key2++) {
+      args[_key2] = arguments[_key2];
+    }
+
+    for (var _i = 0, _args = args; _i < _args.length; _i++) {
+      var arg = _args[_i];
+      strCopy = formatOnce(strCopy, arg);
+    }
+
+    return fsFormatRegExp.test(strCopy) ? createPrinter(strCopy, cont) : cont(strCopy.replace(/%%/g, "%"));
+  };
+}
+
+function fsFormat(str) {
+  return function (cont) {
+    return fsFormatRegExp.test(str) ? createPrinter(str, cont) : cont(str);
+  };
+}
+function format(str) {
+  for (var _len3 = arguments.length, args = new Array(_len3 > 1 ? _len3 - 1 : 0), _key3 = 1; _key3 < _len3; _key3++) {
+    args[_key3 - 1] = arguments[_key3];
+  }
+
+  if (_babel_runtime_helpers_typeof__WEBPACK_IMPORTED_MODULE_1___default()(str) === "object" && args.length > 0) {
+    // Called with culture info
+    str = args[0];
+    args.shift();
+  }
+
+  return str.replace(formatRegExp, function (match, idx, pad, format, precision, pattern) {
+    var rep = args[idx];
+    var padSymbol = " ";
+    var isNumericType = typeof rep === "number" || rep instanceof _Long__WEBPACK_IMPORTED_MODULE_3__["default"]; // TODO: || (rep instanceof Decimal) || (rep instanceof BigInt);
+
+    if (isNumericType) {
+      switch (format) {
+        case "f":
+        case "F":
+          rep = precision ? rep.toFixed(precision) : rep.toFixed(2);
+          break;
+
+        case "g":
+        case "G":
+          rep = precision ? rep.toPrecision(precision) : rep.toPrecision();
+          break;
+
+        case "e":
+        case "E":
+          rep = precision ? rep.toExponential(precision) : rep.toExponential();
+          break;
+
+        case "p":
+        case "P":
+          rep = (precision ? (rep * 100).toFixed(precision) : (rep * 100).toFixed(2)) + " %";
+          break;
+
+        case "d":
+        case "D":
+          rep = precision ? padLeft(rep.toString(), precision, "0") : rep.toString();
+          break;
+
+        case "x":
+        case "X":
+          rep = precision ? padLeft(toHex(rep), precision, "0") : toHex(rep);
+
+          if (format === "X") {
+            rep = rep.toUpperCase();
+          }
+
+          break;
+
+        default:
+          var m = /^(0+)(\.0+)?$/.exec(pattern);
+
+          if (m != null) {
+            var decs = 0;
+
+            if (m[2] != null) {
+              rep = rep.toFixed(decs = m[2].length - 1);
+            }
+
+            pad = "," + (m[1].length + (decs ? decs + 1 : 0)).toString();
+            padSymbol = "0";
+          } else if (pattern) {
+            rep = pattern;
+          }
+
+      }
+    } else if (rep instanceof Date) {
+      rep = Object(_Date__WEBPACK_IMPORTED_MODULE_2__["toString"])(rep, pattern || format);
+    }
+
+    pad = parseInt((pad || "").substring(1), 10);
+
+    if (!isNaN(pad)) {
+      rep = padLeft(String(rep), Math.abs(pad), padSymbol, pad < 0);
+    }
+
+    return rep;
+  });
+}
+function endsWith(str, search) {
+  var idx = str.lastIndexOf(search);
+  return idx >= 0 && idx === str.length - search.length;
+}
+function initialize(n, f) {
+  if (n < 0) {
+    throw new Error("String length must be non-negative");
+  }
+
+  var xs = new Array(n);
+
+  for (var i = 0; i < n; i++) {
+    xs[i] = f(i);
+  }
+
+  return xs.join("");
+}
+function insert(str, startIndex, value) {
+  if (startIndex < 0 || startIndex > str.length) {
+    throw new Error("startIndex is negative or greater than the length of this instance.");
+  }
+
+  return str.substring(0, startIndex) + value + str.substring(startIndex);
+}
+function isNullOrEmpty(str) {
+  return typeof str !== "string" || str.length === 0;
+}
+function isNullOrWhiteSpace(str) {
+  return typeof str !== "string" || /^\s*$/.test(str);
+}
+function join(delimiter) {
+  for (var _len4 = arguments.length, xs = new Array(_len4 > 1 ? _len4 - 1 : 0), _key4 = 1; _key4 < _len4; _key4++) {
+    xs[_key4 - 1] = arguments[_key4];
+  }
+
+  return xs.map(function (x) {
+    return String(x);
+  }).join(delimiter);
+}
+function joinWithIndices(delimiter, xs, startIndex, count) {
+  var endIndexPlusOne = startIndex + count;
+
+  if (endIndexPlusOne > xs.length) {
+    throw new Error("Index and count must refer to a location within the buffer.");
+  }
+
+  return join.apply(void 0, [delimiter].concat(_babel_runtime_helpers_toConsumableArray__WEBPACK_IMPORTED_MODULE_0___default()(xs.slice(startIndex, endIndexPlusOne))));
+}
+/** Validates UUID as specified in RFC4122 (versions 1-5). Trims braces. */
+
+function validateGuid(str, doNotThrow) {
+  var trimmedAndLowered = trim(str, "{", "}").toLowerCase();
+
+  if (guidRegex.test(trimmedAndLowered)) {
+    return doNotThrow ? [true, trimmedAndLowered] : trimmedAndLowered;
+  } else if (doNotThrow) {
+    return [false, "00000000-0000-0000-0000-000000000000"];
+  }
+
+  throw new Error("Guid should contain 32 digits with 4 dashes: xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx");
+} // From https://gist.github.com/LeverOne/1308368
+
+function newGuid() {
+  var b = "";
+
+  for (var a = 0; a++ < 36;) {
+    b += a * 51 & 52 ? (a ^ 15 ? 8 ^ Math.random() * (a ^ 20 ? 16 : 4) : 4).toString(16) : "-";
+  }
+
+  return b;
+} // Maps for number <-> hex string conversion
+
+var _convertMapsInitialized = false;
+
+var _byteToHex;
+
+var _hexToByte;
+
+function initConvertMaps() {
+  _byteToHex = new Array(256);
+  _hexToByte = {};
+
+  for (var i = 0; i < 256; i++) {
+    _byteToHex[i] = (i + 0x100).toString(16).substr(1);
+    _hexToByte[_byteToHex[i]] = i;
+  }
+
+  _convertMapsInitialized = true;
+}
+/** Parse a UUID into it's component bytes */
+// Adapted from https://github.com/zefferus/uuid-parse
+
+
+function guidToArray(s) {
+  if (!_convertMapsInitialized) {
+    initConvertMaps();
+  }
+
+  var i = 0;
+  var buf = new Uint8Array(16);
+  s.toLowerCase().replace(/[0-9a-f]{2}/g, function (oct) {
+    switch (i) {
+      // .NET saves first three byte groups with different endianness
+      // See https://stackoverflow.com/a/16722909/3922220
+      case 0:
+      case 1:
+      case 2:
+      case 3:
+        buf[3 - i++] = _hexToByte[oct];
+        break;
+
+      case 4:
+      case 5:
+        buf[9 - i++] = _hexToByte[oct];
+        break;
+
+      case 6:
+      case 7:
+        buf[13 - i++] = _hexToByte[oct];
+        break;
+
+      case 8:
+      case 9:
+      case 10:
+      case 11:
+      case 12:
+      case 13:
+      case 14:
+      case 15:
+        buf[i++] = _hexToByte[oct];
+        break;
+    }
+  }); // Zero out remaining bytes if string was short
+
+  while (i < 16) {
+    buf[i++] = 0;
+  }
+
+  return buf;
+}
+/** Convert UUID byte array into a string */
+
+function arrayToGuid(buf) {
+  if (buf.length !== 16) {
+    throw new Error("Byte array for GUID must be exactly 16 bytes long");
+  }
+
+  if (!_convertMapsInitialized) {
+    initConvertMaps();
+  }
+
+  return _byteToHex[buf[3]] + _byteToHex[buf[2]] + _byteToHex[buf[1]] + _byteToHex[buf[0]] + "-" + _byteToHex[buf[5]] + _byteToHex[buf[4]] + "-" + _byteToHex[buf[7]] + _byteToHex[buf[6]] + "-" + _byteToHex[buf[8]] + _byteToHex[buf[9]] + "-" + _byteToHex[buf[10]] + _byteToHex[buf[11]] + _byteToHex[buf[12]] + _byteToHex[buf[13]] + _byteToHex[buf[14]] + _byteToHex[buf[15]];
+}
+
+function notSupported(name) {
+  throw new Error("The environment doesn't support '" + name + "', please use a polyfill.");
+}
+
+function toBase64String(inArray) {
+  var str = "";
+
+  for (var i = 0; i < inArray.length; i++) {
+    str += String.fromCharCode(inArray[i]);
+  }
+
+  return typeof btoa === "function" ? btoa(str) : notSupported("btoa");
+}
+function fromBase64String(b64Encoded) {
+  var binary = typeof atob === "function" ? atob(b64Encoded) : notSupported("atob");
+  var bytes = new Uint8Array(binary.length);
+
+  for (var i = 0; i < binary.length; i++) {
+    bytes[i] = binary.charCodeAt(i);
+  }
+
+  return bytes;
+}
+function padLeft(str, len, ch, isRight) {
+  ch = ch || " ";
+  len = len - str.length;
+
+  for (var i = 0; i < len; i++) {
+    str = isRight ? str + ch : ch + str;
+  }
+
+  return str;
+}
+function padRight(str, len, ch) {
+  return padLeft(str, len, ch, true);
+}
+function remove(str, startIndex, count) {
+  if (startIndex >= str.length) {
+    throw new Error("startIndex must be less than length of string");
+  }
+
+  if (typeof count === "number" && startIndex + count > str.length) {
+    throw new Error("Index and count must refer to a location within the string.");
+  }
+
+  return str.slice(0, startIndex) + (typeof count === "number" ? str.substr(startIndex + count) : "");
+}
+function replace(str, search, replace) {
+  return str.replace(new RegExp(Object(_RegExp__WEBPACK_IMPORTED_MODULE_4__["escape"])(search), "g"), replace);
+}
+function replicate(n, x) {
+  return initialize(n, function () {
+    return x;
+  });
+}
+function getCharAtIndex(input, index) {
+  if (index < 0 || index >= input.length) {
+    throw new Error("Index was outside the bounds of the array.");
+  }
+
+  return input[index];
+}
+function split(str, splitters, count, removeEmpty) {
+  count = typeof count === "number" ? count : null;
+  removeEmpty = typeof removeEmpty === "number" ? removeEmpty : null;
+
+  if (count < 0) {
+    throw new Error("Count cannot be less than zero");
+  }
+
+  if (count === 0) {
+    return [];
+  }
+
+  if (!Array.isArray(splitters)) {
+    if (removeEmpty === 0) {
+      return str.split(splitters, count);
+    }
+
+    var len = arguments.length;
+    splitters = Array(len - 1);
+
+    for (var key = 1; key < len; key++) {
+      splitters[key - 1] = arguments[key];
+    }
+  }
+
+  splitters = splitters.map(function (x) {
+    return Object(_RegExp__WEBPACK_IMPORTED_MODULE_4__["escape"])(x);
+  });
+  splitters = splitters.length > 0 ? splitters : [" "];
+  var i = 0;
+  var splits = [];
+  var reg = new RegExp(splitters.join("|"), "g");
+
+  while (count == null || count > 1) {
+    var m = reg.exec(str);
+
+    if (m === null) {
+      break;
+    }
+
+    if (!removeEmpty || m.index - i > 0) {
+      count = count != null ? count - 1 : count;
+      splits.push(str.substring(i, m.index));
+    }
+
+    i = reg.lastIndex;
+  }
+
+  if (!removeEmpty || str.length - i > 0) {
+    splits.push(str.substring(i));
+  }
+
+  return splits;
+}
+function trim(str) {
+  for (var _len5 = arguments.length, chars = new Array(_len5 > 1 ? _len5 - 1 : 0), _key5 = 1; _key5 < _len5; _key5++) {
+    chars[_key5 - 1] = arguments[_key5];
+  }
+
+  if (chars.length === 0) {
+    return str.trim();
+  }
+
+  var pattern = "[" + Object(_RegExp__WEBPACK_IMPORTED_MODULE_4__["escape"])(chars.join("")) + "]+";
+  return str.replace(new RegExp("^" + pattern), "").replace(new RegExp(pattern + "$"), "");
+}
+function trimStart(str) {
+  for (var _len6 = arguments.length, chars = new Array(_len6 > 1 ? _len6 - 1 : 0), _key6 = 1; _key6 < _len6; _key6++) {
+    chars[_key6 - 1] = arguments[_key6];
+  }
+
+  return chars.length === 0 ? str.trimStart() : str.replace(new RegExp("^[" + Object(_RegExp__WEBPACK_IMPORTED_MODULE_4__["escape"])(chars.join("")) + "]+"), "");
+}
+function trimEnd(str) {
+  for (var _len7 = arguments.length, chars = new Array(_len7 > 1 ? _len7 - 1 : 0), _key7 = 1; _key7 < _len7; _key7++) {
+    chars[_key7 - 1] = arguments[_key7];
+  }
+
+  return chars.length === 0 ? str.trimEnd() : str.replace(new RegExp("[" + Object(_RegExp__WEBPACK_IMPORTED_MODULE_4__["escape"])(chars.join("")) + "]+$"), "");
+}
+function filter(pred, x) {
+  return x.split("").filter(function (c) {
+    return pred(c);
+  }).join("");
 }
 
 /***/ }),
@@ -5187,6 +6587,159 @@ var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_
 
 /***/ }),
 
+/***/ "./src/Renderer/MenuBar.fs":
+/*!*********************************!*\
+  !*** ./src/Renderer/MenuBar.fs ***!
+  \*********************************/
+/*! exports provided: menuBuilder, menuFile, menuEdit, menuView, menuHelp, initMenu */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "menuBuilder", function() { return menuBuilder; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "menuFile", function() { return menuFile; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "menuEdit", function() { return menuEdit; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "menuView", function() { return menuView; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "menuHelp", function() { return menuHelp; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "initMenu", function() { return initMenu; });
+/* harmony import */ var _fable_fable_library_2_2_3_String_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../.fable/fable-library.2.2.3/String.js */ "./.fable/fable-library.2.2.3/String.js");
+/* harmony import */ var electron__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! electron */ "electron");
+/* harmony import */ var electron__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(electron__WEBPACK_IMPORTED_MODULE_1__);
+
+
+function menuBuilder(clickData, typeData, labelData, sublabelData, acceleratorData, iconData, enabledData, visibleData, checkedData, submenuData, idData, positionData, roleData) {
+  return {
+    set accelerator(v) {
+      var this$ = this;
+      this$.accelerator = v;
+    },
+
+    set checked(v$$1) {
+      var this$$$1 = this;
+      this$$$1.checked = v$$1;
+    },
+
+    set click(v$$2) {
+      var this$$$2 = this;
+      this$$$2.click = v$$2;
+    },
+
+    set enabled(v$$3) {
+      var this$$$3 = this;
+      this$$$3.enabled = v$$3;
+    },
+
+    set icon(v$$4) {
+      var this$$$4 = this;
+      this$$$4.icon = v$$4;
+    },
+
+    set id(v$$5) {
+      var this$$$5 = this;
+      this$$$5.id = v$$5;
+    },
+
+    set label(v$$6) {
+      var this$$$6 = this;
+      this$$$6.label = v$$6;
+    },
+
+    set position(v$$7) {
+      var this$$$7 = this;
+      this$$$7.position = v$$7;
+    },
+
+    set role(v$$8) {
+      var this$$$8 = this;
+      this$$$8.role = v$$8;
+    },
+
+    set sublabel(v$$9) {
+      var this$$$9 = this;
+      this$$$9.sublabel = v$$9;
+    },
+
+    set submenu(v$$10) {
+      var this$$$10 = this;
+      this$$$10.submenu = v$$10;
+    },
+
+    set type(v$$11) {
+      var this$$$11 = this;
+      this$$$11.type = v$$11;
+    },
+
+    set visible(v$$12) {
+      var this$$$12 = this;
+      this$$$12.visible = v$$12;
+    },
+
+    get click() {
+      return clickData;
+    },
+
+    get type() {
+      return typeData;
+    },
+
+    get label() {
+      return labelData;
+    },
+
+    get sublabel() {
+      return sublabelData;
+    },
+
+    get accelerator() {
+      return acceleratorData;
+    },
+
+    get icon() {
+      return iconData;
+    },
+
+    get enabled() {
+      return enabledData;
+    },
+
+    get visible() {
+      return visibleData;
+    },
+
+    get checked() {
+      return checkedData;
+    },
+
+    get submenu() {
+      return submenuData;
+    },
+
+    get id() {
+      return idData;
+    },
+
+    get position() {
+      return positionData;
+    },
+
+    get role() {
+      return roleData;
+    }
+
+  };
+}
+var menuFile = menuBuilder(null, "normal", "File", null, null, null, true, true, false, null, null, null, null);
+var menuEdit = menuBuilder(null, "normal", "Edit", null, "Ctrl+A", null, true, true, false, null, null, null, "editMenu");
+var menuView = menuBuilder(null, "normal", "View", null, "Ctrl+P", null, true, true, false, null, null, null, null);
+var menuHelp = menuBuilder(null, "normal", "Help", null, null, null, true, true, false, null, null, null, null);
+function initMenu() {
+  Object(_fable_fable_library_2_2_3_String_js__WEBPACK_IMPORTED_MODULE_0__["toConsole"])(Object(_fable_fable_library_2_2_3_String_js__WEBPACK_IMPORTED_MODULE_0__["printf"])("initMenu()"));
+  var template = Array.from([menuFile, menuEdit, menuView, menuHelp]);
+  electron__WEBPACK_IMPORTED_MODULE_1___default.a.remote.Menu.setApplicationMenu(electron__WEBPACK_IMPORTED_MODULE_1___default.a.remote.Menu.buildFromTemplate(template));
+}
+
+/***/ }),
+
 /***/ "./src/Renderer/Renderer.fs":
 /*!**********************************!*\
   !*** ./src/Renderer/Renderer.fs ***!
@@ -5212,6 +6765,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _fable_fable_library_2_2_3_Types_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../.fable/fable-library.2.2.3/Types.js */ "./.fable/fable-library.2.2.3/Types.js");
 /* harmony import */ var _fable_fable_library_2_2_3_Reflection_js__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../.fable/fable-library.2.2.3/Reflection.js */ "./.fable/fable-library.2.2.3/Reflection.js");
 /* harmony import */ var _fable_fable_library_2_2_3_Event_js__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../.fable/fable-library.2.2.3/Event.js */ "./.fable/fable-library.2.2.3/Event.js");
+/* harmony import */ var _fable_fable_library_2_2_3_String_js__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../../.fable/fable-library.2.2.3/String.js */ "./.fable/fable-library.2.2.3/String.js");
+/* harmony import */ var C_Users_Wilson_Wang_Desktop_Parallel_HDL_Dev_src_Renderer_MenuBar_fs__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./src/Renderer/MenuBar.fs */ "./src/Renderer/MenuBar.fs");
+
+
 
 
 
@@ -5236,7 +6793,8 @@ function Navigate$reflection() {
 }
 var navigation = new _fable_fable_library_2_2_3_Event_js__WEBPACK_IMPORTED_MODULE_5__["default"]();
 function init() {
-  return null;
+  Object(_fable_fable_library_2_2_3_String_js__WEBPACK_IMPORTED_MODULE_6__["toConsole"])(Object(_fable_fable_library_2_2_3_String_js__WEBPACK_IMPORTED_MODULE_6__["printf"])("calling initMenu()"));
+  Object(C_Users_Wilson_Wang_Desktop_Parallel_HDL_Dev_src_Renderer_MenuBar_fs__WEBPACK_IMPORTED_MODULE_7__["initMenu"])();
 }
 init();
 
