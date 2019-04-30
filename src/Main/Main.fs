@@ -151,6 +151,17 @@ let menuBuilder(clickData:Func<MenuItem, BrowserWindow, unit> option,
                      member this.position = positionData
                      member this.role = roleData}
 
+let ch (str) = 
+    let m = createEmpty<MenuItemOptions>
+    m.label <- str
+    m
+
+let newMenu item name = 
+    let m = createEmpty<MenuItemOptions>
+    m.label <- name
+    m.submenu <- item
+    m
+
 let makeItem (label : string) (accelerator : string option) = //(iAction : unit -> unit) =
     let handlerCaster f = System.Func<MenuItem, BrowserWindow, unit> f |> Some
     let item = createEmpty<MenuItemOptions>
@@ -255,13 +266,19 @@ let createMainWindow () =
     let systemMenu = electron.Menu.buildFromTemplate(menuTemplate)
    
     electron.Menu.setApplicationMenu(systemMenu)
-    *)
+     
+     // Clear the menuBar, this is overwritten by the renderer process
     let template = ResizeArray<MenuItemOptions> [
-                        createEmpty<MenuItemOptions>
-                    ]
-    printf "menu cleared"
+                         createEmpty<MenuItemOptions>
+                     ]
     electron.Menu.setApplicationMenu(electron.Menu.buildFromTemplate(template))
-    
+    *)
+    let filemenu() = ch (Some "yes")
+    let newFileMenu() = newMenu (Some (U2.Case2 (ResizeArray<MenuItemOptions>[filemenu()]))) (Some "File")
+    let template = ResizeArray<MenuItemOptions> [
+        newFileMenu()
+    ]
+    electron.Menu.setApplicationMenu(electron.Menu.buildFromTemplate(template))
 
     #if DEBUG
     Fs.watch(Path.join(Node.Globals.__dirname, "renderer.js"), fun _ _ ->
