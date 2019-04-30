@@ -10,6 +10,32 @@ open System
 // Keep a global reference of the window object, if you don't, the window will
 // be closed automatically when the JavaScript object is garbage collected.
 let mutable mainWindow: BrowserWindow option = Option.None
+let mutable aboutWindow: BrowserWindow option = Option.None
+
+let createAboutWindow () = 
+    let options = createEmpty<BrowserWindowOptions>
+    options.width <- Some 400.
+    options.height <- Some 300.
+    options.autoHideMenuBar <- Some true
+    options.resizable <- Some false
+    let window = electron.BrowserWindow.Create(options)
+
+    let opts = createEmpty<Node.Url.Url<obj>>
+    opts.pathname <- Some <| Path.join(Node.Globals.__dirname, "../about.html")
+    opts.protocol <- Some "file:"
+    window.loadURL(Url.format(opts))
+
+    // Emitted when the window is closed.
+    window.on("closed", unbox(fun () ->
+        // Dereference the window object, usually you would store windows
+        // in an array if your app supports multi windows, this is the time
+        // when you should delete the corresponding element.
+        aboutWindow <- Option.None
+    )) |> ignore
+
+    window.show()
+
+    aboutWindow <- Some window
 
 type MenuSetup =     
     { clickData:Func<MenuItem, BrowserWindow, unit> option;
@@ -125,7 +151,9 @@ let fileMenuSettings=
       roleData = Option.None }
 
 let helpMenuSubmenuSettings = 
-    [ { clickData = Option.None;
+    let handlerCaster f = System.Func<MenuItem, BrowserWindow, unit> f |> Some
+    let clickFunction = handlerCaster (fun _ _ -> createAboutWindow())
+    [ { clickData = clickFunction;
       typeData = Option.None; 
       labelData = Some "About";
       sublabelData = Option.None; 
@@ -156,8 +184,8 @@ let helpMenuSettings=
 
 let createMainWindow () =
     let options = createEmpty<BrowserWindowOptions>
-    options.width <- Some 1366.
-    options.height <- Some 1024.
+    options.width <- Some 900.
+    options.height <- Some 600.
     options.autoHideMenuBar <- Some false
     let window = electron.BrowserWindow.Create(options)
 
@@ -188,7 +216,7 @@ let createMainWindow () =
     )) |> ignore
 
     // Maximize the window
-    window.maximize()
+    window.show()
 
     mainWindow <- Some window
 

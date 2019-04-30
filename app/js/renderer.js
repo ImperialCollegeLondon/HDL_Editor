@@ -6587,159 +6587,6 @@ var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_
 
 /***/ }),
 
-/***/ "./src/Renderer/MenuBar.fs":
-/*!*********************************!*\
-  !*** ./src/Renderer/MenuBar.fs ***!
-  \*********************************/
-/*! exports provided: menuBuilder, menuFile, menuEdit, menuView, menuHelp, initMenu */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "menuBuilder", function() { return menuBuilder; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "menuFile", function() { return menuFile; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "menuEdit", function() { return menuEdit; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "menuView", function() { return menuView; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "menuHelp", function() { return menuHelp; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "initMenu", function() { return initMenu; });
-/* harmony import */ var _fable_fable_library_2_2_3_String_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../.fable/fable-library.2.2.3/String.js */ "./.fable/fable-library.2.2.3/String.js");
-/* harmony import */ var electron__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! electron */ "electron");
-/* harmony import */ var electron__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(electron__WEBPACK_IMPORTED_MODULE_1__);
-
-
-function menuBuilder(clickData, typeData, labelData, sublabelData, acceleratorData, iconData, enabledData, visibleData, checkedData, submenuData, idData, positionData, roleData) {
-  return {
-    set accelerator(v) {
-      var this$ = this;
-      this$.accelerator = v;
-    },
-
-    set checked(v$$1) {
-      var this$$$1 = this;
-      this$$$1.checked = v$$1;
-    },
-
-    set click(v$$2) {
-      var this$$$2 = this;
-      this$$$2.click = v$$2;
-    },
-
-    set enabled(v$$3) {
-      var this$$$3 = this;
-      this$$$3.enabled = v$$3;
-    },
-
-    set icon(v$$4) {
-      var this$$$4 = this;
-      this$$$4.icon = v$$4;
-    },
-
-    set id(v$$5) {
-      var this$$$5 = this;
-      this$$$5.id = v$$5;
-    },
-
-    set label(v$$6) {
-      var this$$$6 = this;
-      this$$$6.label = v$$6;
-    },
-
-    set position(v$$7) {
-      var this$$$7 = this;
-      this$$$7.position = v$$7;
-    },
-
-    set role(v$$8) {
-      var this$$$8 = this;
-      this$$$8.role = v$$8;
-    },
-
-    set sublabel(v$$9) {
-      var this$$$9 = this;
-      this$$$9.sublabel = v$$9;
-    },
-
-    set submenu(v$$10) {
-      var this$$$10 = this;
-      this$$$10.submenu = v$$10;
-    },
-
-    set type(v$$11) {
-      var this$$$11 = this;
-      this$$$11.type = v$$11;
-    },
-
-    set visible(v$$12) {
-      var this$$$12 = this;
-      this$$$12.visible = v$$12;
-    },
-
-    get click() {
-      return clickData;
-    },
-
-    get type() {
-      return typeData;
-    },
-
-    get label() {
-      return labelData;
-    },
-
-    get sublabel() {
-      return sublabelData;
-    },
-
-    get accelerator() {
-      return acceleratorData;
-    },
-
-    get icon() {
-      return iconData;
-    },
-
-    get enabled() {
-      return enabledData;
-    },
-
-    get visible() {
-      return visibleData;
-    },
-
-    get checked() {
-      return checkedData;
-    },
-
-    get submenu() {
-      return submenuData;
-    },
-
-    get id() {
-      return idData;
-    },
-
-    get position() {
-      return positionData;
-    },
-
-    get role() {
-      return roleData;
-    }
-
-  };
-}
-var menuFile = menuBuilder(null, "normal", "File", null, null, null, true, true, false, null, null, null, null);
-var menuEdit = menuBuilder(null, "normal", "Edit", null, "Ctrl+A", null, true, true, false, null, null, null, "editMenu");
-var menuView = menuBuilder(null, "normal", "View", null, "Ctrl+P", null, true, true, false, null, null, null, null);
-var menuHelp = menuBuilder(null, "normal", "Help", null, null, null, true, true, false, null, null, null, null);
-function initMenu() {
-  Object(_fable_fable_library_2_2_3_String_js__WEBPACK_IMPORTED_MODULE_0__["toConsole"])(Object(_fable_fable_library_2_2_3_String_js__WEBPACK_IMPORTED_MODULE_0__["printf"])("initMenu()"));
-  var template = Array.from([menuFile, menuEdit, menuView, menuHelp]);
-  electron__WEBPACK_IMPORTED_MODULE_1___default.a.remote.Menu.setApplicationMenu(electron__WEBPACK_IMPORTED_MODULE_1___default.a.remote.Menu.buildFromTemplate(template));
-}
-
-/***/ }),
-
 /***/ "./src/Renderer/Renderer.fs":
 /*!**********************************!*\
   !*** ./src/Renderer/Renderer.fs ***!
@@ -6766,8 +6613,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _fable_fable_library_2_2_3_Reflection_js__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../.fable/fable-library.2.2.3/Reflection.js */ "./.fable/fable-library.2.2.3/Reflection.js");
 /* harmony import */ var _fable_fable_library_2_2_3_Event_js__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../.fable/fable-library.2.2.3/Event.js */ "./.fable/fable-library.2.2.3/Event.js");
 /* harmony import */ var _fable_fable_library_2_2_3_String_js__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../../.fable/fable-library.2.2.3/String.js */ "./.fable/fable-library.2.2.3/String.js");
-/* harmony import */ var C_Users_Wilson_Wang_Desktop_Parallel_HDL_Dev_src_Renderer_MenuBar_fs__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./src/Renderer/MenuBar.fs */ "./src/Renderer/MenuBar.fs");
-
 
 
 
@@ -6794,7 +6639,7 @@ function Navigate$reflection() {
 var navigation = new _fable_fable_library_2_2_3_Event_js__WEBPACK_IMPORTED_MODULE_5__["default"]();
 function init() {
   Object(_fable_fable_library_2_2_3_String_js__WEBPACK_IMPORTED_MODULE_6__["toConsole"])(Object(_fable_fable_library_2_2_3_String_js__WEBPACK_IMPORTED_MODULE_6__["printf"])("calling initMenu()"));
-  Object(C_Users_Wilson_Wang_Desktop_Parallel_HDL_Dev_src_Renderer_MenuBar_fs__WEBPACK_IMPORTED_MODULE_7__["initMenu"])();
+  throw 1;
 }
 init();
 

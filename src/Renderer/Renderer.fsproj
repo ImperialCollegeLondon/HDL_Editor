@@ -7,9 +7,7 @@
     <Compile Include="Blocks.fs" />
     <Compile Include="Canvas.fs" />
     <Compile Include="Html.fs" />
-    <Compile Include="Mime.fs" />
     <Compile Include="HTMLUtilities.fs" />
-    <Compile Include="MenuBar.fs" />
     <Compile Include="Renderer.fs" />
   </ItemGroup>
   <Import Project="..\..\.paket\Paket.Restore.targets" />

@@ -12268,12 +12268,14 @@ module.exports = _typeof;
 /*!**************************!*\
   !*** ./src/Main/Main.fs ***!
   \**************************/
-/*! exports provided: mainWindow, MenuSetup, MenuSetup$reflection, menuBuilder, submenuBuilder, fileMenuSubmenuSettings, fileMenuSettings, helpMenuSubmenuSettings, helpMenuSettings, createMainWindow */
+/*! exports provided: mainWindow, aboutWindow, createAboutWindow, MenuSetup, MenuSetup$reflection, menuBuilder, submenuBuilder, fileMenuSubmenuSettings, fileMenuSettings, helpMenuSubmenuSettings, helpMenuSettings, createMainWindow */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "mainWindow", function() { return mainWindow; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "aboutWindow", function() { return aboutWindow; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "createAboutWindow", function() { return createAboutWindow; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "MenuSetup", function() { return MenuSetup; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "MenuSetup$reflection", function() { return MenuSetup$reflection; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "menuBuilder", function() { return menuBuilder; });
@@ -12284,15 +12286,15 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "helpMenuSettings", function() { return helpMenuSettings; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "createMainWindow", function() { return createMainWindow; });
 /* harmony import */ var _fable_fable_library_2_2_3_Util_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../.fable/fable-library.2.2.3/Util.js */ "./.fable/fable-library.2.2.3/Util.js");
-/* harmony import */ var _fable_fable_library_2_2_3_Types_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../.fable/fable-library.2.2.3/Types.js */ "./.fable/fable-library.2.2.3/Types.js");
-/* harmony import */ var _fable_fable_library_2_2_3_Reflection_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../.fable/fable-library.2.2.3/Reflection.js */ "./.fable/fable-library.2.2.3/Reflection.js");
-/* harmony import */ var _fable_fable_library_2_2_3_List_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../.fable/fable-library.2.2.3/List.js */ "./.fable/fable-library.2.2.3/List.js");
-/* harmony import */ var electron__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! electron */ "electron");
-/* harmony import */ var electron__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(electron__WEBPACK_IMPORTED_MODULE_4__);
-/* harmony import */ var path__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! path */ "path");
-/* harmony import */ var path__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(path__WEBPACK_IMPORTED_MODULE_5__);
-/* harmony import */ var url__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! url */ "url");
-/* harmony import */ var url__WEBPACK_IMPORTED_MODULE_6___default = /*#__PURE__*/__webpack_require__.n(url__WEBPACK_IMPORTED_MODULE_6__);
+/* harmony import */ var electron__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! electron */ "electron");
+/* harmony import */ var electron__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(electron__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var path__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! path */ "path");
+/* harmony import */ var path__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(path__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var url__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! url */ "url");
+/* harmony import */ var url__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(url__WEBPACK_IMPORTED_MODULE_3__);
+/* harmony import */ var _fable_fable_library_2_2_3_Types_js__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../.fable/fable-library.2.2.3/Types.js */ "./.fable/fable-library.2.2.3/Types.js");
+/* harmony import */ var _fable_fable_library_2_2_3_Reflection_js__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../.fable/fable-library.2.2.3/Reflection.js */ "./.fable/fable-library.2.2.3/Reflection.js");
+/* harmony import */ var _fable_fable_library_2_2_3_List_js__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../../.fable/fable-library.2.2.3/List.js */ "./.fable/fable-library.2.2.3/List.js");
 /* harmony import */ var fs__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! fs */ "fs");
 /* harmony import */ var fs__WEBPACK_IMPORTED_MODULE_7___default = /*#__PURE__*/__webpack_require__.n(fs__WEBPACK_IMPORTED_MODULE_7__);
 
@@ -12304,7 +12306,25 @@ __webpack_require__.r(__webpack_exports__);
 
 
 var mainWindow = Object(_fable_fable_library_2_2_3_Util_js__WEBPACK_IMPORTED_MODULE_0__["createAtom"])(null);
-var MenuSetup = Object(_fable_fable_library_2_2_3_Types_js__WEBPACK_IMPORTED_MODULE_1__["declare"])(function Main_MenuSetup(arg1, arg2, arg3, arg4, arg5, arg6, arg7, arg8, arg9, arg10, arg11, arg12, arg13) {
+var aboutWindow = Object(_fable_fable_library_2_2_3_Util_js__WEBPACK_IMPORTED_MODULE_0__["createAtom"])(null);
+function createAboutWindow() {
+  var options = {};
+  options.width = 400;
+  options.height = 300;
+  options.autoHideMenuBar = true;
+  options.resizable = false;
+  var window$ = new electron__WEBPACK_IMPORTED_MODULE_1___default.a.BrowserWindow(options);
+  var opts = {};
+  opts.pathname = path__WEBPACK_IMPORTED_MODULE_2__["join"](__dirname, "../about.html");
+  opts.protocol = "file:";
+  window$.loadURL(url__WEBPACK_IMPORTED_MODULE_3__["format"](opts));
+  window$.on("closed", function () {
+    aboutWindow(null);
+  });
+  window$.show();
+  aboutWindow(window$);
+}
+var MenuSetup = Object(_fable_fable_library_2_2_3_Types_js__WEBPACK_IMPORTED_MODULE_4__["declare"])(function Main_MenuSetup(arg1, arg2, arg3, arg4, arg5, arg6, arg7, arg8, arg9, arg10, arg11, arg12, arg13) {
   this.clickData = arg1;
   this.typeData = arg2;
   this.labelData = arg3;
@@ -12318,10 +12338,10 @@ var MenuSetup = Object(_fable_fable_library_2_2_3_Types_js__WEBPACK_IMPORTED_MOD
   this.idData = arg11;
   this.positionData = arg12;
   this.roleData = arg13;
-}, _fable_fable_library_2_2_3_Types_js__WEBPACK_IMPORTED_MODULE_1__["Record"]);
+}, _fable_fable_library_2_2_3_Types_js__WEBPACK_IMPORTED_MODULE_4__["Record"]);
 function MenuSetup$reflection() {
-  return Object(_fable_fable_library_2_2_3_Reflection_js__WEBPACK_IMPORTED_MODULE_2__["record"])("Main.MenuSetup", [], MenuSetup, function () {
-    return [["clickData", Object(_fable_fable_library_2_2_3_Reflection_js__WEBPACK_IMPORTED_MODULE_2__["option"])(Object(_fable_fable_library_2_2_3_Reflection_js__WEBPACK_IMPORTED_MODULE_2__["delegate"])(Object(_fable_fable_library_2_2_3_Reflection_js__WEBPACK_IMPORTED_MODULE_2__["type"])("Fable.Import.Electron.MenuItem"), Object(_fable_fable_library_2_2_3_Reflection_js__WEBPACK_IMPORTED_MODULE_2__["type"])("Fable.Import.Electron.BrowserWindow"), _fable_fable_library_2_2_3_Reflection_js__WEBPACK_IMPORTED_MODULE_2__["unit"]))], ["typeData", Object(_fable_fable_library_2_2_3_Reflection_js__WEBPACK_IMPORTED_MODULE_2__["option"])(_fable_fable_library_2_2_3_Reflection_js__WEBPACK_IMPORTED_MODULE_2__["string"])], ["labelData", Object(_fable_fable_library_2_2_3_Reflection_js__WEBPACK_IMPORTED_MODULE_2__["option"])(_fable_fable_library_2_2_3_Reflection_js__WEBPACK_IMPORTED_MODULE_2__["string"])], ["sublabelData", Object(_fable_fable_library_2_2_3_Reflection_js__WEBPACK_IMPORTED_MODULE_2__["option"])(_fable_fable_library_2_2_3_Reflection_js__WEBPACK_IMPORTED_MODULE_2__["string"])], ["acceleratorData", Object(_fable_fable_library_2_2_3_Reflection_js__WEBPACK_IMPORTED_MODULE_2__["option"])(_fable_fable_library_2_2_3_Reflection_js__WEBPACK_IMPORTED_MODULE_2__["string"])], ["iconData", Object(_fable_fable_library_2_2_3_Reflection_js__WEBPACK_IMPORTED_MODULE_2__["option"])(_fable_fable_library_2_2_3_Reflection_js__WEBPACK_IMPORTED_MODULE_2__["obj"])], ["enabledData", Object(_fable_fable_library_2_2_3_Reflection_js__WEBPACK_IMPORTED_MODULE_2__["option"])(_fable_fable_library_2_2_3_Reflection_js__WEBPACK_IMPORTED_MODULE_2__["bool"])], ["visibleData", Object(_fable_fable_library_2_2_3_Reflection_js__WEBPACK_IMPORTED_MODULE_2__["option"])(_fable_fable_library_2_2_3_Reflection_js__WEBPACK_IMPORTED_MODULE_2__["bool"])], ["checkedData", Object(_fable_fable_library_2_2_3_Reflection_js__WEBPACK_IMPORTED_MODULE_2__["option"])(_fable_fable_library_2_2_3_Reflection_js__WEBPACK_IMPORTED_MODULE_2__["bool"])], ["submenuData", Object(_fable_fable_library_2_2_3_Reflection_js__WEBPACK_IMPORTED_MODULE_2__["option"])(_fable_fable_library_2_2_3_Reflection_js__WEBPACK_IMPORTED_MODULE_2__["obj"])], ["idData", Object(_fable_fable_library_2_2_3_Reflection_js__WEBPACK_IMPORTED_MODULE_2__["option"])(_fable_fable_library_2_2_3_Reflection_js__WEBPACK_IMPORTED_MODULE_2__["string"])], ["positionData", Object(_fable_fable_library_2_2_3_Reflection_js__WEBPACK_IMPORTED_MODULE_2__["option"])(_fable_fable_library_2_2_3_Reflection_js__WEBPACK_IMPORTED_MODULE_2__["string"])], ["roleData", Object(_fable_fable_library_2_2_3_Reflection_js__WEBPACK_IMPORTED_MODULE_2__["option"])(_fable_fable_library_2_2_3_Reflection_js__WEBPACK_IMPORTED_MODULE_2__["obj"])]];
+  return Object(_fable_fable_library_2_2_3_Reflection_js__WEBPACK_IMPORTED_MODULE_5__["record"])("Main.MenuSetup", [], MenuSetup, function () {
+    return [["clickData", Object(_fable_fable_library_2_2_3_Reflection_js__WEBPACK_IMPORTED_MODULE_5__["option"])(Object(_fable_fable_library_2_2_3_Reflection_js__WEBPACK_IMPORTED_MODULE_5__["delegate"])(Object(_fable_fable_library_2_2_3_Reflection_js__WEBPACK_IMPORTED_MODULE_5__["type"])("Fable.Import.Electron.MenuItem"), Object(_fable_fable_library_2_2_3_Reflection_js__WEBPACK_IMPORTED_MODULE_5__["type"])("Fable.Import.Electron.BrowserWindow"), _fable_fable_library_2_2_3_Reflection_js__WEBPACK_IMPORTED_MODULE_5__["unit"]))], ["typeData", Object(_fable_fable_library_2_2_3_Reflection_js__WEBPACK_IMPORTED_MODULE_5__["option"])(_fable_fable_library_2_2_3_Reflection_js__WEBPACK_IMPORTED_MODULE_5__["string"])], ["labelData", Object(_fable_fable_library_2_2_3_Reflection_js__WEBPACK_IMPORTED_MODULE_5__["option"])(_fable_fable_library_2_2_3_Reflection_js__WEBPACK_IMPORTED_MODULE_5__["string"])], ["sublabelData", Object(_fable_fable_library_2_2_3_Reflection_js__WEBPACK_IMPORTED_MODULE_5__["option"])(_fable_fable_library_2_2_3_Reflection_js__WEBPACK_IMPORTED_MODULE_5__["string"])], ["acceleratorData", Object(_fable_fable_library_2_2_3_Reflection_js__WEBPACK_IMPORTED_MODULE_5__["option"])(_fable_fable_library_2_2_3_Reflection_js__WEBPACK_IMPORTED_MODULE_5__["string"])], ["iconData", Object(_fable_fable_library_2_2_3_Reflection_js__WEBPACK_IMPORTED_MODULE_5__["option"])(_fable_fable_library_2_2_3_Reflection_js__WEBPACK_IMPORTED_MODULE_5__["obj"])], ["enabledData", Object(_fable_fable_library_2_2_3_Reflection_js__WEBPACK_IMPORTED_MODULE_5__["option"])(_fable_fable_library_2_2_3_Reflection_js__WEBPACK_IMPORTED_MODULE_5__["bool"])], ["visibleData", Object(_fable_fable_library_2_2_3_Reflection_js__WEBPACK_IMPORTED_MODULE_5__["option"])(_fable_fable_library_2_2_3_Reflection_js__WEBPACK_IMPORTED_MODULE_5__["bool"])], ["checkedData", Object(_fable_fable_library_2_2_3_Reflection_js__WEBPACK_IMPORTED_MODULE_5__["option"])(_fable_fable_library_2_2_3_Reflection_js__WEBPACK_IMPORTED_MODULE_5__["bool"])], ["submenuData", Object(_fable_fable_library_2_2_3_Reflection_js__WEBPACK_IMPORTED_MODULE_5__["option"])(_fable_fable_library_2_2_3_Reflection_js__WEBPACK_IMPORTED_MODULE_5__["obj"])], ["idData", Object(_fable_fable_library_2_2_3_Reflection_js__WEBPACK_IMPORTED_MODULE_5__["option"])(_fable_fable_library_2_2_3_Reflection_js__WEBPACK_IMPORTED_MODULE_5__["string"])], ["positionData", Object(_fable_fable_library_2_2_3_Reflection_js__WEBPACK_IMPORTED_MODULE_5__["option"])(_fable_fable_library_2_2_3_Reflection_js__WEBPACK_IMPORTED_MODULE_5__["string"])], ["roleData", Object(_fable_fable_library_2_2_3_Reflection_js__WEBPACK_IMPORTED_MODULE_5__["option"])(_fable_fable_library_2_2_3_Reflection_js__WEBPACK_IMPORTED_MODULE_5__["obj"])]];
   });
 }
 function menuBuilder(menuContent) {
@@ -12342,44 +12362,53 @@ function menuBuilder(menuContent) {
   return menu;
 }
 function submenuBuilder(submenuContent) {
-  var submenu = Object(_fable_fable_library_2_2_3_List_js__WEBPACK_IMPORTED_MODULE_3__["map"])(menuBuilder, submenuContent);
+  var submenu = Object(_fable_fable_library_2_2_3_List_js__WEBPACK_IMPORTED_MODULE_6__["map"])(menuBuilder, submenuContent);
   var submenuResizeArray = Array.from(submenu);
   return submenuResizeArray;
 }
-var fileMenuSubmenuSettings = Object(_fable_fable_library_2_2_3_List_js__WEBPACK_IMPORTED_MODULE_3__["ofArray"])([new MenuSetup(null, null, "New", null, null, null, true, true, false, null, "File_Sub_Menu_New", null, null), new MenuSetup(null, null, "Open", null, null, null, true, true, false, null, "File_Sub_Menu_Open", null, null), new MenuSetup(null, null, "Close", null, null, null, true, true, false, null, "File_Sub_Menu_Close", null, null), new MenuSetup(null, null, "Exit", null, null, null, true, true, false, null, "File_Sub_Menu_Exit", null, "quit")]);
+var fileMenuSubmenuSettings = Object(_fable_fable_library_2_2_3_List_js__WEBPACK_IMPORTED_MODULE_6__["ofArray"])([new MenuSetup(null, null, "New", null, null, null, true, true, false, null, "File_Sub_Menu_New", null, null), new MenuSetup(null, null, "Open", null, null, null, true, true, false, null, "File_Sub_Menu_Open", null, null), new MenuSetup(null, null, "Close", null, null, null, true, true, false, null, "File_Sub_Menu_Close", null, null), new MenuSetup(null, null, "Exit", null, null, null, true, true, false, null, "File_Sub_Menu_Exit", null, "quit")]);
 var fileMenuSettings = new MenuSetup(null, null, "File", null, null, null, true, true, false, submenuBuilder(fileMenuSubmenuSettings), "File_Menu", null, null);
-var helpMenuSubmenuSettings = new _fable_fable_library_2_2_3_Types_js__WEBPACK_IMPORTED_MODULE_1__["List"](new MenuSetup(null, null, "About", null, null, null, true, true, false, null, "Help_Sub_Menu_About", null, null), new _fable_fable_library_2_2_3_Types_js__WEBPACK_IMPORTED_MODULE_1__["List"]());
+var helpMenuSubmenuSettings = function () {
+  var handlerCaster = function handlerCaster(f) {
+    return f;
+  };
+
+  var clickFunction = handlerCaster(function (_arg2, _arg1) {
+    createAboutWindow();
+  });
+  return new _fable_fable_library_2_2_3_Types_js__WEBPACK_IMPORTED_MODULE_4__["List"](new MenuSetup(clickFunction, null, "About", null, null, null, true, true, false, null, "Help_Sub_Menu_About", null, null), new _fable_fable_library_2_2_3_Types_js__WEBPACK_IMPORTED_MODULE_4__["List"]());
+}();
 var helpMenuSettings = new MenuSetup(null, null, "Help", null, null, null, true, true, false, submenuBuilder(helpMenuSubmenuSettings), "Help_Menu", null, null);
 function createMainWindow() {
-  var options = {};
-  options.width = 1366;
-  options.height = 1024;
-  options.autoHideMenuBar = false;
-  var window$ = new electron__WEBPACK_IMPORTED_MODULE_4___default.a.BrowserWindow(options);
-  var opts = {};
-  opts.pathname = path__WEBPACK_IMPORTED_MODULE_5__["join"](__dirname, "../index.html");
-  opts.protocol = "file:";
-  window$.loadURL(url__WEBPACK_IMPORTED_MODULE_6__["format"](opts));
+  var options$$1 = {};
+  options$$1.width = 900;
+  options$$1.height = 600;
+  options$$1.autoHideMenuBar = false;
+  var window$$$1 = new electron__WEBPACK_IMPORTED_MODULE_1___default.a.BrowserWindow(options$$1);
+  var opts$$1 = {};
+  opts$$1.pathname = path__WEBPACK_IMPORTED_MODULE_2__["join"](__dirname, "../index.html");
+  opts$$1.protocol = "file:";
+  window$$$1.loadURL(url__WEBPACK_IMPORTED_MODULE_3__["format"](opts$$1));
   var template = Array.from([menuBuilder(fileMenuSettings), menuBuilder(helpMenuSettings)]);
-  electron__WEBPACK_IMPORTED_MODULE_4___default.a.Menu.setApplicationMenu(electron__WEBPACK_IMPORTED_MODULE_4___default.a.Menu.buildFromTemplate(template));
-  fs__WEBPACK_IMPORTED_MODULE_7__["watch"](path__WEBPACK_IMPORTED_MODULE_5__["join"](__dirname, "renderer.js"), function (_arg2, _arg1) {
-    window$.webContents.reloadIgnoringCache();
+  electron__WEBPACK_IMPORTED_MODULE_1___default.a.Menu.setApplicationMenu(electron__WEBPACK_IMPORTED_MODULE_1___default.a.Menu.buildFromTemplate(template));
+  fs__WEBPACK_IMPORTED_MODULE_7__["watch"](path__WEBPACK_IMPORTED_MODULE_2__["join"](__dirname, "renderer.js"), function (_arg2$$1, _arg1$$1) {
+    window$$$1.webContents.reloadIgnoringCache();
   });
-  window$.on("closed", function () {
+  window$$$1.on("closed", function () {
     mainWindow(null);
   });
-  window$.maximize();
-  mainWindow(window$);
+  window$$$1.show();
+  mainWindow(window$$$1);
 }
-electron__WEBPACK_IMPORTED_MODULE_4___default.a.app.on("ready", function () {
+electron__WEBPACK_IMPORTED_MODULE_1___default.a.app.on("ready", function () {
   createMainWindow();
 });
-electron__WEBPACK_IMPORTED_MODULE_4___default.a.app.on("window-all-closed", function () {
+electron__WEBPACK_IMPORTED_MODULE_1___default.a.app.on("window-all-closed", function () {
   if (process.platform !== "darwin") {
-    electron__WEBPACK_IMPORTED_MODULE_4___default.a.app.quit();
+    electron__WEBPACK_IMPORTED_MODULE_1___default.a.app.quit();
   }
 });
-electron__WEBPACK_IMPORTED_MODULE_4___default.a.app.on("activate", function () {
+electron__WEBPACK_IMPORTED_MODULE_1___default.a.app.on("activate", function () {
   if (mainWindow() == null) {
     createMainWindow();
   }
@@ -12391,13 +12420,17 @@ electron__WEBPACK_IMPORTED_MODULE_4___default.a.app.on("activate", function () {
 /*!******************************!*\
   !*** ./src/Main/Main.fsproj ***!
   \******************************/
-/*! exports provided: mainWindow, MenuSetup, MenuSetup$reflection, menuBuilder, submenuBuilder, fileMenuSubmenuSettings, fileMenuSettings, helpMenuSubmenuSettings, helpMenuSettings, createMainWindow */
+/*! exports provided: mainWindow, aboutWindow, createAboutWindow, MenuSetup, MenuSetup$reflection, menuBuilder, submenuBuilder, fileMenuSubmenuSettings, fileMenuSettings, helpMenuSubmenuSettings, helpMenuSettings, createMainWindow */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _Main_fs__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./Main.fs */ "./src/Main/Main.fs");
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "mainWindow", function() { return _Main_fs__WEBPACK_IMPORTED_MODULE_0__["mainWindow"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "aboutWindow", function() { return _Main_fs__WEBPACK_IMPORTED_MODULE_0__["aboutWindow"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "createAboutWindow", function() { return _Main_fs__WEBPACK_IMPORTED_MODULE_0__["createAboutWindow"]; });
 
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "MenuSetup", function() { return _Main_fs__WEBPACK_IMPORTED_MODULE_0__["MenuSetup"]; });
 

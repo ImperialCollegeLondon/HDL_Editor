@@ -21,13 +21,11 @@
     "@types/jquery": "^3.3.29",
     "@types/rappid": "^1.5.31",
     "backbone": "^1.4.0",
-    "bpmn-js": "^3.3.1",
     "core-js": "^3.0.1",
     "file-size": "^1.0.0",
     "jointjs": "^2.2.1",
     "jquery": "^3.4.0",
-    "monaco-editor": "^0.16.2",
-    "mxgraph": "^3.9.12"
+    "monaco-editor": "^0.16.2"
   },
   "devDependencies": {
     "@babel/core": "^7.4.3",
