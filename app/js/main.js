@@ -12268,7 +12268,7 @@ module.exports = _typeof;
 /*!**************************!*\
   !*** ./src/Main/Main.fs ***!
   \**************************/
-/*! exports provided: mainWindow, MenuSetup, MenuSetup$reflection, menuBuilder, submenuBuilder, fileMenuSubmenuSettings, fileMenuSettings, createMainWindow */
+/*! exports provided: mainWindow, MenuSetup, MenuSetup$reflection, menuBuilder, submenuBuilder, fileMenuSubmenuSettings, fileMenuSettings, helpMenuSubmenuSettings, helpMenuSettings, createMainWindow */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -12280,6 +12280,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "submenuBuilder", function() { return submenuBuilder; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "fileMenuSubmenuSettings", function() { return fileMenuSubmenuSettings; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "fileMenuSettings", function() { return fileMenuSettings; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "helpMenuSubmenuSettings", function() { return helpMenuSubmenuSettings; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "helpMenuSettings", function() { return helpMenuSettings; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "createMainWindow", function() { return createMainWindow; });
 /* harmony import */ var _fable_fable_library_2_2_3_Util_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../.fable/fable-library.2.2.3/Util.js */ "./.fable/fable-library.2.2.3/Util.js");
 /* harmony import */ var _fable_fable_library_2_2_3_Types_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../.fable/fable-library.2.2.3/Types.js */ "./.fable/fable-library.2.2.3/Types.js");
@@ -12344,11 +12346,10 @@ function submenuBuilder(submenuContent) {
   var submenuResizeArray = Array.from(submenu);
   return submenuResizeArray;
 }
-var fileMenuSubmenuSettings = new MenuSetup(null, null, "Exit", null, null, null, true, true, false, null, "File_Menu", null, "quit");
-var fileMenuSettings = function () {
-  var fileSubmenu = submenuBuilder(new _fable_fable_library_2_2_3_Types_js__WEBPACK_IMPORTED_MODULE_1__["List"](fileMenuSubmenuSettings, new _fable_fable_library_2_2_3_Types_js__WEBPACK_IMPORTED_MODULE_1__["List"]()));
-  return new MenuSetup(null, null, "File", null, null, null, true, true, false, fileSubmenu, "File_Menu", null, null);
-}();
+var fileMenuSubmenuSettings = Object(_fable_fable_library_2_2_3_List_js__WEBPACK_IMPORTED_MODULE_3__["ofArray"])([new MenuSetup(null, null, "New", null, null, null, true, true, false, null, "File_Sub_Menu_New", null, null), new MenuSetup(null, null, "Open", null, null, null, true, true, false, null, "File_Sub_Menu_Open", null, null), new MenuSetup(null, null, "Close", null, null, null, true, true, false, null, "File_Sub_Menu_Close", null, null), new MenuSetup(null, null, "Exit", null, null, null, true, true, false, null, "File_Sub_Menu_Exit", null, "quit")]);
+var fileMenuSettings = new MenuSetup(null, null, "File", null, null, null, true, true, false, submenuBuilder(fileMenuSubmenuSettings), "File_Menu", null, null);
+var helpMenuSubmenuSettings = new _fable_fable_library_2_2_3_Types_js__WEBPACK_IMPORTED_MODULE_1__["List"](new MenuSetup(null, null, "About", null, null, null, true, true, false, null, "Help_Sub_Menu_About", null, null), new _fable_fable_library_2_2_3_Types_js__WEBPACK_IMPORTED_MODULE_1__["List"]());
+var helpMenuSettings = new MenuSetup(null, null, "Help", null, null, null, true, true, false, submenuBuilder(helpMenuSubmenuSettings), "Help_Menu", null, null);
 function createMainWindow() {
   var options = {};
   options.width = 1366;
@@ -12359,8 +12360,7 @@ function createMainWindow() {
   opts.pathname = path__WEBPACK_IMPORTED_MODULE_5__["join"](__dirname, "../index.html");
   opts.protocol = "file:";
   window$.loadURL(url__WEBPACK_IMPORTED_MODULE_6__["format"](opts));
-  var filemenu = menuBuilder(fileMenuSettings);
-  var template = Array.from([filemenu]);
+  var template = Array.from([menuBuilder(fileMenuSettings), menuBuilder(helpMenuSettings)]);
   electron__WEBPACK_IMPORTED_MODULE_4___default.a.Menu.setApplicationMenu(electron__WEBPACK_IMPORTED_MODULE_4___default.a.Menu.buildFromTemplate(template));
   fs__WEBPACK_IMPORTED_MODULE_7__["watch"](path__WEBPACK_IMPORTED_MODULE_5__["join"](__dirname, "renderer.js"), function (_arg2, _arg1) {
     window$.webContents.reloadIgnoringCache();
@@ -12391,7 +12391,7 @@ electron__WEBPACK_IMPORTED_MODULE_4___default.a.app.on("activate", function () {
 /*!******************************!*\
   !*** ./src/Main/Main.fsproj ***!
   \******************************/
-/*! exports provided: mainWindow, MenuSetup, MenuSetup$reflection, menuBuilder, submenuBuilder, fileMenuSubmenuSettings, fileMenuSettings, createMainWindow */
+/*! exports provided: mainWindow, MenuSetup, MenuSetup$reflection, menuBuilder, submenuBuilder, fileMenuSubmenuSettings, fileMenuSettings, helpMenuSubmenuSettings, helpMenuSettings, createMainWindow */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -12410,6 +12410,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "fileMenuSubmenuSettings", function() { return _Main_fs__WEBPACK_IMPORTED_MODULE_0__["fileMenuSubmenuSettings"]; });
 
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "fileMenuSettings", function() { return _Main_fs__WEBPACK_IMPORTED_MODULE_0__["fileMenuSettings"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "helpMenuSubmenuSettings", function() { return _Main_fs__WEBPACK_IMPORTED_MODULE_0__["helpMenuSubmenuSettings"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "helpMenuSettings", function() { return _Main_fs__WEBPACK_IMPORTED_MODULE_0__["helpMenuSettings"]; });
 
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "createMainWindow", function() { return _Main_fs__WEBPACK_IMPORTED_MODULE_0__["createMainWindow"]; });
 

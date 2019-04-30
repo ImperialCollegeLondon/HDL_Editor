@@ -53,7 +53,49 @@ let submenuBuilder (submenuContent:MenuSetup list) =
     submenuResizeArray
 
 let fileMenuSubmenuSettings = 
-    { clickData = Option.None;
+    [ { clickData = Option.None;
+      typeData = Option.None; 
+      labelData = Some "New";
+      sublabelData = Option.None; 
+      acceleratorData = Option.None; 
+      iconData = Option.None;
+      enabledData = Some true;
+      visibleData = Some true;
+      checkedData = Some false;
+      submenuData = Option.None;
+      idData = Some "File_Sub_Menu_New";
+      positionData = Option.None;
+      roleData = Option.None };
+
+      { clickData = Option.None;
+      typeData = Option.None; 
+      labelData = Some "Open";
+      sublabelData = Option.None; 
+      acceleratorData = Option.None; 
+      iconData = Option.None;
+      enabledData = Some true;
+      visibleData = Some true;
+      checkedData = Some false;
+      submenuData = Option.None;
+      idData = Some "File_Sub_Menu_Open";
+      positionData = Option.None;
+      roleData = Option.None };
+      
+      { clickData = Option.None;
+      typeData = Option.None; 
+      labelData = Some "Close";
+      sublabelData = Option.None; 
+      acceleratorData = Option.None; 
+      iconData = Option.None;
+      enabledData = Some true;
+      visibleData = Some true;
+      checkedData = Some false;
+      submenuData = Option.None;
+      idData = Some "File_Sub_Menu_Close";
+      positionData = Option.None;
+      roleData = Option.None };
+      
+      { clickData = Option.None;
       typeData = Option.None; 
       labelData = Some "Exit";
       sublabelData = Option.None; 
@@ -63,12 +105,11 @@ let fileMenuSubmenuSettings =
       visibleData = Some true;
       checkedData = Some false;
       submenuData = Option.None;
-      idData = Some "File_Menu";
+      idData = Some "File_Sub_Menu_Exit";
       positionData = Option.None;
-      roleData = Some (U2.Case1 MenuItemRole.Quit) }
+      roleData = Some (U2.Case1 MenuItemRole.Quit) } ]
 
 let fileMenuSettings= 
-    let fileSubmenu = submenuBuilder [fileMenuSubmenuSettings]
     { clickData = Option.None;
       typeData = Option.None; 
       labelData = Some "File";
@@ -78,8 +119,38 @@ let fileMenuSettings=
       enabledData = Some true;
       visibleData = Some true;
       checkedData = Some false;
-      submenuData = fileSubmenu;
+      submenuData = fileMenuSubmenuSettings |> submenuBuilder;
       idData = Some "File_Menu";
+      positionData = Option.None;
+      roleData = Option.None }
+
+let helpMenuSubmenuSettings = 
+    [ { clickData = Option.None;
+      typeData = Option.None; 
+      labelData = Some "About";
+      sublabelData = Option.None; 
+      acceleratorData = Option.None; 
+      iconData = Option.None;
+      enabledData = Some true;
+      visibleData = Some true;
+      checkedData = Some false;
+      submenuData = Option.None;
+      idData = Some "Help_Sub_Menu_About";
+      positionData = Option.None;
+      roleData = Option.None } ]
+
+let helpMenuSettings= 
+    { clickData = Option.None;
+      typeData = Option.None; 
+      labelData = Some "Help";
+      sublabelData = Option.None; 
+      acceleratorData = Option.None; 
+      iconData = Option.None;
+      enabledData = Some true;
+      visibleData = Some true;
+      checkedData = Some false;
+      submenuData = helpMenuSubmenuSettings |> submenuBuilder;
+      idData = Some "Help_Menu";
       positionData = Option.None;
       roleData = Option.None }
 
@@ -96,9 +167,9 @@ let createMainWindow () =
     opts.protocol <- Some "file:"
     window.loadURL(Url.format(opts))
     
-    let filemenu = menuBuilder(fileMenuSettings)
     let template = ResizeArray<MenuItemOptions> [
-        filemenu
+        fileMenuSettings |> menuBuilder;
+        helpMenuSettings |> menuBuilder;
     ]
     electron.Menu.setApplicationMenu(electron.Menu.buildFromTemplate(template))
 
