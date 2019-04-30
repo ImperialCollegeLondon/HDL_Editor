@@ -6639,7 +6639,6 @@ function Navigate$reflection() {
 var navigation = new _fable_fable_library_2_2_3_Event_js__WEBPACK_IMPORTED_MODULE_5__["default"]();
 function init() {
   Object(_fable_fable_library_2_2_3_String_js__WEBPACK_IMPORTED_MODULE_6__["toConsole"])(Object(_fable_fable_library_2_2_3_String_js__WEBPACK_IMPORTED_MODULE_6__["printf"])("calling initMenu()"));
-  throw 1;
 }
 init();
 
