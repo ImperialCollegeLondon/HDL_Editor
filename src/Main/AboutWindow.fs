@@ -20,6 +20,13 @@ let createAboutWindow () =
     opts.protocol <- Some "file:"
     window.loadURL(Url.format(opts))
 
+    let document = createEmpty<Fable.Import.Browser.Document>
+    let div = document.createElement_div()
+    //div.innerHTML <- electronVersion
+
+
+
+
     // Emitted when the window is closed.
     window.on("closed", unbox(fun () ->
         // Dereference the window object, usually you would store windows

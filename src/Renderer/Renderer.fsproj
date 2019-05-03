@@ -8,6 +8,8 @@
     <Compile Include="Canvas.fs" />
     <Compile Include="Html.fs" />
     <Compile Include="HTMLUtilities.fs" />
+    <Compile Include="..\Main\AboutWindow.fs" Link="AboutWindow.fs" />
+    <Compile Include="..\Main\Menubar.fs" Link="Menubar.fs" />
     <Compile Include="Renderer.fs" />
   </ItemGroup>
   <Import Project="..\..\.paket\Paket.Restore.targets" />

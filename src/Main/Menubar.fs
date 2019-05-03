@@ -11,6 +11,7 @@ open Fable.Core.JsInterop
 open Fable.Import.Electron
 open System
 open AboutWindow
+open Fable.Import
 
 /// to avoid code dulication
 /// only the fields that ofter differ from one and other menu items
@@ -269,10 +270,13 @@ let helpMenu=
 
 /// template used in Main for building the menu
 /// refer to the Fable.Import.Electron.fs source code for type requirement
-let menubar = 
+let menubarInit () = 
     [ fileMenu; 
       editMenu;
       viewMenu;
       helpMenu ]
     |> List.map menuBuilder
     |> ResizeArray<MenuItemOptions> 
+    |> electron.remote.Menu.buildFromTemplate
+    |> electron.remote.Menu.setApplicationMenu
+
