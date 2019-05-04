@@ -6,8 +6,11 @@ open Fable.Import
 open Node.Exports
 open AboutWindow
 open Menubar
+open Jointjs
 
 let init() = 
     menubarInit()
+    addBlock()
+    result()
 
-init()
+init() |> ignore
