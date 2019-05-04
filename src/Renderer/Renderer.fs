@@ -6,9 +6,6 @@ open Fable.Import
 open Node.Exports
 open AboutWindow
 open Menubar
-open Electron
-
-let remote = importMember<Remote> "electron"
 
 let init() = 
     menubarInit()

@@ -5,27 +5,20 @@ open Fable.Import
 open Fable.Import.Electron
 open Node.Exports
 
-let mutable aboutWindow: BrowserWindow option = Option.None
-
 let createAboutWindow () = 
+    let mutable aboutWindow: BrowserWindow option = Option.None
     let options = createEmpty<BrowserWindowOptions>
     options.width <- Some 400.
     options.height <- Some 300.
     options.autoHideMenuBar <- Some true
     options.resizable <- Some false
-    let window = electron.BrowserWindow.Create(options)
+    options.parent <- Some (electron.remote.getCurrentWindow())
+    let window = electron.remote.BrowserWindow.Create(options)
 
     let opts = createEmpty<Node.Url.Url<obj>>
-    opts.pathname <- Some <| Path.join(Node.Globals.__dirname, "../about.html")
+    opts.pathname <- Some <| Path.join(Node.Globals.__dirname, "about.html")
     opts.protocol <- Some "file:"
     window.loadURL(Url.format(opts))
-
-    let document = createEmpty<Fable.Import.Browser.Document>
-    let div = document.createElement_div()
-    //div.innerHTML <- electronVersion
-
-
-
 
     // Emitted when the window is closed.
     window.on("closed", unbox(fun () ->

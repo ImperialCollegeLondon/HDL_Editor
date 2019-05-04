@@ -33,13 +33,6 @@ let createMainWindow () =
     window.loadURL(Url.format(opts))
     
     window.webContents.openDevTools()
-
-    #if DEBUG
-    Fs.watch(Path.join(Node.Globals.__dirname, "renderer.js"), fun _ _ ->
-        window.webContents.reloadIgnoringCache()
-    ) |> ignore
-    #endif
-
     
     
     let template = ResizeArray<MenuItemOptions> [
@@ -47,7 +40,12 @@ let createMainWindow () =
     ]
     electron.Menu.setApplicationMenu(electron.Menu.buildFromTemplate(template))
     
-    
+    window.on("ready-to-show", (fun () -> 
+        window.show() 
+        options.backgroundColor <- Some "#F0F0F0"
+        window.focus()
+     )) |> ignore
+
     
     // Emitted when the window is closed.
     window.on("closed", unbox(fun () ->
@@ -56,9 +54,6 @@ let createMainWindow () =
         // when you should delete the corresponding element.
         mainWindow <- Option.None
     )) |> ignore
-
-    // Maximize the window
-    window.show()
 
     mainWindow <- Some window
 
