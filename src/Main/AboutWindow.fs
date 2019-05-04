@@ -13,6 +13,11 @@ let createAboutWindow () =
     options.autoHideMenuBar <- Some true
     options.resizable <- Some false
     options.parent <- Some (electron.remote.getCurrentWindow())
+    options.modal <- Some true
+    options.title <- Some "About HDL Editor"
+    let prefs = createEmpty<WebPreferences>
+    prefs.nodeIntegration <- Some true
+    options.webPreferences <- Some prefs
     let window = electron.remote.BrowserWindow.Create(options)
 
     let opts = createEmpty<Node.Url.Url<obj>>

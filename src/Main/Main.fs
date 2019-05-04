@@ -16,16 +16,14 @@ let createMainWindow () =
     options.width <- Some 900.
     options.height <- Some 600.
     options.autoHideMenuBar <- Some false
+    options.title <- Some "HDL Editor"
     let prefs = createEmpty<WebPreferences>
     prefs.nodeIntegration <- Some true
     options.webPreferences <- Some prefs
 
 
     let window = electron.BrowserWindow.Create(options)
-
-    let nodeVersion = Node.Globals.``process``.version
-    let electronVersion = electron.app.getVersion
-   
+    
     // Load the index.html of the app.
     let opts = createEmpty<Node.Url.Url<obj>>
     opts.pathname <- Some <| Path.join(Node.Globals.__dirname, "../index.html")
@@ -33,12 +31,10 @@ let createMainWindow () =
     window.loadURL(Url.format(opts))
     
     window.webContents.openDevTools()
-    
-    
-    let template = ResizeArray<MenuItemOptions> [
-        createEmpty<MenuItemOptions>
-    ]
-    electron.Menu.setApplicationMenu(electron.Menu.buildFromTemplate(template))
+
+    let menu = electron.Menu.Create()
+
+    electron.Menu.setApplicationMenu(menu)
     
     window.on("ready-to-show", (fun () -> 
         window.show() 
