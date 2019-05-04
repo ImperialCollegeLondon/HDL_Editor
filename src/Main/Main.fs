@@ -16,7 +16,11 @@ let createMainWindow () =
     options.width <- Some 900.
     options.height <- Some 600.
     options.autoHideMenuBar <- Some false
-    options.
+    let prefs = createEmpty<WebPreferences>
+    prefs.nodeIntegration <- Some true
+    options.webPreferences <- Some prefs
+
+
     let window = electron.BrowserWindow.Create(options)
 
     let nodeVersion = Node.Globals.``process``.version
@@ -28,12 +32,7 @@ let createMainWindow () =
     opts.protocol <- Some "file:"
     window.loadURL(Url.format(opts))
     
-    //electron.Menu.setApplicationMenu(electron.Menu.buildFromTemplate(menubar))
-    let mutable closeAfterSave = false
-    electron.ipcMain?on ("doClose", unbox (fun () ->
-        closeAfterSave <- true
-        window?close()
-        )) |> ignore
+    window.webContents.openDevTools()
 
     #if DEBUG
     Fs.watch(Path.join(Node.Globals.__dirname, "renderer.js"), fun _ _ ->
@@ -42,12 +41,14 @@ let createMainWindow () =
     #endif
 
     
+    
     let template = ResizeArray<MenuItemOptions> [
         createEmpty<MenuItemOptions>
     ]
     electron.Menu.setApplicationMenu(electron.Menu.buildFromTemplate(template))
     
-
+    
+    
     // Emitted when the window is closed.
     window.on("closed", unbox(fun () ->
         // Dereference the window object, usually you would store windows

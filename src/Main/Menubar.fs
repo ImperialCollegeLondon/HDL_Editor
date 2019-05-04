@@ -8,10 +8,10 @@ module Menubar
 
 open Fable.Core
 open Fable.Core.JsInterop
+open Fable.Import
 open Fable.Import.Electron
 open System
 open AboutWindow
-open Fable.Import
 
 /// to avoid code dulication
 /// only the fields that ofter differ from one and other menu items
