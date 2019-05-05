@@ -19,6 +19,9 @@ paket-files/
 # exclude the fable folder
 .fable/
 
+# exclude the src/.vscode folder
+src/.vscode
+
 # Visual Studio cache files
 # files ending in .cache can be ignored
 *.[Cc]ache
