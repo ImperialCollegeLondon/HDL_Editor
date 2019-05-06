@@ -10,7 +10,7 @@ open Jointjs
 
 let init() = 
     menubarInit()
-    addBlock()
+    //addBlock()
     result()
 
 init() |> ignore
