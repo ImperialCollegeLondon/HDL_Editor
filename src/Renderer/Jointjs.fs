@@ -5,26 +5,17 @@ open Fable.Core.JsInterop
 open Fable.Import.Browser
 open System
 
-[<Import("default", from="jquery")>]
-let JQuery: obj = jsNative
+[<Import("default", from="../../node_modules/jointjs/node_modules/jquery/dist/jquery")>]
+let jquery: obj = jsNative
 
-[<Import("default", from="lodash")>]
-let Lodash: obj = jsNative
+[<Import("default", from="../../node_modules/jointjs/node_modules/lodash/lodash")>]
+let lodash: obj = jsNative
 
-[<Import("default", from="backbone")>]
-let Backbone: obj = jsNative
+[<Import("default", from="../../node_modules/jointjs/node_modules/backbone/backbone")>]
+let backbone: obj = jsNative
 
-[<Import("default", from="jointjs")>]
-let Joint: obj = importAll "jointjs"
-
-[<Emit("undefined")>]
-let undefined : obj = jsNative
-
-let addBlock() = 
-    printfn "%A" undefined
-
-[<Emit("$0 + $1")>]
-let add (x: int) (y: int): float = jsNative
+[<Import("default", from="../../node_modules/jointjs/dist/joint")>]
+let joint: obj = jsNative
 
 type PaperSettings = 
     abstract el: HTMLElement with get, set
@@ -33,11 +24,21 @@ type PaperSettings =
     abstract height: int with get, set
     abstract gridSize: int with get, set
 
-//[<Emit("new joint.dia.Graph")>]
-//let graphInit =
+type [<Pojo>] PaperRecord = 
+    {
+        el: HTMLElement;
+        model: obj;
+        width: int;
+        height: int;
+        gridSize: int;
+    }
+
+
+[<Emit("new joint.dia.Graph")>]
+let graphInit : obj = jsNative
 
 [<Emit("new joint.dia.Paper($0)")>]
-let paperInit args = jsNative
+let paperInit args : obj = jsNative
 
 [<Emit("new joint.shapes.standard.Rectangle()")>]
 let rectInit () = jsNative
@@ -53,19 +54,56 @@ let addToGraph item graph = jsNative
 
 let result() = 
    
-    let graph = createNew Joint?dia?Graph
+    let graph = createNew joint?dia?Graph
+    //let graph = graphInit 
+
+    graph
       
+    (*
     let paperSettings = createEmpty<PaperSettings>
     paperSettings.el <- document.getElementById("myholder")
     paperSettings.model <- graph
     paperSettings.width <- 600
     paperSettings.height <- 100
     paperSettings.gridSize <- 1
+    *)
 
-    let paper = paperInit paperSettings
-    let rect = rectInit ()
+    (*
+    let paperSettings = 
+        createObj [
+            "el" ==> document.getElementById("myholder")
+            "model" ==> graph
+            "width" ==> 600
+            "height" ==> 100
+            "gridSize" ==> 1
+        ]
+    *)
 
-    setPosition rect 100 30
+    (*
+    let paperSettings = 
+        {
+            el = document.getElementById("myholder");
+            model = graph;
+            width = 600;
+            height = 100;
+            gridSize = 1;
+        }
+    *)
+   
+    //let paper = paperInit paperSettings
+    //let paper = createNew Joint?dia?Paper paperSettings
+    //let rect = rectInit ()
+    //let rect = createNew joint?shapes?standard?Rectangle ()
+
+    //setPosition rect 100 30
+    (*
     resize rect 100 40
     addToGraph rect graph
     printfn "here"
+    *)
+
+    //rect?position(100, 30)
+
+
+    //printfn "%A" <| rect
+    //rect

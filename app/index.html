@@ -2,15 +2,9 @@
 <html>
   <head>
     <meta charset="UTF-8">
-    <link rel="stylesheet" type="text/css" href="css/joint.min.css" />
   </head>
 
   <body>
-    <script src="js/jquery-3.3.1.min.js"></script>
-    <script src="js/lodash.js"></script>
-    <script src="js/backbone.js"></script>
-    <script src="js/joint.js"></script>
-
     <div id='elmish-app' class='elmish-app'>
       <button type='button' name='button' id='elmish-button'>Add Block</button>
     </div>
@@ -22,11 +16,6 @@
     <!-- content -->
     <div id="myholder">Yes</div>
 
-    <!-- Creates a container for the graph with a grid wallpaper -->
-    <div id="graphContainer"
-    	style="position:relative;overflow:hidden;width:321px;height:1px;cursor:default;">
-    </div>
-
     <!-- rename symbols to be able to use Node.js and Electron APIs -->
     <!-- <script>
       window.nodeRequire = require;
@@ -36,14 +25,6 @@
       delete window.module;
     </script> -->
 
-    <!-- JointJS and its dependencies -->
-    <script type="text/javascript" src="js/jquery-3.3.1.min.js"></script>
-    <script type="text/javascript" src="js/lodash.js"></script>
-    <script type="text/javascript" src="js/backbone.js"></script>
-    <!-- <script type="text/javascript" src="js/joint.min.js"></script> -->
-
-    <!-- shapes defined in the following js file -->
-    <!-- <script type="text/javascript" src="js/jointjs-add-shape.js"></script> -->
     <script src="js/renderer.js"></script>
 
   </body>
