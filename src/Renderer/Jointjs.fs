@@ -6,7 +6,7 @@ open Fable.Import.Browser
 open System
 
 [<Import("default", from="../../node_modules/jointjs/node_modules/jquery/dist/jquery")>]
-let jquery: obj = jsNative
+let jquery: obj = failwith "JS Only"
 
 [<Import("default", from="../../node_modules/jointjs/node_modules/lodash/lodash")>]
 let lodash: obj = jsNative
@@ -43,8 +43,8 @@ let paperInit args : obj = jsNative
 [<Emit("new joint.shapes.standard.Rectangle()")>]
 let rectInit () = jsNative
 
-[<Emit("$0.position($1, $2)")>]
-let setPosition item x y = jsNative
+[<Emit("rect.position($0, $1)")>]
+let setPosition x y = jsNative
 
 [<Emit("$0.resize($1, $2)")>]
 let resize item width height = jsNative
@@ -54,10 +54,8 @@ let addToGraph item graph = jsNative
 
 let result() = 
    
-    let graph = createNew joint?dia?Graph
-    //let graph = graphInit 
-
-    graph
+    //let graph = createNew (joint?dia?Graph())
+    let graph = graphInit
       
     (*
     let paperSettings = createEmpty<PaperSettings>
@@ -67,43 +65,51 @@ let result() =
     paperSettings.height <- 100
     paperSettings.gridSize <- 1
     *)
-
-    (*
+    
     let paperSettings = 
         createObj [
             "el" ==> document.getElementById("myholder")
             "model" ==> graph
-            "width" ==> 600
-            "height" ==> 100
-            "gridSize" ==> 1
+            "width" ==> uint64 600
+            "height" ==> uint64 100
+            "gridSize" ==> uint64 1
         ]
-    *)
-
-    (*
-    let paperSettings = 
-        {
-            el = document.getElementById("myholder");
-            model = graph;
-            width = 600;
-            height = 100;
-            gridSize = 1;
-        }
-    *)
    
-    //let paper = paperInit paperSettings
-    //let paper = createNew Joint?dia?Paper paperSettings
-    //let rect = rectInit ()
-    //let rect = createNew joint?shapes?standard?Rectangle ()
+    //let paper = createNew (joint?dia?Paper(paperSettings))
+    let paper = createNew (joint?dia?Paper [
+            "el" ==> document.getElementById("myholder")
+            "model" ==> graph
+            "width" ==> "600."
+            "height" ==> "100."
+            "gridSize" ==> "1."
+        ])
+
+    let rect = createNew (joint?shapes?standard?Rectangle [])
+
+    let body = 
+        createObj [
+            "fill" ==> "blue"
+        ]
+
+    let label =
+        createObj [
+            "text" ==> "hello"
+            "fill" ==> "white"
+        ]
+
+    let attr = 
+        createObj [
+            "body" ==> body
+            "label" ==> label
+        ]
+
+    setPosition 100 30
+    
+    (*
+    rect1?position(100., 30.)
+    rect1?resize(100., 40.)
+    rect1?attr(attr)
+    rect1?addTo(graph)
+    *)
 
     //setPosition rect 100 30
-    (*
-    resize rect 100 40
-    addToGraph rect graph
-    printfn "here"
-    *)
-
-    //rect?position(100, 30)
-
-
-    //printfn "%A" <| rect
-    //rect
