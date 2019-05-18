@@ -5,9 +5,7 @@ open Fable.Core.JsInterop
 open Fable.Import.Browser
 open System
 
-let css : obj = importAll "../../node_modules/jointjs/dist/joint.css";
-
-let joint : obj = importAll "../../node_modules/jointjs"
+let joint : obj = importAll "jointjs"
 
 type PaperSettings = 
     abstract el: HTMLElement with get, set
