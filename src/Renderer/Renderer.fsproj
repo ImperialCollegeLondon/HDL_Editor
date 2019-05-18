@@ -8,7 +8,6 @@
     <Compile Include="Canvas.fs" />
     <Compile Include="Html.fs" />
     <Compile Include="HTMLUtilities.fs" />
-    <Compile Include="Draw.fs" />
     <Compile Include="Jointjs.fs" />
     <Compile Include="..\Main\AboutWindow.fs" Link="AboutWindow.fs" />
     <Compile Include="..\Main\Menubar.fs" Link="Menubar.fs" />
