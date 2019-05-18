@@ -39,6 +39,15 @@ var basicConfig = {
           loader: 'babel-loader',
           options: babelOptions
         },
+      },
+      {
+        test:/\.css$/,
+        use: {
+          loader: 'css-loader',
+          options: {
+            url: true
+          }
+        }
       }
     ]
   }

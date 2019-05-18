@@ -5,24 +5,9 @@ open Fable.Core.JsInterop
 open Fable.Import.Browser
 open System
 
-(*
-[<Import("default", from="../../node_modules/jointjs/node_modules/jquery/dist/jquery")>]
-let jquery: obj = jsNative
+let css : obj = importAll "../../node_modules/jointjs/dist/joint.css";
 
-[<Import("default", from="../../node_modules/jointjs/node_modules/lodash/lodash")>]
-let lodash: obj = jsNative
-
-[<Import("default", from="../../node_modules/jointjs/node_modules/backbone/backbone")>]
-let backbone: obj = jsNative
-
-[<Import("*", from="../../node_modules/jointjs/dist/joint.js")>]
-let joint : obj = jsNative
-*)
-
-let joint:obj = importAll "../../node_modules/jointjs"
-
-//[<Import("*", from="../../app/js/JointJS_API")>]
-//let jointAPI : obj = jsNative
+let joint : obj = importAll "../../node_modules/jointjs"
 
 type PaperSettings = 
     abstract el: HTMLElement with get, set
@@ -30,17 +15,6 @@ type PaperSettings =
     abstract width: int with get, set
     abstract height: int with get, set
     abstract gridSize: int with get, set
-
-[<Pojo>]
-type PaperRecord = 
-    {
-        el: HTMLElement;
-        model: obj;
-        width: int;
-        height: int;
-        gridSize: int;
-    }
-
 
 [<Emit("new joint.dia.Graph")>]
 let graphInit : obj = jsNative
@@ -51,14 +25,8 @@ let paperInit paperConfig : obj = jsNative
 [<Emit("new joint.shapes.standard.Rectangle()")>]
 let rectInit : obj = jsNative
 
-[<Emit("rect.position($0, $1)")>]
-let setPosition x y = jsNative
-
-[<Emit("$0.resize($1, $2)")>]
-let resize item width height = jsNative
-
-[<Emit("$0.addTo($1)")>]
-let addToGraph item graph = jsNative
+[<Emit("new joint.shapes.standard.Link()")>]
+let linkInit : obj = jsNative
 
 [<Emit("$0 instanceof joint.dia.Graph")>]
 let checkGraph graphInstance : bool = jsNative
@@ -71,12 +39,8 @@ let checkRect rectInstance : bool = jsNative
 
 let result() = 
    
-    (**)
     let graph = graphInit
     let mutable canvas : HTMLDivElement = unbox document.getElementById "myholder"
-
-    printfn "Check graph: %A" <| checkGraph graph
-
 
     let paperSettings = 
         createObj [
@@ -87,24 +51,19 @@ let result() =
             "gridSize" ==> 1
         ]
 
-
     let paper = paperInit paperSettings
-
-    printfn "Check paper: %A" <| checkPaper paper
 
     let rect = rectInit
 
-    printfn "Check rect: %A" <| checkRect rect
-
     let body = 
         createObj [
-            "fill" ==> "blue"
+            "fill" ==> "white"
         ]
 
     let label =
         createObj [
             "text" ==> "hello"
-            "fill" ==> "white"
+            "fill" ==> "black"
         ]
 
     let attr = 
@@ -113,26 +72,18 @@ let result() =
             "label" ==> label
         ]
     
-    let r = rect
-    r?position(100, 30) |> ignore
-    r?resize(100, 40) |> ignore
-    r?attr(attr) |> ignore
-    r?addTo(graph) |> ignore
-    
+    rect?position(100, 30) |> ignore
+    rect?resize(100, 40) |> ignore
+    rect?attr(attr) |> ignore
+    rect?addTo(graph) |> ignore
 
-    (*
-    let canvas = document.getElementById("myCanvas")
-    let ctx = canvas?getContext("2d")
-    ctx?fillStyle <- "#FF0000"
-    ctx?fillRect <- (0,0,150,75)
-    *)
-    //printfn "%O" attr
-    console.log(attr)
+    let rect2 = rect?clone()
+    rect2?translate(300, 0) |> ignore
+    rect2?attr("label/text", "world!") |> ignore
+    rect2?addTo(graph) |> ignore
 
-    //setPosition rect 100 30
-   
-
-    
-    //let res = jointAPI?all()
-    //res
+    let link = linkInit
+    link?source(rect) |> ignore
+    link?target(rect2) |> ignore
+    link?addTo(graph) |> ignore
     
