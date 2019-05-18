@@ -5,19 +5,24 @@ open Fable.Core.JsInterop
 open Fable.Import.Browser
 open System
 
+(*
 [<Import("default", from="../../node_modules/jointjs/node_modules/jquery/dist/jquery")>]
-let jquery: unit = jsNative
+let jquery: obj = jsNative
 
 [<Import("default", from="../../node_modules/jointjs/node_modules/lodash/lodash")>]
-let lodash: unit = jsNative
+let lodash: obj = jsNative
 
 [<Import("default", from="../../node_modules/jointjs/node_modules/backbone/backbone")>]
-let backbone: unit = jsNative
+let backbone: obj = jsNative
 
-let joint : unit = importAll "jointjs"
+[<Import("*", from="../../node_modules/jointjs/dist/joint.js")>]
+let joint : obj = jsNative
+*)
 
-[<Import("*", from="../../app/js/JointJS_API")>]
-let jointAPI : obj = jsNative
+let joint:obj = importAll "../../node_modules/jointjs"
+
+//[<Import("*", from="../../app/js/JointJS_API")>]
+//let jointAPI : obj = jsNative
 
 type PaperSettings = 
     abstract el: HTMLElement with get, set
@@ -41,10 +46,10 @@ type PaperRecord =
 let graphInit : obj = jsNative
 
 [<Emit("new joint.dia.Paper($0)")>]
-let paperInit args : obj = jsNative
+let paperInit paperConfig : obj = jsNative
 
 [<Emit("new joint.shapes.standard.Rectangle()")>]
-let rectInit () = jsNative
+let rectInit : obj = jsNative
 
 [<Emit("rect.position($0, $1)")>]
 let setPosition x y = jsNative
@@ -55,23 +60,41 @@ let resize item width height = jsNative
 [<Emit("$0.addTo($1)")>]
 let addToGraph item graph = jsNative
 
+[<Emit("$0 instanceof joint.dia.Graph")>]
+let checkGraph graphInstance : bool = jsNative
+
+[<Emit("$0 instanceof joint.dia.Paper")>]
+let checkPaper paperInstance : bool = jsNative
+
+[<Emit("$0 instanceof joint.shapes.standard.Rectangle")>]
+let checkRect rectInstance : bool = jsNative
+
 let result() = 
    
-    let graph = createNew joint?dia?Graph
-    printfn "%O" graph
+    (**)
+    let graph = graphInit
+    let mutable canvas : HTMLDivElement = unbox document.getElementById "myholder"
+
+    printfn "Check graph: %A" <| checkGraph graph
+
+
     let paperSettings = 
         createObj [
-            "el" ==> document.getElementById("myholder")
+            "el" ==> canvas
+            "model" ==> graph
             "width" ==> 600
             "height" ==> 100
             "gridSize" ==> 1
-            "model" ==> graph
         ]
 
-    let paper = createNew (unbox(joint?dia?Paper (paperSettings)))
-    printfn "%O" paper
-    let rect = createNew joint?shapes?standard?Rectangle
-    printfn "%O" rect
+
+    let paper = paperInit paperSettings
+
+    printfn "Check paper: %A" <| checkPaper paper
+
+    let rect = rectInit
+
+    printfn "Check rect: %A" <| checkRect rect
 
     let body = 
         createObj [
@@ -90,24 +113,26 @@ let result() =
             "label" ==> label
         ]
     
-    (*
-    rect?position(100, 30)
-    rect?resize(100, 40)
-    rect?attr(attr)
-    rect?addTo(graph)
-    *)
+    let r = rect
+    r?position(100, 30) |> ignore
+    r?resize(100, 40) |> ignore
+    r?attr(attr) |> ignore
+    r?addTo(graph) |> ignore
+    
 
+    (*
     let canvas = document.getElementById("myCanvas")
     let ctx = canvas?getContext("2d")
     ctx?fillStyle <- "#FF0000"
     ctx?fillRect <- (0,0,150,75)
-    printfn "%O" attr
+    *)
+    //printfn "%O" attr
     console.log(attr)
 
     //setPosition rect 100 30
    
 
-    (*
-    let res = jointAPI?all()
-    res
-    *)
+    
+    //let res = jointAPI?all()
+    //res
+    
