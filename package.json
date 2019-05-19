@@ -16,11 +16,6 @@
   "license": "MIT",
   "dependencies": {
     "@babel/runtime": "^7.4.3",
-    "@types/backbone": "^1.4.0",
-    "@types/bpmn-moddle": "^5.1.1",
-    "@types/jquery": "^3.3.29",
-    "@types/lodash": "^4.14.123",
-    "@types/rappid": "^1.5.31",
     "core-js": "^3.0.1",
     "file-size": "^1.0.0",
     "jointjs": "^2.2.1",
