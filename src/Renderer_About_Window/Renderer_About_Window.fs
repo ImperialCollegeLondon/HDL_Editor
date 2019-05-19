@@ -3,6 +3,7 @@ module Renderer_About_Window
 open Fable.Core
 open Fable.Core.JsInterop
 open Fable.Import
+open Fable.Import.Browser
 
 let joint : obj = importAll "jointjs"
 
@@ -12,11 +13,8 @@ let jointVersion : string = jsNative
 let init() = 
     //addBlock()
     printfn "The About window is initialized."
-
-init() |> ignore
-
-electron.ipcRenderer.on("update-jointjs-version", unbox(fun (content:WebContents) ->
-    let el = Browser.getElementById("jointjs-version")
+    let el = Browser.document.getElementById("jointjs-version")
     printfn "el: %A" el
     el.innerHTML <- jointVersion
-)) |> ignore
+
+init() |> ignore
