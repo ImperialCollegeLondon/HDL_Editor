@@ -473,11 +473,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Wilson_Wang\\Desktop\\Parallel_HDL_Dev\\src\\Renderer_About_Window\\Renderer_About_Window.fsproj",
-      "projectName": "Renderer_About_Window",
-      "projectPath": "C:\\Users\\Wilson_Wang\\Desktop\\Parallel_HDL_Dev\\src\\Renderer_About_Window\\Renderer_About_Window.fsproj",
+      "projectUniqueName": "C:\\Users\\Wilson_Wang\\Desktop\\Parallel_HDL_Dev\\src\\RendererAboutWindow\\RendererAboutWindow.fsproj",
+      "projectName": "RendererAboutWindow",
+      "projectPath": "C:\\Users\\Wilson_Wang\\Desktop\\Parallel_HDL_Dev\\src\\RendererAboutWindow\\RendererAboutWindow.fsproj",
       "packagesPath": "C:\\Users\\Wilson_Wang\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Wilson_Wang\\Desktop\\Parallel_HDL_Dev\\src\\Renderer_About_Window\\obj\\",
+      "outputPath": "C:\\Users\\Wilson_Wang\\Desktop\\Parallel_HDL_Dev\\src\\RendererAboutWindow\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"

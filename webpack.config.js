@@ -73,7 +73,7 @@ var rendererConfig = Object.assign({
 
 var rendererAboutWindowConfig = Object.assign({
   target: "electron-renderer",
-  entry: resolve("src/Renderer_About_Window/Renderer_About_Window.fsproj"),
+  entry: resolve("src/RendererAboutWindow/RendererAboutWindow.fsproj"),
   output: {
     path: resolve("app/js"),
     filename: "renderer_about_window.js"

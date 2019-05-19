@@ -7,11 +7,11 @@ open System
 open System.Reflection
 
 
-[<assembly: System.Reflection.AssemblyCompanyAttribute("Renderer_About_Window")>]
+[<assembly: System.Reflection.AssemblyCompanyAttribute("RendererAboutWindow")>]
 [<assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")>]
 [<assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")>]
 [<assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0")>]
-[<assembly: System.Reflection.AssemblyProductAttribute("Renderer_About_Window")>]
-[<assembly: System.Reflection.AssemblyTitleAttribute("Renderer_About_Window")>]
+[<assembly: System.Reflection.AssemblyProductAttribute("RendererAboutWindow")>]
+[<assembly: System.Reflection.AssemblyTitleAttribute("RendererAboutWindow")>]
 [<assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")>]
 do()
