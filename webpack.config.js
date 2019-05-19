@@ -57,8 +57,8 @@ var mainConfig = Object.assign({
   target: "electron-main",
   entry: resolve("src/Main/Main.fsproj"),
   output: {
-    path: resolve("app"),
-    filename: "js/main.js"
+    path: resolve("app/js"),
+    filename: "main.js"
   }
 }, basicConfig);
 
@@ -66,8 +66,8 @@ var rendererConfig = Object.assign({
   target: "electron-renderer",
   entry: resolve("src/Renderer/Renderer.fsproj"),
   output: {
-    path: resolve("app"),
-    filename: "js/renderer.js"
+    path: resolve("app/js"),
+    filename: "renderer.js"
   }
 }, basicConfig);
 
