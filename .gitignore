@@ -6,6 +6,8 @@ app/js/main.js
 app/js/main.js.map
 app/js/renderer.js
 app/js/renderer.js.map
+app/js/renderer_about_window.js
+app/js/renderer_about_window.js.map
 
 # User-specific files
 *.suo

@@ -15,10 +15,3 @@ let init() =
     result()
 
 init() |> ignore
-
-electron.ipcRenderer.on("update-jointjs-version", unbox(fun (content:WebContents) ->
-    let el = Browser.document.firstChild
-    //getElementById("jointjs-version")
-    printfn "el: %A" el
-    //el.innerHTML <- jointVersion
-)) |> ignore
