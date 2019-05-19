@@ -10,6 +10,8 @@ open System
 // Keep a global reference of the window object, if you don't, the window will
 // be closed automatically when the JavaScript object is garbage collected.
 let mutable mainWindow: BrowserWindow option = Option.None
+
+let mutable aboutWindow: BrowserWindow option = Option.None
     
 let createMainWindow () =
     let options = createEmpty<BrowserWindowOptions>
@@ -53,6 +55,37 @@ let createMainWindow () =
 
     mainWindow <- Some window
 
+let createAboutWindow () = 
+    let options = createEmpty<BrowserWindowOptions>
+    options.width <- Some 400.
+    options.height <- Some 300.
+    options.autoHideMenuBar <- Some true
+    options.resizable <- Some false
+    options.modal <- Some true
+    options.parent <- mainWindow
+    options.title <- Some "About HDL Editor"
+    let prefs = createEmpty<WebPreferences>
+    prefs.nodeIntegration <- Some true
+    options.webPreferences <- Some prefs
+    let window = electron.BrowserWindow.Create(options)
+
+    let opts = createEmpty<Node.Url.Url<obj>>
+    opts.pathname <- Some <| Path.join(Node.Globals.__dirname, "../about.html")
+    opts.protocol <- Some "file:"
+    window.loadURL(Url.format(opts))
+
+    // Emitted when the window is closed.
+    window.on("closed", unbox(fun () ->
+        // Dereference the window object, usually you would store windows
+        // in an array if your app supports multi windows, this is the time
+        // when you should delete the corresponding element.
+        aboutWindow <- Option.None
+    )) |> ignore
+
+    window.show()
+
+    aboutWindow <- Some window
+
 // This method will be called when Electron has finished
 // initialization and is ready to create browser windows.
 electron.app.on("ready", unbox createMainWindow) |> ignore
@@ -70,4 +103,13 @@ electron.app.on("activate", unbox(fun () ->
     // dock icon is clicked and there are no other windows open.
     if mainWindow.IsNone then
         createMainWindow()
+)) |> ignore
+
+electron.ipcMain.on("open-about-window", unbox(fun (event:IpcMainEvent) ->
+    if aboutWindow.IsNone then
+        createAboutWindow()
+        let windowContent = match aboutWindow with
+                            | option.None -> failwithf "the About window should have contents"
+                            | Some content -> content.webContents
+        event.sender.send("update-jointjs-version", windowContent)
 )) |> ignore

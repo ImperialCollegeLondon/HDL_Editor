@@ -35,6 +35,9 @@ let checkPaper paperInstance : bool = jsNative
 [<Emit("$0 instanceof joint.shapes.standard.Rectangle")>]
 let checkRect rectInstance : bool = jsNative
 
+[<Emit("joint.version")>]
+let jointVersion : string = jsNative
+
 let result() = 
    
     let graph = graphInit
@@ -84,4 +87,6 @@ let result() =
     link?source(rect) |> ignore
     link?target(rect2) |> ignore
     link?addTo(graph) |> ignore
+
+    printfn "JointJS version: %A" jointVersion
     
