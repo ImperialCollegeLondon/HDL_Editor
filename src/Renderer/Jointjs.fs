@@ -4,57 +4,32 @@ open Fable.Core
 open Fable.Core.JsInterop
 open Fable.Import.Browser
 open System
+open JSLibInterface
 
 let joint : obj = importAll "jointjs"
 
-type PaperSettings = 
-    abstract el: HTMLElement with get, set
-    abstract model: obj with get, set
-    abstract width: int with get, set
-    abstract height: int with get, set
-    abstract gridSize: int with get, set
-
-[<Emit("new joint.dia.Graph")>]
-let graphInit : obj = jsNative
-
-[<Emit("new joint.dia.Paper($0)")>]
-let paperInit paperConfig : obj = jsNative
-
-[<Emit("new joint.shapes.standard.Rectangle()")>]
-let rectInit : obj = jsNative
-
-[<Emit("new joint.shapes.standard.Link()")>]
-let linkInit : obj = jsNative
-
-[<Emit("$0 instanceof joint.dia.Graph")>]
-let checkGraph graphInstance : bool = jsNative
-
-[<Emit("$0 instanceof joint.dia.Paper")>]
-let checkPaper paperInstance : bool = jsNative
-
-[<Emit("$0 instanceof joint.shapes.standard.Rectangle")>]
-let checkRect rectInstance : bool = jsNative
-
-[<Emit("joint.version")>]
-let jointVersion : string = jsNative
-
 let result() = 
    
-    let graph = graphInit
+    let lib = createEmpty<Joint.JointJS>
+    let graph = lib.graph
     let mutable canvas : HTMLDivElement = unbox document.getElementById "myholder"
 
     let paperSettings = 
         createObj [
             "el" ==> canvas
             "model" ==> graph
-            "width" ==> 600
-            "height" ==> 100
-            "gridSize" ==> 1
+            "width" ==> 1000
+            "height" ==> 700
+            "gridSize" ==> 10
+            "drawGrid" ==> true
+            "background" ==> createObj [
+                "color" ==> "rgba(0, 0, 0, 0)"
+            ]
         ]
 
     let paper = paperInit paperSettings
 
-    let rect = rectInit
+    let rect = lib.rectangle
 
     let body = 
         createObj [
@@ -73,6 +48,7 @@ let result() =
             "label" ==> label
         ]
     
+    //lib.position rect 100 30 |> ignore
     rect?position(100, 30) |> ignore
     rect?resize(100, 40) |> ignore
     rect?attr(attr) |> ignore
@@ -83,10 +59,14 @@ let result() =
     rect2?attr("label/text", "world!") |> ignore
     rect2?addTo(graph) |> ignore
 
-    let link = linkInit
+    let link = lib.link
     link?source(rect) |> ignore
     link?target(rect2) |> ignore
+    link?router("orthogonal") |> ignore
     link?addTo(graph) |> ignore
 
-    printfn "JointJS version: %A" jointVersion
+    let statusRect = rect?clone()
+    statusRect?translate(500, 500)
+              ?attr("label/text", "Status")
+              ?addTo(graph) |> ignore
     

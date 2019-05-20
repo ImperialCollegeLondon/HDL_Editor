@@ -2,7 +2,6 @@ module RendererAboutWindow
 
 open Fable.Core
 open Fable.Core.JsInterop
-open Fable.Import
 open Fable.Import.Browser
 
 let joint : obj = importAll "jointjs"
