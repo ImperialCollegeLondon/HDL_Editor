@@ -8,50 +8,43 @@ open JSLibInterface
 
 let joint : obj = importAll "jointjs"
 
-let result() = 
+let canvasInit() = 
    
     let lib = createEmpty<Joint.JointJS>
     let graph = lib.graph
-    let mutable canvas : HTMLDivElement = unbox document.getElementById "myholder"
+    let mutable canvas : HTMLElement = unbox document.getElementById "myholder"
 
-    let paperSettings = 
-        createObj [
-            "el" ==> canvas
-            "model" ==> graph
-            "width" ==> 1000
-            "height" ==> 700
-            "gridSize" ==> 10
-            "drawGrid" ==> true
-            "background" ==> createObj [
-                "color" ==> "rgba(0, 0, 0, 0)"
-            ]
-        ]
+    let backgroundColor = createEmpty<PaperBackgroundColor>
+    backgroundColor.color <- Some "rgba(0, 0, 0, 0)"
+
+    let paperSettings = createEmpty<PaperSettings>
+    paperSettings.el <- Some canvas
+    paperSettings.model <- Some graph
+    paperSettings.width <- Some 1000
+    paperSettings.height <- Some 700
+    paperSettings.gridSize <- Some 10
+    paperSettings.drawGrid <- Some true
+    paperSettings.background <- Some backgroundColor
 
     let paper = paperInit paperSettings
 
     let rect = lib.rectangle
 
-    let body = 
-        createObj [
-            "fill" ==> "white"
-        ]
+    let rectangleBody = createEmpty<RectangleBody>
+    rectangleBody.fill <- Some "white"
 
-    let label =
-        createObj [
-            "text" ==> "hello"
-            "fill" ==> "black"
-        ]
+    let rectangleLabel = createEmpty<RectangleLabel>
+    rectangleLabel.fill <- Some "Black"
+    rectangleLabel.text <- Some "Hello"
 
-    let attr = 
-        createObj [
-            "body" ==> body
-            "label" ==> label
-        ]
+    let rectangleAttr = createEmpty<RectangleAttr>
+    rectangleAttr.body <- Some rectangleBody
+    rectangleAttr.label <- Some rectangleLabel
     
     //lib.position rect 100 30 |> ignore
     rect?position(100, 30) |> ignore
     rect?resize(100, 40) |> ignore
-    rect?attr(attr) |> ignore
+    rect?attr(rectangleAttr) |> ignore
     rect?addTo(graph) |> ignore
 
     let rect2 = rect?clone()

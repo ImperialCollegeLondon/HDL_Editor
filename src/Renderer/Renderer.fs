@@ -11,7 +11,6 @@ open Fable.Import.Electron
 
 let init() = 
     menubarInit()
-    //addBlock()
-    result()
+    canvasInit()
 
 init() |> ignore

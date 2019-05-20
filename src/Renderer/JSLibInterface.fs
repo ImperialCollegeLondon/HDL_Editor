@@ -7,12 +7,28 @@ open System
 
 let joint : obj = importAll "jointjs"
 
+type PaperBackgroundColor = 
+    abstract color: string option with get, set
+
 type PaperSettings = 
-    abstract el: HTMLElement with get, set
-    abstract model: obj with get, set
-    abstract width: int with get, set
-    abstract height: int with get, set
-    abstract gridSize: int with get, set
+    abstract el: HTMLElement option with get, set
+    abstract model: obj option with get, set
+    abstract width: int option with get, set
+    abstract height: int option with get, set
+    abstract gridSize: int option with get, set
+    abstract drawGrid: bool option with get, set
+    abstract background: PaperBackgroundColor option with get, set
+
+type RectangleBody = 
+    abstract fill: string option with get, set
+
+type RectangleLabel = 
+    abstract text: string option with get, set
+    abstract fill: string option with get, set
+
+type RectangleAttr = 
+    abstract body: RectangleBody option with get, set
+    abstract label: RectangleLabel option with get, set
 
 [<Emit("new joint.dia.Graph")>]
 let graphInit : obj = jsNative

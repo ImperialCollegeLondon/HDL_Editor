@@ -15,8 +15,8 @@ let mutable aboutWindow: BrowserWindow option = Option.None
     
 let createMainWindow () =
     let options = createEmpty<BrowserWindowOptions>
-    options.width <- Some 900.
-    options.height <- Some 600.
+    options.width <- Some 1500.
+    options.height <- Some 800.
     options.autoHideMenuBar <- Some false
     options.title <- Some "HDL Editor"
     let prefs = createEmpty<WebPreferences>
