@@ -8,9 +8,11 @@ open AboutWindow
 open Menubar
 open Jointjs
 open Fable.Import.Electron
+open MonacoEditor
 
 let init() = 
     menubarInit()
     canvasInit()
+    monacoEditorInit()
 
 init() |> ignore

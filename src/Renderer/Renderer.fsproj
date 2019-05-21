@@ -12,6 +12,7 @@
     <Compile Include="Jointjs.fs" />
     <Compile Include="..\Main\AboutWindow.fs" Link="AboutWindow.fs" />
     <Compile Include="..\Main\Menubar.fs" Link="Menubar.fs" />
+    <Compile Include="MonacoEditor.fs" />
     <Compile Include="Renderer.fs" />
   </ItemGroup>
   <Import Project="..\..\.paket\Paket.Restore.targets" />

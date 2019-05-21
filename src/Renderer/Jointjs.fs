@@ -28,6 +28,14 @@ let canvasInit() =
 
     let paper = paperInit paperSettings
 
+    let paperDefaultConnectionPointArgs = createEmpty<PaperDefaultConnectionPointArgs>
+    paperDefaultConnectionPointArgs.sticky <- Some true
+    let paperDefaultConnectionPoint = createEmpty<PaperDecaultConnectionPoint>
+    paperDefaultConnectionPoint.name <- Some "anchor"
+    paperDefaultConnectionPoint.args <- Some paperDefaultConnectionPointArgs
+
+    paper?options?defaultConnectionPoint <- paperDefaultConnectionPoint
+
     let rect = lib.rectangle
 
     let rectangleBody = createEmpty<RectangleBody>
@@ -52,11 +60,34 @@ let canvasInit() =
     rect2?attr("label/text", "world!") |> ignore
     rect2?addTo(graph) |> ignore
 
+    let anchorNameSource = createEmpty<AnchorName>
+    anchorNameSource.name <- Some "right"
+    let anchorArgsSource = createEmpty<AnchorArgs>
+    anchorArgsSource.rotate <- Some false
+    anchorArgsSource.dx <- Some (U2.Case2 "0%")
+    anchorArgsSource.dy <- Some (U2.Case2 "0%")
+    let anchorSource = createEmpty<Anchor>
+    anchorSource.anchor <- Some anchorNameSource
+    anchorSource.args <- Some anchorArgsSource
+
     let link = lib.link
-    link?source(rect) |> ignore
-    link?target(rect2) |> ignore
+    link?source(rect, anchorSource) |> ignore
+
+    let anchorNameTarget = createEmpty<AnchorName>
+    anchorNameTarget.name <- Some "left"
+    let anchorTarget = createEmpty<Anchor>
+    anchorTarget.anchor <- Some anchorNameTarget
+
+    let targetConnectionPointArgs = createEmpty<ConnectionPointArgs>
+    targetConnectionPointArgs.offset <- Some 10
+    let targetConnectionPoint = createEmpty<ConnectionPoint>
+    targetConnectionPoint.args <- Some targetConnectionPointArgs
+    targetConnectionPoint.name <- Some "anchor"
+
+    link?target(rect2, anchorTarget) |> ignore
     link?router("orthogonal") |> ignore
     link?addTo(graph) |> ignore
+
 
     let statusRect = rect?clone()
     statusRect?translate(500, 500)

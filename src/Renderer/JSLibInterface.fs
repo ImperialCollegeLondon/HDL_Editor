@@ -30,6 +30,32 @@ type RectangleAttr =
     abstract body: RectangleBody option with get, set
     abstract label: RectangleLabel option with get, set
 
+type AnchorName = 
+    abstract name: string option with get, set
+
+type AnchorArgs = 
+    abstract rotate: bool option with get, set
+    abstract dx: U2<int, string> option with get, set
+    abstract dy: U2<int, string> option with get,set
+
+type Anchor = 
+    abstract anchor: AnchorName option with get, set
+    abstract args: AnchorArgs option with get, set
+
+type ConnectionPointArgs = 
+    abstract offset: int option with get, set
+
+type ConnectionPoint = 
+    abstract name: string option with get, set
+    abstract args: ConnectionPointArgs option with get, set
+
+type PaperDefaultConnectionPointArgs = 
+    abstract sticky: bool option with get, set
+
+type PaperDecaultConnectionPoint = 
+    abstract name: string option with get, set
+    abstract args: PaperDefaultConnectionPointArgs option with get, set
+
 [<Emit("new joint.dia.Graph")>]
 let graphInit : obj = jsNative
 
@@ -52,6 +78,7 @@ module Joint =
         [<Emit("new joint.shapes.standard.Rectangle()")>] abstract member rectangle: obj
         [<Emit("new joint.shapes.standard.Link()")>] abstract member link: obj
         [<Emit("$0.position($1, $2)")>] abstract member position: el:obj -> x:int -> y:int -> obj
+        [<Emit("$0.clone()")>] abstract member Clone: cloneTarget:obj -> obj
     
     
     
