@@ -34,6 +34,7 @@
     "fable-compiler": "^2.2.3",
     "fable-loader": "^2.1.5",
     "loglevel": "^1.4.1",
+    "monaco-editor-webpack-plugin": "^1.7.0",
     "style-loader": "^0.23.1",
     "webpack": "^4.29.6",
     "webpack-cli": "^3.3.0"

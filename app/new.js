@@ -11,7 +11,7 @@
 		const path = require('path');
 		const amdLoader = require('../node_modules/monaco-editor/min/vs/loader.js');
 		const amdRequire = amdLoader.require;
-		//const amdDefine = amdLoader.require.define;
+		const amdDefine = amdLoader.require.define;
 		function uriFromPath(_path) {
 			var pathName = path.resolve(_path).replace(/\\/g, '/');
 			if (pathName.length > 0 && pathName.charAt(0) !== '/') {
