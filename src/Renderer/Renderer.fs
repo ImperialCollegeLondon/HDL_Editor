@@ -8,7 +8,6 @@ open Menubar
 open Jointjs
 open Fable.Import.Electron
 open MonacoEditor
-open WindowTabs
 
 let init() = 
     //popupMenuInit()
