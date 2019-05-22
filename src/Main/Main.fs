@@ -4,7 +4,7 @@ open Fable.Core
 open Fable.Core.JsInterop
 open Fable.Import
 open Fable.Import.Electron
-open Node.Exports
+open Fable.Import.Node.Exports
 open System
 
 // Keep a global reference of the window object, if you don't, the window will
