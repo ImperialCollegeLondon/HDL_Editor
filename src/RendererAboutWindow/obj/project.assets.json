@@ -171,8 +171,7 @@
         "fable.core.3.0.0-beta-005.nupkg.sha512",
         "fable.core.nuspec",
         "lib/netstandard2.0/Fable.Core.dll",
-        "lib/netstandard2.0/Fable.Core.xml",
-        "paket-installmodel.cache"
+        "lib/netstandard2.0/Fable.Core.xml"
       ]
     },
     "Fable.Import.Browser/1.3.0": {
@@ -185,8 +184,7 @@
         "fable.import.browser.1.3.0.nupkg.sha512",
         "fable.import.browser.nuspec",
         "lib/netstandard1.6/Fable.Import.Browser.dll",
-        "lib/netstandard1.6/Fable.Import.Browser.xml",
-        "paket-installmodel.cache"
+        "lib/netstandard1.6/Fable.Import.Browser.xml"
       ]
     },
     "Fable.Import.Electron/0.1.1": {
@@ -198,8 +196,7 @@
         ".signature.p7s",
         "fable.import.electron.0.1.1.nupkg.sha512",
         "fable.import.electron.nuspec",
-        "lib/netstandard1.6/Fable.Import.Electron.dll",
-        "paket-installmodel.cache"
+        "lib/netstandard1.6/Fable.Import.Electron.dll"
       ]
     },
     "Fable.Import.Node/0.4.3": {
@@ -212,8 +209,7 @@
         "fable.import.node.0.4.3.nupkg.sha512",
         "fable.import.node.nuspec",
         "lib/netstandard2.0/Fable.Import.Node.dll",
-        "lib/netstandard2.0/Fable.Import.Node.xml",
-        "paket-installmodel.cache"
+        "lib/netstandard2.0/Fable.Import.Node.xml"
       ]
     },
     "Fable.PowerPack/3.0.0": {
@@ -238,8 +234,7 @@
         "fable/extra/PromiseSeq/Module.fs",
         "fable/extra/PromiseSeq/Type.fs",
         "lib/netstandard2.0/Fable.PowerPack.dll",
-        "lib/netstandard2.0/Fable.PowerPack.xml",
-        "paket-installmodel.cache"
+        "lib/netstandard2.0/Fable.PowerPack.xml"
       ]
     },
     "FSharp.Core/4.6.2": {
@@ -286,8 +281,7 @@
         "lib/netstandard1.6/ru/FSharp.Core.resources.dll",
         "lib/netstandard1.6/tr/FSharp.Core.resources.dll",
         "lib/netstandard1.6/zh-Hans/FSharp.Core.resources.dll",
-        "lib/netstandard1.6/zh-Hant/FSharp.Core.resources.dll",
-        "paket-installmodel.cache"
+        "lib/netstandard1.6/zh-Hant/FSharp.Core.resources.dll"
       ]
     },
     "Microsoft.NETCore.Platforms/1.1.0": {
@@ -311,7 +305,6 @@
       "path": "netstandard.library/2.0.3",
       "files": [
         ".nupkg.metadata",
-        ".signature.p7s",
         "LICENSE.TXT",
         "THIRD-PARTY-NOTICES.TXT",
         "build/netstandard2.0/NETStandard.Library.targets",
@@ -431,8 +424,7 @@
         "build/netstandard2.0/ref/netstandard.xml",
         "lib/netstandard1.0/_._",
         "netstandard.library.2.0.3.nupkg.sha512",
-        "netstandard.library.nuspec",
-        "paket-installmodel.cache"
+        "netstandard.library.nuspec"
       ]
     },
     "Thoth.Json/2.5.0": {
@@ -449,7 +441,6 @@
         "fable/obj/Release/netstandard2.0/Thoth.Json.AssemblyInfo.fs",
         "lib/netstandard2.0/Thoth.Json.dll",
         "lib/netstandard2.0/Thoth.Json.xml",
-        "paket-installmodel.cache",
         "thoth.json.2.5.0.nupkg.sha512",
         "thoth.json.nuspec"
       ]
