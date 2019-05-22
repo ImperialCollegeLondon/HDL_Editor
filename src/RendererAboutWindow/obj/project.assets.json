@@ -306,11 +306,12 @@
       ]
     },
     "NETStandard.Library/2.0.3": {
-      "sha512": "n4o57QFCr04ER6rYvoLsm1oLYa4g8MtMDMR18cwyxayMknFxPSp9U1gRiDD5hIZHs/8neoPvkWhBf62lu4983w==",
+      "sha512": "st47PosZSHrjECdjeIzZQbzivYBJFv6P2nv4cj2ypdI204DO+vZ7l5raGMiX4eXMJ53RfOIg+/s4DHVZ54Nu2A==",
       "type": "package",
       "path": "netstandard.library/2.0.3",
       "files": [
         ".nupkg.metadata",
+        ".signature.p7s",
         "LICENSE.TXT",
         "THIRD-PARTY-NOTICES.TXT",
         "build/netstandard2.0/NETStandard.Library.targets",
@@ -467,25 +468,24 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\Wilson_Wang\\.nuget\\packages\\": {},
-    "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder": {}
+    "/Users/wilson/.nuget/packages/": {},
+    "/usr/local/share/dotnet/sdk/NuGetFallbackFolder": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Wilson_Wang\\Desktop\\Parallel_HDL_Dev\\src\\RendererAboutWindow\\RendererAboutWindow.fsproj",
+      "projectUniqueName": "/Users/wilson/Desktop/HDL_Editor/src/RendererAboutWindow/RendererAboutWindow.fsproj",
       "projectName": "RendererAboutWindow",
-      "projectPath": "C:\\Users\\Wilson_Wang\\Desktop\\Parallel_HDL_Dev\\src\\RendererAboutWindow\\RendererAboutWindow.fsproj",
-      "packagesPath": "C:\\Users\\Wilson_Wang\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Wilson_Wang\\Desktop\\Parallel_HDL_Dev\\src\\RendererAboutWindow\\obj\\",
+      "projectPath": "/Users/wilson/Desktop/HDL_Editor/src/RendererAboutWindow/RendererAboutWindow.fsproj",
+      "packagesPath": "/Users/wilson/.nuget/packages/",
+      "outputPath": "/Users/wilson/Desktop/HDL_Editor/src/RendererAboutWindow/obj/",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
-        "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
+        "/usr/local/share/dotnet/sdk/NuGetFallbackFolder"
       ],
       "configFilePaths": [
-        "C:\\Users\\Wilson_Wang\\Desktop\\Parallel_HDL_Dev\\NuGet.Config",
-        "C:\\Users\\Wilson_Wang\\AppData\\Roaming\\NuGet\\NuGet.Config",
-        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        "/Users/wilson/Desktop/HDL_Editor/NuGet.Config",
+        "/Users/wilson/.nuget/NuGet/NuGet.Config"
       ],
       "originalTargetFrameworks": [
         "netstandard2.0"
