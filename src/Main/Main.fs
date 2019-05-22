@@ -34,10 +34,6 @@ let createMainWindow () =
     
     window.webContents.openDevTools()
 
-    let menu = electron.Menu.Create()
-
-    electron.Menu.setApplicationMenu(menu)
-    
     window.on("ready-to-show", (fun () -> 
         window.show() 
         options.backgroundColor <- Some "#F0F0F0"

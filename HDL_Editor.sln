@@ -9,7 +9,7 @@ Project("{6EC3EE1D-3C4E-46DD-8F32-0CC8E7565705}") = "Main", "src\Main\Main.fspro
 EndProject
 Project("{6EC3EE1D-3C4E-46DD-8F32-0CC8E7565705}") = "Renderer", "src\Renderer\Renderer.fsproj", "{F90890E2-2F1F-43A5-A8F4-5B54664FEFFE}"
 EndProject
-Project("{F2A71F9B-5D33-465A-A702-920D77279786}") = "RendererAboutWindow", "src\RendererAboutWindow\RendererAboutWindow.fsproj", "{C060D787-70BE-4FF4-B3DA-43E65EBDC98A}"
+Project("{6EC3EE1D-3C4E-46DD-8F32-0CC8E7565705}") = "RendererAboutWindow", "src\RendererAboutWindow\RendererAboutWindow.fsproj", "{C060D787-70BE-4FF4-B3DA-43E65EBDC98A}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

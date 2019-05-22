@@ -10,8 +10,7 @@
     <Compile Include="HTMLUtilities.fs" />
     <Compile Include="JSLibInterface.fs" />
     <Compile Include="Jointjs.fs" />
-    <Compile Include="AboutWindow.fs" Link="AboutWindow.fs" />
-    <Compile Include="Menubar.fs" Link="Menubar.fs" />
+    <Compile Include="Menubar.fs" />
     <Compile Include="MonacoEditor.fs" />
     <Compile Include="Renderer.fs" />
   </ItemGroup>

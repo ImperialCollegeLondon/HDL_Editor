@@ -11,7 +11,6 @@ open Fable.Core.JsInterop
 open Fable.Import
 open Fable.Import.Electron
 open System
-open AboutWindow
 
 /// to avoid code dulication
 /// only the fields that ofter differ from one and other menu items
@@ -241,7 +240,10 @@ let viewMenu =
       acceleratorData = Option.None; 
       roleData = Option.None },
       replaceSubmenuData viewSubmenu)
-   
+ 
+let createAboutWindow () = 
+    electron.ipcRenderer.send("open-about-window")
+
 let helpSubmenu = 
     let handlerCaster f = System.Func<MenuItem, BrowserWindow, unit> f |> Some
     let clickFunction = handlerCaster (fun _ _ -> createAboutWindow())
@@ -268,13 +270,24 @@ let helpMenu=
         roleData = Option.None },
         replaceSubmenuData helpSubmenu)
 
+let popupMenuInit () =
+    let menu = electron.remote.Menu.Create()
+    let menuItemOptions = createEmpty<MenuItemOptions>
+    menuItemOptions.label <- Some "YES"
+    menuItemOptions.visible <- Some true
+    [menuItemOptions]
+    |> List.map electron.remote.MenuItem.Create
+    |> List.iter menu.append
+    menu.popup (electron.remote.getCurrentWindow())
+
 /// template used in Main for building the menu
 /// refer to the Fable.Import.Electron.fs source code for type requirement
 let menubarInit () = 
     [ fileMenu; 
       editMenu;
       viewMenu;
-      helpMenu ]
+      helpMenu
+    ]
     |> List.map menuBuilder
     |> ResizeArray<MenuItemOptions> 
     |> electron.remote.Menu.buildFromTemplate
