@@ -459,24 +459,25 @@
     ]
   },
   "packageFolders": {
-    "/Users/wilson/.nuget/packages/": {},
-    "/usr/local/share/dotnet/sdk/NuGetFallbackFolder": {}
+    "C:\\Users\\Wilson_Wang\\.nuget\\packages\\": {},
+    "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "/Users/wilson/Desktop/HDL_Editor/src/RendererAboutWindow/RendererAboutWindow.fsproj",
+      "projectUniqueName": "C:\\Users\\Wilson_Wang\\Desktop\\Parallel_HDL_Dev\\src\\RendererAboutWindow\\RendererAboutWindow.fsproj",
       "projectName": "RendererAboutWindow",
-      "projectPath": "/Users/wilson/Desktop/HDL_Editor/src/RendererAboutWindow/RendererAboutWindow.fsproj",
-      "packagesPath": "/Users/wilson/.nuget/packages/",
-      "outputPath": "/Users/wilson/Desktop/HDL_Editor/src/RendererAboutWindow/obj/",
+      "projectPath": "C:\\Users\\Wilson_Wang\\Desktop\\Parallel_HDL_Dev\\src\\RendererAboutWindow\\RendererAboutWindow.fsproj",
+      "packagesPath": "C:\\Users\\Wilson_Wang\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\Wilson_Wang\\Desktop\\Parallel_HDL_Dev\\src\\RendererAboutWindow\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
-        "/usr/local/share/dotnet/sdk/NuGetFallbackFolder"
+        "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
       ],
       "configFilePaths": [
-        "/Users/wilson/Desktop/HDL_Editor/NuGet.Config",
-        "/Users/wilson/.nuget/NuGet/NuGet.Config"
+        "C:\\Users\\Wilson_Wang\\Desktop\\Parallel_HDL_Dev\\NuGet.Config",
+        "C:\\Users\\Wilson_Wang\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
         "netstandard2.0"
