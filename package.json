@@ -7,6 +7,9 @@
     "start": "cd src/Main && yarn webpack --port free -w --config webpack.config.js -w",
     "build": "cd src/Main && dotnet fable webpack --port free -- -p --config ../../webpack.config.js",
     "launch": "electron . -w",
+    "pack-win": "electron-packager . electron-hdl-editor-windows --overwrite --platform=win32 --arch=ia32  --prune=true --out=build --version-string.ProductName=\"HDL Editor\"",
+    "pack-mac": "electron-packager . --overwrite --platform=darwin --arch=x64 --prune=true --out=build",
+    "pack-linux": "electron-packager . electron-hdl-editor-linux --overwrite --asar=true --platform=linux --arch=x64 --prune=true --out=build",
     "release": "electron-packager . --out release --overwrite"
   },
   "keywords": [

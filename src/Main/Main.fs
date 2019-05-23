@@ -67,13 +67,9 @@ let createAboutWindow () =
     let window = electron.BrowserWindow.Create(options)
 
     let opts = createEmpty<Node.Url.Url<obj>>
-    let aboutFilePath = Node.Globals.__dirname + "../about.html"
-    //opts.pathname <- Some <| Path.join(Node.Globals.__dirname, "../about.html")
-    opts.pathname <- Some aboutFilePath
+    opts.pathname <- Some (Node.Exports.path.join(Node.Globals.__dirname, "../about.html"))
     opts.protocol <- Some "file:"
-    let formatterAbout = createEmpty<Url.IExports>
-    window.loadURL(formatterAbout.format(opts))
-    //window.loadURL(Url.format(opts))
+    window.loadURL(Node.Exports.url.format(opts))
 
     // Emitted when the window is closed.
     window.on("closed", unbox(fun () ->
