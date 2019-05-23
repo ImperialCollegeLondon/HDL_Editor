@@ -6,13 +6,14 @@ open Fable.Import
 open Fable.Import.Electron
 open Fable.Import.Node.Exports
 open System
+open Fable.Import.Node
 
 // Keep a global reference of the window object, if you don't, the window will
 // be closed automatically when the JavaScript object is garbage collected.
 let mutable mainWindow: BrowserWindow option = Option.None
 
 let mutable aboutWindow: BrowserWindow option = Option.None
-    
+
 let createMainWindow () =
     let options = createEmpty<BrowserWindowOptions>
     options.width <- Some 1500.
@@ -28,9 +29,10 @@ let createMainWindow () =
     
     // Load the index.html of the app.
     let opts = createEmpty<Node.Url.Url<obj>>
-    opts.pathname <- Some <| Path.join(Node.Globals.__dirname, "../index.html")
+    opts.pathname <- Some (Node.Exports.path.join(Node.Globals.__dirname, "../index.html"))
     opts.protocol <- Some "file:"
-    window.loadURL(Url.format(opts))
+    window.loadURL(Node.Exports.url.format(opts))
+
     
     window.webContents.openDevTools()
 
@@ -66,9 +68,13 @@ let createAboutWindow () =
     let window = electron.BrowserWindow.Create(options)
 
     let opts = createEmpty<Node.Url.Url<obj>>
-    opts.pathname <- Some <| Path.join(Node.Globals.__dirname, "../about.html")
+    let aboutFilePath = Node.Globals.__dirname + "../about.html"
+    //opts.pathname <- Some <| Path.join(Node.Globals.__dirname, "../about.html")
+    opts.pathname <- Some aboutFilePath
     opts.protocol <- Some "file:"
-    window.loadURL(Url.format(opts))
+    let formatterAbout = createEmpty<Url.IExports>
+    window.loadURL(formatterAbout.format(opts))
+    //window.loadURL(Url.format(opts))
 
     // Emitted when the window is closed.
     window.on("closed", unbox(fun () ->
