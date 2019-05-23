@@ -1,5 +1,5 @@
-.paket/paket.exe install
-.paket/paket.exe update
+start .paket/paket.exe install
+start .paket/paket.exe update
 git submodule update --init --recursive
 git submodule update --recursive --remote
 dotnet nuget locals all --clear
