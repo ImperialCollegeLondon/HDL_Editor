@@ -79,6 +79,15 @@ module Joint =
         [<Emit("new joint.shapes.standard.Link()")>] abstract member link: obj
         [<Emit("$0.position($1, $2)")>] abstract member position: el:obj -> x:int -> y:int -> obj
         [<Emit("$0.clone()")>] abstract member Clone: cloneTarget:obj -> obj
+        [<Emit("new joint.linkTools.Vertices()")>] abstract member verticesTool: obj
+        [<Emit("new joint.linkTools.Segments()")>] abstract member segmentsTool: obj
+        [<Emit("new joint.linkTools.SourceArrowhead()")>] abstract member sourceArrowheadTool: obj
+        [<Emit("new joint.linkTools.TargetArrowhead()")>] abstract member targetArrowheadTool : obj
+        [<Emit("new joint.linkTools.SourceAnchor()")>] abstract member sourceAnchorTool: obj
+        [<Emit("new joint.linkTools.TargetAnchor()")>] abstract member targetAnchorTool: obj
+        [<Emit("new joint.linkTools.Boundary()")>] abstract member boundaryTool: obj
+        [<Emit("new joint.linkTools.Remove()")>] abstract member removeButton: obj
+
     
     
     

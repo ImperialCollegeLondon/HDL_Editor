@@ -93,4 +93,6 @@ let canvasInit() =
     statusRect?translate(500, 500)
               ?attr("label/text", "Status")
               ?addTo(graph) |> ignore
+
+    //let verticesTool = lib.verticesTool
     

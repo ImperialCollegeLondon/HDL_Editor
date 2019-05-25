@@ -33,7 +33,7 @@ let createMainWindow () =
     window.loadURL(Node.Exports.url.format(opts))
 
     
-    window.webContents.openDevTools()
+    //window.webContents.openDevTools()
 
     window.on("ready-to-show", (fun () -> 
         window.show() 
