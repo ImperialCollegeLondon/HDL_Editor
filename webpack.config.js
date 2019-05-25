@@ -93,4 +93,13 @@ var rendererAboutWindowConfig = Object.assign({
   }
 }, basicConfig);
 
-module.exports = [mainConfig, rendererConfig, rendererAboutWindowConfig]
+var unitTest = Object.assign({
+  target: "electron-renderer",
+  entry: resolve("./src/RendererAboutWindow/RendererAboutWindow.fsproj"),
+  output: {
+    path: resolve("./test"),
+    filename: "test.js"
+  }
+}, basicConfig);
+
+module.exports = [mainConfig, rendererConfig, rendererAboutWindowConfig, unitTest]

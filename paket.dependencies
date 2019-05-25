@@ -4,6 +4,7 @@ storage:none
 clitool dotnet-fable prerelease
 nuget Fable.Core 2.0.3
 nuget Fable.Import.Browser
+nuget Fable.Import.Mocha
 nuget Fable.Import.Node
 nuget Fable.Import.Electron
 nuget Fable.PowerPack
