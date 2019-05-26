@@ -1,5 +1,6 @@
 var path = require("path");
 var webpack = require("webpack");
+var spectron = require("spectron");
 
 function resolve(filePath) {
   return path.join(__dirname, filePath)
@@ -34,7 +35,7 @@ var basicConfig = {
       },
       {
         test: /\.js$/,
-        exclude: /node_modules/,
+        exclude: /node_modules|app/,
         use: {
           loader: 'babel-loader',
           options: babelOptions
@@ -67,7 +68,7 @@ var unitTest = Object.assign({
   entry: resolve("./src/UnitTest/UnitTest.fsproj"),
   output: {
     path: resolve("./test"),
-    filename: "test.js"
+    filename: "test-non-GUI.js"
   }
 }, basicConfig);
 

@@ -35,7 +35,7 @@ var basicConfig = {
       },
       {
         test: /\.js$/,
-        exclude: /node_modules/,
+        exclude: /node_modules|test/,
         use: {
           loader: 'babel-loader',
           options: babelOptions
