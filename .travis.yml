@@ -1,9 +1,12 @@
 language: fsharp
 
-solution: HDL_Editor.sln
+os: osx
 
-mono:
-  - latest
+osx_image: latest
+
+mono: latest
+
+solution: HDL_Editor.sln
 
 node_js:
   - "8"
@@ -12,6 +15,10 @@ branches:
   only:
   - dev-js
 
+before_install:
+  - brew update
+  - brew install paket
+  
 script:
   - mono .paket/paket.exe install
   - mono .paket/paket.exe update
