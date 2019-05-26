@@ -1,8 +1,6 @@
 language: fsharp
 
-os: osx
-
-osx_image: latest
+os: linux
 
 mono: latest
 
@@ -16,9 +14,10 @@ branches:
   - dev-js
 
 before_install:
-  - brew update
-  - brew install paket
-  
+  - "export DISPLAY=:99.0"
+  - "sh -e /etc/init.d/xvfb start"
+  - sleep 3 # give xvfb some time to start
+
 script:
   - mono .paket/paket.exe install
   - mono .paket/paket.exe update
@@ -32,3 +31,7 @@ script:
   - yarn install
   - yarn build
   - yarn test
+
+cache:
+  directories:
+    - node_modules
