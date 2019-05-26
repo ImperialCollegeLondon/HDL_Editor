@@ -1,3 +1,18 @@
-language: node_js
+language: fsharp
+
+solution: HDL_Editor.sln
+
+mono:
+  - latest
+
 node_js:
   - "8"
+
+branches:
+  only:
+  - dev-js
+
+script:
+  - setup.bat
+  - yarn build
+  - yarn test
