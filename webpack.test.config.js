@@ -1,6 +1,5 @@
 var path = require("path");
 var webpack = require("webpack");
-var MonacoWebpackPlugin = require('monaco-editor-webpack-plugin');
 
 function resolve(filePath) {
   return path.join(__dirname, filePath)
@@ -60,37 +59,16 @@ var basicConfig = {
         }
       }
     ]
-  },
-  plugins: [
-    new MonacoWebpackPlugin()
-  ]
+  }
 };
 
-var mainConfig = Object.assign({
-  target: "electron-main",
-  entry: resolve("./src/Main/Main.fsproj"),
-  output: {
-    path: resolve("./app"),
-    filename: "js/main.js"
-  }
-}, basicConfig);
-
-var rendererConfig = Object.assign({
+var unitTest = Object.assign({
   target: "electron-renderer",
-  entry: resolve("./src/Renderer/Renderer.fsproj"),
+  entry: resolve("./src/UnitTest/UnitTest.fsproj"),
   output: {
-    path: resolve("./app"),
-    filename: "js/renderer.js"
+    path: resolve("./test"),
+    filename: "test.js"
   }
 }, basicConfig);
 
-var rendererAboutWindowConfig = Object.assign({
-  target: "electron-renderer",
-  entry: resolve("./src/RendererAboutWindow/RendererAboutWindow.fsproj"),
-  output: {
-    path: resolve("./app"),
-    filename: "js/renderer_about_window.js"
-  }
-}, basicConfig);
-
-module.exports = [mainConfig, rendererConfig, rendererAboutWindowConfig]
+module.exports = [unitTest]
