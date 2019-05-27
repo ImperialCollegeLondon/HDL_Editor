@@ -3,7 +3,7 @@ const Application = spectron.Application
 const assert = require('assert')
 const electronPath = require('electron') // Require Electron from the binaries included in node_modules.
 const path = require('path')
-const ut = require('./test-non-GUI')
+// const ut = require('./test-non-GUI')
 
 describe('GUI tests', function () {
   this.timeout(10000)
@@ -39,6 +39,12 @@ describe('GUI tests', function () {
     }
   })
 
+  it('check initial window visible', function () {
+    return this.app.browserWindow.isVisible().then(function (visibility) {
+      assert.equal(visibility, true)
+    })
+  })
+
   it('shows an initial window', function () {
     return this.app.client.getWindowCount().then(function (count) {
       assert.equal(count, 1)
@@ -50,15 +56,14 @@ describe('GUI tests', function () {
   it('check main window name', function () {
     return this.app.browserWindow.getTitle().then(function (title) {
       assert.equal(title, "HDL Editor")
-
     })
   })
 
-  it('check about window name', function () {
-    return this.app.electronPath.ipcRenderer.send("open-about-window").then(function (title) {
-      console.log(title);
-      assert.equal("HDL Editor", "HDL Editor")
-
-    })
+  it('check about window name', async function () {
+    await this.app.client.waitUntilWindowLoaded().pause(1000);
+    var menu = await this.app.electron.remote.Menu.getApplicationMenu()
+    var helpButton = menu.getMenuItemById("aboutMenuItem")
+    helpButton.click()
+    done()
   })
 })

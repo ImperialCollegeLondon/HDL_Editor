@@ -260,7 +260,7 @@ let helpSubmenu =
             labelData = Some "About";
             acceleratorData = Option.None; 
             roleData = Option.None },
-            defaultMenuSetupOptional)
+            {defaultMenuSetupOptional with idData = Some "aboutMenuItem"})
     ]
 
 let helpMenu= 
