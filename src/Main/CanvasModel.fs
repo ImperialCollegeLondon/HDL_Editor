@@ -1,6 +1,6 @@
 module CanvasModel
 
-open Blocks
+open BlockLogic
 
 let mutable (blockStorage:BuiltinBlockInfo List) = [];
 
