@@ -59,11 +59,11 @@ describe('GUI tests', function () {
     })
   })
 
-  it('check about window name', async function () {
-    await this.app.client.waitUntilWindowLoaded().pause(1000);
-    var menu = await this.app.electron.remote.Menu.getApplicationMenu()
-    var helpButton = menu.getMenuItemById("aboutMenuItem")
-    helpButton.click()
-    done()
-  })
+  // it('check about window name', async function () {
+  //   await this.app.client.waitUntilWindowLoaded().pause(1000);
+  //   var menu = await this.app.electron.remote.Menu.getApplicationMenu()
+  //   var helpButton = menu.getMenuItemById("aboutMenuItem")
+  //   helpButton.click()
+  //   done()
+  // })
 })

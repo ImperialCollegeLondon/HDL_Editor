@@ -1,15 +1,14 @@
-﻿(*
-    Module: Blocks
-    Description: define different blocks and methods to create and interact with them
-*)
+module BlockLayout
 
-module Blocks
+(*
+The BlockLayout module implements the position description of the blocks on the canvas.
+*)
 
 /// define the dimensions of the canvas
 let mutable canvasXMax = int64 1000
-let mutable canvasXMin = int64 -1000
+let mutable canvasXMin = int64 0
 let mutable canvasYMax = int64 1000
-let mutable canvasYMin = int64 -1000
+let mutable canvasYMin = int64 0
 
 let canvasExtraSpece = int64 10;
 
@@ -39,20 +38,20 @@ type ConnectionInfo = {
     SinkBlock: string option;
     SinkBlockType: BuiltinBlockTypes option;
     SinkPin: BuiltinBlockPin option
-}
+    }
 
 /// the coordinates of the corners of the block
 type BuildinBlockCoordinates = {
     XCoordinate: int64;
     YCoordinate: int64
-}
+    }
 
 type BlockCorner = {
     TopLeft: BuildinBlockCoordinates
     ButtomLeft: BuildinBlockCoordinates
     TopRight: BuildinBlockCoordinates
     ButtomRight: BuildinBlockCoordinates
-}
+    }
 
 /// information of a block on the canvas
 type BuiltinBlockInfo = {
@@ -61,7 +60,7 @@ type BuiltinBlockInfo = {
     BlockPins: BuiltinBlockPin List;
     ConnectionStatus: ConnectionInfo List option;
     CornerCoordinates: BlockCorner
-}
+    }
 
 let getBuiltinBlockSize (blockType:BuiltinBlockTypes) = 
     match blockType with

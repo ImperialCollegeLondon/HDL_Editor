@@ -1,4 +1,4 @@
-﻿module Canvas
+module CanvasModel
 
 open Blocks
 
