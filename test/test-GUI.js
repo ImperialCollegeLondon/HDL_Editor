@@ -47,11 +47,18 @@ describe('GUI tests', function () {
     })
   })
 
-  it('check window name', function () {
+  it('check main window name', function () {
     return this.app.browserWindow.getTitle().then(function (title) {
       assert.equal(title, "HDL Editor")
-      // Please note that getWindowCount() will return 2 if `dev tools` are opened.
-      // assert.equal(count, 2)
+
+    })
+  })
+
+  it('check about window name', function () {
+    return this.app.electronPath.ipcRenderer.send("open-about-window").then(function (title) {
+      console.log(title);
+      assert.equal("HDL Editor", "HDL Editor")
+
     })
   })
 })

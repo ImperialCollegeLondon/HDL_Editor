@@ -24,6 +24,7 @@
     "build": "cd src/Main && yarn webpack --port free --config webpack.config.js",
     "launch": "electron . -w",
     "test": "yarn webpack --port free --config webpack.test.config.js && mocha \"./test/**/*test-*.js\" --colors",
+    "test-non-gui": "mocha \"./test/test-non-GUI.js\"",
     "coverage": "cross-env NODE_ENV=test nyc npm run test",
     "pack-win": "electron-packager . electron-hdl-editor-windows --overwrite --platform=win32 --arch=ia32  --prune=true --out=build --version-string.ProductName=\"HDL Editor\"",
     "pack-mac": "electron-packager . --overwrite --platform=darwin --arch=x64 --prune=true --out=build",
