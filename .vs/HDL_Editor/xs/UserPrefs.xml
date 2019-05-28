@@ -1,0 +1,29 @@
+﻿<Properties>
+  <MonoDevelop.Ide.Workbench ActiveDocument="src/Renderer/HTMLUtilities.fs">
+    <Files>
+      <File FileName="src/Main/CanvasModel.fs" Line="1" Column="1" />
+      <File FileName="src/Main/BlockLogic.fs" Line="1" Column="1" />
+      <File FileName="src/Renderer/HTMLUtilities.fs" Line="83" Column="55" />
+    </Files>
+    <Pads>
+      <Pad Id="ProjectPad">
+        <State name="__root__">
+          <Node name="HDL_Editor" expanded="True">
+            <Node name="src" expanded="True">
+              <Node name="Main" expanded="True" />
+              <Node name="Renderer" expanded="True">
+                <Node name="HTMLUtilities.fs" selected="True" />
+              </Node>
+            </Node>
+          </Node>
+        </State>
+      </Pad>
+    </Pads>
+  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore />
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MultiItemStartupConfigurations />
+</Properties>

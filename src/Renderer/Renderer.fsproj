@@ -4,7 +4,9 @@
     <TargetFramework>netstandard2.0</TargetFramework>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="Html.fs" />
+    <Compile Remove="Html.fs" />
+  </ItemGroup>
+  <ItemGroup>
     <Compile Include="HTMLUtilities.fs" />
     <Compile Include="JSLibInterface.fs" />
     <Compile Include="Jointjs.fs" />
