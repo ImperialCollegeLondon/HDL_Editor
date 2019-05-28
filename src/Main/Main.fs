@@ -6,6 +6,13 @@ open Fable.Import
 open Fable.Import.Electron
 open System
 open Fable.Import.Node
+open BlockLogic
+
+/// block storage
+let mutable (blockStorage : BlockInfo List) = []
+
+/// connection storage
+let mutable (connectionStorage : ConnectionInfo List) = []
 
 // Keep a global reference of the window object, if you don't, the window will
 // be closed automatically when the JavaScript object is garbage collected.

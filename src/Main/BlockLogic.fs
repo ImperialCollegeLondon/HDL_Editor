@@ -1,11 +1,11 @@
 (*
-The block model is divided into two layers: the logical layer and the layout layer.
+    The block model is divided into two layers: the logical layer and the layout layer.
 
-The logic layer is responsible for describing the blocks and the connections among the the blocks.
+    The logic layer is responsible for describing the blocks and the connections among the the blocks.
 
-The layout layer is responsible for describing the positions of the connections and the blocks on the canvas.
+    The layout layer is responsible for describing the positions of the connections and the blocks on the canvas.
 
-The BlockLogic module implements the logic layer of the block mode.
+    The BlockLogic module implements the logic layer of the block mode.
 *)
 
 module BlockLogic
@@ -72,9 +72,6 @@ let updateList checkFunction list el =
         | h::t -> updateList' t (h::processed)
         | _ -> processed
     updateList' list []
-    
-/// block storage
-let mutable (blockStorage : BlockInfo List) = []
 
 /// operations on the connection storage
 type UpdateBlockStorageMode = 
@@ -83,19 +80,16 @@ type UpdateBlockStorageMode =
     | DeleteAllBlocks
 
 /// helper function for updating the block storage
-let updateBlockStorage (mode : UpdateBlockStorageMode) = 
+let updateBlockStorage (mode : UpdateBlockStorageMode) blockStorage = 
     match mode with
     | AddNewBlock newBlock
-        -> blockStorage <- blockStorage |> List.append [newBlock]
+        -> blockStorage |> List.append [newBlock]
     | DeleteOneBlock block
         -> let checkFunction el = 
                 el = block
-           blockStorage <- removeFromList checkFunction blockStorage
+           removeFromList checkFunction blockStorage
     | DeleteAllBlocks
-        -> blockStorage <- []
-
-/// connection storage
-let mutable (connectionStorage : ConnectionInfo List) = []
+        -> []
 
 /// operations on the connection storage
 type UpdateConnectionStorageMode = 
@@ -105,17 +99,17 @@ type UpdateConnectionStorageMode =
     | DeleteAllConnections
 
 /// helper function for updating the connection storage
-let updateConnectionStorage (mode : UpdateConnectionStorageMode) =
+let updateConnectionStorage (mode : UpdateConnectionStorageMode) connectionStorage =
     match mode with
     | AddNewConnection newConnection 
-        -> connectionStorage <- connectionStorage |> List.append [newConnection]
+        -> connectionStorage |> List.append [newConnection]
     | DeleteOneConnection connection 
         -> let checkFunction el =
                 el = connection
-           connectionStorage <- removeFromList checkFunction connectionStorage
+           removeFromList checkFunction connectionStorage
     | UpdateOneConnection (connection, newConnection) 
         -> let checkFunction el = 
                 el = connection
-           connectionStorage <- updateList checkFunction connectionStorage newConnection
+           updateList checkFunction connectionStorage newConnection
     | DeleteAllConnections
-        -> connectionStorage <- []
+        -> []
