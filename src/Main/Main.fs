@@ -20,6 +20,7 @@ let mutable mainWindow: BrowserWindow option = Option.None
 
 let mutable aboutWindow: BrowserWindow option = Option.None
 
+/// craete the main window and set some of the properties
 let createMainWindow () =
     let options = createEmpty<BrowserWindowOptions>
     options.width <- Some 1500.
@@ -112,8 +113,16 @@ electron.app.on("activate", unbox(fun () ->
 electron.ipcMain.on("open-about-window", unbox(fun (event:IpcMainEvent) ->
     if aboutWindow.IsNone then
         createAboutWindow()
-        let windowContent = match aboutWindow with
-                            | option.None -> failwithf "the About window should have contents"
-                            | Some content -> content.webContents
-        event.sender.send("update-jointjs-version", windowContent)
+)) |> ignore
+
+/// IPC communication from the renderer process to update block storage
+/// the communication is asynchronous and non-blocking
+electron.ipcMain.on("updateBlockSorage", unbox(fun (event, args) ->
+    blockStorage <- updateBlockStorage args blockStorage
+)) |> ignore
+
+/// IPC communication from the renderer process to update the connection storage
+/// the communication is asynchronous and non-blocking
+electron.ipcMain.on("updateConnectionStirage", unbox(fun (event, args) ->
+    connectionStorage <- updateConnectionStorage args connectionStorage
 )) |> ignore
