@@ -24,3 +24,12 @@ type ConnectionPosition =
         ConnectionVertices: int * int List
     }
 
+
+/// describe the paper
+type PaperSettings = 
+    {
+        PaperDimension: int * int;
+        GridSize: int;
+        DrawGrid: bool;
+        BackgroundColor: string;
+    }

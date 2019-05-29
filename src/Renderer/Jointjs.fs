@@ -8,6 +8,10 @@ open JSLibInterface
 
 let joint : obj = importAll "jointjs"
 
+/// define the new shape
+let defineNewRect (rectName : string) rectProperty markup = 
+    joint?dia?Element?define(rectName, rectProperty, markup)
+    
 let canvasInit() = 
    
     let lib = createEmpty<Joint.JointJS>
@@ -94,5 +98,54 @@ let canvasInit() =
               ?attr("label/text", "Status")
               ?addTo(graph) |> ignore
 
-    //let verticesTool = lib.verticesTool
+    ///
     
+    let toolPane = lib.rectangle
+
+    let rectangleBodyToolPane = createEmpty<RectangleBody>
+    rectangleBodyToolPane.fill <- Some "white"
+
+    let rectangleLabelToolPane = createEmpty<RectangleLabel>
+    rectangleLabelToolPane.fill <- Some "Black"
+    rectangleLabelToolPane.text <- Some "Tool Pane"
+    rectangleLabelToolPane.textAnchor <- Some "start"
+    rectangleLabelToolPane.textVerticalAnchor <- Some "start"
+
+    let rectangleAttrToolPane = createEmpty<RectangleAttr>
+    rectangleAttrToolPane.body <- Some rectangleBodyToolPane
+    rectangleAttrToolPane.label <- Some rectangleLabelToolPane
+    
+    //lib.position rect 100 30 |> ignore
+    toolPane?position(600, 50) |> ignore
+    toolPane?resize(300, 600) |> ignore
+    toolPane?attr(rectangleAttrToolPane) |> ignore
+    toolPane?addTo(graph) |> ignore
+    
+    (*
+    let rectProperty = 
+        createObj[
+            "attrs" ==> createObj[
+                            "body" ==> createObj[
+                                            "refWidth" ==> "100%"
+                                            "refHeight" ==> "100%"
+                                            "strokeWidth" ==> 2
+                                            "stroke" ==> "#000000"
+                                            "fill" ==> "#FFFFFF"
+                                        ]
+                            "label" ==> createObj[
+                                            "textVerticalAnchor" ==> "middle"
+                                            "textAnchor" ==> "middle"
+                                            "refX" => "50%"
+                                            "refY" ==> "50%"
+                                            "fontSize" ==> 14
+                                            "fill" ==> "#333333"
+                                        ]
+                        ]
+            
+                        
+        ]
+    
+    let markup = createObj[]
+
+    let toolPane = defineNewRect "wilson.customRectangle" rectProperty markup
+    *)

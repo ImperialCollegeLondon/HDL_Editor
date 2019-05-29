@@ -25,6 +25,8 @@ type RectangleBody =
 type RectangleLabel = 
     abstract text: string option with get, set
     abstract fill: string option with get, set
+    abstract textAnchor: string option with get, set
+    abstract textVerticalAnchor: string option with get, set
 
 type RectangleAttr = 
     abstract body: RectangleBody option with get, set
