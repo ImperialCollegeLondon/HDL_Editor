@@ -58,37 +58,43 @@ type PaperDecaultConnectionPoint =
     abstract name: string option with get, set
     abstract args: PaperDefaultConnectionPointArgs option with get, set
 
-[<Emit("new joint.dia.Graph")>]
-let graphInit : obj = jsNative
-
-[<Emit("new joint.dia.Paper($0)")>]
-let paperInit paperConfig : obj = jsNative
-
-[<Emit("new joint.shapes.standard.Rectangle()")>]
-let rectInit : obj = jsNative
-
-[<Emit("new joint.shapes.standard.Link()")>]
-let linkInit : obj = jsNative
-
 [<Emit("joint.version")>]
 let jointVersion : string = jsNative
 
-module Joint = 
-    type [<Import("*", from="jointjs")>] JointJS = 
-        [<Emit("new joint.dia.Graph")>] abstract graph: obj
-        [<Emit("new joint.dia.Paper($0)")>] abstract member paper: obj -> obj
-        [<Emit("new joint.shapes.standard.Rectangle()")>] abstract member rectangle: obj
-        [<Emit("new joint.shapes.standard.Link()")>] abstract member link: obj
-        [<Emit("$0.position($1, $2)")>] abstract member position: el:obj -> x:int -> y:int -> obj
-        [<Emit("$0.clone()")>] abstract member Clone: cloneTarget:obj -> obj
-        [<Emit("new joint.linkTools.Vertices()")>] abstract member verticesTool: obj
-        [<Emit("new joint.linkTools.Segments()")>] abstract member segmentsTool: obj
-        [<Emit("new joint.linkTools.SourceArrowhead()")>] abstract member sourceArrowheadTool: obj
-        [<Emit("new joint.linkTools.TargetArrowhead()")>] abstract member targetArrowheadTool : obj
-        [<Emit("new joint.linkTools.SourceAnchor()")>] abstract member sourceAnchorTool: obj
-        [<Emit("new joint.linkTools.TargetAnchor()")>] abstract member targetAnchorTool: obj
-        [<Emit("new joint.linkTools.Boundary()")>] abstract member boundaryTool: obj
-        [<Emit("new joint.linkTools.Remove()")>] abstract member removeButton: obj
+type JointJS = 
+    abstract member GraphInit: unit -> obj
+    abstract member PaperInit: obj -> obj
+    abstract member RectangleInit: unit -> obj
+    abstract member LinkInit: unit -> obj
+    abstract member Position: x:int -> y:int -> el:obj -> obj
+    abstract member Clone: el:obj -> obj
+    abstract member Resize: x:int -> y:int -> el:obj -> obj
+    abstract member Attr: config:obj -> el:obj -> obj
+    abstract member AddTo: graph:obj -> el:obj -> obj
+    abstract member Translate: x:int -> y:int -> el:obj -> obj
+    (*
+    [<Emit("new joint.linkTools.Vertices()")>] abstract member verticesTool: obj
+    [<Emit("new joint.linkTools.Segments()")>] abstract member segmentsTool: obj
+    [<Emit("new joint.linkTools.SourceArrowhead()")>] abstract member sourceArrowheadTool: obj
+    [<Emit("new joint.linkTools.TargetArrowhead()")>] abstract member targetArrowheadTool : obj
+    [<Emit("new joint.linkTools.SourceAnchor()")>] abstract member sourceAnchorTool: obj
+    [<Emit("new joint.linkTools.TargetAnchor()")>] abstract member targetAnchorTool: obj
+    [<Emit("new joint.linkTools.Boundary()")>] abstract member boundaryTool: obj
+    [<Emit("new joint.linkTools.Remove()")>] abstract member removeButton: obj
+    *)
+
+type createElement() = 
+    interface JointJS with
+        member __.GraphInit () = createNew joint?dia?Graph ()
+        member __.PaperInit paperConfig = createNew joint?dia?Paper (paperConfig)
+        member __.RectangleInit () = createNew joint?shapes?standard?Rectangle ()
+        member __.LinkInit () = createNew joint?shapes?standard?Link ()
+        member __.Position x y el = el?position(x, y)
+        member __.Clone el = el?clone()
+        member __.Resize x y el = el?resize(x, y)
+        member __.Attr config el = el?attr(config)
+        member __.AddTo graph el = el?addTo(graph)
+        member __.Translate x y el = el?translate(x, y)
 
     
     

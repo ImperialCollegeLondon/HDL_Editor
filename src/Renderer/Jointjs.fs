@@ -7,15 +7,15 @@ open System
 open JSLibInterface
 
 let joint : obj = importAll "jointjs"
-
-/// define the new shape
-let defineNewRect (rectName : string) rectProperty markup = 
-    joint?dia?Element?define(rectName, rectProperty, markup)
     
 let canvasInit() = 
    
-    let lib = createEmpty<Joint.JointJS>
-    let graph = lib.graph
+    let lib = createEmpty<JointJS>
+  
+    let jointJSCreatorInterface = new createElement()
+    let jointJSCreator = jointJSCreatorInterface :> JointJS
+    let graph = jointJSCreator.GraphInit ()
+
     let mutable canvas : HTMLElement = unbox document.getElementById "myholder"
 
     let backgroundColor = createEmpty<PaperBackgroundColor>
@@ -30,7 +30,7 @@ let canvasInit() =
     paperSettings.drawGrid <- Some true
     paperSettings.background <- Some backgroundColor
 
-    let paper = paperInit paperSettings
+    let paper = jointJSCreator.PaperInit paperSettings
 
     let paperDefaultConnectionPointArgs = createEmpty<PaperDefaultConnectionPointArgs>
     paperDefaultConnectionPointArgs.sticky <- Some true
@@ -40,7 +40,7 @@ let canvasInit() =
 
     paper?options?defaultConnectionPoint <- paperDefaultConnectionPoint
 
-    let rect = lib.rectangle
+    let rect = jointJSCreator.RectangleInit ()
 
     let rectangleBody = createEmpty<RectangleBody>
     rectangleBody.fill <- Some "white"
@@ -53,14 +53,17 @@ let canvasInit() =
     rectangleAttr.body <- Some rectangleBody
     rectangleAttr.label <- Some rectangleLabel
     
-    //lib.position rect 100 30 |> ignore
-    rect?position(100, 30) |> ignore
-    rect?resize(100, 40) |> ignore
-    rect?attr(rectangleAttr) |> ignore
-    rect?addTo(graph) |> ignore
+    rect 
+    |> jointJSCreator.Position 100 30
+    |> jointJSCreator.Resize 100 40 
+    |> jointJSCreator.Attr rectangleAttr
+    |> jointJSCreator.AddTo graph
+    |> ignore
 
-    let rect2 = rect?clone()
-    rect2?translate(300, 0) |> ignore
+    let rect2 = jointJSCreator.Clone rect
+    rect2
+    |> jointJSCreator.Translate 300 0
+    |> ignore
     rect2?attr("label/text", "world!") |> ignore
     rect2?addTo(graph) |> ignore
 
@@ -74,8 +77,8 @@ let canvasInit() =
     anchorSource.anchor <- Some anchorNameSource
     anchorSource.args <- Some anchorArgsSource
 
-    let link = lib.link
-    link?source(rect, anchorSource) |> ignore
+    let link = jointJSCreator.LinkInit ()
+    link?source(rect, anchorNameSource) |> ignore
 
     let anchorNameTarget = createEmpty<AnchorName>
     anchorNameTarget.name <- Some "left"
@@ -89,7 +92,7 @@ let canvasInit() =
     targetConnectionPoint.name <- Some "anchor"
 
     link?target(rect2, anchorTarget) |> ignore
-    link?router("orthogonal") |> ignore
+    link?router("manhattan") |> ignore
     link?addTo(graph) |> ignore
 
 
@@ -100,7 +103,7 @@ let canvasInit() =
 
     ///
     
-    let toolPane = lib.rectangle
+    let toolPane = jointJSCreator.RectangleInit ()
 
     let rectangleBodyToolPane = createEmpty<RectangleBody>
     rectangleBodyToolPane.fill <- Some "white"
@@ -191,8 +194,6 @@ let canvasInit() =
         createObj[
             "markup" ==> markup
         ]
-
-    console.log(markupList)
 
     let CustomElement  = joint?dia?Element?define("examples.Pane", paneConfig, markupList)
 
