@@ -108,8 +108,8 @@ let canvasInit() =
     let rectangleLabelToolPane = createEmpty<RectangleLabel>
     rectangleLabelToolPane.fill <- Some "Black"
     rectangleLabelToolPane.text <- Some "Tool Pane"
-    rectangleLabelToolPane.textAnchor <- Some "start"
-    rectangleLabelToolPane.textVerticalAnchor <- Some "start"
+    //rectangleLabelToolPane.textAnchor <- Some "start"
+    //rectangleLabelToolPane.textVerticalAnchor <- Some "start"
 
     let rectangleAttrToolPane = createEmpty<RectangleAttr>
     rectangleAttrToolPane.body <- Some rectangleBodyToolPane
@@ -121,31 +121,118 @@ let canvasInit() =
     toolPane?attr(rectangleAttrToolPane) |> ignore
     toolPane?addTo(graph) |> ignore
     
-    (*
-    let rectProperty = 
+    let e = 
         createObj[
-            "attrs" ==> createObj[
-                            "body" ==> createObj[
-                                            "refWidth" ==> "100%"
-                                            "refHeight" ==> "100%"
-                                            "strokeWidth" ==> 2
-                                            "stroke" ==> "#000000"
-                                            "fill" ==> "#FFFFFF"
-                                        ]
-                            "label" ==> createObj[
-                                            "textVerticalAnchor" ==> "middle"
-                                            "textAnchor" ==> "middle"
-                                            "refX" => "50%"
-                                            "refY" ==> "50%"
-                                            "fontSize" ==> 14
-                                            "fill" ==> "#333333"
-                                        ]
-                        ]
-            
-                        
+            "strokeWidth" ==> 1
+            "stroke" ==> "#000000"
+            "fill" ==> "rgba(255,0,0,0.3)"
+        ]
+
+    let r = 
+        createObj[
+            "strokeWidth" ==> 1
+            "stroke" ==> "#000000"
+            "fill" ==> "rgba(0,255,0,0.3)"
+        ]
+
+    let c = 
+        createObj[
+            "strokeWidth" ==> 1
+            "stroke" ==> "#000000"
+            "fill" ==> "rgba(0,0,255,0.3)"
         ]
     
-    let markup = createObj[]
+    let outline = 
+        createObj[
+            "refX" ==> 0
+            "refY" ==> 0
+            "refWidth" ==> "100%"
+            "refHeight" ==> "100%"
+            "strokeWidth" ==> 1
+            "stroke" ==> "#000000"
+            "strokeDasharray" ==> "5 5"
+            "fill" ==> "none"
+        ]
 
-    let toolPane = defineNewRect "wilson.customRectangle" rectProperty markup
-    *)
+    let attrs = 
+        createObj[
+            "e" ==> e
+            "r" ==> r
+            "c" ==> c
+            "outline" ==> outline
+        ]
+    
+    let markup = 
+        [|
+            createObj[
+                "tagName" ==> "ellipse"
+                "selector" ==> "e"
+            ];
+            createObj[
+                "tagName" ==> "rect"
+                "selector" ==> "r"
+            ];
+            createObj[
+                "tagName" ==> "circle"
+                "selector" ==> "c"
+            ];
+            createObj[
+                "tagName" ==> "rect"
+                "selector" ==> "outline"
+            ]
+        |]
+
+    let paneConfig = 
+        createObj[
+            "attrs" ==> attrs
+        ]
+
+    let markupList = 
+        createObj[
+            "markup" ==> markup
+        ]
+
+    console.log(markupList)
+
+    let CustomElement  = joint?dia?Element?define("examples.Pane", paneConfig, markupList)
+
+    let element = createNew CustomElement ()
+
+    let elementAttre = 
+        createObj[
+            "refRx" ==> "50%"
+            "refRy" ==> "25%"
+            "refCx" ==> "50%"
+            "refCy" ==> 0
+            "refX" ==> "-50%"
+            "refY" ==> "25%"
+        ]
+
+    let elementAttrr = 
+        createObj[
+            "refX" ==> "100%"
+            "x" ==> "-10" // additional x offset
+            "refY" ==> "100%"
+            "y" ==> "-10" // additional y offset
+            "refWidth" ==> "50%"
+            "refHeight" ==> "50%"
+        ]
+
+    let elementAttrc = 
+        createObj[
+            "refRCircumscribed" ==> "50%"
+            "refCx" ==> "50%"
+            "refCy" ==> "50%"
+        ]
+
+    let elementAttr = 
+        createObj[
+            "e" ==> elementAttre
+            "r" ==> elementAttrr
+            "c" ==> elementAttrc
+        ]
+
+    element?attr(elementAttr) |> ignore
+    element?position(600, 50) |> ignore
+    element?resize(40, 40) |> ignore
+    element?addTo(graph) |> ignore

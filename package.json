@@ -36,7 +36,6 @@
     "HDL"
   ],
   "author": "Lei Wang (Wilson)",
-  "license": "MIT",
   "dependencies": {
     "@babel/runtime": "^7.4.3",
     "core-js": "^3.0.1",
