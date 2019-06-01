@@ -40,7 +40,6 @@
     "@babel/runtime": "^7.4.3",
     "core-js": "^3.0.1",
     "jointjs": "^2.2.1",
-    "jquery": "^3.4.1",
     "monaco-editor": "^0.17.0"
   },
   "devDependencies": {
