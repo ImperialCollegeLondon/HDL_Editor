@@ -28,12 +28,39 @@ type PaperSettings =
     abstract drawGrid: bool option with get, set
     abstract background: PaperBackgroundColor option with get, set
 
+/// generate the PaperSettings using parameters of different types
+let generatePaperSettings el model width height gridSize drawGrid backgroundColor =
+    let paperBackgroundColor = createEmpty<PaperBackgroundColor>
+    paperBackgroundColor.color <- Some backgroundColor
+
+    let paperSettings = createEmpty<PaperSettings>
+    paperSettings.el <- Some el
+    paperSettings.model <- Some model
+    paperSettings.width <- Some width
+    paperSettings.height <- Some height
+    paperSettings.gridSize <- Some gridSize
+    paperSettings.drawGrid <- Some drawGrid
+    paperSettings.background <- Some paperBackgroundColor
+
+    paperSettings
+
 type PaperDefaultConnectionPointArgs = 
     abstract sticky: bool option with get, set
 
 type PaperDecaultConnectionPoint = 
     abstract name: string option with get, set
     abstract args: PaperDefaultConnectionPointArgs option with get, set
+
+/// generate the PaperDecaultConnectionPoint using parameters of different types
+let generatePaperDecaultConnectionPoint name defaultConnectionPoint = 
+    let paperDefaultConnectionPointArgs = createEmpty<PaperDefaultConnectionPointArgs>
+    paperDefaultConnectionPointArgs.sticky <- Some defaultConnectionPoint
+
+    let paperDecaultConnectionPoint = createEmpty<PaperDecaultConnectionPoint>
+    paperDecaultConnectionPoint.name <- Some name
+    paperDecaultConnectionPoint.args <- Some paperDefaultConnectionPointArgs
+
+    paperDecaultConnectionPoint
 
 
 ///////////////////////////////////////////////
@@ -55,6 +82,23 @@ type RectangleAttr =
     abstract body: RectangleBody option with get, set
     abstract label: RectangleLabel option with get, set
 
+/// generate the RectangleAttr from parameters of different types
+let generateRectangleAttr bodyFill labelText labelFill labelTextAnchor labelTextVerticalAnchor = 
+    let body = createEmpty<RectangleBody>
+    body.fill <- Some bodyFill
+
+    let label = createEmpty<RectangleLabel>
+    label.text <- Some labelText
+    label.fill <- Some labelFill
+    label.textAnchor <- Some labelTextAnchor
+    label.textVerticalAnchor <- Some labelTextVerticalAnchor
+
+    let attr = createEmpty<RectangleAttr>
+    attr.body <- Some body
+    attr.label <- Some label
+
+    attr
+
 
 ////////////////////////////////////////////
 ///                                      ///
@@ -74,6 +118,22 @@ type Anchor =
     abstract anchor: AnchorName option with get, set
     abstract args: AnchorArgs option with get, set
 
+/// generate the Anchor from parameters of different types
+let generateAnchor name rotate dx dy = 
+    let anchorName = createEmpty<AnchorName>
+    anchorName.name <- Some name
+
+    let anchorArgs = createEmpty<AnchorArgs>
+    anchorArgs.rotate <- Some rotate
+    anchorArgs.dx <- Some dx
+    anchorArgs.dy <- Some dy
+
+    let anchor = createEmpty<Anchor>
+    anchor.anchor <- Some anchorName
+    anchor.args <- Some anchorArgs
+
+    anchor
+
 
 //////////////////////////////////////////////////////
 ///                                                ///
@@ -88,6 +148,17 @@ type ConnectionPoint =
     abstract name: string option with get, set
     abstract args: ConnectionPointArgs option with get, set
 
+/// generate the ConnectionPoint from parameters of different types
+let generateConnectionPoint offset name = 
+    let connectionPointArgs = createEmpty<ConnectionPointArgs>
+    connectionPointArgs.offset <- Some offset
+
+    let connectionPoint = createEmpty<ConnectionPoint>
+    connectionPoint.name <- Some name
+    connectionPoint.args <- Some connectionPointArgs
+
+    connectionPoint
+    
 
 /////////////////////////////////////////////
 ///                                      ///
@@ -119,6 +190,22 @@ type Markup =
 
 type MarkupArray = 
     abstract markup: Markup array option with get, set
+
+/// generate the MarkupArray from parameters of different types
+let generateMarkupArray (argsArray:string array) = 
+    let length = argsArray.Length / 2 - 1
+
+    let markups = [| for i in 0 .. length -> createEmpty<Markup>|]
+    [ 0 .. length] 
+    |> List.map (fun index -> markups.[index].tagName <- Some argsArray.[index*2]
+                              markups.[index].selector <- Some argsArray.[index*2 + 1])
+    |> ignore
+
+    let markupArray = createEmpty<MarkupArray>
+    markupArray.markup <- Some markups
+
+    markupArray
+
     
 //////////////////////////////////////////////////
 ///                                            ///

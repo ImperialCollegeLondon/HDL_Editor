@@ -9,9 +9,7 @@ open JSLibInterface
 let joint : obj = importAll "jointjs"
     
 let canvasInit() = 
-   
-    let lib = createEmpty<JointJS>
-  
+     
     let jointJSCreatorInterface = new createElement()
     let jointJSCreator = jointJSCreatorInterface :> JointJS
     let graph = jointJSCreator.GraphInit ()
