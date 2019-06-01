@@ -63,9 +63,9 @@ let canvasInit() =
     let rect2 = jointJSCreator.Clone rect
     rect2
     |> jointJSCreator.Translate 300 0
+    |> jointJSCreator.AttrBySelector "label/text" "world!"
+    |> jointJSCreator.AddTo graph
     |> ignore
-    rect2?attr("label/text", "world!") |> ignore
-    rect2?addTo(graph) |> ignore
 
     let anchorNameSource = createEmpty<AnchorName>
     anchorNameSource.name <- Some "right"
@@ -92,7 +92,7 @@ let canvasInit() =
     targetConnectionPoint.name <- Some "anchor"
 
     link?target(rect2, anchorTarget) |> ignore
-    link?router("manhattan") |> ignore
+    jointJSCreator.Router link Manhattan |> ignore
     link?addTo(graph) |> ignore
 
 
