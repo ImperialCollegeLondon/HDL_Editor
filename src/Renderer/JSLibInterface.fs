@@ -104,6 +104,22 @@ type Router =
     | [<CompiledName("oneside")>] OneSide
 
 
+///////////////////////////////////////////
+///                                    ///
+///      For defining new element      ///
+///                                    ///
+//////////////////////////////////////////
+
+type NewElementConfig = 
+    abstract attr: obj option with get, set   
+
+type Markup = 
+    abstract tagName: string option with get, set
+    abstract selector: string option with get, set
+
+type MarkupArray = 
+    abstract markup: Markup array option with get, set
+    
 //////////////////////////////////////////////////
 ///                                            ///
 ///      Bindings for the JointJS library      ///
@@ -131,6 +147,7 @@ type JointJS =
     abstract member Source: link:obj -> el:obj -> obj
     abstract member Target: link:obj -> el:obj -> obj
     abstract member Router: link:obj -> routerType:Router -> obj
+    abstract member Define: name:string -> config:NewElementConfig -> markupList:MarkupArray -> obj
 
 /// the interface JointJS needs to be explicitly implemented
 /// do not forget to :> the createElement interface implementation
@@ -150,6 +167,7 @@ type createElement() =
         member __.Source link el = link?source(el)
         member __.Target link el = link?target(el)
         member __.Router link routerType = link?router(routerType)
+        member __.Define name config markupList = joint?dia?Element?define(name, config, markupList)
 
     
     
