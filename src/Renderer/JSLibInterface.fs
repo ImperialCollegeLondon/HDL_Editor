@@ -224,14 +224,20 @@ type MarkupArray =
 let generateMarkupArray (argsArray:string array) = 
     let length = argsArray.Length / 2 - 1
 
-    let markups = [| for i in 0 .. length -> createEmpty<Markup>|]
-    [ 0 .. length] 
-    |> List.map (fun index -> markups.[index].tagName <- Some argsArray.[index*2]
-                              markups.[index].selector <- Some argsArray.[index*2 + 1])
-    |> ignore
+    let createIndividualMarkup tagName selector =
+        createObj[
+            "tagName" ==> tagName
+            "selector" ==> selector
+        ]
 
-    let markupArray = createEmpty<MarkupArray>
-    markupArray.markup <- Some markups
+    let lst = 
+        [| 0 .. length|]
+        |> Array.map (fun index -> createIndividualMarkup argsArray.[index*2] argsArray.[index*2 + 1])
+
+    let markupArray = 
+        createObj[
+            "markup" ==> lst
+        ]
 
     markupArray
 
@@ -263,7 +269,7 @@ type JointJS =
     abstract member Source: el:obj -> anchor:Anchor -> link:obj -> obj
     abstract member Target: el:obj -> anchor:Anchor -> link:obj -> obj
     abstract member Router: link:obj -> routerType:Router -> obj
-    abstract member Define: name:string -> config:NewElementConfig -> markupList:MarkupArray -> obj
+    abstract member Define: name:string -> config:obj -> markupList:obj -> obj
 
 /// the interface JointJS needs to be explicitly implemented
 /// do not forget to :> the createElement interface implementation

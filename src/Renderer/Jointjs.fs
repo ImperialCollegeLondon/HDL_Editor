@@ -16,69 +16,90 @@ let jointJSCreator = jointJSCreatorInterface :> JointJS
 let toolPaneInit() = 
     let toolPane = jointJSCreator.RectangleInit ()
 
-    let attr = generateRectangleAttr "white" "Tool Pane" "black" "start" "start"
+    //let attr = generateRectangleAttr "white" "Tool Pane" "black" "start" "start"
 
-    let r = generateNewElementAttrSub 1 "#000000" "rgba(255,0,0,0.3)"
+    //let e = generateNewElementAttrSub 1 "#000000" "rgba(255,0,0,0.3)"
+    let e = createObj[
+                "strokeWidth" ==> 1
+                "stroke" ==> "#000000"
+                "fill" ==> "rgba(255,0,0,0)"
+            ]
+
+    let r = generateNewElementAttrSub 1 "#000000" "rgba(0,255,0,0)"
+       
+    let c = generateNewElementAttrSub 1 "#000000" "rgba(0,0,255,0)"
+    
+    let outline = 
+        createObj[
+            "refX" ==> 0
+            "refY" ==> 0
+            "refWidth" ==> "100%"
+            "refHeight" ==> "100%"
+            "strokeWidth" ==> 1
+            "stroke" ==> "#000000"
+            "strokeDasharray" ==> "5 5"
+            "strokeDashoffset" ==> 2.5
+            "fill" ==> "none"
+        ]
 
     let individualAttr = 
         createObj[
-            "r0" ==> r
-            "r1" ==> r
-            "r2" ==> r
-            "r3" ==> r
+            "e" ==> e            
+            "r" ==> r
+            "c" ==> c    
+            "outline" ==> outline
         ]
 
     let attr = createEmpty<NewElementConfig>
     attr.attr <- Some individualAttr
 
-    let markupArray = generateMarkupArray [|"rect"; "r0";
-                                            "rect"; "r1";
-                                            "rect"; "r2"
-                                            "rect"; "r3"|]
+    
+    let markupArray = generateMarkupArray [|"ellipse"; "e";                                    
+                                            "rect"; "r";
+                                            "circle"; "c";
+                                            "rect"; "outline"                                            
+                                          |]
 
     let ToolPane = jointJSCreator.Define "custom.ToolPane" attr markupArray
 
     let shape = createNew ToolPane ()
+    
+    let elementAttre = 
+          createObj[
+              "refRx" ==> "50%"
+              "refRy" ==> "25%"
+              "refCx" ==> "50%"
+              "refCy" ==> 0
+              "refX" ==> "-50%"
+              "refY" ==> "25%"
+          ]
 
-    let rectConfig = 
-        createObj[
-            "r0" ==> createObj[
-                        "refX" ==> "100%"
-                        "x" ==> -10
-                        "refY" ==> "100%"
-                        "y" ==> -10
-                        "refWidth" ==> "50%"
-                        "refHeight" ==> "50%"
-                     ]
-            "r1" ==> createObj[
-                        "refX" ==> "100%"
-                        "x" ==> -10
-                        "refY" ==> "100%"
-                        "y" ==> -10
-                        "refWidth" ==> "50%"
-                        "refHeight" ==> "50%"
-                     ]
-            "r2" ==> createObj[
-                        "refX" ==> "100%"
-                        "x" ==> -10
-                        "refY" ==> "100%"
-                        "y" ==> -10
-                        "refWidth" ==> "50%"
-                        "refHeight" ==> "50%"
-                     ]
-            "r3" ==> createObj[
-                        "refX" ==> "100%"
-                        "x" ==> -10
-                        "refY" ==> "100%"
-                        "y" ==> -10
-                        "refWidth" ==> "50%"
-                        "refHeight" ==> "50%"
-                     ]
-        ]
+    let elementAttrr = 
+          createObj[
+              "refX" ==> "100%"
+              "x" ==> "-10" // additional x offset
+              "refY" ==> "100%"
+              "y" ==> "-10" // additional y offset
+              "refWidth" ==> "50%"
+              "refHeight" ==> "50%"
+          ]
 
+    let elementAttrc = 
+          createObj[
+              "refRCircumscribed" ==> "50%"
+              "refCx" ==> "50%"
+              "refCy" ==> "50%"
+          ]
+
+    let elementAttr = 
+          createObj[
+              "e" ==> elementAttre
+              "r" ==> elementAttrr
+              "c" ==> elementAttrc
+          ]
     
     shape
-    |> jointJSCreator.Attr rectConfig
+    |> jointJSCreator.Attr elementAttr
     
        
 
@@ -130,122 +151,6 @@ let canvasInit() =
     jointJSCreator.Router link Orthogonal |> ignore
 
     let toolPane = toolPaneInit ()
-    toolPane?position(600, 50) |> ignore
-    toolPane?resize(300, 600) |> ignore
+    toolPane?position(600, 5) |> ignore
+    toolPane?resize(100, 100) |> ignore
     toolPane?addTo(graph) |> ignore
-
-    (*    
-    let e = 
-        createObj[
-            "strokeWidth" ==> 1
-            "stroke" ==> "#000000"
-            "fill" ==> "rgba(255,0,0,0.3)"
-        ]
-
-    let r = 
-        createObj[
-            "strokeWidth" ==> 1
-            "stroke" ==> "#000000"
-            "fill" ==> "rgba(0,255,0,0.3)"
-        ]
-
-    let c = 
-        createObj[
-            "strokeWidth" ==> 1
-            "stroke" ==> "#000000"
-            "fill" ==> "rgba(0,0,255,0.3)"
-        ]
-    
-    let outline = 
-        createObj[
-            "refX" ==> 0
-            "refY" ==> 0
-            "refWidth" ==> "100%"
-            "refHeight" ==> "100%"
-            "strokeWidth" ==> 1
-            "stroke" ==> "#000000"
-            "strokeDasharray" ==> "5 5"
-            "fill" ==> "none"
-        ]
-
-    let attrs = 
-        createObj[
-            "e" ==> e
-            "r" ==> r
-            "c" ==> c
-            "outline" ==> outline
-        ]
-    
-    let markup = 
-        [|
-            createObj[
-                "tagName" ==> "ellipse"
-                "selector" ==> "e"
-            ];
-            createObj[
-                "tagName" ==> "rect"
-                "selector" ==> "r"
-            ];
-            createObj[
-                "tagName" ==> "circle"
-                "selector" ==> "c"
-            ];
-            createObj[
-                "tagName" ==> "rect"
-                "selector" ==> "outline"
-            ]
-        |]
-
-    let paneConfig = 
-        createObj[
-            "attrs" ==> attrs
-        ]
-
-    let markupList = 
-        createObj[
-            "markup" ==> markup
-        ]
-
-    let CustomElement  = joint?dia?Element?define("examples.Pane", paneConfig, markupList)
-
-    let element = createNew CustomElement ()
-
-    let elementAttre = 
-        createObj[
-            "refRx" ==> "50%"
-            "refRy" ==> "25%"
-            "refCx" ==> "50%"
-            "refCy" ==> 0
-            "refX" ==> "-50%"
-            "refY" ==> "25%"
-        ]
-
-    let elementAttrr = 
-        createObj[
-            "refX" ==> "100%"
-            "x" ==> "-10" // additional x offset
-            "refY" ==> "100%"
-            "y" ==> "-10" // additional y offset
-            "refWidth" ==> "50%"
-            "refHeight" ==> "50%"
-        ]
-
-    let elementAttrc = 
-        createObj[
-            "refRCircumscribed" ==> "50%"
-            "refCx" ==> "50%"
-            "refCy" ==> "50%"
-        ]
-
-    let elementAttr = 
-        createObj[
-            "e" ==> elementAttre
-            "r" ==> elementAttrr
-            "c" ==> elementAttrc
-        ]
-
-    element?attr(elementAttr) |> ignore
-    element?position(600, 50) |> ignore
-    element?resize(40, 40) |> ignore
-    element?addTo(graph) |> ignore
-    *)
