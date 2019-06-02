@@ -200,18 +200,53 @@ type NewElementAttrSub =
     abstract strokeWidth: int option with get, set
     abstract stroke: string option with get, set
     abstract fill: string option with get, set
+    abstract label: RectangleLabel option with get, set
 
 /// generate the NewElementAttrSub from parameters of different types
-let generateNewElementAttrSub strokeWidth stroke fill = 
+let generateNewElementAttrSub strokeWidth stroke fill labelText labelFill = 
+    let labelConfig = createEmpty<RectangleLabel>
+    labelConfig.text <- Some labelText
+    labelConfig.fill <- Some labelFill
+    labelConfig.textAnchor <- option.None
+    labelConfig.textVerticalAnchor <- option.None
+
     let attrSub = createEmpty<NewElementAttrSub>
     attrSub.strokeWidth <- Some strokeWidth
     attrSub.stroke <- Some stroke
     attrSub.fill <- Some fill
+    attrSub.label <- Some labelConfig
 
     attrSub
 
+type NewTextAttr = 
+    abstract textVerticalAnchor: string option with get, set
+    abstract textAnchor: string option with get, set
+    abstract refX: string option with get, set
+    abstract refY: string option with get, set
+    abstract fontSize: int option with get, set
+    abstract fill: string option with get, set
+
+/// generate the NewTextAttr from parameters of different types
+let generateNewTextAttr textVerticalAnchor textAnchor refX refY fontSize fill = 
+    let newTextAttr = createEmpty<NewTextAttr>
+    newTextAttr.textVerticalAnchor <- Some textVerticalAnchor
+    newTextAttr.textAnchor <- Some textAnchor
+    newTextAttr.refX <- Some refX
+    newTextAttr.refY <- Some refY
+    newTextAttr.fontSize <- Some fontSize
+    newTextAttr.fill <- Some fill
+
+    newTextAttr
+
 type NewElementConfig = 
-    abstract attr: obj option with get, set   
+    abstract attrs: obj option with get, set   
+
+/// generate the NewElementConfig from parameters of different types
+let generateNewElementConfig config = 
+    let newElementConfig = createEmpty<NewElementConfig>
+    newElementConfig.attrs <- Some config
+
+    newElementConfig
 
 type Markup = 
     abstract tagName: string option with get, set
@@ -225,19 +260,18 @@ let generateMarkupArray (argsArray:string array) =
     let length = argsArray.Length / 2 - 1
 
     let createIndividualMarkup tagName selector =
-        createObj[
-            "tagName" ==> tagName
-            "selector" ==> selector
-        ]
+        let markupEl = createEmpty<Markup>
+        markupEl.selector <- Some selector
+        markupEl.tagName <- Some tagName
+
+        markupEl
 
     let lst = 
         [| 0 .. length|]
         |> Array.map (fun index -> createIndividualMarkup argsArray.[index*2] argsArray.[index*2 + 1])
 
-    let markupArray = 
-        createObj[
-            "markup" ==> lst
-        ]
+    let markupArray = createEmpty<MarkupArray>
+    markupArray.markup <- Some lst
 
     markupArray
 
@@ -269,7 +303,7 @@ type JointJS =
     abstract member Source: el:obj -> anchor:Anchor -> link:obj -> obj
     abstract member Target: el:obj -> anchor:Anchor -> link:obj -> obj
     abstract member Router: link:obj -> routerType:Router -> obj
-    abstract member Define: name:string -> config:obj -> markupList:obj -> obj
+    abstract member Define: name:string -> config:NewElementConfig -> markupList:obj -> obj
 
 /// the interface JointJS needs to be explicitly implemented
 /// do not forget to :> the createElement interface implementation

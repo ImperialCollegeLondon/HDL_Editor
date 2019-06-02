@@ -3,7 +3,6 @@ module Jointjs
 open Fable.Core
 open Fable.Core.JsInterop
 open Fable.Import.Browser
-open System
 open JSLibInterface
 
 let joint : obj = importAll "jointjs"
@@ -14,20 +13,19 @@ let jointJSCreator = jointJSCreatorInterface :> JointJS
 
 /// initialize the tool pane
 let toolPaneInit() = 
-    let toolPane = jointJSCreator.RectangleInit ()
+    let r1 = generateNewElementAttrSub 1 "#000000" "rgba(255,0,0,0.3)" "Register" "white"
 
-    //let attr = generateRectangleAttr "white" "Tool Pane" "black" "start" "start"
-
-    //let e = generateNewElementAttrSub 1 "#000000" "rgba(255,0,0,0.3)"
-    let e = createObj[
-                "strokeWidth" ==> 1
-                "stroke" ==> "#000000"
-                "fill" ==> "rgba(255,0,0,0)"
-            ]
-
-    let r = generateNewElementAttrSub 1 "#000000" "rgba(0,255,0,0)"
+    let r2 = generateNewElementAttrSub 1 "#000000" "rgba(0,255,0,0.3)" "Gates" "white"
        
-    let c = generateNewElementAttrSub 1 "#000000" "rgba(0,0,255,0)"
+    let r3 = generateNewElementAttrSub 1 "#000000" "rgba(0,0,255,0.3)" "D-FF" "white"
+
+    let r4 = generateNewElementAttrSub 1 "#000000" "rgba(0,100,255,0.3)" "Something" "white"
+
+    let t1 = 
+        createObj[
+            "textAnchor" ==> "left"
+            "fontSize" ==> 15
+        ]
     
     let outline = 
         createObj[
@@ -37,73 +35,91 @@ let toolPaneInit() =
             "refHeight" ==> "100%"
             "strokeWidth" ==> 1
             "stroke" ==> "#000000"
-            "strokeDasharray" ==> "5 5"
-            "strokeDashoffset" ==> 2.5
             "fill" ==> "none"
         ]
 
     let individualAttr = 
         createObj[
-            //"e" ==> e            
-            "r" ==> r
-            //"c" ==> c    
-            //"outline" ==> outline
+            "r1" ==> r1            
+            "r2" ==> r2
+            "r3" ==> r3    
+            "r4" ==> r4
+            "outline" ==> outline
+            "text" ==> t1
         ]
 
-    let attr = createEmpty<NewElementConfig>
-    attr.attr <- Some individualAttr
-
+    let attr = generateNewElementConfig individualAttr    
     
-    let markupArray = generateMarkupArray [|"ellipse"; "e";                                    
-                                            "rect"; "r";
-                                            "circle"; "c";
-                                            "rect"; "outline"                                            
+    let markupArray = generateMarkupArray [|"rect"; "r1";                                    
+                                            "rect"; "r2";
+                                            "rect"; "r3";
+                                            "rect"; "r4";
+                                            "rect"; "outline"   
+                                            "text"; "text"
                                           |]
 
     let ToolPane = jointJSCreator.Define "custom.ToolPane" attr markupArray
 
     let shape = createNew ToolPane ()
     
-    let elementAttre = 
+    let elementAttrR1 = 
           createObj[
-              "refRx" ==> "50%"
-              "refRy" ==> "25%"
-              "refCx" ==> "50%"
-              "refCy" ==> 0
-              "refX" ==> "-50%"
-              "refY" ==> "25%"
+            "refX" ==> "5%"
+            "x" ==> "0" // additional x offset
+            "refY" ==> "10%"
+            "y" ==> "0" // additional y offset
+            "refWidth" ==> "40%"
+            "refHeight" ==> "10%"
           ]
 
-    let elementAttrr = 
+    let elementAttrR2 = 
           createObj[
-              "refX" ==> "100%"
-              "x" ==> "-10" // additional x offset
-              "refY" ==> "100%"
-              "y" ==> "-10" // additional y offset
-              "refWidth" ==> "50%"
-              "refHeight" ==> "50%"
+            "refX" ==> "55%"
+            "x" ==> "0" // additional x offset
+            "refY" ==> "10%"
+            "y" ==> "0" // additional y offset
+            "refWidth" ==> "40%"
+            "refHeight" ==> "10%"
           ]
 
-    let elementAttrc = 
+    let elementAttrR3 = 
           createObj[
-              "refRCircumscribed" ==> "50%"
-              "refCx" ==> "50%"
-              "refCy" ==> "50%"
+            "refX" ==> "5%"
+            "x" ==> "0" // additional x offset
+            "refY" ==> "30%"
+            "y" ==> "0" // additional y offset
+            "refWidth" ==> "40%"
+            "refHeight" ==> "10%"
           ]
+
+    let elementAttrR4 = 
+          createObj[
+            "refX" ==> "54%"
+            "x" ==> "0" // additional x offset
+            "refY" ==> "30%"
+            "y" ==> "0" // additional y offset
+            "refWidth" ==> "40%"
+            "refHeight" ==> "10%"
+          ]
+
+    let elementAttrText = 
+        createObj[
+            "refX" ==> "10%"
+            "refY" ==> "12%"
+            "text" ==> "test"
+        ]
 
     let elementAttr = 
           createObj[
-              //"e" ==> elementAttre
-              "r" ==> elementAttrr
-              //"c" ==> elementAttrc
+              "r1" ==> elementAttrR1
+              "r2" ==> elementAttrR2
+              "r3" ==> elementAttrR3
+              "r4" ==> elementAttrR4
+              "text" ==> elementAttrText
           ]
     
     shape
-    |> jointJSCreator.Attr elementAttr
-              
-    //toolPane
-    //|> jointJSCreator.Attr attr 
-    
+    |> jointJSCreator.Attr elementAttr                 
 
 
 /// initialize the canvas
@@ -145,51 +161,13 @@ let canvasInit() =
     |> jointJSCreator.AddTo graph
     |> ignore
     
-    jointJSCreator.Router link Orthogonal |> ignore
+    jointJSCreator.Router link Manhattan |> ignore
 
-    //let toolPane = toolPaneInit ()
+    let toolPane = toolPaneInit ()
 
-    let attr = 
-        createObj[
-            "attrs" ==> createObj[
-                        "e" ==> createObj[
-                                    "strokeWidth" ==> 1
-                                    "stroke" ==> "#000000"
-                                    "fill" ==> "rgba(255,0,0,0.3)"
-                        ]
-            ]
-        ]
-    
-    let markup = 
-        createObj[
-            "markup" ==> [|
-                            createObj[
-                                "tagName" ==> "ellipse"
-                                "selector" ==> "e"
-                            ]
-                         |]
-        ]
-
-    let ToolPane = jointJSCreator.Define "examples.ToolPane" attr markup
-
-    let toolPane = createNew ToolPane ()
-    
-    let toolPaneAttr = 
-        createObj[
-            "e" ==> createObj[
-                        "refRx" ==> "50%"
-                        "refRy" ==> "25%"
-                        "refCx" ==> "50%"
-                        "refCy" ==> 0
-                        "refX" ==> "-50%"
-                        "refY" ==> "25%"
-                    ]
-        ]
-    
     toolPane
-    |> jointJSCreator.Position 600 5
-    |> jointJSCreator.Resize 100 100
-    |> jointJSCreator.Attr toolPaneAttr 
+    |> jointJSCreator.Position 600 10
+    |> jointJSCreator.Resize 200 400
     |> jointJSCreator.AddTo graph
     |> ignore
     
