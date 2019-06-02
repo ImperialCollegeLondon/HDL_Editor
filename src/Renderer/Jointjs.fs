@@ -16,21 +16,76 @@ let jointJSCreator = jointJSCreatorInterface :> JointJS
 let toolPaneInit() = 
     let toolPane = jointJSCreator.RectangleInit ()
 
-    let rectangleBodyToolPane = createEmpty<RectangleBody>
-    rectangleBodyToolPane.fill <- Some "white"
+    let attr = generateRectangleAttr "white" "Tool Pane" "black" "start" "start"
 
-    let rectangleLabelToolPane = createEmpty<RectangleLabel>
-    rectangleLabelToolPane.fill <- Some "Black"
-    rectangleLabelToolPane.text <- Some "Tool Pane"
-    //rectangleLabelToolPane.textAnchor <- Some "start"
-    //rectangleLabelToolPane.textVerticalAnchor <- Some "start"
+    let r = generateNewElementAttrSub 1 "#000000" "rgba(255,0,0,0.3)"
 
-    let rectangleAttrToolPane = createEmpty<RectangleAttr>
-    rectangleAttrToolPane.body <- Some rectangleBodyToolPane
-    rectangleAttrToolPane.label <- Some rectangleLabelToolPane
+    let individualAttr = 
+        createObj[
+            "r0" ==> r
+            "r1" ==> r
+            "r2" ==> r
+            "r3" ==> r
+        ]
+
+    let attr = createEmpty<NewElementConfig>
+    attr.attr <- Some individualAttr
+
+    let markupArray = generateMarkupArray [|"rect"; "r0";
+                                            "rect"; "r1";
+                                            "rect"; "r2"
+                                            "rect"; "r3"|]
+
+    let ToolPane = jointJSCreator.Define "custom.ToolPane" attr markupArray
+
+    let shape = createNew ToolPane ()
+
+    let rectConfig = 
+        createObj[
+            "r0" ==> createObj[
+                        "refX" ==> "100%"
+                        "x" ==> -10
+                        "refY" ==> "100%"
+                        "y" ==> -10
+                        "refWidth" ==> "50%"
+                        "refHeight" ==> "50%"
+                     ]
+            "r1" ==> createObj[
+                        "refX" ==> "100%"
+                        "x" ==> -10
+                        "refY" ==> "100%"
+                        "y" ==> -10
+                        "refWidth" ==> "50%"
+                        "refHeight" ==> "50%"
+                     ]
+            "r2" ==> createObj[
+                        "refX" ==> "100%"
+                        "x" ==> -10
+                        "refY" ==> "100%"
+                        "y" ==> -10
+                        "refWidth" ==> "50%"
+                        "refHeight" ==> "50%"
+                     ]
+            "r3" ==> createObj[
+                        "refX" ==> "100%"
+                        "x" ==> -10
+                        "refY" ==> "100%"
+                        "y" ==> -10
+                        "refWidth" ==> "50%"
+                        "refHeight" ==> "50%"
+                     ]
+        ]
+
     
+    shape
+    |> jointJSCreator.Attr rectConfig
+    
+       
+
+    (*
     toolPane
-    |> jointJSCreator.Attr rectangleAttrToolPane 
+    |> jointJSCreator.Attr attr 
+    *)
 
 
 /// initialize the canvas
