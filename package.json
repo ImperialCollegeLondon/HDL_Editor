@@ -3,22 +3,7 @@
   "productName": "hdl_editor",
   "version": "1.0.0",
   "main": "app/js/main.js",
-  "nyc": {
-    "sourceMap": true,
-    "instrument": false,
-    "reporter": [
-      "lcov",
-      "text"
-    ],
-    "exclude": [
-      "./test",
-      "./node_modules",
-      "./coverage"
-    ],
-    "include": "./app/",
-    "cache": false,
-    "check-coverage": true
-  },
+  "license": "UNLICENSED",
   "scripts": {
     "start": "cd src/Main && yarn webpack --port free -w --config webpack.config.js -w",
     "build": "cd src/Main && yarn webpack --port free --config webpack.config.js",

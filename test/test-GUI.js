@@ -3,7 +3,7 @@ const Application = spectron.Application
 const assert = require('assert')
 const electronPath = require('electron') // Require Electron from the binaries included in node_modules.
 const path = require('path')
-// const ut = require('./test-non-GUI')
+const ut = require('./test-non-GUI')
 
 describe('GUI tests', function () {
   this.timeout(10000)

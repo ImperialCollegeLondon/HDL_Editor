@@ -6,7 +6,6 @@ module JSLibInterface
 open Fable.Core
 open Fable.Core.JsInterop
 open Fable.Import.Browser
-open System
 
 let joint : obj = importAll "jointjs"
 
@@ -106,33 +105,49 @@ let generateRectangleAttr bodyFill labelText labelFill labelTextAnchor labelText
 ///                                      ///
 ////////////////////////////////////////////
 
-type AnchorName = 
-    abstract name: string option with get, set
+/// See https://resources.jointjs.com/docs/jointjs/v2.2/joint.html
+/// for the built-in anchor types in JointJS
+type AnchorPosition = 
+    | [<CompiledName("center")>] Center
+    | [<CompiledName("modelCenter")>] ModelCenter
+    | [<CompiledName("perpendicular")>] Perpendicular
+    | [<CompiledName("midSide")>] MidSide
+    | [<CompiledName("bottom")>] Bottom
+    | [<CompiledName("left")>] Left
+    | [<CompiledName("right")>] Right
+    | [<CompiledName("top")>] Top
+    | [<CompiledName("bottomLeft")>] BottomLeft
+    | [<CompiledName("bottomRight")>] BottomRight
+    | [<CompiledName("topLeft")>] TopLeft
+    | [<CompiledName("topRight")>] TopRight
 
 type AnchorArgs = 
     abstract rotate: bool option with get, set
     abstract dx: U2<int, string> option with get, set
     abstract dy: U2<int, string> option with get,set
 
-type Anchor = 
-    abstract anchor: AnchorName option with get, set
+type AnchorConfig = 
+    abstract name: AnchorPosition option with get, set
     abstract args: AnchorArgs option with get, set
+
+type Anchor = 
+    abstract anchor: AnchorConfig option with get, set
 
 /// generate the Anchor from parameters of different types
 let generateAnchor name rotate dx dy = 
-    let anchorName = createEmpty<AnchorName>
-    anchorName.name <- Some name
-
     let anchorArgs = createEmpty<AnchorArgs>
     anchorArgs.rotate <- Some rotate
     anchorArgs.dx <- Some dx
     anchorArgs.dy <- Some dy
 
-    let anchor = createEmpty<Anchor>
-    anchor.anchor <- Some anchorName
+    let anchor = createEmpty<AnchorConfig>
+    anchor.name <- Some name
     anchor.args <- Some anchorArgs
 
-    anchor
+    let anchorConfig = createEmpty<Anchor>
+    anchorConfig.anchor <- Some anchor
+
+    anchorConfig
 
 
 //////////////////////////////////////////////////////
@@ -180,6 +195,20 @@ type Router =
 ///      For defining new element      ///
 ///                                    ///
 //////////////////////////////////////////
+
+type NewElementAttrSub = 
+    abstract strokeWidth: int option with get, set
+    abstract stroke: string option with get, set
+    abstract fill: string option with get, set
+
+/// generate the NewElementAttrSub from parameters of different types
+let generateNewElementAttrSub strokeWidth stroke fill = 
+    let attrSub = createEmpty<NewElementAttrSub>
+    attrSub.strokeWidth <- Some strokeWidth
+    attrSub.stroke <- Some stroke
+    attrSub.fill <- Some fill
+
+    attrSub
 
 type NewElementConfig = 
     abstract attr: obj option with get, set   
@@ -231,8 +260,8 @@ type JointJS =
     abstract member AttrBySelector: selector:string -> content:string -> el:obj -> obj
     abstract member AddTo: graph:obj -> el:obj -> obj
     abstract member Translate: x:int -> y:int -> el:obj -> obj
-    abstract member Source: link:obj -> el:obj -> obj
-    abstract member Target: link:obj -> el:obj -> obj
+    abstract member Source: el:obj -> anchor:Anchor -> link:obj -> obj
+    abstract member Target: el:obj -> anchor:Anchor -> link:obj -> obj
     abstract member Router: link:obj -> routerType:Router -> obj
     abstract member Define: name:string -> config:NewElementConfig -> markupList:MarkupArray -> obj
 
@@ -251,8 +280,8 @@ type createElement() =
         member __.AttrBySelector selector content el = el?attr(selector, content)
         member __.AddTo graph el = el?addTo(graph)
         member __.Translate x y el = el?translate(x, y)
-        member __.Source link el = link?source(el)
-        member __.Target link el = link?target(el)
+        member __.Source el anchor link = link?source(el, anchor)
+        member __.Target el anchor link = link?target(el, anchor)
         member __.Router link routerType = link?router(routerType)
         member __.Define name config markupList = joint?dia?Element?define(name, config, markupList)
 
