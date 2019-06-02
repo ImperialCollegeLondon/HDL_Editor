@@ -44,10 +44,10 @@ let toolPaneInit() =
 
     let individualAttr = 
         createObj[
-            "e" ==> e            
+            //"e" ==> e            
             "r" ==> r
-            "c" ==> c    
-            "outline" ==> outline
+            //"c" ==> c    
+            //"outline" ==> outline
         ]
 
     let attr = createEmpty<NewElementConfig>
@@ -93,19 +93,16 @@ let toolPaneInit() =
 
     let elementAttr = 
           createObj[
-              "e" ==> elementAttre
+              //"e" ==> elementAttre
               "r" ==> elementAttrr
-              "c" ==> elementAttrc
+              //"c" ==> elementAttrc
           ]
     
-    //shape
-    //|> jointJSCreator.Attr elementAttr
-    
-       
-
-    
-    toolPane
-    |> jointJSCreator.Attr attr 
+    shape
+    |> jointJSCreator.Attr elementAttr
+              
+    //toolPane
+    //|> jointJSCreator.Attr attr 
     
 
 
@@ -150,8 +147,49 @@ let canvasInit() =
     
     jointJSCreator.Router link Orthogonal |> ignore
 
-    let toolPane = toolPaneInit ()
+    //let toolPane = toolPaneInit ()
 
-    toolPane?position(600, 5) |> ignore
-    toolPane?resize(100, 100) |> ignore
-    toolPane?addTo(graph) |> ignore
+    let attr = 
+        createObj[
+            "attrs" ==> createObj[
+                        "e" ==> createObj[
+                                    "strokeWidth" ==> 1
+                                    "stroke" ==> "#000000"
+                                    "fill" ==> "rgba(255,0,0,0.3)"
+                        ]
+            ]
+        ]
+    
+    let markup = 
+        createObj[
+            "markup" ==> [|
+                            createObj[
+                                "tagName" ==> "ellipse"
+                                "selector" ==> "e"
+                            ]
+                         |]
+        ]
+
+    let ToolPane = jointJSCreator.Define "examples.ToolPane" attr markup
+
+    let toolPane = createNew ToolPane ()
+    
+    let toolPaneAttr = 
+        createObj[
+            "e" ==> createObj[
+                        "refRx" ==> "50%"
+                        "refRy" ==> "25%"
+                        "refCx" ==> "50%"
+                        "refCy" ==> 0
+                        "refX" ==> "-50%"
+                        "refY" ==> "25%"
+                    ]
+        ]
+    
+    toolPane
+    |> jointJSCreator.Position 600 5
+    |> jointJSCreator.Resize 100 100
+    |> jointJSCreator.Attr toolPaneAttr 
+    |> jointJSCreator.AddTo graph
+    |> ignore
+    
