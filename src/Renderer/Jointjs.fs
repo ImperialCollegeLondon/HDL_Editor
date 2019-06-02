@@ -98,15 +98,15 @@ let toolPaneInit() =
               "c" ==> elementAttrc
           ]
     
-    shape
-    |> jointJSCreator.Attr elementAttr
+    //shape
+    //|> jointJSCreator.Attr elementAttr
     
        
 
-    (*
+    
     toolPane
     |> jointJSCreator.Attr attr 
-    *)
+    
 
 
 /// initialize the canvas
@@ -151,6 +151,7 @@ let canvasInit() =
     jointJSCreator.Router link Orthogonal |> ignore
 
     let toolPane = toolPaneInit ()
+
     toolPane?position(600, 5) |> ignore
     toolPane?resize(100, 100) |> ignore
     toolPane?addTo(graph) |> ignore
