@@ -21,11 +21,21 @@ let toolPaneInit() =
 
     let r4 = generateNewElementAttrSub 1 "#000000" "rgba(0,100,255,0.3)" "Something" "white"
 
-    let t1 = 
+    let r5 = generateNewElementAttrSub 1 "#000000" "rgba(0,100,255,0.3)" "Something" "white"
+
+    let r6 = generateNewElementAttrSub 1 "#000000" "rgba(0,100,255,0.3)" "Something" "white"
+
+    let r7 = generateNewElementAttrSub 1 "#000000" "rgba(0,100,255,0.3)" "Something" "white"
+    
+    let r8 = generateNewElementAttrSub 1 "#000000" "rgba(0,100,255,0.3)" "Something" "white"
+
+    let textConfigCreator textAnchor fontSize = 
         createObj[
-            "textAnchor" ==> "left"
+            "textAnchor" ==> textAnchor
             "fontSize" ==> 15
         ]
+
+    let t1 = textConfigCreator "middle" 15
     
     let outline = 
         createObj[
@@ -44,8 +54,19 @@ let toolPaneInit() =
             "r2" ==> r2
             "r3" ==> r3    
             "r4" ==> r4
+            "r5" ==> r5
+            "r6" ==> r6
+            "r7" ==> r7
+            "r8" ==> r8
             "outline" ==> outline
-            "text" ==> t1
+            "text1" ==> t1
+            "text2" ==> t1
+            "text3" ==> t1
+            "text4" ==> t1
+            "text5" ==> t1
+            "text6" ==> t1
+            "text7" ==> t1
+            "text8" ==> t1
         ]
 
     let attr = generateNewElementConfig individualAttr    
@@ -54,8 +75,19 @@ let toolPaneInit() =
                                             "rect"; "r2";
                                             "rect"; "r3";
                                             "rect"; "r4";
+                                            "rect"; "r5";
+                                            "rect"; "r6";
+                                            "rect"; "r7";
+                                            "rect"; "r8";
                                             "rect"; "outline"   
-                                            "text"; "text"
+                                            "text"; "text1"
+                                            "text"; "text2"
+                                            "text"; "text3"
+                                            "text"; "text4"
+                                            "text"; "text5"
+                                            "text"; "text6"
+                                            "text"; "text7"
+                                            "text"; "text8"
                                           |]
 
     let ToolPane = jointJSCreator.Define "custom.ToolPane" attr markupArray
@@ -66,7 +98,7 @@ let toolPaneInit() =
           createObj[
             "refX" ==> "5%"
             "x" ==> "0" // additional x offset
-            "refY" ==> "10%"
+            "refY" ==> "15%"
             "y" ==> "0" // additional y offset
             "refWidth" ==> "40%"
             "refHeight" ==> "10%"
@@ -76,7 +108,7 @@ let toolPaneInit() =
           createObj[
             "refX" ==> "55%"
             "x" ==> "0" // additional x offset
-            "refY" ==> "10%"
+            "refY" ==> "15%"
             "y" ==> "0" // additional y offset
             "refWidth" ==> "40%"
             "refHeight" ==> "10%"
@@ -86,7 +118,7 @@ let toolPaneInit() =
           createObj[
             "refX" ==> "5%"
             "x" ==> "0" // additional x offset
-            "refY" ==> "30%"
+            "refY" ==> "35%"
             "y" ==> "0" // additional y offset
             "refWidth" ==> "40%"
             "refHeight" ==> "10%"
@@ -94,19 +126,108 @@ let toolPaneInit() =
 
     let elementAttrR4 = 
           createObj[
-            "refX" ==> "54%"
+            "refX" ==> "55%"
             "x" ==> "0" // additional x offset
-            "refY" ==> "30%"
+            "refY" ==> "35%"
             "y" ==> "0" // additional y offset
             "refWidth" ==> "40%"
             "refHeight" ==> "10%"
           ]
 
-    let elementAttrText = 
+    let elementAttrR5 = 
+          createObj[
+            "refX" ==> "5%"
+            "x" ==> "0" // additional x offset
+            "refY" ==> "60%"
+            "y" ==> "0" // additional y offset
+            "refWidth" ==> "40%"
+            "refHeight" ==> "10%"
+          ]
+
+    let elementAttrR6 = 
+          createObj[
+            "refX" ==> "55%"
+            "x" ==> "0" // additional x offset
+            "refY" ==> "60%"
+            "y" ==> "0" // additional y offset
+            "refWidth" ==> "40%"
+            "refHeight" ==> "10%"
+          ]
+
+    let elementAttrR7 = 
+          createObj[
+            "refX" ==> "5%"
+            "x" ==> "0" // additional x offset
+            "refY" ==> "80%"
+            "y" ==> "0" // additional y offset
+            "refWidth" ==> "40%"
+            "refHeight" ==> "10%"
+          ]
+
+    let elementAttrR8 = 
+          createObj[
+            "refX" ==> "55%"
+            "x" ==> "0" // additional x offset
+            "refY" ==> "80%"
+            "y" ==> "0" // additional y offset
+            "refWidth" ==> "40%"
+            "refHeight" ==> "10%"
+          ]            
+
+    let elementAttrText1 = 
         createObj[
-            "refX" ==> "10%"
-            "refY" ==> "12%"
-            "text" ==> "test"
+            "refX" ==> "25%"
+            "refY" ==> "18%"
+            "text" ==> "test1"
+        ]
+
+    let elementAttrText2 = 
+        createObj[
+            "refX" ==> "75%"
+            "refY" ==> "18%"
+            "text" ==> "test2"
+        ]
+
+    let elementAttrText3 = 
+        createObj[
+            "refX" ==> "25%"
+            "refY" ==> "38%"
+            "text" ==> "test3"
+        ]
+
+    let elementAttrText4 = 
+        createObj[
+            "refX" ==> "75%"
+            "refY" ==> "38%"
+            "text" ==> "test4"
+        ]
+
+    let elementAttrText5 = 
+        createObj[
+            "refX" ==> "25%"
+            "refY" ==> "63%"
+            "text" ==> "test5"
+        ]
+
+    let elementAttrText6 = 
+        createObj[
+            "refX" ==> "75%"
+            "refY" ==> "63%"
+            "text" ==> "test6"
+        ]
+
+    let elementAttrText7 = 
+        createObj[
+            "refX" ==> "25%"
+            "refY" ==> "83%"
+            "text" ==> "test7"
+        ]
+
+    let elementAttrText8 = 
+        createObj[
+            "refX" ==> "75%"
+            "refY" ==> "83%"
+            "text" ==> "test8"
         ]
 
     let elementAttr = 
@@ -115,7 +236,18 @@ let toolPaneInit() =
               "r2" ==> elementAttrR2
               "r3" ==> elementAttrR3
               "r4" ==> elementAttrR4
-              "text" ==> elementAttrText
+              "r5" ==> elementAttrR5
+              "r6" ==> elementAttrR6
+              "r7" ==> elementAttrR7
+              "r8" ==> elementAttrR8
+              "text1" ==> elementAttrText1
+              "text2" ==> elementAttrText2
+              "text3" ==> elementAttrText3
+              "text4" ==> elementAttrText4
+              "text5" ==> elementAttrText5
+              "text6" ==> elementAttrText6
+              "text7" ==> elementAttrText7
+              "text8" ==> elementAttrText8
           ]
     
     shape
