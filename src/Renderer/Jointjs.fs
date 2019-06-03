@@ -32,11 +32,30 @@ let toolPaneInit() =
     let textConfigCreator textAnchor fontSize = 
         createObj[
             "textAnchor" ==> textAnchor
-            "fontSize" ==> 15
+            "fontSize" ==> fontSize
         ]
 
     let t1 = textConfigCreator "middle" 15
+
+    let button = 
+        createObj[
+            "cursor" ==> "pointer"
+            "ref" ==> "buttonLabel"
+            "refWidth" ==> "150%"
+            "refHeight" ==> "150%"
+            "refX" ==> "-25%"
+            "refY" ==> "-25%"
+        ]
     
+    let buttonLabel = 
+        createObj[
+            "pointerEvents" ==> "none"
+            "refX" ==> "100%"
+            "refY" ==> 0
+            "textAnchor" ==> "middle"
+            "textVerticalAnchor" ==> "middle"
+        ]
+
     let outline = 
         createObj[
             "refX" ==> 0
@@ -67,6 +86,8 @@ let toolPaneInit() =
             "text6" ==> t1
             "text7" ==> t1
             "text8" ==> t1
+            "button" ==> button
+            "buttonLabel" ==> buttonLabel
         ]
 
     let attr = generateNewElementConfig individualAttr    
@@ -79,15 +100,17 @@ let toolPaneInit() =
                                             "rect"; "r6";
                                             "rect"; "r7";
                                             "rect"; "r8";
-                                            "rect"; "outline"   
-                                            "text"; "text1"
-                                            "text"; "text2"
-                                            "text"; "text3"
-                                            "text"; "text4"
-                                            "text"; "text5"
-                                            "text"; "text6"
-                                            "text"; "text7"
-                                            "text"; "text8"
+                                            "rect"; "outline";   
+                                            "text"; "text1";
+                                            "text"; "text2";
+                                            "text"; "text3";
+                                            "text"; "text4";
+                                            "text"; "text5";
+                                            "text"; "text6";
+                                            "text"; "text7";
+                                            "text"; "text8";
+                                            "rect"; "button";
+                                            "text"; "buttonLabel"
                                           |]
 
     let ToolPane = jointJSCreator.Define "custom.ToolPane" attr markupArray
@@ -102,6 +125,7 @@ let toolPaneInit() =
             "y" ==> "0" // additional y offset
             "refWidth" ==> "40%"
             "refHeight" ==> "10%"
+            "visibility" ==> "visible"
           ]
 
     let elementAttrR2 = 
@@ -230,6 +254,22 @@ let toolPaneInit() =
             "text" ==> "test8"
         ]
 
+    let elementButton = 
+        createObj[
+            "event" ==> "element:button:pointerdown"
+            "fill" ==> "orange"
+            "stroke" ==> "black"
+            "strokeWidth" ==> 2
+        ]
+
+    let elementButtonLabel = 
+        createObj[
+            "text" ==> "__" // fullwidth underscore
+            "fill" ==> "black"
+            "fontSize" ==> 8
+            "fontWeight" ==> "bold"
+        ]
+
     let elementAttr = 
           createObj[
               "r1" ==> elementAttrR1
@@ -248,11 +288,87 @@ let toolPaneInit() =
               "text6" ==> elementAttrText6
               "text7" ==> elementAttrText7
               "text8" ==> elementAttrText8
+              "button" ==> elementButton
+              "buttonLabel" ==> elementButtonLabel
           ]
     
     shape
     |> jointJSCreator.Attr elementAttr                 
 
+let menuHideTestInit() = 
+    let attrs = 
+        createObj[
+            "attrs" ==> createObj[
+                            "body" ==> createObj[
+                                          "refWidth" ==> "100%"
+                                          "refHeight" ==> "100%"
+                                          "strokeWidth" ==> 2
+                                          "stroke" ==> "black"
+                                          "fill" ==> "white"
+                                       ]
+                            "label" ==> createObj[
+                                           "textVerticalAnchor" ==> "middle"
+                                           "textAnchor" ==> "middle"
+                                           "refX" ==> "50%"
+                                           "refY" ==> "50%"
+                                           "fontSize" ==> 14
+                                           "fill" ==> "black"
+                                        ]
+                            "button" ==> createObj[
+                                            "cursor" ==> "pointer"
+                                            "ref" ==> "buttonLabel"
+                                            "refWidth" ==> "150%"
+                                            "refHeight" ==> "150%"
+                                            "refX" ==> "-25%"
+                                            "refY" ==> "-25%"
+                                         ]
+                            "buttonLabel" ==> createObj[
+                                                 "pointerEvents" ==> "none"
+                                                 "refX" ==> "100%"
+                                                 "refY" ==> 0
+                                                 "textAnchor" ==> "middle"
+                                                 "textVerticalAnchor" ==> "middle"
+                                              ]
+                        ]
+        ]
+
+    let markupArray = generateMarkupArray [|"rect";"body";
+                                            "text";"label";
+                                            "rect";"button";
+                                            "text";"buttonLabel"
+                                          |]
+
+    let CustomElement = joint?dia?Element?define("examples.CustomElement", attrs, markupArray)  
+
+    let testBox = createNew CustomElement ()
+
+    let testBoxConfig = 
+        createObj[
+            "label" ==> createObj[
+                            "pointerEvents" ==> "none"
+                            "visibility" ==> "visible"
+                            "text" ==> "Element"
+                        ]
+            "body" ==> createObj[
+                           "cursor" ==> "default"
+                           "visibility" ==> "visible"
+                       ]
+            "button" ==> createObj[
+                            "event" ==> "element:button:pointerdown"
+                            "fill" ==> "orange"
+                            "stroke" ==> "black"
+                            "strokeWidth" ==> 2
+                         ]
+            "buttonLabel" ==> createObj[
+                                 "text" ==> "__" // fullwidth underscore
+                                 "fill" ==> "black"
+                                 "fontSize" ==> 8
+                                 "fontWeight" ==> "bold"
+                              ]
+        ]
+
+    testBox
+    |> jointJSCreator.Attr testBoxConfig
 
 /// initialize the canvas
 let canvasInit() =      
@@ -302,4 +418,33 @@ let canvasInit() =
     |> jointJSCreator.Resize 200 400
     |> jointJSCreator.AddTo graph
     |> ignore
+
+    let testBox = menuHideTestInit ()
+
+    testBox
+    |> jointJSCreator.Position 400 400
+    |> jointJSCreator.Resize 100 40
+    |> jointJSCreator.AddTo graph
+    |> ignore
+
+    paper?on("element:button:pointerdown", unbox (fun (elementView) ->
+        //evt?stopPropagation() |> ignore
+
+        let model = elementView?model     
+
+        if model?attr("body/visibility") = "visible" then model?attr("body/visibility", "hidden") else model?attr("body/visibility", "visible")
+        model?attr("r1/visibility", "hidden")
+
+    )) |> ignore
     
+
+    paper?on("blank:pointerdblclick", unbox (fun () ->
+        let background = 
+            createObj[
+                "color" ==> "orange"
+            ]
+        
+        paper?drawBackground(background)
+            
+    )) |> ignore
+
