@@ -435,8 +435,7 @@ let canvasInit() =
         if model?attr("body/visibility") = "visible" then model?attr("body/visibility", "hidden") else model?attr("body/visibility", "visible")
         model?attr("r1/visibility", "hidden")
 
-    )) |> ignore
-    
+    )) |> ignore    
 
     paper?on("blank:pointerdblclick", unbox (fun () ->
         let background = 
