@@ -401,6 +401,62 @@ let connectRectTest() =
     //element?set("ports", ports)
     element?attr("label/text", "yes")
 
+/// initialize a custom defined element
+let customElementInit() =
+    
+    joint?shapes?html <- (Map.empty) |> ignore
+    
+    let extendContent = 
+        createObj[
+            "type" ==> "html.element"
+            "attrs" ==> createObj[
+                            "rect" ==> createObj[
+                                        "stroke" ==> "none"
+                                        "fill-opacity" ==> 0
+                                       ]
+                        ]
+        ]
+
+    let extendRemain = joint?shapes?basic?Rect?prototype?defaults
+
+    let defaultsConfig = joint?util?deepSupplement (extendContent, extendRemain)
+    
+    let extendDefault = 
+        createObj[
+            "defaults" ==> defaultsConfig
+        ]
+      
+    joint?shapes?html?Element <- joint?shapes?basic?Rect?extend(extendDefault) |> ignore
+    
+    let initializeFunction(a) = 
+        console.log("initialized!")
+        console.log(a)
+        joint?dia?ElementView?prototype?initialize?apply(a)
+
+    let templateArray = 
+        createObj[
+            "template" ==> ([|
+                            "<div class=\"html-element\">";
+                            "<button class=\"delete\">x</button>";
+                            "<label></label>";
+                            "<span></span>"; "<br/>";
+                            "<select><option>--</option><option>one</option><option>two</option></select>";
+                            "<input type=\"text\" value=\"I\'m HTML input\" />";
+                            "</div>"
+                            |]
+                            |> String.concat "")
+            "initialize" ==> unbox (fun () -> initializeFunction ())
+        ]                        
+
+    joint?shapes?html?ElementView <- joint?dia?ElementView?extend(templateArray) |> ignore
+
+    let newElementConfig = 
+        createObj[
+            "label" ==> "yes"
+            "select" ==> "one"
+        ]
+
+    createNew joint?shapes?html?Element (newElementConfig)
 
 /// initialize the canvas
 let canvasInit() =      
@@ -465,7 +521,7 @@ let canvasInit() =
     |> jointJSCreator.Resize 100 100
     |> ignore
 
-    graph?addCell(linkTest)
+    graph?addCell([|linkTest|])
 
     let linkTest' = connectRectTest ()
     linkTest'
@@ -473,7 +529,16 @@ let canvasInit() =
     |> jointJSCreator.Resize 100 100
     |> ignore
 
-    graph?addCell(linkTest')
+    graph?addCell([|linkTest'|])
+
+    let htmlBox = customElementInit ()
+
+    htmlBox
+    |> jointJSCreator.Position 200 200
+    |> jointJSCreator.Resize 170 100
+    |> ignore
+
+    graph?addCell([|htmlBox|])
 
     paper?on("element:button:pointerdown", unbox (fun (elementView) ->
         //evt?stopPropagation() |> ignore
