@@ -125,7 +125,8 @@ let toolPaneInit() =
             "y" ==> "0" // additional y offset
             "refWidth" ==> "40%"
             "refHeight" ==> "10%"
-            "visibility" ==> "visible"
+            "visibility" ==> "visible"            
+            "cursor" ==> "pointer"
           ]
 
     let elementAttrR2 = 
@@ -249,14 +250,14 @@ let toolPaneInit() =
 
     let elementAttrText8 = 
         createObj[
+            "event" ==> "element:button:pointerdown"
             "refX" ==> "75%"
             "refY" ==> "83%"
             "text" ==> "test8"
         ]
 
     let elementButton = 
-        createObj[
-            "event" ==> "element:button:pointerdown"
+        createObj[            
             "fill" ==> "orange"
             "stroke" ==> "black"
             "strokeWidth" ==> 2
