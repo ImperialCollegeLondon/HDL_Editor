@@ -371,6 +371,37 @@ let menuHideTestInit() =
     testBox
     |> jointJSCreator.Attr testBoxConfig
 
+/// initoalize rect that has ports for connections to other blocks
+let connectRectTest() =     
+
+    let ports = 
+        createNew[
+            "groups" ==> createObj[
+                            "in" ==> createObj[
+                                        "attrs" ==> createObj[
+                                                    ".port-body" ==> createObj[
+                                                                        "fill" ==> "#16A085"
+                                                                        ]
+                                                    ]
+                                     ]
+                            "out" ==> createObj[
+                                        "attrs" ==> createObj[
+                                                        ".port-body" ==> createObj[
+                                                                            "fill" ==> "#E74C3C"
+                                                                         ]
+                                                    ]
+                                      ]
+                         ]
+        ]
+        
+    let element = createNew joint?shapes?devs?Model ()
+    
+    element?set("inPorts", [|"newIn1"; "newIn2"; "newIn3"|])
+    element?set("outPorts", [|"newOut1"; "newOut2"|])
+    //element?set("ports", ports)
+    element?attr("label/text", "yes")
+
+
 /// initialize the canvas
 let canvasInit() =      
     
@@ -427,6 +458,22 @@ let canvasInit() =
     |> jointJSCreator.Resize 100 40
     |> jointJSCreator.AddTo graph
     |> ignore
+
+    let linkTest = connectRectTest ()
+    linkTest
+    |> jointJSCreator.Position 300 300
+    |> jointJSCreator.Resize 100 100
+    |> ignore
+
+    graph?addCell(linkTest)
+
+    let linkTest' = connectRectTest ()
+    linkTest'
+    |> jointJSCreator.Position 100 300
+    |> jointJSCreator.Resize 100 100
+    |> ignore
+
+    graph?addCell(linkTest')
 
     paper?on("element:button:pointerdown", unbox (fun (elementView) ->
         //evt?stopPropagation() |> ignore
