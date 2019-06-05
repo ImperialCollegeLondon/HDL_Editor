@@ -38,6 +38,16 @@ let outputPortInit () =
     |> jointJSCreator.Resize 100 40 
     |> jointJSCreator.Attr rectangleAttr
 
+/// create logic element blocks
+let logicElementInit () = 
+    let rect = jointJSCreator.RectangleInit ()
+        
+    let rectangleAttr = generateRectangleAttr "white" "LE" "Black" "middle" "middle"
+    
+    rect 
+    |> jointJSCreator.Resize 100 40 
+    |> jointJSCreator.Attr rectangleAttr
+    
 /// the active button indicates the blocks to be added to the graph
 /// when the application initializes, it is set to be none
 let mutable (activeBlockType: BlockType option) = option.None
@@ -447,10 +457,14 @@ let canvasInit() =
     /// initialize the paer using the paperSettings
     let paper = jointJSCreator.PaperInit paperSettings    
 
-    let funTest = ( fun e -> console.log("clicked")
-                             activeBlockType <- Some InputPort )
+    let switchToInputPort = fun e -> activeBlockType <- Some InputPort
+    let switchToOutputPort = fun e -> activeBlockType <- Some OutputPort
+    let switchToLogicElement = fun e -> activeBlockType <- Some LogicElement
+
     /// bind event listener to the add bock buttons
-    let inputAddButton = document.getElementById("input-add-button").addEventListener("click", U2.Case1 funTest, false)
+    document.getElementById("input-add-button").addEventListener("click", U2.Case1 switchToInputPort, false) 
+    document.getElementById("output-add-button").addEventListener("click", U2.Case1 switchToOutputPort, false) 
+    document.getElementById("logic-element-add-button").addEventListener("click", U2.Case1 switchToLogicElement, false) 
 
     let linkTest = connectRectTest ()
     linkTest
@@ -468,14 +482,9 @@ let canvasInit() =
 
     graph?addCell([|linkTest'|])
 
-    paper?on("element:button:pointerdown", unbox (fun (elementView) ->
-        //evt?stopPropagation() |> ignore
-
-        let model = elementView?model     
-
-        if model?attr("body/visibility") = "visible" then model?attr("body/visibility", "hidden") else model?attr("body/visibility", "visible")
-        model?attr("r1/visibility", "hidden")
-
+    paper?on("cell:pointerdblclick", unbox (fun (elementView) ->        
+        let model = elementView?model             
+        document.getElementById("element-name-field").innerHTML <- (model?attributes?attrs?label?text)
     )) |> ignore    
 
     paper?on("blank:pointerclick", unbox (fun (args) ->      
@@ -488,7 +497,10 @@ let canvasInit() =
                              |> jointJSCreator.Position args?offsetX args?offsetY
                              |> jointJSCreator.AddTo graph
                              |> ignore
-        | Some LogicElement -> console.log("not implemented yet")
+        | Some LogicElement -> logicElementInit()
+                               |> jointJSCreator.Position args?offsetX args?offsetY
+                               |> jointJSCreator.AddTo graph
+                               |> ignore
         | option.None -> console.log("no block")                             
     )) |> ignore
 
