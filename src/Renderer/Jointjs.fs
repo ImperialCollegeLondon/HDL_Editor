@@ -4,12 +4,43 @@ open Fable.Core
 open Fable.Core.JsInterop
 open Fable.Import.Browser
 open JSLibInterface
+open System
 
 let joint : obj = importAll "jointjs"
 
 /// use the JointJS bindings by upcasting the interface
 let jointJSCreatorInterface = new createElement()
 let jointJSCreator = jointJSCreatorInterface :> JointJS
+
+/// define the blocks that can be added to the graph
+type BlockType = 
+    | InputPort
+    | OutputPort
+    | LogicElement
+
+/// create input blocks
+let inputPortInit () = 
+    let rect = jointJSCreator.RectangleInit ()
+    
+    let rectangleAttr = generateRectangleAttr "white" "InputPort" "Black" "middle" "middle"
+
+    rect 
+    |> jointJSCreator.Resize 100 40 
+    |> jointJSCreator.Attr rectangleAttr
+
+/// create output blocks
+let outputPortInit () = 
+    let rect = jointJSCreator.RectangleInit ()
+    
+    let rectangleAttr = generateRectangleAttr "white" "OutputPort" "Black" "middle" "middle"
+
+    rect 
+    |> jointJSCreator.Resize 100 40 
+    |> jointJSCreator.Attr rectangleAttr
+
+/// the active button indicates the blocks to be added to the graph
+/// when the application initializes, it is set to be none
+let mutable (activeBlockType: BlockType option) = option.None
 
 /// initialize the tool pane
 let toolPaneInit() = 
@@ -401,119 +432,25 @@ let connectRectTest() =
     //element?set("ports", ports)
     element?attr("label/text", "yes")
 
-/// initialize a custom defined element
-let customElementInit() =
-    
-    joint?shapes?html <- (Map.empty) |> ignore
-    
-    let extendContent = 
-        createObj[
-            "type" ==> "html.element"
-            "attrs" ==> createObj[
-                            "rect" ==> createObj[
-                                        "stroke" ==> "none"
-                                        "fill-opacity" ==> 0
-                                       ]
-                        ]
-        ]
-
-    let extendRemain = joint?shapes?basic?Rect?prototype?defaults
-
-    let defaultsConfig = joint?util?deepSupplement (extendContent, extendRemain)
-    
-    let extendDefault = 
-        createObj[
-            "defaults" ==> defaultsConfig
-        ]
-      
-    joint?shapes?html?Element <- joint?shapes?basic?Rect?extend(extendDefault) |> ignore
-    
-    let initializeFunction(a) = 
-        console.log("initialized!")
-        console.log(a)
-        joint?dia?ElementView?prototype?initialize?apply(a)
-
-    let templateArray = 
-        createObj[
-            "template" ==> ([|
-                            "<div class=\"html-element\">";
-                            "<button class=\"delete\">x</button>";
-                            "<label></label>";
-                            "<span></span>"; "<br/>";
-                            "<select><option>--</option><option>one</option><option>two</option></select>";
-                            "<input type=\"text\" value=\"I\'m HTML input\" />";
-                            "</div>"
-                            |]
-                            |> String.concat "")
-            "initialize" ==> unbox (fun () -> initializeFunction ())
-        ]                        
-
-    joint?shapes?html?ElementView <- joint?dia?ElementView?extend(templateArray) |> ignore
-
-    let newElementConfig = 
-        createObj[
-            "label" ==> "yes"
-            "select" ==> "one"
-        ]
-
-    createNew joint?shapes?html?Element (newElementConfig)
-
 /// initialize the canvas
 let canvasInit() =      
     
+    /// initialize the graoh
     let graph = jointJSCreator.GraphInit ()
     
+    /// create a mutable canvas in case of resizing
     let mutable canvas : HTMLElement = unbox document.getElementById "myholder"
 
+    /// create the paper settings
     let paperSettings = generatePaperSettings canvas graph 1400 1000 10 true "rgba(0, 0, 0, 0)"
 
-    let paper = jointJSCreator.PaperInit paperSettings
+    /// initialize the paer using the paperSettings
+    let paper = jointJSCreator.PaperInit paperSettings    
 
-    let rect = jointJSCreator.RectangleInit ()
-
-    let rectangleAttr = generateRectangleAttr "white" "Hello" "Black" "middle" "middle"
-    
-    rect 
-    |> jointJSCreator.Position 100 30
-    |> jointJSCreator.Resize 100 40 
-    |> jointJSCreator.Attr rectangleAttr
-    |> jointJSCreator.AddTo graph
-    |> ignore
-
-    let rect2 = jointJSCreator.Clone rect
-    rect2
-    |> jointJSCreator.Translate 300 0
-    |> jointJSCreator.AttrBySelector "label/text" "world!"
-    |> jointJSCreator.AddTo graph
-    |> ignore
-
-    let sourceAnchorConfig = generateAnchor Right true (U2.Case1 0) (U2.Case1 0)
-    let sinkAnchorConfig = generateAnchor Left true (U2.Case1 0) (U2.Case1 0)
-
-    let link = jointJSCreator.LinkInit ()
-    link
-    |> jointJSCreator.Source rect sourceAnchorConfig
-    |> jointJSCreator.Target rect2 sinkAnchorConfig
-    |> jointJSCreator.AddTo graph
-    |> ignore
-    
-    jointJSCreator.Router link Manhattan |> ignore
-
-    let toolPane = toolPaneInit ()
-
-    toolPane
-    |> jointJSCreator.Position 600 10
-    |> jointJSCreator.Resize 200 400
-    |> jointJSCreator.AddTo graph
-    |> ignore
-
-    let testBox = menuHideTestInit ()
-
-    testBox
-    |> jointJSCreator.Position 400 400
-    |> jointJSCreator.Resize 100 40
-    |> jointJSCreator.AddTo graph
-    |> ignore
+    let funTest = ( fun e -> console.log("clicked")
+                             activeBlockType <- Some InputPort )
+    /// bind event listener to the add bock buttons
+    let inputAddButton = document.getElementById("input-add-button").addEventListener("click", U2.Case1 funTest, false)
 
     let linkTest = connectRectTest ()
     linkTest
@@ -531,15 +468,6 @@ let canvasInit() =
 
     graph?addCell([|linkTest'|])
 
-    let htmlBox = customElementInit ()
-
-    htmlBox
-    |> jointJSCreator.Position 200 200
-    |> jointJSCreator.Resize 170 100
-    |> ignore
-
-    graph?addCell([|htmlBox|])
-
     paper?on("element:button:pointerdown", unbox (fun (elementView) ->
         //evt?stopPropagation() |> ignore
 
@@ -550,13 +478,17 @@ let canvasInit() =
 
     )) |> ignore    
 
-    paper?on("blank:pointerdblclick", unbox (fun () ->
-        let background = 
-            createObj[
-                "color" ==> "orange"
-            ]
-        
-        paper?drawBackground(background)
-            
+    paper?on("blank:pointerclick", unbox (fun (args) ->      
+        match activeBlockType with
+        | Some InputPort -> inputPortInit()                               
+                            |> jointJSCreator.Position args?offsetX args?offsetY
+                            |> jointJSCreator.AddTo graph
+                            |> ignore                            
+        | Some OutputPort -> outputPortInit()
+                             |> jointJSCreator.Position args?offsetX args?offsetY
+                             |> jointJSCreator.AddTo graph
+                             |> ignore
+        | Some LogicElement -> console.log("not implemented yet")
+        | option.None -> console.log("no block")                             
     )) |> ignore
 

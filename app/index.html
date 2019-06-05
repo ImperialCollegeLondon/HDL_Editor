@@ -27,10 +27,12 @@
         </div>
       </div>
 
-      <div id="infoSidePane" style="position: absolute; align: right; left: 80%; width: 20%; height: 93%; float: right; text-align: left; overflow-x: auto; overflow-y: auto;">
+      <div class="infoSidePane" style="position: absolute; align: right; left: 80%; width: 20%; height: 93%; float: right; text-align: left; overflow-x: auto; overflow-y: auto;">
         <form>
           <h3>Block Configuration</h3>
             Name:<input type="text" name="" value=""><br>
+            <br>
+            Type: <label>Block type</label><br>
             <br>
             Boolean Equation:<input type="text" name="" value=""><br>
             <br>
@@ -52,36 +54,28 @@
             <button type="button">Update Configuration</button><br>
             <br>
             <button type="button">Delete Block and all connections</button><br>
-            <br>
-            <br>
-            <br>
-            <br>
-            <br>
-            <br>
-            <br>
-
-            <br>
-            <br>
-            <br>
-            <br>
-            <br>
         </form>
         <br>
         <hr>
         <form>
-        <h3>Add Blocks</h3>
-        <button type="button">Input</button><br>
-        <br>
-        <button type="button">Output</button><br>
-        <br>
-        <button type="button">Logic Element</button><br>
-        <br>
-        <button type="button">FF</button><br>
-        <br>
-      </form>
+          <h3>Add Blocks</h3>
+          <button id="input-add-button" type="button">Input</button><br>
+          <br>
+          <button id="output-add-button" type="button">Output</button><br>
+          <br>
+          <button id="logic-element-add-button" type="button">Logic Element</button><br>
+          <br>
+          <button id="FF-add-button" type="button">FF</button><br>
+          <br>
+        </form>
       </div>
 
     <style>
+    html, body {
+        margin: 0;
+        height: 100%;
+    }
+
     .monaco {
       margin: 0px;
       min-height: 100%;
@@ -117,6 +111,10 @@
     /* Create an active/current tablink class */
     .tab button.active {
       background-color: #ccc;
+    }
+
+    .infoSidePane button.active {
+      background-color: #fff
     }
 
     /* Style the tab content */
