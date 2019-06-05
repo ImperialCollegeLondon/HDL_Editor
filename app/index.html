@@ -14,7 +14,7 @@
         <button class="tablinks" onclick="openCity(event, 'Tokyo')">+</button>
       </div>
 
-      <div style="position: absolute; width: 78%; height: 93%; overflow-x: auto; overflow-y: auto; float: left;">
+      <div style="position: absolute; width: 78%; height: 94%; overflow-x: auto; overflow-y: auto; float: left;">
         <div id="London" class="tabcontent">
           <div id="myholder"></div>
         </div>
@@ -28,14 +28,18 @@
         </div>
       </div>
 
-      <div class="infoSidePane" style="position: absolute; align: right; left: 80%; width: 20%; height: 93%; float: right; text-align: left; overflow-x: auto; overflow-y: auto;">
+      <div class="infoSidePane" style="position: absolute; align: right; left: 80%; width: 20%; height: 94%; float: right; text-align: left; overflow-x: auto; overflow-y: auto;">
         <form>
           <h3>Block Configuration</h3>
             Name:<input id="element-name-field" type="text" name="" value=""><br>
             <br>
-            Type: <label>Block type</label><br>
+            Type: <label id="element-type-label">Block type</label><br>
             <br>
-            Boolean Equation:<input type="text" name="" value=""><br>
+            Boolean Equation:<input id="boolean-equation-field" type="text" name="" value=""><br>
+            <br>
+            Location:
+            x:<input id="element-position-x" type="int" name="" value"" style="width: 12%;">
+            y:<input id="element-position-y" type="int" name="" value"" style="width: 12%;"><br>
             <br>
             Connections<br>
             <br>
@@ -52,9 +56,9 @@
             <br>
             Port:<br>
             <br>
-            <button type="button">Update Configuration</button><br>
+            <button id="update-block-information-button" type="button">Update Configuration</button><br>
             <br>
-            <button type="button">Delete Block and all connections</button><br>
+            <button id="delete-block-button" type="button">Delete Block and all connections</button><br>
         </form>
         <br>
         <hr>

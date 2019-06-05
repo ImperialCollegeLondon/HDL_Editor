@@ -442,6 +442,16 @@ let connectRectTest() =
     //element?set("ports", ports)
     element?attr("label/text", "yes")
 
+/// a reset-all function
+let resetAll paper = 
+    console.log(paper)
+    let elements : obj list = paper?model?getElements()
+    console.log(elements.Length)
+    [0..elements.Length-1]
+    |> List.map (fun el -> (elements.[el])?attr("body/fill", "white")) 
+    |> ignore
+    paper
+
 /// initialize the canvas
 let canvasInit() =      
     
@@ -455,7 +465,7 @@ let canvasInit() =
     let paperSettings = generatePaperSettings canvas graph 1400 1000 10 true "rgba(0, 0, 0, 0)"
 
     /// initialize the paer using the paperSettings
-    let paper = jointJSCreator.PaperInit paperSettings    
+    let mutable paper = jointJSCreator.PaperInit paperSettings    
 
     let switchToInputPort = fun e -> activeBlockType <- Some InputPort
     let switchToOutputPort = fun e -> activeBlockType <- Some OutputPort
@@ -480,25 +490,44 @@ let canvasInit() =
     |> jointJSCreator.Resize 100 100
     |> ignore
 
-    graph?addCell([|linkTest'|])
+    graph?addCell([|linkTest'|])      
 
-    paper?on("cell:pointerdblclick", unbox (fun (elementView) ->        
-        let model = elementView?model             
-        document.getElementById("element-name-field").innerHTML <- (model?attributes?attrs?label?text)
-    )) |> ignore    
+    paper?on("cell:pointerdblclick", fun elementView ->   
+        paper <- resetAll paper
+        let model = elementView?model
+        console.log(model)
+        model?attr("body/fill", "orange")
+        let inputBoxList = document.getElementById "element-type-label"
+
+        inputBoxList.innerHTML <- (model?attributes?attrs?label?text)
+        
+        let removeElement = fun e -> model?remove()
+        (document.getElementById "delete-block-button").addEventListener("click", U2.Case1 removeElement, false)
+
+        let positionXInputBox = (((document.getElementsByTagName_input) ()).Item 2)
+        positionXInputBox.value <- model?attributes?position?x
+
+        let positionYInputBox = (((document.getElementsByTagName_input) ()).Item 3)
+        positionYInputBox.value <- model?attributes?position?y
+        
+        let updateButtonFunction = fun e -> model
+                                            |> jointJSCreator.Position (int positionXInputBox.value) (int positionYInputBox.value)
+                                            |> ignore
+        (document.getElementById "update-block-information-button").addEventListener("click", U2.Case1 updateButtonFunction, false)        
+    ) |> ignore  
 
     paper?on("blank:pointerclick", unbox (fun (args) ->      
         match activeBlockType with
-        | Some InputPort -> inputPortInit()                               
-                            |> jointJSCreator.Position args?offsetX args?offsetY
+        | Some InputPort -> inputPortInit()                                                          
+                            |> jointJSCreator.Position (args?offsetX - (args?offsetX)%10) (args?offsetY - (args?offsetY)%10)
                             |> jointJSCreator.AddTo graph
                             |> ignore                            
         | Some OutputPort -> outputPortInit()
-                             |> jointJSCreator.Position args?offsetX args?offsetY
+                             |> jointJSCreator.Position (args?offsetX - (args?offsetX)%10) (args?offsetY - (args?offsetY)%10)
                              |> jointJSCreator.AddTo graph
                              |> ignore
         | Some LogicElement -> logicElementInit()
-                               |> jointJSCreator.Position args?offsetX args?offsetY
+                               |> jointJSCreator.Position (args?offsetX - (args?offsetX)%10) (args?offsetY - (args?offsetY)%10)
                                |> jointJSCreator.AddTo graph
                                |> ignore
         | option.None -> console.log("no block")                             
