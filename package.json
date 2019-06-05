@@ -12,9 +12,9 @@
     "test-dev": "mocha \"./test/test-GUI.js\" --colors",
     "test-non-gui": "mocha \"./test/test-non-GUI.js\" --colors",
     "coverage": "cross-env NODE_ENV=test nyc npm run test",
-    "pack-win": "electron-packager . electron-hdl-editor-windows --overwrite --platform=win32 --arch=ia32  --prune=true --out=build --version-string.ProductName=\"HDL Editor\"",
-    "pack-mac": "electron-packager . --overwrite --platform=darwin --arch=x64 --prune=true --out=build",
-    "pack-linux": "electron-packager . electron-hdl-editor-linux --overwrite --asar=true --platform=linux --arch=x64 --prune=true --out=build",
+    "pack-win": "electron-packager . electron-hdl-editor-windows --overwrite --platform=win32 --arch=ia32  --prune=true --out=build --version-string.ProductName=\"HDL Editor\" --icon=\"./icon.ico\"",
+    "pack-mac": "electron-packager . --overwrite --platform=darwin --arch=x64 --prune=true --out=build --icon=\"./icon.ico\"",
+    "pack-linux": "electron-packager . electron-hdl-editor-linux --overwrite --asar=true --platform=linux --arch=x64 --prune=true --out=build --icon=\"./icon.ico\"",
     "release": "electron-packager . --out release --overwrite"
   },
   "keywords": [
@@ -23,9 +23,12 @@
   "author": "Lei Wang (Wilson)",
   "dependencies": {
     "@babel/runtime": "^7.4.3",
+    "bootstrap": "^4.3.1",
     "core-js": "^3.0.1",
     "jointjs": "^2.2.1",
-    "monaco-editor": "^0.17.0"
+    "jquery": "^3.4.1",
+    "monaco-editor": "^0.17.0",
+    "popper.js": "^1.15.0"
   },
   "devDependencies": {
     "@babel/core": "^7.4.3",

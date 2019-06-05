@@ -465,7 +465,7 @@ let canvasInit() =
     
     let mutable canvas : HTMLElement = unbox document.getElementById "myholder"
 
-    let paperSettings = generatePaperSettings canvas graph 1400 650 10 true "rgba(0, 0, 0, 0)"
+    let paperSettings = generatePaperSettings canvas graph 1400 1000 10 true "rgba(0, 0, 0, 0)"
 
     let paper = jointJSCreator.PaperInit paperSettings
 

@@ -69,6 +69,7 @@ let createAboutWindow () =
     options.modal <- Some true
     options.parent <- mainWindow
     options.title <- Some "About HDL Editor"
+    options.icon <- Some (U2.Case2 (Node.Exports.path.join(Node.Globals.__dirname, "../../icon.ico")))
     let prefs = createEmpty<WebPreferences>
     prefs.nodeIntegration <- Some true
     options.webPreferences <- Some prefs
