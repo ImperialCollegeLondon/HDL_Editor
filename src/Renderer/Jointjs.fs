@@ -4,13 +4,15 @@ open Fable.Core
 open Fable.Core.JsInterop
 open Fable.Import.Browser
 open JSLibInterface
-open System
 
 let joint : obj = importAll "jointjs"
 
 /// use the JointJS bindings by upcasting the interface
 let jointJSCreatorInterface = new createElement()
 let jointJSCreator = jointJSCreatorInterface :> JointJS
+
+[<Emit("$0.on($1, $2)")>]
+let paperOnFunction paper (event:string) func = jsNative
 
 /// define the blocks that can be added to the graph
 type BlockType = 
@@ -343,12 +345,15 @@ let canvasInit() =
     let switchToInputPort = fun e -> activeBlockType <- Some InputPort
     let switchToOutputPort = fun e -> activeBlockType <- Some OutputPort
     let switchToLogicElement = fun e -> activeBlockType <- Some LogicElement
+    let switchToNo = fun e -> activeBlockType <- option.None
 
     /// bind event listener to the add bock buttons
     document.getElementById("input-add-button").addEventListener("click", U2.Case1 switchToInputPort, false) 
     document.getElementById("output-add-button").addEventListener("click", U2.Case1 switchToOutputPort, false) 
     document.getElementById("logic-element-add-button").addEventListener("click", U2.Case1 switchToLogicElement, false) 
+    document.getElementById("clear-add-button").addEventListener("click", U2.Case1 switchToNo, false) 
 
+    (*
     let linkTest = connectRectTest ()
     linkTest
     |> jointJSCreator.Position 300 300
@@ -361,21 +366,28 @@ let canvasInit() =
     linkTest'
     |> jointJSCreator.Position 100 300
     |> jointJSCreator.Resize 100 100
-    |> ignore
+    |> ignore    
 
     graph?addCell([|linkTest'|])      
+    *)        
 
-    paper?on("element:pointerdblclick", unbox(fun elementView ->   
-        paper <- resetAllSelected paper   
-        console.log("from paper.on")
-        console.log(elementView?model?cid)
-        console.log(elementView)
-        let model = elementView?model
+    paper?on("element:pointerdblclick", unbox(fun elementView ->           
+        paper <- resetAllSelected paper                   
+        
+        let elementcCid = elementView?model?cid
+        console.log(elementcCid)
+        let modelArray:obj array = graph?getElements()
+                
+        let modelSelect = modelArray
+                          |> Array.choose (fun el -> if el?cid = elementcCid then Some el else option.None)
+        
+        let model = modelSelect.[0]        
+
         model?attr("body/fill", "orange")
         let inputBoxList = document.getElementById "element-type-label"
 
         inputBoxList.innerHTML <- (model?attributes?attrs?label?text)
-            
+        console.log(model)
         let removeElement = fun e -> model?remove()
         (document.getElementById "delete-block-button").addEventListener("click", U2.Case1 removeElement, false)
 
@@ -385,33 +397,47 @@ let canvasInit() =
         let positionYInputBox = (((document.getElementsByTagName_input) ()).Item 3)
         positionYInputBox.value <- model?attributes?position?y
             
-        let updateButtonFunction = fun e -> model
+        let updateButtonFunction = fun e -> //model?attributes?position?x <- int positionXInputBox.value
+                                            //model?attributes?position?y <- int positionYInputBox.value
+                                            //model?remove()
+                                            //model?addTo(graph)
+                                            model
                                             |> jointJSCreator.Position (int positionXInputBox.value) (int positionYInputBox.value)
-                                            |> ignore
+                                            |> ignore                                                                                        
         (document.getElementById "update-block-information-button").addEventListener("click", U2.Case1 updateButtonFunction, false)        
         )) |> ignore 
 
-    paper?on("blank:pointerclick", unbox (fun (args) ->   
-        paper <- resetAllSelected paper
-
+    paper?on("blank:pointerclick", unbox(fun args ->   
+        paper <- resetAllSelected paper        
+        args?originalEvent?stopPropagation()
         match activeBlockType with
-        | Some InputPort -> let block = inputPortInit()                                                          
-                                        |> jointJSCreator.Position (args?offsetX - (args?offsetX)%10) (args?offsetY - (args?offsetY)%10)
-                                        |> jointJSCreator.AddTo graph      
+        | Some InputPort -> //let block = inputPortInit()                                                          
+                            inputPortInit()                                                          
+                            |> jointJSCreator.Position (args?offsetX - (args?offsetX)%10) (args?offsetY - (args?offsetY)%10)
+                            |> jointJSCreator.AttrBySelector "body/cursor" "pointer"
+                            |> jointJSCreator.AttrBySelector "body/event" "cell:pointerclick"
+                            |> jointJSCreator.AttrBySelector "label/event" "none"
+                            |> jointJSCreator.AddTo graph
+                            |> ignore 
+                                        (*
                             block?on("change:position", unbox(fun element ->  
                                 console.log("from element.on")
                                 console.log(element?cid)    
-                                console.log(element)    
-                                //let model = 
-                                //let removeElement = fun e -> model?remove()
-                                //(document.getElementById "delete-block-button").addEventListener("click", U2.Case1 removeElement, false)
+                                //console.log(element)                                    
                                 )) |> ignore 
+                                *)
         | Some OutputPort -> outputPortInit()
                              |> jointJSCreator.Position (args?offsetX - (args?offsetX)%10) (args?offsetY - (args?offsetY)%10)
+                             |> jointJSCreator.AttrBySelector "body/cursor" "pointer"
+                             |> jointJSCreator.AttrBySelector "body/event" "cell:pointerclick"
+                             |> jointJSCreator.AttrBySelector "label/event" "none"
                              |> jointJSCreator.AddTo graph
                              |> ignore
         | Some LogicElement -> logicElementInit()
                                |> jointJSCreator.Position (args?offsetX - (args?offsetX)%10) (args?offsetY - (args?offsetY)%10)
+                               |> jointJSCreator.AttrBySelector "body/cursor" "pointer"
+                               |> jointJSCreator.AttrBySelector "body/event" "cell:pointerclick"
+                               |> jointJSCreator.AttrBySelector "label/event" "none"
                                |> jointJSCreator.AddTo graph
                                |> ignore
         | option.None -> console.log("no block")                             
