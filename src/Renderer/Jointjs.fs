@@ -369,7 +369,17 @@ let canvasInit() =
     |> ignore    
 
     graph?addCell([|linkTest'|])      
-    *)        
+    *)      
+    let mutable modelRef:obj = createObj[]    
+
+    let updateButtonFunction () = fun e ->  let position = createObj[
+                                                            "x" ==> (((document.getElementsByTagName_input) ()).Item 2).value
+                                                            "y" ==> (((document.getElementsByTagName_input) ()).Item 3).value
+                                                            ]
+                                            console.log(position)
+                                            modelRef?set("position", position)                                                                                                                                   
+    (document.getElementById "update-block-information-button").addEventListener("click", U2.Case1 (updateButtonFunction()), false) 
+    |> ignore                     
 
     paper?on("element:pointerdblclick", unbox(fun elementView ->          
         /// clear the highlights of all the blocks
@@ -388,7 +398,8 @@ let canvasInit() =
         /// cid should be unique
         /// hence the array should have only one element
         let model = modelSelect.[0]             
-        console.log(model?isElement())
+        modelRef <- model
+
         /// highlight the block selected
         model?attr("body/fill", "orange")
         
@@ -400,19 +411,10 @@ let canvasInit() =
         (document.getElementById "delete-block-button").addEventListener("click", U2.Case1 removeElement, false)
 
         let positionXInputBox = (((document.getElementsByTagName_input) ()).Item 2)
-        positionXInputBox.value <- model?get("position")?x
+        positionXInputBox.value <- model?get("position")?x        
 
         let positionYInputBox = (((document.getElementsByTagName_input) ()).Item 3)
-        positionYInputBox.value <- model?get("position")?y
-            
-        let updateButtonFunction = fun e -> //console.log(e)                                            
-                                            let position = createObj[
-                                                            "x" ==> 5//int positionXInputBox.value
-                                                            "y" ==> 5//int positionYInputBox.value
-                                                        ]
-                                            model?set("position", position)                                                                                                                                   
-        (document.getElementById "update-block-information-button").addEventListener("click", U2.Case1 updateButtonFunction, true) 
-        |> ignore                 
+        positionYInputBox.value <- model?get("position")?y              
         )) |> ignore 
 
     paper?on("blank:pointerclick", unbox(fun args ->   
@@ -448,4 +450,6 @@ let canvasInit() =
                                |> ignore
         | option.None -> console.log("no block")                             
     )) |> ignore
+
+    console.log("initialized")
 
