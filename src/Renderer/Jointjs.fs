@@ -372,14 +372,18 @@ let canvasInit() =
     *)      
     let mutable modelRef:obj = createObj[]    
 
-    let updateButtonFunction () = fun e ->  let position = createObj[
-                                                            "x" ==> (((document.getElementsByTagName_input) ()).Item 2).value
-                                                            "y" ==> (((document.getElementsByTagName_input) ()).Item 3).value
-                                                            ]
-                                            console.log(position)
+    let updateButtonFunction () = fun e ->  let position = 
+                                                createObj[
+                                                    "x" ==> (((document.getElementsByTagName_input) ()).Item 2).value
+                                                    "y" ==> (((document.getElementsByTagName_input) ()).Item 3).value
+                                                ]
                                             modelRef?set("position", position)                                                                                                                                   
     (document.getElementById "update-block-information-button").addEventListener("click", U2.Case1 (updateButtonFunction()), false) 
-    |> ignore                     
+    |> ignore        
+    
+    let removeButtonFunction () = fun e -> modelRef?remove()
+    (document.getElementById "delete-block-button").addEventListener("click", U2.Case1 (removeButtonFunction()), false)
+
 
     paper?on("element:pointerdblclick", unbox(fun elementView ->          
         /// clear the highlights of all the blocks
@@ -407,9 +411,6 @@ let canvasInit() =
 
         inputBoxList.innerHTML <- (model?attributes?attrs?label?text)
         
-        let removeElement = fun e -> model?remove()
-        (document.getElementById "delete-block-button").addEventListener("click", U2.Case1 removeElement, false)
-
         let positionXInputBox = (((document.getElementsByTagName_input) ()).Item 2)
         positionXInputBox.value <- model?get("position")?x        
 
@@ -427,13 +428,6 @@ let canvasInit() =
                             |> jointJSCreator.AttrBySelector "body/cursor" "pointer"
                             |> jointJSCreator.AddTo graph
                             |> ignore 
-                                        (*
-                            block?on("element:pointerdblclick", unbox(fun element ->  
-                                console.log("from element.on")
-                                console.log(element?cid)    
-                                //console.log(element)                                    
-                                )) |> ignore 
-                                *)
         | Some OutputPort -> outputPortInit()
                              |> jointJSCreator.Position (args?offsetX - (args?offsetX)%10) (args?offsetY - (args?offsetY)%10)
                              |> jointJSCreator.AttrBySelector "body/cursor" "pointer"
