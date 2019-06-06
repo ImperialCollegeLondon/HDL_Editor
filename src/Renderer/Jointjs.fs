@@ -60,16 +60,6 @@ let toolPaneInit() =
        
     let r3 = generateNewElementAttrSub 1 "#000000" "rgba(0,0,255,0.3)" "D-FF" "white"
 
-    let r4 = generateNewElementAttrSub 1 "#000000" "rgba(0,100,255,0.3)" "Something" "white"
-
-    let r5 = generateNewElementAttrSub 1 "#000000" "rgba(0,100,255,0.3)" "Something" "white"
-
-    let r6 = generateNewElementAttrSub 1 "#000000" "rgba(0,100,255,0.3)" "Something" "white"
-
-    let r7 = generateNewElementAttrSub 1 "#000000" "rgba(0,100,255,0.3)" "Something" "white"
-    
-    let r8 = generateNewElementAttrSub 1 "#000000" "rgba(0,100,255,0.3)" "Something" "white"
-
     let textConfigCreator textAnchor fontSize = 
         createObj[
             "textAnchor" ==> textAnchor
@@ -113,20 +103,10 @@ let toolPaneInit() =
             "r1" ==> r1            
             "r2" ==> r2
             "r3" ==> r3    
-            "r4" ==> r4
-            "r5" ==> r5
-            "r6" ==> r6
-            "r7" ==> r7
-            "r8" ==> r8
             "outline" ==> outline
             "text1" ==> t1
             "text2" ==> t1
             "text3" ==> t1
-            "text4" ==> t1
-            "text5" ==> t1
-            "text6" ==> t1
-            "text7" ==> t1
-            "text8" ==> t1
             "button" ==> button
             "buttonLabel" ==> buttonLabel
         ]
@@ -136,20 +116,10 @@ let toolPaneInit() =
     let markupArray = generateMarkupArray [|"rect"; "r1";                                    
                                             "rect"; "r2";
                                             "rect"; "r3";
-                                            "rect"; "r4";
-                                            "rect"; "r5";
-                                            "rect"; "r6";
-                                            "rect"; "r7";
-                                            "rect"; "r8";
                                             "rect"; "outline";   
                                             "text"; "text1";
                                             "text"; "text2";
                                             "text"; "text3";
-                                            "text"; "text4";
-                                            "text"; "text5";
-                                            "text"; "text6";
-                                            "text"; "text7";
-                                            "text"; "text8";
                                             "rect"; "button";
                                             "text"; "buttonLabel"
                                           |]
@@ -190,56 +160,6 @@ let toolPaneInit() =
             "refHeight" ==> "10%"
           ]
 
-    let elementAttrR4 = 
-          createObj[
-            "refX" ==> "55%"
-            "x" ==> "0" // additional x offset
-            "refY" ==> "35%"
-            "y" ==> "0" // additional y offset
-            "refWidth" ==> "40%"
-            "refHeight" ==> "10%"
-          ]
-
-    let elementAttrR5 = 
-          createObj[
-            "refX" ==> "5%"
-            "x" ==> "0" // additional x offset
-            "refY" ==> "60%"
-            "y" ==> "0" // additional y offset
-            "refWidth" ==> "40%"
-            "refHeight" ==> "10%"
-          ]
-
-    let elementAttrR6 = 
-          createObj[
-            "refX" ==> "55%"
-            "x" ==> "0" // additional x offset
-            "refY" ==> "60%"
-            "y" ==> "0" // additional y offset
-            "refWidth" ==> "40%"
-            "refHeight" ==> "10%"
-          ]
-
-    let elementAttrR7 = 
-          createObj[
-            "refX" ==> "5%"
-            "x" ==> "0" // additional x offset
-            "refY" ==> "80%"
-            "y" ==> "0" // additional y offset
-            "refWidth" ==> "40%"
-            "refHeight" ==> "10%"
-          ]
-
-    let elementAttrR8 = 
-          createObj[
-            "refX" ==> "55%"
-            "x" ==> "0" // additional x offset
-            "refY" ==> "80%"
-            "y" ==> "0" // additional y offset
-            "refWidth" ==> "40%"
-            "refHeight" ==> "10%"
-          ]            
-
     let elementAttrText1 = 
         createObj[
             "refX" ==> "25%"
@@ -259,42 +179,6 @@ let toolPaneInit() =
             "refX" ==> "25%"
             "refY" ==> "38%"
             "text" ==> "test3"
-        ]
-
-    let elementAttrText4 = 
-        createObj[
-            "refX" ==> "75%"
-            "refY" ==> "38%"
-            "text" ==> "test4"
-        ]
-
-    let elementAttrText5 = 
-        createObj[
-            "refX" ==> "25%"
-            "refY" ==> "63%"
-            "text" ==> "test5"
-        ]
-
-    let elementAttrText6 = 
-        createObj[
-            "refX" ==> "75%"
-            "refY" ==> "63%"
-            "text" ==> "test6"
-        ]
-
-    let elementAttrText7 = 
-        createObj[
-            "refX" ==> "25%"
-            "refY" ==> "83%"
-            "text" ==> "test7"
-        ]
-
-    let elementAttrText8 = 
-        createObj[
-            "event" ==> "element:button:pointerdown"
-            "refX" ==> "75%"
-            "refY" ==> "83%"
-            "text" ==> "test8"
         ]
 
     let elementButton = 
@@ -317,19 +201,9 @@ let toolPaneInit() =
               "r1" ==> elementAttrR1
               "r2" ==> elementAttrR2
               "r3" ==> elementAttrR3
-              "r4" ==> elementAttrR4
-              "r5" ==> elementAttrR5
-              "r6" ==> elementAttrR6
-              "r7" ==> elementAttrR7
-              "r8" ==> elementAttrR8
               "text1" ==> elementAttrText1
               "text2" ==> elementAttrText2
               "text3" ==> elementAttrText3
-              "text4" ==> elementAttrText4
-              "text5" ==> elementAttrText5
-              "text6" ==> elementAttrText6
-              "text7" ==> elementAttrText7
-              "text8" ==> elementAttrText8
               "button" ==> elementButton
               "buttonLabel" ==> elementButtonLabel
           ]
@@ -442,14 +316,13 @@ let connectRectTest() =
     //element?set("ports", ports)
     element?attr("label/text", "yes")
 
-/// a reset-all function
-let resetAll paper = 
-    console.log(paper)
-    let elements : obj list = paper?model?getElements()
-    console.log(elements.Length)
+/// reset the coloring of the unselected elements
+let resetAllSelected paper = 
+    let elements : obj array = paper?model?getElements()
     [0..elements.Length-1]
     |> List.map (fun el -> (elements.[el])?attr("body/fill", "white")) 
     |> ignore
+
     paper
 
 /// initialize the canvas
@@ -492,15 +365,17 @@ let canvasInit() =
 
     graph?addCell([|linkTest'|])      
 
-    paper?on("cell:pointerdblclick", fun elementView ->   
-        paper <- resetAll paper
+    paper?on("element:pointerdblclick", unbox(fun elementView ->   
+        paper <- resetAllSelected paper   
+        console.log("from paper.on")
+        console.log(elementView?model?cid)
+        console.log(elementView)
         let model = elementView?model
-        console.log(model)
         model?attr("body/fill", "orange")
         let inputBoxList = document.getElementById "element-type-label"
 
         inputBoxList.innerHTML <- (model?attributes?attrs?label?text)
-        
+            
         let removeElement = fun e -> model?remove()
         (document.getElementById "delete-block-button").addEventListener("click", U2.Case1 removeElement, false)
 
@@ -509,19 +384,28 @@ let canvasInit() =
 
         let positionYInputBox = (((document.getElementsByTagName_input) ()).Item 3)
         positionYInputBox.value <- model?attributes?position?y
-        
+            
         let updateButtonFunction = fun e -> model
                                             |> jointJSCreator.Position (int positionXInputBox.value) (int positionYInputBox.value)
                                             |> ignore
         (document.getElementById "update-block-information-button").addEventListener("click", U2.Case1 updateButtonFunction, false)        
-    ) |> ignore  
+        )) |> ignore 
 
-    paper?on("blank:pointerclick", unbox (fun (args) ->      
+    paper?on("blank:pointerclick", unbox (fun (args) ->   
+        paper <- resetAllSelected paper
+
         match activeBlockType with
-        | Some InputPort -> inputPortInit()                                                          
-                            |> jointJSCreator.Position (args?offsetX - (args?offsetX)%10) (args?offsetY - (args?offsetY)%10)
-                            |> jointJSCreator.AddTo graph
-                            |> ignore                            
+        | Some InputPort -> let block = inputPortInit()                                                          
+                                        |> jointJSCreator.Position (args?offsetX - (args?offsetX)%10) (args?offsetY - (args?offsetY)%10)
+                                        |> jointJSCreator.AddTo graph      
+                            block?on("change:position", unbox(fun element ->  
+                                console.log("from element.on")
+                                console.log(element?cid)    
+                                console.log(element)    
+                                //let model = 
+                                //let removeElement = fun e -> model?remove()
+                                //(document.getElementById "delete-block-button").addEventListener("click", U2.Case1 removeElement, false)
+                                )) |> ignore 
         | Some OutputPort -> outputPortInit()
                              |> jointJSCreator.Position (args?offsetX - (args?offsetX)%10) (args?offsetY - (args?offsetY)%10)
                              |> jointJSCreator.AddTo graph
