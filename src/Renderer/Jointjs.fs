@@ -325,8 +325,6 @@ let resetAllSelected paper =
     |> List.map (fun el -> (elements.[el])?attr("body/fill", "white")) 
     |> ignore
 
-    paper
-
 /// initialize the canvas
 let canvasInit() =      
     
@@ -334,13 +332,13 @@ let canvasInit() =
     let graph = jointJSCreator.GraphInit ()
     
     /// create a mutable canvas in case of resizing
-    let mutable canvas : HTMLElement = unbox document.getElementById "myholder"
+    let mutable canvas : HTMLElement = unbox document.getElementById "block-editor-canvas"
 
     /// create the paper settings
-    let paperSettings = generatePaperSettings canvas graph 1400 1000 10 true "rgba(0, 0, 0, 0)"
+    let paperSettings = generatePaperSettings canvas graph 1200 700 10 true "rgba(0, 0, 0, 0)"
 
     /// initialize the paer using the paperSettings
-    let mutable paper = jointJSCreator.PaperInit paperSettings    
+    let paper = jointJSCreator.PaperInit paperSettings    
 
     let switchToInputPort = fun e -> activeBlockType <- Some InputPort
     let switchToOutputPort = fun e -> activeBlockType <- Some OutputPort
@@ -370,6 +368,8 @@ let canvasInit() =
 
     graph?addCell([|linkTest'|])      
     *)      
+
+    let mutable scale:float = 1.0
     let mutable modelRef:obj = createObj[]    
 
     let updateButtonFunction () = fun e ->  let position = 
@@ -387,7 +387,7 @@ let canvasInit() =
 
     paper?on("element:pointerdblclick", unbox(fun elementView ->          
         /// clear the highlights of all the blocks
-        paper <- resetAllSelected paper                   
+        resetAllSelected paper                   
         
         /// get the cid of the selected block
         let elementcCid = elementView?model?cid
@@ -419,31 +419,48 @@ let canvasInit() =
         )) |> ignore 
 
     paper?on("blank:pointerclick", unbox(fun args ->   
-        paper <- resetAllSelected paper        
+        resetAllSelected paper        
         args?originalEvent?stopPropagation()
-        match activeBlockType with
-        | Some InputPort -> //let block = inputPortInit()                                                          
-                            inputPortInit()                                                          
-                            |> jointJSCreator.Position (args?offsetX - (args?offsetX)%10) (args?offsetY - (args?offsetY)%10)
-                            |> jointJSCreator.AttrBySelector "body/cursor" "pointer"
-                            |> jointJSCreator.AddTo graph
-                            |> ignore 
-        | Some OutputPort -> outputPortInit()
-                             |> jointJSCreator.Position (args?offsetX - (args?offsetX)%10) (args?offsetY - (args?offsetY)%10)
-                             |> jointJSCreator.AttrBySelector "body/cursor" "pointer"
-                             /// |> jointJSCreator.AttrBySelector "body/event" "element:pointerclick"
-                             /// |> jointJSCreator.AttrBySelector "label/event" "none"
-                             |> jointJSCreator.AddTo graph
-                             |> ignore
-        | Some LogicElement -> logicElementInit()
-                               |> jointJSCreator.Position (args?offsetX - (args?offsetX)%10) (args?offsetY - (args?offsetY)%10)
-                               |> jointJSCreator.AttrBySelector "body/cursor" "pointer"
-                               /// |> jointJSCreator.AttrBySelector "body/event" "element:pointerclick"
-                               /// |> jointJSCreator.AttrBySelector "label/event" "none"
-                               |> jointJSCreator.AddTo graph
-                               |> ignore
-        | option.None -> console.log("no block")                             
+        let ctrlKeyHold:bool = args?ctrlKey
+        match ctrlKeyHold with
+        | true -> scale <- 1.0
+                  paper?scale(scale)         
+        | false -> scale <- 1.0
+                   paper?scale(scale)
+                   match activeBlockType with
+                   | Some InputPort -> //let block = inputPortInit()                                                          
+                                       inputPortInit()                                                          
+                                       |> jointJSCreator.Position (args?offsetX - (args?offsetX)%10) (args?offsetY - (args?offsetY)%10)
+                                       |> jointJSCreator.AttrBySelector "body/cursor" "pointer"
+                                       |> jointJSCreator.AttrBySelector "label/cursor" "pointer"
+                                       |> jointJSCreator.AddTo graph
+                                       |> ignore 
+                   | Some OutputPort -> outputPortInit()
+                                        |> jointJSCreator.Position (args?offsetX - (args?offsetX)%10) (args?offsetY - (args?offsetY)%10)
+                                        |> jointJSCreator.AttrBySelector "body/cursor" "pointer"
+                                        |> jointJSCreator.AttrBySelector "label/cursor" "pointer"
+                                        |> jointJSCreator.AddTo graph
+                                        |> ignore
+                   | Some LogicElement -> logicElementInit()
+                                          |> jointJSCreator.Position (args?offsetX - (args?offsetX)%10) (args?offsetY - (args?offsetY)%10)
+                                          |> jointJSCreator.AttrBySelector "body/cursor" "pointer"
+                                          |> jointJSCreator.AttrBySelector "label/cursor" "pointer"
+                                          |> jointJSCreator.AddTo graph
+                                          |> ignore
+                   | option.None -> console.log("no block")                             
     )) |> ignore
 
-    console.log("initialized")
-
+    paper?on("blank:mousewheel", unbox(fun args ->        
+        let ctrlKeyHold:bool = args?ctrlKey
+        match ctrlKeyHold with
+        | true -> let delta:float = -args?originalEvent?deltaY
+                  let calculatedScale = max (min ((delta*0.00099+1.0)*scale) 2.0) 0.01                  
+                  paper?scale(calculatedScale)  
+                  scale <- calculatedScale
+                  let scaleSetting = "scale(" + string scale + "," + string scale + ")"
+                  let cssStyling = createEmpty<CSSStyleDeclaration>
+                  cssStyling.zoom <- scaleSetting
+                  //document.getElementById("block-editor-canvas").style <- cssStyling
+                  ignore
+        | false -> ignore        
+    )) |> ignore

@@ -23,12 +23,9 @@
   "author": "Lei Wang (Wilson)",
   "dependencies": {
     "@babel/runtime": "^7.4.3",
-    "bootstrap": "^4.3.1",
     "core-js": "^3.0.1",
     "jointjs": "^2.2.1",
-    "jquery": "^3.4.1",
-    "monaco-editor": "^0.17.0",
-    "popper.js": "^1.15.0"
+    "monaco-editor": "^0.17.0"
   },
   "devDependencies": {
     "@babel/core": "^7.4.3",

@@ -14,9 +14,9 @@
         <button class="tablinks" onclick="openCity(event, 'Tokyo')">+</button>
       </div>
 
-      <div style="position: absolute; width: 78%; height: 94%; overflow-x: auto; overflow-y: auto; float: left;">
+      <div class="working-pane">
         <div id="London" class="tabcontent">
-          <div id="myholder"></div>
+          <div id="block-editor-canvas"></div>
         </div>
 
         <div id="Paris" class="tabcontent">
@@ -28,8 +28,8 @@
         </div>
       </div>
 
-      <div class="infoSidePane" style="position: absolute; align: right; left: 80%; width: 20%; height: 94%; float: right; text-align: left; overflow-x: auto; overflow-y: auto;">
-        <form>
+      <div class="info-pane">
+        <div class="block-configure">
           <h3>Block Configuration</h3>
             Name:<input id="element-name-field" type="text" name="" value=""><br>
             <br>
@@ -38,8 +38,8 @@
             Boolean Equation:<input id="boolean-equation-field" type="text" name="" value=""><br>
             <br>
             Location:
-            x:<input id="element-position-x" type="int" name="" value"" style="width: 12%;">
-            y:<input id="element-position-y" type="int" name="" value"" style="width: 12%;"><br>
+            x:<input class="coordinate-field" id="element-position-x" type="int" name="" value"">
+            y:<input class="coordinate-field" id="element-position-y" type="int" name="" value""><br>
             <br>
             Connections<br>
             <br>
@@ -56,27 +56,20 @@
             <br>
             Port:<br>
             <br>
-            <button id="update-block-information-button" type="button">Update Configuration</button><br>
-            <br>
-            <button id="delete-block-button" type="button">Delete Block and all connections</button><br>
-        </form>
+            <button id="update-block-information-button" type="button">Update Configuration</button>
+            <button id="delete-block-button" type="button">Delete Block and all connections</button>
+        </div>
         <br>
         <hr>
-        <form>
+        <div class="add-block-button-group">
           <h3>Add Blocks</h3>
-          <button id="input-add-button" type="button">Input</button><br>
-          <br>
-          <button id="output-add-button" type="button">Output</button><br>
-          <br>
-          <button id="logic-element-add-button" type="button">Logic Element</button><br>
-          <br>
-          <button id="register-add-button" type="button">Register</button><br>
-          <br>
-          <button id="FF-add-button" type="button">FF</button><br>
-          <br>
-          <button id="clear-add-button" type="button">Clear</button><br>
-          <br>
-        </form>
+          <button id="input-add-button" type="button">Input</button>
+          <button id="output-add-button" type="button">Output</button>
+          <button id="logic-element-add-button" type="button">Logic Element</button>
+          <button id="register-add-button" type="button">Register</button>
+          <button id="FF-add-button" type="button">FF</button>
+          <button id="clear-add-button" type="button">Clear</button>
+        </div>
       </div>
 
     <script type="text/javascript">

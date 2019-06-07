@@ -40,8 +40,61 @@ html, body {
   background-color: #ccc;
 }
 
-.infoSidePane button.active {
-  background-color: #fff
+.info-pane {
+   position: absolute;
+   align: right;
+   left: 78%;
+   width: 22%;
+   height: 94%;
+   float: right;
+   text-align: left;
+   overflow-x: auto;
+   overflow-y: auto;
+}
+
+.working-pane {
+   position: absolute;
+   width: 78%;
+   height: 94%;
+   overflow-x: auto;
+   overflow-y: auto;
+   float: left;
+}
+
+.coordinate-field {
+  width: 12%;
+}
+
+.add-block-button-group button {
+  width: 30%;
+  height: 5%;
+  border: 10% solid transparent;
+  background-color: #4CAF50;
+  color: white;
+  cursor: pointer;
+  display: block;
+}
+
+.add-block-button-group button:hover {
+  background-color: #3e8e41;
+}
+
+.info-pane button.active {
+  background-color: #fff;
+}
+
+.block-configure button {
+  width: 70%;
+  height: 7%;
+  border: 2% solid transparent;
+  background-color: #4CAF50;
+  color: white;
+  cursor: pointer;
+  display: block;
+}
+
+.block-configure button:hover {
+  background-color: #3e8e41;
 }
 
 /* Style the tab content */
