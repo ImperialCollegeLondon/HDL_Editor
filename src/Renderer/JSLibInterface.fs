@@ -190,6 +190,25 @@ type Router =
     | [<CompiledName("oneside")>] OneSide
 
 
+//////////////////////////////////////////////
+///                                        ///
+///      For defining the coordinates      ///
+///                                        ///
+//////////////////////////////////////////////
+type BlockCoordinate = 
+    abstract x: int with get, set
+    abstract y: int with get, set
+
+/// generate the BlockCoordinate from parameters
+let generateBlockCoordinate (x, y) = 
+    let coordinate = createEmpty<BlockCoordinate>
+
+    coordinate.x <- x
+    coordinate.y <- y
+
+    coordinate
+
+
 ///////////////////////////////////////////
 ///                                    ///
 ///      For defining new element      ///
@@ -303,7 +322,7 @@ type JointJS =
     abstract member Source: el:obj -> anchor:Anchor -> link:obj -> obj
     abstract member Target: el:obj -> anchor:Anchor -> link:obj -> obj
     abstract member Router: link:obj -> routerType:Router -> obj
-    abstract member Define: name:string -> config:NewElementConfig -> markupList:obj -> obj
+    abstract member Define: name:string -> config:NewElementConfig -> markupList:obj -> obj    
 
 /// the interface JointJS needs to be explicitly implemented
 /// do not forget to :> the createElement interface implementation
@@ -323,8 +342,11 @@ type createElement() =
         member __.Source el anchor link = link?source(el, anchor)
         member __.Target el anchor link = link?target(el, anchor)
         member __.Router link routerType = link?router(routerType)
-        member __.Define name config markupList = joint?dia?Element?define(name, config, markupList)
+        member __.Define name config markupList = joint?dia?Element?define(name, config, markupList)        
 
+/// paper.on("<event type>", function args -> ...)
+[<Emit("$0.on($1, $2)")>]
+let paperOnFunction paper (event:string) func = jsNative
     
     
     
