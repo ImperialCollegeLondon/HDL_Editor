@@ -9,9 +9,12 @@ open Jointjs
 open Tabs
 open Fable.Import.Electron
 
+/// initializes the GUI
+/// order of initializing each element is important
 let init() = 
-    canvasInit()
+    menubarInit()        
     newTabButtonInit()
-    menubarInit()    
+    updateTabRow OpenNew "pane1"
+    canvasInit()
 
 init() |> ignore
