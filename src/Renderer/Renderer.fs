@@ -13,8 +13,7 @@ open Fable.Import.Electron
 /// order of initializing each element is important
 let init() = 
     menubarInit()        
-    newTabButtonInit()
-    updateTabRow OpenNew "pane1"
+    newTabButtonInit()    
     canvasInit()
 
 init() |> ignore
