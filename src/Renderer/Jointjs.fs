@@ -50,7 +50,13 @@ let logicElementInit () =
 /// when the application initializes, it is set to be none
 let mutable (activeBlockType: BlockType option) = option.None
 
-/// initoalize rect that has ports for connections to other blocks
+/// the scale of the pape with default value of 1.0
+let mutable scale:float = 1.0
+
+/// the reference to the model that is being operated on
+let mutable modelRef:obj = createObj[]    
+
+/// initialize rect that has ports for connections to other blocks
 let connectRectTest() =     
 
     let ports = 
@@ -115,9 +121,6 @@ let canvasInit() =
     fun e -> activeBlockType <- option.None
     |> getElementBindEvent "clear-add-button" "click" 
                                     
-    let mutable scale:float = 1.0
-    let mutable modelRef:obj = createObj[]    
-
     fun e ->  let position = (getValueFromElement InputBox 2 |> int, getValueFromElement InputBox 3 |> int)
                              |> generateBlockCoordinate                                                 
               modelRef?set("position", position)    
@@ -184,9 +187,5 @@ let canvasInit() =
                           let calculatedScale = max (min ((delta*0.00099+1.0)*scale) 2.0) 0.01                  
                           paper?scale(calculatedScale)  
                           scale <- calculatedScale
-                          let scaleSetting = "scale(" + string scale + "," + string scale + ")"
-                          let cssStyling = createEmpty<CSSStyleDeclaration>
-                          cssStyling.zoom <- scaleSetting
-                          //document.getElementById("block-editor-canvas").style <- cssStyling                              
                 | false -> printfn "hold ctrl to zoom in or out"       
     |> paperOnFunction paper "blank:mousewheel"

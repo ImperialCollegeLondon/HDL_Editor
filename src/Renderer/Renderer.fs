@@ -10,11 +10,8 @@ open Fable.Import.Electron
 open MonacoEditor
 
 let init() = 
-    //popupMenuInit()
     menubarInit()
     canvasInit()
     monacoEditorInit()
-    //tabInit()
-
 
 init() |> ignore
