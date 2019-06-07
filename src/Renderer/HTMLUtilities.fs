@@ -32,3 +32,55 @@ let setHTMLElementValue (elType:HTMLElementType) (itemIndex:int) (value:string) 
 /// set the innterHTML
 let getElementSetInnerHTML (id:string) (innerHTML:string) = 
     (document.getElementById id).innerHTML <- innerHTML
+
+/// create a block diagram editor interface
+let blockDiagramEditorInit (title:string) : Node = 
+    let root = document.createElement_div ()
+    root.title <- title
+
+    let workingPaneInit = 
+        let workingPane = document.createElement_div ()
+        workingPane.id <- title + "-working-pane"
+        workingPane.className <- "working-pane"
+
+        let canvas = document.createElement_div ()
+        canvas.id <- title + "block-editor-canvas"
+        canvas.className <- "block-configure"
+
+        canvas
+        |> workingPane.appendChild 
+
+    let infoPaneInit =        
+        let infoPane = document.createElement_div ()
+        infoPane.id <- title + "info-pane"
+        infoPane.className <- "info-pane"
+
+        let blockConfigure = document.createElement_div ()
+        blockConfigure.id <- title + "block-configure"
+        blockConfigure.className <- "block-configure"
+
+        let blockConfigurationTitle = document.createElement "h3"
+        blockConfigurationTitle.innerHTML <- "Block Configuration"
+        blockConfigure.appendChild blockConfigurationTitle |> ignore
+
+        let inputElementName = document.createElement_input ()
+        inputElementName.id <- title + "element-name-field"
+        inputElementName.``type`` <- "text"
+        inputElementName.name <- ""
+        inputElementName.value <- ""
+        blockConfigure.appendChild inputElementName |> ignore
+
+
+
+        let addBlockButtonGroup = document.createElement_div ()
+        addBlockButtonGroup.id <- title + "add-block-button-group"
+        addBlockButtonGroup.className <- "add-block-button-group"
+
+        blockConfigure
+        |> infoPane.appendChild
+        |> ignore
+
+        addBlockButtonGroup
+        |> infoPane.appendChild 
+        
+    (root.appendChild workingPaneInit).appendChild infoPaneInit

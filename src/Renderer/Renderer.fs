@@ -6,12 +6,12 @@ open Fable.Import
 open Node.Exports
 open Menubar
 open Jointjs
+open Tabs
 open Fable.Import.Electron
-open MonacoEditor
 
 let init() = 
-    menubarInit()
     canvasInit()
-    monacoEditorInit()
+    newTabButtonInit()
+    menubarInit()    
 
 init() |> ignore

@@ -8,71 +8,65 @@
 
   <body>
     <!-- content -->
-      <div class="tab">
-        <button class="tablinks" onclick="openCity(event, 'London')" id="defaultOpen">Block Diagram Editor</button>
-        <button class="tablinks" onclick="openCity(event, 'Paris')">Text Editor</button>
-        <button class="tablinks" onclick="openCity(event, 'Tokyo')">+</button>
+      <div class="tab" id="tab-row">
+        <div id="pane1-div">
+          <button class="tab-element" id="pane1">Block Diagram Editor</button>
+          <button class="tab-close-element" id="pane1-close-button">x</button>
+        </div>
+        <button class="tab-element" id="new-tab-button">+</button>
       </div>
 
-      <div class="working-pane">
-        <div id="London" class="tabcontent">
-          <div id="block-editor-canvas"></div>
+      <div title="pane1">
+        <div class="working-pane" id="working-pane">
+            <div id="block-editor-canvas"></div>
         </div>
 
-        <div id="Paris" class="tabcontent">
-          <div class="monaco" id="monaco"></div>
-        </div>
-
-        <div id="Tokyo" class="tabcontent">
-          The close-tab and the open-tab functions are not yet implemented.
-        </div>
-      </div>
-
-      <div class="info-pane">
-        <div class="block-configure">
-          <h3>Block Configuration</h3>
-            Name:<input id="element-name-field" type="text" name="" value=""><br>
-            <br>
-            Type: <label id="element-type-label">Block type</label><br>
-            <br>
-            Boolean Equation:<input id="boolean-equation-field" type="text" name="" value=""><br>
-            <br>
-            Location:
-            x:<input class="coordinate-field" id="element-position-x" type="int" name="" value"">
-            y:<input class="coordinate-field" id="element-position-y" type="int" name="" value""><br>
-            <br>
-            Connections<br>
-            <br>
-            Ports: <select>
-                      <option value="volvo">Volvo</option>
-                      <option value="saab">Saab</option>
-                      <option value="opel">Opel</option>
-                      <option value="audi">Audi</option>
-                    </select>
-            <br>
-            Connected to<br>
-            <br>
-            Block:<br>
-            <br>
-            Port:<br>
-            <br>
-            <button id="update-block-information-button" type="button">Update Configuration</button>
-            <button id="delete-block-button" type="button">Delete Block and all connections</button>
-        </div>
-        <br>
-        <hr>
-        <div class="add-block-button-group">
-          <h3>Add Blocks</h3>
-          <button id="input-add-button" type="button">Input</button>
-          <button id="output-add-button" type="button">Output</button>
-          <button id="logic-element-add-button" type="button">Logic Element</button>
-          <button id="register-add-button" type="button">Register</button>
-          <button id="FF-add-button" type="button">FF</button>
-          <button id="clear-add-button" type="button">Clear</button>
+        <div class="info-pane">
+          <div class="block-configure">
+            <h3>Block Configuration</h3>
+              <p>Name:</p><input id="element-name-field" type="text" name="" value=""><br>
+              <br>
+              Type: <label id="element-type-label">Block type</label><br>
+              <br>
+              Boolean Equation:<input id="boolean-equation-field" type="text" name="" value=""><br>
+              <br>
+              Location:
+              x:<input class="coordinate-field" id="element-position-x" type="int" name="" value"">
+              y:<input class="coordinate-field" id="element-position-y" type="int" name="" value""><br>
+              <br>
+              Connections<br>
+              <br>
+              Ports: <select>
+                        <option value="volvo">Volvo</option>
+                        <option value="saab">Saab</option>
+                        <option value="opel">Opel</option>
+                        <option value="audi">Audi</option>
+                      </select>
+              <br>
+              Connected to<br>
+              <br>
+              Block:<br>
+              <br>
+              Port:<br>
+              <br>
+              <button id="update-block-information-button" type="button">Update Configuration</button>
+              <button id="delete-block-button" type="button">Delete Block and all connections</button>
+          </div>
+          <br>
+          <hr>
+          <div class="add-block-button-group">
+            <h3>Add Blocks</h3>
+            <button id="input-add-button" type="button">Input</button>
+            <button id="output-add-button" type="button">Output</button>
+            <button id="logic-element-add-button" type="button">Logic Element</button>
+            <button id="register-add-button" type="button">Register</button>
+            <button id="FF-add-button" type="button">FF</button>
+            <button id="clear-add-button" type="button">Clear</button>
+          </div>
         </div>
       </div>
 
-    <script type="text/javascript">
+    <!-- <script type="text/javascript">
     function openCity(evt, cityName) {
       // Declare all variables
       var i, tabcontent, tablinks;
@@ -94,7 +88,7 @@
       evt.currentTarget.className += " active";
     }
 
-    document.getElementById("defaultOpen").click();
+    document.getElementById("defaultOpen").click(); -->
 
     </script>
 

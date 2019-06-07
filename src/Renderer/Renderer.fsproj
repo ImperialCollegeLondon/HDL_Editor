@@ -7,11 +7,11 @@
     <Compile Remove="Html.fs" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="HTMLUtilities.fs" />
     <Compile Include="JSLibInterface.fs" />
+    <Compile Include="HTMLUtilities.fs" />
     <Compile Include="Jointjs.fs" />
+    <Compile Include="Tabs.fs" />
     <Compile Include="Menubar.fs" />
-    <Compile Include="MonacoEditor.fs" />
     <Compile Include="Renderer.fs" />
   </ItemGroup>
   <Import Project="..\..\.paket\Paket.Restore.targets" />
