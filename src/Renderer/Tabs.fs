@@ -8,7 +8,7 @@ open HTMLUtilities
 open System.Collections.Generic
 
 /// tab number counter
-let mutable tabCounter = 0
+let mutable tabCounter = 1
 
 /// create a new pane with button associated with the pane
 let createNewPaneWithButton () = 
