@@ -1,43 +1,61 @@
 module Tabs
 
 open Fable.Core
-open Fable.Core.JsInterop
 open Fable.Import.Browser
 open JSLibInterface
 open HTMLUtilities
-open System.Collections.Generic
 
 /// tab number counter
 let mutable tabCounter = 1
 
+/// helper function to hide and show divs
+let hideAndShowDiv (tabName:string) = 
+    let divLst = document.getElementsByTagName_div ()
+
+    let rec hideAndShowDiv' (lst:NodeListOf<HTMLDivElement>) (index:int) (tabName:string) = 
+        match index with
+        | a when a < int lst.length -> let text = lst.[index].id.Split [|'-'|]                                       
+                                       if text.[0] <> tabName && text.[0] <> "tabRow" && text.[1] <> "buttonDiv"
+                                       then (lst.Item index).setAttribute ("style", "display:none")
+                                            hideAndShowDiv' lst (index + 1) tabName
+                                       else (lst.Item index).setAttribute ("style", "display:block")
+                                            hideAndShowDiv' lst (index+1) tabName
+        | _ -> ()
+    hideAndShowDiv' divLst 0 tabName
+
 /// create a block diagram editor interface
-let blockDiagramEditorInit (title:string) : Node = 
+let blockDiagramEditorInit (title:string) = 
     let root = document.createElement_div ()
     root.id <- title
+    
+    //root.innerHTML <- "Hello" + title
 
     let workingPaneInit = 
         let workingPane = document.createElement_div ()
-        workingPane.id <- title + "-working-pane"
+        workingPane.id <- title + "-workingPane"
         workingPane.className <- "working-pane"
 
         let canvas = document.createElement_div ()
-        canvas.id <- title + "block-editor-canvas"
+        canvas.id <- title + "-canvas"
         canvas.className <- "block-configure"
 
         canvas
-        |> workingPane.appendChild 
+        |> workingPane.appendChild
+        |> ignore
+        
+        workingPane
 
     let infoPaneInit =        
         let infoPane = document.createElement_div ()
-        infoPane.id <- title + "info-pane"
+        infoPane.id <- title + "-infoPane"
         infoPane.className <- "info-pane"
 
         let blockConfigure = document.createElement_div ()
-        blockConfigure.id <- title + "block-configure"
+        blockConfigure.id <- title + "-blockConfigure"
         blockConfigure.className <- "block-configure"
 
         let blockConfigurationTitle = document.createElement "h3"
-        blockConfigurationTitle.innerHTML <- "Block Configuration"
+        blockConfigurationTitle.innerHTML <- "Block Configuration" + title
         blockConfigure.appendChild blockConfigurationTitle |> ignore
 
         let inputElementName = document.createElement_input ()
@@ -59,16 +77,20 @@ let blockDiagramEditorInit (title:string) : Node =
 
         addBlockButtonGroup
         |> infoPane.appendChild 
-        
-    (root.appendChild workingPaneInit).appendChild infoPaneInit
+        |> ignore
+
+        infoPane
+
+    (root.appendChild workingPaneInit).appendChild infoPaneInit |> ignore  
+    root
 
 /// create a new pane with button associated with the pane
 let createNewPaneWithButton () = 
     /// create the prefix for naming any div elements
     let namePrefix = "pane" + string tabCounter + "div"
-
+    
     /// create the button with the text
-    /// that repesents the name of the pane
+    /// that repesents the pane
     let newTab = document.createElement_button ()     
     newTab.innerHTML <- "pane" + string tabCounter 
     newTab.className <- "tab-element"
@@ -96,20 +118,10 @@ let createNewPaneWithButton () =
     newTabCloseButton.addEventListener("click", U2.Case1 removeDiv, false)   
     
     /// the div element that holds all the elements that are newly created
-    let newDiv = blockDiagramEditorInit (namePrefix)
+    let newDiv = blockDiagramEditorInit namePrefix
 
     /// hide all other divs
-    let divLst = document.getElementsByTagName_div ()
-    let rec hideDiv (lst:NodeListOf<HTMLDivElement>) (index:int) = 
-        match index with
-        | a when a < int lst.length -> let text = lst.[index].id.Split [|'-'|]
-                                       if text.[0] <> namePrefix && text.[0] <> "tabRow" && text.[1] <> "buttonDiv"
-                                       then console.log(text, "hidden")
-                                            (lst.Item index).setAttribute ("style", "visibility:hidden")
-                                       else (lst.Item index).setAttribute ("style", "visibility:shown")
-                                            hideDiv lst (index+1)                                                     
-        | _ -> console.log("not found")
-    hideDiv divLst 0 
+    hideAndShowDiv namePrefix
     
     document.body.appendChild newDiv |> ignore
 
@@ -118,6 +130,10 @@ let createNewPaneWithButton () =
 
     /// insert the div that contains the two buttons in the tab row
     tabRow.insertBefore (newTabDiv, (document.getElementById "new-tab-button")) |> ignore
+
+    /// attach the event listener to the button
+    fun e -> hideAndShowDiv namePrefix
+    |> getElementBindEvent (namePrefix + "-tabButton") "click"
 
 /// the "+" button to add new tabs
 let newTabButtonInit () =    
