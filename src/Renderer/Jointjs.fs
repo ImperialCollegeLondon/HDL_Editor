@@ -100,7 +100,7 @@ let canvasInit (paneName:string) =
     let graph = jointJSCreator.GraphInit ()
     
     /// create a mutable canvas in case of resizing
-    let mutable canvas : HTMLElement = unbox document.getElementById ("block-editor-canvas-" + paneName)
+    let mutable canvas : HTMLElement = document.getElementById ("block-editor-canvas-" + paneName)
 
     /// create the paper settings
     let paperSettings = generatePaperSettings canvas graph 1200 700 10 true "rgba(0, 0, 0, 0)"

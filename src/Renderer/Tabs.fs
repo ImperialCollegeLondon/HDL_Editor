@@ -10,6 +10,58 @@ open System.Collections.Generic
 /// tab number counter
 let mutable tabCounter = 1
 
+/// create a block diagram editor interface
+let blockDiagramEditorInit (title:string) : Node = 
+    let root = document.createElement_div ()
+    root.id <- title
+
+    let workingPaneInit = 
+        let workingPane = document.createElement_div ()
+        workingPane.id <- title + "-working-pane"
+        workingPane.className <- "working-pane"
+
+        let canvas = document.createElement_div ()
+        canvas.id <- title + "block-editor-canvas"
+        canvas.className <- "block-configure"
+
+        canvas
+        |> workingPane.appendChild 
+
+    let infoPaneInit =        
+        let infoPane = document.createElement_div ()
+        infoPane.id <- title + "info-pane"
+        infoPane.className <- "info-pane"
+
+        let blockConfigure = document.createElement_div ()
+        blockConfigure.id <- title + "block-configure"
+        blockConfigure.className <- "block-configure"
+
+        let blockConfigurationTitle = document.createElement "h3"
+        blockConfigurationTitle.innerHTML <- "Block Configuration"
+        blockConfigure.appendChild blockConfigurationTitle |> ignore
+
+        let inputElementName = document.createElement_input ()
+        inputElementName.id <- title + "element-name-field"
+        inputElementName.``type`` <- "text"
+        inputElementName.name <- ""
+        inputElementName.value <- ""
+        blockConfigure.appendChild inputElementName |> ignore
+
+
+
+        let addBlockButtonGroup = document.createElement_div ()
+        addBlockButtonGroup.id <- title + "add-block-button-group"
+        addBlockButtonGroup.className <- "add-block-button-group"
+
+        blockConfigure
+        |> infoPane.appendChild
+        |> ignore
+
+        addBlockButtonGroup
+        |> infoPane.appendChild 
+        
+    (root.appendChild workingPaneInit).appendChild infoPaneInit
+
 /// create a new pane with button associated with the pane
 let createNewPaneWithButton () = 
     /// create the button with the text
@@ -32,7 +84,7 @@ let createNewPaneWithButton () =
     /// append the two buttons to the div
     newTabDiv.appendChild newTab |> ignore
     newTabDiv.appendChild newTabCloseButton |> ignore
-    
+     
     /// get all the buttons
     let tabRow = document.getElementById "tab-row"
     
@@ -40,6 +92,32 @@ let createNewPaneWithButton () =
     let removeDiv = fun e -> tabRow.removeChild newTabDiv |> ignore
     newTabCloseButton.addEventListener("click", U2.Case1 removeDiv, false)   
     
+    /// the div element that holds all the elements that are newly created
+    let newDiv = blockDiagramEditorInit ("paneDiv-" + string tabCounter)
+
+    /// hide all other divs
+    let divLst = document.getElementsByTagName_div ()
+    let rec hideDiv (lst:NodeListOf<HTMLDivElement>) (index:int) = 
+        match index with
+        | a when a < int lst.length -> let text = lst.[index].id
+                                       console.log(text)
+                                       if text.[..7] = "paneDiv-"  + string tabCounter && text <> "tab-row"
+                                       then console.log(text, "hidden")
+                                            (lst.Item index).setAttribute ("style", "visibility:hidden")
+                                       else hideDiv lst (index+1)                                                     
+        | _ -> console.log("not found")
+    hideDiv divLst 0 
+    
+    let rec showDiv (lst:NodeListOf<HTMLDivElement>) (index:int) = 
+        match index with
+        | a when a < int lst.length -> console.log(lst.[index].id)
+                                       if lst.[index].id = "paneDiv-" + string tabCounter then (lst.Item index).setAttribute ("style", "visibility:visible")
+                                       else hideDiv lst (index+1)                                                     
+        | _ -> console.log("not shown")
+    //showDiv divLst 0
+
+    document.body.appendChild newDiv |> ignore
+
     /// increase the pane counter when creating new panes
     tabCounter <- tabCounter + 1
 
