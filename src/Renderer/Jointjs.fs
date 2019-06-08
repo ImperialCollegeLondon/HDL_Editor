@@ -107,7 +107,7 @@ let canvasInit (paneName:string) =
 
     /// initialize the paer using the paperSettings
     let paper = jointJSCreator.PaperInit paperSettings    
-
+    
     /// bind event listener to the add bock buttons
     fun e -> activeBlockType <- Some InputPort
     |> getElementBindEvent (paneName + "-inputAddButton") "click" 
@@ -121,8 +121,8 @@ let canvasInit (paneName:string) =
     fun e -> activeBlockType <- option.None
     |> getElementBindEvent (paneName + "-clearSelectionButton") "click" 
                                     
-    fun e ->  let position = (getValueFromElement InputBox (paneName + "positionX") |> int, 
-                              getValueFromElement InputBox (paneName + "positionY") |> int)
+    fun e ->  let position = (getValueFromElement InputBox (paneName + "-positionX") |> int, 
+                              getValueFromElement InputBox (paneName + "-positionY") |> int)
                              |> generateBlockCoordinate                                                 
               modelRef?set("position", position)    
     |> getElementBindEvent (paneName + "-updateInfoButton") "click"        
@@ -147,8 +147,8 @@ let canvasInit (paneName:string) =
                        getElementSetInnerHTML (paneName + "-blockTypeLabel")  (model?attributes?attrs?label?text)        
         
                        /// update the GUI to show the coordinates of the block
-                       setHTMLElementValue InputBox (paneName + "positionX") (model?get("position")?x)                 
-                       setHTMLElementValue InputBox (paneName + "positionY") (model?get("position")?y)                
+                       setHTMLElementValue InputBox (paneName + "-positionX") (model?get("position")?x)                 
+                       setHTMLElementValue InputBox (paneName + "-positionY") (model?get("position")?y)                
     |> paperOnFunction paper "element:pointerdblclick"
 
     fun args -> resetAllSelected paper        

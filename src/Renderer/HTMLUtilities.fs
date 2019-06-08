@@ -42,3 +42,14 @@ let setHTMLElementValue (elType:HTMLElementType) (id:string) (value:string) =
 /// set the innterHTML
 let getElementSetInnerHTML (id:string) (innerHTML:string) = 
     (document.getElementById id).innerHTML <- innerHTML
+
+/// create a button
+/// id, class and innerHTML are given
+let createButton (id:string) (className:string) (text:string) = 
+    let button = document.createElement_button ()
+    
+    button.id <- id
+    button.className <- className
+    button.innerHTML <- text
+
+    button

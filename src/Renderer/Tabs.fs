@@ -2,7 +2,7 @@ module Tabs
 
 open Fable.Core
 open Fable.Import.Browser
-open JSLibInterface
+open Jointjs
 open HTMLUtilities
 
 /// tab number counter
@@ -23,12 +23,40 @@ let hideAndShowDiv (tabName:string) =
         | _ -> ()
     hideAndShowDiv' divLst 0 tabName
 
+/// helper function to remove divs
+let removeDiv (tabName:string) = 
+    let divLst = document.getElementsByTagName_div ()
+
+    let rec removeDiv' (lst:NodeListOf<HTMLDivElement>) (index:int) (tabName:string) = 
+        match index with
+        | a when a < int lst.length -> let text = lst.[index].id.Split [|'-'|]                                       
+                                       if text.[0] <> tabName && text.[0] <> "tabRow"
+                                       then document.removeChild (lst.Item index) |> ignore
+                                            removeDiv' lst (index + 1) tabName
+                                       else removeDiv' lst (index+1) tabName
+        | _ -> ()
+    removeDiv' divLst 0 tabName
+
+(*
+/// helper function to rename divs
+let renameDiv (tabName:string) (renamedName:string) = 
+    let divLst = document.getElementsByTagName_div ()
+
+    let rec renameDiv' (lst:NodeListOf<HTMLDivElement>) (index:int) (tabName:string) = 
+        match index with
+        | a when a < int lst.length -> let text = lst.[index].id.Split [|'-'|]                                       
+                                       if text.[0] <> tabName && text.[0] <> "tabRow"
+                                       then (lst.Item index).id <- 
+                                            removeDiv' lst (index + 1) tabName
+                                       else removeDiv' lst (index+1) tabName
+        | _ -> ()
+    renameDiv' divLst 0 tabName
+*)
+
 /// create a block diagram editor interface
 let blockDiagramEditorInit (title:string) = 
     let root = document.createElement_div ()
-    root.id <- title
-    
-    //root.innerHTML <- "Hello" + title
+    root.id <- title   
 
     let workingPaneInit = 
         let workingPane = document.createElement_div ()
@@ -37,7 +65,6 @@ let blockDiagramEditorInit (title:string) =
 
         let canvas = document.createElement_div ()
         canvas.id <- title + "-canvas"
-        canvas.className <- "block-configure"
 
         canvas
         |> workingPane.appendChild
@@ -58,6 +85,10 @@ let blockDiagramEditorInit (title:string) =
         blockConfigurationTitle.innerHTML <- "Block Configuration" + title
         blockConfigure.appendChild blockConfigurationTitle |> ignore
 
+        let blockNameLabel = document.createElement_p ()
+        blockNameLabel.innerHTML <- "Name:"
+        blockConfigure.appendChild blockNameLabel |> ignore
+
         let inputElementName = document.createElement_input ()
         inputElementName.id <- title + "element-name-field"
         inputElementName.``type`` <- "text"
@@ -65,23 +96,117 @@ let blockDiagramEditorInit (title:string) =
         inputElementName.value <- ""
         blockConfigure.appendChild inputElementName |> ignore
 
+        let br = document.createElement_br ()
+        blockConfigure.appendChild br
+        |> blockConfigure.appendChild
+        |> ignore
 
+        let typeLabel = document.createElement_p ()
+        typeLabel.innerHTML <- "Type: "
+        blockConfigure.appendChild typeLabel |> ignore
+        
+        let typeInfoLabel = document.createElement_label ()
+        typeInfoLabel.id <- title + "-blockTypeLabel"
+        blockConfigure.appendChild typeInfoLabel |> ignore
+
+        blockConfigure.appendChild br
+        |> blockConfigure.appendChild
+        |> ignore
+
+        let booleanEquationLabel = document.createElement_label ()
+        booleanEquationLabel.innerHTML <- "Boolean Equation: "
+        blockConfigure.appendChild booleanEquationLabel |> ignore
+
+        let booleanEquationEntryField = document.createElement_input ()
+        booleanEquationEntryField.id <- title + "-booleanEquation"
+        booleanEquationEntryField.``type`` <- "text"
+        booleanEquationEntryField.value <- ""
+        blockConfigure.appendChild booleanEquationEntryField |> ignore
+
+        blockConfigure.appendChild br
+        |> blockConfigure.appendChild
+        |> ignore
+
+        let locationLabel = document.createElement_p ()
+        locationLabel.innerHTML <- "Location:"
+        blockConfigure.appendChild locationLabel |> ignore
+
+        let locationXLabel = document.createElement_p ()
+        locationXLabel.innerHTML <- "X:"
+        blockConfigure.appendChild locationXLabel |> ignore
+
+        let locationXInputField = document.createElement_input ()
+        locationXInputField.className <- "coordinate-field"
+        locationXInputField.``type`` <- "int"
+        locationXInputField.value <- ""
+        locationXInputField.id <- title + "-positionX"
+        blockConfigure.appendChild locationXInputField |> ignore
+
+        let locationYLabel = document.createElement_p ()
+        locationYLabel.innerHTML <- "Y:"
+        blockConfigure.appendChild locationYLabel |> ignore
+
+        let locationYInputField = document.createElement_input ()
+        locationYInputField.className <- "coordinate-field"
+        locationYInputField.``type`` <- "int"
+        locationYInputField.value <- ""
+        locationYInputField.id <- title + "-positionY"
+        blockConfigure.appendChild locationYInputField |> ignore
+
+        let updateInfoButton = document.createElement_button ()
+        updateInfoButton.id <- title + "-updateInfoButton"
+        updateInfoButton.``type`` <- "button"
+        updateInfoButton.innerHTML <- "Update Configuration"
+        blockConfigure.appendChild updateInfoButton |> ignore
+
+        let deleteBlockButton = document.createElement_button ()
+        deleteBlockButton.id <- title + "-deleteBlockButton"
+        deleteBlockButton.``type`` <- "button"
+        deleteBlockButton.innerHTML <- "Delete Block and all connections"
+        blockConfigure.appendChild deleteBlockButton |> ignore
+
+        blockConfigure.appendChild br
+        |> blockConfigure.appendChild
+        |> ignore
+
+        let hr = document.createElement_hr ()
+        infoPane.appendChild hr |> ignore
 
         let addBlockButtonGroup = document.createElement_div ()
-        addBlockButtonGroup.id <- title + "add-block-button-group"
+        addBlockButtonGroup.id <- title + "-addBlockButtons"
         addBlockButtonGroup.className <- "add-block-button-group"
 
-        blockConfigure
-        |> infoPane.appendChild
+        let addBlockButtonHeading = document.createElement "h3"
+        addBlockButtonHeading.innerHTML <- "Add Blocks"
+        addBlockButtonGroup.appendChild addBlockButtonHeading |> ignore
+
+        createButton (title + "-inputAddButton") "" "Input"
+        |> addBlockButtonGroup.appendChild
         |> ignore
 
-        addBlockButtonGroup
-        |> infoPane.appendChild 
+        createButton (title + "-outputAddButton") "" "Output"
+        |> addBlockButtonGroup.appendChild
         |> ignore
+
+        createButton (title + "-logicElementAddButton") "" "Logic Element"
+        |> addBlockButtonGroup.appendChild
+        |> ignore
+
+        createButton (title + "-registerAddButton") "" "Register"
+        |> addBlockButtonGroup.appendChild
+        |> ignore
+
+        createButton (title + "-clearSelectionButton") "" "Clear"
+        |> addBlockButtonGroup.appendChild
+        |> ignore
+        
+        infoPane.appendChild blockConfigure |> ignore        
+        infoPane.appendChild addBlockButtonGroup |> ignore
 
         infoPane
 
-    (root.appendChild workingPaneInit).appendChild infoPaneInit |> ignore  
+    root.appendChild workingPaneInit |> ignore
+    root.appendChild infoPaneInit |> ignore  
     root
 
 /// create a new pane with button associated with the pane
@@ -131,9 +256,11 @@ let createNewPaneWithButton () =
     /// insert the div that contains the two buttons in the tab row
     tabRow.insertBefore (newTabDiv, (document.getElementById "new-tab-button")) |> ignore
 
-    /// attach the event listener to the button
+    /// attach the event listener to the button that switches between different tabs
     fun e -> hideAndShowDiv namePrefix
     |> getElementBindEvent (namePrefix + "-tabButton") "click"
+
+    canvasInit namePrefix
 
 /// the "+" button to add new tabs
 let newTabButtonInit () =    
