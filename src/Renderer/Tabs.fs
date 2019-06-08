@@ -64,58 +64,53 @@ let blockDiagramEditorInit (title:string) : Node =
 
 /// create a new pane with button associated with the pane
 let createNewPaneWithButton () = 
+    /// create the prefix for naming any div elements
+    let namePrefix = "pane" + string tabCounter + "div"
+
     /// create the button with the text
     /// that repesents the name of the pane
     let newTab = document.createElement_button ()     
     newTab.innerHTML <- "pane" + string tabCounter 
     newTab.className <- "tab-element"
-    newTab.id <- "pane" + string tabCounter                 
+    newTab.id <- namePrefix + "-tabButton"
 
     /// create the button that is used to close the pane
     let newTabCloseButton = document.createElement_button ()
     newTabCloseButton.innerHTML <- "x"
     newTabCloseButton.className <- "tab-close-element"
-    newTabCloseButton.id <- "pane" + string tabCounter + "-close-button"                 
+    newTabCloseButton.id <- namePrefix + "-closeButton"                 
 
     /// create the div element that contains both buttons created above
     let newTabDiv = document.createElement_div ()
-    newTabDiv.id <- "pane" + string tabCounter + "-div"
+    newTabDiv.id <- namePrefix + "-buttonDiv"
 
     /// append the two buttons to the div
     newTabDiv.appendChild newTab |> ignore
     newTabDiv.appendChild newTabCloseButton |> ignore
      
     /// get all the buttons
-    let tabRow = document.getElementById "tab-row"
+    let tabRow = document.getElementById "tabRow"
     
     /// define the action when the remove-pane button is clicked
     let removeDiv = fun e -> tabRow.removeChild newTabDiv |> ignore
     newTabCloseButton.addEventListener("click", U2.Case1 removeDiv, false)   
     
     /// the div element that holds all the elements that are newly created
-    let newDiv = blockDiagramEditorInit ("paneDiv-" + string tabCounter)
+    let newDiv = blockDiagramEditorInit (namePrefix)
 
     /// hide all other divs
     let divLst = document.getElementsByTagName_div ()
     let rec hideDiv (lst:NodeListOf<HTMLDivElement>) (index:int) = 
         match index with
-        | a when a < int lst.length -> let text = lst.[index].id
-                                       console.log(text)
-                                       if text.[..7] = "paneDiv-"  + string tabCounter && text <> "tab-row"
+        | a when a < int lst.length -> let text = lst.[index].id.Split [|'-'|]
+                                       if text.[0] <> namePrefix && text.[0] <> "tabRow" && text.[1] <> "buttonDiv"
                                        then console.log(text, "hidden")
                                             (lst.Item index).setAttribute ("style", "visibility:hidden")
-                                       else hideDiv lst (index+1)                                                     
+                                       else (lst.Item index).setAttribute ("style", "visibility:shown")
+                                            hideDiv lst (index+1)                                                     
         | _ -> console.log("not found")
     hideDiv divLst 0 
     
-    let rec showDiv (lst:NodeListOf<HTMLDivElement>) (index:int) = 
-        match index with
-        | a when a < int lst.length -> console.log(lst.[index].id)
-                                       if lst.[index].id = "paneDiv-" + string tabCounter then (lst.Item index).setAttribute ("style", "visibility:visible")
-                                       else hideDiv lst (index+1)                                                     
-        | _ -> console.log("not shown")
-    //showDiv divLst 0
-
     document.body.appendChild newDiv |> ignore
 
     /// increase the pane counter when creating new panes

@@ -100,7 +100,7 @@ let canvasInit (paneName:string) =
     let graph = jointJSCreator.GraphInit ()
     
     /// create a mutable canvas in case of resizing
-    let mutable canvas : HTMLElement = document.getElementById ("block-editor-canvas-" + paneName)
+    let mutable canvas : HTMLElement = document.getElementById (paneName + "-canvas")
 
     /// create the paper settings
     let paperSettings = generatePaperSettings canvas graph 1200 700 10 true "rgba(0, 0, 0, 0)"
@@ -110,25 +110,25 @@ let canvasInit (paneName:string) =
 
     /// bind event listener to the add bock buttons
     fun e -> activeBlockType <- Some InputPort
-    |> getElementBindEvent ("input-add-button-" + paneName) "click" 
+    |> getElementBindEvent (paneName + "-inputAddButton") "click" 
 
     fun e -> activeBlockType <- Some OutputPort
-    |> getElementBindEvent ("output-add-button-" + paneName) "click" 
+    |> getElementBindEvent (paneName + "-outputAddButton") "click" 
 
     fun e -> activeBlockType <- Some LogicElement
-    |> getElementBindEvent ("logic-element-add-button-" + paneName) "click"
+    |> getElementBindEvent (paneName + "-logicElementAddButton") "click"
 
     fun e -> activeBlockType <- option.None
-    |> getElementBindEvent ("clear-add-button-" + paneName) "click" 
+    |> getElementBindEvent (paneName + "-clearSelectionButton") "click" 
                                     
-    fun e ->  let position = (getValueFromElement InputBox ("element-position-x-" + paneName) |> int, 
-                              getValueFromElement InputBox ("element-position-y-" + paneName) |> int)
+    fun e ->  let position = (getValueFromElement InputBox (paneName + "positionX") |> int, 
+                              getValueFromElement InputBox (paneName + "positionY") |> int)
                              |> generateBlockCoordinate                                                 
               modelRef?set("position", position)    
-    |> getElementBindEvent ("update-block-information-button-" + paneName) "click"        
+    |> getElementBindEvent (paneName + "-updateInfoButton") "click"        
     
     let removeButtonFunction = fun e -> modelRef?remove()
-    getElementBindEvent ("delete-block-button-" + paneName) "click" removeButtonFunction    
+    getElementBindEvent (paneName + "-deleteBlockButton") "click" removeButtonFunction    
 
     /// set the response when double click on a block is detected in the canvas           
     fun elementView -> /// clear the highlightings of all the blocks
@@ -144,11 +144,11 @@ let canvasInit (paneName:string) =
                        model?attr("body/fill", "orange")
         
                        /// update the label in the GUI that shows the block type
-                       getElementSetInnerHTML ("element-type-label-" + paneName)  (model?attributes?attrs?label?text)        
+                       getElementSetInnerHTML (paneName + "-blockTypeLabel")  (model?attributes?attrs?label?text)        
         
                        /// update the GUI to show the coordinates of the block
-                       setHTMLElementValue InputBox ("element-position-x-" + paneName) (model?get("position")?x)                 
-                       setHTMLElementValue InputBox ("element-position-y-" + paneName) (model?get("position")?y)                
+                       setHTMLElementValue InputBox (paneName + "positionX") (model?get("position")?x)                 
+                       setHTMLElementValue InputBox (paneName + "positionY") (model?get("position")?y)                
     |> paperOnFunction paper "element:pointerdblclick"
 
     fun args -> resetAllSelected paper        
