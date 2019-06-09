@@ -21,6 +21,7 @@ let hideAndShowDiv (tabName:string) =
                                           && text.[1] <> "buttonDiv"
                                           && classNames <> "joint-paper-background"
                                           && classNames <> "joint-paper-grid"
+                                          && text.[0] <> "container"
                                        then (lst.Item index).style.display <- "none"                                          
                                             hideAndShowDiv' lst (index + 1) tabName
                                        else (lst.Item index).style.display <- "block"
@@ -35,8 +36,13 @@ let removeDiv (tabName:string) =
     let rec removeDiv' (lst:NodeListOf<HTMLDivElement>) (index:int) (tabName:string) = 
         match index with
         | a when a < int lst.length -> let text = lst.[index].id.Split [|'-'|]                                       
-                                       if text.[0] <> tabName && text.[0] <> "tabRow"
-                                       then document.removeChild (lst.Item index) |> ignore
+                                       if text.[0] = tabName 
+                                          && text.[0] <> "tabRow" 
+                                          && document.contains (lst.[index])
+                                          && text.[0] <> "container"
+                                       then //let rootContainer = document.getElementById "container"
+                                            //rootContainer.removeChild (lst.Item index) |> ignore
+                                            (lst.Item index).innerHTML <- ""
                                             removeDiv' lst (index + 1) tabName
                                        else removeDiv' lst (index+1) tabName
         | _ -> ()
@@ -49,7 +55,9 @@ let renameDiv (tabName:string) (renamedName:string) =
     let rec renameDiv' (lst:NodeListOf<HTMLDivElement>) (index:int) (tabName:string) = 
         match index with
         | a when a < int lst.length -> let text = lst.[index].id.Split [|'-'|]                                       
-                                       if text.[0] <> tabName && text.[0] <> "tabRow"
+                                       if text.[0] <> tabName 
+                                          && text.[0] <> "tabRow"
+                                          && text.[0] <> "container"
                                        then (lst.Item index).id <- renamedName + text.[1]
                                             renameDiv' lst (index + 1) tabName
                                        else renameDiv' lst (index+1) tabName
@@ -130,11 +138,11 @@ let blockDiagramEditorInit (title:string) =
         |> blockConfigure.appendChild
         |> ignore
 
-        let locationLabel = document.createElement_p ()
+        let locationLabel = document.createElement_label ()
         locationLabel.innerHTML <- "Location:"
         blockConfigure.appendChild locationLabel |> ignore
 
-        let locationXLabel = document.createElement_p ()
+        let locationXLabel = document.createElement_label ()
         locationXLabel.innerHTML <- "X:"
         blockConfigure.appendChild locationXLabel |> ignore
 
@@ -145,7 +153,7 @@ let blockDiagramEditorInit (title:string) =
         locationXInputField.id <- title + "-positionX"
         blockConfigure.appendChild locationXInputField |> ignore
 
-        let locationYLabel = document.createElement_p ()
+        let locationYLabel = document.createElement_label ()
         locationYLabel.innerHTML <- "Y:"
         blockConfigure.appendChild locationYLabel |> ignore
 
@@ -243,8 +251,8 @@ let createNewPaneWithButton () =
     let tabRow = document.getElementById "tabRow"
     
     /// define the action when the remove-pane button is clicked
-    let removeDiv = fun e -> tabRow.removeChild newTabDiv |> ignore
-    newTabCloseButton.addEventListener("click", U2.Case1 removeDiv, false)   
+    let removeDivFunc = fun e -> removeDiv namePrefix
+    newTabCloseButton.addEventListener("click", U2.Case1 removeDivFunc, false)   
     
     /// the div element that holds all the elements that are newly created
     let newDiv = blockDiagramEditorInit namePrefix
@@ -252,7 +260,8 @@ let createNewPaneWithButton () =
     /// hide all other divs
     hideAndShowDiv namePrefix
     
-    document.body.appendChild newDiv |> ignore
+    let rootContainer = document.getElementById "container"
+    rootContainer.appendChild newDiv |> ignore
 
     /// increase the pane counter when creating new panes
     tabCounter <- tabCounter + 1

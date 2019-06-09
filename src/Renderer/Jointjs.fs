@@ -105,7 +105,7 @@ let canvasInit (paneName:string) =
     let paperSettings = generatePaperSettings canvas graph 1200 700 10 true "rgba(0, 0, 0, 0)"
 
     /// initialize the paer using the paperSettings
-    let paper = jointJSCreator.PaperInit paperSettings    
+    let paper = jointJSCreator.PaperInit paperSettings   
     
     /// bind event listener to the add bock buttons
     fun e -> activeBlockType <- Some InputPort
@@ -150,8 +150,8 @@ let canvasInit (paneName:string) =
                        getElementSetInnerHTML (paneName + "-blockTypeLabel")  (model?attributes?attrs?label?text)        
         
                        /// update the GUI to show the coordinates of the block
-                       setHTMLElementValue InputBox (paneName + "-positionX") (model?get("position")?x)                 
-                       setHTMLElementValue InputBox (paneName + "-positionY") (model?get("position")?y)                
+                       setHTMLElementValue InputBox (paneName + "-positionX") (((model?get("position")?x |> int)/10) |> string)
+                       setHTMLElementValue InputBox (paneName + "-positionY") (((model?get("position")?y |> int)/10) |> string)
     |> paperOnFunction paper "element:pointerdblclick"
 
     fun args -> resetAllSelected paper 
@@ -162,7 +162,6 @@ let canvasInit (paneName:string) =
                 match ctrlKeyHold with
                 | true -> scale <- 1.0
                           paper?scale(scale)
-                          //clearXYInputBox
                 | false -> scale <- 1.0
                            paper?scale(scale)
                            match activeBlockType with

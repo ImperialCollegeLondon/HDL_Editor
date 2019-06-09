@@ -3,6 +3,12 @@ html, body {
     height: 100%;
 }
 
+.container {
+  margin: 0;
+  height: 100%;
+  width: 100%;
+}
+
 .monaco {
   margin: 0px;
   min-height: 100%;
