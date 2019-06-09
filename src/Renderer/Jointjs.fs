@@ -182,9 +182,13 @@ let canvasInit (paneName:string) =
     /// function to resize the paper (canvas)
     let resizeCanvas x y = 
         match x > canvasXDimension-100, y > canvasYDimension-100 with
-        | true, _ | _, true -> paper?setDimensions(x + 200, y + 200)
-                               canvasXDimension <- x + 200
-                               canvasYDimension <- y + 200
+        | true, true -> paper?setDimensions(x + 200, y + 200)
+                        canvasXDimension <- x + 200
+                        canvasYDimension <- y + 200
+        | true, false -> paper?setDimensions(x + 200, canvasYDimension)
+                         canvasXDimension <- x + 200
+        | false, true -> paper?setDimensions(canvasXDimension, y + 200)
+                         canvasYDimension <- y + 200
         | _, _ -> ()
 
     fun args -> resetAllSelected paper 
