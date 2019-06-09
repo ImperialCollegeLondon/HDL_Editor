@@ -46,16 +46,6 @@ let logicElementInit () =
     |> jointJSCreator.Resize 100 40 
     |> jointJSCreator.Attr rectangleAttr
     
-/// the active button indicates the blocks to be added to the graph
-/// when the application initializes, it is set to be none
-let mutable (activeBlockType: BlockType option) = option.None
-
-/// the scale of the pape with default value of 1.0
-let mutable scale:float = 1.0
-
-/// the reference to the model that is being operated on
-let mutable modelRef:obj = createObj[]    
-
 /// initialize rect that has ports for connections to other blocks
 let connectRectTest() =     
 
@@ -94,13 +84,22 @@ let resetAllSelected paper =
     |> ignore
 
 /// initialize the canvas
-let canvasInit (paneName:string) =      
+let canvasInit (paneName:string) =  
+    /// the active button indicates the blocks to be added to the graph
+    /// when the application initializes, it is set to be none
+    let mutable (activeBlockType: BlockType option) = option.None
+    
+    /// the scale of the pape with default value of 1.0
+    let mutable scale:float = 1.0
+    
+    /// the reference to the model that is being operated on
+    let mutable modelRef:obj = createObj[]                 
     
     /// initialize the graoh
     let graph = jointJSCreator.GraphInit ()
     
     /// create a mutable canvas in case of resizing
-    let mutable canvas : HTMLElement = document.getElementById (paneName + "-canvas")
+    let canvas : HTMLElement = document.getElementById (paneName + "-canvas")
 
     /// create the paper settings
     let paperSettings = generatePaperSettings canvas graph 1200 700 10 true "rgba(0, 0, 0, 0)"
@@ -119,6 +118,8 @@ let canvasInit (paneName:string) =
     |> getElementBindEvent (paneName + "-logicElementAddButton") "click"
 
     fun e -> activeBlockType <- option.None
+             setHTMLElementValue InputBox (paneName + "-positionX") (string 0)                 
+             setHTMLElementValue InputBox (paneName + "-positionY") (string 0)
     |> getElementBindEvent (paneName + "-clearSelectionButton") "click" 
                                     
     fun e ->  let position = (getValueFromElement InputBox (paneName + "-positionX") |> int, 
@@ -128,6 +129,8 @@ let canvasInit (paneName:string) =
     |> getElementBindEvent (paneName + "-updateInfoButton") "click"        
     
     let removeButtonFunction = fun e -> modelRef?remove()
+                                        setHTMLElementValue InputBox (paneName + "-positionX") (string 0)                 
+                                        setHTMLElementValue InputBox (paneName + "-positionY") (string 0)
     getElementBindEvent (paneName + "-deleteBlockButton") "click" removeButtonFunction    
 
     /// set the response when double click on a block is detected in the canvas           
@@ -151,12 +154,15 @@ let canvasInit (paneName:string) =
                        setHTMLElementValue InputBox (paneName + "-positionY") (model?get("position")?y)                
     |> paperOnFunction paper "element:pointerdblclick"
 
-    fun args -> resetAllSelected paper        
+    fun args -> resetAllSelected paper 
+                setHTMLElementValue InputBox (paneName + "-positionX") (string 0)                 
+                setHTMLElementValue InputBox (paneName + "-positionY") (string 0)
                 args?originalEvent?stopPropagation()
                 let ctrlKeyHold:bool = args?ctrlKey
                 match ctrlKeyHold with
                 | true -> scale <- 1.0
-                          paper?scale(scale)         
+                          paper?scale(scale)
+                          //clearXYInputBox
                 | false -> scale <- 1.0
                            paper?scale(scale)
                            match activeBlockType with
@@ -179,14 +185,17 @@ let canvasInit (paneName:string) =
                                                   |> jointJSCreator.AttrBySelector "label/cursor" "pointer"
                                                   |> jointJSCreator.AddTo graph
                                                   |> ignore
-                           | option.None -> console.log("no block")                                
+                           | option.None -> ()                                                                                         
     |> paperOnFunction paper "blank:pointerclick"
 
     fun args -> let ctrlKeyHold:bool = args?ctrlKey
                 match ctrlKeyHold with
                 | true -> let delta:float = -args?originalEvent?deltaY
-                          let calculatedScale = max (min ((delta*0.00099+1.0)*scale) 2.0) 0.01                  
+                          let calculatedScale = max (min ((delta*0.00099+1.0)*scale) 2.0) 0.2                  
                           paper?scale(calculatedScale)  
                           scale <- calculatedScale
-                | false -> printfn "hold ctrl to zoom in or out"       
+                | false -> ()       
     |> paperOnFunction paper "blank:mousewheel"
+
+    ()
+

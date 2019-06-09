@@ -14,11 +14,16 @@ let hideAndShowDiv (tabName:string) =
 
     let rec hideAndShowDiv' (lst:NodeListOf<HTMLDivElement>) (index:int) (tabName:string) = 
         match index with
-        | a when a < int lst.length -> let text = lst.[index].id.Split [|'-'|]                                       
-                                       if text.[0] <> tabName && text.[0] <> "tabRow" && text.[1] <> "buttonDiv"
-                                       then (lst.Item index).setAttribute ("style", "display:none")
+        | a when a < int lst.length -> let text = lst.[index].id.Split [|'-'|]
+                                       let classNames = lst.[index].className
+                                       if text.[0] <> tabName 
+                                          && text.[0] <> "tabRow" 
+                                          && text.[1] <> "buttonDiv"
+                                          && classNames <> "joint-paper-background"
+                                          && classNames <> "joint-paper-grid"
+                                       then (lst.Item index).style.display <- "none"                                          
                                             hideAndShowDiv' lst (index + 1) tabName
-                                       else (lst.Item index).setAttribute ("style", "display:block")
+                                       else (lst.Item index).style.display <- "block"
                                             hideAndShowDiv' lst (index+1) tabName
         | _ -> ()
     hideAndShowDiv' divLst 0 tabName
@@ -37,7 +42,6 @@ let removeDiv (tabName:string) =
         | _ -> ()
     removeDiv' divLst 0 tabName
 
-(*
 /// helper function to rename divs
 let renameDiv (tabName:string) (renamedName:string) = 
     let divLst = document.getElementsByTagName_div ()
@@ -46,12 +50,11 @@ let renameDiv (tabName:string) (renamedName:string) =
         match index with
         | a when a < int lst.length -> let text = lst.[index].id.Split [|'-'|]                                       
                                        if text.[0] <> tabName && text.[0] <> "tabRow"
-                                       then (lst.Item index).id <- 
-                                            removeDiv' lst (index + 1) tabName
-                                       else removeDiv' lst (index+1) tabName
+                                       then (lst.Item index).id <- renamedName + text.[1]
+                                            renameDiv' lst (index + 1) tabName
+                                       else renameDiv' lst (index+1) tabName
         | _ -> ()
     renameDiv' divLst 0 tabName
-*)
 
 /// create a block diagram editor interface
 let blockDiagramEditorInit (title:string) = 
@@ -167,10 +170,7 @@ let blockDiagramEditorInit (title:string) =
 
         blockConfigure.appendChild br
         |> blockConfigure.appendChild
-        |> ignore
-
-        let hr = document.createElement_hr ()
-        infoPane.appendChild hr |> ignore
+        |> ignore        
 
         let addBlockButtonGroup = document.createElement_div ()
         addBlockButtonGroup.id <- title + "-addBlockButtons"
@@ -198,9 +198,13 @@ let blockDiagramEditorInit (title:string) =
 
         createButton (title + "-clearSelectionButton") "" "Clear"
         |> addBlockButtonGroup.appendChild
-        |> ignore
+        |> ignore        
         
         infoPane.appendChild blockConfigure |> ignore        
+
+        let hr = document.createElement_hr ()
+        infoPane.appendChild hr |> ignore
+
         infoPane.appendChild addBlockButtonGroup |> ignore
 
         infoPane
