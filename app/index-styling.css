@@ -55,7 +55,7 @@ html, body {
    float: right;
    text-align: left;
    overflow-x: auto;
-   overflow-y: auto;
+   overflow-y: auto;   
 }
 
 .working-pane {

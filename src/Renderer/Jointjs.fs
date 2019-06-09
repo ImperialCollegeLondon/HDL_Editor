@@ -118,8 +118,8 @@ let canvasInit (paneName:string) =
     |> getElementBindEvent (paneName + "-logicElementAddButton") "click"
 
     fun e -> activeBlockType <- option.None
-             setHTMLElementValue InputBox (paneName + "-positionX") (string 0)                 
-             setHTMLElementValue InputBox (paneName + "-positionY") (string 0)
+             setHTMLElementValue InputBox (paneName + "-positionX") ""                
+             setHTMLElementValue InputBox (paneName + "-positionY") ""
     |> getElementBindEvent (paneName + "-clearSelectionButton") "click" 
                                     
     fun e ->  let position = (getValueFromElement InputBox (paneName + "-positionX") |> int, 
@@ -129,8 +129,8 @@ let canvasInit (paneName:string) =
     |> getElementBindEvent (paneName + "-updateInfoButton") "click"        
     
     let removeButtonFunction = fun e -> modelRef?remove()
-                                        setHTMLElementValue InputBox (paneName + "-positionX") (string 0)                 
-                                        setHTMLElementValue InputBox (paneName + "-positionY") (string 0)
+                                        setHTMLElementValue InputBox (paneName + "-positionX") ""                 
+                                        setHTMLElementValue InputBox (paneName + "-positionY") ""
     getElementBindEvent (paneName + "-deleteBlockButton") "click" removeButtonFunction    
 
     /// set the response when double click on a block is detected in the canvas           
@@ -155,8 +155,8 @@ let canvasInit (paneName:string) =
     |> paperOnFunction paper "element:pointerdblclick"
 
     fun args -> resetAllSelected paper 
-                setHTMLElementValue InputBox (paneName + "-positionX") (string 0)                 
-                setHTMLElementValue InputBox (paneName + "-positionY") (string 0)
+                setHTMLElementValue InputBox (paneName + "-positionX") ""                 
+                setHTMLElementValue InputBox (paneName + "-positionY") ""
                 args?originalEvent?stopPropagation()
                 let ctrlKeyHold:bool = args?ctrlKey
                 match ctrlKeyHold with
