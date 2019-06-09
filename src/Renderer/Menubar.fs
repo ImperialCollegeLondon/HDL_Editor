@@ -11,6 +11,7 @@ open Fable.Core.JsInterop
 open Fable.Import
 open Fable.Import.Electron
 open System
+open Fable.Import.Node
 
 /// to avoid code dulication
 /// only the fields that ofter differ from one and other menu items
@@ -92,6 +93,22 @@ let replaceSubmenuData submenu =
 ///                                                                      ///
 ////////////////////////////////////////////////////////////////////////////
 let fileSubmenu = 
+    let fileSave () = 
+        let content = "Something to save"
+
+        let saveDialogOptions = createEmpty<SaveDialogOptions>
+        saveDialogOptions.title <- Some "Save file to"
+        saveDialogOptions.defaultPath <- Some (Node.Exports.path.join(Node.Globals.__dirname, "../hello.txt"))
+        saveDialogOptions.filters <- Option.None
+
+        /// return the directory and the file name that is to be saved
+        let fileSaveDialog = electron.remote.dialog.showSaveDialog (saveDialogOptions)
+
+        let errorHandler error = ()
+        fs.writeFile (fileSaveDialog, content, errorHandler)
+        
+    let handlerCaster f = System.Func<MenuItem, BrowserWindow, unit> f |> Some
+    let clickFunctionSave = handlerCaster (fun _ _ -> fileSave())
     [
         ({  clickData = Option.None;
             labelData = Some "New";
@@ -101,7 +118,7 @@ let fileSubmenu =
 
         menuSeparator;
 
-        ({  clickData = Option.None;
+        ({  clickData = clickFunctionSave;
             labelData = Some "Save";
             acceleratorData = Some "CmdOrCtrl + S"; 
             roleData = Option.None },
