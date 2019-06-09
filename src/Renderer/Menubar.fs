@@ -98,7 +98,7 @@ let fileSubmenu =
 
         let saveDialogOptions = createEmpty<SaveDialogOptions>
         saveDialogOptions.title <- Some "Save file to"
-        saveDialogOptions.defaultPath <- Some (Node.Exports.path.join(Node.Globals.__dirname, "../hello.txt"))
+        saveDialogOptions.defaultPath <- Some (Node.Exports.path.join(Node.Globals.__dirname, "../new.json"))
         saveDialogOptions.filters <- Option.None
 
         /// return the directory and the file name that is to be saved
@@ -107,8 +107,26 @@ let fileSubmenu =
         let errorHandler error = ()
         fs.writeFile (fileSaveDialog, content, errorHandler)
         
+    let fileRead () = 
+        let openDialogOptions = createEmpty<OpenDialogOptions>
+        openDialogOptions.title <- Some "Open file from"
+        openDialogOptions.defaultPath <- option.None
+        openDialogOptions.filters <- Option.None
+
+        /// return the directory and the file name that is to be saved
+        let fileOpenDialog = electron.remote.dialog.showOpenDialog (openDialogOptions)
+                
+        let errorHandler res error = 
+            printfn "%A, %A" res error
+
+        fs.readFile (fileOpenDialog.[0], errorHandler)
+
     let handlerCaster f = System.Func<MenuItem, BrowserWindow, unit> f |> Some
-    let clickFunctionSave = handlerCaster (fun _ _ -> fileSave())
+
+    let clickFunctionSave = handlerCaster (fun _ _  -> fileSave())
+
+    let clickFunctionRead = handlerCaster (fun  _ _ -> fileRead())
+
     [
         ({  clickData = Option.None;
             labelData = Some "New";
@@ -130,7 +148,7 @@ let fileSubmenu =
             roleData = Option.None },
             defaultMenuSetupOptional);
 
-        ({  clickData = Option.None; 
+        ({  clickData = clickFunctionRead; 
             labelData = Some "Open";
             acceleratorData = Some "CmdOrCtrl + O"; 
             roleData = Option.None },
