@@ -4,15 +4,6 @@ open Fable.Core
 open Fable.Core.JsInterop
 open Fable.Import
 open Fable.Import.Electron
-open System
-open Fable.Import.Node
-open BlockLogic
-
-/// block storage
-let mutable (blockStorage : BlockInfo List) = []
-
-/// connection storage
-let mutable (connectionStorage : ConnectionInfo List) = []
 
 // Keep a global reference of the window object, if you don't, the window will
 // be closed automatically when the JavaScript object is garbage collected.
@@ -38,8 +29,8 @@ let createMainWindow () =
     let opts = createEmpty<Node.Url.Url<obj>>
     opts.pathname <- Some (Node.Exports.path.join(Node.Globals.__dirname, "../index.html"))
     opts.protocol <- Some "file:"
-    window.loadURL(Node.Exports.url.format(opts))
-
+    window.loadURL (Node.Exports.url.format(opts))
+    window.setMenuBarVisibility true
     
     //window.webContents.openDevTools()
 
@@ -114,16 +105,4 @@ electron.app.on("activate", unbox(fun () ->
 electron.ipcMain.on("open-about-window", unbox(fun (event:IpcMainEvent) ->
     if aboutWindow.IsNone then
         createAboutWindow()
-)) |> ignore
-
-/// IPC communication from the renderer process to update block storage
-/// the communication is asynchronous and non-blocking
-electron.ipcMain.on("updateBlockSorage", unbox(fun (event, args) ->
-    blockStorage <- updateBlockStorage args blockStorage
-)) |> ignore
-
-/// IPC communication from the renderer process to update the connection storage
-/// the communication is asynchronous and non-blocking
-electron.ipcMain.on("updateConnectionStirage", unbox(fun (event, args) ->
-    connectionStorage <- updateConnectionStorage args connectionStorage
 )) |> ignore

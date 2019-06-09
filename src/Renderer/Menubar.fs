@@ -164,7 +164,7 @@ let fileSubmenu =
 
         ({  clickData = Option.None;
             labelData = Some "Preference";
-            acceleratorData = Some "CmdOrCtrl + S"; 
+            acceleratorData = Some "CmdOrCtrl + P"; 
             roleData = Option.None },
             defaultMenuSetupOptional);
      

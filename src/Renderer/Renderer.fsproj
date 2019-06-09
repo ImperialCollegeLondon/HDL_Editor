@@ -7,6 +7,9 @@
     <Compile Remove="Html.fs" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BlockLogic.fs" />
+    <Compile Include="CanvasModel.fs" />
+    <Compile Include="Ref.fs" />
     <Compile Include="JSLibInterface.fs" />
     <Compile Include="HTMLUtilities.fs" />
     <Compile Include="Jointjs.fs" />

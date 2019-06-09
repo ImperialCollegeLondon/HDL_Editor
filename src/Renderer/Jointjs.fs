@@ -102,7 +102,7 @@ let canvasInit (paneName:string) =
     let canvas : HTMLElement = document.getElementById (paneName + "-canvas")
 
     /// create the paper settings
-    let paperSettings = generatePaperSettings canvas graph 1200 700 10 true "rgba(0, 0, 0, 0)"
+    let paperSettings = generatePaperSettings canvas graph 1800 1000 10 true "rgba(0, 0, 0, 0)"
 
     /// initialize the paer using the paperSettings
     let paper = jointJSCreator.PaperInit paperSettings   
