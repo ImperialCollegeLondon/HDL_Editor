@@ -28,8 +28,13 @@ let inputPortInit () =
     let inputPortBlock = blockWithPortInit ()
     inputPortBlock?set("inPorts", [||])
     inputPortBlock?set("outPorts", [|"out"|])
-    inputPortBlock?attr(".label/text", "In")
-
+    inputPortBlock?attr(".label/text", "In")   
+        
+    let radius = createObj[
+                    "r" ==> 5
+                 ]
+    inputPortBlock?portProp("out", "attrs/circle", radius)
+    console.log(inputPortBlock)
     inputPortBlock
     |> jointJSCreator.Resize 60 40
 
@@ -41,6 +46,11 @@ let outputPortInit () =
     outputPort?set("outPorts",[||])
     outputPort?attr(".label/text", "Out")
 
+    let radius = createObj[
+        "r" ==> 5
+     ]
+    outputPort?portProp("in", "attrs/circle", radius)
+
     outputPort 
     |> jointJSCreator.Resize 60 40    
 
@@ -51,16 +61,28 @@ let logicElementInit () =
     logicElement?set("outPorts",[|"out"|])
     logicElement?attr(".label/text", "LE")
     
+    let radius = createObj[
+        "r" ==> 5
+     ]
+    logicElement?portProp("in", "attrs/circle", radius)
+    logicElement?portProp("out", "attrs/circle", radius)
+
     logicElement 
     |> jointJSCreator.Resize 60 40     
  
 let registerInit () = 
-    let logicElement = blockWithPortInit ()
-    logicElement?set("inPorts", [|"in"|])
-    logicElement?set("outPorts",[|"out"|])
-    logicElement?attr(".label/text", "Reg")
+    let register = blockWithPortInit ()
+    register?set("inPorts", [|"in"|])
+    register?set("outPorts",[|"out"|])
+    register?attr(".label/text", "Reg")
     
-    logicElement 
+    let radius = createObj[
+        "r" ==> 5
+     ]
+    register?portProp("in", "attrs/circle", radius)
+    register?portProp("out", "attrs/circle", radius)
+
+    register 
     |> jointJSCreator.Resize 60 40     
  
 /// reset the coloring of the unselected elements

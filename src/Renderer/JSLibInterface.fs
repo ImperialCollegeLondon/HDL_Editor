@@ -18,6 +18,9 @@ let joint : obj = importAll "jointjs"
 type PaperBackgroundColor = 
     abstract color: string option with get, set
 
+type SnapRadius = 
+    abstract radius: int option with get, set
+
 type PaperSettings = 
     abstract el: HTMLElement option with get, set
     abstract model: obj option with get, set
@@ -26,6 +29,7 @@ type PaperSettings =
     abstract gridSize: int option with get, set
     abstract drawGrid: bool option with get, set
     abstract background: PaperBackgroundColor option with get, set
+    abstract snapLinks: SnapRadius option with get, set
 
 /// generate the PaperSettings using parameters of different types
 let generatePaperSettings el model width height gridSize drawGrid backgroundColor =
@@ -40,6 +44,11 @@ let generatePaperSettings el model width height gridSize drawGrid backgroundColo
     paperSettings.gridSize <- Some gridSize
     paperSettings.drawGrid <- Some drawGrid
     paperSettings.background <- Some paperBackgroundColor
+    
+    let snapLinkSettings = createEmpty<SnapRadius>
+    snapLinkSettings.radius <- Some 15
+
+    paperSettings.snapLinks <- Some snapLinkSettings
 
     paperSettings
 
