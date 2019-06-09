@@ -34,7 +34,7 @@ let inputPortInit () =
                     "r" ==> 5
                  ]
     inputPortBlock?portProp("out", "attrs/circle", radius)
-    console.log(inputPortBlock)
+    
     inputPortBlock
     |> jointJSCreator.Resize 60 40
 
@@ -105,6 +105,10 @@ let canvasInit (paneName:string) =
     /// the reference to the model that is being operated on
     let mutable modelRef:obj = createObj[]                 
     
+    /// the dimensions of the paper (the canvas)
+    let mutable canvasXDimension:int = 1800
+    let mutable canvasYDimension:int = 1000
+
     /// initialize the graoh
     let graph = jointJSCreator.GraphInit ()
     
@@ -112,10 +116,17 @@ let canvasInit (paneName:string) =
     let canvas : HTMLElement = document.getElementById (paneName + "-canvas")
 
     /// create the paper settings
-    let paperSettings = generatePaperSettings canvas graph 1800 1000 10 true "rgba(0, 0, 0, 0)"
+    let paperSettings = generatePaperSettings canvas graph canvasXDimension canvasYDimension 10 true "rgba(0, 0, 0, 0)"
 
     /// initialize the paer using the paperSettings
-    let paper = jointJSCreator.PaperInit paperSettings   
+    let paper = jointJSCreator.PaperInit paperSettings
+    let routerSetting = createObj[
+                            "name" ==> "manhattan"
+                            "args" ==> createObj[
+                                          "padding" ==> 10
+                                       ]
+                        ]
+    paper?options?defaultRouter <- routerSetting
     
     /// bind event listener to the add bock buttons
     fun e -> activeBlockType <- Some InputPort
@@ -168,11 +179,25 @@ let canvasInit (paneName:string) =
                        setHTMLElementValue InputBox (paneName + "-positionY") (((model?get("position")?y |> int)/10) |> string)
     |> paperOnFunction paper "cell:pointerdblclick"
 
+    /// function to resize the paper (canvas)
+    let resizeCanvas x y = 
+        match x > canvasXDimension-100, y > canvasYDimension-100 with
+        | true, _ | _, true -> paper?setDimensions(x + 200, y + 200)
+                               canvasXDimension <- x + 200
+                               canvasYDimension <- y + 200
+        | _, _ -> ()
+
     fun args -> resetAllSelected paper 
                 setHTMLElementValue InputBox (paneName + "-positionX") ""                 
                 setHTMLElementValue InputBox (paneName + "-positionY") ""
                 args?originalEvent?stopPropagation()
-                let ctrlKeyHold:bool = args?ctrlKey
+
+                let xCoordinate = (args?offsetX - (args?offsetX)%10)
+                let yCoordinate = (args?offsetY - (args?offsetY)%10)
+
+                resizeCanvas xCoordinate yCoordinate 
+                
+                let ctrlKeyHold:bool = args?ctrlKey                
                 match ctrlKeyHold with
                 | true -> scale <- 1.0
                           paper?scale(scale)
@@ -180,7 +205,7 @@ let canvasInit (paneName:string) =
                            paper?scale(scale)
                            match activeBlockType with
                            | Some InputPort -> inputPortInit ()                                                          
-                                               |> jointJSCreator.Position (args?offsetX - (args?offsetX)%10) (args?offsetY - (args?offsetY)%10)
+                                               |> jointJSCreator.Position xCoordinate yCoordinate
                                                |> jointJSCreator.AttrBySelector "body/cursor" "pointer"
                                                |> jointJSCreator.AttrBySelector "rect/cursor" "pointer"
                                                |> jointJSCreator.AttrBySelector ".label/cursor" "pointer"
@@ -188,7 +213,7 @@ let canvasInit (paneName:string) =
                                                |> jointJSCreator.AddTo graph
                                                |> ignore 
                            | Some OutputPort -> outputPortInit ()
-                                                |> jointJSCreator.Position (args?offsetX - (args?offsetX)%10) (args?offsetY - (args?offsetY)%10)
+                                                |> jointJSCreator.Position xCoordinate yCoordinate
                                                 |> jointJSCreator.AttrBySelector "body/cursor" "pointer"
                                                 |> jointJSCreator.AttrBySelector "rect/cursor" "pointer"
                                                 |> jointJSCreator.AttrBySelector ".label/cursor" "pointer"
@@ -196,7 +221,7 @@ let canvasInit (paneName:string) =
                                                 |> jointJSCreator.AddTo graph
                                                 |> ignore
                            | Some LogicElement -> logicElementInit ()
-                                                  |> jointJSCreator.Position (args?offsetX - (args?offsetX)%10) (args?offsetY - (args?offsetY)%10)
+                                                  |> jointJSCreator.Position xCoordinate yCoordinate
                                                   |> jointJSCreator.AttrBySelector "body/cursor" "pointer"
                                                   |> jointJSCreator.AttrBySelector "rect/cursor" "pointer"
                                                   |> jointJSCreator.AttrBySelector ".label/cursor" "pointer"
@@ -204,7 +229,7 @@ let canvasInit (paneName:string) =
                                                   |> jointJSCreator.AddTo graph
                                                   |> ignore
                            | Some Register -> registerInit ()
-                                              |> jointJSCreator.Position (args?offsetX - (args?offsetX)%10) (args?offsetY - (args?offsetY)%10)
+                                              |> jointJSCreator.Position xCoordinate yCoordinate
                                               |> jointJSCreator.AttrBySelector "body/cursor" "pointer"
                                               |> jointJSCreator.AttrBySelector "rect/cursor" "pointer"
                                               |> jointJSCreator.AttrBySelector ".label/cursor" "pointer"
