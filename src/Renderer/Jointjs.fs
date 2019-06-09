@@ -17,70 +17,58 @@ type BlockType =
     | InputPort
     | OutputPort
     | LogicElement
+    | Register
+
+/// initialize rect that has ports for connections to other blocks
+let blockWithPortInit () =     
+    createNew joint?shapes?devs?Model ()    
 
 /// create input blocks
-let inputPortInit () = 
-    let rect = jointJSCreator.RectangleInit ()    
-    let rectangleAttr = generateRectangleAttr "white" "InputPort" "Black" "middle" "middle"
+let inputPortInit () =
+    let inputPortBlock = blockWithPortInit ()
+    inputPortBlock?set("inPorts", [||])
+    inputPortBlock?set("outPorts", [|"out"|])
+    inputPortBlock?attr(".label/text", "In")
 
-    rect 
-    |> jointJSCreator.Resize 100 40 
-    |> jointJSCreator.Attr rectangleAttr
+    inputPortBlock
+    |> jointJSCreator.Resize 60 40
+
 
 /// create output blocks
 let outputPortInit () = 
-    let rect = jointJSCreator.RectangleInit ()    
-    let rectangleAttr = generateRectangleAttr "white" "OutputPort" "Black" "middle" "middle"
+    let outputPort = blockWithPortInit ()
+    outputPort?set("inPorts", [|"in"|])
+    outputPort?set("outPorts",[||])
+    outputPort?attr(".label/text", "Out")
 
-    rect 
-    |> jointJSCreator.Resize 100 40 
-    |> jointJSCreator.Attr rectangleAttr
+    outputPort 
+    |> jointJSCreator.Resize 60 40    
 
 /// create logic element blocks
 let logicElementInit () = 
-    let rect = jointJSCreator.RectangleInit ()
-        
-    let rectangleAttr = generateRectangleAttr "white" "LE" "Black" "middle" "middle"
+    let logicElement = blockWithPortInit ()
+    logicElement?set("inPorts", [|"in"|])
+    logicElement?set("outPorts",[|"out"|])
+    logicElement?attr(".label/text", "LE")
     
-    rect 
-    |> jointJSCreator.Resize 100 40 
-    |> jointJSCreator.Attr rectangleAttr
+    logicElement 
+    |> jointJSCreator.Resize 60 40     
+ 
+let registerInit () = 
+    let logicElement = blockWithPortInit ()
+    logicElement?set("inPorts", [|"in"|])
+    logicElement?set("outPorts",[|"out"|])
+    logicElement?attr(".label/text", "Reg")
     
-/// initialize rect that has ports for connections to other blocks
-let connectRectTest() =     
-
-    let ports = 
-        createNew[
-            "groups" ==> createObj[
-                            "in" ==> createObj[
-                                        "attrs" ==> createObj[
-                                                    ".port-body" ==> createObj[
-                                                                        "fill" ==> "#16A085"
-                                                                        ]
-                                                    ]
-                                     ]
-                            "out" ==> createObj[
-                                        "attrs" ==> createObj[
-                                                        ".port-body" ==> createObj[
-                                                                            "fill" ==> "#E74C3C"
-                                                                         ]
-                                                    ]
-                                      ]
-                         ]
-        ]
-        
-    let element = createNew joint?shapes?devs?Model ()
-    
-    element?set("inPorts", [|"newIn1"; "newIn2"; "newIn3"|])
-    element?set("outPorts", [|"newOut1"; "newOut2"|])
-    //element?set("ports", ports)
-    element?attr("label/text", "yes")
-
+    logicElement 
+    |> jointJSCreator.Resize 60 40     
+ 
 /// reset the coloring of the unselected elements
 let resetAllSelected paper = 
     let elements : obj array = paper?model?getElements()
     [0..elements.Length-1]
-    |> List.map (fun el -> (elements.[el])?attr("body/fill", "white")) 
+    |> List.map (fun el -> (elements.[el])?attr("body/fill", "white")
+                           (elements.[el])?attr("rect/fill", "white")) 
     |> ignore
 
 /// initialize the canvas
@@ -117,6 +105,9 @@ let canvasInit (paneName:string) =
     fun e -> activeBlockType <- Some LogicElement
     |> getElementBindEvent (paneName + "-logicElementAddButton") "click"
 
+    fun e -> activeBlockType <- Some Register
+    |> getElementBindEvent (paneName + "-registerAddButton") "click"
+
     fun e -> activeBlockType <- option.None
              setHTMLElementValue InputBox (paneName + "-positionX") ""                
              setHTMLElementValue InputBox (paneName + "-positionY") ""
@@ -144,6 +135,7 @@ let canvasInit (paneName:string) =
                        modelRef <- model
 
                        /// highlight the block selected
+                       model?attr("rect/fill", "orange")
                        model?attr("body/fill", "orange")
         
                        /// update the label in the GUI that shows the block type
@@ -152,7 +144,7 @@ let canvasInit (paneName:string) =
                        /// update the GUI to show the coordinates of the block
                        setHTMLElementValue InputBox (paneName + "-positionX") (((model?get("position")?x |> int)/10) |> string)
                        setHTMLElementValue InputBox (paneName + "-positionY") (((model?get("position")?y |> int)/10) |> string)
-    |> paperOnFunction paper "element:pointerdblclick"
+    |> paperOnFunction paper "cell:pointerdblclick"
 
     fun args -> resetAllSelected paper 
                 setHTMLElementValue InputBox (paneName + "-positionX") ""                 
@@ -165,25 +157,39 @@ let canvasInit (paneName:string) =
                 | false -> scale <- 1.0
                            paper?scale(scale)
                            match activeBlockType with
-                           | Some InputPort -> //let block = inputPortInit()                                                          
-                                               inputPortInit()                                                          
+                           | Some InputPort -> inputPortInit ()                                                          
                                                |> jointJSCreator.Position (args?offsetX - (args?offsetX)%10) (args?offsetY - (args?offsetY)%10)
                                                |> jointJSCreator.AttrBySelector "body/cursor" "pointer"
+                                               |> jointJSCreator.AttrBySelector "rect/cursor" "pointer"
+                                               |> jointJSCreator.AttrBySelector ".label/cursor" "pointer"
                                                |> jointJSCreator.AttrBySelector "label/cursor" "pointer"
                                                |> jointJSCreator.AddTo graph
                                                |> ignore 
-                           | Some OutputPort -> outputPortInit()
+                           | Some OutputPort -> outputPortInit ()
                                                 |> jointJSCreator.Position (args?offsetX - (args?offsetX)%10) (args?offsetY - (args?offsetY)%10)
                                                 |> jointJSCreator.AttrBySelector "body/cursor" "pointer"
+                                                |> jointJSCreator.AttrBySelector "rect/cursor" "pointer"
+                                                |> jointJSCreator.AttrBySelector ".label/cursor" "pointer"
                                                 |> jointJSCreator.AttrBySelector "label/cursor" "pointer"
                                                 |> jointJSCreator.AddTo graph
                                                 |> ignore
-                           | Some LogicElement -> logicElementInit()
+                           | Some LogicElement -> logicElementInit ()
                                                   |> jointJSCreator.Position (args?offsetX - (args?offsetX)%10) (args?offsetY - (args?offsetY)%10)
                                                   |> jointJSCreator.AttrBySelector "body/cursor" "pointer"
+                                                  |> jointJSCreator.AttrBySelector "rect/cursor" "pointer"
+                                                  |> jointJSCreator.AttrBySelector ".label/cursor" "pointer"
                                                   |> jointJSCreator.AttrBySelector "label/cursor" "pointer"
                                                   |> jointJSCreator.AddTo graph
                                                   |> ignore
+                           | Some Register -> registerInit ()
+                                              |> jointJSCreator.Position (args?offsetX - (args?offsetX)%10) (args?offsetY - (args?offsetY)%10)
+                                              |> jointJSCreator.AttrBySelector "body/cursor" "pointer"
+                                              |> jointJSCreator.AttrBySelector "rect/cursor" "pointer"
+                                              |> jointJSCreator.AttrBySelector ".label/cursor" "pointer"
+                                              |> jointJSCreator.AttrBySelector "label/cursor" "pointer"
+                                              |> jointJSCreator.AddTo graph
+                                              |> ignore
+
                            | option.None -> ()                                                                                         
     |> paperOnFunction paper "blank:pointerclick"
 

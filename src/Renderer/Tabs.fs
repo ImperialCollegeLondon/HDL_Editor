@@ -239,7 +239,7 @@ let createNewPaneWithButton () =
     newTabCloseButton.innerHTML <- "x"
     newTabCloseButton.className <- "tab-close-element"
     newTabCloseButton.id <- namePrefix + "-closeButton"                 
-
+    
     /// create the div element that contains both buttons created above
     let newTabDiv = document.createElement_div ()
     newTabDiv.id <- namePrefix + "-buttonDiv"
