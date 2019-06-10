@@ -128,6 +128,11 @@ let canvasInit (paneName:string) =
                         ]
     paper?options?defaultRouter <- routerSetting
     
+    /// force updating the model and the paper reference when the block diagram editor is firstly initialized
+    currentGraphModel <- Some graph
+    currentPaperModel <- Some paper
+    activeTabId <- Some paneName    
+
     /// bind event listener to the add bock buttons
     fun e -> activeBlockType <- Some InputPort
     |> getElementBindEvent (paneName + "-inputAddButton") "click" 
@@ -154,12 +159,22 @@ let canvasInit (paneName:string) =
               /// update the global reference
               currentGraphModel <- Some graph
               currentPaperModel <- Some paper
+              activeTabId <- Some paneName
     |> getElementBindEvent (paneName + "-updateInfoButton") "click"        
     
     let removeButtonFunction = fun e -> modelRef?remove()
                                         setHTMLElementValue InputBox (paneName + "-positionX") ""                 
                                         setHTMLElementValue InputBox (paneName + "-positionY") ""
     getElementBindEvent (paneName + "-deleteBlockButton") "click" removeButtonFunction    
+
+    /// force updating the model and the paper reference everytime the tab is clicked
+    /// also update the current active tab
+    let updateModelAndPaperReference = fun e -> /// update the global reference                                                
+                                                currentGraphModel <- Some graph
+                                                currentPaperModel <- Some paper
+                                                activeTabId <- Some paneName
+
+    getElementBindEvent (paneName + "-tabButton") "click" updateModelAndPaperReference
 
     /// set the response when double click on a block is detected in the canvas           
     fun elementView -> /// clear the highlightings of all the blocks
@@ -198,6 +213,7 @@ let canvasInit (paneName:string) =
         /// update the global reference
         currentGraphModel <- Some graph
         currentPaperModel <- Some paper
+        activeTabId <- Some paneName
 
     fun args -> resetAllSelected paper 
                 setHTMLElementValue InputBox (paneName + "-positionX") ""                 
@@ -254,6 +270,7 @@ let canvasInit (paneName:string) =
                 /// update the global reference
                 currentGraphModel <- Some graph
                 currentPaperModel <- Some paper
+                activeTabId <- Some paneName
     |> paperOnFunction paper "blank:pointerclick"
 
     fun args -> let ctrlKeyHold:bool = args?ctrlKey

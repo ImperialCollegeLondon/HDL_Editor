@@ -2,6 +2,7 @@ module Tabs
 
 open Fable.Core
 open Fable.Import.Browser
+open Ref
 open Jointjs
 open HTMLUtilities
 
@@ -267,7 +268,12 @@ let createNewPaneWithButton () =
     
     /// define the action when the remove-pane button is clicked
     let removeDivFunc = fun e -> removeDiv namePrefix
-    newTabCloseButton.addEventListener("click", U2.Case1 removeDivFunc, false)   
+    newTabCloseButton.addEventListener("click", U2.Case1 removeDivFunc, false)  
+    
+    /// after closing the tab, remove the reference to the global mutabl variables
+    currentGraphModel <- option.None
+    currentPaperModel <- option.None    
+    activeTabId <- option.None
     
     /// the div element that holds all the elements that are newly created
     let newDiv = blockDiagramEditorInit namePrefix
@@ -289,6 +295,8 @@ let createNewPaneWithButton () =
     |> getElementBindEvent (namePrefix + "-tabButton") "click"
 
     canvasInit namePrefix
+
+    activeTabId <- Some namePrefix
 
 /// the "+" button to add new tabs
 let newTabButtonInit () =    

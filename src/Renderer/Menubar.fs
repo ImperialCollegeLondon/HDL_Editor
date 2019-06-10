@@ -14,7 +14,30 @@ open System
 open Fable.Import.Browser
 open Ref
 open Fable.Import.Node
-open FSharp.Data
+
+/// check whether something is "undefined"
+[<Emit("typeof $0 == \"undefined\"")>]
+let checkUndefined target : bool = jsNative
+
+/// get the file name from the complete path that includes the file
+let getFileName (completePath:string) = 
+    match os.platform () with
+    | a when a = Base.NodeJS.Platform.Win32 -> let splitString = completePath.Split '\\'
+                                               let len = splitString |> Array.length
+                                               splitString.[len-1]
+    | b when b = Base.NodeJS.Platform.Darwin -> let splitString = completePath.Split '/'
+                                                let len = splitString |> Array.length
+                                                splitString.[len-1]
+    | c when c = Base.NodeJS.Platform.Linux  -> let splitString = completePath.Split '/'
+                                                let len = splitString |> Array.length
+                                                splitString.[len-1]
+    | _ -> failwithf "other platforms are currently not supported"
+
+/// update the tab name
+let updateTabName (name:string) = 
+    match activeTabId with
+        | Some id -> (document.getElementById (id + "-tabButton")).innerHTML <- name
+        | option.None -> ()
 
 /// to avoid code dulication
 /// only the fields that ofter differ from one and other menu items
@@ -128,9 +151,14 @@ let fileSubmenu =
 
         /// return the directory and the file name that is to be saved
         let fileSaveDialog = electron.remote.dialog.showSaveDialog (saveDialogOptions)
-
-        let errorHandler error = ()
-        fs.writeFile (fileSaveDialog, content, errorHandler)
+        
+        match fileSaveDialog with
+        | a when checkUndefined a <> true -> a
+                                             |> getFileName
+                                             |> updateTabName
+                                             let errorHandler error = ()
+                                             fs.writeFile (fileSaveDialog, content, errorHandler)
+        | _ -> ()
         
     let fileRead () = 
         let openDialogOptions = createEmpty<OpenDialogOptions>
@@ -140,11 +168,27 @@ let fileSubmenu =
 
         /// return the directory and the file name that is to be saved
         let fileOpenDialog = electron.remote.dialog.showOpenDialog (openDialogOptions)
-                
-        let errorHandler res error = 
-            printfn "%A, %A" res error
+        
+        match fileOpenDialog with
+        | a when checkUndefined a.[0] <> true -> a.[0]
+                                                 |> getFileName
+                                                 |> updateTabName
+                                                 let errorHandler (error:Base.NodeJS.ErrnoException option) (res:string)  = 
+                                                     printfn "error, %A" error 
+                                                     
+                                                     let graph = (JS.JSON.parse res)?graph |> JS.JSON.parse
+                                                     let paper = (JS.JSON.parse res)?paper |> JS.JSON.parse
 
-        fs.readFile (fileOpenDialog.[0], errorHandler)
+                                                     console.log("graph", graph)
+                                                     console.log("paper", paper)
+
+                                                 let readFileOptions = 
+                                                    createObj[
+                                                        "encoding" ==> "UTF8"
+                                                    ]
+
+                                                 fs.readFile (fileOpenDialog.[0], readFileOptions, errorHandler)                                                 
+        | _ -> ()
 
     let handlerCaster f = System.Func<MenuItem, BrowserWindow, unit> f |> Some
 

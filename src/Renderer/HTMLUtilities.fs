@@ -4,7 +4,6 @@
 module HTMLUtilities
 
 open Fable.Core
-open Fable.Import
 open Fable.Import.Browser
 
 
