@@ -93,7 +93,7 @@ let blockDiagramEditorInit (title:string) =
         button.style.height <- "94%"
         button.style.borderStyle <- "none"
         button.style.background <- "grey"
-        ///button.style.lineHeight <- "47%"
+        button.id <- title + "-resizeButton"        
 
         button
 
@@ -101,6 +101,7 @@ let blockDiagramEditorInit (title:string) =
         let infoPane = document.createElement_div ()
         infoPane.id <- title + "-infoPane"
         infoPane.className <- "info-pane"
+        infoPane.style.display <- "block"
 
         let blockConfigure = document.createElement_div ()
         blockConfigure.id <- title + "-blockConfigure"
@@ -283,6 +284,22 @@ let createNewPaneWithButton () =
     
     let rootContainer = document.getElementById "container"
     rootContainer.appendChild newDiv |> ignore
+
+    /// bind the function to the show or diaplay button that hides or shows the information pane
+    fun e -> let infoPaneDisplayStatus = (document.getElementById (namePrefix + "-infoPane")).style.width = "0%"                                         
+             match infoPaneDisplayStatus with
+             | true -> (document.getElementById (namePrefix + "-infoPane")).style.width <- "21%"
+                       (document.getElementById (namePrefix + "-infoPane")).style.left <- "78%"
+                       (document.getElementById (namePrefix + "-resizeButton")).style.left <- "77%"
+                       (document.getElementById (namePrefix + "-resizeButton")).innerHTML <- ">"
+                       (document.getElementById (namePrefix + "-workingPane")).style.width <- "77%"
+             | false -> (document.getElementById (namePrefix + "-infoPane")).style.width <- "0%"
+                        (document.getElementById (namePrefix + "-infoPane")).style.left <- "99%"
+                        (document.getElementById (namePrefix + "-resizeButton")).style.left <- "98%"
+                        (document.getElementById (namePrefix + "-resizeButton")).innerHTML <- "<"
+                        (document.getElementById (namePrefix + "-workingPane")).style.width <- "98%"
+    |> getElementBindEvent (namePrefix + "-resizeButton") "click"    
+
 
     /// increase the pane counter when creating new panes
     tabCounter <- tabCounter + 1
