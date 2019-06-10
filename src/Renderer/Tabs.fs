@@ -83,6 +83,19 @@ let blockDiagramEditorInit (title:string) =
         
         workingPane
 
+    let infoPaneCloseButtonInit = 
+        let button = document.createElement_button ()
+        button.innerHTML <- ">"
+        button.style.width <- "1%"
+        button.style.position <- "absolute"
+        button.style.left <- "77%"
+        button.style.height <- "94%"
+        button.style.borderStyle <- "none"
+        button.style.background <- "grey"
+        ///button.style.lineHeight <- "47%"
+
+        button
+
     let infoPaneInit =        
         let infoPane = document.createElement_div ()
         infoPane.id <- title + "-infoPane"
@@ -219,6 +232,7 @@ let blockDiagramEditorInit (title:string) =
         infoPane
 
     root.appendChild workingPaneInit |> ignore
+    root.appendChild infoPaneCloseButtonInit |> ignore
     root.appendChild infoPaneInit |> ignore  
     root
 

@@ -50,20 +50,21 @@ html, body {
    position: absolute;
    align: right;
    left: 78%;
-   width: 22%;
+   width: 21%;
    height: 94%;
    float: right;
    text-align: left;
    overflow-x: auto;
    overflow-y: auto;
+   padding-left: 1%;
 }
 
 .working-pane {
    position: absolute;
-   width: 78%;
+   width: 77%;
    height: 94%;
-   overflow-x: auto;
-   overflow-y: auto;
+   overflow-x: scroll;
+   overflow-y: scroll;
    float: left;
 }
 
