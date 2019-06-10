@@ -230,7 +230,7 @@ let createNewPaneWithButton () =
     /// create the button with the text
     /// that repesents the pane
     let newTab = document.createElement_button ()     
-    newTab.innerHTML <- "pane" + string tabCounter 
+    newTab.innerHTML <- "new" + string tabCounter + ".json"
     newTab.className <- "tab-element"
     newTab.id <- namePrefix + "-tabButton"
 

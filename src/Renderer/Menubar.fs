@@ -99,11 +99,27 @@ let fileSubmenu =
     let fileSave () =         
         let graph = match currentGraphModel with
                     | Some model -> model?set("graphCustomProperty", true)
-                                    let str:string = model?toJSON()
-                                    //Thoth.Json.Decode.fromString (Thoth.Json.Decode.field "attributes" string) str  
-                                    console.log(str)
-                                    str?cells
-                    | option.None -> "no data" //  Thoth.Json (createObj["graph" ==> "none"])
+                                    JS.JSON.stringify (model?toJSON())                                                                        
+                    | option.None -> "no graph data"
+
+        let paper = match currentPaperModel with
+                    | Some model -> createObj[
+                                        "background" ==> model?options?background
+                                        "defaultRouter" ==> model?options?defaultRounter
+                                        "drawGrid" ==> model?options?drawGrid
+                                        "gridSize" ==> model?options?gridSize
+                                        "width" ==> model?options?width 
+                                        "height" ==> model?options?height 
+                                        "snapLinks" ==> model?options?snapLinks
+                                    ]
+                                    |> JS.JSON.stringify                                    
+                    | option.None -> "no paper data"
+        
+        let content = createObj[
+                         "graph" ==> graph
+                         "paper" ==> paper
+                      ]
+                      |> JS.JSON.stringify
         
         let saveDialogOptions = createEmpty<SaveDialogOptions>
         saveDialogOptions.title <- Some "Save file to"
@@ -114,7 +130,7 @@ let fileSubmenu =
         let fileSaveDialog = electron.remote.dialog.showSaveDialog (saveDialogOptions)
 
         let errorHandler error = ()
-        fs.writeFile (fileSaveDialog, graph, errorHandler)
+        fs.writeFile (fileSaveDialog, content, errorHandler)
         
     let fileRead () = 
         let openDialogOptions = createEmpty<OpenDialogOptions>
