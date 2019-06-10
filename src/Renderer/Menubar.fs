@@ -11,7 +11,10 @@ open Fable.Core.JsInterop
 open Fable.Import
 open Fable.Import.Electron
 open System
+open Fable.Import.Browser
+open Ref
 open Fable.Import.Node
+open FSharp.Data
 
 /// to avoid code dulication
 /// only the fields that ofter differ from one and other menu items
@@ -40,23 +43,23 @@ type MenuSetupOptional =
 /// a default settings for the optional part of a menu item configuration
 let defaultMenuSetupOptional = 
     {
-      typeData = Option.None; 
-      sublabelData = Option.None; 
-      iconData = Option.None;
+      typeData = option.None; 
+      sublabelData = option.None; 
+      iconData = option.None;
       enabledData = Some true;
       visibleData = Some true;
       checkedData = Some false;
-      idData = Option.None;
-      positionData = Option.None;
-      submenuData = Option.None;
+      idData = option.None;
+      positionData = option.None;
+      submenuData = option.None;
     }
 
 /// the bar in a drop down menu that separates the menu items
 let menuSeparator = 
-    ({  clickData = Option.None;
-        labelData = Option.None;
-        acceleratorData = Option.None;
-        roleData = Option.None},
+    ({  clickData = option.None;
+        labelData = option.None;
+        acceleratorData = option.None;
+        roleData = option.None},
         {defaultMenuSetupOptional with typeData = MenuItemType.Separator |> Some})
 
 /// build the one menu item from a tuple of parameters
@@ -93,25 +96,31 @@ let replaceSubmenuData submenu =
 ///                                                                      ///
 ////////////////////////////////////////////////////////////////////////////
 let fileSubmenu = 
-    let fileSave () = 
-        let content = "Something to save"
-
+    let fileSave () =         
+        let graph = match currentGraphModel with
+                    | Some model -> model?set("graphCustomProperty", true)
+                                    let str:string = model?toJSON()
+                                    //Thoth.Json.Decode.fromString (Thoth.Json.Decode.field "attributes" string) str  
+                                    console.log(str)
+                                    str?cells
+                    | option.None -> "no data" //  Thoth.Json (createObj["graph" ==> "none"])
+        
         let saveDialogOptions = createEmpty<SaveDialogOptions>
         saveDialogOptions.title <- Some "Save file to"
-        saveDialogOptions.defaultPath <- Some (Node.Exports.path.join(Node.Globals.__dirname, "../new.json"))
-        saveDialogOptions.filters <- Option.None
+        saveDialogOptions.defaultPath <- Some ("../new.json")                                         
+        saveDialogOptions.filters <- option.None
 
         /// return the directory and the file name that is to be saved
         let fileSaveDialog = electron.remote.dialog.showSaveDialog (saveDialogOptions)
 
         let errorHandler error = ()
-        fs.writeFile (fileSaveDialog, content, errorHandler)
+        fs.writeFile (fileSaveDialog, graph, errorHandler)
         
     let fileRead () = 
         let openDialogOptions = createEmpty<OpenDialogOptions>
         openDialogOptions.title <- Some "Open file from"
         openDialogOptions.defaultPath <- option.None
-        openDialogOptions.filters <- Option.None
+        openDialogOptions.filters <- option.None
 
         /// return the directory and the file name that is to be saved
         let fileOpenDialog = electron.remote.dialog.showOpenDialog (openDialogOptions)
@@ -128,10 +137,10 @@ let fileSubmenu =
     let clickFunctionRead = handlerCaster (fun  _ _ -> fileRead())
 
     [
-        ({  clickData = Option.None;
+        ({  clickData = option.None;
             labelData = Some "New";
             acceleratorData = Some "CmdOrCtrl + N"; 
-            roleData = Option.None },
+            roleData = option.None },
             defaultMenuSetupOptional);
 
         menuSeparator;
@@ -139,36 +148,36 @@ let fileSubmenu =
         ({  clickData = clickFunctionSave;
             labelData = Some "Save";
             acceleratorData = Some "CmdOrCtrl + S"; 
-            roleData = Option.None },
+            roleData = option.None },
             defaultMenuSetupOptional);
 
-        ({  clickData = Option.None;
+        ({  clickData = option.None;
             labelData = Some "Save As";
             acceleratorData = Some "CmdOrCtrl + Shift + S"; 
-            roleData = Option.None },
+            roleData = option.None },
             defaultMenuSetupOptional);
 
         ({  clickData = clickFunctionRead; 
             labelData = Some "Open";
             acceleratorData = Some "CmdOrCtrl + O"; 
-            roleData = Option.None },
+            roleData = option.None },
             defaultMenuSetupOptional);
       
-        ({  clickData = Option.None;
+        ({  clickData = option.None;
             labelData = Some "Close";
             acceleratorData = Some "CmdOrCtrl + W"; 
-            roleData = Option.None },
+            roleData = option.None },
             defaultMenuSetupOptional);
 
         menuSeparator;
 
-        ({  clickData = Option.None;
+        ({  clickData = option.None;
             labelData = Some "Preference";
             acceleratorData = Some "CmdOrCtrl + P"; 
-            roleData = Option.None },
+            roleData = option.None },
             defaultMenuSetupOptional);
      
-        ({  clickData = Option.None;
+        ({  clickData = option.None;
             labelData = Some "Exit";
             acceleratorData = Some "CmdOrCtrl + Q"; 
             roleData = MenuItemRole.Quit |> U2.Case1 |> Some },
@@ -176,21 +185,21 @@ let fileSubmenu =
     ]
 
 let fileMenu =     
-    ({ clickData = Option.None;
+    ({ clickData = option.None;
       labelData = Some "File";
-      acceleratorData = Option.None; 
-      roleData = Option.None },
+      acceleratorData = option.None; 
+      roleData = option.None },
       replaceSubmenuData fileSubmenu)
 
 let editSubmenu = 
     [
-        ({  clickData = Option.None;
+        ({  clickData = option.None;
             labelData = Some "Undo";
             acceleratorData = Some "CmdOrCtrl + Z"; 
             roleData = MenuItemRole.Undo |> U2.Case1 |> Some },
             defaultMenuSetupOptional);
 
-        ({  clickData = Option.None;
+        ({  clickData = option.None;
             labelData = Some "Redo";
             acceleratorData = Some "CmdOrCtrl + Y"; 
             roleData = MenuItemRole.Redo |> U2.Case1 |> Some },
@@ -198,19 +207,19 @@ let editSubmenu =
 
         menuSeparator;
 
-        ({  clickData = Option.None;
+        ({  clickData = option.None;
             labelData = Some "Cut";
             acceleratorData = Some "CmdOrCtrl + X"; 
             roleData = MenuItemRole.Cut |> U2.Case1 |> Some },
             defaultMenuSetupOptional);
 
-        ({  clickData = Option.None; 
+        ({  clickData = option.None; 
             labelData = Some "Copy";
             acceleratorData = Some "CmdOrCtrl + C"; 
             roleData = MenuItemRole.Copy |> U2.Case1 |> Some },
             defaultMenuSetupOptional);
       
-        ({  clickData = Option.None;
+        ({  clickData = option.None;
             labelData = Some "Paste";
             acceleratorData = Some "CmdOrCtrl + V"; 
             roleData = MenuItemRole.Paste |> U2.Case1 |> Some },
@@ -218,7 +227,7 @@ let editSubmenu =
         
         menuSeparator;
 
-        ({  clickData = Option.None;
+        ({  clickData = option.None;
             labelData = Some "Select All";
             acceleratorData = Some "CmdOrCtrl + A"; 
             roleData = MenuItemRole.Selectall |> U2.Case1 |> Some },
@@ -226,15 +235,15 @@ let editSubmenu =
     ]
 
 let editMenu =     
-    ({ clickData = Option.None;
+    ({ clickData = option.None;
       labelData = Some "Edit";
-      acceleratorData = Option.None; 
-      roleData = Option.None },
+      acceleratorData = option.None; 
+      roleData = option.None },
       replaceSubmenuData editSubmenu)
 
 let viewSubmenu = 
     [
-        ({  clickData = Option.None;
+        ({  clickData = option.None;
             labelData = Some "Toggle Full Screen";
             acceleratorData = Some "F11"; 
             roleData = MenuItemRole.Togglefullscreen |> U2.Case1 |> Some },
@@ -242,19 +251,19 @@ let viewSubmenu =
 
         menuSeparator;
 
-        ({  clickData = Option.None;
+        ({  clickData = option.None;
             labelData = Some "Zoom In";
             acceleratorData = Some "CmdOrCtrl + Shift + ="; 
             roleData = MenuItemRole.Zoomin |> U2.Case1 |> Some },
             defaultMenuSetupOptional);
 
-        ({  clickData = Option.None;
+        ({  clickData = option.None;
             labelData = Some "Zoom Out";
             acceleratorData = Some "CmdOrCtrl + Shift + -"; 
             roleData = MenuItemRole.Zoomout |> U2.Case1 |> Some },
             defaultMenuSetupOptional);
 
-        ({  clickData = Option.None; 
+        ({  clickData = option.None; 
             labelData = Some "Reset Zoom";
             acceleratorData = Some "CmdOrCtrl + Shift + 0"; 
             roleData = MenuItemRole.Resetzoom |> U2.Case1 |> Some },
@@ -262,7 +271,7 @@ let viewSubmenu =
 
         menuSeparator;
 
-        ({  clickData = Option.None;
+        ({  clickData = option.None;
             labelData = Some "Toggle Dev Tool";
             acceleratorData = Some "CmdOrCtrl + Shift + I"; 
             roleData = MenuItemRole.Toggledevtools |> U2.Case1 |> Some },
@@ -270,10 +279,10 @@ let viewSubmenu =
     ]
 
 let viewMenu =     
-    ({ clickData = Option.None;
+    ({ clickData = option.None;
       labelData = Some "View";
-      acceleratorData = Option.None; 
-      roleData = Option.None },
+      acceleratorData = option.None; 
+      roleData = option.None },
       replaceSubmenuData viewSubmenu)
  
 let createAboutWindow () = 
@@ -285,24 +294,24 @@ let helpSubmenu =
     [   
         ({  clickData = option.None;
             labelData = Some "Online Documentation";
-            acceleratorData = Option.None; 
-            roleData = Option.None },
+            acceleratorData = option.None; 
+            roleData = option.None },
             defaultMenuSetupOptional);
         
         menuSeparator;
 
         ({  clickData = clickFunction;
             labelData = Some "About";
-            acceleratorData = Option.None; 
-            roleData = Option.None },
+            acceleratorData = option.None; 
+            roleData = option.None },
             {defaultMenuSetupOptional with idData = Some "aboutMenuItem"})
     ]
 
 let helpMenu= 
-    ({  clickData = Option.None;
+    ({  clickData = option.None;
         labelData = Some "Help";
-        acceleratorData = Option.None; 
-        roleData = Option.None },
+        acceleratorData = option.None; 
+        roleData = option.None },
         replaceSubmenuData helpSubmenu)
 
 let popupMenuInit () =

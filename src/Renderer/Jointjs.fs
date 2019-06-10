@@ -1,8 +1,8 @@
 module Jointjs
 
-open Fable.Core
 open Fable.Core.JsInterop
 open Fable.Import.Browser
+open Ref
 open JSLibInterface
 open HTMLUtilities
 
@@ -149,7 +149,11 @@ let canvasInit (paneName:string) =
     fun e ->  let position = (getValueFromElement InputBox (paneName + "-positionX") |> int, 
                               getValueFromElement InputBox (paneName + "-positionY") |> int)
                              |> generateBlockCoordinate                                                 
-              modelRef?set("position", position)    
+              modelRef?set("position", position)
+
+              /// update the global reference
+              currentGraphModel <- Some graph
+              currentPaperModel <- Some paper
     |> getElementBindEvent (paneName + "-updateInfoButton") "click"        
     
     let removeButtonFunction = fun e -> modelRef?remove()
@@ -190,6 +194,10 @@ let canvasInit (paneName:string) =
         | false, true -> paper?setDimensions(canvasXDimension, y + 200)
                          canvasYDimension <- y + 200
         | _, _ -> ()
+
+        /// update the global reference
+        currentGraphModel <- Some graph
+        currentPaperModel <- Some paper
 
     fun args -> resetAllSelected paper 
                 setHTMLElementValue InputBox (paneName + "-positionX") ""                 
@@ -241,7 +249,11 @@ let canvasInit (paneName:string) =
                                               |> jointJSCreator.AddTo graph
                                               |> ignore
 
-                           | option.None -> ()                                                                                         
+                           | option.None -> ()   
+                           
+                /// update the global reference
+                currentGraphModel <- Some graph
+                currentPaperModel <- Some paper
     |> paperOnFunction paper "blank:pointerclick"
 
     fun args -> let ctrlKeyHold:bool = args?ctrlKey
