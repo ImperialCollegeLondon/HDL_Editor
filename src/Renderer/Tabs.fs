@@ -116,7 +116,7 @@ let blockDiagramEditorInit (title:string) =
         blockConfigure.appendChild blockNameLabel |> ignore
 
         let inputElementName = document.createElement_input ()
-        inputElementName.id <- title + "element-name-field"
+        inputElementName.id <- title + "-blockName"
         inputElementName.``type`` <- "text"
         inputElementName.name <- ""
         inputElementName.value <- ""
@@ -189,7 +189,7 @@ let blockDiagramEditorInit (title:string) =
         let deleteBlockButton = document.createElement_button ()
         deleteBlockButton.id <- title + "-deleteBlockButton"
         deleteBlockButton.``type`` <- "button"
-        deleteBlockButton.innerHTML <- "Delete Block and all connections"
+        deleteBlockButton.innerHTML <- "Delete Block and connections"
         blockConfigure.appendChild deleteBlockButton |> ignore
 
         blockConfigure.appendChild br

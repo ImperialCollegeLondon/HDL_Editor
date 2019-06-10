@@ -5,6 +5,7 @@ open Fable.Import.Browser
 open Ref
 open JSLibInterface
 open HTMLUtilities
+open System
 
 let joint : obj = importAll "jointjs"
 
@@ -28,7 +29,9 @@ let inputPortInit () =
     let inputPortBlock = blockWithPortInit ()
     inputPortBlock?set("inPorts", [||])
     inputPortBlock?set("outPorts", [|"out"|])
-    inputPortBlock?attr(".label/text", "In")   
+    inputPortBlock?attr(".label/text", "In-block")
+    inputPortBlock?attr(".label/fontSize", 14)
+    inputPortBlock?attr(".label/textVerticalAnchor", "middle")
         
     let radius = createObj[
                     "r" ==> 5
@@ -36,7 +39,7 @@ let inputPortInit () =
     inputPortBlock?portProp("out", "attrs/circle", radius)
     
     inputPortBlock
-    |> jointJSCreator.Resize 60 40
+    |> jointJSCreator.Resize 90 20
 
 
 /// create output blocks
@@ -44,7 +47,9 @@ let outputPortInit () =
     let outputPort = blockWithPortInit ()
     outputPort?set("inPorts", [|"in"|])
     outputPort?set("outPorts",[||])
-    outputPort?attr(".label/text", "Out")
+    outputPort?attr(".label/text", "Out-block")
+    outputPort?attr(".label/fontSize", 14)
+    outputPort?attr(".label/textVerticalAnchor", "middle")
 
     let radius = createObj[
         "r" ==> 5
@@ -52,14 +57,16 @@ let outputPortInit () =
     outputPort?portProp("in", "attrs/circle", radius)
 
     outputPort 
-    |> jointJSCreator.Resize 60 40    
+    |> jointJSCreator.Resize 90 20    
 
 /// create logic element blocks
 let logicElementInit () = 
     let logicElement = blockWithPortInit ()
     logicElement?set("inPorts", [|"in"|])
     logicElement?set("outPorts",[|"out"|])
-    logicElement?attr(".label/text", "LE")
+    logicElement?attr(".label/text", "LE-block")
+    logicElement?attr(".label/fontSize", 14)
+    logicElement?attr(".label/textVerticalAnchor", "middle")
     
     let radius = createObj[
         "r" ==> 5
@@ -68,13 +75,16 @@ let logicElementInit () =
     logicElement?portProp("out", "attrs/circle", radius)
 
     logicElement 
-    |> jointJSCreator.Resize 60 40     
+    |> jointJSCreator.Resize 90 20     
  
 let registerInit () = 
     let register = blockWithPortInit ()
     register?set("inPorts", [|"in"|])
     register?set("outPorts",[|"out"|])
-    register?attr(".label/text", "Reg")
+    register?attr(".label/text", "Reg-block")
+    register?attr(".label/fontSize", 14)
+    register?attr(".label/textVerticalAnchor", "middle")
+
     
     let radius = createObj[
         "r" ==> 5
@@ -83,7 +93,7 @@ let registerInit () =
     register?portProp("out", "attrs/circle", radius)
 
     register 
-    |> jointJSCreator.Resize 60 40     
+    |> jointJSCreator.Resize 90 20     
  
 /// reset the coloring of the unselected elements
 let resetAllSelected paper = 
@@ -107,7 +117,7 @@ let canvasInit (paneName:string) =
     
     /// the dimensions of the paper (the canvas)
     let mutable canvasXDimension:int = 1800
-    let mutable canvasYDimension:int = 1000
+    let mutable canvasYDimension:int = 1000    
 
     /// initialize the graoh
     let graph = jointJSCreator.GraphInit ()
@@ -151,11 +161,17 @@ let canvasInit (paneName:string) =
              setHTMLElementValue InputBox (paneName + "-positionY") ""
     |> getElementBindEvent (paneName + "-clearSelectionButton") "click" 
                                     
-    fun e ->  let position = (getValueFromElement InputBox (paneName + "-positionX") |> int, 
-                              getValueFromElement InputBox (paneName + "-positionY") |> int)
+    fun e ->  let position = ((getValueFromElement InputBox (paneName + "-positionX") |> int)*10, 
+                              (getValueFromElement InputBox (paneName + "-positionY") |> int)*10)
                              |> generateBlockCoordinate                                                 
               modelRef?set("position", position)
 
+              let labelName = getValueFromElement InputBox (paneName + "-blockName")
+              let modelLabel:string = modelRef?attr(".label/text")
+              let splitString = modelLabel.Split([|'-'|], 2, StringSplitOptions.None)
+              let labelType = splitString.[0]
+              modelRef?attr(".label/text", labelType + "-" + labelName)
+              //console.log(labelType + "-" + labelName)
               /// update the global reference
               currentGraphModel <- Some graph
               currentPaperModel <- Some paper
@@ -185,13 +201,17 @@ let canvasInit (paneName:string) =
 
                        /// update the mutable value that references the current element model
                        modelRef <- model
-
+                       
                        /// highlight the block selected
                        model?attr("rect/fill", "orange")
                        model?attr("body/fill", "orange")
         
                        /// update the label in the GUI that shows the block type
-                       getElementSetInnerHTML (paneName + "-blockTypeLabel")  (model?attributes?attrs?label?text)        
+                       let blockText:string = model?attr(".label/text")
+                       let splitedString = blockText.Split([|'-'|], 2, StringSplitOptions.None)
+                       
+                       getElementSetInnerHTML (paneName + "-blockTypeLabel") splitedString.[0]   
+                       setHTMLElementValue InputBox (paneName + "-blockName") splitedString.[1]
         
                        /// update the GUI to show the coordinates of the block
                        setHTMLElementValue InputBox (paneName + "-positionX") (((model?get("position")?x |> int)/10) |> string)
