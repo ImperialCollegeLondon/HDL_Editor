@@ -9,14 +9,6 @@ html, body {
   width: 100%;
 }
 
-.monaco {
-  margin: 0px;
-  min-height: 100%;
-  width: 100%;
-  height: 700px;
-  border: 1px solid #ccc;
-}
-
 /* Style the tab */
 .tab {
   overflow: hidden;
@@ -37,8 +29,12 @@ html, body {
 }
 
 /* Change background color of buttons on hover */
-.tab button:hover {
-  background-color: #ddd;
+.tab .tab-close-element:hover {
+  background-color: red;
+}
+
+.tab .tab-element:hover{
+  background-color: #696969;
 }
 
 /* Create an active/current tablink class */

@@ -30,6 +30,25 @@ let hideAndShowDiv (tabName:string) =
         | _ -> ()
     hideAndShowDiv' divLst 0 tabName
 
+/// still buggy, need fix
+let highlightTab (tabName:string) = 
+    let tabs = (document.getElementById "tabRow").getElementsByTagName_button ()
+    console.log(tabs)
+    console.log(tabs.length)
+    let rec highlightTab' (lst:NodeListOf<HTMLButtonElement>) (index:int) =         
+        match index with
+        | a when a < int lst.length -> console.log(lst.[index].id)
+                                       match lst.[index].id with                                       
+                                       | b when b = tabName + "-tabButton" -> console.log("highlighting")
+                                                                              (lst.Item index).style.backgroundColor <- "#C0C0C0"
+                                                                              highlightTab' lst (index + 1)
+                                       | c when (c.Split [|'-'|]).[1] = "tabButton" -> (lst.Item index).style.backgroundColor <- "#C0C0C0"
+                                                                                       highlightTab' lst (index + 1)
+                                       | _ -> console.log("there")
+                                              highlightTab' lst (index + 1)
+        | _ -> ()
+    highlightTab' tabs 0
+
 /// helper function to remove divs
 let removeDiv (tabName:string) = 
     let divLst = document.getElementsByTagName_div ()
@@ -281,6 +300,7 @@ let createNewPaneWithButton () =
 
     /// hide all other divs
     hideAndShowDiv namePrefix
+    /// highlightTab namePrefix
     
     let rootContainer = document.getElementById "container"
     rootContainer.appendChild newDiv |> ignore
