@@ -218,6 +218,15 @@ let canvasInit (paneName:string) =
                        setHTMLElementValue InputBox (paneName + "-positionY") (((model?get("position")?y |> int)/10) |> string)
     |> paperOnFunction paper "cell:pointerdblclick"
 
+    fun cell -> let checkLink:bool = cell?isLink()
+                match checkLink with
+                | true -> console.log(cell)
+                          cell?on("change", fun e ->
+                              console.log(e?attributes)
+                          ) |> ignore
+                | false -> console.log(cell)              
+    |> paperOnFunction graph "add"
+
     /// function to resize the paper (canvas)
     let resizeCanvas x y = 
         match x > canvasXDimension-100, y > canvasYDimension-100 with
