@@ -4,9 +4,6 @@
     <TargetFramework>netstandard2.0</TargetFramework>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Remove="Html.fs" />
-  </ItemGroup>
-  <ItemGroup>
     <Compile Include="BlockLogic.fs" />
     <Compile Include="CanvasModel.fs" />
     <Compile Include="Ref.fs" />

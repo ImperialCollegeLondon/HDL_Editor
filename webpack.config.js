@@ -93,4 +93,13 @@ var rendererAboutWindowConfig = Object.assign({
   }
 }, basicConfig);
 
-module.exports = [mainConfig, rendererConfig, rendererAboutWindowConfig]
+var blockConfigureWindow = Object.assign({
+  target: "electron-renderer",
+  entry: resolve("./src/blockConfigureWindow/blockConfigureWindow.fsproj"),
+  output: {
+    path: resolve("./app"),
+    filename: "js/block_configure_window.js"
+  }
+}, basicConfig);
+
+module.exports = [mainConfig, rendererConfig, rendererAboutWindowConfig, blockConfigureWindow]

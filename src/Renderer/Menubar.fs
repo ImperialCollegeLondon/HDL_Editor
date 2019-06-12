@@ -251,8 +251,22 @@ let fileMenu =
       roleData = option.None },
       replaceSubmenuData fileSubmenu)
 
+let createCustomBlockConfigWindow () = 
+    electron.ipcRenderer.send("open-new-logic-window", ["yes"])
+
 let editSubmenu = 
+    let handlerCaster f = System.Func<MenuItem, BrowserWindow, unit> f |> Some
+    let clickFunction = handlerCaster (fun _ _ -> createCustomBlockConfigWindow())
+
     [
+        ({  clickData = clickFunction;
+            labelData = Some "Create new logic blocks";
+            acceleratorData = Some "CmdOrCtrl + L";
+            roleData = option.None},
+            defaultMenuSetupOptional);
+
+        menuSeparator;
+
         ({  clickData = option.None;
             labelData = Some "Undo";
             acceleratorData = Some "CmdOrCtrl + Z"; 

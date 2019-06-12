@@ -77,6 +77,33 @@ let logicElementInit () =
     logicElement 
     |> jointJSCreator.Resize 90 20     
  
+/// create custom logic blocks
+let customLogicElementInit (inPorts:string array) (outPorts:string array) (blockName:string) = 
+    let logicElement = blockWithPortInit ()
+    logicElement?set("inPorts", inPorts)
+    logicElement?set("outPorts", outPorts)
+    logicElement?attr(".label/text", blockName)
+    logicElement?attr(".label/fontSize", 14)
+    logicElement?attr(".label/textVerticalAnchor", "middle")
+
+    let radius = createObj[
+        "r" ==> 5
+     ]
+
+    let rec resizePort (index:int) (portNames:string array) = 
+        match index with
+        | a when a < portNames.Length -> logicElement?portProp(portNames.[index], "attrs/circle", radius)                                       
+                                         logicElement?portProp(portNames.[index], "args/y", 20*(index)+10)
+                                         resizePort (index+1) portNames
+        | _ -> ()
+    
+    resizePort 0 inPorts
+    resizePort 0 outPorts
+    //logicElement?portProp("outPorts", "attrs/circle", radius)
+
+    logicElement
+    |> jointJSCreator.Resize 90 ((max inPorts.Length outPorts.Length)*20)
+
 let registerInit () = 
     let register = blockWithPortInit ()
     register?set("inPorts", [|"in"|])
@@ -287,7 +314,8 @@ let canvasInit (paneName:string) =
                                                 |> jointJSCreator.AttrBySelector "label/cursor" "pointer"
                                                 |> jointJSCreator.AddTo graph
                                                 |> ignore
-                           | Some LogicElement -> logicElementInit ()
+                           | Some LogicElement -> ///logicElementInit ()
+                                                  customLogicElementInit [|"in"|] [|"out1";"out2"|] "new"
                                                   |> jointJSCreator.Position xCoordinate yCoordinate
                                                   |> jointJSCreator.AttrBySelector "body/cursor" "pointer"
                                                   |> jointJSCreator.AttrBySelector "rect/cursor" "pointer"
