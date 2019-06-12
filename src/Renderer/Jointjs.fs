@@ -113,7 +113,7 @@ let canvasInit (paneName:string) =
     let mutable scale:float = 1.0
     
     /// the reference to the model that is being operated on
-    let mutable modelRef:obj = createObj[]                 
+    let mutable modelRef:obj option = option.None
     
     /// the dimensions of the paper (the canvas)
     let mutable canvasXDimension:int = 1800
@@ -157,30 +157,40 @@ let canvasInit (paneName:string) =
     |> getElementBindEvent (paneName + "-registerAddButton") "click"
 
     fun e -> activeBlockType <- option.None
+             modelRef <- option.None
              setHTMLElementValue InputBox (paneName + "-positionX") ""                
              setHTMLElementValue InputBox (paneName + "-positionY") ""
+             resetAllSelected paper 
     |> getElementBindEvent (paneName + "-clearSelectionButton") "click" 
                                     
-    fun e ->  let position = ((getValueFromElement InputBox (paneName + "-positionX") |> int)*10, 
-                              (getValueFromElement InputBox (paneName + "-positionY") |> int)*10)
-                             |> generateBlockCoordinate                                                 
-              modelRef?set("position", position)
+    fun e -> match modelRef with
+             | Some a -> let position = ((getValueFromElement InputBox (paneName + "-positionX") |> int)*10, 
+                                         (getValueFromElement InputBox (paneName + "-positionY") |> int)*10)
+                                        |> generateBlockCoordinate 
+              
+                         a?set("position", position)
+                         let labelName = getValueFromElement InputBox (paneName + "-blockName")
+                         let modelLabel:string = a?attr(".label/text")
+                         let splitString = modelLabel.Split([|'-'|], 2, StringSplitOptions.None)
+                         let labelType = splitString.[0]
+                         a?attr(".label/text", labelType + "-" + labelName)
+                          
+                         /// update the global reference
+                         currentGraphModel <- Some graph
+                         currentPaperModel <- Some paper
+                         activeTabId <- Some paneName
 
-              let labelName = getValueFromElement InputBox (paneName + "-blockName")
-              let modelLabel:string = modelRef?attr(".label/text")
-              let splitString = modelLabel.Split([|'-'|], 2, StringSplitOptions.None)
-              let labelType = splitString.[0]
-              modelRef?attr(".label/text", labelType + "-" + labelName)
-              //console.log(labelType + "-" + labelName)
-              /// update the global reference
-              currentGraphModel <- Some graph
-              currentPaperModel <- Some paper
-              activeTabId <- Some paneName
+                         /// update the local reference
+                         modelRef <- Some a
+             | option.None -> ()              
     |> getElementBindEvent (paneName + "-updateInfoButton") "click"        
     
-    let removeButtonFunction = fun e -> modelRef?remove()
-                                        setHTMLElementValue InputBox (paneName + "-positionX") ""                 
-                                        setHTMLElementValue InputBox (paneName + "-positionY") ""
+    let removeButtonFunction = fun e -> match modelRef with
+                                        | Some a -> a?remove()
+                                                    modelRef <- option.None
+                                                    setHTMLElementValue InputBox (paneName + "-positionX") ""                 
+                                                    setHTMLElementValue InputBox (paneName + "-positionY") ""
+                                        | option.None -> ()
     getElementBindEvent (paneName + "-deleteBlockButton") "click" removeButtonFunction    
 
     /// force updating the model and the paper reference everytime the tab is clicked
@@ -200,7 +210,7 @@ let canvasInit (paneName:string) =
                        let model = elementView?model
 
                        /// update the mutable value that references the current element model
-                       modelRef <- model
+                       modelRef <- Some model
                        
                        /// highlight the block selected
                        model?attr("rect/fill", "orange")
@@ -294,7 +304,7 @@ let canvasInit (paneName:string) =
                                               |> jointJSCreator.AddTo graph
                                               |> ignore
 
-                           | option.None -> ()   
+                           | option.None -> modelRef <- option.None   
                            
                 /// update the global reference
                 currentGraphModel <- Some graph
