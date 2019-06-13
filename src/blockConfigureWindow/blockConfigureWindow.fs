@@ -75,13 +75,23 @@ let updatePortConfiguration (portType:InputType) (portCount':int option) =
     fieldRoot.innerHTML <- ""
     appendConfigField 0
 
+/// convert int to binary
+/// from https://richiban.uk/2013/07/19/converting-decimal-integers-to-binary-strings-in-different-languages/
+let intToBinaryConverter x (width:int) = 
+    let rec intToBinaryConverter' i =
+        match i with
+        | 0 | 1 -> string i
+        | _ -> let bit = string (i % 2)
+               (intToBinaryConverter' (i / 2)) + bit
+    let res = intToBinaryConverter' x
+    match res with
+    | a when a.Length < width -> (String.replicate (width-a.Length) "0") + a
+    | _ -> res
+
 /// update the truth table display
 let updateTruthTableDisplay () = 
     let root = document.getElementById "truth-table"
     root.innerHTML <- ""
-
-    let inPortNodes = (document.getElementById "input-settings").getElementsByTagName_div ()    
-    let outPortNodes = (document.getElementById "output-settings").getElementsByTagName_div ()
 
     let rec extractNames (index:int) (lst:NodeListOf<HTMLDivElement>) (nameLst:string list) = 
         match index with
@@ -90,14 +100,75 @@ let updateTruthTableDisplay () =
                                             extractNames (index+1) lst (nameLst |> List.append [inputValue])
         | _ -> nameLst
 
-    let generateColumn (label:string) = 
+    let inPortNodes = (document.getElementById "input-settings").getElementsByTagName_div ()    
+    let outPortNodes = (document.getElementById "output-settings").getElementsByTagName_div ()
+
+    let inputIds = extractNames 0 inPortNodes []
+    let outputIds = extractNames 0 outPortNodes []
+
+    let generateColumn (label:string) (index:int) = 
         let columnRoot = document.createElement_div ()
+        columnRoot.className <- "column-inline"
         
-        let columnLabel = document.createElement_label ()
+        let columnLabel = document.createElement_div ()
         columnLabel.innerHTML <- label
         
+        columnRoot.appendChild columnLabel |> ignore
 
-    ()
+        let count = 2.**(float inputIds.Length) |> int
+        
+        [0..count-1]
+        |> List.map (fun i -> let input = document.createElement_input ()
+                              input.style.width <- "60%"
+                              input.``type`` <- "text"
+                              input.pattern <- "[Xx10]{1}"
+                              input.value <- let res = intToBinaryConverter i inputIds.Length
+                                             res.[index] |> string          
+                              let div = document.createElement_div ()
+                              div.style.paddingTop <- "10%"
+                              input.id <- label+ (string count)
+                              div.appendChild input |> ignore
+                              columnRoot.appendChild div |> ignore)
+        |> ignore
+        
+        columnRoot
+
+    let generateColumnForOutputs (label:string) = 
+        let columnRoot = document.createElement_div ()
+        columnRoot.className <- "column-inline"
+        
+        let columnLabel = document.createElement_div ()
+        columnLabel.innerHTML <- label
+        
+        columnRoot.appendChild columnLabel |> ignore
+
+        let count = 2.**(float inputIds.Length) |> int
+        
+        [0..count-1]
+        |> List.map (fun i -> let input = document.createElement_input ()
+                              input.style.width <- "60%"
+                              input.``type`` <- "text"
+                              input.pattern <- "[Xx10]{1}"
+                              input.value <- "0"       
+                              let div = document.createElement_div ()
+                              div.style.paddingTop <- "10%"
+                              input.id <- label+ (string count)
+                              div.appendChild input |> ignore
+                              columnRoot.appendChild div |> ignore)
+        |> ignore
+        
+        columnRoot
+
+    [0..inputIds.Length-1]
+    |> List.map (fun el -> let column = generateColumn inputIds.[el] el
+                           root.appendChild column |> ignore)
+    |> ignore
+
+    
+    [0..outputIds.Length-1]
+    |> List.map (fun el -> let column = generateColumnForOutputs outputIds.[el]
+                           root.appendChild column |> ignore)
+    |> ignore
 
 /// bind the event listener to to the user input field to update the GUI
 let bindEventUpdateGUI () =  
@@ -106,6 +177,8 @@ let bindEventUpdateGUI () =
     let blockOutputNumber = document.getElementById "block-output-number"   
     
     let blockNameField = document.getElementById "block-name-field"
+
+    let updateTruthTableButton = document.getElementById "update-truth-table"
     
     let lst = document.getElementsByTagName_input ()
 
@@ -118,9 +191,15 @@ let bindEventUpdateGUI () =
     let updateNameFields = fun e -> findElementSetValue "block-name-field" lst BlockName
                                     console.log(blockName)
 
+    let updateTruthTable = fun e -> let div = document.getElementById "truth-table"
+                                    div.innerHTML <- ""
+                                    updateTruthTableDisplay ()
+
     blockInputNumber.addEventListener("input", U2.Case1 updateInputFields, false)
     blockOutputNumber.addEventListener("input", U2.Case1 updateOutputFields, false)
     blockNameField.addEventListener("input", U2.Case1 updateNameFields, false)
+    updateTruthTableButton.addEventListener("click", U2.Case1 updateTruthTable, false)
+    
    
    (*
 /// collect information from the user input

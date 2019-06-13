@@ -99,7 +99,7 @@ let createCustomLogicElementConfigWindow () =
     options.width <- Some width
     options.height <- Some height
     options.autoHideMenuBar <- Some true
-    options.resizable <- Some false
+    options.resizable <- Some true
     options.modal <- Some true
     options.parent <- mainWindow
     options.title <- Some "Create new logical blocks"
