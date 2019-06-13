@@ -1,0 +1,27 @@
+html body {
+  background-color: inherit;
+}
+
+.input-box {
+  padding-top: 2%;
+  padding-bottom: 2%;
+  padding-left: 3%
+}
+
+hr {
+  border-width: 2px;
+  border-color: black;
+}
+
+.warning {
+  color: red;
+}
+
+.sample-draw {
+  padding-top: 2%;
+  padding-bottom: 2%;
+  padding-left: 3%;
+  padding-right: 3%;
+  width: 20%;
+  height: 20%;
+}

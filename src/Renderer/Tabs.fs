@@ -130,7 +130,7 @@ let blockDiagramEditorInit (title:string) =
         blockConfigurationTitle.innerHTML <- "Block Configuration"
         blockConfigure.appendChild blockConfigurationTitle |> ignore
 
-        let blockNameLabel = document.createElement "h5"
+        let blockNameLabel = document.createElement_label ()
         blockNameLabel.innerHTML <- "Name:"
         blockConfigure.appendChild blockNameLabel |> ignore
 
@@ -159,7 +159,7 @@ let blockDiagramEditorInit (title:string) =
         |> blockConfigure.appendChild
         |> ignore
 
-        let booleanEquationLabel = document.createElement "h5"
+        let booleanEquationLabel = document.createElement_label ()
         booleanEquationLabel.innerHTML <- "Boolean Equation: "
         blockConfigure.appendChild booleanEquationLabel |> ignore
 
@@ -177,7 +177,7 @@ let blockDiagramEditorInit (title:string) =
         locationLabel.innerHTML <- "Location:"
         blockConfigure.appendChild locationLabel |> ignore
 
-        let locationXLabel = document.createElement "h5"
+        let locationXLabel = document.createElement_label ()
         locationXLabel.innerHTML <- "X:"
         blockConfigure.appendChild locationXLabel |> ignore
 
@@ -188,7 +188,7 @@ let blockDiagramEditorInit (title:string) =
         locationXInputField.id <- title + "-positionX"
         blockConfigure.appendChild locationXInputField |> ignore
 
-        let locationYLabel = document.createElement "h5"
+        let locationYLabel = document.createElement_label ()
         locationYLabel.innerHTML <- "Y:"
         blockConfigure.appendChild locationYLabel |> ignore
 

@@ -86,6 +86,10 @@ html, body {
   background-color: #fff;
 }
 
+.info-pane input {
+  width: 90%;
+}
+
 .block-configure button {
   width: 70%;
   height: 7%;

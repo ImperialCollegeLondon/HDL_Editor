@@ -1,14 +1,59 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <meta charset="UTF-8">    
+    <meta charset="UTF-8">
+    <link rel="stylesheet" type="text/css" href="custom-block-config-styling.css">
   </head>
 
   <body>
     <!-- content -->
     <div class="container" id="container">
+      <div class="input-box">
+        <label>Name:</label>
+        <input type="text" name="block-name" value="">
+      </div>
+
+      <div class="input-box">
+        <label>Number of inputs:</label>
+        <input type="number" name="block-input-number" value="">
+      </div>
+
+      <div class="input-box">
+        <label>Number of outputs:</label>
+        <input type="number" name="block-output-number" value="">
+      </div>
+
+      <hr id="separator">
+
+      <div class="input-box">
+        <label>Name of the inputs:</label>
+      </div>
+
+      <div class="input-box ports" id="input-settings">
+
+      </div>
+
+      <hr id="separator">
+
+      <div class="input-box">
+        <label>Name of outputs:</label>
+      </div>
+
+      <div class="input-box ports" id="output-settings">
+
+      </div>
+
+      <hr id="separator">
+      
+      <div class="input-box">
+        Block diagram:
+      </div>
+
+      <div class="sample-draw">
+
+      </div>
+
     </div>
     <script src="js/block_configure_window.js"></script>
-
   </body>
 </html>

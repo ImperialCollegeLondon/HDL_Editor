@@ -153,8 +153,11 @@ electron.ipcMain.on("open-about-window", unbox(fun (event:IpcMainEvent) ->
         createAboutWindow ()
 )) |> ignore
 
-electron.ipcMain.on("open-new-logic-window", unbox(fun event ->
-    if customLogicalElementConfigWindow.IsNone then
-        JS.console.log(event)
-        createCustomLogicElementConfigWindow ()
-)) |> ignore
+let handler:IpcMainEventListener = 
+    let handlerCaster f = System.Func<IpcMainEvent, obj, unit> f
+    let createWindow = handlerCaster (fun a b -> //console.log(a)
+                                                 console.log(b)
+                                                 createCustomLogicElementConfigWindow ())
+    createWindow
+
+electron.ipcMain.on("open-new-logic-window", handler) |> ignore
