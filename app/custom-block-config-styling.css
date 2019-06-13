@@ -25,3 +25,16 @@ hr {
   width: 20%;
   height: 20%;
 }
+
+.dialog-buttons {
+  position: absolute;
+  right: 3%;
+  width: 20%;
+  text-align: center;
+  padding-left: 3%;
+  padding-bottom: 2%;
+}
+
+.inline {
+  display: inline;
+}

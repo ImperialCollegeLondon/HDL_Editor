@@ -10,17 +10,17 @@
     <div class="container" id="container">
       <div class="input-box">
         <label>Name:</label>
-        <input type="text" name="block-name" value="">
+        <input type="text" name="block-name" id="block-name-field" value="" >
       </div>
 
       <div class="input-box">
         <label>Number of inputs:</label>
-        <input type="number" name="block-input-number" value="">
+        <input type="number" name="block-input-number" id="block-input-number" value="" min="0">
       </div>
 
       <div class="input-box">
         <label>Number of outputs:</label>
-        <input type="number" name="block-output-number" value="">
+        <input type="number" name="block-output-number" value="" id="block-output-number" min="0">
       </div>
 
       <hr id="separator">
@@ -29,7 +29,7 @@
         <label>Name of the inputs:</label>
       </div>
 
-      <div class="input-box ports" id="input-settings">
+      <div class="ports" id="input-settings">
 
       </div>
 
@@ -39,18 +39,35 @@
         <label>Name of outputs:</label>
       </div>
 
-      <div class="input-box ports" id="output-settings">
+      <div class="ports" id="output-settings">
 
       </div>
 
       <hr id="separator">
-      
+
+      <div class="input-box">
+        Truth table:
+        <button type="button" name="button" id="config-truth-table">Configure truth table</button>
+      </div>
+
+      <div class="input-box inline" id="truth-table">
+
+      </div>
+
+      <hr id="separator">
+
       <div class="input-box">
         Block diagram:
+        <button type="button" name="button" id="generate-button">Generate block view</button>
       </div>
 
       <div class="sample-draw">
 
+      </div>
+
+      <div class="dialog-buttons">
+        <button type="button" name="button" id="cancel-button">Cancel</button>
+        <button type="button" name="button">OK</button>
       </div>
 
     </div>
