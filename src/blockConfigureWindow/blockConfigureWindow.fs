@@ -104,6 +104,15 @@ let rec extractNames (index:int) (lst:NodeListOf<HTMLDivElement>) (nameLst:strin
                                         extractNames (index+1) lst (nameLst |> List.append [inputValue])
     | _ -> nameLst
 
+let rec getValueFromInputs (index:int) (id:string) (lst:NodeListOf<HTMLInputElement>) = 
+    match index with
+    | a when a < (lst.length |> int) -> match (lst.Item index).id with
+                                        | b when b = id -> match (lst.Item index).value with
+                                                           | "1" | "0" -> (lst.Item index).value
+                                                           | _ -> "0"
+                                        | _ -> getValueFromInputs (index+1) id lst                                                              
+    | _ -> ""
+
 /// update the truth table display
 let updateTruthTableDisplay () = 
     let root = document.getElementById "truth-table"
@@ -136,7 +145,7 @@ let updateTruthTableDisplay () =
                                              res.[index] |> string          
                               let div = document.createElement_div ()
                               div.style.paddingTop <- "10%"
-                              input.id <- label+ (string count)
+                              input.id <- label+ (string i)
                               div.appendChild input |> ignore
                               columnRoot.appendChild div |> ignore)
         |> ignore
@@ -159,11 +168,12 @@ let updateTruthTableDisplay () =
         |> List.map (fun i -> let input = document.createElement_input ()
                               input.style.width <- "60%"
                               input.``type`` <- "text"
-                              input.pattern <- "[Xx10]{1}"
+                              input.id <- label + string i
+                              input.pattern <- "[10]{1}"
                               input.value <- "0"       
                               let div = document.createElement_div ()
                               div.style.paddingTop <- "10%"
-                              input.id <- label+ (string count)
+                              div.id <- label + (string i)                               
                               div.appendChild input |> ignore
                               columnRoot.appendChild div |> ignore)
         |> ignore
@@ -177,7 +187,7 @@ let updateTruthTableDisplay () =
 
     
     [0..outputIds.Length-1]
-    |> List.map (fun el -> let column = generateColumnForOutputs outputIds.[el]
+    |> List.map (fun el -> let column = generateColumnForOutputs (outputIds.[el] + "div")
                            root.appendChild column |> ignore)
     |> ignore
 
@@ -289,8 +299,27 @@ let bindEventUpdateGUI () =
                                                 |> List.toArray 
                                  let outputIds = extractNames 0 outPortNodes []
                                                  |> List.toArray
-
+                                 
                                  let truthTable = 
+                                    let container = document.getElementsByTagName_input ()
+                                    
+                                    let getOneRow (rowNumber:int) =                                         
+                                        [0..outputIds.Length - 1]
+                                        |> List.map (fun i -> let id = outputIds.[i] + "div" + (rowNumber |> string)
+                                                              getValueFromInputs 0 id container)                                        
+                                        |> List.toArray
+                                        |> String.concat ""
+
+                                    let inputCounts = int (2.** float inputIds.Length)
+                                    let outputConfigs = 
+                                        [0..inputCounts]
+                                        |> List.map (fun i -> getOneRow i)
+                                    
+                                    [0..inputCounts-1]
+                                    |> List.map (fun i -> outputConfigs.[i])
+                                    |> List.toArray
+                                    
+                                 console.log(truthTable)                                                                                                      
 
     blockInputNumber.addEventListener("input", U2.Case1 updateInputFields, false)
     blockOutputNumber.addEventListener("input", U2.Case1 updateOutputFields, false)
@@ -298,5 +327,6 @@ let bindEventUpdateGUI () =
     updateTruthTableButton.addEventListener("click", U2.Case1 updateTruthTable, false)
     updateIconButton.addEventListener("click", U2.Case1 updateIcon, false)
     closeCurrentWindowButton.addEventListener("click", U2.Case1 closeCurrentWindow, false)
+    okButton.addEventListener("click", U2.Case1 OkButtonEvent, false)
    
 bindEventUpdateGUI ()
