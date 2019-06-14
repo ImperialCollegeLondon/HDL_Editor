@@ -54,7 +54,7 @@ let createMainWindow () =
         mainWindow <- option.None
     )) |> ignore
 
-    mainWindow <- Some window
+    mainWindow <- Some global.window
 
 let createAboutWindow () = 
     let options = createEmpty<BrowserWindowOptions>
@@ -161,3 +161,15 @@ let handler:IpcMainEventListener =
     createWindow    
 
 electron.ipcMain.on("open-new-logic-window", handler) |> ignore
+
+
+let handlerNewBlock:IpcMainEventListener = 
+    let handlerCaster f = System.Func<IpcMainEvent, obj, unit> f
+    let createWindow = handlerCaster (fun a b -> //console.log(a)
+                                                 match mainWindow with
+                                                 | Some win -> win.webContents.send("new-blocks", "hello!!!")
+                                                 | _ -> ())
+                                                 
+    createWindow    
+
+electron.ipcMain.on("new-block-information", handlerNewBlock) |> ignore

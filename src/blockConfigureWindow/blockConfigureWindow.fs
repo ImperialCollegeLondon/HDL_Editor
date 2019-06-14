@@ -319,7 +319,11 @@ let bindEventUpdateGUI () =
                                     |> List.map (fun i -> outputConfigs.[i])
                                     |> List.toArray
                                     
-                                 console.log(truthTable)                                                                                                      
+                                 console.log(truthTable)  
+                                 electron.ipcRenderer.send("new-block-information", (inputIds, outputIds, truthTable))
+                                 let mainWindow = electron.remote.getGlobal "window"                                 
+                                 let window = electron.remote.getCurrentWindow ()
+                                 window.close ()
 
     blockInputNumber.addEventListener("input", U2.Case1 updateInputFields, false)
     blockOutputNumber.addEventListener("input", U2.Case1 updateOutputFields, false)
