@@ -5,6 +5,7 @@ open Fable.Core.JsInterop
 open Fable.Import.Browser
 open JSLibInterface
 open Fable.Import
+open Fable.Import.Electron
 
 let joint : obj = importAll "jointjs"
 
@@ -120,6 +121,7 @@ let updateTruthTableDisplay () =
         
         let columnLabel = document.createElement_div ()
         columnLabel.innerHTML <- label
+        columnLabel.id <- label
         
         columnRoot.appendChild columnLabel |> ignore
 
@@ -147,6 +149,7 @@ let updateTruthTableDisplay () =
         
         let columnLabel = document.createElement_div ()
         columnLabel.innerHTML <- label
+        columnLabel.id <- label
         
         columnRoot.appendChild columnLabel |> ignore
 
@@ -254,6 +257,8 @@ let bindEventUpdateGUI () =
     let updateIconButton = document.getElementById "generate-button"
 
     let closeCurrentWindowButton = document.getElementById "cancel-button"
+
+    let okButton = document.getElementById "ok-button"
     
     let lst = document.getElementsByTagName_input ()
 
@@ -276,6 +281,16 @@ let bindEventUpdateGUI () =
 
     let closeCurrentWindow = fun e -> let window = electron.remote.getCurrentWindow ()
                                       window.close ()
+
+    let OkButtonEvent = fun e -> let inPortNodes = (document.getElementById "input-settings").getElementsByTagName_div ()    
+                                 let outPortNodes = (document.getElementById "output-settings").getElementsByTagName_div ()
+
+                                 let inputIds = extractNames 0 inPortNodes []
+                                                |> List.toArray 
+                                 let outputIds = extractNames 0 outPortNodes []
+                                                 |> List.toArray
+
+                                 let truthTable = 
 
     blockInputNumber.addEventListener("input", U2.Case1 updateInputFields, false)
     blockOutputNumber.addEventListener("input", U2.Case1 updateOutputFields, false)

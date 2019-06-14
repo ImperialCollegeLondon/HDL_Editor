@@ -114,7 +114,7 @@ let createCustomLogicElementConfigWindow () =
     let opts = createEmpty<Node.Url.Url<obj>>
     opts.pathname <- Some (path.join(Fable.Import.Node.Globals.__dirname, "../custom-block-config.html"))
     opts.protocol <- Some "file:"
-    window.loadURL(url.format(opts))
+    window.loadURL(url.format(opts))       
 
     // Emitted when the window is closed.
     window.on("closed", unbox(fun () ->
@@ -158,6 +158,6 @@ let handler:IpcMainEventListener =
     let createWindow = handlerCaster (fun a b -> //console.log(a)
                                                  console.log(b)
                                                  createCustomLogicElementConfigWindow ())
-    createWindow
+    createWindow    
 
 electron.ipcMain.on("open-new-logic-window", handler) |> ignore
