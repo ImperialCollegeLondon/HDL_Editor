@@ -3,7 +3,14 @@
 open Fable.Core
 open Fable.Core.JsInterop
 open Fable.Import.Browser
-open Fable.Import.Electron
+open JSLibInterface
+open Fable.Import
+
+let joint : obj = importAll "jointjs"
+
+/// use the JointJS bindings by upcasting the interface
+let jointJSCreatorInterface = new createElement()
+let jointJSCreator = jointJSCreatorInterface :> JointJS
 
 /// input types
 type InputType = 
@@ -88,17 +95,18 @@ let intToBinaryConverter x (width:int) =
     | a when a.Length < width -> (String.replicate (width-a.Length) "0") + a
     | _ -> res
 
+/// extract the names from a list of HTML div elements
+let rec extractNames (index:int) (lst:NodeListOf<HTMLDivElement>) (nameLst:string list) = 
+    match index with
+    | a when a < (lst.length |> int) -> let input = lst.[a].getElementsByTagName_input ()
+                                        let inputValue = input.[0].value
+                                        extractNames (index+1) lst (nameLst |> List.append [inputValue])
+    | _ -> nameLst
+
 /// update the truth table display
 let updateTruthTableDisplay () = 
     let root = document.getElementById "truth-table"
-    root.innerHTML <- ""
-
-    let rec extractNames (index:int) (lst:NodeListOf<HTMLDivElement>) (nameLst:string list) = 
-        match index with
-        | a when a < (lst.length |> int) -> let input = lst.[a].getElementsByTagName_input ()
-                                            let inputValue = input.[0].value
-                                            extractNames (index+1) lst (nameLst |> List.append [inputValue])
-        | _ -> nameLst
+    root.innerHTML <- ""    
 
     let inPortNodes = (document.getElementById "input-settings").getElementsByTagName_div ()    
     let outPortNodes = (document.getElementById "output-settings").getElementsByTagName_div ()
@@ -170,6 +178,69 @@ let updateTruthTableDisplay () =
                            root.appendChild column |> ignore)
     |> ignore
 
+/// update the icon that is going to be used on the block diagram editor
+let createIcon () = 
+    /// get the in ports and the out ports
+    let inPortNodes = (document.getElementById "input-settings").getElementsByTagName_div ()    
+    let outPortNodes = (document.getElementById "output-settings").getElementsByTagName_div ()
+
+    let inputIds = extractNames 0 inPortNodes []
+                   |> List.toArray 
+    let outputIds = extractNames 0 outPortNodes []
+                    |> List.toArray
+
+    let width, height = 90, ((max inputIds.Length outputIds.Length)*20)
+
+    /// initialize the graoh
+    let graph = jointJSCreator.GraphInit ()
+
+    /// create a mutable canvas in case of resizing
+    let canvas : HTMLElement = document.getElementById "icon-generate"
+
+    /// create the paper settings
+    let paperSettings = generatePaperSettings canvas graph 200 (height+40) 10 true "rgba(0, 0, 0, 0)"
+
+    /// initialize the paer using the paperSettings
+    let paper = jointJSCreator.PaperInit paperSettings
+
+    let routerSetting = createObj[
+        "name" ==> "manhattan"
+        "args" ==> createObj[
+                      "padding" ==> 10
+                   ]
+    ]
+    paper?options?defaultRouter <- routerSetting
+
+    let logicElement = createNew joint?shapes?devs?Model ()
+
+    let nameOfBlock = (((document.getElementById "block-name-input").getElementsByTagName_input ()).Item 0).value + "-"
+
+    logicElement?set("inPorts", inputIds)
+    logicElement?set("outPorts", outputIds)
+    logicElement?attr(".label/text", nameOfBlock)
+    logicElement?attr(".label/fontSize", 14)
+    logicElement?attr(".label/textVerticalAnchor", "middle")
+
+    let radius = createObj[
+        "r" ==> 5
+     ]
+
+    let rec resizePort (index:int) (portNames:string array) = 
+        match index with
+        | a when a < portNames.Length -> logicElement?portProp(portNames.[index], "attrs/circle", radius)                                       
+                                         logicElement?portProp(portNames.[index], "args/y", 20*(index)+10)
+                                         resizePort (index+1) portNames
+        | _ -> ()
+    
+    resizePort 0 inputIds
+    resizePort 0 outputIds        
+
+    logicElement
+    |> jointJSCreator.Resize 90 ((max inputIds.Length outputIds.Length)*20)
+    |> jointJSCreator.Position 70 20
+    |> jointJSCreator.AddTo graph    
+    |> ignore
+
 /// bind the event listener to to the user input field to update the GUI
 let bindEventUpdateGUI () =  
     let blockInputNumber = document.getElementById "block-input-number"
@@ -179,6 +250,10 @@ let bindEventUpdateGUI () =
     let blockNameField = document.getElementById "block-name-field"
 
     let updateTruthTableButton = document.getElementById "update-truth-table"
+
+    let updateIconButton = document.getElementById "generate-button"
+
+    let closeCurrentWindowButton = document.getElementById "cancel-button"
     
     let lst = document.getElementsByTagName_input ()
 
@@ -195,28 +270,18 @@ let bindEventUpdateGUI () =
                                     div.innerHTML <- ""
                                     updateTruthTableDisplay ()
 
+    let updateIcon = fun e -> let div = document.getElementById "icon-generate"
+                              div.innerHTML <- ""
+                              createIcon ()
+
+    let closeCurrentWindow = fun e -> let window = electron.remote.getCurrentWindow ()
+                                      window.close ()
+
     blockInputNumber.addEventListener("input", U2.Case1 updateInputFields, false)
     blockOutputNumber.addEventListener("input", U2.Case1 updateOutputFields, false)
     blockNameField.addEventListener("input", U2.Case1 updateNameFields, false)
     updateTruthTableButton.addEventListener("click", U2.Case1 updateTruthTable, false)
-    
+    updateIconButton.addEventListener("click", U2.Case1 updateIcon, false)
+    closeCurrentWindowButton.addEventListener("click", U2.Case1 closeCurrentWindow, false)
    
-   (*
-/// collect information from the user input
-let collectInfo () =
-    let blockName = findInputGetValue "box-name"    
-    let numberOfInputs = match findInputGetValue "block-input-number" with
-                         | Some value -> value |> int
-                         | option.None -> failwithf "not found"
-    let numberOfOutputs = match findInputGetValue "block-output-number" with
-                          | Some value -> value |> int
-                          | option.None -> failwithf "not found"
-       
-    ()
-    
-
-    collectInfo ()
-
-
-*)
 bindEventUpdateGUI ()

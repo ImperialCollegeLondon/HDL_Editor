@@ -98,8 +98,7 @@ let customLogicElementInit (inPorts:string array) (outPorts:string array) (block
         | _ -> ()
     
     resizePort 0 inPorts
-    resizePort 0 outPorts
-    //logicElement?portProp("outPorts", "attrs/circle", radius)
+    resizePort 0 outPorts    
 
     logicElement
     |> jointJSCreator.Resize 90 ((max inPorts.Length outPorts.Length)*20)
