@@ -6,12 +6,16 @@ open Fable.Import.Browser
 open JSLibInterface
 open Fable.Import
 open Fable.Import.Electron
+open Fable.Import.Node
 
 let joint : obj = importAll "jointjs"
 
 /// use the JointJS bindings by upcasting the interface
 let jointJSCreatorInterface = new createElement()
 let jointJSCreator = jointJSCreatorInterface :> JointJS
+
+[<Emit("typeof $0 == \"undefined\"")>]
+let checkUndefined target : bool = jsNative
 
 /// input types
 type InputType = 
@@ -318,11 +322,57 @@ let bindEventUpdateGUI () =
                                     |> List.map (fun i -> outputConfigs.[i])
                                     |> List.toArray
                                     
-                                 console.log(truthTable)  
-                                 electron.ipcRenderer.send("new-block-information", 
-                                    (blockName, inputIds.Length, outputIds.Length, inputIds, outputIds, truthTable))                                                                  
-                                 let window = electron.remote.getCurrentWindow ()
-                                 window.close ()
+                                 
+                                 let contentGenerator () = 
+                                    let mutable content = "module"
+
+                                    let moduleName =
+                                        match blockName with
+                                        | Some name -> name
+                                        | option.None -> "MyModule"
+
+                                    content <- content + " " + moduleName + "("
+                                    
+                                    let inputNames = inputIds |> String.concat ", "
+                                    
+                                    content <- content + inputNames + ", "
+
+                                    let outputNames = outputIds |> String.concat ", "
+
+                                    content <- content + outputNames + ", clock); \n"
+                                    content <- content + "  " + "input " + inputNames + ", clock; \n"
+                                    content <- content + "  " + "output " + outputNames + "; \n"
+                                    
+                                    let rec outputReg (index:int) (res:string) (lst:string array)= 
+                                        match index with
+                                        | a when a < lst.Length -> outputReg (index+1) (res + "  reg " + outputIds.[a] + " = 1b'0; \n") lst
+                                        | _ -> res
+
+                                    content <- outputReg 0 content outputIds
+                                    content <- content + "\n  always @ (posedge clock)\n"
+                                    content <- content + "  begin\n"
+                                    content <- content + "    case({" + inputNames + "})\n"
+
+                                    content
+                                 
+                                 let contentToBeSaved = contentGenerator ()
+
+                                 let saveDialogOptions = createEmpty<SaveDialogOptions>
+                                 saveDialogOptions.title <- Some "Save file to"
+                                 saveDialogOptions.defaultPath <- Some ("../new.v")                                         
+                                 saveDialogOptions.filters <- option.None
+
+                                 /// return the directory and the file name that is to be saved
+                                 let fileSaveDialog = electron.remote.dialog.showSaveDialog (saveDialogOptions)
+                                 
+                                 match fileSaveDialog with
+                                 | a when checkUndefined a <> true -> let errorHandler error = 
+                                                                          electron.ipcRenderer.send("new-block-information", 
+                                                                            (blockName, inputIds.Length, outputIds.Length, inputIds, outputIds, truthTable))  
+                                                                          let window = electron.remote.getCurrentWindow ()
+                                                                          window.close ()
+                                                                      fs.writeFile (fileSaveDialog, contentToBeSaved, errorHandler)                                                                                                                                                                                                          
+                                 | _ -> ()                                 
 
     blockInputNumber.addEventListener("input", U2.Case1 updateInputFields, false)
     blockOutputNumber.addEventListener("input", U2.Case1 updateOutputFields, false)
