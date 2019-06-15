@@ -278,8 +278,7 @@ let bindEventUpdateGUI () =
     let updateOutputFields = fun e -> findElementSetValue "block-output-number" lst OutputNumber
                                       updatePortConfiguration OutputNumber outputNumber                                      
 
-    let updateNameFields = fun e -> findElementSetValue "block-name-field" lst BlockName
-                                    console.log(blockName)
+    let updateNameFields = fun e -> findElementSetValue "block-name-field" lst BlockName                                    
 
     let updateTruthTable = fun e -> let div = document.getElementById "truth-table"
                                     div.innerHTML <- ""
@@ -320,8 +319,8 @@ let bindEventUpdateGUI () =
                                     |> List.toArray
                                     
                                  console.log(truthTable)  
-                                 electron.ipcRenderer.send("new-block-information", (inputIds, outputIds, truthTable))
-                                 let mainWindow = electron.remote.getGlobal "window"                                 
+                                 electron.ipcRenderer.send("new-block-information", 
+                                    (blockName, inputIds.Length, outputIds.Length, inputIds, outputIds, truthTable))                                                                  
                                  let window = electron.remote.getCurrentWindow ()
                                  window.close ()
 

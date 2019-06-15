@@ -18,11 +18,3 @@ let init() =
 
 init() |> ignore
 
-let handler:IpcRendererEventListener = 
-    let handlerCaster f = System.Func<IpcRendererEvent, obj, unit> f
-    let createWindow = handlerCaster (fun a b -> //console.log(a)
-                                                 printfn("hello"))
-    createWindow    
-
-electron.ipcRenderer.on("new-blocks", handler) |> ignore
-

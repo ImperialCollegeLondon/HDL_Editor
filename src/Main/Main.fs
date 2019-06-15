@@ -15,6 +15,9 @@ let mutable aboutWindow: BrowserWindow option = option.None
 
 let mutable customLogicalElementConfigWindow: BrowserWindow option = option.None
 
+/// channel name prefix for communicating with the active canvas
+let mutable activeChannelNamePrefix : string = ""
+
 /// craete the main window and set some of the properties
 let createMainWindow () =
     let options = createEmpty<BrowserWindowOptions>
@@ -155,9 +158,7 @@ electron.ipcMain.on("open-about-window", unbox(fun (event:IpcMainEvent) ->
 
 let handler:IpcMainEventListener = 
     let handlerCaster f = System.Func<IpcMainEvent, obj, unit> f
-    let createWindow = handlerCaster (fun a b -> //console.log(a)
-                                                 console.log(b)
-                                                 createCustomLogicElementConfigWindow ())
+    let createWindow = handlerCaster (fun a b -> createCustomLogicElementConfigWindow ())
     createWindow    
 
 electron.ipcMain.on("open-new-logic-window", handler) |> ignore
@@ -165,11 +166,17 @@ electron.ipcMain.on("open-new-logic-window", handler) |> ignore
 
 let handlerNewBlock:IpcMainEventListener = 
     let handlerCaster f = System.Func<IpcMainEvent, obj, unit> f
-    let createWindow = handlerCaster (fun a b -> //console.log(a)
-                                                 match mainWindow with
-                                                 | Some win -> win.webContents.send("new-blocks", "hello!!!")
+    let createWindow = handlerCaster (fun a b -> match mainWindow with
+                                                 | Some win -> win.webContents.send(activeChannelNamePrefix + "-new-blocks", b)
                                                  | _ -> ())
                                                  
     createWindow    
 
 electron.ipcMain.on("new-block-information", handlerNewBlock) |> ignore
+
+let changeChannelhandler:IpcMainEventListener = 
+    let handlerCaster f = System.Func<IpcMainEvent, obj, unit> f
+    let changeChannel = handlerCaster (fun a b -> activeChannelNamePrefix <- string b)
+    changeChannel    
+
+electron.ipcMain.on("change-channel", changeChannelhandler) |> ignore

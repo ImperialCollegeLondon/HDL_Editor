@@ -6,8 +6,25 @@ open Ref
 open JSLibInterface
 open HTMLUtilities
 open System
+open Fable.Import
+open Fable.Import.Electron
+open Fable.Core
 
 let joint : obj = importAll "jointjs"
+
+/// highlight the selected tab
+let highlightTab (tabName:string) =     
+    let tabs = (document.getElementById "tabRow").getElementsByTagName_button ()
+    
+    let rec highlightTab' (lst:NodeListOf<HTMLButtonElement>) (index:int) =         
+        match index with
+        | a when a < int lst.length -> match lst.[index].id with                                       
+                                       | b when b = (tabName + "-tabButton") -> (lst.[index]).style.backgroundColor <- "green"
+                                                                                highlightTab' lst (index + 1)                                       
+                                       | _ -> (lst.Item index).style.backgroundColor <- "inherit"
+                                              highlightTab' lst (index + 1)
+        | _ -> ()
+    highlightTab' tabs 0
 
 /// use the JointJS bindings by upcasting the interface
 let jointJSCreatorInterface = new createElement()
@@ -140,6 +157,12 @@ let canvasInit (paneName:string) =
     
     /// the reference to the model that is being operated on
     let mutable modelRef:obj option = option.None
+
+    /// store the custom logic block
+    let mutable customLogicBlock = Map.empty
+
+    /// store the current active logic block name
+    let mutable activeBlockName :string = ""
     
     /// the dimensions of the paper (the canvas)
     let mutable canvasXDimension:int = 1800
@@ -217,7 +240,12 @@ let canvasInit (paneName:string) =
                                                     setHTMLElementValue InputBox (paneName + "-positionX") ""                 
                                                     setHTMLElementValue InputBox (paneName + "-positionY") ""
                                         | option.None -> ()
-    getElementBindEvent (paneName + "-deleteBlockButton") "click" removeButtonFunction    
+    getElementBindEvent (paneName + "-deleteBlockButton") "click" removeButtonFunction   
+    
+    let resetZoomButtonFunction = fun e -> paper?scale(1)  
+                                           scale <- 1.
+                                           (document.getElementById (paneName + "-resetZoomButton")).innerHTML <- "Zoom = 100%. Click to reset."
+    getElementBindEvent (paneName + "-resetZoomButton") "click" resetZoomButtonFunction
 
     /// force updating the model and the paper reference everytime the tab is clicked
     /// also update the current active tab
@@ -225,7 +253,8 @@ let canvasInit (paneName:string) =
                                                 currentGraphModel <- Some graph
                                                 currentPaperModel <- Some paper
                                                 activeTabId <- Some paneName
-
+                                                highlightTab paneName
+                                                electron.ipcRenderer.send("change-channel", paneName)
     getElementBindEvent (paneName + "-tabButton") "click" updateModelAndPaperReference
 
     /// set the response when double click on a block is detected in the canvas           
@@ -294,10 +323,11 @@ let canvasInit (paneName:string) =
                 match ctrlKeyHold with
                 | true -> scale <- 1.0
                           paper?scale(scale)
-                | false -> scale <- 1.0
-                           paper?scale(scale)
-                           match activeBlockType with
-                           | Some InputPort -> inputPortInit ()                                                          
+                          (document.getElementById (paneName + "-resetZoomButton")).innerHTML <- "Zoom = 100%. Click to reset."
+                | false -> match activeBlockType with
+                           | Some InputPort -> scale <- 1.0
+                                               paper?scale(scale)
+                                               inputPortInit ()                                                          
                                                |> jointJSCreator.Position xCoordinate yCoordinate
                                                |> jointJSCreator.AttrBySelector "body/cursor" "pointer"
                                                |> jointJSCreator.AttrBySelector "rect/cursor" "pointer"
@@ -305,7 +335,11 @@ let canvasInit (paneName:string) =
                                                |> jointJSCreator.AttrBySelector "label/cursor" "pointer"
                                                |> jointJSCreator.AddTo graph
                                                |> ignore 
-                           | Some OutputPort -> outputPortInit ()
+                                               activeBlockType <- option.None
+                                               (document.getElementById (paneName + "-resetZoomButton")).innerHTML <- "Zoom = 100%. Click to reset."
+                           | Some OutputPort -> scale <- 1.0
+                                                paper?scale(scale)
+                                                outputPortInit ()
                                                 |> jointJSCreator.Position xCoordinate yCoordinate
                                                 |> jointJSCreator.AttrBySelector "body/cursor" "pointer"
                                                 |> jointJSCreator.AttrBySelector "rect/cursor" "pointer"
@@ -313,7 +347,11 @@ let canvasInit (paneName:string) =
                                                 |> jointJSCreator.AttrBySelector "label/cursor" "pointer"
                                                 |> jointJSCreator.AddTo graph
                                                 |> ignore
+                                                activeBlockType <- option.None
+                                                (document.getElementById (paneName + "-resetZoomButton")).innerHTML <- "Zoom = 100%. Click to reset."
                            | Some LogicElement -> ///logicElementInit ()
+                                                  scale <- 1.0
+                                                  paper?scale(scale)
                                                   customLogicElementInit [|"in"|] [|"out1";"out2"|] "new"
                                                   |> jointJSCreator.Position xCoordinate yCoordinate
                                                   |> jointJSCreator.AttrBySelector "body/cursor" "pointer"
@@ -322,7 +360,11 @@ let canvasInit (paneName:string) =
                                                   |> jointJSCreator.AttrBySelector "label/cursor" "pointer"
                                                   |> jointJSCreator.AddTo graph
                                                   |> ignore
-                           | Some Register -> registerInit ()
+                                                  activeBlockType <- option.None
+                                                  (document.getElementById (paneName + "-resetZoomButton")).innerHTML <- "Zoom = 100%. Click to reset."
+                           | Some Register -> scale <- 1.0
+                                              paper?scale(scale)
+                                              registerInit ()
                                               |> jointJSCreator.Position xCoordinate yCoordinate
                                               |> jointJSCreator.AttrBySelector "body/cursor" "pointer"
                                               |> jointJSCreator.AttrBySelector "rect/cursor" "pointer"
@@ -330,7 +372,8 @@ let canvasInit (paneName:string) =
                                               |> jointJSCreator.AttrBySelector "label/cursor" "pointer"
                                               |> jointJSCreator.AddTo graph
                                               |> ignore
-
+                                              activeBlockType <- option.None
+                                              (document.getElementById (paneName + "-resetZoomButton")).innerHTML <- "Zoom = 100%. Click to reset."
                            | option.None -> modelRef <- option.None   
                            
                 /// update the global reference
@@ -345,8 +388,44 @@ let canvasInit (paneName:string) =
                           let calculatedScale = max (min ((delta*0.00099+1.0)*scale) 2.0) 0.2                  
                           paper?scale(calculatedScale)  
                           scale <- calculatedScale
+                          (document.getElementById (paneName + "-resetZoomButton")).innerHTML 
+                            <- "Zoom = " + (System.Math.Round ((calculatedScale*100.),2) |> string) + "%. Click to reset." 
                 | false -> ()       
     |> paperOnFunction paper "blank:mousewheel"
 
-    ()
+    let appendNewBlockButton (buttonName:string) = 
+        let button = document.createElement_button ()
+        button.``type`` <- "button"
+        button.id <- paneName + "-" + buttonName
+        button.innerHTML <- buttonName
+
+        let clickAddBlickEvent = fun e -> activeBlockType <- Some LogicElement
+                                          activeBlockName <- buttonName
+                                          console.log("clicked")
+        button.addEventListener("click", U2.Case1 clickAddBlickEvent, false)
+
+        let root = document.getElementById (paneName + "-addBlockButtons")
+        let insertBefore = document.getElementById (paneName + "-clearSelectionButton")
+        root.insertBefore (button, insertBefore) |> ignore
+
+    let newBlockhandler:IpcRendererEventListener = 
+        let handlerCaster f = System.Func<IpcRendererEvent, obj, unit> f
+        let updateLogicBlockStorage = handlerCaster (fun a b -> let res = (string b).Split ','
+                                                                let numberOfInputs = res.[1] |> int
+                                                                let numberOfOutputs = res.[2] |> int
+
+                                                                let inputPorts = res.[3..2+numberOfInputs]
+                                                                let outputPorts = res.[3+numberOfInputs..2+numberOfInputs+numberOfOutputs]
+                                                                let checkRepeat = customLogicBlock.ContainsKey res.[0]                                                     
+                                                                match checkRepeat with
+                                                                | false -> customLogicBlock <- customLogicBlock.Add(res.[0], res)
+                                                                           appendNewBlockButton res.[0]
+                                                                | true -> console.log("repeated name detected")
+                                                                )
+        updateLogicBlockStorage    
+    
+    electron.ipcRenderer.on(paneName + "-new-blocks", newBlockhandler) |> ignore
+
+
+    
 
