@@ -351,8 +351,13 @@ let canvasInit (paneName:string) =
                                                 (document.getElementById (paneName + "-resetZoomButton")).innerHTML <- "Zoom = 100%. Click to reset."
                            | Some LogicElement -> ///logicElementInit ()
                                                   scale <- 1.0
-                                                  paper?scale(scale)
-                                                  customLogicElementInit [|"in"|] [|"out1";"out2"|] "new"
+                                                  paper?scale(scale)                                                  
+                                                  let logicElementConfig:string array = customLogicBlock.[activeBlockName]
+                                                  let inputCount = logicElementConfig.[1] |> int
+                                                  let outputCount = logicElementConfig.[2] |> int
+                                                  let logicElementInputs = logicElementConfig.[3..2+inputCount]
+                                                  let logicElementOutputs = logicElementConfig.[3+inputCount..2+inputCount+outputCount]
+                                                  customLogicElementInit logicElementInputs logicElementOutputs (activeBlockName + "-block")
                                                   |> jointJSCreator.Position xCoordinate yCoordinate
                                                   |> jointJSCreator.AttrBySelector "body/cursor" "pointer"
                                                   |> jointJSCreator.AttrBySelector "rect/cursor" "pointer"
@@ -394,19 +399,51 @@ let canvasInit (paneName:string) =
     |> paperOnFunction paper "blank:mousewheel"
 
     let appendNewBlockButton (buttonName:string) = 
+        let rootDiv = document.createElement_div ()
+        rootDiv.id <- paneName + "-" + buttonName + "div"
+        rootDiv.style.display <- "inline"
+
         let button = document.createElement_button ()
         button.``type`` <- "button"
         button.id <- paneName + "-" + buttonName
         button.innerHTML <- buttonName
+        rootDiv.appendChild button |> ignore
 
         let clickAddBlickEvent = fun e -> activeBlockType <- Some LogicElement
-                                          activeBlockName <- buttonName
-                                          console.log("clicked")
+                                          activeBlockName <- buttonName                                          
         button.addEventListener("click", U2.Case1 clickAddBlickEvent, false)
+
+        let deleteButton = document.createElement_button ()
+        deleteButton.id <- paneName + "-" + buttonName + "deleteButton"
+        deleteButton.``type`` <- "button"
+        deleteButton.innerHTML <- "X"
+        rootDiv.appendChild deleteButton |> ignore
+
+        let clickDeleteButtonEvent = fun e -> activeBlockType <- option.None
+                                              activeBlockName <- ""
+                                              customLogicBlock <- customLogicBlock.Remove buttonName
+                                              let parentNode = deleteButton.parentNode
+                                              parentNode.removeChild deleteButton |> ignore
+                                              parentNode.removeChild button |> ignore
+                                              parentNode.parentNode.removeChild parentNode |> ignore
+                                              let elements:obj array = graph?getElements()
+                                              
+                                              let rec removeChildWithType (index:int) (blockType:string) (lst:obj array) = 
+                                                 match index with
+                                                 | a when a < lst.Length -> let text : string = lst.[a]?attr(".label/text")
+                                                                            if (text.Split '-').[0] = blockType
+                                                                            then lst.[a]?remove()
+                                                                                 removeChildWithType (index+1) blockType lst
+                                                                            else removeChildWithType (index+1) blockType lst
+                                                 | _ -> ()
+
+                                              removeChildWithType 0 buttonName elements
+        deleteButton.addEventListener("click", U2.Case1 clickDeleteButtonEvent, false)
+
 
         let root = document.getElementById (paneName + "-addBlockButtons")
         let insertBefore = document.getElementById (paneName + "-clearSelectionButton")
-        root.insertBefore (button, insertBefore) |> ignore
+        root.insertBefore (rootDiv, insertBefore) |> ignore
 
     let newBlockhandler:IpcRendererEventListener = 
         let handlerCaster f = System.Func<IpcRendererEvent, obj, unit> f
