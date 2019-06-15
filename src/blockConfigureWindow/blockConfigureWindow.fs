@@ -353,6 +353,9 @@ let bindEventUpdateGUI () =
                                     content <- content + "  begin\n"
                                     content <- content + "    case({" + inputNames + "})\n"
 
+                                    content <- content + "    endcase"
+                                    content <- content + "  end"
+                                    content <- content + "\n" + "endmodule"
                                     content
                                  
                                  let contentToBeSaved = contentGenerator ()
