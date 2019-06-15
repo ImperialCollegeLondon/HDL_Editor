@@ -258,9 +258,56 @@ let editSubmenu =
     let handlerCaster f = System.Func<MenuItem, BrowserWindow, unit> f |> Some
     let clickFunction = handlerCaster (fun _ _ -> createCustomBlockConfigWindow())
 
+    let fileRead () = 
+        let openDialogOptions = createEmpty<OpenDialogOptions>
+        openDialogOptions.title <- Some "Open file from"
+        openDialogOptions.defaultPath <- option.None
+        openDialogOptions.filters <- option.None
+
+        /// return the directory and the file name that is to be saved
+        let fileOpenDialog = electron.remote.dialog.showOpenDialog (openDialogOptions)
+        
+        match fileOpenDialog with
+        | a when checkUndefined a.[0] <> true -> a.[0]
+                                                 |> getFileName
+                                                 |> updateTabName
+
+                                                 let readFileOptions = 
+                                                     createObj[
+                                                         "encoding" ==> "UTF8"
+                                                     ]
+
+                                                 let errorHandler (error:Base.NodeJS.ErrnoException option) (res:string)  = 
+                                                     let parsedJSON = JS.JSON.parse res
+                                                     let name:string = parsedJSON?name
+                                                     let inputs:string array = parsedJSON?inputs
+                                                     let outputs:string array = parsedJSON?outputs
+                                                     let truthTable = parsedJSON?truthTable
+                                                     let verilogFileLocation:string = parsedJSON?Verilog |> string
+                                                     
+                                                     let mutable VerilogCode = ""
+
+                                                     let internalErrorHandler (error:Base.NodeJS.ErrnoException option) res =
+                                                        VerilogCode <- res
+                                                        electron.ipcRenderer.send("new-block-information", 
+                                                            (name, inputs.Length, outputs.Length, inputs, outputs, truthTable, VerilogCode))   
+
+                                                     fs.readFile (verilogFileLocation, readFileOptions, internalErrorHandler)                                                                                                                                                                                                                                                                  
+                                                 fs.readFile (fileOpenDialog.[0], readFileOptions, errorHandler)                                                 
+        | _ -> ()
+
+    let clickFunctionReadBlock = handlerCaster (fun  _ _ -> fileRead())
+
+
     [
         ({  clickData = clickFunction;
             labelData = Some "Create new logic blocks";
+            acceleratorData = Some "CmdOrCtrl + L";
+            roleData = option.None},
+            defaultMenuSetupOptional);
+
+        ({  clickData = clickFunctionReadBlock;
+            labelData = Some "Load logic blocks";
             acceleratorData = Some "CmdOrCtrl + L";
             roleData = option.None},
             defaultMenuSetupOptional);

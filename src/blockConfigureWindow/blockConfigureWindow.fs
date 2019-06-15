@@ -379,25 +379,33 @@ let bindEventUpdateGUI () =
                                     content <- content + "    endcase\n"
                                     content <- content + "  end"
                                     content <- content + "\n" + "endmodule"
-                                    content
-                                 
-                                 let contentToBeSaved = contentGenerator ()
+                                    content                                                                  
 
                                  let saveDialogOptions = createEmpty<SaveDialogOptions>
                                  saveDialogOptions.title <- Some "Save file to"
-                                 saveDialogOptions.defaultPath <- Some ("../new.v")                                         
+                                 saveDialogOptions.defaultPath <- Some ("../new.json")                                         
                                  saveDialogOptions.filters <- option.None
 
                                  /// return the directory and the file name that is to be saved
                                  let fileSaveDialog = electron.remote.dialog.showSaveDialog (saveDialogOptions)
                                  
+                                 let contents = 
+                                    createObj[
+                                        "name" ==> blockName
+                                        "inputs" ==> inputIds
+                                        "outputs" ==> outputIds
+                                        "truthTable" ==> truthTable
+                                        "Verilog" ==> fileSaveDialog + ".v"
+                                    ]
                                  match fileSaveDialog with
                                  | a when checkUndefined a <> true -> let errorHandler error = 
                                                                           electron.ipcRenderer.send("new-block-information", 
-                                                                            (blockName, inputIds.Length, outputIds.Length, inputIds, outputIds, truthTable))  
+                                                                            (blockName, inputIds.Length, outputIds.Length, inputIds, outputIds, truthTable, contentGenerator ()))
+                                                                      fs.writeFile (fileSaveDialog, JS.JSON.stringify contents, errorHandler)
+                                                                      let errorHandlerClosingWindow error =                                                                           
                                                                           let window = electron.remote.getCurrentWindow ()
                                                                           window.close ()
-                                                                      fs.writeFile (fileSaveDialog, contentToBeSaved, errorHandler)                                                                                                                                                                                                          
+                                                                      fs.writeFile (fileSaveDialog + ".v", contentGenerator (), errorHandlerClosingWindow)
                                  | _ -> ()                                 
 
     blockInputNumber.addEventListener("input", U2.Case1 updateInputFields, false)

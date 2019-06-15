@@ -166,7 +166,8 @@ electron.ipcMain.on("open-new-logic-window", handler) |> ignore
 
 let handlerNewBlock:IpcMainEventListener = 
     let handlerCaster f = System.Func<IpcMainEvent, obj, unit> f
-    let createWindow = handlerCaster (fun a b -> match mainWindow with
+    let createWindow = handlerCaster (fun a b -> console.log(b)
+                                                 match mainWindow with
                                                  | Some win -> win.webContents.send(activeChannelNamePrefix + "-new-blocks", b)
                                                  | _ -> ())
                                                  
