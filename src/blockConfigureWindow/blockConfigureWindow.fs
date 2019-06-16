@@ -378,7 +378,7 @@ let bindEventUpdateGUI () =
                                     content <- content + "    default: \n      begin\n" + caseStatementInnerBeginEnd 0 0 outputIds defaultCaseTruthTable "      " + "end\n"
                                     content <- content + "    endcase\n"
                                     content <- content + "  end"
-                                    content <- content + "\n" + "endmodule"
+                                    content <- content + "\n" + "endmodule\n\n"
                                     content                                                                  
 
                                  let saveDialogOptions = createEmpty<SaveDialogOptions>

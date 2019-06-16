@@ -478,6 +478,61 @@ let canvasInit (paneName:string) =
 
     electron.ipcRenderer.on(paneName + "-clear-block-selection", clearBlockSelectionHandler) |> ignore
 
+    let generateVerilog () =
+        let moduleName = ((document.getElementById (paneName + "-tabButton")).innerHTML.Split '.').[0]
+
+        let mutable VerilogMainBody = "module " + moduleName + "("
+
+        let allBlocks:obj array = graph?getElements()
+        let allLinks:obj array = graph?getLinks()
+               
+        let inputBlocks, inputIds = 
+            let mutable resBlock:obj array = [||]
+            let mutable resId:string array = [||]
+            allBlocks
+            |> Array.map (fun el -> let labelText:string = el?attr(".label/text")                                    
+                                    if (labelText.Split '-').[0] = "In" 
+                                    then resBlock <- Array.append resBlock [|el|]
+                                         resId <- Array.append resId [|labelText.[3..]|]
+                                    else ())
+            |> ignore
+            resBlock, resId
+
+        let outputs, outputIds = 
+            let mutable resBlock:obj array = [||]
+            let mutable resId:string array = [||]
+            allBlocks
+            |> Array.map (fun el -> let labelText:string = el?attr(".label/text")
+                                    if (labelText.Split '-').[0] = "Out" 
+                                    then resBlock <- Array.append resBlock [|el|]
+                                         resId <- Array.append resId [|labelText.[4..]|]
+                                    else ())
+            |> ignore
+            resBlock, resId
+
+        let logicBlocks = 
+            let mutable res:obj array = [||]
+            allBlocks
+            |> Array.map (fun el -> let labelText:string = el?attr(".label/text")
+                                    if (labelText.Split '-').[0] <> "Out" && (labelText.Split '-').[0] <> "In" then res <- Array.append res [|el|]
+                                    else ())
+            |> ignore
+            res
+
+        VerilogMainBody <- VerilogMainBody + String.concat ", " inputIds + ", " + String.concat ", " outputIds + ", clock);\n"
+        VerilogMainBody <- VerilogMainBody + "  input " + String.concat ", " inputIds + ", clock;\n"
+        VerilogMainBody <- VerilogMainBody + "  output " + String.concat ", " outputIds + ";\n"
+
+        
+        VerilogMainBody <- VerilogMainBody + "endmodule\n"
+        console.log(VerilogMainBody)
+
+    let generateBlockHandler:IpcRendererEventListener = 
+        let handlerCaster f = System.Func<IpcRendererEvent, obj, unit> f
+        let generateBlock = handlerCaster (fun a b -> generateVerilog ())
+        generateBlock
+
+    electron.ipcRenderer.on(paneName + "-generate-block", generateBlockHandler) |> ignore
 
     
 

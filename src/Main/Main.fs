@@ -186,6 +186,8 @@ electron.ipcMain.on("clear-selection", clearBlockSelection) |> ignore
 
 /// generate the block from the block diagram editor
 let generateBlockFromDesign:IpcMainEventListener = 
-    handlerCaster (fun a b -> console.log("reveiced"))
+    handlerCaster (fun a b -> match mainWindow with
+                              | Some win -> win.webContents.send(activeChannelNamePrefix + "-generate-block", b)
+                              | _ -> ())
 
 electron.ipcMain.on("generate-block-from-design", generateBlockFromDesign) |> ignore
