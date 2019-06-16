@@ -7,6 +7,7 @@
     <Compile Include="BlockLogic.fs" />
     <Compile Include="CanvasModel.fs" />
     <Compile Include="Ref.fs" />
+    <Compile Include="Helper.fs" />
     <Compile Include="JSLibInterface.fs" />
     <Compile Include="HTMLUtilities.fs" />
     <Compile Include="Jointjs.fs" />

@@ -35,7 +35,6 @@ type BlockType =
     | InputPort
     | OutputPort
     | LogicElement
-    | Register
 
 /// initialize rect that has ports for connections to other blocks
 let blockWithPortInit () =     
@@ -192,18 +191,20 @@ let canvasInit (paneName:string) =
     currentPaperModel <- Some paper
     activeTabId <- Some paneName    
 
+    /// add "*" after the pane button when it is modified but not saved
+    let updatePaneName () = 
+        let button = document.getElementById (paneName + "-tabButton")
+        let buttonText = button.innerHTML
+        match buttonText with
+        | a when a.[a.Length-1] = '*' -> ()
+        | _ -> button.innerHTML <- buttonText + "*"
+
     /// bind event listener to the add bock buttons
     fun e -> activeBlockType <- Some InputPort
     |> getElementBindEvent (paneName + "-inputAddButton") "click" 
 
     fun e -> activeBlockType <- Some OutputPort
     |> getElementBindEvent (paneName + "-outputAddButton") "click" 
-
-    fun e -> activeBlockType <- Some LogicElement
-    |> getElementBindEvent (paneName + "-logicElementAddButton") "click"
-
-    fun e -> activeBlockType <- Some Register
-    |> getElementBindEvent (paneName + "-registerAddButton") "click"
 
     fun e -> activeBlockType <- option.None
              modelRef <- option.None
@@ -231,6 +232,8 @@ let canvasInit (paneName:string) =
 
                          /// update the local reference
                          modelRef <- Some a
+
+                         updatePaneName ()
              | option.None -> ()              
     |> getElementBindEvent (paneName + "-updateInfoButton") "click"        
     
@@ -240,6 +243,7 @@ let canvasInit (paneName:string) =
                                                     setHTMLElementValue InputBox (paneName + "-positionX") ""                 
                                                     setHTMLElementValue InputBox (paneName + "-positionY") ""
                                         | option.None -> ()
+                                        updatePaneName ()
     getElementBindEvent (paneName + "-deleteBlockButton") "click" removeButtonFunction   
     
     let resetZoomButtonFunction = fun e -> paper?scale(1)  
@@ -337,6 +341,7 @@ let canvasInit (paneName:string) =
                                                |> ignore 
                                                activeBlockType <- option.None
                                                (document.getElementById (paneName + "-resetZoomButton")).innerHTML <- "Zoom = 100%. Click to reset."
+                                               updatePaneName ()
                            | Some OutputPort -> scale <- 1.0
                                                 paper?scale(scale)
                                                 outputPortInit ()
@@ -349,6 +354,7 @@ let canvasInit (paneName:string) =
                                                 |> ignore
                                                 activeBlockType <- option.None
                                                 (document.getElementById (paneName + "-resetZoomButton")).innerHTML <- "Zoom = 100%. Click to reset."
+                                                updatePaneName ()
                            | Some LogicElement -> ///logicElementInit ()
                                                   scale <- 1.0
                                                   paper?scale(scale)                                                  
@@ -367,18 +373,7 @@ let canvasInit (paneName:string) =
                                                   |> ignore
                                                   activeBlockType <- option.None
                                                   (document.getElementById (paneName + "-resetZoomButton")).innerHTML <- "Zoom = 100%. Click to reset."
-                           | Some Register -> scale <- 1.0
-                                              paper?scale(scale)
-                                              registerInit ()
-                                              |> jointJSCreator.Position xCoordinate yCoordinate
-                                              |> jointJSCreator.AttrBySelector "body/cursor" "pointer"
-                                              |> jointJSCreator.AttrBySelector "rect/cursor" "pointer"
-                                              |> jointJSCreator.AttrBySelector ".label/cursor" "pointer"
-                                              |> jointJSCreator.AttrBySelector "label/cursor" "pointer"
-                                              |> jointJSCreator.AddTo graph
-                                              |> ignore
-                                              activeBlockType <- option.None
-                                              (document.getElementById (paneName + "-resetZoomButton")).innerHTML <- "Zoom = 100%. Click to reset."
+                                                  updatePaneName ()
                            | option.None -> modelRef <- option.None   
                            
                 /// update the global reference
@@ -443,12 +438,15 @@ let canvasInit (paneName:string) =
                                                  | _ -> ()
 
                                               removeChildWithType 0 buttonName elements
+                                              updatePaneName ()
         deleteButton.addEventListener("click", U2.Case1 clickDeleteButtonEvent, false)
 
 
         let root = document.getElementById (paneName + "-addBlockButtons")
         let insertBefore = document.getElementById (paneName + "-clearSelectionButton")
         root.insertBefore (rootDiv, insertBefore) |> ignore
+
+        updatePaneName ()
 
     let newBlockhandler:IpcRendererEventListener = 
         let handlerCaster f = System.Func<IpcRendererEvent, obj, unit> f
@@ -462,6 +460,7 @@ let canvasInit (paneName:string) =
                                                                 match checkRepeat with
                                                                 | false -> customLogicBlock <- customLogicBlock.Add(res.[0], res)
                                                                            appendNewBlockButton res.[0]
+                                                                           updatePaneName ()
                                                                 | true -> console.log("repeated name detected")
                                                                 )
         updateLogicBlockStorage    

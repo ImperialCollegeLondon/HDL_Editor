@@ -156,38 +156,36 @@ electron.ipcMain.on("open-about-window", unbox(fun (event:IpcMainEvent) ->
         createAboutWindow ()
 )) |> ignore
 
-let handler:IpcMainEventListener = 
-    let handlerCaster f = System.Func<IpcMainEvent, obj, unit> f
-    let createWindow = handlerCaster (fun a b -> createCustomLogicElementConfigWindow ())
-    createWindow    
+let handlerCaster f = System.Func<IpcMainEvent, obj, unit> f
+
+let handler:IpcMainEventListener =     
+    handlerCaster (fun a b -> createCustomLogicElementConfigWindow ())        
 
 electron.ipcMain.on("open-new-logic-window", handler) |> ignore
 
 
-let handlerNewBlock:IpcMainEventListener = 
-    let handlerCaster f = System.Func<IpcMainEvent, obj, unit> f
-    let createWindow = handlerCaster (fun a b -> match mainWindow with
-                                                 | Some win -> win.webContents.send(activeChannelNamePrefix + "-new-blocks", b)
-                                                 | _ -> ())
-                                                 
-    createWindow    
-
+let handlerNewBlock:IpcMainEventListener =     
+    handlerCaster (fun a b -> match mainWindow with
+                              | Some win -> win.webContents.send(activeChannelNamePrefix + "-new-blocks", b)
+                              | _ -> ())
+                                                         
 electron.ipcMain.on("new-block-information", handlerNewBlock) |> ignore
 
-let changeChannelhandler:IpcMainEventListener = 
-    let handlerCaster f = System.Func<IpcMainEvent, obj, unit> f
-    let changeChannel = handlerCaster (fun a b -> activeChannelNamePrefix <- string b)
-    changeChannel    
+let changeChannelhandler:IpcMainEventListener =     
+    handlerCaster (fun a b -> activeChannelNamePrefix <- string b)        
 
 electron.ipcMain.on("change-channel", changeChannelhandler) |> ignore
 
 /// clear the block selection
-let clearBlockSelection:IpcMainEventListener = 
-    let handlerCaster f = System.Func<IpcMainEvent, obj, unit> f
-    let clearSelection = handlerCaster (fun a b -> match mainWindow with
-                                                   | Some win -> win.webContents.send(activeChannelNamePrefix + "-clear-block-selection")
-                                                   | _ -> ())
-                                                 
-    clearSelection    
-
+let clearBlockSelection:IpcMainEventListener =     
+    handlerCaster (fun a b -> match mainWindow with
+                              | Some win -> win.webContents.send(activeChannelNamePrefix + "-clear-block-selection")
+                              | _ -> ())                                                 
+        
 electron.ipcMain.on("clear-selection", clearBlockSelection) |> ignore
+
+/// generate the block from the block diagram editor
+let generateBlockFromDesign:IpcMainEventListener = 
+    handlerCaster (fun a b -> console.log("reveiced"))
+
+electron.ipcMain.on("generate-block-from-design", generateBlockFromDesign) |> ignore

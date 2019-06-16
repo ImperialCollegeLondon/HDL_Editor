@@ -1,11 +1,15 @@
 module Tabs
 
 open Fable.Core
+open Fable.Core.JsInterop
 open Fable.Import.Browser
 open Ref
+open Helper
 open Jointjs
 open HTMLUtilities
 open Fable.Import
+open Fable.Import.Electron
+open Fable.Import.Node
 
 /// tab number counter
 let mutable tabCounter = 1
@@ -207,15 +211,7 @@ let blockDiagramEditorInit (title:string) =
 
         createButton (title + "-outputAddButton") "" "Output"
         |> addBlockButtonGroup.appendChild
-        |> ignore
-
-        createButton (title + "-logicElementAddButton") "" "Logic Element"
-        |> addBlockButtonGroup.appendChild
-        |> ignore
-
-        createButton (title + "-registerAddButton") "" "Register"
-        |> addBlockButtonGroup.appendChild
-        |> ignore
+        |> ignore        
 
         createButton (title + "-clearSelectionButton") "" "Clear"
         |> addBlockButtonGroup.appendChild
@@ -265,7 +261,67 @@ let createNewPaneWithButton () =
     let tabRow = document.getElementById "tabRow"
     
     /// define the action when the remove-pane button is clicked
-    let removeDivFunc = fun e -> removeDiv namePrefix
+    let removeDivFunc = fun e -> match newTab.innerHTML with
+                                 | a when a.[a.Length-1] = '*' -> let dialogOptions = createEmpty<ShowMessageBoxOptions>
+                                                                  dialogOptions.title <- Some "Unsaved work"
+                                                                  dialogOptions.message <- Some "You have unsaved work. Are you sure you want to quit?"
+
+                                                                  let buttons = new ResizeArray<string>()
+                                                                  buttons.Add "Cancel"
+                                                                  buttons.Add "Ok"
+                                                                  dialogOptions.buttons <- Some buttons
+                                                                  let handlerCaster f = System.Func<float, unit> f
+
+                                                                  let quitDialogCallback (res:float) = 
+                                                                     match res with
+                                                                     | a when a=1.0 ->  let graph = match currentGraphModel with
+                                                                                                    | Some model -> model?set("graphCustomProperty", true)
+                                                                                                                    JS.JSON.stringify (model?toJSON())                                                                        
+                                                                                                    | option.None -> "no graph data"
+
+                                                                                        let paper = match currentPaperModel with
+                                                                                                    | Some model -> createObj[
+                                                                                                                        "background" ==> model?options?background
+                                                                                                                        "defaultRouter" ==> model?options?defaultRounter
+                                                                                                                        "drawGrid" ==> model?options?drawGrid
+                                                                                                                        "gridSize" ==> model?options?gridSize
+                                                                                                                        "width" ==> model?options?width 
+                                                                                                                        "height" ==> model?options?height 
+                                                                                                                        "snapLinks" ==> model?options?snapLinks
+                                                                                                                    ]
+                                                                                                                    |> JS.JSON.stringify                                    
+                                                                                                    | option.None -> "no paper data"
+                                                                         
+                                                                                        let content = 
+                                                                                            createObj[
+                                                                                                "graph" ==> graph
+                                                                                                "paper" ==> paper
+                                                                                            ]
+                                                                                            |> JS.JSON.stringify
+                                                                         
+                                                                                        let saveDialogOptions = createEmpty<SaveDialogOptions>
+                                                                                        saveDialogOptions.title <- Some "Save file to"
+                                                                                        saveDialogOptions.defaultPath <- Some ("../new.json")                                         
+                                                                                        saveDialogOptions.filters <- option.None                                                                                        
+
+                                                                                        /// return the directory and the file name that is to be saved
+                                                                                        let fileSaveDialog = electron.remote.dialog.showSaveDialog (saveDialogOptions)
+                                                                         
+                                                                                        match fileSaveDialog with
+                                                                                        | a when checkUndefined a <> true -> a
+                                                                                                                             |> getFileName
+                                                                                                                             |> updateTabName
+                                                                                                                             let errorHandler error = removeDiv namePrefix
+                                                                                                                             fs.writeFile (fileSaveDialog, content, errorHandler)
+                                                                                                                             removeDiv namePrefix
+                                                                                        | _ -> ()                                                                            
+                                                                                        
+                                                                     | _ -> ()                                                                                                                                                                                                   
+
+                                                                  let castedCallback = handlerCaster (fun a -> quitDialogCallback a)
+                                                                  
+                                                                  electron.remote.dialog.showMessageBox (dialogOptions, castedCallback)|> ignore
+                                 | _ -> removeDiv namePrefix
     newTabCloseButton.addEventListener("click", U2.Case1 removeDivFunc, false)  
     
     /// after closing the tab, remove the reference to the global mutabl variables

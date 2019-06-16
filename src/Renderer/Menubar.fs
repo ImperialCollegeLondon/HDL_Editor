@@ -13,31 +13,8 @@ open Fable.Import.Electron
 open System
 open Fable.Import.Browser
 open Ref
+open Helper
 open Fable.Import.Node
-
-/// check whether something is "undefined"
-[<Emit("typeof $0 == \"undefined\"")>]
-let checkUndefined target : bool = jsNative
-
-/// get the file name from the complete path that includes the file
-let getFileName (completePath:string) = 
-    match os.platform () with
-    | a when a = Base.NodeJS.Platform.Win32 -> let splitString = completePath.Split '\\'
-                                               let len = splitString |> Array.length
-                                               splitString.[len-1]
-    | b when b = Base.NodeJS.Platform.Darwin -> let splitString = completePath.Split '/'
-                                                let len = splitString |> Array.length
-                                                splitString.[len-1]
-    | c when c = Base.NodeJS.Platform.Linux  -> let splitString = completePath.Split '/'
-                                                let len = splitString |> Array.length
-                                                splitString.[len-1]
-    | _ -> failwithf "other platforms are currently not supported"
-
-/// update the tab name
-let updateTabName (name:string) = 
-    match activeTabId with
-        | Some id -> (document.getElementById (id + "-tabButton")).innerHTML <- name
-        | option.None -> ()
 
 /// to avoid code dulication
 /// only the fields that ofter differ from one and other menu items
@@ -268,11 +245,7 @@ let editSubmenu =
         let fileOpenDialog = electron.remote.dialog.showOpenDialog (openDialogOptions)
         
         match fileOpenDialog with
-        | a when checkUndefined a.[0] <> true -> a.[0]
-                                                 |> getFileName
-                                                 |> updateTabName
-
-                                                 let readFileOptions = 
+        | a when checkUndefined a.[0] <> true -> let readFileOptions = 
                                                      createObj[
                                                          "encoding" ==> "UTF8"
                                                      ]
@@ -303,16 +276,27 @@ let editSubmenu =
 
     let unSelectAllFunction = handlerCaster (fun _ _ -> unSelectAll())
 
+    let generateBlockFromDesign () = 
+        electron.ipcRenderer.send("generate-block-from-design")
+
+    let generateBlockFromDesignFunction = handlerCaster (fun _ _ -> generateBlockFromDesign())
+
     [
         ({  clickData = clickFunction;
             labelData = Some "Create new logic blocks";
-            acceleratorData = Some "CmdOrCtrl + L";
+            acceleratorData = Some "CmdOrCtrl + B";
             roleData = option.None},
             defaultMenuSetupOptional);
 
         ({  clickData = clickFunctionReadBlock;
             labelData = Some "Load logic blocks";
-            acceleratorData = Some "CmdOrCtrl + L";
+            acceleratorData = Some "CmdOrCtrl + R";
+            roleData = option.None},
+            defaultMenuSetupOptional);
+
+        ({  clickData = generateBlockFromDesignFunction;
+            labelData = Some "Generate logic block";
+            acceleratorData = Some "CmdOrCtrl + G";
             roleData = option.None},
             defaultMenuSetupOptional);
 
