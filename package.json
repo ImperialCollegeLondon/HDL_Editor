@@ -47,7 +47,6 @@
     "loglevel": "^1.4.1",
     "mocha": "^6.1.4",
     "mocha-junit-reporter": "^1.22.0",
-    "monaco-editor-webpack-plugin": "^1.7.0",
     "nyc": "^14.1.1",
     "spectron": "^5.0.0",
     "style-loader": "^0.23.1",
