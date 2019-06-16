@@ -455,11 +455,18 @@ let canvasInit (paneName:string) =
                                                                 let numberOfInputs = res.[1] |> int
                                                                 let numberOfOutputs = res.[2] |> int
 
+                                                                let truthTableLangth = 2.**float numberOfInputs |> int
+                                                                let VerilogCodeIndex = 2 + numberOfInputs + numberOfOutputs + truthTableLangth + 1
+                                                                let VerilogCode = String.concat "" res.[VerilogCodeIndex..]
+
                                                                 let inputPorts = res.[3..2+numberOfInputs]
                                                                 let outputPorts = res.[3+numberOfInputs..2+numberOfInputs+numberOfOutputs]
-                                                                let checkRepeat = customLogicBlock.ContainsKey res.[0]                                                     
+                                                                let checkRepeat = customLogicBlock.ContainsKey res.[0]  
+                                                                
+                                                                let res' = Array.append res.[0..2+numberOfInputs+numberOfOutputs+truthTableLangth] [|VerilogCode|]
+
                                                                 match checkRepeat with
-                                                                | false -> customLogicBlock <- customLogicBlock.Add(res.[0], res)
+                                                                | false -> customLogicBlock <- customLogicBlock.Add(res.[0], res')
                                                                            appendNewBlockButton res.[0]
                                                                            updatePaneName ()
                                                                 | true -> console.log("repeated name detected")
@@ -481,7 +488,16 @@ let canvasInit (paneName:string) =
     let generateVerilog () =
         let moduleName = ((document.getElementById (paneName + "-tabButton")).innerHTML.Split '.').[0]
 
-        let mutable VerilogMainBody = "module " + moduleName + "("
+        let mutable VerilogMainBody = ""        
+        for KeyValue(k, v) in customLogicBlock do            
+            let moduleNumberOfInputs = float v.[1]
+            let truthTableLength = 2.**moduleNumberOfInputs |> int
+            let moduleVerilogCodeIndexPosition = 2 + int v.[1] + int v.[2] + truthTableLength + 1
+            VerilogMainBody <- VerilogMainBody + v.[moduleVerilogCodeIndexPosition]
+            VerilogMainBody <- VerilogMainBody + "\n"
+
+        /// fill in the content of the main body
+        VerilogMainBody <- VerilogMainBody + "\nmodule " + moduleName + "("
 
         let allBlocks:obj array = graph?getElements()
         let allLinks:obj array = graph?getLinks()
@@ -519,13 +535,42 @@ let canvasInit (paneName:string) =
             |> ignore
             res
 
+        let linkNameGenerate = 
+            [|0..allLinks.Length|]
+            |> Array.map (fun el -> "link" + string el)
+
+        let attachLinkNames = 
+            [|0..allLinks.Length-1|]
+            |> Array.map (fun el -> (allLinks.[el])?attr(".label/name", linkNameGenerate.[el]))
+            
+
         VerilogMainBody <- VerilogMainBody + String.concat ", " inputIds + ", " + String.concat ", " outputIds + ", clock);\n"
         VerilogMainBody <- VerilogMainBody + "  input " + String.concat ", " inputIds + ", clock;\n"
         VerilogMainBody <- VerilogMainBody + "  output " + String.concat ", " outputIds + ";\n"
-
+        VerilogMainBody <- VerilogMainBody + "  wire " + String.concat ", " linkNameGenerate + ";\n"
         
+        let mutable blockCounter:int = 0;
+
+        [0..logicBlocks.Length-1]
+        |> List.map (fun i -> let block = logicBlocks.[i]
+                              let blockNameFull:string = logicBlocks.[i]?attr(".label/text")
+                              let blockType = (blockNameFull.Split '-').[0]
+                              let connectedLinks:obj array = graph?getConnectedLinks(block)
+                              console.log(connectedLinks)
+                              let extractPortLabelText:string array = 
+                                [|0..connectedLinks.Length-1|]
+                                |> Array.map (fun i -> (connectedLinks.[i])?attr(".label/name"))
+                              
+                              let portLabelText = String.concat ", " extractPortLabelText
+                              
+                              let rowContent = "  " + blockType + " Inst" + string blockCounter + "(" + portLabelText + ", clock);\n"
+                              blockCounter <- blockCounter + 1
+                              VerilogMainBody <- VerilogMainBody + rowContent)
+        |> ignore
+
         VerilogMainBody <- VerilogMainBody + "endmodule\n"
         console.log(VerilogMainBody)
+        console.log(attachLinkNames)
 
     let generateBlockHandler:IpcRendererEventListener = 
         let handlerCaster f = System.Func<IpcRendererEvent, obj, unit> f

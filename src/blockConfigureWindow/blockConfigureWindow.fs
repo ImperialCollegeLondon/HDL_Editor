@@ -331,15 +331,16 @@ let bindEventUpdateGUI () =
                                         | Some name -> name
                                         | option.None -> "MyModule"
 
-                                    content <- content + " " + moduleName + "("
-                                    
-                                    let inputNames = inputIds |> String.concat ", "
-                                    
-                                    content <- content + inputNames + ", "
+                                    content <- content + " " + moduleName + "("                                                                       
 
                                     let outputNames = outputIds |> String.concat ", "
 
-                                    content <- content + outputNames + ", clock); \n"
+                                    content <- content + outputNames + ", "
+
+                                    let inputNames = inputIds |> String.concat ", "
+                                    
+                                    content <- content + inputNames + ", clock); \n"
+
                                     content <- content + "  " + "input " + inputNames + ", clock; \n"
                                     content <- content + "  " + "output " + outputNames + "; \n"
                                     
