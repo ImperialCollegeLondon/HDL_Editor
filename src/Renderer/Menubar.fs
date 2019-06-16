@@ -121,21 +121,30 @@ let fileSubmenu =
                       ]
                       |> JS.JSON.stringify
         
-        let saveDialogOptions = createEmpty<SaveDialogOptions>
-        saveDialogOptions.title <- Some "Save file to"
-        saveDialogOptions.defaultPath <- Some ("../new.json")                                         
-        saveDialogOptions.filters <- option.None
+        match fileSavingPath with
+        | Some a -> a
+                    |> getFileName
+                    |> updateTabName
+                    let errorHandler error = ()
+                    fs.writeFile (a, content, errorHandler)
+        | option.None -> let saveDialogOptions = createEmpty<SaveDialogOptions>
+                         saveDialogOptions.title <- Some "Save file to"
+                         saveDialogOptions.defaultPath <- Some ("../new.json")                                         
+                         saveDialogOptions.filters <- option.None
 
-        /// return the directory and the file name that is to be saved
-        let fileSaveDialog = electron.remote.dialog.showSaveDialog (saveDialogOptions)
+                         /// return the directory and the file name that is to be saved
+                         let fileSaveDialog = electron.remote.dialog.showSaveDialog (saveDialogOptions)
         
-        match fileSaveDialog with
-        | a when checkUndefined a <> true -> a
-                                             |> getFileName
-                                             |> updateTabName
-                                             let errorHandler error = ()
-                                             fs.writeFile (fileSaveDialog, content, errorHandler)
-        | _ -> ()
+                         match fileSaveDialog with
+                         | a when checkUndefined a <> true -> a
+                                                              |> getFileName
+                                                              |> updateTabName
+
+                                                              fileSavingPath <- Some a
+                                                              
+                                                              let errorHandler error = ()
+                                                              fs.writeFile (fileSaveDialog, content, errorHandler)
+                         | _ -> ()
         
     let fileRead () = 
         let openDialogOptions = createEmpty<OpenDialogOptions>

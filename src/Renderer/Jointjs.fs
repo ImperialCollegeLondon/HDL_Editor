@@ -259,6 +259,7 @@ let canvasInit (paneName:string) =
                                                 activeTabId <- Some paneName
                                                 highlightTab paneName
                                                 electron.ipcRenderer.send("change-channel", paneName)
+                                                fileSavingPath <- option.None
     getElementBindEvent (paneName + "-tabButton") "click" updateModelAndPaperReference
 
     /// set the response when double click on a block is detected in the canvas           

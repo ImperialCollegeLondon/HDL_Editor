@@ -18,9 +18,11 @@ let mutable currentGraphModel:obj option = option.None
 /// for file saving and loading
 let mutable currentPaperModel:obj option = option.None
 
-
 /// store the current active tab id
 let mutable activeTabId:string option = option.None
+
+/// store the current file saving path
+let mutable fileSavingPath:string option = option.None
 
 /// store the current relational mode
 /// for file saving and loading
