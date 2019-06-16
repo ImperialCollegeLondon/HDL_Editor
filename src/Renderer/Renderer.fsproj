@@ -10,6 +10,7 @@
     <Compile Include="HTMLUtilities.fs" />
     <Compile Include="Jointjs.fs" />
     <Compile Include="Tabs.fs" />
+    <Compile Include="About.fs" />
     <Compile Include="Menubar.fs" />
     <Compile Include="Renderer.fs" />
   </ItemGroup>

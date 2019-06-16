@@ -1,14 +1,7 @@
 module Renderer
 
-open Fable.Core
-open Fable.Core.JsInterop
-open Fable.Import
-open Node.Exports
-open Menubar
-open Jointjs
 open Tabs
-open Fable.Import.Electron
-open Fable.Import.Browser
+open Menubar
 
 /// initializes the GUI
 /// order of initializing each element is important

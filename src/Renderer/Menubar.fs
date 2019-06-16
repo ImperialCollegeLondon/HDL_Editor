@@ -14,6 +14,7 @@ open System
 open Fable.Import.Browser
 open Ref
 open Helper
+open About
 open Fable.Import.Node
 
 /// to avoid code dulication
@@ -409,12 +410,12 @@ let viewMenu =
       roleData = option.None },
       replaceSubmenuData viewSubmenu)
  
-let createAboutWindow () = 
-    electron.ipcRenderer.send("open-about-window")
+let createAboutWindow () =     
+    aboutWindowInit ()
 
 let helpSubmenu = 
     let handlerCaster f = System.Func<MenuItem, BrowserWindow, unit> f |> Some
-    let clickFunction = handlerCaster (fun _ _ -> createAboutWindow())
+    let clickFunction = handlerCaster (fun _ _ -> createAboutWindow ())
     [   
         ({  clickData = option.None;
             labelData = Some "Online Documentation";
