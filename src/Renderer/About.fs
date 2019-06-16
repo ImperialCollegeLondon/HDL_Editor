@@ -37,6 +37,7 @@ let aboutWindowInit () =
     let dialogOptions = createEmpty<Fable.Import.Electron.ShowMessageBoxOptions>
     dialogOptions.title <- Some "About HDL Editor"
     dialogOptions.message <- Some message
+    dialogOptions.``type`` <- option.None
        
     let handlerCaster f = System.Func<float, unit> f
 
@@ -44,4 +45,5 @@ let aboutWindowInit () =
     
     let castedCallback = handlerCaster (fun a -> aboutDialogCallback a)
 
-    electron.remote.dialog.showMessageBox (dialogOptions, castedCallback)|> ignore
+    let win = electron.remote.getCurrentWindow ()
+    electron.remote.dialog.showMessageBox (win, dialogOptions, castedCallback)|> ignore

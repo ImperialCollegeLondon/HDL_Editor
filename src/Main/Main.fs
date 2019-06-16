@@ -45,8 +45,7 @@ let createMainWindow () =
         window.show() 
         options.backgroundColor <- Some "#F0F0F0"
         window.focus()
-     )) |> ignore
-
+     )) |> ignore    
     
     // Emitted when the window is closed.
     window.on("closed", unbox(fun () ->
@@ -54,6 +53,7 @@ let createMainWindow () =
         // in an array if your app supports multi windows, this is the time
         // when you should delete the corresponding element.
         mainWindow <- option.None
+        
     )) |> ignore
 
     mainWindow <- Some global.window
