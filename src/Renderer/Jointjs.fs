@@ -400,13 +400,15 @@ let canvasInit (paneName:string) =
 
     let appendNewBlockButton (buttonName:string) = 
         let rootDiv = document.createElement_div ()
-        rootDiv.id <- paneName + "-" + buttonName + "div"
-        rootDiv.style.display <- "inline"
+        rootDiv.id <- paneName + "-" + buttonName + "div"        
 
         let button = document.createElement_button ()
         button.``type`` <- "button"
         button.id <- paneName + "-" + buttonName
         button.innerHTML <- buttonName
+        button.style.width <- "70%"
+        button.style.left <- "0%"
+        button.style.cssFloat <- "left"
         rootDiv.appendChild button |> ignore
 
         let clickAddBlickEvent = fun e -> activeBlockType <- Some LogicElement
@@ -417,6 +419,9 @@ let canvasInit (paneName:string) =
         deleteButton.id <- paneName + "-" + buttonName + "deleteButton"
         deleteButton.``type`` <- "button"
         deleteButton.innerHTML <- "X"
+        deleteButton.style.width <- "30%"
+        deleteButton.style.left <- "70%"
+        deleteButton.style.cssFloat <- "left"
         rootDiv.appendChild deleteButton |> ignore
 
         let clickDeleteButtonEvent = fun e -> activeBlockType <- option.None
