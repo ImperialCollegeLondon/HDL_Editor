@@ -297,7 +297,11 @@ let editSubmenu =
         | _ -> ()
 
     let clickFunctionReadBlock = handlerCaster (fun  _ _ -> fileRead())
+    
+    let unSelectAll () = 
+        electron.ipcRenderer.send("clear-selection")
 
+    let unSelectAllFunction = handlerCaster (fun _ _ -> unSelectAll())
 
     [
         ({  clickData = clickFunction;
@@ -352,6 +356,12 @@ let editSubmenu =
             labelData = Some "Select All";
             acceleratorData = Some "CmdOrCtrl + A"; 
             roleData = MenuItemRole.Selectall |> U2.Case1 |> Some },
+            defaultMenuSetupOptional);
+
+        ({  clickData = unSelectAllFunction;
+            labelData = Some "Unselect All";
+            acceleratorData = Some "Esc"; 
+            roleData = option.None },
             defaultMenuSetupOptional)
     ]
 

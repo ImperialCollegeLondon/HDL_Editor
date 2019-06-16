@@ -181,3 +181,14 @@ let changeChannelhandler:IpcMainEventListener =
     changeChannel    
 
 electron.ipcMain.on("change-channel", changeChannelhandler) |> ignore
+
+/// clear the block selection
+let clearBlockSelection:IpcMainEventListener = 
+    let handlerCaster f = System.Func<IpcMainEvent, obj, unit> f
+    let clearSelection = handlerCaster (fun a b -> match mainWindow with
+                                                   | Some win -> win.webContents.send(activeChannelNamePrefix + "-clear-block-selection")
+                                                   | _ -> ())
+                                                 
+    clearSelection    
+
+electron.ipcMain.on("clear-selection", clearBlockSelection) |> ignore

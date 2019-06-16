@@ -318,7 +318,7 @@ let canvasInit (paneName:string) =
                 let yCoordinate = (args?offsetY - (args?offsetY)%10)
 
                 resizeCanvas xCoordinate yCoordinate 
-                
+                console.log(args)
                 let ctrlKeyHold:bool = args?ctrlKey                
                 match ctrlKeyHold with
                 | true -> scale <- 1.0
@@ -462,6 +462,16 @@ let canvasInit (paneName:string) =
         updateLogicBlockStorage    
     
     electron.ipcRenderer.on(paneName + "-new-blocks", newBlockhandler) |> ignore
+
+    let clearBlockSelectionHandler:IpcRendererEventListener = 
+        let handlerCaster f = System.Func<IpcRendererEvent, obj, unit> f
+        let clearBlockSelection = handlerCaster (fun a b -> resetAllSelected paper 
+                                                            setHTMLElementValue InputBox (paneName + "-positionX") ""                 
+                                                            setHTMLElementValue InputBox (paneName + "-positionY") ""
+                                                            modelRef <- option.None)
+        clearBlockSelection
+
+    electron.ipcRenderer.on(paneName + "-clear-block-selection", clearBlockSelectionHandler) |> ignore
 
 
     
