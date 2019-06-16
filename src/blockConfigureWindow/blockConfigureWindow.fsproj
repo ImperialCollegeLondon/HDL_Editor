@@ -5,6 +5,9 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="..\Renderer\JSLibInterface.fs" />
+    <Compile Include="..\Renderer\HTMLUtilities.fs" />
+    <Compile Include="Ref.fs" />
+    <Compile Include="Helper.fs" />
     <Compile Include="blockConfigureWindow.fs" />
   </ItemGroup>
   <Import Project="..\..\.paket\Paket.Restore.targets" />
