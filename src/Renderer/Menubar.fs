@@ -211,7 +211,7 @@ let fileSubmenu =
             roleData = option.None },
             defaultMenuSetupOptional);
 
-        ({  clickData = option.None;
+        ({  clickData = clickFunctionSave;
             labelData = Some "Save As";
             acceleratorData = Some "CmdOrCtrl + Shift + S"; 
             roleData = option.None },

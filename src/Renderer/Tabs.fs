@@ -140,17 +140,7 @@ let blockDiagramEditorInit (title:string) =
         blockConfigure.appendChild br
         |> blockConfigure.appendChild
         |> ignore
-
-        let booleanEquationLabel = document.createElement_label ()
-        booleanEquationLabel.innerHTML <- "Boolean Equation: "
-        blockConfigure.appendChild booleanEquationLabel |> ignore
-
-        let booleanEquationEntryField = document.createElement_input ()
-        booleanEquationEntryField.id <- title + "-booleanEquation"
-        booleanEquationEntryField.``type`` <- "text"
-        booleanEquationEntryField.value <- ""
-        blockConfigure.appendChild booleanEquationEntryField |> ignore
-
+        
         blockConfigure.appendChild br
         |> blockConfigure.appendChild
         |> ignore
