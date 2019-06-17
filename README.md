@@ -74,6 +74,8 @@ The folder contains F# projects. Each F# project is put in a subfolder. The stru
 
 ## Getting Started
 
+/// not finished here
+
 ## Reinstalling Compiler and Libraries
 
 For Windows users, run `setup.bat` file at the root directory.
@@ -88,9 +90,25 @@ For Mac and Linux users, run `setup.sh` file at the root directory.
 | Mac              | `yarn pack-mac`   |
 | Linux            | `yarn pack-linux` |
 
+Please run each command under its corresponding operating system.
+
 ## Dependency Upgrade
 
+- The project uses the Fable 2.0.3. At the time of development, Fable 3 is under development while not officially released.
+
+- JointJS version 2.2.1. Its commercial extension Rappid is not needed.
+
+- Electron version 4.1.3
+
+- Dotnet SDK version 2.1
+
+- Webpack version 4.29.6
+
 ## Boilplate Development
+
+The F# projects are controlled by the HDL_Editor.sln file, which is used as the Visual Studio solution file. By openning the file using Visual Studio, all F# projects are accessible in one window.
+
+Open two terminals with one running `yarn start` and the other running `yarn launch`. When any changes are made to the F# source code, saving the changes will trigger the automatic re-transpile of the changed files. The `yarn launch` command needs to be stopped and re-run to make the changes in the source code take effect.
 
 ## Licensing
 
