@@ -2,23 +2,27 @@
 
 ## Introduction
 
-The application is designed to generate structured Verilog HDL (Hardware Description Language) code for FPGA devices. The design, or the Verilog code is fully synchronous.
+The application is designed to generate structured `Verilog HDL` (Hardware Description Language) code for FPGA devices. The output Verilog code is fully synchronous.
 
-The application is implemented in F#. The source code is transpiled to JavaScript by the Fable compiler and bundled by webpack. The result JavaScript code runs under the Electron framework with GUI set by HTML and CSS files.
+The application is implemented in `F#`. The source code is transpiled to `JavaScript` by the `Fable` compiler and bundled by `webpack`. The result JavaScript code runs under the `Electron` framework with GUI set by HTML and CSS files.
+
+The application uses `JointJS`, a drawing library implemented in JavaScript, to handle the graphical design interface.
 
 ## Feature
 
-The software is a fully graphical FPGA hardware design tool. For creating custom logic blocks, user can either fill in truth tables to generate a standalone block, or connect different logic blocks together to form a higher level block.
+The software is a graphical design tool for FPGA hardware design. For creating custom logic blocks, user can either fill in truth tables to generate standalone blocks, or connect different logic blocks together to form a higher level block.
 
 The application is designed to be cross-platform, either for production use or development purposes.
 
+Although the source code is in `F#`, interop with JavaScript is made possible by `Fable`.
+
 ## Code Structure
 
-The F# source code is placed in three projects and transpiled to JavaScript.
+The F# source code is placed in three projects and transpiled to three pieces of JavaScript code. Each piece of JavaScript code consists of two files: one minimized file and one mapping file.
 
-The electron main process handles tasks such as creating windows and providing browser-like platform to run the code.
+The electron main process handles tasks such as creating windows and providing browser-like platform to run the code. Each Electron application instance can has only one main process.
 
-The electron renderer process handles such as GUI update and user interaction.
+The electron renderer process handles tasks such as GUI update and user interaction. The number of renderer processes is not limited in one Electron application instance.
 
 The two kinds of processes can communicate with each other via IPC (Inter-Process Communication) calls or via the Remove module, which is a one way communication from the renderer process to the main process.
 
@@ -28,7 +32,7 @@ The two kinds of processes can communicate with each other via IPC (Inter-Proces
 | electron renderer | .src/Renderer/Renderer.fsproj                          | .src/Renderer/*.fs              | .app/js/renderer.js              |
 | electron renderer | .src/blockConfigureWindow /blockConfigureWindow.fsproj | .src/blockConfigureWindow /*.fs | .app/js /blockConfigureWindow.js |
 
-
+The ordering of the F# source code files is controlled by the .fsproj files. The .fsproj files are passed in when transpiling to JavaScript.
 
 ## `package.json`
 
@@ -48,7 +52,7 @@ The `package.json` is the configuration file for the project, including informat
 }  
 ```
 
-The `script` section in `package.json` defines shortcut commands. To run the defined commands, simply type `yarn + <script key>` in the terminal followed by the `Enter` key.
+The `script` section in `package.json` defines shortcut commands. To run the defined commands, simply type `yarn + <script key>` in the terminal followed by the `Enter` key. To use the `yarn` commands, `yarn` needs to be installed.
 
 Native node `npm` commands are also supported. To run the defined shortcut commands, type `npm run <script key>` followed by the `Enter` key.
 
@@ -74,7 +78,31 @@ The folder contains F# projects. Each F# project is put in a subfolder. The stru
 
 ## Getting Started
 
-/// not finished here
+You can skip this section if you just wanted to run the application. Please head to the release section of this repo to get the packaged application.
+
+1. Install Node.js.
+
+2. Install yarn.
+
+3. Install Mono if you were using Mac or Linux. Ensure Mono is downloaded from the official website.
+
+4. Install the Dotnet SDK.
+
+5. Clone the source code repo.
+
+6. Run `yarn install` to install the npm packages.
+
+7. Install paket if you were using Mac or Linux.
+
+8. Run `setup.bat` if under Windows or `setup.sh` if under Mac or Linux.
+
+9. Open one terminal, `cd` to the source code root directory and run `yarn start`. Wait for all the source code to compile. Errors in source code is shown in color text in the terminal.
+
+10. Open another terminal, `cd` to the source code root directory and run `yarn launch`. The application should launch now.
+
+11. In the application window, press `Ctrl-Shift-I` to toggle the dev tool.
+
+12. Refer to the `Packaging the Application` section in this README.md file if you wanted to pack the application for production use.
 
 ## Reinstalling Compiler and Libraries
 
