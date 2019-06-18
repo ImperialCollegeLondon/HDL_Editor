@@ -371,7 +371,7 @@ let canvasInit (paneName:string) =
                                                   let outputCount = logicElementConfig.[2] |> int
                                                   let logicElementInputs = logicElementConfig.[3..2+inputCount]
                                                   let logicElementOutputs = logicElementConfig.[3+inputCount..2+inputCount+outputCount]
-                                                  customLogicElementInit logicElementInputs logicElementOutputs (activeBlockName + "-block")
+                                                  customLogicElementInit logicElementInputs logicElementOutputs (activeBlockName + "-block" + string logicBlockCounter)
                                                   |> jointJSCreator.Position xCoordinate yCoordinate
                                                   |> jointJSCreator.AttrBySelector "body/cursor" "pointer"
                                                   |> jointJSCreator.AttrBySelector "rect/cursor" "pointer"
@@ -379,6 +379,7 @@ let canvasInit (paneName:string) =
                                                   |> jointJSCreator.AttrBySelector "label/cursor" "pointer"
                                                   |> jointJSCreator.AddTo graph
                                                   |> ignore
+                                                  logicBlockCounter <- logicBlockCounter + 1
                                                   activeBlockType <- option.None
                                                   (document.getElementById (paneName + "-resetZoomButton")).innerHTML <- "Zoom = 100%. Click to reset."
                                                   updatePaneName ()

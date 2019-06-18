@@ -1,6 +1,5 @@
 var path = require("path");
 var webpack = require("webpack");
-//var MonacoWebpackPlugin = require('monaco-editor-webpack-plugin');
 
 function resolve(filePath) {
   return path.join(__dirname, filePath)
@@ -60,10 +59,7 @@ var basicConfig = {
         }
       }
     ]
-  },
-  // plugins: [
-  //   new MonacoWebpackPlugin()
-  // ]
+  }
 };
 
 var mainConfig = Object.assign({

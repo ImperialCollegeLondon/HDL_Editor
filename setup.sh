@@ -5,6 +5,5 @@ git submodule update --recursive --remote
 dotnet nuget locals all --clear
 dotnet restore src/Main/Main.fsproj
 dotnet restore src/Renderer/Renderer.fsproj
-dotnet restore src/RendererAboutWindow/RendererAboutWindow.fsproj
 dotnet restore src/UnitTest/UnitTest.fsproj
 yarn install
