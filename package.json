@@ -2,9 +2,8 @@
   "private": true,
   "productName": "hdl_editor",
   "version": "1.0.0",
-  "license": "MIT",
-  "main": "app/js/main.js",
   "license": "UNLICENSED",
+  "main": "app/js/main.js",
   "scripts": {
     "start": "cd src/Main && yarn webpack --port free -w --config webpack.config.js -w",
     "build": "cd src/Main && yarn webpack --port free --config webpack.config.js",
@@ -24,9 +23,7 @@
   "author": "Lei Wang (Wilson)",
   "dependencies": {
     "@babel/runtime": "^7.4.3",
-    "core-js": "^3.0.1",
-    "jointjs": "^2.2.1",
-    "monaco-editor": "^0.17.0"
+    "jointjs": "^2.2.1"
   },
   "devDependencies": {
     "@babel/core": "^7.4.3",
@@ -34,7 +31,6 @@
     "@babel/preset-env": "^7.4.3",
     "@babel/preset-react": "^7.0.0",
     "@babel/register": "^7.4.0",
-    "@types/mocha": "^5.2.6",
     "babel-loader": "^8.0.5",
     "babel-plugin-istanbul": "^5.1.4",
     "cross-env": "^5.2.0",

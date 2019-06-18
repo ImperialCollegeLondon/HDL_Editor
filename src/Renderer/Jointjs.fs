@@ -41,11 +41,11 @@ let blockWithPortInit () =
     createNew joint?shapes?devs?Model ()    
 
 /// create input blocks
-let inputPortInit () =
+let inputPortInit (counter:int) =
     let inputPortBlock = blockWithPortInit ()
     inputPortBlock?set("inPorts", [||])
     inputPortBlock?set("outPorts", [|"out"|])
-    inputPortBlock?attr(".label/text", "In-block")
+    inputPortBlock?attr(".label/text", "In-in" + string counter)
     inputPortBlock?attr(".label/fontSize", 14)
     inputPortBlock?attr(".label/textVerticalAnchor", "middle")
         
@@ -59,11 +59,11 @@ let inputPortInit () =
 
 
 /// create output blocks
-let outputPortInit () = 
+let outputPortInit (counter:int) = 
     let outputPort = blockWithPortInit ()
     outputPort?set("inPorts", [|"in"|])
     outputPort?set("outPorts",[||])
-    outputPort?attr(".label/text", "Out-block")
+    outputPort?attr(".label/text", "Out-out" + string counter)
     outputPort?attr(".label/fontSize", 14)
     outputPort?attr(".label/textVerticalAnchor", "middle")
 
@@ -166,6 +166,11 @@ let canvasInit (paneName:string) =
     /// the dimensions of the paper (the canvas)
     let mutable canvasXDimension:int = 1800
     let mutable canvasYDimension:int = 1000    
+
+    /// counter for different types of blocks
+    let mutable inputCounter:int = 0
+    let mutable outputCounter:int = 0
+    let mutable logicBlockCounter:int = 0;
 
     /// initialize the graoh
     let graph = jointJSCreator.GraphInit ()
@@ -332,20 +337,21 @@ let canvasInit (paneName:string) =
                 | false -> match activeBlockType with
                            | Some InputPort -> scale <- 1.0
                                                paper?scale(scale)
-                                               inputPortInit ()                                                          
+                                               inputPortInit inputCounter                                                          
                                                |> jointJSCreator.Position xCoordinate yCoordinate
                                                |> jointJSCreator.AttrBySelector "body/cursor" "pointer"
                                                |> jointJSCreator.AttrBySelector "rect/cursor" "pointer"
-                                               |> jointJSCreator.AttrBySelector ".label/cursor" "pointer"
+                                               |> jointJSCreator.AttrBySelector ".label/cursor" "pointer"                                               
                                                |> jointJSCreator.AttrBySelector "label/cursor" "pointer"
                                                |> jointJSCreator.AddTo graph
                                                |> ignore 
+                                               inputCounter <- inputCounter + 1
                                                activeBlockType <- option.None
                                                (document.getElementById (paneName + "-resetZoomButton")).innerHTML <- "Zoom = 100%. Click to reset."
                                                updatePaneName ()
                            | Some OutputPort -> scale <- 1.0
                                                 paper?scale(scale)
-                                                outputPortInit ()
+                                                outputPortInit outputCounter
                                                 |> jointJSCreator.Position xCoordinate yCoordinate
                                                 |> jointJSCreator.AttrBySelector "body/cursor" "pointer"
                                                 |> jointJSCreator.AttrBySelector "rect/cursor" "pointer"
@@ -353,6 +359,7 @@ let canvasInit (paneName:string) =
                                                 |> jointJSCreator.AttrBySelector "label/cursor" "pointer"
                                                 |> jointJSCreator.AddTo graph
                                                 |> ignore
+                                                outputCounter <- outputCounter + 1
                                                 activeBlockType <- option.None
                                                 (document.getElementById (paneName + "-resetZoomButton")).innerHTML <- "Zoom = 100%. Click to reset."
                                                 updatePaneName ()
@@ -468,7 +475,7 @@ let canvasInit (paneName:string) =
                                                                 match checkRepeat with
                                                                 | false -> customLogicBlock <- customLogicBlock.Add(res.[0], res')
                                                                            appendNewBlockButton res.[0]
-                                                                           updatePaneName ()
+                                                                           updatePaneName ()                                                                           
                                                                 | true -> console.log("repeated name detected")
                                                                 )
         updateLogicBlockStorage    

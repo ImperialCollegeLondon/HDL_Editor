@@ -190,3 +190,10 @@ let generateBlockFromDesign:IpcMainEventListener =
                               | _ -> ())
 
 electron.ipcMain.on("generate-block-from-design", generateBlockFromDesign) |> ignore
+
+
+let check:IpcMainEventListener = 
+    handlerCaster (fun a b -> printfn "%A" b)
+
+
+electron.ipcMain.on("check", check) |> ignore

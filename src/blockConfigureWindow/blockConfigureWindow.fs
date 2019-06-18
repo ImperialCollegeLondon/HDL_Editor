@@ -55,16 +55,16 @@ let bindEventUpdateGUI () =
                                           getValueFromInputs id container)                                        
                     |> List.toArray
                     |> String.concat ""
-
+                
                 let inputCounts = int (2.** float inputIds.Length)
                 let outputConfigs = 
                    [0..inputCounts]
-                   |> List.map (fun i -> getOneRow i)
-                                    
+                   |> List.map (fun i -> electron.ipcRenderer.send("check", (getOneRow i))
+                                         getOneRow i)
+                                         
                 [0..inputCounts-1]
                 |> List.map (fun i -> outputConfigs.[i])
-                |> List.toArray
-                                    
+                |> List.toArray                                 
                                  
              let contentGenerator () = 
                 let mutable content = "module"
@@ -97,6 +97,8 @@ let bindEventUpdateGUI () =
                 content <- content + "    case({" + inputNames + "})\n"
 
                 let rec caseStatementInnerBeginEnd (row:int) (outputCount:int) (outputs:string array) (truthTable:string array) (res:string) = 
+                    electron.ipcRenderer.send("check", res)
+                    electron.ipcRenderer.send("check", truthTable)
                     match outputCount with
                     | a when a < outputs.Length -> caseStatementInnerBeginEnd row (outputCount+1) outputs truthTable (res + outputs.[a] + " <= " + "1'b" + string truthTable.[row].[a] + ";\n      ")
                     | _ -> res
@@ -105,7 +107,7 @@ let bindEventUpdateGUI () =
                     match index with
                     | a when a < truthTable.Length -> let lookupIn = "    " + (string inputWidth) + "'b" + (intToBinaryConverter a inputWidth) + ":\n"
                                                       let beginStatement = "      begin\n"
-                                                      let innerStatements = caseStatementInnerBeginEnd a 0 outputIds truthTable "      "
+                                                      let innerStatements = caseStatementInnerBeginEnd a 0 outputIds truthTable "      "                                                      
                                                       let endStatement = "end\n"
                                                       lookupTableHorizontalLine (index+1) truthTable inputWidth (res + lookupIn + beginStatement + innerStatements + endStatement)
 

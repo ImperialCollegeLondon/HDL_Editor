@@ -153,7 +153,7 @@ let updateTruthTableDisplay () =
                                              | option.None -> "0"
                               let div = document.createElement_div ()
                               div.style.paddingTop <- "10%"
-                              input.id <- label+ (string i)
+                              input.id <- label+ "div" + (string i)
                               div.appendChild input |> ignore
                               columnRoot.appendChild div)
         |> ignore
