@@ -218,12 +218,14 @@ let fileSubmenu =
 
         menuSeparator;
 
+        (*
         ({  clickData = option.None;
             labelData = Some "Preference";
             acceleratorData = Some "CmdOrCtrl + P"; 
             roleData = option.None },
             defaultMenuSetupOptional);
-     
+        *)
+
         ({  clickData = option.None;
             labelData = Some "Exit";
             acceleratorData = Some "CmdOrCtrl + Q"; 
@@ -415,10 +417,11 @@ let createAboutWindow () =
 
 let helpSubmenu = 
     let handlerCaster f = System.Func<MenuItem, BrowserWindow, unit> f |> Some
+    let openExternalLink = handlerCaster (fun _ _ -> electron.shell.openExternal "https://github.com/ImperialCollegeLondon/HDL_Editor" |> ignore)
     let clickFunction = handlerCaster (fun _ _ -> createAboutWindow ())
     [   
-        ({  clickData = option.None;
-            labelData = Some "Online Documentation";
+        ({  clickData = openExternalLink;
+            labelData = Some "GitHub Repository";
             acceleratorData = option.None; 
             roleData = option.None },
             defaultMenuSetupOptional);

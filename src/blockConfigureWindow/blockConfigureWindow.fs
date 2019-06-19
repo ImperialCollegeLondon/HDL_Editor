@@ -59,8 +59,7 @@ let bindEventUpdateGUI () =
                 let inputCounts = int (2.** float inputIds.Length)
                 let outputConfigs = 
                    [0..inputCounts]
-                   |> List.map (fun i -> electron.ipcRenderer.send("check", (getOneRow i))
-                                         getOneRow i)
+                   |> List.map (fun i -> getOneRow i)
                                          
                 [0..inputCounts-1]
                 |> List.map (fun i -> outputConfigs.[i])
@@ -96,9 +95,7 @@ let bindEventUpdateGUI () =
                 content <- content + "  begin\n"
                 content <- content + "    case({" + inputNames + "})\n"
 
-                let rec caseStatementInnerBeginEnd (row:int) (outputCount:int) (outputs:string array) (truthTable:string array) (res:string) = 
-                    electron.ipcRenderer.send("check", res)
-                    electron.ipcRenderer.send("check", truthTable)
+                let rec caseStatementInnerBeginEnd (row:int) (outputCount:int) (outputs:string array) (truthTable:string array) (res:string) =                    
                     match outputCount with
                     | a when a < outputs.Length -> caseStatementInnerBeginEnd row (outputCount+1) outputs truthTable (res + outputs.[a] + " <= " + "1'b" + string truthTable.[row].[a] + ";\n      ")
                     | _ -> res
@@ -147,11 +144,11 @@ let bindEventUpdateGUI () =
              | a when checkUndefined a <> true -> let errorHandler error =                                                     
                                                     electron.ipcRenderer.send("new-block-information", 
                                                         (blockName, inputIds.Length, outputIds.Length, inputIds, outputIds, truthTable, contentGenerator ()))
-                                                  fs.writeFile (fileSaveDialog, JS.JSON.stringify contents, errorHandler)
-                                                  let errorHandlerClosingWindow error =                                                                           
-                                                    let window = electron.remote.getCurrentWindow ()
-                                                    window.close ()
-                                                  fs.writeFile (fileSaveDialog + ".v", contentGenerator (), errorHandlerClosingWindow)
+                                                    let errorHandlerClosingWindow error =                                                                           
+                                                        let window = electron.remote.getCurrentWindow ()
+                                                        window.close ()
+                                                    fs.writeFile (fileSaveDialog + ".v", contentGenerator (), errorHandlerClosingWindow)
+                                                  fs.writeFile (fileSaveDialog, JS.JSON.stringify contents, errorHandler)                                                  
              | _ -> ()                               
     |> getElementBindEvent "ok-button" "click"        
    

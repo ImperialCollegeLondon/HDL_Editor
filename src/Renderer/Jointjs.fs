@@ -3,12 +3,14 @@ module Jointjs
 open Fable.Core.JsInterop
 open Fable.Import.Browser
 open Ref
+open Helper
 open JSLibInterface
 open HTMLUtilities
 open System
 open Fable.Import
 open Fable.Import.Electron
 open Fable.Core
+open Fable.Import.Node
 
 let joint : obj = importAll "jointjs"
 
@@ -475,7 +477,7 @@ let canvasInit (paneName:string) =
 
                                                                 match checkRepeat with
                                                                 | false -> customLogicBlock <- customLogicBlock.Add(res.[0], res')
-                                                                           appendNewBlockButton res.[0]
+                                                                           appendNewBlockButton res.[0]                                                                           
                                                                            updatePaneName ()                                                                           
                                                                 | true -> console.log("repeated name detected")
                                                                 )
@@ -508,7 +510,25 @@ let canvasInit (paneName:string) =
         VerilogMainBody <- VerilogMainBody + "\nmodule " + moduleName + "("
 
         let allBlocks:obj array = graph?getElements()
-        let allLinks:obj array = graph?getLinks()
+
+        let checkLinkConnected (link:obj) resFunction1 resFunction2 = 
+            match link?getSourceElement(), link?getTargetElement() with
+            | a, b when checkNull a = true && checkNull b <> true -> resFunction1
+            | m, n when checkNull m <> true && checkNull n = true -> resFunction1
+            | r, s when checkNull r = true && checkNull s = true -> resFunction1
+            | p, q when checkNull p <> true && checkNull q <> true -> resFunction2
+            | _, _ -> failwithf "Not possible. All possible outcomes handled."
+
+        let allLinks:obj array = 
+            let linkArray:obj array = graph?getLinks()
+
+            let rec checkLinkConnected' (index:int) (res:obj array) = 
+                match index with
+                | i when i < linkArray.Length -> let resFunc1 = checkLinkConnected' (i+1) res
+                                                 let resFunc2 = checkLinkConnected' (i+1) (Array.append res [|linkArray.[i]|])
+                                                 checkLinkConnected (linkArray.[i]) resFunc1 resFunc2                                                
+                | _ -> res
+            checkLinkConnected' 0 [||]            
                
         let inputBlocks, inputIds = 
             let mutable resBlock:obj array = [||]
@@ -548,14 +568,37 @@ let canvasInit (paneName:string) =
             |> Array.map (fun el -> "link" + string el)
 
         let attachLinkNames = 
-            [|0..allLinks.Length-1|]
-            |> Array.map (fun el -> (allLinks.[el])?attr(".label/name", linkNameGenerate.[el]))
-            
+            let linkWithNames = [|0..allLinks.Length-1|]
+                                |> Array.map (fun el -> (allLinks.[el])?attr(".label/name", linkNameGenerate.[el]))
+
+            let rec checkInOutPorts (index:int) (linkArray:obj array) = 
+                match index with
+                | a when a < linkArray.Length -> let linkSource:string = linkArray.[a]?getSourceElement()?attr(".label/text")
+                                                 let linkTarget:string = linkArray.[a]?getTargetElement()?attr(".label/text")
+                                                 
+                                                 match linkSource, linkTarget with
+                                                 | portNameA, _ when (portNameA.Split '-').[0] = "In" -> linkArray.[a]?attr(".label/name", portNameA.[3..])
+                                                                                                         checkInOutPorts (a+1) (linkArray)
+                                                 | portNameA, _ when (portNameA.Split '-').[0] = "Out" -> linkArray.[a]?attr(".label/name", portNameA.[4..])
+                                                                                                          checkInOutPorts (a+1) (linkArray)
+                                                 | _, portNameB when (portNameB.Split '-').[0] = "In" -> linkArray.[a]?attr(".label/name", portNameB.[3..])
+                                                                                                         checkInOutPorts (a+1) (linkArray)
+                                                 | _, portNameB when (portNameB.Split '-').[0] = "Out" -> linkArray.[a]?attr(".label/name", portNameB.[4..])
+                                                                                                          checkInOutPorts (a+1) (linkArray)
+                                                 | _, _ -> checkInOutPorts (a+1) (linkArray)
+                | _ -> linkArray
+
+            checkInOutPorts 0 linkWithNames
+
+        let extractLinkNames:string array = 
+            [0..attachLinkNames.Length-1]
+            |> List.map (fun el -> attachLinkNames.[el]?attr(".label/name"))    
+            |> List.toArray
 
         VerilogMainBody <- VerilogMainBody + String.concat ", " inputIds + ", " + String.concat ", " outputIds + ", clock);\n"
         VerilogMainBody <- VerilogMainBody + "  input " + String.concat ", " inputIds + ", clock;\n"
         VerilogMainBody <- VerilogMainBody + "  output " + String.concat ", " outputIds + ";\n"
-        VerilogMainBody <- VerilogMainBody + "  wire " + String.concat ", " linkNameGenerate + ";\n"
+        VerilogMainBody <- VerilogMainBody + "  wire " + String.concat ", " extractLinkNames + ";\n"
         
         let mutable blockCounter:int = 0;
 
@@ -564,10 +607,18 @@ let canvasInit (paneName:string) =
                               let blockNameFull:string = logicBlocks.[i]?attr(".label/text")
                               let blockType = (blockNameFull.Split '-').[0]
                               let connectedLinks:obj array = graph?getConnectedLinks(block)
-                              console.log(connectedLinks)
+                              
+                              let rec checkLinkConnected' (index:int) (res:obj array) = 
+                                  match index with
+                                  | i when i < connectedLinks.Length -> let resFunc1 = checkLinkConnected' (i+1) res
+                                                                        let resFunc2 = checkLinkConnected' (i+1) (Array.append res [|connectedLinks.[i]|])
+                                                                        checkLinkConnected (connectedLinks.[i]) resFunc1 resFunc2                                                
+                                  | _ -> res
+                              let checkedLinks = checkLinkConnected' 0 [||]
+
                               let extractPortLabelText:string array = 
-                                [|0..connectedLinks.Length-1|]
-                                |> Array.map (fun i -> (connectedLinks.[i])?attr(".label/name"))
+                                [|0..checkedLinks.Length-1|]
+                                |> Array.map (fun i -> (checkedLinks.[i])?attr(".label/name"))
                               
                               let portLabelText = String.concat ", " extractPortLabelText
                               
@@ -577,12 +628,37 @@ let canvasInit (paneName:string) =
         |> ignore
 
         VerilogMainBody <- VerilogMainBody + "endmodule\n"
-        console.log(VerilogMainBody)
-        console.log(attachLinkNames)
+        console.log(VerilogMainBody)        
+        VerilogMainBody, inputIds, outputIds
 
     let generateBlockHandler:IpcRendererEventListener = 
         let handlerCaster f = System.Func<IpcRendererEvent, obj, unit> f
-        let generateBlock = handlerCaster (fun a b -> generateVerilog ())
+        let generateBlock = handlerCaster (fun a b -> let Verilog, inputIds, outputIds = generateVerilog ()
+                                                      let saveDialogOptions = createEmpty<SaveDialogOptions>
+                                                      saveDialogOptions.title <- Some "Save file to"
+                                                      saveDialogOptions.defaultPath <- Some ("../new.json")                                         
+                                                      saveDialogOptions.filters <- option.None
+
+                                                      /// return the directory and the file name that is to be saved
+                                                      let fileSaveDialog = electron.remote.dialog.showSaveDialog (saveDialogOptions)                                                                                                                                
+                                                         
+                                                      match fileSaveDialog with
+                                                      | a when checkUndefined a <> true -> let fileName = a |> getFileName
+                                                                                           let fileNameLength = fileName.Length
+                                                                                           let blockName = fileName.[..fileNameLength-5]
+                                                                                           let VerilogReplaceModuleName = Verilog.Replace(paneName, blockName)
+                                                                                           let contents = 
+                                                                                              createObj[
+                                                                                                 "name" ==> VerilogReplaceModuleName
+                                                                                                 "inputs" ==> inputIds
+                                                                                                 "outputs" ==> outputIds                                                             
+                                                                                                 "Verilog" ==> fileSaveDialog + ".v"
+                                                                                              ]
+                                                                                           let errorHandler error = ()
+                                                                                           fs.writeFile (fileSaveDialog, JS.JSON.stringify contents, errorHandler)
+                                                                                           let errorHandlerClosingWindow error = ()
+                                                                                           fs.writeFile (fileSaveDialog + ".v", Verilog, errorHandlerClosingWindow)
+                                                      | _ -> ()   )
         generateBlock
 
     electron.ipcRenderer.on(paneName + "-generate-block", generateBlockHandler) |> ignore
