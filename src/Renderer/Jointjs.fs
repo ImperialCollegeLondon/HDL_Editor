@@ -271,7 +271,9 @@ let canvasInit (paneName:string) =
                                                                  appendNewBlockButton k                                                                 
                                                               let graphInfo = (JS.JSON.parse (string b))?graph |> JS.JSON.parse
                                                               graph?fromJSON(graphInfo)
-                                                              graph?get("graphCustomProperty")                                                              
+                                                              graph?get("graphCustomProperty")       
+                                                              let paperInfo = (JS.JSON.parse (string b))?paper |> JS.JSON.parse
+                                                              paper?setDimensions(paperInfo?width, paperInfo?height)
                                                               let blocks:obj array = graph?getElements()
                                                               for block in blocks do
                                                                  let blockText:string = block?attr(".label/text")        
