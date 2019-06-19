@@ -495,8 +495,8 @@ let canvasInit (paneName:string) =
 
     electron.ipcRenderer.on(paneName + "-clear-block-selection", clearBlockSelectionHandler) |> ignore
 
-    let generateVerilog () =
-        let moduleName = ((document.getElementById (paneName + "-tabButton")).innerHTML.Split '.').[0]
+    let generateVerilog (moduleName:string) =
+        //let moduleName = ((document.getElementById (paneName + "-tabButton")).innerHTML.Split '.').[0]
 
         let mutable VerilogMainBody = ""        
         for KeyValue(k, v) in customLogicBlock do            
@@ -627,17 +627,23 @@ let canvasInit (paneName:string) =
                               VerilogMainBody <- VerilogMainBody + rowContent)
         |> ignore
 
-        VerilogMainBody <- VerilogMainBody + "endmodule\n"
-        console.log(VerilogMainBody)        
+        VerilogMainBody <- VerilogMainBody + "endmodule\n"        
         VerilogMainBody, inputIds, outputIds
 
     let generateBlockHandler:IpcRendererEventListener = 
         let handlerCaster f = System.Func<IpcRendererEvent, obj, unit> f
-        let generateBlock = handlerCaster (fun a b -> let Verilog, inputIds, outputIds = generateVerilog ()
-                                                      let saveDialogOptions = createEmpty<SaveDialogOptions>
+        let generateBlock = handlerCaster (fun a b -> let saveDialogOptions = createEmpty<SaveDialogOptions>
                                                       saveDialogOptions.title <- Some "Save file to"
-                                                      saveDialogOptions.defaultPath <- Some ("../new.json")                                         
-                                                      saveDialogOptions.filters <- option.None
+                                                      saveDialogOptions.defaultPath <- Some ("../new.json") 
+                                                      let fileFilter =  new ResizeArray<obj> ()
+                                                      let sufficSetting = 
+                                                        createObj[
+                                                            "name" ==> "JSON Format"
+                                                            "extensions" ==> [|".json"|]
+                                                        ]
+                                                      fileFilter.Add sufficSetting
+                                                     
+                                                      saveDialogOptions.filters <- Some fileFilter
 
                                                       /// return the directory and the file name that is to be saved
                                                       let fileSaveDialog = electron.remote.dialog.showSaveDialog (saveDialogOptions)                                                                                                                                
@@ -645,11 +651,12 @@ let canvasInit (paneName:string) =
                                                       match fileSaveDialog with
                                                       | a when checkUndefined a <> true -> let fileName = a |> getFileName
                                                                                            let fileNameLength = fileName.Length
-                                                                                           let blockName = fileName.[..fileNameLength-5]
-                                                                                           let VerilogReplaceModuleName = Verilog.Replace(paneName, blockName)
+                                                                                           let blockName = fileName.[..fileNameLength-6]
+                                                                                           let Verilog, inputIds, outputIds = generateVerilog blockName                                                                                           
+                                                                                           console.log(Verilog)
                                                                                            let contents = 
                                                                                               createObj[
-                                                                                                 "name" ==> VerilogReplaceModuleName
+                                                                                                 "name" ==> blockName
                                                                                                  "inputs" ==> inputIds
                                                                                                  "outputs" ==> outputIds                                                             
                                                                                                  "Verilog" ==> fileSaveDialog + ".v"

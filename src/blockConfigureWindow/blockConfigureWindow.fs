@@ -126,7 +126,15 @@ let bindEventUpdateGUI () =
              let saveDialogOptions = createEmpty<SaveDialogOptions>
              saveDialogOptions.title <- Some "Save file to"
              saveDialogOptions.defaultPath <- Some ("../new.json")                                         
-             saveDialogOptions.filters <- option.None
+             let fileFilter =  new ResizeArray<obj> ()
+             let sufficSetting = 
+               createObj[
+                   "name" ==> "JSON Format"
+                   "extensions" ==> [|".json"|]
+               ]
+             fileFilter.Add sufficSetting
+                                                     
+             saveDialogOptions.filters <- Some fileFilter
 
              /// return the directory and the file name that is to be saved
              let fileSaveDialog = electron.remote.dialog.showSaveDialog (saveDialogOptions)
