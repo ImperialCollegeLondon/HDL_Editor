@@ -190,3 +190,12 @@ let generateBlockFromDesign:IpcMainEventListener =
                               | _ -> ())
 
 electron.ipcMain.on("generate-block-from-design", generateBlockFromDesign) |> ignore
+
+/// load design
+let loadDesign:IpcMainEventListener = 
+    handlerCaster (fun a b -> match mainWindow with
+                              | Some win -> printfn "%A" b
+                                            win.webContents.send("initialize-new-tab", b)
+                              | _ -> ())
+
+electron.ipcMain.on("load-file", loadDesign) |> ignore

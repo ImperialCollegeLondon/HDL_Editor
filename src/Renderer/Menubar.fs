@@ -165,17 +165,18 @@ let fileSubmenu =
         let fileOpenDialog = electron.remote.dialog.showOpenDialog (openDialogOptions)
         
         match fileOpenDialog with
-        | a when checkUndefined a.[0] <> true -> a.[0]
-                                                 |> getFileName
-                                                 |> updateTabName
+        | a when checkUndefined a.[0] <> true -> //a.[0]
+                                                 //|> getFileName
+                                                 //|> updateTabName
                                                  let errorHandler (error:Base.NodeJS.ErrnoException option) (res:string)  = 
                                                      printfn "error, %A" error 
                                                      
-                                                     let graph = (JS.JSON.parse res)?graph |> JS.JSON.parse
-                                                     let paper = (JS.JSON.parse res)?paper |> JS.JSON.parse
+                                                     //let graph = (JS.JSON.parse res)?graph |> JS.JSON.parse
+                                                     //let paper = (JS.JSON.parse res)?paper |> JS.JSON.parse
 
-                                                     console.log("graph", graph)
-                                                     console.log("paper", paper)
+                                                     //console.log("graph", graph)
+                                                     //console.log("paper", paper)
+                                                     electron.ipcRenderer.send("load-file", res)
 
                                                  let readFileOptions = 
                                                     createObj[
