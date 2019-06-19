@@ -95,6 +95,18 @@ let logicElementInit () =
     logicElement 
     |> jointJSCreator.Resize 90 20     
  
+/// resize the port's circle size and position
+let rec resizePort (index:int) (portNames:string array) (el:obj) = 
+    match index with
+    | a when a < portNames.Length -> let radius = 
+                                        createObj[
+                                            "r" ==> 5
+                                        ]
+                                     el?portProp(portNames.[index], "attrs/circle", radius)                                       
+                                     el?portProp(portNames.[index], "args/y", 20*(index)+10)
+                                     resizePort (index+1) portNames el
+    | _ -> ()
+
 /// create custom logic blocks
 let customLogicElementInit (inPorts:string array) (outPorts:string array) (blockName:string) = 
     let logicElement = blockWithPortInit ()
@@ -103,20 +115,9 @@ let customLogicElementInit (inPorts:string array) (outPorts:string array) (block
     logicElement?attr(".label/text", blockName)
     logicElement?attr(".label/fontSize", 14)
     logicElement?attr(".label/textVerticalAnchor", "middle")
-
-    let radius = createObj[
-        "r" ==> 5
-     ]
-
-    let rec resizePort (index:int) (portNames:string array) = 
-        match index with
-        | a when a < portNames.Length -> logicElement?portProp(portNames.[index], "attrs/circle", radius)                                       
-                                         logicElement?portProp(portNames.[index], "args/y", 20*(index)+10)
-                                         resizePort (index+1) portNames
-        | _ -> ()
     
-    resizePort 0 inPorts
-    resizePort 0 outPorts    
+    resizePort 0 inPorts logicElement
+    resizePort 0 outPorts logicElement
 
     logicElement
     |> jointJSCreator.Resize 90 ((max inPorts.Length outPorts.Length)*20)
@@ -148,7 +149,8 @@ let resetAllSelected paper =
     |> ignore
 
 /// initialize the canvas
-let canvasInit (paneName:string) =  
+let canvasInit (paneName:string) =      
+    electron.ipcRenderer.send("change-channel", paneName)
     /// the active button indicates the blocks to be added to the graph
     /// when the application initializes, it is set to be none
     let mutable (activeBlockType: BlockType option) = option.None
@@ -161,6 +163,7 @@ let canvasInit (paneName:string) =
 
     /// store the custom logic block
     let mutable customLogicBlock = Map.empty
+    blockNameConfigMapping <- customLogicBlock
 
     /// store the current active logic block name
     let mutable activeBlockName :string = ""
@@ -192,12 +195,9 @@ let canvasInit (paneName:string) =
                                        ]
                         ]
     paper?options?defaultRouter <- routerSetting
-    
-    /// force updating the model and the paper reference when the block diagram editor is firstly initialized
-    currentGraphModel <- Some graph
-    currentPaperModel <- Some paper
-    activeTabId <- Some paneName    
 
+    electron.ipcRenderer.send("retrieving-design")
+    
     /// add "*" after the pane button when it is modified but not saved
     let updatePaneName () = 
         let button = document.getElementById (paneName + "-tabButton")
@@ -205,6 +205,100 @@ let canvasInit (paneName:string) =
         match buttonText with
         | a when a.[a.Length-1] = '*' -> ()
         | _ -> button.innerHTML <- buttonText + "*"
+
+    let appendNewBlockButton (buttonName:string) =         
+        let rootDiv = document.createElement_div ()
+        rootDiv.id <- paneName + "-" + buttonName + "div"        
+
+        let button = document.createElement_button ()
+        button.``type`` <- "button"
+        button.id <- paneName + "-" + buttonName
+        button.innerHTML <- buttonName
+        button.style.width <- "70%"
+        button.style.left <- "0%"
+        button.style.cssFloat <- "left"
+        rootDiv.appendChild button |> ignore
+
+        let clickAddBlickEvent = fun e -> activeBlockType <- Some LogicElement
+                                          activeBlockName <- buttonName                                          
+        button.addEventListener("click", U2.Case1 clickAddBlickEvent, false)
+
+        let deleteButton = document.createElement_button ()
+        deleteButton.id <- paneName + "-" + buttonName + "deleteButton"
+        deleteButton.``type`` <- "button"
+        deleteButton.innerHTML <- "X"
+        deleteButton.style.width <- "30%"
+        deleteButton.style.left <- "70%"
+        deleteButton.style.cssFloat <- "left"
+        rootDiv.appendChild deleteButton |> ignore
+
+        let clickDeleteButtonEvent = fun e -> activeBlockType <- option.None
+                                              activeBlockName <- ""
+                                              customLogicBlock <- customLogicBlock.Remove buttonName
+                                              blockNameConfigMapping <- customLogicBlock
+                                              let parentNode = deleteButton.parentNode
+                                              parentNode.removeChild deleteButton |> ignore
+                                              parentNode.removeChild button |> ignore
+                                              parentNode.parentNode.removeChild parentNode |> ignore
+                                              let elements:obj array = graph?getElements()
+                                              
+                                              let rec removeChildWithType (index:int) (blockType:string) (lst:obj array) = 
+                                                 match index with
+                                                 | a when a < lst.Length -> let text : string = lst.[a]?attr(".label/text")
+                                                                            if (text.Split '-').[0] = blockType
+                                                                            then lst.[a]?remove()
+                                                                                 removeChildWithType (index+1) blockType lst
+                                                                            else removeChildWithType (index+1) blockType lst
+                                                 | _ -> ()
+
+                                              removeChildWithType 0 buttonName elements
+                                              updatePaneName ()
+        deleteButton.addEventListener("click", U2.Case1 clickDeleteButtonEvent, false)
+
+
+        let root = document.getElementById (paneName + "-addBlockButtons")
+        let insertBefore = document.getElementById (paneName + "-clearSelectionButton")
+        root.insertBefore (rootDiv, insertBefore) |> ignore
+
+        updatePaneName ()
+
+    let receivingFileHandler:IpcRendererEventListener = 
+        let handlerCaster f = System.Func<IpcRendererEvent, obj, unit> f
+        let receivingFileFunction = handlerCaster (fun a b -> let parsedJson = (JS.JSON.parse (string b))?buttons                                                              
+                                                              let loadedButtonNameMap = Map.ofArray parsedJson                                                              
+                                                              customLogicBlock <- loadedButtonNameMap
+                                                              for KeyValue(k, v) in customLogicBlock do                                                                 
+                                                                 appendNewBlockButton k                                                                 
+                                                              let graphInfo = (JS.JSON.parse (string b))?graph |> JS.JSON.parse
+                                                              graph?fromJSON(graphInfo)
+                                                              graph?get("graphCustomProperty")                                                              
+                                                              let blocks:obj array = graph?getElements()
+                                                              for block in blocks do
+                                                                 let blockText:string = block?attr(".label/text")        
+                                                                 let blockType = (blockText.Split [|'-'|]).[0]
+                                                                 if blockType<>"In" && blockType<>"Out"
+                                                                 then let inPortsNmuber = int customLogicBlock.[blockType].[1]
+                                                                      let outPortsNmuber = int customLogicBlock.[blockType].[2]
+                                                                      let inPorts = customLogicBlock.[blockType].[3..3+inPortsNmuber-1]                                                                      
+                                                                      let outPorts = customLogicBlock.[blockType].[3+inPortsNmuber..3+inPortsNmuber-1+outPortsNmuber]                                                                      
+                                                                      resizePort 0 inPorts block
+                                                                      resizePort 0 outPorts block
+                                                                 elif blockType="In" then resizePort 0 [|"out"|] block
+                                                                 elif blockType="Out" then resizePort 0 [|"in"|] block
+                                                                 else ()
+                                                                 
+                                                              currentGraphModel <- Some graph
+                                                              blockNameConfigMapping <- customLogicBlock)
+        receivingFileFunction
+
+    electron.ipcRenderer.on(paneName + "-send-design-file", receivingFileHandler) |> ignore
+    
+    /// force updating the model and the paper reference when the block diagram editor is firstly initialized
+    currentGraphModel <- Some graph
+    currentPaperModel <- Some paper
+    activeTabId <- Some paneName    
+
+    
 
     /// bind event listener to the add bock buttons
     fun e -> activeBlockType <- Some InputPort
@@ -293,16 +387,7 @@ let canvasInit (paneName:string) =
                        /// update the GUI to show the coordinates of the block
                        setHTMLElementValue InputBox (paneName + "-positionX") (((model?get("position")?x |> int)/10) |> string)
                        setHTMLElementValue InputBox (paneName + "-positionY") (((model?get("position")?y |> int)/10) |> string)
-    |> paperOnFunction paper "cell:pointerdblclick"
-
-    fun cell -> let checkLink:bool = cell?isLink()
-                match checkLink with
-                | true -> console.log(cell)
-                          cell?on("change", fun e ->
-                              console.log(e?attributes)
-                          ) |> ignore
-                | false -> console.log(cell)              
-    |> paperOnFunction graph "add"
+    |> paperOnFunction paper "cell:pointerdblclick"    
 
     /// function to resize the paper (canvas)
     let resizeCanvas x y = 
@@ -329,8 +414,7 @@ let canvasInit (paneName:string) =
                 let xCoordinate = (args?offsetX - (args?offsetX)%10)
                 let yCoordinate = (args?offsetY - (args?offsetY)%10)
 
-                resizeCanvas xCoordinate yCoordinate 
-                console.log(args)
+                resizeCanvas xCoordinate yCoordinate                 
                 let ctrlKeyHold:bool = args?ctrlKey                
                 match ctrlKeyHold with
                 | true -> scale <- 1.0
@@ -402,62 +486,7 @@ let canvasInit (paneName:string) =
                           (document.getElementById (paneName + "-resetZoomButton")).innerHTML 
                             <- "Zoom = " + (System.Math.Round ((calculatedScale*100.),2) |> string) + "%. Click to reset." 
                 | false -> ()       
-    |> paperOnFunction paper "blank:mousewheel"
-
-    let appendNewBlockButton (buttonName:string) = 
-        let rootDiv = document.createElement_div ()
-        rootDiv.id <- paneName + "-" + buttonName + "div"        
-
-        let button = document.createElement_button ()
-        button.``type`` <- "button"
-        button.id <- paneName + "-" + buttonName
-        button.innerHTML <- buttonName
-        button.style.width <- "70%"
-        button.style.left <- "0%"
-        button.style.cssFloat <- "left"
-        rootDiv.appendChild button |> ignore
-
-        let clickAddBlickEvent = fun e -> activeBlockType <- Some LogicElement
-                                          activeBlockName <- buttonName                                          
-        button.addEventListener("click", U2.Case1 clickAddBlickEvent, false)
-
-        let deleteButton = document.createElement_button ()
-        deleteButton.id <- paneName + "-" + buttonName + "deleteButton"
-        deleteButton.``type`` <- "button"
-        deleteButton.innerHTML <- "X"
-        deleteButton.style.width <- "30%"
-        deleteButton.style.left <- "70%"
-        deleteButton.style.cssFloat <- "left"
-        rootDiv.appendChild deleteButton |> ignore
-
-        let clickDeleteButtonEvent = fun e -> activeBlockType <- option.None
-                                              activeBlockName <- ""
-                                              customLogicBlock <- customLogicBlock.Remove buttonName
-                                              let parentNode = deleteButton.parentNode
-                                              parentNode.removeChild deleteButton |> ignore
-                                              parentNode.removeChild button |> ignore
-                                              parentNode.parentNode.removeChild parentNode |> ignore
-                                              let elements:obj array = graph?getElements()
-                                              
-                                              let rec removeChildWithType (index:int) (blockType:string) (lst:obj array) = 
-                                                 match index with
-                                                 | a when a < lst.Length -> let text : string = lst.[a]?attr(".label/text")
-                                                                            if (text.Split '-').[0] = blockType
-                                                                            then lst.[a]?remove()
-                                                                                 removeChildWithType (index+1) blockType lst
-                                                                            else removeChildWithType (index+1) blockType lst
-                                                 | _ -> ()
-
-                                              removeChildWithType 0 buttonName elements
-                                              updatePaneName ()
-        deleteButton.addEventListener("click", U2.Case1 clickDeleteButtonEvent, false)
-
-
-        let root = document.getElementById (paneName + "-addBlockButtons")
-        let insertBefore = document.getElementById (paneName + "-clearSelectionButton")
-        root.insertBefore (rootDiv, insertBefore) |> ignore
-
-        updatePaneName ()
+    |> paperOnFunction paper "blank:mousewheel"    
 
     let newBlockhandler:IpcRendererEventListener = 
         let handlerCaster f = System.Func<IpcRendererEvent, obj, unit> f
@@ -477,6 +506,7 @@ let canvasInit (paneName:string) =
 
                                                                 match checkRepeat with
                                                                 | false -> customLogicBlock <- customLogicBlock.Add(res.[0], res')
+                                                                           blockNameConfigMapping <- customLogicBlock
                                                                            appendNewBlockButton res.[0]                                                                           
                                                                            updatePaneName ()                                                                           
                                                                 | true -> console.log("repeated name detected")
@@ -495,9 +525,7 @@ let canvasInit (paneName:string) =
 
     electron.ipcRenderer.on(paneName + "-clear-block-selection", clearBlockSelectionHandler) |> ignore
 
-    let generateVerilog (moduleName:string) =
-        //let moduleName = ((document.getElementById (paneName + "-tabButton")).innerHTML.Split '.').[0]
-
+    let generateVerilog (moduleName:string) =        
         let mutable VerilogMainBody = ""        
         for KeyValue(k, v) in customLogicBlock do            
             let moduleNumberOfInputs = float v.[1]
@@ -654,11 +682,18 @@ let canvasInit (paneName:string) =
                                                                                            let blockName = fileName.[..fileNameLength-6]
                                                                                            let Verilog, inputIds, outputIds = generateVerilog blockName                                                                                           
                                                                                            console.log(Verilog)
+                                                                                           let truthTable = 
+                                                                                              let length = 2.**(float inputIds.Length) |> int
+                                                                                              [0..length-1]
+                                                                                              |> List.map (fun el -> "")
+                                                                                              |> List.toArray
+
                                                                                            let contents = 
                                                                                               createObj[
                                                                                                  "name" ==> blockName
                                                                                                  "inputs" ==> inputIds
-                                                                                                 "outputs" ==> outputIds                                                             
+                                                                                                 "outputs" ==> outputIds      
+                                                                                                 "truthTable" ==> truthTable
                                                                                                  "Verilog" ==> fileSaveDialog + ".v"
                                                                                               ]
                                                                                            let errorHandler error = ()

@@ -14,6 +14,8 @@ let mutable aboutWindow: BrowserWindow option = option.None
 
 let mutable customLogicalElementConfigWindow: BrowserWindow option = option.None
 
+let mutable designLoadedFromFile: obj option = option.None
+
 /// channel name prefix for communicating with the active canvas
 let mutable activeChannelNamePrefix : string = ""
 
@@ -194,8 +196,20 @@ electron.ipcMain.on("generate-block-from-design", generateBlockFromDesign) |> ig
 /// load design
 let loadDesign:IpcMainEventListener = 
     handlerCaster (fun a b -> match mainWindow with
-                              | Some win -> printfn "%A" b
-                                            win.webContents.send("initialize-new-tab", b)
+                              | Some win -> designLoadedFromFile <- Some b
+                                            win.webContents.send("initialize-new-tab")
                               | _ -> ())
 
 electron.ipcMain.on("load-file", loadDesign) |> ignore
+
+
+/// send the design to the canvas init function
+let sendDesign:IpcMainEventListener = 
+    handlerCaster (fun a b -> match mainWindow with
+                              | Some win -> match designLoadedFromFile with
+                                            | Some file -> win.webContents.send(activeChannelNamePrefix + "-send-design-file", file)
+                                                           designLoadedFromFile <- option.None
+                                            | option.None -> ()
+                              | _ -> ())
+
+electron.ipcMain.on("retrieving-design", sendDesign) |> ignore

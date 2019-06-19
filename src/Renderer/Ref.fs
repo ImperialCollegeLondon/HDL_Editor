@@ -24,6 +24,5 @@ let mutable activeTabId:string option = option.None
 /// store the current file saving path
 let mutable fileSavingPath:string option = option.None
 
-/// store the current relational mode
-/// for file saving and loading
-//let mutable currentRelationalModel:
+/// store the mapping between block names and its corresponding configuration
+let mutable blockNameConfigMapping:Map<string, string array> = Map.empty

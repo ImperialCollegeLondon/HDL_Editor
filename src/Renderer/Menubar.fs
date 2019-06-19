@@ -104,14 +104,9 @@ let fileSubmenu =
                     | option.None -> "no graph data"
 
         let paper = match currentPaperModel with
-                    | Some model -> createObj[
-                                        "background" ==> model?options?background
-                                        "defaultRouter" ==> model?options?defaultRounter
-                                        "drawGrid" ==> model?options?drawGrid
-                                        "gridSize" ==> model?options?gridSize
+                    | Some model -> createObj[                                                                                
                                         "width" ==> model?options?width 
-                                        "height" ==> model?options?height 
-                                        "snapLinks" ==> model?options?snapLinks
+                                        "height" ==> model?options?height                                        
                                     ]
                                     |> JS.JSON.stringify                                    
                     | option.None -> "no paper data"
@@ -119,6 +114,7 @@ let fileSubmenu =
         let content = createObj[
                          "graph" ==> graph
                          "paper" ==> paper
+                         "buttons" ==> Map.toArray blockNameConfigMapping
                       ]
                       |> JS.JSON.stringify
         
@@ -130,12 +126,12 @@ let fileSubmenu =
                     fs.writeFile (a, content, errorHandler)
         | option.None -> let saveDialogOptions = createEmpty<SaveDialogOptions>
                          saveDialogOptions.title <- Some "Save file to"
-                         saveDialogOptions.defaultPath <- Some ("../new.json")                                         
+                         saveDialogOptions.defaultPath <- Some ("../new.project.json")                                         
                          let fileFilter =  new ResizeArray<obj> ()
                          let sufficSetting = 
                            createObj[
                                "name" ==> "JSON Format"
-                               "extensions" ==> [|".json"|]
+                               "extensions" ==> [|"project.json"|]
                            ]
                          fileFilter.Add sufficSetting
                                                      
@@ -159,7 +155,15 @@ let fileSubmenu =
         let openDialogOptions = createEmpty<OpenDialogOptions>
         openDialogOptions.title <- Some "Open file from"
         openDialogOptions.defaultPath <- option.None
-        openDialogOptions.filters <- option.None
+        let fileFilter =  new ResizeArray<obj> ()
+        let sufficSetting = 
+          createObj[
+              "name" ==> "JSON Format Project File"
+              "extensions" ==> [|"project.json"|]
+          ]
+        fileFilter.Add sufficSetting
+                                                
+        openDialogOptions.filters <- Some fileFilter
 
         /// return the directory and the file name that is to be saved
         let fileOpenDialog = electron.remote.dialog.showOpenDialog (openDialogOptions)
@@ -168,14 +172,10 @@ let fileSubmenu =
         | a when checkUndefined a.[0] <> true -> //a.[0]
                                                  //|> getFileName
                                                  //|> updateTabName
-                                                 let errorHandler (error:Base.NodeJS.ErrnoException option) (res:string)  = 
-                                                     printfn "error, %A" error 
+                                                 let errorHandler (error:Base.NodeJS.ErrnoException option) (res:string)  =                                                      
                                                      
                                                      //let graph = (JS.JSON.parse res)?graph |> JS.JSON.parse
-                                                     //let paper = (JS.JSON.parse res)?paper |> JS.JSON.parse
-
-                                                     //console.log("graph", graph)
-                                                     //console.log("paper", paper)
+                                                     //let paper = (JS.JSON.parse res)?paper |> JS.JSON.parse                                                     
                                                      electron.ipcRenderer.send("load-file", res)
 
                                                  let readFileOptions = 
