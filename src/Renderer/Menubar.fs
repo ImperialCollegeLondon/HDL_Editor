@@ -277,7 +277,7 @@ let editSubmenu =
                                                      let inputs:string array = parsedJSON?inputs
                                                      let outputs:string array = parsedJSON?outputs
                                                      let truthTable = parsedJSON?truthTable
-                                                     let verilogFileLocation:string = parsedJSON?Verilog |> string
+                                                     let verilogFileLocation:string = fileOpenDialog.[0] + ".v"
                                                      
                                                      let mutable VerilogCode = ""
 
