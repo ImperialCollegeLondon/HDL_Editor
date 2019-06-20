@@ -30,7 +30,8 @@ let aboutWindowInit () =
             nodeVersion; "\n";
             "Chrome version: ";
             chromeVersion; "\n";
-            "Author: Lei Wang (Wilson)"
+            "Author: Lei Wang (Wilson)\n";
+            "License: MIT"
         ]
         |> String.concat " "
 
