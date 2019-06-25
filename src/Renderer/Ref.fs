@@ -1,7 +1,9 @@
 (*
-    The module stores the reference to the units in the GUI
+    The module stores the global references
 *)
 module Ref
+
+/// the global references change when certain user event is triggered
 
 /// store the current active pane
 let mutable activePaneName:string = ""

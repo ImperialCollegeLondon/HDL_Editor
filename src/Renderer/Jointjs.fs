@@ -27,10 +27,12 @@ let highlightTab (tabName:string) =
                                               highlightTab' lst (index + 1)
         | _ -> ()
     highlightTab' tabs 0
+    
 
 /// use the JointJS bindings by upcasting the interface
 let jointJSCreatorInterface = new createElement()
 let jointJSCreator = jointJSCreatorInterface :> JointJS
+
 
 /// define the blocks that can be added to the graph
 type BlockType = 
@@ -38,119 +40,16 @@ type BlockType =
     | OutputPort
     | LogicElement
 
-/// initialize rect that has ports for connections to other blocks
-let blockWithPortInit () =     
-    createNew joint?shapes?devs?Model ()    
 
-/// create input blocks
-let inputPortInit (counter:int) =
-    let inputPortBlock = blockWithPortInit ()
-    inputPortBlock?set("inPorts", [||])
-    inputPortBlock?set("outPorts", [|"out"|])
-    inputPortBlock?attr(".label/text", "In-in" + string counter)
-    inputPortBlock?attr(".label/fontSize", 14)
-    inputPortBlock?attr(".label/textVerticalAnchor", "middle")
-        
-    let radius = createObj[
-                    "r" ==> 5
-                 ]
-    inputPortBlock?portProp("out", "attrs/circle", radius)
-    
-    inputPortBlock
-    |> jointJSCreator.Resize 90 20
+/// initialize size of the graph
+let graphInitHeight, graphInitWidth = 1000, 1800
 
-
-/// create output blocks
-let outputPortInit (counter:int) = 
-    let outputPort = blockWithPortInit ()
-    outputPort?set("inPorts", [|"in"|])
-    outputPort?set("outPorts",[||])
-    outputPort?attr(".label/text", "Out-out" + string counter)
-    outputPort?attr(".label/fontSize", 14)
-    outputPort?attr(".label/textVerticalAnchor", "middle")
-
-    let radius = createObj[
-        "r" ==> 5
-     ]
-    outputPort?portProp("in", "attrs/circle", radius)
-
-    outputPort 
-    |> jointJSCreator.Resize 90 20    
-
-/// create logic element blocks
-let logicElementInit () = 
-    let logicElement = blockWithPortInit ()
-    logicElement?set("inPorts", [|"in"|])
-    logicElement?set("outPorts",[|"out"|])
-    logicElement?attr(".label/text", "LE-block")
-    logicElement?attr(".label/fontSize", 14)
-    logicElement?attr(".label/textVerticalAnchor", "middle")
-    
-    let radius = createObj[
-        "r" ==> 5
-     ]
-    logicElement?portProp("in", "attrs/circle", radius)
-    logicElement?portProp("out", "attrs/circle", radius)
-
-    logicElement 
-    |> jointJSCreator.Resize 90 20     
- 
-/// resize the port's circle size and position
-let rec resizePort (index:int) (portNames:string array) (el:obj) = 
-    match index with
-    | a when a < portNames.Length -> let radius = 
-                                        createObj[
-                                            "r" ==> 5
-                                        ]
-                                     el?portProp(portNames.[index], "attrs/circle", radius)                                       
-                                     el?portProp(portNames.[index], "args/y", 20*(index)+10)
-                                     resizePort (index+1) portNames el
-    | _ -> ()
-
-/// create custom logic blocks
-let customLogicElementInit (inPorts:string array) (outPorts:string array) (blockName:string) = 
-    let logicElement = blockWithPortInit ()
-    logicElement?set("inPorts", inPorts)
-    logicElement?set("outPorts", outPorts)
-    logicElement?attr(".label/text", blockName)
-    logicElement?attr(".label/fontSize", 14)
-    logicElement?attr(".label/textVerticalAnchor", "middle")
-    
-    resizePort 0 inPorts logicElement
-    resizePort 0 outPorts logicElement
-
-    logicElement
-    |> jointJSCreator.Resize 90 ((max inPorts.Length outPorts.Length)*20)
-
-let registerInit () = 
-    let register = blockWithPortInit ()
-    register?set("inPorts", [|"in"|])
-    register?set("outPorts",[|"out"|])
-    register?attr(".label/text", "Reg-block")
-    register?attr(".label/fontSize", 14)
-    register?attr(".label/textVerticalAnchor", "middle")
-
-    
-    let radius = createObj[
-        "r" ==> 5
-     ]
-    register?portProp("in", "attrs/circle", radius)
-    register?portProp("out", "attrs/circle", radius)
-
-    register 
-    |> jointJSCreator.Resize 90 20     
- 
-/// reset the coloring of the unselected elements
-let resetAllSelected paper = 
-    let elements : obj array = paper?model?getElements()
-    [0..elements.Length-1]
-    |> List.map (fun el -> (elements.[el])?attr("body/fill", "white")
-                           (elements.[el])?attr("rect/fill", "white")) 
-    |> ignore
 
 /// initialize the canvas
-let canvasInit (paneName:string) =      
+let canvasInit (paneName:string) =
+    /// change the global reference in the main process
     electron.ipcRenderer.send("change-channel", paneName)
+
     /// the active button indicates the blocks to be added to the graph
     /// when the application initializes, it is set to be none
     let mutable (activeBlockType: BlockType option) = option.None
@@ -162,6 +61,7 @@ let canvasInit (paneName:string) =
     let mutable modelRef:obj option = option.None
 
     /// store the custom logic block
+    /// update the global reference for the logic block mapping
     let mutable customLogicBlock = Map.empty
     blockNameConfigMapping <- customLogicBlock
 
@@ -169,8 +69,8 @@ let canvasInit (paneName:string) =
     let mutable activeBlockName :string = ""
     
     /// the dimensions of the paper (the canvas)
-    let mutable canvasXDimension:int = 1800
-    let mutable canvasYDimension:int = 1000    
+    let mutable canvasXDimension:int = graphInitWidth
+    let mutable canvasYDimension:int = graphInitHeight    
 
     /// counter for different types of blocks
     let mutable inputCounter:int = 0
@@ -196,40 +96,25 @@ let canvasInit (paneName:string) =
                         ]
     paper?options?defaultRouter <- routerSetting
 
-    electron.ipcRenderer.send("retrieving-design")
-    
-    /// add "*" after the pane button when it is modified but not saved
-    let updatePaneName () = 
-        let button = document.getElementById (paneName + "-tabButton")
-        let buttonText = button.innerHTML
-        match buttonText with
-        | a when a.[a.Length-1] = '*' -> ()
-        | _ -> button.innerHTML <- buttonText + "*"
+    /// if the canvas were initialized by opening a file
+    /// the main process should store the content of the file
+    /// otherwise, the response is none
+    /// make the IPC call to ask for file content
+    electron.ipcRenderer.send("retrieving-design")       
 
+    /// function to add a new block field in the adding block part of the GUI
     let appendNewBlockButton (buttonName:string) =         
         let rootDiv = document.createElement_div ()
         rootDiv.id <- paneName + "-" + buttonName + "div"        
 
-        let button = document.createElement_button ()
-        button.``type`` <- "button"
-        button.id <- paneName + "-" + buttonName
-        button.innerHTML <- buttonName
-        button.style.width <- "70%"
-        button.style.left <- "0%"
-        button.style.cssFloat <- "left"
+        let button = buttonInit paneName buttonName "" buttonName "70%" "0%"
         rootDiv.appendChild button |> ignore
 
         let clickAddBlickEvent = fun e -> activeBlockType <- Some LogicElement
                                           activeBlockName <- buttonName                                          
         button.addEventListener("click", U2.Case1 clickAddBlickEvent, false)
 
-        let deleteButton = document.createElement_button ()
-        deleteButton.id <- paneName + "-" + buttonName + "deleteButton"
-        deleteButton.``type`` <- "button"
-        deleteButton.innerHTML <- "X"
-        deleteButton.style.width <- "30%"
-        deleteButton.style.left <- "70%"
-        deleteButton.style.cssFloat <- "left"
+        let deleteButton = buttonInit paneName buttonName "deleteButton" "X" "30%" "70%"        
         rootDiv.appendChild deleteButton |> ignore
 
         let clickDeleteButtonEvent = fun e -> activeBlockType <- option.None
@@ -240,7 +125,7 @@ let canvasInit (paneName:string) =
                                               parentNode.removeChild deleteButton |> ignore
                                               parentNode.removeChild button |> ignore
                                               parentNode.parentNode.removeChild parentNode |> ignore
-                                              let elements:obj array = graph?getElements()
+                                              let elements = jointJSCreator.GetElements graph
                                               
                                               let rec removeChildWithType (index:int) (blockType:string) (lst:obj array) = 
                                                  match index with
@@ -252,7 +137,7 @@ let canvasInit (paneName:string) =
                                                  | _ -> ()
 
                                               removeChildWithType 0 buttonName elements
-                                              updatePaneName ()
+                                              updatePaneName paneName
         deleteButton.addEventListener("click", U2.Case1 clickDeleteButtonEvent, false)
 
 
@@ -260,7 +145,7 @@ let canvasInit (paneName:string) =
         let insertBefore = document.getElementById (paneName + "-clearSelectionButton")
         root.insertBefore (rootDiv, insertBefore) |> ignore
 
-        updatePaneName ()
+        updatePaneName paneName
 
     let receivingFileHandler:IpcRendererEventListener = 
         let handlerCaster f = System.Func<IpcRendererEvent, obj, unit> f
@@ -274,7 +159,7 @@ let canvasInit (paneName:string) =
                                                               graph?get("graphCustomProperty")       
                                                               let paperInfo = (JS.JSON.parse (string b))?paper |> JS.JSON.parse
                                                               paper?setDimensions(paperInfo?width, paperInfo?height)
-                                                              let blocks:obj array = graph?getElements()
+                                                              let blocks = jointJSCreator.GetElements graph
                                                               for block in blocks do
                                                                  let blockText:string = block?attr(".label/text")        
                                                                  let blockType = (blockText.Split [|'-'|]).[0]
@@ -283,10 +168,12 @@ let canvasInit (paneName:string) =
                                                                       let outPortsNmuber = int customLogicBlock.[blockType].[2]
                                                                       let inPorts = customLogicBlock.[blockType].[3..3+inPortsNmuber-1]                                                                      
                                                                       let outPorts = customLogicBlock.[blockType].[3+inPortsNmuber..3+inPortsNmuber-1+outPortsNmuber]                                                                      
-                                                                      resizePort 0 inPorts block
-                                                                      resizePort 0 outPorts block
-                                                                 elif blockType="In" then resizePort 0 [|"out"|] block
-                                                                 elif blockType="Out" then resizePort 0 [|"in"|] block
+                                                                      block
+                                                                      |> resizePort inPorts 
+                                                                      |> resizePort outPorts
+                                                                      |> ignore
+                                                                 elif blockType="In" then resizePort [|"out"|] block |> ignore
+                                                                 elif blockType="Out" then resizePort [|"in"|] block |> ignore
                                                                  else ()
                                                                  
                                                               currentGraphModel <- Some graph
@@ -336,7 +223,7 @@ let canvasInit (paneName:string) =
                          /// update the local reference
                          modelRef <- Some a
 
-                         updatePaneName ()
+                         updatePaneName paneName
              | option.None -> ()              
     |> getElementBindEvent (paneName + "-updateInfoButton") "click"        
     
@@ -346,7 +233,7 @@ let canvasInit (paneName:string) =
                                                     setHTMLElementValue InputBox (paneName + "-positionX") ""                 
                                                     setHTMLElementValue InputBox (paneName + "-positionY") ""
                                         | option.None -> ()
-                                        updatePaneName ()
+                                        updatePaneName paneName
     getElementBindEvent (paneName + "-deleteBlockButton") "click" removeButtonFunction   
     
     let resetZoomButtonFunction = fun e -> paper?scale(1)  
@@ -436,7 +323,7 @@ let canvasInit (paneName:string) =
                                                inputCounter <- inputCounter + 1
                                                activeBlockType <- option.None
                                                (document.getElementById (paneName + "-resetZoomButton")).innerHTML <- "Zoom = 100%. Click to reset."
-                                               updatePaneName ()
+                                               updatePaneName paneName
                            | Some OutputPort -> scale <- 1.0
                                                 paper?scale(scale)
                                                 outputPortInit outputCounter
@@ -450,7 +337,7 @@ let canvasInit (paneName:string) =
                                                 outputCounter <- outputCounter + 1
                                                 activeBlockType <- option.None
                                                 (document.getElementById (paneName + "-resetZoomButton")).innerHTML <- "Zoom = 100%. Click to reset."
-                                                updatePaneName ()
+                                                updatePaneName paneName
                            | Some LogicElement -> ///logicElementInit ()
                                                   scale <- 1.0
                                                   paper?scale(scale)                                                  
@@ -470,7 +357,7 @@ let canvasInit (paneName:string) =
                                                   logicBlockCounter <- logicBlockCounter + 1
                                                   activeBlockType <- option.None
                                                   (document.getElementById (paneName + "-resetZoomButton")).innerHTML <- "Zoom = 100%. Click to reset."
-                                                  updatePaneName ()
+                                                  updatePaneName paneName
                            | option.None -> modelRef <- option.None   
                            
                 /// update the global reference
@@ -510,7 +397,7 @@ let canvasInit (paneName:string) =
                                                                 | false -> customLogicBlock <- customLogicBlock.Add(res.[0], res')
                                                                            blockNameConfigMapping <- customLogicBlock
                                                                            appendNewBlockButton res.[0]                                                                           
-                                                                           updatePaneName ()                                                                           
+                                                                           updatePaneName paneName
                                                                 | true -> console.log("repeated name detected")
                                                                 )
         updateLogicBlockStorage    
@@ -539,7 +426,7 @@ let canvasInit (paneName:string) =
         /// fill in the content of the main body
         VerilogMainBody <- VerilogMainBody + "\nmodule " + moduleName + "("
 
-        let allBlocks:obj array = graph?getElements()
+        let allBlocks = jointJSCreator.GetElements graph
 
         let checkLinkConnected (link:obj) resFunction1 resFunction2 = 
             match link?getSourceElement(), link?getTargetElement() with

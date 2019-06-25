@@ -326,12 +326,17 @@ type JointJS =
     abstract member Resize: x:int -> y:int -> el:obj -> obj
     abstract member Attr: config:obj -> el:obj -> obj
     abstract member AttrBySelector: selector:string -> content:string -> el:obj -> obj
+    abstract member AttrFont: selector:string -> fontSize:int -> el:obj -> obj
     abstract member AddTo: graph:obj -> el:obj -> obj
     abstract member Translate: x:int -> y:int -> el:obj -> obj
     abstract member Source: el:obj -> anchor:Anchor -> link:obj -> obj
     abstract member Target: el:obj -> anchor:Anchor -> link:obj -> obj
     abstract member Router: link:obj -> routerType:Router -> obj
     abstract member Define: name:string -> config:NewElementConfig -> markupList:obj -> obj    
+    abstract member SetPorts: portType:string -> portNames:string array -> el:obj -> obj
+    abstract member SetPortProperty: portType:string -> attr:string -> config:obj -> el:obj -> obj
+    abstract member PortBlockInit: unit -> obj
+    abstract member GetElements: graph:obj -> obj array
 
 /// the interface JointJS needs to be explicitly implemented
 /// do not forget to :> the createElement interface implementation
@@ -346,12 +351,17 @@ type createElement() =
         member __.Resize x y el = el?resize(x, y)
         member __.Attr config el = el?attr(config)
         member __.AttrBySelector selector content el = el?attr(selector, content)
+        member __.AttrFont selector fontSize el = el?attr(selector, fontSize)
         member __.AddTo graph el = el?addTo(graph)
         member __.Translate x y el = el?translate(x, y)
         member __.Source el anchor link = link?source(el, anchor)
         member __.Target el anchor link = link?target(el, anchor)
         member __.Router link routerType = link?router(routerType)
-        member __.Define name config markupList = joint?dia?Element?define(name, config, markupList)        
+        member __.Define name config markupList = joint?dia?Element?define(name, config, markupList)
+        member __.SetPorts portType portNames el =  el?set(portType, portNames)
+        member __.SetPortProperty portType attr config el = el?portProp(portType, attr, config)
+        member __.PortBlockInit () = createNew joint?shapes?devs?Model ()
+        member __.GetElements graph = graph?getElements()
 
 /// paper.on("<event type>", function args -> ...)
 [<Emit("$0.on($1, $2)")>]
